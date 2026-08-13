@@ -1,0 +1,30 @@
+{
+  "site": {
+    "name": "GreenBlog",
+    "tagline": "Fresh thoughts, green living",
+    "icon": "🌿"
+  },
+  "author": {
+    "name": "Priya Sharma",
+    "bio": "Writer, nature lover, and advocate for sustainable living. Sharing stories that inspire connection with the natural world.",
+    "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=priya",
+    "social": {
+      "twitter": "https://twitter.com/...",
+      "instagram": "https://instagram.com/...",
+      "github": "https://github.com/...",
+      "youtube": "https://youtube.com/..."
+    }
+  },
+  "pages": [
+    { "slug": "about", "title": "About", "content": "..." },
+    { "slug": "contact", "title": "Contact", "content": "..." },
+    { "slug": "privacy", "title": "Privacy Policy", "content": "..." },
+    { "slug": "toc", "title": "Terms of Service", "content": "..." },
+    { "slug": "disclaimer", "title": "Disclaimer", "content": "..." },
+    { "slug": "dmca", "title": "DMCA", "content": "..." }
+  ],
+  "posts": [
+    { "id": 1, "title": "...", "date": "2024-01-01", "excerpt": "...", "content": "...", "slug": "post-1" }
+    // ... more posts
+  ]
+}

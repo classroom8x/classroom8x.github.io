@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenBlog – fresh thoughts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f6faf6;
+            color: #1a2e1a;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e8f0e8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8dbd9a;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a7d5c;
+        }
+
+        /* ===== VARIABLES ===== */
+        :root {
+            --green: #3a7d5c;
+            --green-light: #e8f5ed;
+            --green-dark: #1a3a2a;
+            --green-soft: #d4e8d9;
+            --green-muted: #8dbd9a;
+            --bg: #f6faf6;
+            --card: #ffffff;
+            --text: #1a2e1a;
+            --text-light: #4a6a4a;
+            --border: #dce8dc;
+            --shadow: 0 4px 24px rgba(58, 125, 92, 0.08);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: 0.3s ease;
+            --header-h: 64px;
+            --sidebar-w: 260px;
+            --right-w: 220px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            height: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.02);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-toggle {
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--green-dark);
+            padding: 4px 6px;
+            border-radius: 8px;
+            transition: background var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+        }
+        .menu-toggle:hover {
+            background: var(--green-light);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--green-dark);
+            letter-spacing: -0.4px;
+        }
+        .logo .icon {
+            font-size: 26px;
+            line-height: 1;
+        }
+        .logo .name {
+            background: linear-gradient(135deg, var(--green-dark), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-wrap .search-icon {
+            position: absolute;
+            left: 12px;
+            font-size: 16px;
+            color: var(--text-light);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .search-bar {
+            font-family: 'Inter', sans-serif;
+            padding: 8px 14px 8px 36px;
+            border: 1.5px solid var(--border);
+            border-radius: 30px;
+            font-size: 14px;
+            background: var(--card);
+            color: var(--text);
+            width: 200px;
+            transition: all var(--transition);
+            outline: none;
+            min-height: 38px;
+        }
+        .search-bar:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px rgba(58, 125, 92, 0.10);
+            width: 240px;
+        }
+        .search-bar::placeholder {
+            color: #a0b8a0;
+            font-weight: 300;
+        }
+        .search-clear {
+            position: absolute;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            color: var(--text-light);
+            cursor: pointer;
+            display: none;
+            padding: 2px 4px;
+            border-radius: 50%;
+            line-height: 1;
+        }
+        .search-clear.visible {
+            display: block;
+        }
+        .search-clear:hover {
+            color: var(--green-dark);
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.20);
+            z-index: 80;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ===== SIDEBAR (left menu) ===== */
+        .sidebar {
+            position: fixed;
+            top: var(--header-h);
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-w);
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            z-index: 90;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 20px 0 0 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.04);
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 0 16px 16px 16px;
+        }
+        .sidebar-menu .menu-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-light);
+            opacity: 0.5;
+            font-weight: 600;
+            padding: 6px 8px 10px 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+        .sidebar-menu li a {
+            display: block;
+            padding: 9px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text);
+            transition: all var(--transition);
+            border-left: 3px solid transparent;
+        }
+        .sidebar-menu li a:hover {
+            background: var(--green-light);
+            color: var(--green-dark);
+            border-left-color: var(--green);
+        }
+        .sidebar-menu li a.active {
+            background: var(--green-light);
+            color: var(--green-dark);
+            border-left-color: var(--green);
+            font-weight: 500;
+        }
+
+        .sidebar-footer {
+            padding: 16px 16px 20px 16px;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+        .sidebar-footer .footer-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-light);
+            opacity: 0.4;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .sidebar-footer .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .sidebar-footer .footer-links a {
+            font-size: 13px;
+            color: var(--text-light);
+            transition: color var(--transition);
+            padding: 2px 0;
+            border-bottom: 1px solid transparent;
+        }
+        .sidebar-footer .footer-links a:hover {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .main-layout {
+            display: flex;
+            padding-top: var(--header-h);
+            min-height: calc(100vh - var(--header-h));
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            padding: 32px 24px 60px 24px;
+            max-width: 820px;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 80vh;
+        }
+
+        /* ===== RIGHT SIDEBAR (author) ===== */
+        .right-sidebar {
+            width: var(--right-w);
+            padding: 32px 16px 40px 16px;
+            flex-shrink: 0;
+            display: none;
+            /* hidden on small */;
+        }
+
+        /* ===== AUTHOR BIO ===== */
+        .author-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 24px 20px 20px 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        .author-card:hover {
+            transform: translateY(-2px);
+        }
+        .author-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 12px auto;
+            border: 3px solid var(--green-soft);
+            background: var(--green-light);
+            display: block;
+        }
+        .author-card .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+        }
+        .author-card .bio-text {
+            font-size: 13.5px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 8px 0 14px 0;
+            font-weight: 400;
+        }
+        .author-card .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .author-card .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--green-light);
+            color: var(--green);
+            font-size: 17px;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
+        .author-card .social-links a:hover {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
+            transform: scale(1.05);
+        }
+
+        /* ===== POSTS LIST ===== */
+        .posts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .post-item {
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            border-left: 4px solid transparent;
+            background: transparent;
+        }
+        .post-item:hover {
+            background: var(--card);
+            box-shadow: var(--shadow);
+            border-left-color: var(--green-muted);
+            transform: translateX(4px);
+        }
+        .post-item .post-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--green-dark);
+            line-height: 1.3;
+            transition: color var(--transition);
+        }
+        .post-item:hover .post-title {
+            color: var(--green);
+        }
+        .post-item .post-meta {
+            font-size: 13px;
+            color: var(--text-light);
+            opacity: 0.7;
+            margin-top: 2px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+        .post-item .post-excerpt {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* ===== POST DETAIL VIEW ===== */
+        .post-detail-view {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .post-detail-view.visible {
+            display: block;
+        }
+        .post-detail-view .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: var(--green);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 6px 0 14px 0;
+            font-family: 'Inter', sans-serif;
+            transition: color var(--transition);
+        }
+        .post-detail-view .back-btn:hover {
+            color: var(--green-dark);
+        }
+        .post-detail-view .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--green-dark);
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+        .post-detail-view .detail-date {
+            font-size: 14px;
+            color: var(--text-light);
+            opacity: 0.7;
+            margin-bottom: 18px;
+            display: block;
+        }
+        .post-detail-view .detail-content {
+            font-size: 16.5px;
+            line-height: 1.8;
+            color: var(--text);
+            max-width: 100%;
+        }
+        .post-detail-view .detail-content p {
+            margin-bottom: 1.2em;
+        }
+        .post-detail-view .detail-content h2,
+        .post-detail-view .detail-content h3 {
+            font-family: 'Playfair Display', serif;
+            margin: 1.4em 0 0.4em 0;
+            color: var(--green-dark);
+        }
+        .post-detail-view .detail-content ul,
+        .post-detail-view .detail-content ol {
+            padding-left: 1.6em;
+            margin-bottom: 1.2em;
+        }
+
+        /* ===== LOADER ===== */
+        .loader-wrap {
+            text-align: center;
+            padding: 30px 0 10px 0;
+            font-size: 14px;
+            color: var(--text-light);
+            opacity: 0.6;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        .loader-wrap .spinner {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 2.5px solid var(--green-soft);
+            border-top-color: var(--green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SEARCH RESULTS ===== */
+        .search-info {
+            font-size: 14px;
+            color: var(--text-light);
+            padding: 6px 0 18px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 18px;
+        }
+        .search-info strong {
+            color: var(--green-dark);
+            font-weight: 600;
+        }
+        .no-results {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        .no-results .emoji {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* ===== PAGE VIEW ===== */
+        .page-view {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .page-view.visible {
+            display: block;
+        }
+        .page-view .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+        .page-view .page-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+        .page-view .page-content p {
+            margin-bottom: 1.2em;
+        }
+        .page-view .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: var(--green);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 6px 0 14px 0;
+            font-family: 'Inter', sans-serif;
+            transition: color var(--transition);
+        }
+        .page-view .back-btn:hover {
+            color: var(--green-dark);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 820px) {
+            .right-sidebar {
+                display: block;
+            }
+            .main-content {
+                padding: 32px 32px 60px 32px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .main-content {
+                padding: 40px 40px 80px 40px;
+            }
+            .sidebar {
+                transform: translateX(0);
+                box-shadow: none;
+            }
+            .overlay {
+                display: none;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            .main-layout {
+                padding-left: var(--sidebar-w);
+            }
+            .right-sidebar {
+                padding: 40px 20px 40px 20px;
+                width: 240px;
+            }
+        }
+
+        @media (max-width: 819px) {
+            .right-sidebar {
+                display: none;
+            }
+            .main-content {
+                padding: 20px 16px 40px 16px;
+            }
+            .search-bar {
+                width: 140px;
+                font-size: 13px;
+                padding: 6px 10px 6px 30px;
+            }
+            .search-bar:focus {
+                width: 160px;
+            }
+            .search-wrap .search-icon {
+                left: 10px;
+                font-size: 14px;
+            }
+            .logo {
+                font-size: 18px;
+            }
+            .logo .icon {
+                font-size: 22px;
+            }
+            .post-item .post-title {
+                font-size: 17px;
+            }
+            .post-detail-view .detail-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0 12px;
+            }
+            .search-bar {
+                width: 110px;
+                font-size: 12px;
+                padding: 5px 8px 5px 26px;
+            }
+            .search-bar:focus {
+                width: 130px;
+            }
+            .search-wrap .search-icon {
+                left: 8px;
+                font-size: 12px;
+            }
+            .logo {
+                font-size: 16px;
+            }
+            .logo .icon {
+                font-size: 18px;
+            }
+            .menu-toggle {
+                font-size: 18px;
+                width: 32px;
+                height: 32px;
+            }
+            .post-item {
+                padding: 12px 14px;
+            }
+            .post-item .post-title {
+                font-size: 16px;
+            }
+            .sidebar {
+                width: 240px;
+            }
+        }
+
+        /* ===== helper ===== */
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="4" y1="7" x2="20" y2="7" />
+                    <line x1="4" y1="12" x2="20" y2="12" />
+                    <line x1="4" y1="17" x2="20" y2="17" />
+                </svg>
+            </button>
+            <div class="logo">
+                <span class="icon" id="siteIcon">🌿</span>
+                <span class="name" id="siteName">GreenBlog</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-bar" id="searchBar" placeholder="Search posts..." autocomplete="off" />
+                <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== OVERLAY ===== -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <div class="menu-label">Explore</div>
+            <ul id="menuLinks">
+                <li><a href="#" data-page="home" class="active">🏠 Home</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="footer-label">Important</div>
+            <div class="footer-links" id="footerLinks">
+                <!-- filled from JSON -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN LAYOUT ===== -->
+    <div class="main-layout">
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="mainContent">
+
+            <!-- POSTS LIST -->
+            <div id="postsContainer">
+                <div class="posts-list" id="postsList"></div>
+                <div class="loader-wrap" id="loaderWrap">
+                    <span class="spinner"></span> Loading more posts…
+                </div>
+            </div>
+
+            <!-- POST DETAIL VIEW -->
+            <div class="post-detail-view" id="postDetailView">
+                <button class="back-btn" id="detailBackBtn">← Back to posts</button>
+                <h1 class="detail-title" id="detailTitle"></h1>
+                <span class="detail-date" id="detailDate"></span>
+                <div class="detail-content" id="detailContent"></div>
+            </div>
+
+            <!-- PAGE VIEW -->
+            <div class="page-view" id="pageView">
+                <button class="back-btn" id="pageBackBtn">← Back to posts</button>
+                <h1 class="page-title" id="pageTitle"></h1>
+                <div class="page-content" id="pageContent"></div>
+            </div>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR (Author) -->
+        <aside class="right-sidebar" id="rightSidebar">
+            <div class="author-card" id="authorCard">
+                <img class="avatar" id="authorAvatar" src="" alt="Author" />
+                <div class="name" id="authorName">Author</div>
+                <div class="bio-text" id="authorBio">Bio goes here</div>
+                <div class="social-links" id="authorSocial"></div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  DATA
+        // ============================================================
+        const DATA_URL = 'data.json'; // change to your JSON file path
+
+        let allPosts = [];
+        let allPages = [];
+        let authorData = null;
+        let siteData = null;
+
+        let currentPage = 1;
+        const PER_PAGE = 10;
+        let isLoading = false;
+        let hasMore = true;
+        let filteredPosts = null; // null = show all
+        let currentView = 'list'; // 'list' | 'detail' | 'page'
+        let currentPostId = null;
+        let currentPageSlug = null;
+
+        // DOM refs
+        const postsList = document.getElementById('postsList');
+        const loaderWrap = document.getElementById('loaderWrap');
+        const searchBar = document.getElementById('searchBar');
+        const searchClear = document.getElementById('searchClear');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const menuLinks = document.getElementById('menuLinks');
+        const footerLinks = document.getElementById('footerLinks');
+
+        const postsContainer = document.getElementById('postsContainer');
+        const detailView = document.getElementById('postDetailView');
+        const detailTitle = document.getElementById('detailTitle');
+        const detailDate = document.getElementById('detailDate');
+        const detailContent = document.getElementById('detailContent');
+        const detailBackBtn = document.getElementById('detailBackBtn');
+
+        const pageView = document.getElementById('pageView');
+        const pageTitle = document.getElementById('pageTitle');
+        const pageContent = document.getElementById('pageContent');
+        const pageBackBtn = document.getElementById('pageBackBtn');
+
+        const authorAvatar = document.getElementById('authorAvatar');
+        const authorName = document.getElementById('authorName');
+        const authorBio = document.getElementById('authorBio');
+        const authorSocial = document.getElementById('authorSocial');
+
+        const siteIcon = document.getElementById('siteIcon');
+        const siteName = document.getElementById('siteName');
+
+        // ============================================================
+        //  FETCH DATA
+        // ============================================================
+        async function loadData() {
+            try {
+                const resp = await fetch(DATA_URL);
+                if (!resp.ok) throw new Error('Failed to fetch data.json');
+                const data = await resp.json();
+
+                // site
+                if (data.site) {
+                    siteData = data.site;
+                    if (siteData.icon) siteIcon.textContent = siteData.icon;
+                    if (siteData.name) siteName.textContent = siteData.name;
+                    document.title = siteData.name || 'GreenBlog';
+                }
+
+                // author
+                if (data.author) {
+                    authorData = data.author;
+                    renderAuthor(authorData);
+                }
+
+                // pages
+                if (data.pages && Array.isArray(data.pages)) {
+                    allPages = data.pages;
+                    renderFooterLinks(allPages);
+                }
+
+                // posts
+                if (data.posts && Array.isArray(data.posts)) {
+                    allPosts = data.posts;
+                    // sort by date descending
+                    allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    // add menu link for posts
+                    renderMenuLinks();
+                    // load first batch
+                    currentPage = 1;
+                    hasMore = true;
+                    filteredPosts = null;
+                    renderPosts();
+                } else {
+                    postsList.innerHTML =
+                        `<div class="no-results"><span class="emoji">📭</span>No posts found.</div>`;
+                    loaderWrap.style.display = 'none';
+                }
+
+            } catch (err) {
+                console.error('Error loading data:', err);
+                postsList.innerHTML =
+                    `<div class="no-results"><span class="emoji">⚠️</span>Could not load data. Please check <strong>data.json</strong>.</div>`;
+                loaderWrap.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        //  RENDER: AUTHOR
+        // ============================================================
+        function renderAuthor(author) {
+            if (!author) return;
+            if (author.photo) authorAvatar.src = author.photo;
+            if (author.name) authorName.textContent = author.name;
+            if (author.bio) authorBio.textContent = author.bio;
+
+            authorSocial.innerHTML = '';
+            if (author.social) {
+                const socialMap = {
+                    twitter: '🐦',
+                    instagram: '📸',
+                    github: '🐙',
+                    youtube: '▶️',
+                    linkedin: '🔗',
+                    facebook: '👍',
+                    website: '🌐'
+                };
+                for (const [key, url] of Object.entries(author.social)) {
+                    if (!url) continue;
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.textContent = socialMap[key] || '🔗';
+                    a.title = key.charAt(0).toUpperCase() + key.slice(1);
+                    authorSocial.appendChild(a);
+                }
+            }
+        }
+
+        // ============================================================
+        //  RENDER: MENU LINKS
+        // ============================================================
+        function renderMenuLinks() {
+            // Keep Home as first item
+            const homeLi = menuLinks.querySelector('li');
+            menuLinks.innerHTML = '';
+            const homeItem = document.createElement('li');
+            const homeA = document.createElement('a');
+            homeA.href = '#';
+            homeA.dataset.page = 'home';
+            homeA.className = 'active';
+            homeA.textContent = '🏠 Home';
+            homeItem.appendChild(homeA);
+            menuLinks.appendChild(homeItem);
+
+            // add a divider or just show posts count
+            if (allPosts.length > 0) {
+                const countItem = document.createElement('li');
+                const countA = document.createElement('a');
+                countA.href = '#';
+                countA.dataset.page = 'home';
+                countA.textContent = `📝 All Posts (${allPosts.length})`;
+                countA.style.fontSize = '13px';
+                countA.style.opacity = '0.6';
+                countA.style.pointerEvents = 'none';
+                countItem.appendChild(countA);
+                menuLinks.appendChild(countItem);
+            }
+
+            // re-bind click on menu items
+            menuLinks.querySelectorAll('a[data-page]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = el.dataset.page;
+                    if (page === 'home') {
+                        showHome();
+                    }
+                    // mark active
+                    menuLinks.querySelectorAll('a[data-page]').forEach(a => a.classList.remove('active'));
+                    el.classList.add('active');
+                    // close sidebar on mobile
+                    closeSidebar();
+                });
+            });
+        }
+
+        // ============================================================
+        //  RENDER: FOOTER LINKS (pages)
+        // ============================================================
+        function renderFooterLinks(pages) {
+            footerLinks.innerHTML = '';
+            pages.forEach(p => {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = p.title || p.slug;
+                a.dataset.slug = p.slug;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage(p.slug);
+                    closeSidebar();
+                });
+                footerLinks.appendChild(a);
+            });
+        }
+
+        // ============================================================
+        //  RENDER: POSTS (with pagination/infinite scroll)
+        // ============================================================
+        function renderPosts(append = false) {
+            const source = filteredPosts !== null ? filteredPosts : allPosts;
+            const total = source.length;
+            if (total === 0) {
+                postsList.innerHTML =
+                    `<div class="no-results"><span class="emoji">🔍</span>No posts match your search.</div>`;
+                loaderWrap.style.display = 'none';
+                hasMore = false;
+                return;
+            }
+
+            const start = 0;
+            const end = Math.min(currentPage * PER_PAGE, total);
+            const slice = source.slice(start, end);
+
+            if (!append) {
+                postsList.innerHTML = '';
+            }
+
+            slice.forEach(post => {
+                const div = document.createElement('div');
+                div.className = 'post-item';
+                div.dataset.id = post.id;
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'post-title';
+                titleDiv.textContent = post.title;
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'post-meta';
+                const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                }) : '';
+                metaDiv.textContent = dateStr ? `📅 ${dateStr}` : '';
+                div.appendChild(titleDiv);
+                div.appendChild(metaDiv);
+
+                // click -> show detail
+                div.addEventListener('click', () => {
+                    showPostDetail(post.id);
+                });
+
+                postsList.appendChild(div);
+            });
+
+            // update hasMore
+            hasMore = end < total;
+
+            // loader visibility
+            if (!hasMore) {
+                loaderWrap.style.display = 'none';
+            } else {
+                loaderWrap.style.display = 'block';
+            }
+
+            // if we have more but not all loaded, keep loader
+            if (hasMore && end < total) {
+                loaderWrap.style.display = 'block';
+            } else {
+                loaderWrap.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        //  INFINITE SCROLL (Intersection Observer)
+        // ============================================================
+        let observer = null;
+
+        function setupInfiniteScroll() {
+            if (observer) observer.disconnect();
+            const target = loaderWrap;
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !isLoading && hasMore) {
+                        loadMore();
+                    }
+                });
+            }, { rootMargin: '0px 0px 100px 0px' });
+            if (loaderWrap.style.display !== 'none') {
+                observer.observe(target);
+            }
+        }
+
+        function loadMore() {
+            if (isLoading || !hasMore) return;
+            isLoading = true;
+            currentPage++;
+            const source = filteredPosts !== null ? filteredPosts : allPosts;
+            const total = source.length;
+            const end = Math.min(currentPage * PER_PAGE, total);
+            if (end > (currentPage - 1) * PER_PAGE) {
+                renderPosts(true);
+            }
+            isLoading = false;
+            // re-setup observer after render
+            setTimeout(setupInfiniteScroll, 100);
+        }
+
+        // ============================================================
+        //  SHOW: HOME (posts list)
+        // ============================================================
+        function showHome() {
+            currentView = 'list';
+            currentPostId = null;
+            currentPageSlug = null;
+            filteredPosts = null;
+            searchBar.value = '';
+            searchClear.classList.remove('visible');
+            detailView.classList.remove('visible');
+            pageView.classList.remove('visible');
+            postsContainer.style.display = 'block';
+            // reset pagination
+            currentPage = 1;
+            hasMore = true;
+            renderPosts(false);
+            setTimeout(setupInfiniteScroll, 150);
+            // update menu active
+            menuLinks.querySelectorAll('a[data-page]').forEach(a => a.classList.remove('active'));
+            const homeLink = menuLinks.querySelector('a[data-page="home"]');
+            if (homeLink) homeLink.classList.add('active');
+        }
+
+        // ============================================================
+        //  SHOW: POST DETAIL
+        // ============================================================
+        function showPostDetail(id) {
+            const post = allPosts.find(p => p.id === id);
+            if (!post) return;
+            currentView = 'detail';
+            currentPostId = id;
+            currentPageSlug = null;
+            postsContainer.style.display = 'none';
+            detailView.classList.add('visible');
+            pageView.classList.remove('visible');
+
+            detailTitle.textContent = post.title;
+            const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }) : '';
+            detailDate.textContent = dateStr ? `📅 ${dateStr}` : '';
+            detailContent.innerHTML = post.content || '<p><em>No content available.</em></p>';
+
+            // update menu active (clear)
+            menuLinks.querySelectorAll('a[data-page]').forEach(a => a.classList.remove('active'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  SHOW: PAGE
+        // ============================================================
+        function showPage(slug) {
+            const page = allPages.find(p => p.slug === slug);
+            if (!page) return;
+            currentView = 'page';
+            currentPageSlug = slug;
+            currentPostId = null;
+            postsContainer.style.display = 'none';
+            pageView.classList.add('visible');
+            detailView.classList.remove('visible');
+
+            pageTitle.textContent = page.title || slug;
+            pageContent.innerHTML = page.content || '<p><em>No content available.</em></p>';
+
+            menuLinks.querySelectorAll('a[data-page]').forEach(a => a.classList.remove('active'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  SEARCH
+        // ============================================================
+        function performSearch(query) {
+            const q = query.trim().toLowerCase();
+            if (!q) {
+                filteredPosts = null;
+                searchClear.classList.remove('visible');
+            } else {
+                searchClear.classList.add('visible');
+                filteredPosts = allPosts.filter(p =>
+                    p.title.toLowerCase().includes(q) ||
+                    (p.content && p.content.toLowerCase().includes(q)) ||
+                    (p.excerpt && p.excerpt.toLowerCase().includes(q))
+                );
+            }
+            // reset pagination
+            currentPage = 1;
+            hasMore = true;
+            renderPosts(false);
+            setTimeout(setupInfiniteScroll, 150);
+            // show info
+            const source = filteredPosts !== null ? filteredPosts : allPosts;
+            if (q && source.length > 0) {
+                // add info line
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'search-info';
+                infoDiv.innerHTML = `🔍 Found <strong>${source.length}</strong> post${source.length > 1 ? 's' : ''} for “<strong>${q}</strong>”`;
+                const existing = postsList.querySelector('.search-info');
+                if (existing) existing.remove();
+                postsList.prepend(infoDiv);
+            } else if (q && source.length === 0) {
+                // handled by no-results
+            } else {
+                const existing = postsList.querySelector('.search-info');
+                if (existing) existing.remove();
+            }
+        }
+
+        // ============================================================
+        //  SIDEBAR TOGGLE
+        // ============================================================
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            overlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ============================================================
+        //  EVENT BINDING
+        // ============================================================
+        // Menu toggle
+        menuToggle.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        // Search
+        let searchTimeout = null;
+        searchBar.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            const val = searchBar.value;
+            // show/hide clear
+            if (val.trim()) {
+                searchClear.classList.add('visible');
+            } else {
+                searchClear.classList.remove('visible');
+            }
+            searchTimeout = setTimeout(() => {
+                if (currentView === 'detail' || currentView === 'page') {
+                    // if in detail/page, switch to home first
+                    showHome();
+                    // then search after a tick
+                    setTimeout(() => {
+                        performSearch(val);
+                    }, 50);
+                } else {
+                    performSearch(val);
+                }
+            }, 300);
+        });
+
+        searchClear.addEventListener('click', () => {
+            searchBar.value = '';
+            searchClear.classList.remove('visible');
+            if (currentView === 'detail' || currentView === 'page') {
+                showHome();
+            } else {
+                performSearch('');
+            }
+            searchBar.focus();
+        });
+
+        // Back buttons
+        detailBackBtn.addEventListener('click', () => {
+            showHome();
+        });
+        pageBackBtn.addEventListener('click', () => {
+            showHome();
+        });
+
+        // Keyboard: Escape to close sidebar or clear search
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (sidebar.classList.contains('open')) closeSidebar();
+                if (searchBar.value) {
+                    searchBar.value = '';
+                    searchClear.classList.remove('visible');
+                    performSearch('');
+                }
+                if (currentView === 'detail' || currentView === 'page') {
+                    showHome();
+                }
+            }
+            // Ctrl+K or Cmd+K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchBar.focus();
+            }
+        });
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        loadData().then(() => {
+            // initial render is done inside loadData
+            setTimeout(setupInfiniteScroll, 300);
+        });
+
+        // Also re-setup observer when window resizes (for layout changes)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(setupInfiniteScroll, 300);
+        });
+
+        console.log('🌿 GreenBlog loaded — enjoy!');
+        console.log('📖 Data from:', DATA_URL);
+        console.log('⌨️  Press Ctrl+K to search');
+    </script>
+
+</body>
+</html>
