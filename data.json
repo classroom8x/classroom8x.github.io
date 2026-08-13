@@ -38,6 +38,8 @@
     { "id": 13, "title": "Cooking With Whatever the Garden Gives Me", "category": "Kitchen", "date": "2026-05-29", "url": "posts/cooking-with-the-garden.html", "excerpt": "No recipes, just whatever survived the week outside my window." },
     { "id": 14, "title": "Letters I Never Sent, Kept in a Drawer", "category": "Slow Living", "date": "2026-05-22", "url": "posts/letters-never-sent.html", "excerpt": "Some thoughts are only meant to be written, never delivered." },
     { "id": 15, "title": "The Plant That Refused to Die", "category": "Plants", "date": "2026-05-15", "url": "posts/plant-that-refused-to-die.html", "excerpt": "A neglected pothos and the lesson it kept teaching me anyway." },
-    { "id": 16, "title": "Rearranging the Same Room Every Few Months", "category": "Home", "date": "2026-05-08", "url": "posts/rearranging-the-same-room.html", "excerpt": "A cheap, restless habit that keeps an old room feeling new." }
+    { "id": 16, "title": "Rearranging the Same Room Every Few Months", "category": "Home", "date": "2026-05-08", "url": "posts/rearranging-the-same-room.html", "excerpt": "A cheap, restless habit that keeps an old room feeling new." },
+    { "id": 17, "title": "This is test Blog Title Bro", "category": "Home", "date": "2026-08-13", "url": "posts/rearranging-the-same-room.html", "excerpt": "Why you need so much internet data this days? the answer is weird!" }
+  ]
   ]
 }
