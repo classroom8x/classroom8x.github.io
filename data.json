@@ -1,0 +1,43 @@
+{
+  "site": {
+    "name": "Verdant Notes",
+    "tagline": "Slow thoughts on simple living"
+  },
+  "author": {
+    "name": "Ananya Rao",
+    "photo": "https://i.pravatar.cc/300?img=47",
+    "bio": "I write about mindful living, plants, and the small rituals that make ordinary days feel good. Based in the hills, fuelled by chai.",
+    "socials": [
+      { "name": "Twitter", "url": "https://twitter.com/", "icon": "twitter" },
+      { "name": "Instagram", "url": "https://instagram.com/", "icon": "instagram" },
+      { "name": "YouTube", "url": "https://youtube.com/", "icon": "youtube" },
+      { "name": "Email", "url": "mailto:hello@example.com", "icon": "mail" }
+    ]
+  },
+  "pages": [
+    { "title": "About", "url": "about.html" },
+    { "title": "Contact", "url": "contact.html" },
+    { "title": "Privacy Policy", "url": "privacy-policy.html" },
+    { "title": "Terms & Conditions", "url": "terms-and-conditions.html" },
+    { "title": "Disclaimer", "url": "disclaimer.html" },
+    { "title": "DMCA", "url": "dmca.html" }
+  ],
+  "posts": [
+    { "id": 1, "title": "The Quiet Art of Watering Plants Every Morning", "category": "Rituals", "date": "2026-08-10", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
+    { "id": 2, "title": "Why I Stopped Buying Furniture and Started Building It", "category": "Home", "date": "2026-08-06", "url": "posts/building-not-buying-furniture.html", "excerpt": "A wobbly first stool and the slow satisfaction of making things with your own hands." },
+    { "id": 3, "title": "Notes From a Week Without My Phone", "category": "Slow Living", "date": "2026-08-01", "url": "posts/week-without-phone.html", "excerpt": "The silence was uncomfortable for two days, and then it wasn't." },
+    { "id": 4, "title": "A Beginner's Guide to Fermenting Everything", "category": "Kitchen", "date": "2026-07-27", "url": "posts/beginners-guide-fermenting.html", "excerpt": "Cabbage, jars, and the strange joy of watching food change on its own." },
+    { "id": 5, "title": "The Balcony Garden That Taught Me to Slow Down", "category": "Plants", "date": "2026-07-21", "url": "posts/balcony-garden-slow-down.html", "excerpt": "Six pots, one railing, and a whole season of small lessons in patience." },
+    { "id": 6, "title": "On Keeping a Paper Journal in a Digital World", "category": "Rituals", "date": "2026-07-15", "url": "posts/paper-journal-digital-world.html", "excerpt": "Why a pen and a blank page still beat any app I've tried." },
+    { "id": 7, "title": "Sunday Mornings, Slower Than the Rest", "category": "Slow Living", "date": "2026-07-09", "url": "posts/sunday-mornings-slower.html", "excerpt": "A small routine that turned my most chaotic day into my calmest one." },
+    { "id": 8, "title": "What My Grandmother's Kitchen Taught Me About Waste", "category": "Kitchen", "date": "2026-07-02", "url": "posts/grandmothers-kitchen-waste.html", "excerpt": "Nothing was ever thrown away, and everything somehow tasted better for it." },
+    { "id": 9, "title": "Choosing One Houseplant a Season, On Purpose", "category": "Plants", "date": "2026-06-26", "url": "posts/one-houseplant-a-season.html", "excerpt": "Restraint turned out to be the secret to actually keeping plants alive." },
+    { "id": 10, "title": "The Case for Doing Nothing on Weekends", "category": "Slow Living", "date": "2026-06-19", "url": "posts/case-for-doing-nothing.html", "excerpt": "An unpopular schedule that gave me back my Sundays." },
+    { "id": 11, "title": "Repainting the Same Wall Three Times", "category": "Home", "date": "2026-06-12", "url": "posts/repainting-same-wall.html", "excerpt": "What patience with a paintbrush taught me about patience with everything else." },
+    { "id": 12, "title": "A Small Ritual for Ending the Workday", "category": "Rituals", "date": "2026-06-05", "url": "posts/ritual-for-ending-workday.html", "excerpt": "Closing the laptop is easy. Closing the mind takes a little more practice." },
+    { "id": 13, "title": "Cooking With Whatever the Garden Gives Me", "category": "Kitchen", "date": "2026-05-29", "url": "posts/cooking-with-the-garden.html", "excerpt": "No recipes, just whatever survived the week outside my window." },
+    { "id": 14, "title": "Letters I Never Sent, Kept in a Drawer", "category": "Slow Living", "date": "2026-05-22", "url": "posts/letters-never-sent.html", "excerpt": "Some thoughts are only meant to be written, never delivered." },
+    { "id": 15, "title": "The Plant That Refused to Die", "category": "Plants", "date": "2026-05-15", "url": "posts/plant-that-refused-to-die.html", "excerpt": "A neglected pothos and the lesson it kept teaching me anyway." },
+    { "id": 16, "title": "Rearranging the Same Room Every Few Months", "category": "Home", "date": "2026-05-08", "url": "posts/rearranging-the-same-room.html", "excerpt": "A cheap, restless habit that keeps an old room feeling new." }
+  ]
+}
