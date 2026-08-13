@@ -24,7 +24,7 @@
     { "slug": "dmca", "title": "DMCA", "content": "..." }
   ],
   "posts": [
-    { "id": 1, "title": "...", "date": "2024-01-01", "excerpt": "...", "content": "...", "slug": "post-1" }
+    { "id": 1, "title": "Love is the power", "date": "2024-01-01", "excerpt": "...", "content": "...", "slug": "post-1" }
     // ... more posts
   ]
 }
