@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO META — update per post ===== -->
+<title>The Quiet Art of Watering Plants Every Morning — Verdant Notes</title>
+<meta name="description" content="Ten minutes with a watering can taught me more about patience than any book ever did.">
+<link rel="canonical" href="https://yourdomain.com/posts/watering-plants-every-morning.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Quiet Art of Watering Plants Every Morning">
+<meta property="og:description" content="Ten minutes with a watering can taught me more about patience than any book ever did.">
+<meta property="og:url" content="https://yourdomain.com/posts/watering-plants-every-morning.html">
+<meta property="og:image" content="https://yourdomain.com/images/watering-plants-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ===== Article schema — update values per post ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Quiet Art of Watering Plants Every Morning",
+  "description": "Ten minutes with a watering can taught me more about patience than any book ever did.",
+  "image": "https://yourdomain.com/images/watering-plants-cover.jpg",
+  "datePublished": "2026-08-10",
+  "dateModified": "2026-08-10",
+  "author": {
+    "@type": "Person",
+    "name": "Ananya Rao"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Verdant Notes"
+  },
+  "mainEntityOfPage": "https://yourdomain.com/posts/watering-plants-every-morning.html"
+}
+</script>
+
+<style>
+  :root{
+    --bg:#f5f8f2;
+    --surface:#eaf1e3;
+    --card:#ffffff;
+    --green-deep:#1f3d2b;
+    --green:#3f7d4f;
+    --green-soft:#8fb996;
+    --green-pale:#dfead8;
+    --text:#28312a;
+    --text-muted:#66715f;
+    --border:#dbe6d3;
+    --shadow: 0 1px 2px rgba(31,61,43,0.05), 0 4px 16px rgba(31,61,43,0.06);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  button{font:inherit;}
+  .site-name{font-family:'Fraunces', serif; font-weight:600; font-optical-sizing:auto;}
+
+  /* ---------- Topbar (same as homepage) ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:14px 20px;
+    background:rgba(245,248,242,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-left{display:flex; align-items:center; gap:12px; min-width:0;}
+  .menu-btn{
+    display:flex; flex-direction:column; justify-content:center; gap:4px;
+    width:38px; height:38px; border:1px solid var(--border); border-radius:10px;
+    background:var(--card); cursor:pointer; flex:none;
+  }
+  .menu-btn span{display:block; width:16px; height:2px; margin:0 auto; background:var(--green-deep); transition:transform .2s ease, opacity .2s ease;}
+  .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .menu-btn.active span:nth-child(2){opacity:0;}
+  .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .brand{display:flex; align-items:center; gap:9px; min-width:0;}
+  .brand-icon{width:30px; height:30px; flex:none; color:var(--green);}
+  .brand-text{display:flex; flex-direction:column; line-height:1.1; min-width:0;}
+  .brand-text .site-name{font-size:1.18rem; color:var(--green-deep); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .brand-text .tagline{font-size:0.72rem; color:var(--text-muted); letter-spacing:.02em; white-space:nowrap;}
+  .search-wrap{position:relative; width:min(280px, 40vw); flex:none;}
+  .search-wrap svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--text-muted);}
+  #searchInput{
+    width:100%; padding:9px 12px 9px 34px; border-radius:20px; border:1px solid var(--border);
+    background:var(--card); color:var(--text); font-size:0.88rem; outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  #searchInput:focus{border-color:var(--green-soft); box-shadow:0 0 0 3px var(--green-pale);}
+  .search-results{
+    position:absolute; top:calc(100% + 8px); right:0; width:320px; max-width:80vw;
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    box-shadow:var(--shadow); max-height:340px; overflow-y:auto; display:none; z-index:41;
+  }
+  .search-results.show{display:block;}
+  .search-results a{display:block; padding:10px 14px; font-size:0.86rem; border-bottom:1px solid var(--border);}
+  .search-results a:last-child{border-bottom:none;}
+  .search-results a:hover{background:var(--green-pale);}
+  .search-results .none{padding:14px; font-size:0.85rem; color:var(--text-muted);}
+
+  /* ---------- Sidebar (same as homepage) ---------- */
+  .overlay{position:fixed; inset:0; background:rgba(20,32,22,0.28); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:45;}
+  .overlay.show{opacity:1; pointer-events:auto;}
+  .sidebar{
+    position:fixed; top:0; left:0; height:100%; width:270px;
+    background:var(--surface); border-right:1px solid var(--border);
+    transform:translateX(-100%); transition:transform .25s ease; z-index:50;
+    display:flex; flex-direction:column; padding:20px 0 0;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-head{display:flex; align-items:center; justify-content:space-between; padding:0 20px 18px; border-bottom:1px solid var(--border);}
+  .sidebar-close{width:30px; height:30px; border-radius:8px; border:1px solid var(--border); background:var(--card); cursor:pointer; color:var(--green-deep); display:flex; align-items:center; justify-content:center;}
+  .sidebar-nav{padding:16px 10px; overflow-y:auto; flex:1;}
+  .sidebar-nav .section-label{font-size:0.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); padding:8px 12px 6px;}
+  .sidebar-nav a{display:block; padding:9px 12px; border-radius:9px; font-size:0.93rem; color:var(--green-deep); transition:background .15s ease;}
+  .sidebar-nav a:hover{background:var(--green-pale);}
+  .sidebar-footer{border-top:1px solid var(--border); padding:14px 10px 18px;}
+  .sidebar-footer .section-label{font-size:0.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); padding:4px 12px 6px;}
+  .sidebar-footer a{display:block; padding:6px 12px; font-size:0.82rem; color:var(--text-muted); border-radius:7px; transition:background .15s ease, color .15s ease;}
+  .sidebar-footer a:hover{background:var(--green-pale); color:var(--green-deep);}
+
+  /* ---------- Breadcrumb ---------- */
+  .breadcrumb{
+    max-width:720px; margin:0 auto; padding:22px 20px 0;
+    font-size:0.82rem; color:var(--text-muted);
+  }
+  .breadcrumb a{color:var(--green);}
+  .breadcrumb a:hover{text-decoration:underline;}
+
+  /* ---------- Article layout ---------- */
+  .article-wrap{max-width:720px; margin:0 auto; padding:18px 20px 0;}
+
+  .article-head .eyebrow{
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--green); font-weight:600;
+  }
+  .article-head h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:2.4rem; line-height:1.2;
+    color:var(--green-deep); margin:10px 0 16px;
+  }
+  .article-meta{
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    padding:16px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    margin-bottom:32px;
+  }
+  .article-meta img{width:38px; height:38px; border-radius:50%; object-fit:cover;}
+  .article-meta .who{display:flex; flex-direction:column; line-height:1.3;}
+  .article-meta .who .name{font-size:0.9rem; font-weight:600; color:var(--green-deep);}
+  .article-meta .who .date{font-size:0.78rem; color:var(--text-muted);}
+  .article-meta .read-time{
+    margin-left:auto; font-size:0.78rem; color:var(--text-muted);
+    background:var(--green-pale); padding:4px 10px; border-radius:20px;
+  }
+
+  /* ---------- Prose ---------- */
+  .prose{font-size:1.05rem; color:var(--text);}
+  .prose p{margin:0 0 22px;}
+  .prose h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.5rem;
+    color:var(--green-deep); margin:40px 0 16px;
+  }
+  .prose h3{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem;
+    color:var(--green-deep); margin:32px 0 12px;
+  }
+  .prose blockquote{
+    margin:28px 0; padding:4px 0 4px 20px;
+    border-left:3px solid var(--green-soft);
+    font-style:italic; color:var(--text-muted); font-size:1.05rem;
+  }
+  .prose figure{margin:32px 0;}
+  .prose figure img{border-radius:var(--radius); box-shadow:var(--shadow);}
+  .prose figcaption{font-size:0.82rem; color:var(--text-muted); margin-top:8px; text-align:center;}
+  .prose ul, .prose ol{margin:0 0 22px; padding-left:22px;}
+  .prose li{margin-bottom:8px;}
+  .prose a.inline-link{color:var(--green); text-decoration:underline; text-decoration-color:var(--green-soft);}
+  .prose strong{color:var(--green-deep);}
+
+  /* ---------- Share ---------- */
+  .share-row{
+    display:flex; align-items:center; gap:10px; margin:44px 0 8px;
+    padding-top:24px; border-top:1px solid var(--border);
+  }
+  .share-row span{font-size:0.82rem; color:var(--text-muted); margin-right:4px;}
+  .share-row a{
+    width:34px; height:34px; border-radius:50%; background:var(--green-pale);
+    color:var(--green-deep); display:flex; align-items:center; justify-content:center;
+    transition:background .15s ease, color .15s ease;
+  }
+  .share-row a:hover{background:var(--green); color:#fff;}
+  .share-row svg{width:15px; height:15px;}
+
+  /* ---------- Author box ---------- */
+  .author-box{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; margin:36px 0; box-shadow:var(--shadow);
+  }
+  .author-box img{width:56px; height:56px; border-radius:50%; object-fit:cover; flex:none; border:3px solid var(--green-pale);}
+  .author-box h4{font-family:'Fraunces', serif; font-size:1.02rem; margin:0 0 6px; color:var(--green-deep);}
+  .author-box p{font-size:0.88rem; color:var(--text-muted); margin:0;}
+
+  /* ---------- Related posts ---------- */
+  .related{max-width:720px; margin:16px auto 0; padding:0 20px;}
+  .related h3{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+    color:var(--green-deep); margin:0 0 16px;
+  }
+  .related-list{display:flex; flex-direction:column;}
+  .related-row{padding:16px 4px; border-bottom:1px solid var(--border);}
+  .related-row:first-child{padding-top:0;}
+  .related-row .cat{font-size:0.76rem; color:var(--green); font-weight:600; text-transform:uppercase; letter-spacing:.04em;}
+  .related-row h4{
+    margin:6px 0 0; font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem;
+  }
+  .related-row h4 a:hover{color:var(--green-deep); text-decoration:underline; text-decoration-color:var(--green-soft);}
+
+  footer.site-footer{
+    text-align:center; padding:40px 20px 44px; margin-top:40px;
+    color:var(--text-muted); font-size:0.82rem; border-top:1px solid var(--border);
+  }
+
+  @media (max-width:640px){
+    .article-head h1{font-size:1.8rem;}
+    .search-wrap{width:min(160px, 45vw);}
+    .brand-text .tagline{display:none;}
+    .search-results{width:260px;}
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--green); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar" aria-label="Site menu">
+  <div class="sidebar-head">
+    <span class="site-name" style="color:var(--green-deep); font-size:1.05rem;">Menu</span>
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="section-label">Browse</div>
+    <a href="../index.html">Home</a>
+  </nav>
+  <div class="sidebar-footer" id="sidebarFooter">
+    <div class="section-label">Important Pages</div>
+  </div>
+</aside>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="../index.html" class="brand">
+      <svg class="brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 6C13 6 7 15 7 24c0 9 6 18 17 18 9 0 15-7 15-17C39 14 33 6 24 6Z" fill="var(--green-pale)"/>
+        <path d="M24 40c0-14 0-22 12-30" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M24 40c0-11-4-17-12-22" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-text">
+        <span class="site-name" id="siteNameText">Verdant Notes</span>
+        <span class="tagline" id="siteTaglineText">Slow thoughts on simple living</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    <input type="search" id="searchInput" placeholder="Search posts…" aria-label="Search posts" autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a> / <span id="breadcrumbCat">Rituals</span>
+</nav>
+
+<article class="article-wrap">
+  <div class="article-head">
+    <div class="eyebrow">Rituals</div>
+    <h1>The Quiet Art of Watering Plants Every Morning</h1>
+  </div>
+
+  <div class="article-meta">
+    <img src="https://i.pravatar.cc/300?img=47" alt="Ananya Rao">
+    <div class="who">
+      <span class="name">Ananya Rao</span>
+      <span class="date">August 10, 2026</span>
+    </div>
+    <span class="read-time">4 min read</span>
+  </div>
+
+  <div class="prose">
+    <p>There is a particular kind of quiet that settles over a house at seven in the morning, before anyone else is awake, when the only sound is water hitting soil. I didn't expect a watering can to change how I start my day, but here we are.</p>
+
+    <p>It began, as most small rituals do, by accident. I bought a peace lily because it looked hardy enough to survive my track record with plants, and within two weeks it was drooping so dramatically I assumed it was already dead. It wasn't. It was thirsty. That was the first lesson: most of what looks like failure is just a plant, or a person, waiting to be noticed.</p>
+
+    <h2>Ten minutes, no phone</h2>
+    <p>The rule I set for myself was simple — no phone during watering. Just me, the can, and whatever light was coming through the kitchen window. It sounds like nothing. It is, in fact, nothing. That's exactly why it works.</p>
+
+    <blockquote>Attention is the rarest currency I have, and for ten minutes every morning, I spend all of mine on something that can't ask for more than it needs.</blockquote>
+
+    <p>Plants are honest in a way most of my inbox isn't. A leaf curling inward is not a passive-aggressive comment, it's a request. The soil pulling away from the pot's edge isn't a missed deadline, it's a Tuesday. There's no performance in it, no urgency dressed up as importance.</p>
+
+    <h2>What changed, slowly</h2>
+    <p>I didn't set out to build a habit. I just kept doing it because it felt good, and somewhere around the third month I noticed my mornings had reorganised themselves around this one small task. I woke up ten minutes earlier without trying to. I reached for my phone ten minutes later than I used to.</p>
+
+    <p>None of this is a productivity hack. I'm not more efficient. If anything, I've built in ten minutes of doing something with no measurable output at all, and that might be the whole point.</p>
+
+    <h3>A few things I've learned along the way</h3>
+    <ul>
+      <li>Water in the morning, not at night — most plants prefer it, and so do I.</li>
+      <li>A finger in the soil tells you more than a schedule ever will.</li>
+      <li>Overwatering out of love is still overwatering.</li>
+      <li>The plant that struggles the most usually teaches you the most.</li>
+    </ul>
+
+    <p>If you're looking for a reason to start something like this, I don't have a very convincing one. It hasn't made me more productive, richer, or particularly wiser. It has just given me ten quiet minutes that belong to no one but me, and some mornings, that's enough of a reason on its own.</p>
+  </div>
+
+  <div class="share-row">
+    <span>Share this</span>
+    <a href="#" aria-label="Share on Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4a4.1 4.1 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2Z"/></svg></a>
+    <a href="#" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.4c0-.9.2-1.5 1.5-1.5h1.6V4.3C16.3 4.2 15.3 4 14.2 4c-2.3 0-3.9 1.4-3.9 4v2.5H7.8v3h2.5V21h3.2Z"/></svg></a>
+    <a href="#" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg></a>
+  </div>
+
+  <div class="author-box">
+    <img src="https://i.pravatar.cc/300?img=47" alt="Ananya Rao">
+    <div>
+      <h4>Written by Ananya Rao</h4>
+      <p>I write about mindful living, plants, and the small rituals that make ordinary days feel good. Based in the hills, fuelled by chai.</p>
+    </div>
+  </div>
+</article>
+
+<section class="related">
+  <h3>More from the journal</h3>
+  <div class="related-list" id="relatedList"></div>
+</section>
+
+<footer class="site-footer" id="siteFooter">
+  © <span id="year"></span> Verdant Notes. All rights reserved.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const CURRENT_POST_URL = "posts/watering-plants-every-morning.html";
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+  function formatDate(iso){
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  }
+
+  let allPosts = [];
+
+  function renderFooterPages(pages){
+    const el = document.getElementById('sidebarFooter');
+    pages.forEach(p => {
+      const a = document.createElement('a');
+      a.href = "../" + p.url;
+      a.textContent = p.title;
+      el.appendChild(a);
+    });
+  }
+
+  function renderRelated(posts){
+    const others = posts.filter(p => p.url !== CURRENT_POST_URL).slice(0, 3);
+    document.getElementById('relatedList').innerHTML = others.map(p => `
+      <div class="related-row">
+        <div class="cat">${escapeHtml(p.category)}</div>
+        <h4><a href="../${escapeHtml(p.url)}">${escapeHtml(p.title)}</a></h4>
+      </div>
+    `).join('');
+  }
+
+  function renderSiteBits(data){
+    document.getElementById('siteNameText').textContent = data.site.name;
+    document.getElementById('siteTaglineText').textContent = data.site.tagline;
+    document.getElementById('siteFooter').innerHTML = "© <span id='year'></span> " + escapeHtml(data.site.name) + ". All rights reserved.";
+    document.getElementById('year').textContent = new Date().getFullYear();
+  }
+
+  fetch('../data.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(res => res.json())
+    .then(data => {
+      allPosts = data.posts;
+      renderSiteBits(data);
+      renderFooterPages(data.pages);
+      renderRelated(data.posts);
+    })
+    .catch(err => console.error(err));
+
+  /* ---------- Live search dropdown ---------- */
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  let debounceTimer;
+
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    const q = e.target.value.trim().toLowerCase();
+    debounceTimer = setTimeout(() => {
+      if(!q){ searchResults.classList.remove('show'); return; }
+      const matches = allPosts.filter(p =>
+        p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)
+      ).slice(0, 8);
+      searchResults.innerHTML = matches.length
+        ? matches.map(p => `<a href="../${escapeHtml(p.url)}">${escapeHtml(p.title)}</a>`).join('')
+        : `<div class="none">No posts found.</div>`;
+      searchResults.classList.add('show');
+    }, 150);
+  });
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.search-wrap')) searchResults.classList.remove('show');
+  });
+
+  /* ---------- Sidebar toggle ---------- */
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const menuBtn = document.getElementById('menuBtn');
+  function openSidebar(){ sidebar.classList.add('open'); overlay.classList.add('show'); menuBtn.classList.add('active'); menuBtn.setAttribute('aria-expanded','true'); }
+  function closeSidebar(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); menuBtn.classList.remove('active'); menuBtn.setAttribute('aria-expanded','false'); }
+  menuBtn.addEventListener('click', () => { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+  overlay.addEventListener('click', closeSidebar);
+  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeSidebar(); });
+})();
+</script>
+</body>
+</html>
