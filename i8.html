@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdant Notes — Modern Digital Garden</title>
+<meta name="description" content="A modern digital space exploring ideas on engineering, slow craft, and intentional life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- External Back To Top CSS -->
+<link rel="stylesheet" href="back-to-top.css">
+
+<style>
+  /* ============================================================
+     THEME DESIGN TOKENS (Indigo Tech & Slate Minimal)
+     ============================================================ */
+  :root {
+    --theme-canvas: #f8fafc;
+    --theme-panel: #ffffff;
+    --theme-subtle: #f1f5f9;
+    --theme-indigo: #4f46e5;
+    --theme-indigo-light: #6366f1;
+    --theme-indigo-glow: rgba(79, 70, 229, 0.14);
+    --color-title: #0f172a;
+    --color-body: #334155;
+    --color-muted: #64748b;
+    --line-border: #e2e8f0;
+    --line-highlight: #cbd5e1;
+    --box-radius: 16px;
+    --pill-radius: 9999px;
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 10px 25px -5px rgba(15, 23, 42, 0.04);
+    --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--theme-canvas);
+    color: var(--color-body);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; outline: none; border: none; }
+
+  /* ============================================================
+     FROSTED GLASS NAVIGATION BAR
+     ============================================================ */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 32px;
+    background: rgba(248, 250, 252, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-border);
+  }
+  .app-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .menu-toggle-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--theme-panel);
+    border: 1px solid var(--line-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .menu-toggle-btn:hover {
+    border-color: var(--theme-indigo);
+    box-shadow: 0 0 0 3px var(--theme-indigo-glow);
+  }
+  .menu-toggle-btn span {
+    width: 18px;
+    height: 2px;
+    background: var(--color-title);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .menu-toggle-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle-btn.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .brand-signature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-badge {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--theme-indigo) 0%, var(--theme-indigo-light) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  }
+  .brand-badge svg { width: 20px; height: 20px; }
+  .brand-labels { display: flex; flex-direction: column; }
+  .brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-title);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .brand-subtitle {
+    font-size: 0.76rem;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .search-wrapper {
+    position: relative;
+    width: min(320px, 40vw);
+  }
+  .search-wrapper svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 17px;
+    color: var(--color-muted);
+    pointer-events: none;
+  }
+  .search-input-field {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border-radius: 12px;
+    border: 1px solid var(--line-border);
+    background: var(--theme-panel);
+    color: var(--color-title);
+    font-size: 0.88rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+  }
+  .search-input-field:focus {
+    border-color: var(--theme-indigo);
+    box-shadow: 0 0 0 3px var(--theme-indigo-glow);
+  }
+
+  /* ============================================================
+     OFFCANVAS DRAWER MENU
+     ============================================================ */
+  .drawer-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 90;
+  }
+  .drawer-mask.visible { opacity: 1; pointer-events: auto; }
+
+  .drawer-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    background: var(--theme-panel);
+    border-right: 1px solid var(--line-border);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0 0;
+  }
+  .drawer-sidebar.open { transform: translateX(0); }
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px 20px;
+    border-bottom: 1px solid var(--line-border);
+  }
+  .drawer-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--color-title);
+  }
+  .drawer-close-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--theme-subtle);
+    cursor: pointer;
+    color: var(--color-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .drawer-close-btn:hover { color: var(--color-title); background: var(--line-border); }
+
+  .drawer-navigation { padding: 20px 16px; overflow-y: auto; flex: 1; }
+  .drawer-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    padding: 8px 12px 6px;
+  }
+  .drawer-navigation a {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.94rem;
+    font-weight: 500;
+    color: var(--color-body);
+    transition: all 0.15s ease;
+  }
+  .drawer-navigation a:hover {
+    background: var(--theme-subtle);
+    color: var(--theme-indigo);
+    transform: translateX(4px);
+  }
+
+  .drawer-footer-links {
+    border-top: 1px solid var(--line-border);
+    padding: 16px 16px 24px;
+  }
+  .drawer-footer-links a {
+    display: block;
+    padding: 6px 12px;
+    font-size: 0.84rem;
+    color: var(--color-muted);
+    border-radius: 6px;
+    transition: color 0.15s ease;
+  }
+  .drawer-footer-links a:hover { color: var(--theme-indigo); }
+
+  /* ============================================================
+     BENTO MAIN LAYOUT
+     ============================================================ */
+  .bento-wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 44px 24px 80px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 40px;
+  }
+
+  .feed-header { margin-bottom: 28px; }
+  .status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--theme-indigo);
+    background: var(--theme-indigo-glow);
+    padding: 4px 12px;
+    border-radius: var(--pill-radius);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+  }
+  .status-tag::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--theme-indigo);
+  }
+  .feed-main-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-title);
+    margin-top: 10px;
+    letter-spacing: -0.03em;
+  }
+
+  /* ============================================================
+     ARTICLE BENTO CARDS
+     ============================================================ */
+  .article-stream-list { display: flex; flex-direction: column; gap: 16px; }
+  .bento-post-card {
+    background: var(--theme-panel);
+    border: 1px solid var(--line-border);
+    border-radius: var(--box-radius);
+    padding: 24px 28px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .bento-post-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--theme-indigo);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .bento-post-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-highlight);
+    box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.08);
+  }
+  .bento-post-card:hover::before { opacity: 1; }
+
+  .post-top-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-bottom: 12px;
+  }
+  .category-badge {
+    background: var(--theme-subtle);
+    color: var(--theme-indigo);
+    font-weight: 600;
+    font-size: 0.76rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--line-border);
+  }
+  .post-headline {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .post-headline a {
+    color: var(--color-title);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    transition: color 0.2s ease;
+  }
+  .post-headline a:hover { color: var(--theme-indigo); }
+  .arrow-indicator {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--color-muted);
+    transition: all 0.2s ease;
+  }
+  .bento-post-card:hover .arrow-indicator {
+    color: var(--theme-indigo);
+    transform: translate(3px, -3px);
+  }
+
+  .post-brief {
+    color: var(--color-body);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .empty-state-card {
+    padding: 50px 24px;
+    text-align: center;
+    background: var(--theme-panel);
+    border: 1px dashed var(--line-border);
+    border-radius: var(--box-radius);
+    color: var(--color-muted);
+  }
+
+  /* ============================================================
+     LOAD MORE BUTTON
+     ============================================================ */
+  .load-more-section {
+    text-align: center;
+    margin-top: 36px;
+  }
+  .load-more-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--theme-panel);
+    color: var(--color-title);
+    border: 1px solid var(--line-border);
+    padding: 12px 28px;
+    border-radius: var(--pill-radius);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    transition: all 0.2s ease;
+  }
+  .load-more-action-btn:hover {
+    background: var(--theme-indigo);
+    color: #ffffff;
+    border-color: var(--theme-indigo);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+  }
+  .load-more-action-btn:active { transform: translateY(0); }
+
+  /* ============================================================
+     RIGHT ASIDE WIDGETS
+     ============================================================ */
+  .aside-column { display: flex; flex-direction: column; gap: 20px; }
+  
+  .aside-bento-card {
+    background: var(--theme-panel);
+    border: 1px solid var(--line-border);
+    border-radius: var(--box-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+  }
+  
+  .profile-avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    margin: 0 auto 16px;
+    object-fit: cover;
+    border: 3px solid var(--theme-subtle);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  .profile-container { text-align: center; }
+  .profile-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-title);
+    margin-bottom: 6px;
+  }
+  .profile-bio {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .profile-social-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .social-circle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--theme-subtle);
+    color: var(--color-title);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line-border);
+    transition: all 0.2s ease;
+  }
+  .social-circle-btn:hover {
+    background: var(--theme-indigo);
+    color: #ffffff;
+    border-color: var(--theme-indigo);
+    transform: translateY(-2px);
+  }
+  .social-circle-btn svg { width: 16px; height: 16px; }
+
+  .widget-title-bar {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .topic-cloud { display: flex; flex-direction: column; gap: 8px; }
+  .topic-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--theme-subtle);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-body);
+    transition: all 0.15s ease;
+  }
+  .topic-item:hover {
+    background: var(--theme-indigo-glow);
+    color: var(--theme-indigo);
+    transform: translateX(3px);
+  }
+  .topic-count {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--color-muted);
+    background: var(--theme-panel);
+    padding: 2px 8px;
+    border-radius: var(--pill-radius);
+    border: 1px solid var(--line-border);
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .app-footer {
+    text-align: center;
+    padding: 32px 20px 48px;
+    color: var(--color-muted);
+    font-size: 0.86rem;
+    border-top: 1px solid var(--line-border);
+  }
+
+  /* ============================================================
+     RESPONSIVE BREAKPOINTS
+     ============================================================ */
+  @media (max-width: 920px) {
+    .bento-wrapper {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 28px 18px 60px;
+    }
+    .aside-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .app-header { padding: 14px 18px; }
+    .search-wrapper { width: min(160px, 44vw); }
+    .brand-subtitle { display: none; }
+    .bento-post-card { padding: 20px; }
+    .feed-main-title { font-size: 1.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Backdrop Mask -->
+<div class="drawer-mask" id="drawerMask"></div>
+
+<!-- Offcanvas Sidebar Menu -->
+<aside class="drawer-sidebar" id="drawerSidebar" aria-label="Main Navigation">
+  <div class="drawer-header">
+    <h3 id="drawerHeaderTitle">Navigation</h3>
+    <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <nav class="drawer-navigation">
+    <div class="drawer-label">Menu</div>
+    <a href="index.html">Home</a>
+    <a href="#" data-topic-target="all">All Stories</a>
+    <div class="drawer-label" id="drawerTopicsHeader" style="display:none; margin-top:12px;">Categories</div>
+    <div id="drawerTopicPills"></div>
+  </nav>
+  <div class="drawer-footer-links" id="drawerLegalLinks">
+    <div class="drawer-label">Pages</div>
+  </div>
+</aside>
+
+<!-- Sticky Frosted Header -->
+<header class="app-header">
+  <div class="app-header-left">
+    <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="brand-signature">
+      <div class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="brand-labels">
+        <span class="brand-name" id="brandTitleText">Verdant Notes</span>
+        <span class="brand-subtitle" id="brandTaglineText">Modern Digital Garden</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="search-wrapper">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input type="search" id="storySearchBox" class="search-input-field" placeholder="Search stories…" aria-label="Search stories">
+  </div>
+</header>
+
+<!-- Main Bento Grid -->
+<main class="bento-wrapper">
+  <section class="main-feed-column">
+    <div class="feed-header">
+      <span class="status-tag" id="feedBadgeLabel">Latest Feed</span>
+      <h1 class="feed-main-title" id="feedTitleHeadline">From the journal</h1>
+    </div>
+
+    <!-- Article Feed Stream -->
+    <ul class="article-stream-list" id="articleStreamList"></ul>
+    
+    <div class="empty-state-card" id="emptySearchNotice" style="display:none;">
+      No matching stories found. Try searching for something else.
+    </div>
+
+    <!-- Load More Section -->
+    <div class="load-more-section" id="loadMoreContainer" style="display:none;">
+      <button type="button" class="load-more-action-btn" id="loadMoreActionBtn">
+        <span>Load more posts</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Right Bento Aside -->
+  <aside class="aside-column">
+    <div class="aside-bento-card profile-container">
+      <img id="authorPhotoImg" class="profile-avatar-img" src="" alt="Author">
+      <h3 class="profile-name" id="authorTitleName"></h3>
+      <p class="profile-bio" id="authorBioParagraph"></p>
+      <div class="profile-social-row" id="authorSocialCluster"></div>
+    </div>
+
+    <div class="aside-bento-card" id="topicsWidgetCard" style="display:none;">
+      <h4 class="widget-title-bar">Topics</h4>
+      <div class="topic-cloud" id="topicCloudList"></div>
+    </div>
+  </aside>
+</main>
+
+<footer class="app-footer" id="appFooter">
+  © <span id="copyrightYear"></span> <span id="footerBrandName">Verdant Notes</span>. All rights reserved.
+</footer>
+
+<!-- External Back To Top JS -->
+<script src="back-to-top.js" defer></script>
+
+<!-- Bento Application Logic -->
+<script>
+(function(){
+  "use strict";
+
+  const BATCH_CAPACITY = 10;
+
+  // New modern state vault
+  const journalContext = {
+    postVault: [],
+    filteredStream: [],
+    renderedTotal: 0,
+    searchKeywords: "",
+    selectedCategory: "all"
+  };
+
+  // Modern clean vector icons
+  const vectorGlyphs = {
+    twitter: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>',
+    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>'
+  };
+
+  function sanitizeString(str){
+    return String(str).replace(/[&<>"']/g, char => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[char]));
+  }
+
+  function formatTimestamp(isoStr){
+    const dateObj = new Date(isoStr + "T00:00:00");
+    return dateObj.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  }
+
+  function mountBranding(siteInfo){
+    document.getElementById('brandTitleText').textContent = siteInfo.name;
+    document.getElementById('brandTaglineText').textContent = siteInfo.tagline;
+    document.getElementById('footerBrandName').textContent = siteInfo.name;
+    document.title = `${siteInfo.name} — ${siteInfo.tagline}`;
+    document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+  }
+
+  function mountAuthorWidget(authorInfo){
+    document.getElementById('authorPhotoImg').src = authorInfo.photo;
+    document.getElementById('authorPhotoImg').alt = authorInfo.name;
+    document.getElementById('authorTitleName').textContent = authorInfo.name;
+    document.getElementById('authorBioParagraph').textContent = authorInfo.bio;
+    
+    const socialCluster = document.getElementById('authorSocialCluster');
+    socialCluster.innerHTML = authorInfo.socials.map(item =>
+      `<a href="${sanitizeString(item.url)}" class="social-circle-btn" target="_blank" rel="noopener" aria-label="${sanitizeString(item.name)}">${vectorGlyphs[item.icon] || ''}</a>`
+    ).join('');
+  }
+
+  function mountStaticLinks(pageLinks){
+    const wrapper = document.getElementById('drawerLegalLinks');
+    pageLinks.forEach(page => {
+      const link = document.createElement('a');
+      link.href = page.url;
+      link.textContent = page.title;
+      wrapper.appendChild(link);
+    });
+  }
+
+  function mountCategoryFilters(allPosts){
+    const tally = {};
+    allPosts.forEach(post => { tally[post.category] = (tally[post.category] || 0) + 1; });
+    const topics = Object.keys(tally).sort();
+    if(!topics.length) return;
+
+    // Right aside topic list
+    const cloudBox = document.getElementById('topicCloudList');
+    cloudBox.innerHTML = topics.map(topic =>
+      `<a href="#" class="topic-item" data-topic-target="${sanitizeString(topic)}"><span>${sanitizeString(topic)}</span><span class="topic-count">${tally[topic]}</span></a>`
+    ).join('');
+    document.getElementById('topicsWidgetCard').style.display = 'block';
+
+    // Drawer topics
+    document.getElementById('drawerTopicsHeader').style.display = 'block';
+    const drawerTopicsBox = document.getElementById('drawerTopicPills');
+    drawerTopicsBox.innerHTML = topics.map(topic =>
+      `<a href="#" data-topic-target="${sanitizeString(topic)}">${sanitizeString(topic)}</a>`
+    ).join('');
+  }
+
+  function buildBentoPostCard(post){
+    return `
+      <li class="bento-post-card">
+        <div class="post-top-meta">
+          <span class="category-badge">${sanitizeString(post.category)}</span>
+          <span>•</span>
+          <time datetime="${sanitizeString(post.date)}">${formatTimestamp(post.date)}</time>
+        </div>
+        <h2 class="post-headline">
+          <a href="${sanitizeString(post.url)}">
+            <span>${sanitizeString(post.title)}</span>
+            <svg class="arrow-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </h2>
+        <p class="post-brief">${sanitizeString(post.excerpt)}</p>
+      </li>`;
+  }
+
+  function hydrateNextArticles(){
+    const listElement = document.getElementById('articleStreamList');
+    const emptyNotice = document.getElementById('emptySearchNotice');
+    const loadBtnWrap = document.getElementById('loadMoreContainer');
+    const nextBatch = journalContext.filteredStream.slice(journalContext.renderedTotal, journalContext.renderedTotal + BATCH_CAPACITY);
+
+    if(journalContext.renderedTotal === 0){
+      listElement.innerHTML = "";
+    }
+    
+    if(journalContext.filteredStream.length === 0){
+      emptyNotice.style.display = 'block';
+    } else {
+      emptyNotice.style.display = 'none';
+      listElement.insertAdjacentHTML('beforeend', nextBatch.map(buildBentoPostCard).join(''));
+    }
+
+    journalContext.renderedTotal += nextBatch.length;
+    updateHeaderLabels();
+
+    // Show/Hide Load More Button
+    if(journalContext.renderedTotal < journalContext.filteredStream.length){
+      loadBtnWrap.style.display = 'block';
+    } else {
+      loadBtnWrap.style.display = 'none';
+    }
+  }
+
+  function updateHeaderLabels(){
+    const badgeLabel = document.getElementById('feedBadgeLabel');
+    const titleHeadline = document.getElementById('feedTitleHeadline');
+
+    if(journalContext.searchKeywords){
+      badgeLabel.textContent = `${journalContext.filteredStream.length} Results`;
+      titleHeadline.textContent = `Search: "${journalContext.searchKeywords}"`;
+    } else if(journalContext.selectedCategory !== "all") {
+      badgeLabel.textContent = `Topic`;
+      titleHeadline.textContent = `${journalContext.selectedCategory}`;
+    } else {
+      badgeLabel.textContent = "Latest Feed";
+      titleHeadline.textContent = "From the journal";
+    }
+  }
+
+  function filterVaultContent(query = "", category = "all"){
+    journalContext.searchKeywords = query.trim();
+    journalContext.selectedCategory = category;
+    const lowerQuery = journalContext.searchKeywords.toLowerCase();
+
+    journalContext.filteredStream = journalContext.postVault.filter(entry => {
+      const matchText = !lowerQuery || entry.title.toLowerCase().includes(lowerQuery) || entry.excerpt.toLowerCase().includes(lowerQuery);
+      const matchCat = category === "all" || entry.category === category;
+      return matchText && matchCat;
+    });
+
+    journalContext.renderedTotal = 0;
+    hydrateNextArticles();
+  }
+
+  // Live Search listener
+  let inputTimer;
+  document.getElementById('storySearchBox').addEventListener('input', (e) => {
+    clearTimeout(inputTimer);
+    const val = e.target.value;
+    inputTimer = setTimeout(() => {
+      filterVaultContent(val, "all");
+    }, 180);
+  });
+
+  // Topic Click Delegation
+  document.addEventListener('click', (e) => {
+    const topicBtn = e.target.closest('[data-topic-target]');
+    if(topicBtn){
+      e.preventDefault();
+      document.getElementById('storySearchBox').value = "";
+      filterVaultContent("", topicBtn.dataset.topicTarget);
+      closeDrawerSidebar();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // Load More Button Event
+  document.getElementById('loadMoreActionBtn').addEventListener('click', () => {
+    hydrateNextArticles();
+  });
+
+  // Drawer Toggle Logic
+  const drawerSidebar = document.getElementById('drawerSidebar');
+  const drawerMask = document.getElementById('drawerMask');
+  const menuToggleBtn = document.getElementById('menuToggleBtn');
+
+  function openDrawerSidebar(){
+    drawerSidebar.classList.add('open');
+    drawerMask.classList.add('visible');
+    menuToggleBtn.classList.add('active');
+  }
+  function closeDrawerSidebar(){
+    drawerSidebar.classList.remove('open');
+    drawerMask.classList.remove('visible');
+    menuToggleBtn.classList.remove('active');
+  }
+
+  menuToggleBtn.addEventListener('click', () => {
+    drawerSidebar.classList.contains('open') ? closeDrawerSidebar() : openDrawerSidebar();
+  });
+  drawerMask.addEventListener('click', closeDrawerSidebar);
+  document.getElementById('drawerCloseBtn').addEventListener('click', closeDrawerSidebar);
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeDrawerSidebar();
+  });
+
+  // Fetch JSON Data
+  fetch('data.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(res => {
+      if(!res.ok) throw new Error('Network error loading data');
+      return res.json();
+    })
+    .then(data => {
+      mountBranding(data.site);
+      mountAuthorWidget(data.author);
+      mountStaticLinks(data.pages);
+      mountCategoryFilters(data.posts);
+      
+      journalContext.postVault = data.posts;
+      journalContext.filteredStream = data.posts;
+      hydrateNextArticles();
+    })
+    .catch(err => {
+      document.getElementById('articleStreamList').innerHTML =
+        `<li class="empty-state-card" style="display:block;">Unable to load posts. Please run a local server (e.g. <code>python3 -m http.server</code>) to test JSON fetching.</li>`;
+      console.error(err);
+    });
+})();
+</script>
+</body>
+</html>
