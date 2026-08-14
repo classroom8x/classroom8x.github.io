@@ -1,0 +1,54 @@
+/* ---------- Back to Top Button Styling ---------- */
+.back-to-top {
+  position: fixed;
+  bottom: 26px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green-deep, #1f3d2b);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(31, 61, 43, 0.28);
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--green, #3f7d4f);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(31, 61, 43, 0.38);
+}
+
+.back-to-top:active {
+  transform: translateY(0);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.6;
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+  }
+}
