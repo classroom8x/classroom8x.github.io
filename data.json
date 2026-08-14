@@ -4,14 +4,14 @@
     "tagline": "Slow thoughts on simple living"
   },
   "author": {
-    "name": "Niraj Sidar",
-    "photo": "https://i.pravatar.cc/300?img=47",
-    "bio": "I write about mindful living, plants, and the small rituals that make ordinary days feel good. Based in the hills, fuelled by chai.",
+    "name": "Anuj Patel",
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+    "bio": "Writer, developer, and minimal living enthusiast. Exploring tech, mindfulness, and the beauty of slowing down in a fast-paced world.",
     "socials": [
       { "name": "Twitter", "url": "https://twitter.com/", "icon": "twitter" },
       { "name": "Instagram", "url": "https://instagram.com/", "icon": "instagram" },
       { "name": "YouTube", "url": "https://youtube.com/", "icon": "youtube" },
-      { "name": "Email", "url": "mailto:hello@example.com", "icon": "mail" }
+      { "name": "Email", "url": "mailto:anujpatel@example.com", "icon": "mail" }
     ]
   },
   "pages": [
@@ -23,28 +23,173 @@
     { "title": "DMCA", "url": "dmca.html" }
   ],
   "posts": [
-    { "id": 21, "title": "Important notes realesed gemini 3.7", "category": "Independence", "date": "2026-08-14", "url": "posts/watering-plants-every-morning.html", "excerpt": "The best independence book ever did." },
-    { "id": 20, "title": "Not everyone is your friend? Heres Why?", "category": "Motivation", "date": "2026-08-14", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
-    { "id": 1, "title": "The Quiet Art of Watering Plants Every Morning", "category": "Rituals", "date": "2026-08-10", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
-    { "id": 2, "title": "Why I Stopped Buying Furniture and Started Building It", "category": "Home", "date": "2026-08-06", "url": "posts/building-not-buying-furniture.html", "excerpt": "A wobbly first stool and the slow satisfaction of making things with your own hands." },
-    { "id": 3, "title": "Notes From a Week Without My Phone", "category": "Slow Living", "date": "2026-08-01", "url": "posts/week-without-phone.html", "excerpt": "The silence was uncomfortable for two days, and then it wasn't." },
-    { "id": 4, "title": "A Beginner's Guide to Fermenting Everything", "category": "Kitchen", "date": "2026-07-27", "url": "posts/beginners-guide-fermenting.html", "excerpt": "Cabbage, jars, and the strange joy of watching food change on its own." },
-    { "id": 5, "title": "The Balcony Garden That Taught Me to Slow Down", "category": "Plants", "date": "2026-07-21", "url": "posts/balcony-garden-slow-down.html", "excerpt": "Six pots, one railing, and a whole season of small lessons in patience." },
-    { "id": 6, "title": "On Keeping a Paper Journal in a Digital World", "category": "Rituals", "date": "2026-07-15", "url": "posts/paper-journal-digital-world.html", "excerpt": "Why a pen and a blank page still beat any app I've tried." },
-    { "id": 7, "title": "Sunday Mornings, Slower Than the Rest", "category": "Slow Living", "date": "2026-07-09", "url": "posts/sunday-mornings-slower.html", "excerpt": "A small routine that turned my most chaotic day into my calmest one." },
-    { "id": 8, "title": "What My Grandmother's Kitchen Taught Me About Waste", "category": "Kitchen", "date": "2026-07-02", "url": "posts/grandmothers-kitchen-waste.html", "excerpt": "Nothing was ever thrown away, and everything somehow tasted better for it." },
-    { "id": 9, "title": "Choosing One Houseplant a Season, On Purpose", "category": "Plants", "date": "2026-06-26", "url": "posts/one-houseplant-a-season.html", "excerpt": "Restraint turned out to be the secret to actually keeping plants alive." },
-    { "id": 10, "title": "The Case for Doing Nothing on Weekends", "category": "Slow Living", "date": "2026-06-19", "url": "posts/case-for-doing-nothing.html", "excerpt": "An unpopular schedule that gave me back my Sundays." },
-    { "id": 11, "title": "Repainting the Same Wall Three Times", "category": "Home", "date": "2026-06-12", "url": "posts/repainting-same-wall.html", "excerpt": "What patience with a paintbrush taught me about patience with everything else." },
-    { "id": 12, "title": "A Small Ritual for Ending the Workday", "category": "Rituals", "date": "2026-06-05", "url": "posts/ritual-for-ending-workday.html", "excerpt": "Closing the laptop is easy. Closing the mind takes a little more practice." },
-    { "id": 13, "title": "Cooking With Whatever the Garden Gives Me", "category": "Kitchen", "date": "2026-05-29", "url": "posts/cooking-with-the-garden.html", "excerpt": "No recipes, just whatever survived the week outside my window." },
-    { "id": 14, "title": "Letters I Never Sent, Kept in a Drawer", "category": "Slow Living", "date": "2026-05-22", "url": "posts/letters-never-sent.html", "excerpt": "Some thoughts are only meant to be written, never delivered." },
-    { "id": 15, "title": "The Plant That Refused to Die", "category": "Plants", "date": "2026-05-15", "url": "posts/plant-that-refused-to-die.html", "excerpt": "A neglected pothos and the lesson it kept teaching me anyway." },
-    { "id": 16, "title": "Rearranging the Same Room Every Few Months", "category": "Home", "date": "2026-05-08", "url": "posts/rearranging-the-same-room.html", "excerpt": "A cheap, restless habit that keeps an old room feeling new." },
-    { "id": 17, "title": "This is test Blog Title Bro", "category": "Home", "date": "2026-08-13", "url": "posts/rearranging-the-same-room.html", "excerpt": "Why you need so much internet data this days? the answer is weird!" },
-    { "id": 18, "title": "Best Windows Os for Low Ram Laptops to try in 2026", "category": "Iso", "date": "2026-08-14", "url": "posts/rearranging-the-same-room.html", "excerpt": "Its been long time to try a windows ISO" },
-    { "id": 19, "title": "Is love really a blind language ?", "category": "Love", "date": "2026-08-14", "url": "posts/rearranging-the-same-room.html", "excerpt": "Why love is called blind language? Heres the truth.." }
-  
+    {
+      "id": 21,
+      "title": "Why Gemini 3.7 and Next-Gen AI Make Deep Focus More Essential Than Ever",
+      "category": "Technology",
+      "date": "2026-08-14",
+      "url": "posts/gemini-3-7-and-deep-focus.html",
+      "excerpt": "As AI models get smarter and faster, human attention and creative stillness have become our rarest superpowers."
+    },
+    {
+      "id": 20,
+      "title": "The Art of Saying No: Protecting Your Time and Energy",
+      "category": "Productivity",
+      "date": "2026-08-12",
+      "url": "posts/the-art-of-saying-no.html",
+      "excerpt": "Saying yes to everything means saying no to your peace of mind. Here is how I learned to set healthy boundaries."
+    },
+    {
+      "id": 19,
+      "title": "Building a Minimalist Desk Setup That Inspires Creative Work",
+      "category": "Lifestyle",
+      "date": "2026-08-09",
+      "url": "posts/minimalist-desk-setup-inspiration.html",
+      "excerpt": "A clean wooden desk, one notebook, a mechanical keyboard, and the freedom of zero visual clutter."
+    },
+    {
+      "id": 18,
+      "title": "Why I Switched Back to Physical Books in an All-Digital Age",
+      "category": "Mindfulness",
+      "date": "2026-08-05",
+      "url": "posts/switching-back-to-physical-books.html",
+      "excerpt": "Screens give us information, but paper pages give us understanding and a quiet place to think."
+    },
+    {
+      "id": 17,
+      "title": "Lightweight Operating Systems for Low-Spec Laptops to Try in 2026",
+      "category": "Technology",
+      "date": "2026-08-02",
+      "url": "posts/lightweight-os-for-low-spec-laptops.html",
+      "excerpt": "How to breathe new life into older hardware with optimized distributions and lightweight workflows."
+    },
+    {
+      "id": 16,
+      "title": "Morning Walks Without Headphones: Tuning Into the City Awakening",
+      "category": "Rituals",
+      "date": "2026-07-29",
+      "url": "posts/morning-walks-without-headphones.html",
+      "excerpt": "Replacing podcasts and playlists with the natural soundscape of sunrise completely changed my mornings."
+    },
+    {
+      "id": 15,
+      "title": "The Power of Evening Reviews: Closing Each Day With Clarity",
+      "category": "Productivity",
+      "date": "2026-07-25",
+      "url": "posts/power-of-evening-reviews.html",
+      "excerpt": "A five-minute reflection every night prevents burnout and sets tomorrow on autopilot."
+    },
+    {
+      "id": 14,
+      "title": "Making Pour-Over Coffee: A Lesson in Slow Craft and Patience",
+      "category": "Rituals",
+      "date": "2026-07-20",
+      "url": "posts/art-of-pour-over-coffee.html",
+      "excerpt": "Grinding beans, watching the bloom, and enjoying the slow alchemy of a single morning cup."
+    },
+    {
+      "id": 13,
+      "title": "Digital Declutter: How to Clean Up Your Digital Life in 3 Steps",
+      "category": "Lifestyle",
+      "date": "2026-07-16",
+      "url": "posts/digital-declutter-three-steps.html",
+      "excerpt": "From unread emails to endless photo libraries—simple steps to regain control over digital noise."
+    },
+    {
+      "id": 12,
+      "title": "Why Solitude is Not Loneliness: Rediscovering Your Inner Voice",
+      "category": "Mindfulness",
+      "date": "2026-07-11",
+      "url": "posts/solitude-is-not-loneliness.html",
+      "excerpt": "Learning to sit comfortably with your own thoughts without reaching for a screen to distract yourself."
+    },
+    {
+      "id": 11,
+      "title": "How Indoor Plants Changed the Atmosphere of My Work Space",
+      "category": "Plants",
+      "date": "2026-07-06",
+      "url": "posts/indoor-plants-workspace-transformation.html",
+      "excerpt": "Adding greenery is not just about aesthetics; it is about bringing living calm into concrete rooms."
+    },
+    {
+      "id": 10,
+      "title": "The Joy of Simple Cooking: Rediscovering Basic Seasonal Ingredients",
+      "category": "Kitchen",
+      "date": "2026-07-01",
+      "url": "posts/joy-of-simple-seasonal-cooking.html",
+      "excerpt": "Good food doesn't need 20 ingredients. Fresh herbs, salt, olive oil, and time are often all you need."
+    },
+    {
+      "id": 9,
+      "title": "Why You Don't Need Every Notification Turned On",
+      "category": "Lifestyle",
+      "date": "2026-06-25",
+      "url": "posts/turn-off-your-notifications.html",
+      "excerpt": "I turned off all app badges and sound alerts for 30 days. Here is what happened to my stress levels."
+    },
+    {
+      "id": 8,
+      "title": "Monochrome Coding: Why High Contrast Themes Reduced My Eye Strain",
+      "category": "Technology",
+      "date": "2026-06-20",
+      "url": "posts/monochrome-coding-eye-strain.html",
+      "excerpt": "Ditching flashy neon syntax themes for understated grayscale editor themes."
+    },
+    {
+      "id": 7,
+      "title": "The Weekend Reset: Preparing for a Calm Monday",
+      "category": "Rituals",
+      "date": "2026-06-14",
+      "url": "posts/weekend-reset-routine.html",
+      "excerpt": "A light Sunday tidy-up and meal prep that removes the dreaded Sunday night anxiety."
+    },
+    {
+      "id": 6,
+      "title": "Monstera Care Guide: Secrets to Thriving Fenestrations",
+      "category": "Plants",
+      "date": "2026-06-08",
+      "url": "posts/monstera-deliciosa-care-guide.html",
+      "excerpt": "Light requirements, soil mixtures, and watering schedules for growing gigantic Swiss cheese leaves."
+    },
+    {
+      "id": 5,
+      "title": "Baking Sourdough at Home: Embracing the Slow Ferment",
+      "category": "Kitchen",
+      "date": "2026-06-01",
+      "url": "posts/baking-sourdough-at-home.html",
+      "excerpt": "Flour, water, wild yeast, and why good bread simply refuses to be rushed."
+    },
+    {
+      "id": 4,
+      "title": "How to Build a Capsule Wardrobe and Eliminate Decision Fatigue",
+      "category": "Lifestyle",
+      "date": "2026-05-24",
+      "url": "posts/capsule-wardrobe-decision-fatigue.html",
+      "excerpt": "Fewer choices in the morning leads to clearer thinking throughout the entire day."
+    },
+    {
+      "id": 3,
+      "title": "Creating a Cozy Reading Corner in a Small Apartment",
+      "category": "Home",
+      "date": "2026-05-18",
+      "url": "posts/cozy-reading-corner-small-apartment.html",
+      "excerpt": "One comfortable chair, a warm lamp, and a dedicated corner for getting lost in stories."
+    },
+    {
+      "id": 2,
+      "title": "The Simple Habit of Drinking Warm Herbal Tea at Dusk",
+      "category": "Rituals",
+      "date": "2026-05-10",
+      "url": "posts/warm-herbal-tea-at-dusk.html",
+      "excerpt": "Signaling to your body that the workday is done with chamomile, mint, and a few quiet breaths."
+    },
+    {
+      "id": 1,
+      "title": "Slow Living in a Fast World: An Introduction to Verdant Notes",
+      "category": "Mindfulness",
+      "date": "2026-05-01",
+      "url": "posts/welcome-to-verdant-notes.html",
+      "excerpt": "Why this blog exists and how small, intentional choices can transform our everyday lives."
+    }
   ]
-  
 }
