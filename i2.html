@@ -11,14 +11,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Non-Render-Blocking Google Fonts with Fallback -->
+<!-- Non-Render-Blocking Google Fonts -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </noscript>
 
-<!-- Schema.org for Agentic Browsing & Rich Snippets -->
+<!-- Schema.org for SEO & Agentic Browsing -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -177,7 +177,7 @@
     box-shadow:0 0 0 3px var(--green-pale);
   }
 
-  /* ---------- Sidebar ---------- */
+  /* ---------- Sidebar (Slide-out) ---------- */
   .overlay{
     position:fixed;
     inset:0;
@@ -272,9 +272,10 @@
     margin:0 auto;
     padding:36px 20px 60px;
     display:grid;
-    grid-template-columns:minmax(0,700px) 280px;
+    grid-template-columns:minmax(0,700px) 300px;
     gap:48px;
     justify-content:center;
+    align-items:start;
   }
 
   .page-head{
@@ -367,18 +368,24 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
-  /* ---------- Right sidebar / author ---------- */
+  /* ---------- Sticky Right Sidebar ---------- */
   .aside{
     display:flex;
     flex-direction:column;
     gap:20px;
+    position:sticky;
+    top:80px; /* Keeps widgets in view while scrolling */
+    align-self:start;
   }
-  .author-card{
+  .author-card, .categories-card, .pages-card{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:22px;
+    padding:20px 22px;
     box-shadow:var(--shadow);
+  }
+  .author-card{
+    padding:22px;
     text-align:center;
   }
   .author-card img{
@@ -415,43 +422,63 @@
   .socials a:hover{background:var(--green); color:#fff;}
   .socials svg{width:16px;height:16px;}
 
-  .categories-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px 22px;
-    box-shadow:var(--shadow);
-  }
-  .categories-card h4{
+  .categories-card h4, .pages-card h4{
     font-size:0.78rem;
     text-transform:uppercase;
     letter-spacing:.08em;
     color:var(--text-muted);
     margin:0 0 12px;
   }
-  .categories-card ul li{
+  .categories-card ul li, .pages-card ul li{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:7px 0;
     border-bottom:1px dashed var(--border);
     font-size:0.88rem;
   }
-  .categories-card ul li:last-child{border-bottom:none;}
+  .categories-card ul li:last-child, .pages-card ul li:last-child{border-bottom:none;}
   .categories-card .count{
     color:var(--text-muted);
     font-size:0.8rem;
   }
+  .pages-card ul li a{
+    color:var(--green-deep);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:color .15s ease;
+  }
+  .pages-card ul li a:hover{
+    color:var(--green);
+    text-decoration:underline;
+  }
 
+  /* ---------- Footer ---------- */
   footer.site-footer{
     text-align:center;
     padding:30px 20px 40px;
     color:var(--text-muted);
-    font-size:0.82rem;
+    font-size:0.85rem;
     border-top:1px solid var(--border);
+  }
+  .footer-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:12px;
+  }
+  .footer-links a{
+    color:var(--green-deep);
+    text-decoration:underline;
+  }
+  .footer-links a:hover{
+    color:var(--green);
   }
 
   @media (max-width:920px){
-    .layout{grid-template-columns:minmax(0,640px);}
+    .layout{grid-template-columns:minmax(0,100%);}
     .aside{display:none;}
   }
   @media (max-width:640px){
@@ -469,6 +496,7 @@
 
 <div class="overlay" id="overlay"></div>
 
+<!-- Slide-out Sidebar for Mobile & Quick Menu -->
 <aside class="sidebar" id="sidebar" aria-label="Site menu">
   <div class="sidebar-head">
     <span class="site-name" style="color:var(--green-deep); font-size:1.05rem;">Menu</span>
@@ -485,6 +513,7 @@
   </nav>
   <div class="sidebar-footer" id="sidebarFooter">
     <div class="section-label">Important Pages</div>
+    <div id="sidebarFooterLinks"></div>
   </div>
 </aside>
 
@@ -513,6 +542,7 @@
 </header>
 
 <main class="layout">
+  <!-- Left Side: Posts -->
   <section>
     <div class="page-head">
       <div class="eyebrow" id="headEyebrow">Latest</div>
@@ -529,6 +559,7 @@
     </div>
   </section>
 
+  <!-- Right Side: Sticky Aside (Always in View) -->
   <aside class="aside">
     <div class="author-card">
       <img id="authorPhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 76 76'%3E%3Crect width='76' height='76' fill='%23dfead8'/%3E%3C/svg%3E" width="76" height="76" alt="Author photo" loading="lazy" decoding="async">
@@ -537,6 +568,13 @@
       <div class="socials" id="authorSocials"></div>
     </div>
 
+    <!-- Important Pages Card (Right Sidebar) -->
+    <div class="pages-card" id="pagesCard" style="display:none;">
+      <h4>Important Pages</h4>
+      <ul id="asidePagesList"></ul>
+    </div>
+
+    <!-- Categories Card -->
     <div class="categories-card" id="categoriesCard" style="display:none;">
       <h4>Categories</h4>
       <ul id="categoriesList"></ul>
@@ -545,7 +583,8 @@
 </main>
 
 <footer class="site-footer" id="siteFooter">
-  © <span id="year"></span> Verdant Notes. All rights reserved.
+  <div class="footer-links" id="footerNav"></div>
+  <div>© <span id="year"></span> Verdant Notes. All rights reserved.</div>
 </footer>
 
 <script>
@@ -582,8 +621,6 @@
     document.getElementById('siteNameText').textContent = data.site.name;
     document.getElementById('siteTaglineText').textContent = data.site.tagline;
     document.title = data.site.name + " — " + data.site.tagline;
-    document.getElementById('siteFooter').innerHTML =
-      "© <span id='year'></span> " + escapeHtml(data.site.name) + ". All rights reserved.";
     document.getElementById('year').textContent = new Date().getFullYear();
   }
 
@@ -599,16 +636,28 @@
     ).join('');
   }
 
+  /* Important Pages Renderer (Sidebar + Aside Widget + Footer) */
   function renderFooterPages(pages){
-    const el = document.getElementById('sidebarFooter');
-    const fragment = document.createDocumentFragment();
-    pages.forEach(p => {
-      const a = document.createElement('a');
-      a.href = p.url;
-      a.textContent = p.title;
-      fragment.appendChild(a);
-    });
-    el.appendChild(fragment);
+    if(!pages || !pages.length) return;
+
+    // 1. In slide-out menu
+    const sideWrap = document.getElementById('sidebarFooterLinks');
+    sideWrap.innerHTML = pages.map(p =>
+      `<a href="${escapeHtml(p.url)}">${escapeHtml(p.title)}</a>`
+    ).join('');
+
+    // 2. In Sticky Right Aside (Always visible on Desktop)
+    const asideList = document.getElementById('asidePagesList');
+    asideList.innerHTML = pages.map(p =>
+      `<li><a href="${escapeHtml(p.url)}"><span>→</span> ${escapeHtml(p.title)}</a></li>`
+    ).join('');
+    document.getElementById('pagesCard').style.display = 'block';
+
+    // 3. In Main Bottom Footer
+    const footerNav = document.getElementById('footerNav');
+    footerNav.innerHTML = pages.map(p =>
+      `<a href="${escapeHtml(p.url)}">${escapeHtml(p.title)}</a>`
+    ).join('');
   }
 
   function renderCategories(posts){
@@ -745,7 +794,7 @@
     if(e.key === 'Escape') closeSidebar();
   });
 
-  /* ---------- Load data with Cache Support ---------- */
+  /* ---------- Load data ---------- */
   fetch('data.json')
     .then(res => {
       if(!res.ok) throw new Error('Network response was not ok');
