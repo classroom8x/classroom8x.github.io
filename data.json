@@ -4,7 +4,7 @@
     "tagline": "Slow thoughts on simple living"
   },
   "author": {
-    "name": "Niki Sharma",
+    "name": "Niraj Sidar",
     "photo": "https://i.pravatar.cc/300?img=47",
     "bio": "I write about mindful living, plants, and the small rituals that make ordinary days feel good. Based in the hills, fuelled by chai.",
     "socials": [
@@ -23,7 +23,7 @@
     { "title": "DMCA", "url": "dmca.html" }
   ],
   "posts": [
-    { "id": 21, "title": "Why 15 August is important for india ? 5 Important points", "category": "Independence", "date": "2026-08-14", "url": "posts/watering-plants-every-morning.html", "excerpt": "The best independence book ever did." },
+    { "id": 21, "title": "Important notes realesed gemini 3.7", "category": "Independence", "date": "2026-08-14", "url": "posts/watering-plants-every-morning.html", "excerpt": "The best independence book ever did." },
     { "id": 20, "title": "Not everyone is your friend? Heres Why?", "category": "Motivation", "date": "2026-08-14", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
     { "id": 1, "title": "The Quiet Art of Watering Plants Every Morning", "category": "Rituals", "date": "2026-08-10", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
     { "id": 2, "title": "Why I Stopped Buying Furniture and Started Building It", "category": "Home", "date": "2026-08-06", "url": "posts/building-not-buying-furniture.html", "excerpt": "A wobbly first stool and the slow satisfaction of making things with your own hands." },
