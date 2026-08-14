@@ -23,7 +23,8 @@
     { "title": "DMCA", "url": "dmca.html" }
   ],
   "posts": [
-    
+
+    { "id": 20, "title": "Not everyone is your friend? Heres Why?", "category": "Motivation", "date": "2026-08-14", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
     { "id": 1, "title": "The Quiet Art of Watering Plants Every Morning", "category": "Rituals", "date": "2026-08-10", "url": "posts/watering-plants-every-morning.html", "excerpt": "Ten minutes with a watering can taught me more about patience than any book ever did." },
     { "id": 2, "title": "Why I Stopped Buying Furniture and Started Building It", "category": "Home", "date": "2026-08-06", "url": "posts/building-not-buying-furniture.html", "excerpt": "A wobbly first stool and the slow satisfaction of making things with your own hands." },
     { "id": 3, "title": "Notes From a Week Without My Phone", "category": "Slow Living", "date": "2026-08-01", "url": "posts/week-without-phone.html", "excerpt": "The silence was uncomfortable for two days, and then it wasn't." },
