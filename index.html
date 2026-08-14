@@ -3,326 +3,330 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verdant Notes — Slow thoughts on simple living</title>
-<meta name="description" content="A quiet corner of the internet for notes on plants, kitchens, and slow living.">
+<title>Fernwood Journal — Field notes on a slower life</title>
+<meta name="description" content="Field notes on plants, kitchens, and a slower kind of living.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f5f8f2;
-    --surface:#eaf1e3;
-    --card:#ffffff;
-    --green-deep:#1f3d2b;
-    --green:#3f7d4f;
-    --green-soft:#8fb996;
-    --green-pale:#dfead8;
-    --text:#28312a;
-    --text-muted:#66715f;
-    --border:#dbe6d3;
-    --shadow: 0 1px 2px rgba(31,61,43,0.05), 0 4px 16px rgba(31,61,43,0.06);
-    --radius: 14px;
+    --paper:#eef1e4;
+    --card:#fdfaf1;
+    --forest:#16281c;
+    --forest-soft:#223a2b;
+    --moss:#5c7d4f;
+    --moss-light:#a9c08f;
+    --amber:#c98a4b;
+    --ink:#20291f;
+    --ink-soft:#5f6c58;
+    --line:#d3d9c3;
+    --radius:4px;
   }
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'DM Sans', -apple-system, sans-serif;
     font-size:16px;
-    line-height:1.55;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none;}
   ul{list-style:none;margin:0;padding:0;}
   img{max-width:100%;display:block;}
   button{font:inherit;}
-
-  .site-name{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-optical-sizing:auto;
-  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'DM Serif Display', serif; font-weight:400;}
 
   /* ---------- Topbar ---------- */
   .topbar{
     position:sticky;
     top:0;
     z-index:40;
-    display:flex;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
     align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding:14px 20px;
-    background:rgba(245,248,242,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--border);
+    gap:14px;
+    padding:16px 24px;
+    background:var(--paper);
+    border-bottom:1px solid var(--forest);
   }
-  .topbar-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width:0;
-  }
-  .menu-btn{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:4px;
-    width:38px;
-    height:38px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    background:var(--card);
-    cursor:pointer;
-    flex:none;
-  }
-  .menu-btn span{
-    display:block;
-    width:16px;
-    height:2px;
-    margin:0 auto;
-    background:var(--green-deep);
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.active span:nth-child(2){opacity:0;}
-  .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .topbar-left{display:flex; align-items:center; gap:12px;}
 
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    min-width:0;
-  }
-  .brand-icon{
-    width:30px;
-    height:30px;
+  .badge-toggle{
+    width:40px;height:40px;
+    border-radius:50%;
+    background:var(--forest);
+    border:none;
+    cursor:pointer;
+    position:relative;
     flex:none;
-    color:var(--green);
   }
-  .brand-text{
-    display:flex;
-    flex-direction:column;
-    line-height:1.1;
-    min-width:0;
+  .badge-toggle span{
+    position:absolute;
+    left:50%;top:50%;
+    width:14px;height:2px;
+    background:var(--paper);
+    transform:translate(-50%,-50%);
+    transition:transform .22s ease, opacity .22s ease;
   }
+  .badge-toggle span:first-child{transform:translate(-50%,-50%) translateY(-3px);}
+  .badge-toggle span:last-child{transform:translate(-50%,-50%) translateY(3px);}
+  .badge-toggle.active span:first-child{transform:translate(-50%,-50%) rotate(45deg);}
+  .badge-toggle.active span:last-child{transform:translate(-50%,-50%) rotate(-45deg);}
+
+  .brand{display:flex; align-items:center; gap:10px;}
+  .monogram{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1.5px solid var(--forest);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'DM Serif Display', serif;
+    font-size:1.05rem;
+    color:var(--forest);
+    flex:none;
+  }
+  .brand-text{display:flex; flex-direction:column; line-height:1.15;}
   .brand-text .site-name{
-    font-size:1.18rem;
-    color:var(--green-deep);
+    font-size:1.2rem;
+    color:var(--forest);
     white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
   }
   .brand-text .tagline{
-    font-size:0.72rem;
-    color:var(--text-muted);
-    letter-spacing:.02em;
+    font-size:0.68rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
     white-space:nowrap;
   }
 
-  .search-wrap{
-    position:relative;
-    width:min(280px, 40vw);
-    flex:none;
+  .topbar-center{
+    justify-self:center;
+    display:none;
   }
-  .search-wrap svg{
-    position:absolute;
-    left:11px;
-    top:50%;
-    transform:translateY(-50%);
-    width:16px;
-    height:16px;
-    color:var(--text-muted);
+  @media (min-width:720px){
+    .topbar-center{ display:block; }
   }
-  #searchInput{
-    width:100%;
-    padding:9px 12px 9px 34px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    font-size:0.88rem;
-    outline:none;
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  #searchInput:focus{
-    border-color:var(--green-soft);
-    box-shadow:0 0 0 3px var(--green-pale);
+  .topbar-center .site-name{
+    font-size:1.05rem;
+    color:var(--forest);
   }
 
-  /* ---------- Sidebar ---------- */
+  .topbar-right{
+    justify-self:end;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .search-toggle{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1.5px solid var(--forest);
+    background:transparent;
+    color:var(--forest);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .search-toggle svg{width:16px;height:16px;}
+  .search-field{
+    width:0;
+    overflow:hidden;
+    transition:width .22s ease;
+  }
+  .search-field.open{width:190px;}
+  #searchInput{
+    width:100%;
+    border:none;
+    border-bottom:1.5px solid var(--forest);
+    background:transparent;
+    padding:6px 2px;
+    font-size:0.9rem;
+    color:var(--ink);
+    outline:none;
+    font-family:'DM Sans', sans-serif;
+  }
+
+  /* ---------- Drawer ---------- */
   .overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(20,32,22,0.28);
-    opacity:0;
-    pointer-events:none;
+    position:fixed; inset:0;
+    background:rgba(20,32,22,0.35);
+    opacity:0; pointer-events:none;
     transition:opacity .2s ease;
     z-index:45;
   }
-  .overlay.show{opacity:1;pointer-events:auto;}
+  .overlay.show{opacity:1; pointer-events:auto;}
 
-  .sidebar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:100%;
-    width:270px;
-    background:var(--surface);
-    border-right:1px solid var(--border);
+  .drawer{
+    position:fixed; top:0; left:0;
+    height:100%; width:280px;
+    background:var(--forest);
+    color:var(--paper);
     transform:translateX(-100%);
-    transition:transform .25s ease;
+    transition:transform .28s ease;
     z-index:50;
     display:flex;
     flex-direction:column;
-    padding:20px 0 0;
   }
-  .sidebar.open{transform:translateX(0);}
+  .drawer.open{transform:translateX(0);}
 
-  .sidebar-head{
+  .drawer-head{
+    padding:22px 24px 16px;
+    border-bottom:1px solid var(--forest-soft);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 20px 18px;
-    border-bottom:1px solid var(--border);
   }
-  .sidebar-close{
-    width:30px;height:30px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:var(--card);
+  .drawer-head .display{ font-size:1.15rem; color:var(--moss-light);}
+  .drawer-close{
+    width:28px;height:28px;
+    border-radius:50%;
+    border:1px solid var(--forest-soft);
+    background:transparent;
+    color:var(--paper);
     cursor:pointer;
-    color:var(--green-deep);
-    display:flex;align-items:center;justify-content:center;
   }
 
-  .sidebar-nav{
-    padding:16px 10px;
+  .drawer-nav{
+    padding:18px 10px;
     overflow-y:auto;
     flex:1;
   }
-  .sidebar-nav .section-label{
-    font-size:0.72rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--text-muted);
-    padding:8px 12px 6px;
-  }
-  .sidebar-nav a{
-    display:block;
-    padding:9px 12px;
-    border-radius:9px;
-    font-size:0.93rem;
-    color:var(--green-deep);
-    transition:background .15s ease;
-  }
-  .sidebar-nav a:hover{background:var(--green-pale);}
-
-  .sidebar-footer{
-    border-top:1px solid var(--border);
-    padding:14px 10px 18px;
-  }
-  .sidebar-footer .section-label{
+  .drawer-nav .label{
     font-size:0.68rem;
+    letter-spacing:.1em;
     text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--text-muted);
-    padding:4px 12px 6px;
+    color:var(--moss-light);
+    padding:10px 14px 6px;
   }
-  .sidebar-footer a{
+  .drawer-nav a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 14px;
+    border-radius:3px;
+    font-size:0.93rem;
+    color:var(--paper);
+    transition:background .15s ease, padding-left .15s ease;
+  }
+  .drawer-nav a::before{
+    content:"→";
+    color:var(--amber);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    opacity:0;
+    transition:opacity .15s ease;
+    width:0;
+  }
+  .drawer-nav a:hover{background:var(--forest-soft); padding-left:10px;}
+  .drawer-nav a:hover::before{opacity:1; width:14px;}
+
+  .drawer-footer{
+    border-top:1px solid var(--forest-soft);
+    padding:16px 10px 22px;
+  }
+  .drawer-footer .label{
+    font-size:0.62rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    padding:4px 14px 8px;
+  }
+  .drawer-footer a{
     display:block;
-    padding:6px 12px;
-    font-size:0.82rem;
-    color:var(--text-muted);
-    border-radius:7px;
-    transition:background .15s ease, color .15s ease;
+    padding:6px 14px;
+    font-size:0.8rem;
+    color:var(--moss-light);
+    border-radius:3px;
   }
-  .sidebar-footer a:hover{background:var(--green-pale); color:var(--green-deep);}
+  .drawer-footer a:hover{background:var(--forest-soft); color:var(--paper);}
 
   /* ---------- Layout ---------- */
   .layout{
-    max-width:1180px;
+    max-width:1140px;
     margin:0 auto;
-    padding:36px 20px 60px;
+    padding:44px 24px 60px;
     display:grid;
-    grid-template-columns:minmax(0,700px) 280px;
-    gap:48px;
+    grid-template-columns:minmax(0,640px) 260px;
+    gap:56px;
     justify-content:center;
   }
 
   .page-head{
-    margin-bottom:28px;
+    margin-bottom:8px;
+    padding-bottom:20px;
+    border-bottom:2px solid var(--forest);
   }
-  .page-head .eyebrow{
-    font-size:0.78rem;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    color:var(--green);
-    font-weight:600;
+  .page-head .mono{
+    font-size:0.75rem;
+    color:var(--moss);
+    letter-spacing:.08em;
   }
   .page-head h1{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:2rem;
-    color:var(--green-deep);
+    font-size:2.1rem;
     margin:6px 0 0;
+    color:var(--forest);
   }
 
-  /* ---------- Post list ---------- */
-  #postList{}
+  /* ---------- Post index list ---------- */
+  #postList{ position:relative; }
   .post-row{
-    padding:20px 4px;
-    border-bottom:1px solid var(--border);
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:16px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
   }
-  .post-row:first-child{padding-top:4px;}
-  .post-meta{
+  .post-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--moss);
+    padding-top:4px;
+  }
+  .post-body .post-meta{
     display:flex;
+    gap:10px;
     align-items:center;
-    gap:8px;
-    font-size:0.78rem;
-    color:var(--text-muted);
-    margin-bottom:6px;
+    font-size:0.72rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
   }
-  .post-meta .cat{
-    color:var(--green);
+  .post-body .post-meta .cat{
+    color:var(--amber);
     font-weight:600;
   }
-  .post-meta .dot{
-    width:3px;height:3px;border-radius:50%;
-    background:var(--text-muted);
+  .post-body h2{
+    margin:0 0 8px;
+    font-size:1.32rem;
+    font-weight:400;
+    line-height:1.32;
+    color:var(--ink);
   }
-  .post-row h2{
-    margin:0 0 6px;
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:1.28rem;
-    line-height:1.3;
-  }
-  .post-row h2 a{
-    display:inline;
-    background-image:linear-gradient(var(--green-soft), var(--green-soft));
+  .post-body h2 a{
+    background-image:linear-gradient(var(--moss-light), var(--moss-light));
     background-repeat:no-repeat;
     background-position:0 100%;
-    background-size:0% 2px;
-    transition:background-size .2s ease, color .2s ease;
+    background-size:0% 1.5px;
+    transition:background-size .2s ease;
     padding-bottom:1px;
   }
-  .post-row h2 a:hover{
-    background-size:100% 2px;
-    color:var(--green-deep);
-  }
-  .post-row p{
+  .post-body h2 a:hover{ background-size:100% 1.5px; }
+  .post-body p{
     margin:0;
-    color:var(--text-muted);
-    font-size:0.93rem;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    max-width:52ch;
   }
 
   .empty-state{
     padding:40px 4px;
-    color:var(--text-muted);
+    color:var(--ink-soft);
     font-size:0.95rem;
   }
 
@@ -331,117 +335,117 @@
     display:none;
     align-items:center;
     gap:8px;
-    padding:18px 4px;
-    color:var(--text-muted);
-    font-size:0.85rem;
+    padding:20px 0;
+    color:var(--ink-soft);
+    font-size:0.82rem;
+    font-family:'IBM Plex Mono', monospace;
   }
   .loader.show{display:flex;}
-  .loader .leaf-spin{
-    width:14px;height:14px;
-    color:var(--green);
-    animation:spin 1s linear infinite;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  /* ---------- Right sidebar / author ---------- */
-  .aside{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-  .author-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:22px;
-    box-shadow:var(--shadow);
-    text-align:center;
-  }
-  .author-card img{
-    width:76px;height:76px;
+  .loader .dot-flash{
+    width:6px;height:6px;
     border-radius:50%;
-    margin:0 auto 12px;
+    background:var(--moss);
+    animation:flash 1s ease-in-out infinite;
+  }
+  @keyframes flash{ 0%,100%{opacity:.25;} 50%{opacity:1;} }
+
+  /* ---------- Right sidebar ---------- */
+  .aside{ display:flex; flex-direction:column; gap:22px; }
+
+  .postcard{
+    background:var(--card);
+    border:1.5px dashed var(--forest);
+    border-radius:var(--radius);
+    padding:24px 20px;
+    position:relative;
+  }
+  .postcard::before{
+    content:"";
+    position:absolute;
+    top:-8px; right:16px;
+    width:34px; height:16px;
+    background:var(--amber);
+    opacity:.85;
+    transform:rotate(-3deg);
+  }
+  .postcard-photo{
+    width:64px;height:64px;
     object-fit:cover;
-    border:3px solid var(--green-pale);
+    border:4px solid #fff;
+    box-shadow:0 2px 6px rgba(20,32,22,.18);
+    transform:rotate(-3deg);
+    margin-bottom:14px;
   }
-  .author-card h3{
-    font-family:'Fraunces', serif;
-    font-size:1.08rem;
+  .postcard h3{
+    font-family:'DM Serif Display', serif;
+    font-weight:400;
+    font-size:1.1rem;
     margin:0 0 8px;
-    color:var(--green-deep);
+    color:var(--forest);
   }
-  .author-card p{
+  .postcard p{
     font-size:0.86rem;
-    color:var(--text-muted);
-    margin:0 0 16px;
+    color:var(--ink-soft);
+    margin:0 0 14px;
   }
-  .socials{
+  .postcard-socials{
     display:flex;
-    justify-content:center;
-    gap:10px;
+    flex-wrap:wrap;
+    gap:4px 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
   }
-  .socials a{
-    width:34px;height:34px;
-    border-radius:50%;
-    background:var(--green-pale);
-    color:var(--green-deep);
-    display:flex;align-items:center;justify-content:center;
-    transition:background .15s ease, color .15s ease;
+  .postcard-socials a{
+    color:var(--moss);
+    border-bottom:1px solid transparent;
   }
-  .socials a:hover{background:var(--green); color:#fff;}
-  .socials svg{width:16px;height:16px;}
+  .postcard-socials a:hover{ border-bottom-color:var(--moss); }
+  .postcard-socials .sep{ color:var(--line); }
 
-  .categories-card{
+  .tags-card{
     background:var(--card);
-    border:1px solid var(--border);
+    border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:20px 22px;
-    box-shadow:var(--shadow);
+    padding:20px;
   }
-  .categories-card h4{
-    font-size:0.78rem;
+  .tags-card h4{
+    font-size:0.68rem;
+    letter-spacing:.1em;
     text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--text-muted);
+    color:var(--ink-soft);
     margin:0 0 12px;
   }
-  .categories-card ul li{
-    display:flex;
-    justify-content:space-between;
-    padding:7px 0;
-    border-bottom:1px dashed var(--border);
-    font-size:0.88rem;
+  .tag-list{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag-list a{
+    font-size:0.78rem;
+    padding:5px 11px;
+    border:1px solid var(--forest);
+    border-radius:20px;
+    color:var(--forest);
+    transition:background .15s ease, color .15s ease;
   }
-  .categories-card ul li:last-child{border-bottom:none;}
-  .categories-card .count{
-    color:var(--text-muted);
-    font-size:0.8rem;
-  }
+  .tag-list a:hover{ background:var(--forest); color:var(--paper); }
 
   footer.site-footer{
     text-align:center;
-    padding:30px 20px 40px;
-    color:var(--text-muted);
-    font-size:0.82rem;
-    border-top:1px solid var(--border);
+    padding:26px 24px 40px;
+    color:var(--ink-soft);
+    font-size:0.78rem;
+    font-family:'IBM Plex Mono', monospace;
+    border-top:1px solid var(--line);
   }
 
   @media (max-width:920px){
-    .layout{grid-template-columns:minmax(0,640px); }
-    .aside{
-      grid-row:1;
-      flex-direction:row;
-      overflow-x:auto;
-    }
-    .aside{display:none;}
+    .layout{ grid-template-columns:minmax(0,600px); }
+    .aside{ display:none; }
   }
-  @media (max-width:640px){
-    .search-wrap{width:min(160px, 45vw);}
-    .brand-text .tagline{display:none;}
+  @media (max-width:560px){
+    .search-field.open{ width:130px; }
+    .topbar{ padding:14px 16px; }
   }
 
   a:focus-visible, button:focus-visible, input:focus-visible{
-    outline:2px solid var(--green);
+    outline:2px solid var(--amber);
     outline-offset:2px;
   }
 </style>
@@ -450,83 +454,85 @@
 
 <div class="overlay" id="overlay"></div>
 
-<aside class="sidebar" id="sidebar" aria-label="Site menu">
-  <div class="sidebar-head">
-    <span class="site-name" style="color:var(--green-deep); font-size:1.05rem;">Menu</span>
-    <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
+<aside class="drawer" id="drawer" aria-label="Site menu">
+  <div class="drawer-head">
+    <span class="display" id="drawerTitle">Fernwood</span>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
   </div>
-  <nav class="sidebar-nav">
-    <div class="section-label">Browse</div>
+  <nav class="drawer-nav">
+    <div class="label">Browse</div>
     <a href="index.html">Home</a>
-    <a href="#" data-cat="all">All Posts</a>
-    <div class="section-label" id="sidebarCategoriesLabel" style="display:none;">Categories</div>
-    <div id="sidebarCategories"></div>
+    <a href="#" data-cat="all">All entries</a>
+    <div class="label" id="drawerCategoriesLabel" style="display:none;">Categories</div>
+    <div id="drawerCategories"></div>
   </nav>
-  <div class="sidebar-footer" id="sidebarFooter">
-    <div class="section-label">Important Pages</div>
+  <div class="drawer-footer" id="drawerFooter">
+    <div class="label">Important pages</div>
   </div>
 </aside>
 
 <header class="topbar">
   <div class="topbar-left">
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="badge-toggle" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
     </button>
     <a href="index.html" class="brand">
-      <svg class="brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 6C13 6 7 15 7 24c0 9 6 18 17 18 9 0 15-7 15-17C39 14 33 6 24 6Z" fill="var(--green-pale)"/>
-        <path d="M24 40c0-14 0-22 12-30" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M24 40c0-11-4-17-12-22" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
-      </svg>
+      <span class="monogram" id="monogramText">F</span>
       <span class="brand-text">
-        <span class="site-name" id="siteNameText">Verdant Notes</span>
-        <span class="tagline" id="siteTaglineText">Slow thoughts on simple living</span>
+        <span class="site-name" id="siteNameText">Fernwood Journal</span>
+        <span class="tagline" id="siteTaglineText">Field notes on a slower life</span>
       </span>
     </a>
   </div>
 
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
-    <input type="search" id="searchInput" placeholder="Search posts…" aria-label="Search posts">
+  <div class="topbar-center">
+    <span class="display site-name">Fernwood</span>
+  </div>
+
+  <div class="topbar-right">
+    <div class="search-field" id="searchField">
+      <input type="search" id="searchInput" placeholder="search…" aria-label="Search posts">
+    </div>
+    <button class="search-toggle" id="searchToggle" aria-label="Toggle search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </header>
 
 <main class="layout">
   <section>
     <div class="page-head">
-      <div class="eyebrow" id="headEyebrow">Latest</div>
-      <h1 id="headTitle">From the journal</h1>
+      <div class="mono" id="headEyebrow">LATEST ENTRIES</div>
+      <h1 class="display" id="headTitle">From the field</h1>
     </div>
 
     <ul id="postList"></ul>
-    <div class="empty-state" id="emptyState" style="display:none;">No posts match your search. Try a different word.</div>
+    <div class="empty-state" id="emptyState" style="display:none;">No entries match that search. Try another word.</div>
 
     <div id="sentinel"></div>
     <div class="loader" id="loader">
-      <svg class="leaf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c5 0 9 4 9 9-5 0-9-4-9-9Z"/><path d="M12 21c-5 0-9-4-9-9 5 0 9 4 9 9Z"/></svg>
-      Loading more posts…
+      <span class="dot-flash"></span>
+      loading more entries…
     </div>
   </section>
 
   <aside class="aside">
-    <div class="author-card">
-      <img id="authorPhoto" src="" alt="">
+    <div class="postcard">
+      <img class="postcard-photo" id="authorPhoto" src="" alt="">
       <h3 id="authorName"></h3>
       <p id="authorBio"></p>
-      <div class="socials" id="authorSocials"></div>
+      <div class="postcard-socials" id="authorSocials"></div>
     </div>
 
-    <div class="categories-card" id="categoriesCard" style="display:none;">
-      <h4>Categories</h4>
-      <ul id="categoriesList"></ul>
+    <div class="tags-card" id="tagsCard" style="display:none;">
+      <h4>Filed under</h4>
+      <div class="tag-list" id="tagList"></div>
     </div>
   </aside>
 </main>
 
 <footer class="site-footer" id="siteFooter">
-  © <span id="year"></span> Verdant Notes. All rights reserved.
+  © <span id="year"></span> Fernwood Journal
 </footer>
 
 <script>
@@ -534,19 +540,7 @@
   "use strict";
 
   const PAGE_SIZE = 10;
-  const state = {
-    allPosts: [],
-    filtered: [],
-    rendered: 0,
-    query: ""
-  };
-
-  const socialIcons = {
-    twitter: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4a4.1 4.1 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2Z"/></svg>',
-    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>',
-    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.8 2.8 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.8 2.8 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.8 2.8 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.8 2.8 0 0 0 2-2C22 15.2 22 12 22 12Z"/><path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="var(--card)"/></svg>',
-    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>'
-  };
+  const state = { allPosts: [], filtered: [], rendered: 0, query: "" };
 
   function escapeHtml(str){
     return String(str).replace(/[&<>"']/g, s => ({
@@ -559,13 +553,18 @@
     return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
   }
 
+  function pad(n){ return String(n).padStart(2,'0'); }
+
   function renderSite(data){
     document.getElementById('siteNameText').textContent = data.site.name;
     document.getElementById('siteTaglineText').textContent = data.site.tagline;
+    document.getElementById('drawerTitle').textContent = data.site.name.split(' ')[0];
+    document.getElementById('monogramText').textContent = data.site.monogram || data.site.name.charAt(0);
     document.title = data.site.name + " — " + data.site.tagline;
     document.getElementById('siteFooter').innerHTML =
-      "© <span id='year'></span> " + escapeHtml(data.site.name) + ". All rights reserved.";
+      "© <span id='year'></span> " + escapeHtml(data.site.name);
     document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelector('.topbar-center .site-name').textContent = data.site.name.split(' ')[0];
   }
 
   function renderAuthor(author){
@@ -574,13 +573,14 @@
     document.getElementById('authorName').textContent = author.name;
     document.getElementById('authorBio').textContent = author.bio;
     const wrap = document.getElementById('authorSocials');
-    wrap.innerHTML = author.socials.map(s =>
-      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" aria-label="${escapeHtml(s.name)}">${socialIcons[s.icon] || ''}</a>`
+    wrap.innerHTML = author.socials.map((s,i) =>
+      (i>0 ? '<span class="sep">·</span>' : '') +
+      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a>`
     ).join('');
   }
 
   function renderFooterPages(pages){
-    const el = document.getElementById('sidebarFooter');
+    const el = document.getElementById('drawerFooter');
     pages.forEach(p => {
       const a = document.createElement('a');
       a.href = p.url;
@@ -595,46 +595,44 @@
     const cats = Object.keys(counts).sort();
     if(!cats.length) return;
 
-    const list = document.getElementById('categoriesList');
-    list.innerHTML = cats.map(c =>
-      `<li><a href="#" data-cat="${escapeHtml(c)}" style="color:inherit;">${escapeHtml(c)}</a><span class="count">${counts[c]}</span></li>`
+    document.getElementById('tagList').innerHTML = cats.map(c =>
+      `<a href="#" data-cat="${escapeHtml(c)}">${escapeHtml(c)} · ${counts[c]}</a>`
     ).join('');
-    document.getElementById('categoriesCard').style.display = 'block';
+    document.getElementById('tagsCard').style.display = 'block';
 
-    const sideLabel = document.getElementById('sidebarCategoriesLabel');
-    const sideWrap = document.getElementById('sidebarCategories');
-    sideLabel.style.display = 'block';
-    sideWrap.innerHTML = cats.map(c =>
+    document.getElementById('drawerCategoriesLabel').style.display = 'block';
+    document.getElementById('drawerCategories').innerHTML = cats.map(c =>
       `<a href="#" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</a>`
     ).join('');
   }
 
-  function postRowHtml(post){
+  function postRowHtml(post, idx){
     return `
       <li class="post-row">
-        <div class="post-meta">
-          <span class="cat">${escapeHtml(post.category)}</span>
-          <span class="dot"></span>
-          <span>${formatDate(post.date)}</span>
+        <div class="post-index mono">${pad(idx+1)}</div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span class="cat">${escapeHtml(post.category)}</span>
+            <span>${formatDate(post.date)}</span>
+          </div>
+          <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
+          <p>${escapeHtml(post.excerpt)}</p>
         </div>
-        <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
-        <p>${escapeHtml(post.excerpt)}</p>
       </li>`;
   }
 
   function renderNextBatch(){
     const list = document.getElementById('postList');
     const empty = document.getElementById('emptyState');
-    const next = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
+    const start = state.rendered;
+    const next = state.filtered.slice(start, start + PAGE_SIZE);
 
-    if(state.rendered === 0){
-      list.innerHTML = "";
-    }
+    if(state.rendered === 0){ list.innerHTML = ""; }
     if(state.filtered.length === 0){
       empty.style.display = 'block';
     } else {
       empty.style.display = 'none';
-      list.insertAdjacentHTML('beforeend', next.map(postRowHtml).join(''));
+      list.insertAdjacentHTML('beforeend', next.map((p,i) => postRowHtml(p, start+i)).join(''));
     }
     state.rendered += next.length;
     updateHead();
@@ -644,11 +642,11 @@
     const eyebrow = document.getElementById('headEyebrow');
     const title = document.getElementById('headTitle');
     if(state.query){
-      eyebrow.textContent = `${state.filtered.length} result${state.filtered.length === 1 ? '' : 's'}`;
-      title.textContent = `Search: "${state.query}"`;
+      eyebrow.textContent = `${state.filtered.length} RESULT${state.filtered.length===1?'':'S'}`;
+      title.textContent = `"${state.query}"`;
     } else {
-      eyebrow.textContent = "Latest";
-      title.textContent = "From the journal";
+      eyebrow.textContent = "LATEST ENTRIES";
+      title.textContent = "From the field";
     }
   }
 
@@ -677,7 +675,7 @@
       e.preventDefault();
       document.getElementById('searchInput').value = "";
       applyFilter("", catLink.dataset.cat);
-      closeSidebar();
+      closeDrawer();
       window.scrollTo({top:0, behavior:'smooth'});
     }
   });
@@ -697,34 +695,41 @@
   }, { rootMargin: '200px' });
   observer.observe(document.getElementById('sentinel'));
 
-  /* ---------- Sidebar toggle ---------- */
-  const sidebar = document.getElementById('sidebar');
+  /* ---------- Drawer toggle ---------- */
+  const drawer = document.getElementById('drawer');
   const overlay = document.getElementById('overlay');
   const menuBtn = document.getElementById('menuBtn');
 
-  function openSidebar(){
-    sidebar.classList.add('open');
+  function openDrawer(){
+    drawer.classList.add('open');
     overlay.classList.add('show');
     menuBtn.classList.add('active');
-    menuBtn.setAttribute('aria-expanded', 'true');
+    menuBtn.setAttribute('aria-expanded','true');
   }
-  function closeSidebar(){
-    sidebar.classList.remove('open');
+  function closeDrawer(){
+    drawer.classList.remove('open');
     overlay.classList.remove('show');
     menuBtn.classList.remove('active');
-    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-expanded','false');
   }
   menuBtn.addEventListener('click', () => {
-    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
   });
-  overlay.addEventListener('click', closeSidebar);
-  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeSidebar();
+  overlay.addEventListener('click', closeDrawer);
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeDrawer(); });
+
+  /* ---------- Search reveal ---------- */
+  const searchField = document.getElementById('searchField');
+  const searchToggle = document.getElementById('searchToggle');
+  const searchInput = document.getElementById('searchInput');
+  searchToggle.addEventListener('click', () => {
+    searchField.classList.toggle('open');
+    if(searchField.classList.contains('open')) searchInput.focus();
   });
 
   /* ---------- Load data ---------- */
-  fetch('data.json')
+  fetch('data.json?v=' + Date.now(), { cache: 'no-store' })
     .then(res => {
       if(!res.ok) throw new Error('Network response was not ok');
       return res.json();
@@ -740,7 +745,7 @@
     })
     .catch(err => {
       document.getElementById('postList').innerHTML =
-        `<li class="empty-state" style="display:block;">Could not load posts. If you opened this file directly, run a local server (e.g. <code>python3 -m http.server</code>) so data.json can be fetched — browsers block fetch() on file:// pages.</li>`;
+        `<li class="empty-state" style="display:block;">Could not load entries. If you opened this file directly, run a local server (e.g. <code>python3 -m http.server</code>) so data.json can be fetched — browsers block fetch() on file:// pages.</li>`;
       console.error(err);
     });
 })();
