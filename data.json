@@ -23,6 +23,15 @@
     { "title": "DMCA", "url": "dmca.html" }
   ],
   "posts": [
+    
+    {
+      "id": 22,
+      "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+      "category": "Life",
+      "date": "2026-08-15",
+      "url": "../ts.html",
+      "excerpt": "La classe moyenne ne stagne pas à cause de ses revenus, mais à cause de la course "
+    },
     {
       "id": 21,
       "title": "Why Gemini 3.7 and Next-Gen AI Make Deep Focus More Essential Than Ever",
