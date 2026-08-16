@@ -746,5 +746,142 @@
     });
 })();
 </script>
+  <!-- Internal Linking Styling -->
+<style>
+  /* Post ke beech me aane wala "Also Read" Box */
+  .auto-interlink-box {
+    background: #f8fafc;
+    border-left: 4px solid #3b82f6;
+    padding: 12px 18px;
+    margin: 25px 0;
+    border-radius: 6px;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .auto-interlink-box strong {
+    color: #1e293b;
+  }
+  .auto-interlink-box a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+  .auto-interlink-box a:hover {
+    color: #1d4ed8;
+  }
+
+  /* Post ke last me aane wala "Related Posts" Box */
+  .auto-footer-interlinks {
+    margin-top: 35px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+  }
+  .auto-footer-interlinks h4 {
+    margin: 0 0 12px 0;
+    color: #0f172a;
+    font-size: 18px;
+  }
+  .auto-footer-interlinks ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .auto-footer-interlinks li {
+    margin-bottom: 8px;
+  }
+  .auto-footer-interlinks a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .auto-footer-interlinks a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<!-- Auto Internal Linking Script -->
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+  const jsonUrl = "https://classroom8x.github.io/data.json";
+
+  // Post/Article container ko dhoondhna
+  const postContent = document.querySelector(".post-content") || 
+                      document.querySelector(".entry-content") || 
+                      document.querySelector(".post-body") || 
+                      document.querySelector("article");
+
+  if (!postContent) return;
+
+  try {
+    const res = await fetch(jsonUrl);
+    const data = await res.json();
+
+    if (!Array.isArray(data) || data.length === 0) return;
+
+    // Current page ka URL taaki khud ka link repeat na ho
+    const currentPath = window.location.pathname.toLowerCase();
+
+    // Data ko standardize karna (Title aur Link nikalna)
+    const validLinks = data.map(item => {
+      const title = item.title || item.name || item.game || item.post_title || "Related Post";
+      let url = item.url || item.link || item.slug || item.path || "";
+      
+      // Agar URL me sirif slug ho to relative path bana de
+      if (url && !url.startsWith("http") && !url.startsWith("/")) {
+        url = "/" + url;
+      }
+      return { title, url };
+    }).filter(item => {
+      return item.url && !currentPath.includes(item.url.toLowerCase());
+    });
+
+    if (validLinks.length === 0) return;
+
+    // Links ko random shuffle karna (har page load pe naye links milenge)
+    const shuffled = validLinks.sort(() => 0.5 - Math.random());
+
+    // 1. CONTENT KE BEECH MEIN LINKS INSERT KARNA
+    const paragraphs = postContent.querySelectorAll("p");
+
+    // 2nd ya 3rd paragraph ke baad pehla link
+    if (paragraphs.length >= 2 && shuffled[0]) {
+      const midBox1 = document.createElement("div");
+      midBox1.className = "auto-interlink-box";
+      midBox1.innerHTML = `👉 <strong>Also Check:</strong> <a href="${shuffled[0].url}">${shuffled[0].title}</a>`;
+      paragraphs[1].insertAdjacentElement("afterend", midBox1);
+    }
+
+    // 5th paragraph ke baad doosra link
+    if (paragraphs.length >= 5 && shuffled[1]) {
+      const midBox2 = document.createElement("div");
+      midBox2.className = "auto-interlink-box";
+      midBox2.innerHTML = `🔥 <strong>Recommended:</strong> <a href="${shuffled[1].url}">${shuffled[1].title}</a>`;
+      paragraphs[4].insertAdjacentElement("afterend", midBox2);
+    }
+
+    // 2. POST KE LAST MEIN 4 RELATED LINKS INSERT KARNA
+    const bottomLinks = shuffled.slice(2, 6);
+    if (bottomLinks.length > 0) {
+      const bottomBox = document.createElement("div");
+      bottomBox.className = "auto-footer-interlinks";
+      
+      let listItems = bottomLinks
+        .map(link => `<li><a href="${link.url}">${link.title}</a></li>`)
+        .join("");
+
+      bottomBox.innerHTML = `
+        <h4>⚡ More You Might Like:</h4>
+        <ul>${listItems}</ul>
+      `;
+      postContent.appendChild(bottomBox);
+    }
+
+  } catch (err) {
+    console.error("Error fetching internal links:", err);
+  }
+});
+</script>
 </body>
 </html>
