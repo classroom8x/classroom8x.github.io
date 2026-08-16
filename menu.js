@@ -1,5 +1,6 @@
 /* ===============================
    AUTO-INJECT FLOATING MENU (menu.js)
+   -- Performance-optimized version --
 =============================== */
 (function () {
   "use strict";
@@ -8,7 +9,7 @@
     // 1. Floating Button, Overlay aur Sidebar ka complete HTML inject karein
     const menuHTML = `
       <!-- Floating Menu Toggle Button -->
-      <button class="floating-menu-btn" id="floatingMenuBtn" aria-label="Open Menu">
+      <button class="floating-menu-btn" id="floatingMenuBtn" aria-label="Open Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
 
@@ -44,22 +45,43 @@
     const overlay = document.getElementById('globalOverlay');
     const closeBtn = document.getElementById('globalSidebarClose');
 
+    let isOpen = false;
+    let rafId = null;
+
+    // requestAnimationFrame me class-toggle batch karne se layout thrashing
+    // nahi hoti — teeno elements ek hi frame me update hote hain, smooth lagta hai
+    function applyState(open) {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sidebar.classList.toggle('open', open);
+        overlay.classList.toggle('show', open);
+        floatingBtn.classList.toggle('active', open);
+        floatingBtn.setAttribute('aria-expanded', String(open));
+        rafId = null;
+      });
+    }
+
     function openSidebar() {
-      sidebar.classList.add('open');
-      overlay.classList.add('show');
-      floatingBtn.classList.add('active');
+      if (isOpen) return;
+      isOpen = true;
+      applyState(true);
+      // Body scroll lock — background scroll na ho jab sidebar khula ho,
+      // is se bhi scroll jank kaafi kam hota hai
+      document.documentElement.style.overflow = 'hidden';
     }
 
     function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-      floatingBtn.classList.remove('active');
+      if (!isOpen) return;
+      isOpen = false;
+      applyState(false);
+      document.documentElement.style.overflow = '';
     }
 
-    // 3. Event Listeners
+    // 3. Event Listeners (click events me passive ka effect nahi hota,
+    // isliye normal hi rakha hai — passive sirf touch/wheel ke liye kaam aata hai)
     floatingBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+      isOpen ? closeSidebar() : openSidebar();
     });
 
     closeBtn.addEventListener('click', closeSidebar);
@@ -83,6 +105,8 @@
             const sideWrap = document.getElementById('dynSidebarCategories');
             if (sideLabel && sideWrap) {
               sideLabel.style.display = 'block';
+              // Ek baar me poora HTML string banao aur ek hi baar DOM me daalo
+              // (innerHTML already batched hai, but loop-appends se better rakha)
               sideWrap.innerHTML = cats.map(c =>
                 `<a href="index.html" data-cat="${c}">${c}</a>`
               ).join('');
@@ -90,16 +114,19 @@
           }
         }
 
-        // Load Footer Pages
+        // Load Footer Pages — DocumentFragment use karke ek hi reflow me insert,
+        // baar-baar appendChild se multiple reflow hone se bachne ke liye
         if (data.pages && data.pages.length) {
           const footerEl = document.getElementById('dynSidebarFooter');
           if (footerEl) {
+            const frag = document.createDocumentFragment();
             data.pages.forEach(p => {
               const a = document.createElement('a');
               a.href = p.url;
               a.textContent = p.title;
-              footerEl.appendChild(a);
+              frag.appendChild(a);
             });
+            footerEl.appendChild(frag);
           }
         }
       })

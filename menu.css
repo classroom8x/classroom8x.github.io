@@ -1,5 +1,6 @@
 /* ===============================
    FLOATING MENU & SIDEBAR (menu.css)
+   -- Performance-optimized version --
 =============================== */
 
 :root {
@@ -11,6 +12,7 @@
   --text-muted: #66715f;
   --border: #dbe6d3;
   --menu-shadow: 0 4px 14px rgba(31, 61, 43, 0.15);
+  --menu-shadow-hover: 0 6px 18px rgba(31, 61, 43, 0.2);
 }
 
 /* Screen ke Top-Left me Float hone wala Button */
@@ -23,8 +25,8 @@
   height: 42px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
+  /* Blur hata kar solid-ish background — scroll ke waqt repaint nahi hoga */
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: var(--menu-shadow);
   cursor: pointer;
   display: flex;
@@ -32,13 +34,33 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  /* Sirf transform animate karo — box-shadow ko opacity trick se */
+  transition: transform .2s ease;
+  /* Apni khud ki compositing layer — page scroll se isolate rehta hai */
+  transform: translateZ(0);
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Hover shadow ko ek pseudo-layer pe daala, opacity transition (cheap) use karke,
+   box-shadow transition (expensive repaint) se bachne ke liye */
+.floating-menu-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--menu-shadow-hover);
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
 }
 
 .floating-menu-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
   background: #ffffff;
-  box-shadow: 0 6px 18px rgba(31, 61, 43, 0.2);
+}
+.floating-menu-btn:hover::after {
+  opacity: 1;
 }
 
 /* Hamburger Lines */
@@ -66,12 +88,16 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(20, 32, 22, 0.35);
-  backdrop-filter: blur(2px);
+  /* Blur hata diya — sirf dark opacity se overlay effect, blur nahi.
+     Ye sabse bada scroll-jank source tha kyunki fixed+blur element
+     har scroll frame pe peeche ka pura content re-sample karta hai. */
+  background: rgba(20, 32, 22, 0.45);
   opacity: 0;
   pointer-events: none;
   transition: opacity .25s ease;
   z-index: 998;
+  will-change: opacity;
+  contain: strict;
 }
 .overlay.show {
   opacity: 1;
@@ -94,6 +120,9 @@
   flex-direction: column;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Sidebar apni khud ki layer pe rahe, baaki page se isolated */
+  will-change: transform;
+  contain: layout style paint;
 }
 .sidebar.open {
   transform: translateX(0);
@@ -105,6 +134,7 @@
   justify-content: space-between;
   padding: 18px 20px;
   border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 .sidebar-head span {
   color: var(--green-deep);
@@ -134,6 +164,10 @@
   padding: 16px 12px;
   overflow-y: auto;
   flex: 1;
+  /* Sidebar ke andar scroll page ke scroll ko "chain" na kare —
+     is se bahar ka scroll bhi smooth rehta hai */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 .sidebar-nav .section-label {
   font-size: 0.72rem;
@@ -160,6 +194,7 @@
 .sidebar-footer {
   border-top: 1px solid var(--border);
   padding: 14px 12px 18px;
+  flex-shrink: 0;
 }
 .sidebar-footer .section-label {
   font-size: 0.68rem;
@@ -181,4 +216,18 @@
 .sidebar-footer a:hover {
   background: var(--green-pale);
   color: var(--green-deep);
+}
+
+/* Users jo "reduce motion" prefer karte hain unke liye animations off */
+@media (prefers-reduced-motion: reduce) {
+  .floating-menu-btn,
+  .floating-menu-btn::after,
+  .floating-menu-btn span,
+  .overlay,
+  .sidebar,
+  .sidebar-close,
+  .sidebar-nav a,
+  .sidebar-footer a {
+    transition: none !important;
+  }
 }
