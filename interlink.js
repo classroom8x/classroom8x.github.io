@@ -1,5 +1,5 @@
 (function () {
-  // 1. Automatic Styling Add Karna
+  // 1. CSS Styles Auto Inject
   const style = document.createElement("style");
   style.innerHTML = `
     .auto-interlink-box {
@@ -58,7 +58,17 @@
   `;
   document.head.appendChild(style);
 
-  // 2. Main Logic Execution
+  // Simple string hash function (Fixed seed based on current URL)
+  function getHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = (hash << 5) - hash + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  }
+
+  // 2. Main SEO-Friendly Interlink Function
   async function initInternalLinking() {
     try {
       const response = await fetch("https://classroom8x.github.io/data.json");
@@ -68,9 +78,17 @@
       if (posts.length === 0) return;
 
       const currentPath = window.location.pathname.toLowerCase();
+      const currentSlug = currentPath.split("/").pop();
 
-      // Current page filter aur links standardize karna
-      const validLinks = posts.map(item => {
+      // Current post ki detail dhoondho (category pata lagane ke liye)
+      const currentPost = posts.find(item => {
+        const path = (item.url || item.slug || "").toLowerCase();
+        return currentSlug && path.includes(currentSlug);
+      });
+      const currentCategory = currentPost ? currentPost.category : null;
+
+      // Available Links prepare aur Current Page filter karna
+      let validLinks = posts.map(item => {
         let path = item.url || item.slug || item.link || "";
         path = path.replace(/^\.\.\//, "").replace(/^\//, "");
         const fullUrl = path.startsWith("http") ? path : ("https://classroom8x.github.io/" + path);
@@ -86,10 +104,29 @@
 
       if (validLinks.length === 0) return;
 
-      // Random shuffle
-      const shuffled = validLinks.sort(() => 0.5 - Math.random());
+      // Category Matching: Pehle Same Category wale posts ko priority do
+      if (currentCategory) {
+        validLinks.sort((a, b) => {
+          if (a.category === currentCategory && b.category !== currentCategory) return -1;
+          if (b.category === currentCategory && a.category !== currentCategory) return 1;
+          return 0;
+        });
+      }
 
-      // Container dhoondhna
+      // DETERMINISTIC SELECTION (URL ke hash se hamesha same links select honge, refresh pe badlenge nahi)
+      const seed = getHash(currentPath || window.location.href);
+      const selectedLinks = [];
+      const total = validLinks.length;
+
+      for (let i = 0; i < Math.min(6, total); i++) {
+        const index = (seed + i * 3) % total;
+        selectedLinks.push(validLinks[index]);
+      }
+
+      // Duplicate hatayein agar koi aayi ho
+      const uniqueLinks = [...new Set(selectedLinks)];
+
+      // DOM Container Find Karein
       const container = document.querySelector("article") || 
                         document.querySelector("main") || 
                         document.querySelector(".post-content") || 
@@ -98,23 +135,24 @@
 
       const paragraphs = container.querySelectorAll("p");
 
-      // 1. Beech ke paragraphs me link insert karna
-      if (paragraphs.length >= 2 && shuffled[0]) {
+      // Mid-Post Link 1
+      if (paragraphs.length >= 2 && uniqueLinks[0]) {
         const box1 = document.createElement("div");
         box1.className = "auto-interlink-box";
-        box1.innerHTML = `👉 <strong>Also Read:</strong> <a href="${shuffled[0].url}">${shuffled[0].title}</a>`;
+        box1.innerHTML = `👉 <strong>Also Read:</strong> <a href="${uniqueLinks[0].url}">${uniqueLinks[0].title}</a>`;
         paragraphs[1].insertAdjacentElement("afterend", box1);
       }
 
-      if (paragraphs.length >= 5 && shuffled[1]) {
+      // Mid-Post Link 2
+      if (paragraphs.length >= 5 && uniqueLinks[1]) {
         const box2 = document.createElement("div");
         box2.className = "auto-interlink-box";
-        box2.innerHTML = `🔥 <strong>Must Read:</strong> <a href="${shuffled[1].url}">${shuffled[1].title}</a>`;
+        box2.innerHTML = `🔥 <strong>Must Read:</strong> <a href="${uniqueLinks[1].url}">${uniqueLinks[1].title}</a>`;
         paragraphs[4].insertAdjacentElement("afterend", box2);
       }
 
-      // 2. Post ke aakhir me 4 Related Posts lagana
-      const bottomLinks = shuffled.slice(2, 6);
+      // Bottom Section (Fixed 4 Links)
+      const bottomLinks = uniqueLinks.slice(2, 6);
       if (bottomLinks.length > 0) {
         const bottomBox = document.createElement("div");
         bottomBox.className = "auto-footer-interlinks";
