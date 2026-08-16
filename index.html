@@ -801,85 +801,140 @@
   }
 </style>
 
+<!-- Internal Linking CSS -->
+<style>
+  /* Post ke beech ka Link Box */
+  .auto-interlink-box {
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    margin: 24px 0;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .auto-interlink-box strong {
+    color: #0f172a;
+  }
+  .auto-interlink-box a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+
+  /* Post ke aakhir ka Related Posts Box */
+  .auto-footer-interlinks {
+    margin-top: 35px;
+    padding: 18px 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  .auto-footer-interlinks h4 {
+    margin: 0 0 12px 0;
+    color: #0f172a;
+    font-size: 17px;
+  }
+  .auto-footer-interlinks ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .auto-footer-interlinks li {
+    margin-bottom: 8px;
+  }
+  .auto-footer-interlinks a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .auto-footer-interlinks a:hover {
+    text-decoration: underline;
+  }
+</style>
+
 <!-- Auto Internal Linking Script -->
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
   const jsonUrl = "https://classroom8x.github.io/data.json";
+  const baseUrl = "https://classroom8x.github.io/";
 
-  // Post/Article container ko dhoondhna
+  // Post container dhoondhna
   const postContent = document.querySelector(".post-content") || 
                       document.querySelector(".entry-content") || 
-                      document.querySelector(".post-body") || 
-                      document.querySelector("article");
+                      document.querySelector(".article-body") || 
+                      document.querySelector("article") || 
+                      document.querySelector("main");
 
   if (!postContent) return;
 
   try {
     const res = await fetch(jsonUrl);
-    const data = await res.json();
+    const json = await res.json();
 
-    if (!Array.isArray(data) || data.length === 0) return;
+    // Aapke JSON me 'posts' array hai
+    const posts = json.posts || [];
+    if (posts.length === 0) return;
 
-    // Current page ka URL taaki khud ka link repeat na ho
-    const currentPath = window.location.pathname.toLowerCase();
+    const currentUrl = window.location.href.toLowerCase();
 
-    // Data ko standardize karna (Title aur Link nikalna)
-    const validLinks = data.map(item => {
-      const title = item.title || item.name || item.game || item.post_title || "Related Post";
-      let url = item.url || item.link || item.slug || item.path || "";
+    // Sahi Full URL banana aur Current post ko filter karna
+    const availableLinks = posts.map(item => {
+      let cleanUrl = item.url || "";
+      cleanUrl = cleanUrl.replace(/^\.\.\//, "").replace(/^\//, ""); // '../' ya '/' remove karna
       
-      // Agar URL me sirif slug ho to relative path bana de
-      if (url && !url.startsWith("http") && !url.startsWith("/")) {
-        url = "/" + url;
-      }
-      return { title, url };
+      const fullUrl = cleanUrl.startsWith("http") ? cleanUrl : (baseUrl + cleanUrl);
+      return {
+        title: item.title,
+        url: fullUrl,
+        category: item.category
+      };
     }).filter(item => {
-      return item.url && !currentPath.includes(item.url.toLowerCase());
+      return item.url && !currentUrl.includes(item.url.toLowerCase());
     });
 
-    if (validLinks.length === 0) return;
+    if (availableLinks.length === 0) return;
 
-    // Links ko random shuffle karna (har page load pe naye links milenge)
-    const shuffled = validLinks.sort(() => 0.5 - Math.random());
+    // Links ko random mix karna
+    const shuffled = availableLinks.sort(() => 0.5 - Math.random());
 
     // 1. CONTENT KE BEECH MEIN LINKS INSERT KARNA
     const paragraphs = postContent.querySelectorAll("p");
 
-    // 2nd ya 3rd paragraph ke baad pehla link
+    // 2nd paragraph ke baad
     if (paragraphs.length >= 2 && shuffled[0]) {
-      const midBox1 = document.createElement("div");
-      midBox1.className = "auto-interlink-box";
-      midBox1.innerHTML = `👉 <strong>Also Check:</strong> <a href="${shuffled[0].url}">${shuffled[0].title}</a>`;
-      paragraphs[1].insertAdjacentElement("afterend", midBox1);
+      const box1 = document.createElement("div");
+      box1.className = "auto-interlink-box";
+      box1.innerHTML = `👉 <strong>Also Read:</strong> <a href="${shuffled[0].url}">${shuffled[0].title}</a>`;
+      paragraphs[1].insertAdjacentElement("afterend", box1);
     }
 
-    // 5th paragraph ke baad doosra link
+    // 5th paragraph ke baad (agar article lamba hai)
     if (paragraphs.length >= 5 && shuffled[1]) {
-      const midBox2 = document.createElement("div");
-      midBox2.className = "auto-interlink-box";
-      midBox2.innerHTML = `🔥 <strong>Recommended:</strong> <a href="${shuffled[1].url}">${shuffled[1].title}</a>`;
-      paragraphs[4].insertAdjacentElement("afterend", midBox2);
+      const box2 = document.createElement("div");
+      box2.className = "auto-interlink-box";
+      box2.innerHTML = `🔥 <strong>Recommended:</strong> <a href="${shuffled[1].url}">${shuffled[1].title}</a>`;
+      paragraphs[4].insertAdjacentElement("afterend", box2);
     }
 
-    // 2. POST KE LAST MEIN 4 RELATED LINKS INSERT KARNA
+    // 2. POST KE LAST MEIN 3-4 RELATED POSTS INSERT KARNA
     const bottomLinks = shuffled.slice(2, 6);
     if (bottomLinks.length > 0) {
       const bottomBox = document.createElement("div");
       bottomBox.className = "auto-footer-interlinks";
       
-      let listItems = bottomLinks
-        .map(link => `<li><a href="${link.url}">${link.title}</a></li>`)
+      let listHtml = bottomLinks
+        .map(p => `<li><a href="${p.url}">${p.title}</a> <span style="font-size:12px; color:#64748b;">(${p.category})</span></li>`)
         .join("");
 
       bottomBox.innerHTML = `
-        <h4>⚡ More You Might Like:</h4>
-        <ul>${listItems}</ul>
+        <h4>⚡ Recommended Reads:</h4>
+        <ul>${listHtml}</ul>
       `;
       postContent.appendChild(bottomBox);
     }
 
   } catch (err) {
-    console.error("Error fetching internal links:", err);
+    console.error("Internal links load error:", err);
   }
 });
 </script>
