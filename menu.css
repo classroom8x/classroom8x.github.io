@@ -1,0 +1,184 @@
+/* ===============================
+   FLOATING MENU & SIDEBAR (menu.css)
+=============================== */
+
+:root {
+  --surface: #eaf1e3;
+  --card: #ffffff;
+  --green-deep: #1f3d2b;
+  --green: #3f7d4f;
+  --green-pale: #dfead8;
+  --text-muted: #66715f;
+  --border: #dbe6d3;
+  --menu-shadow: 0 4px 14px rgba(31, 61, 43, 0.15);
+}
+
+/* Screen ke Top-Left me Float hone wala Button */
+.floating-menu-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 990;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--menu-shadow);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.floating-menu-btn:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(31, 61, 43, 0.2);
+}
+
+/* Hamburger Lines */
+.floating-menu-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--green-deep);
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* Button Active / Open Animation */
+.floating-menu-btn.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.floating-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+.floating-menu-btn.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Background Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 32, 22, 0.35);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 998;
+}
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sidebar Drawer */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 280px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-head span {
+  color: var(--green-deep);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: 'Fraunces', serif, Georgia;
+}
+
+.sidebar-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  color: var(--green-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.sidebar-close:hover {
+  background: var(--green-pale);
+}
+
+.sidebar-nav {
+  padding: 16px 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+.sidebar-nav .section-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  padding: 8px 12px 6px;
+  font-weight: 600;
+}
+.sidebar-nav a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-size: 0.95rem;
+  color: var(--green-deep);
+  text-decoration: none;
+  transition: background .15s ease;
+  margin-bottom: 2px;
+}
+.sidebar-nav a:hover {
+  background: var(--green-pale);
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: 14px 12px 18px;
+}
+.sidebar-footer .section-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  padding: 4px 12px 6px;
+  font-weight: 600;
+}
+.sidebar-footer a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  border-radius: 7px;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.sidebar-footer a:hover {
+  background: var(--green-pale);
+  color: var(--green-deep);
+}
