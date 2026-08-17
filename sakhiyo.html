@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>« Et si… ? » : 5 questions puissantes pour faire la paix avec les occasions manquées</title>
+  <meta name="description" content="Découvrez 5 questions bienveillantes pour transformer vos regrets passés en énergie d'action pour aujourd'hui.">
+
+  <!-- Polices douces et ultra-lisibles : Quicksand & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icônes vectorielles Phosphor -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ==========================================================================
+       VARIABLES CUTE & COZY (Palette Bonbon, Pêche, Menthe & Crème)
+       ========================================================================== */
+    :root {
+      /* Mode Jour Douillet */
+      --cute-bg: #faf7f2;
+      --cute-surface: #ffffff;
+      --cute-surface-soft: #f4eee3;
+      --cute-border: #ede4d8;
+      
+      --cute-ink-title: #2d2638;
+      --cute-ink-body: #534c5e;
+      --cute-ink-muted: #8d8599;
+
+      /* Pastels Thématiques */
+      --pastel-spark: #fbbf24;
+      --pastel-spark-bg: #fef9c3;
+      --pastel-spark-text: #92400e;
+
+      --pastel-sky: #38bdf8;
+      --pastel-sky-bg: #e0f2fe;
+      --pastel-sky-text: #0369a1;
+
+      --pastel-peach: #fb7185;
+      --pastel-peach-bg: #ffe4e6;
+      --pastel-peach-text: #9f1239;
+
+      --pastel-mint: #34d399;
+      --pastel-mint-bg: #dcfce7;
+      --pastel-mint-text: #166534;
+
+      --pastel-lavender: #a855f7;
+      --pastel-lavender-bg: #f3e8ff;
+      --pastel-lavender-text: #6b21a8;
+
+      --bubble-radius: 28px;
+      --pill-radius: 999px;
+      --cute-shadow: 0 12px 32px -8px rgba(168, 85, 247, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02);
+      --cute-shadow-hover: 0 18px 36px -6px rgba(168, 85, 247, 0.14);
+      
+      --font-rounded: 'Quicksand', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Mode Nuit Étoilée (Cozy Dark) */
+    [data-theme="dark"] {
+      --cute-bg: #13101c;
+      --cute-surface: #1c182a;
+      --cute-surface-soft: #262138;
+      --cute-border: #2f2a44;
+      
+      --cute-ink-title: #fdfafd;
+      --cute-ink-body: #cfc8dc;
+      --cute-ink-muted: #9188a3;
+
+      --pastel-spark-bg: #352a12;
+      --pastel-spark-text: #fde047;
+
+      --pastel-sky-bg: #0e2b3d;
+      --pastel-sky-text: #7dd3fc;
+
+      --pastel-peach-bg: #3a1520;
+      --pastel-peach-text: #fda4af;
+
+      --pastel-mint-bg: #0f3323;
+      --pastel-mint-text: #86efac;
+
+      --pastel-lavender-bg: #2d1645;
+      --pastel-lavender-text: #d8b4fe;
+
+      --cute-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6);
+      --cute-shadow-hover: 0 18px 40px -6px rgba(168, 85, 247, 0.2);
+    }
+
+    /* ==========================================================================
+       RESET & BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--cute-bg);
+      color: var(--cute-ink-body);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.8;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barre de progression bonbon */
+    .candy-progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: transparent;
+      z-index: 999;
+    }
+    .candy-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pastel-spark), var(--pastel-peach), var(--pastel-lavender), var(--pastel-mint));
+      border-radius: 0 10px 10px 0;
+      transition: width 0.08s ease-out;
+    }
+
+    /* Barre supérieure de navigation */
+    .top-cozy-nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 2rem;
+      backdrop-filter: blur(12px);
+      background: rgba(250, 247, 242, 0.85);
+      border-bottom: 1px solid var(--cute-border);
+      z-index: 100;
+    }
+    [data-theme="dark"] .top-cozy-nav {
+      background: rgba(19, 16, 28, 0.85);
+    }
+
+    .nav-logo-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-rounded);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--cute-ink-title);
+      text-decoration: none;
+    }
+    .nav-logo-pill .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--pastel-peach);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--pastel-peach);
+    }
+
+    .theme-switch-bubble {
+      background: var(--cute-surface);
+      border: 1px solid var(--cute-border);
+      color: var(--cute-ink-title);
+      width: 42px;
+      height: 42px;
+      border-radius: var(--pill-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--cute-shadow);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .theme-switch-bubble:hover {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    /* Conteneur de lecture centré */
+    .cute-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 1.6rem 6rem;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHIE & TITRES
+       ========================================================================== */
+    h1, h2, h3, .font-cute {
+      font-family: var(--font-rounded);
+      color: var(--cute-ink-title);
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4.8vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.2rem;
+    }
+
+    .gradient-word {
+      background: linear-gradient(135deg, var(--pastel-peach-text), var(--pastel-lavender-text));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 3rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      scroll-margin-top: 80px;
+    }
+
+    p {
+      margin-bottom: 1.4rem;
+      color: var(--cute-ink-body);
+    }
+
+    /* Badge En-tête */
+    .cute-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+    }
+    .cute-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-rounded);
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--pastel-peach-bg);
+      color: var(--pastel-peach-text);
+      padding: 0.35rem 1.1rem;
+      border-radius: var(--pill-radius);
+    }
+
+    .cute-subtitle {
+      font-size: 1.2rem;
+      color: var(--cute-ink-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .cute-meta-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      font-size: 0.88rem;
+      color: var(--cute-ink-muted);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 2px dashed var(--cute-border);
+    }
+    .cute-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Sommaire Macaron */
+    .macaron-toc {
+      background: var(--cute-surface);
+      border: 1px solid var(--cute-border);
+      border-radius: var(--bubble-radius);
+      padding: 1.8rem 2rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--cute-shadow);
+    }
+    .toc-bubble-header {
+      font-family: var(--font-rounded);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--pastel-lavender-text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-bubble-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.2rem;
+    }
+    @media (max-width: 620px) {
+      .toc-bubble-grid { grid-template-columns: 1fr; }
+    }
+    .toc-bubble-grid a {
+      text-decoration: none;
+      color: var(--cute-ink-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .toc-bubble-grid a:hover {
+      background: var(--cute-surface-soft);
+      color: var(--pastel-lavender-text);
+      transform: translateX(4px);
+    }
+
+    /* Carte Citation Douce */
+    .cozy-quote-card {
+      background: linear-gradient(135deg, var(--pastel-peach-bg), var(--pastel-lavender-bg));
+      border: 1px solid var(--cute-border);
+      padding: 1.8rem 2.2rem;
+      border-radius: var(--bubble-radius);
+      font-family: var(--font-rounded);
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--cute-ink-title);
+      margin: 2.5rem 0;
+      box-shadow: var(--cute-shadow);
+    }
+
+    /* ==========================================================================
+       CARTES DES 5 QUESTIONS (Macarons Moelleux)
+       ========================================================================== */
+    .questions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 2.5rem 0;
+    }
+
+    .question-bubble-card {
+      background: var(--cute-surface);
+      border: 1px solid var(--cute-border);
+      border-radius: var(--bubble-radius);
+      padding: 2.2rem;
+      box-shadow: var(--cute-shadow);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .question-bubble-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--cute-shadow-hover);
+    }
+
+    .card-header-cute {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .squircle-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .card-q1 .squircle-badge { background: var(--pastel-peach-bg); color: var(--pastel-peach-text); }
+    .card-q2 .squircle-badge { background: var(--pastel-spark-bg); color: var(--pastel-spark-text); }
+    .card-q3 .squircle-badge { background: var(--pastel-sky-bg); color: var(--pastel-sky-text); }
+    .card-q4 .squircle-badge { background: var(--pastel-mint-bg); color: var(--pastel-mint-text); }
+    .card-q5 .squircle-badge { background: var(--pastel-lavender-bg); color: var(--pastel-lavender-text); }
+
+    .tag-number {
+      font-family: var(--font-rounded);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 10px;
+      border-radius: var(--pill-radius);
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .card-q1 .tag-number { background: var(--pastel-peach-bg); color: var(--pastel-peach-text); }
+    .card-q2 .tag-number { background: var(--pastel-spark-bg); color: var(--pastel-spark-text); }
+    .card-q3 .tag-number { background: var(--pastel-sky-bg); color: var(--pastel-sky-text); }
+    .card-q4 .tag-number { background: var(--pastel-mint-bg); color: var(--pastel-mint-text); }
+    .card-q5 .tag-number { background: var(--pastel-lavender-bg); color: var(--pastel-lavender-text); }
+
+    .question-bubble-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    /* Boîte de synthèse intérieure */
+    .takeaway-pill {
+      background: var(--cute-surface-soft);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1.2rem;
+      border-left: 4px solid var(--pastel-lavender-text);
+      font-size: 0.95rem;
+    }
+    .takeaway-pill strong {
+      color: var(--cute-ink-title);
+      font-family: var(--font-rounded);
+    }
+
+    /* Listes mignonnes */
+    .cute-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+    .cute-list li {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.98rem;
+    }
+    .cute-list li::before {
+      content: '🌸';
+      position: absolute;
+      left: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Boîte de Conclusion */
+    .conclusion-macaron-box {
+      background: var(--cute-surface);
+      border: 2px solid var(--pastel-lavender-bg);
+      border-radius: var(--bubble-radius);
+      padding: 2.2rem;
+      margin: 3.5rem 0 2rem;
+      box-shadow: var(--cute-shadow);
+      text-align: center;
+    }
+    .conclusion-macaron-box h2 {
+      justify-content: center;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    /* Espace Discussion / CTA */
+    .interactive-cta-bubble {
+      background: linear-gradient(135deg, var(--pastel-mint-bg), var(--pastel-sky-bg));
+      border-radius: var(--bubble-radius);
+      padding: 2rem 2.2rem;
+      margin: 2.5rem 0;
+      border: 1px solid var(--cute-border);
+    }
+    .interactive-cta-bubble h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Footer Doux */
+    .cute-footer {
+      margin-top: 4.5rem;
+      padding-top: 2rem;
+      border-top: 2px dashed var(--cute-border);
+      text-align: center;
+    }
+    .footer-emoji-avatar {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 1.2rem;
+      border-radius: 50%;
+      background: var(--pastel-peach-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: var(--cute-shadow);
+    }
+
+    /* Animations Bouncy */
+    .bubble-reveal {
+      opacity: 0;
+      transform: translateY(22px) scale(0.98);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .bubble-reveal.is-bounced {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (max-width: 600px) {
+      .cute-container { padding: 1.2rem 1rem 4rem; }
+      .question-bubble-card { padding: 1.5rem; }
+      .cozy-quote-card { font-size: 1.15rem; padding: 1.4rem; }
+      .conclusion-macaron-box { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de progression bonbon -->
+  <div class="candy-progress-track">
+    <div class="candy-progress-fill" id="candyProgressBar"></div>
+  </div>
+
+  <!-- Barre supérieure de navigation -->
+  <nav class="top-cozy-nav">
+    <a href="#" class="nav-logo-pill">
+      <span class="dot"></span>
+      <span>Paix Intérieure &amp; Clarté</span>
+    </a>
+    <button class="theme-switch-bubble" id="cuteThemeToggle" aria-label="Changer de mode">
+      <i class="ph-fill ph-sun" id="cuteThemeIcon" style="font-size: 1.3rem; color: var(--pastel-spark);"></i>
+    </button>
+  </nav>
+
+  <!-- Contenu Principal -->
+  <main class="cute-container">
+
+    <!-- En-tête -->
+    <header class="bubble-reveal">
+      <div class="cute-tag-row">
+        <span class="cute-pill-tag">
+          <i class="ph-fill ph-sparkle"></i>
+          Philosophie &amp; Sérénité • 5 min
+        </span>
+      </div>
+
+      <h1>
+        « Et si… ? » : <span class="gradient-word">5 questions puissantes</span> pour faire la paix avec les occasions manquées
+      </h1>
+
+      <p class="cute-subtitle">
+        Transformer les fantômes du passé en énergie d'action bienveillante pour aujourd'hui.
+      </p>
+
+      <div class="cute-meta-strip">
+        <span class="cute-meta-item"><i class="ph-bold ph-heart"></i> Bienveillance</span>
+        <span class="cute-meta-item"><i class="ph-bold ph-book-open"></i> Réflexion</span>
+        <span style="flex:1;"></span>
+        <span class="cute-meta-item" style="color: var(--pastel-lavender-text); font-weight:700;">🌱 Tourner la page</span>
+      </div>
+    </header>
+
+    <!-- Citation Lede -->
+    <div class="cozy-quote-card bubble-reveal">
+      « Dans la vie, la douleur la plus vive ne vient pas toujours de ce qui s'est réellement passé, mais de ce qui aurait pu être, sans jamais exister. »
+    </div>
+
+    <!-- Introduction -->
+    <section>
+      <p class="bubble-reveal">
+        Ce sont ces pensées silencieuses qui viennent nous réveiller au milieu de la nuit : <em>« Et si j'avais dit oui ce jour-là ? Et si j'avais osé faire ce pas ? »</em>
+      </p>
+      <p class="bubble-reveal">
+        Les occasions manquées laissent une porte ouverte dans notre imagination, là où les échecs ferment au moins un chapitre. Si ces questions vous hantent parfois, voici une grille de lecture en <strong>5 questions fondamentales</strong> pour transformer vos regrets passés en énergie d'action pour aujourd'hui.
+      </p>
+
+      <!-- Sommaire Macaron -->
+      <nav class="macaron-toc bubble-reveal">
+        <div class="toc-bubble-header">
+          <i class="ph-bold ph-list-heart"></i>
+          Les 5 Questions Clés
+        </div>
+        <ul class="toc-bubble-grid">
+          <li><a href="#question1">💔 1. Pourquoi ça fait si mal ?</a></li>
+          <li><a href="#question2">🌱 2. Preuve d'un mauvais choix ?</a></li>
+          <li><a href="#question3">⏳ 3. Le réveil tardif des regrets</a></li>
+          <li><a href="#question4">🚪 4. L'occasion peut-elle revenir ?</a></li>
+          <li><a href="#question5">📖 5. Faire la paix définitivement</a></li>
+        </ul>
+      </nav>
+
+      <!-- LES 5 QUESTIONS -->
+      <div class="questions-stack">
+
+        <!-- Question 1 -->
+        <article id="question1" class="question-bubble-card card-q1 bubble-reveal">
+          <div class="card-header-cute">
+            <div class="squircle-badge">
+              <i class="ph-fill ph-heart-break"></i>
+            </div>
+            <div>
+              <span class="tag-number">Question 01</span>
+              <h3>Pourquoi les occasions manquées font-elles plus mal que les échecs ?</h3>
+            </div>
+          </div>
+          <p>
+            Face à un échec, l'histoire a eu lieu, elle est terminée. Nous tombons, nous apprenons et nous avançons.
+          </p>
+          <p>
+            Mais avec une occasion manquée, l'histoire n'a même pas commencé. Notre esprit devient alors un scénariste hors pair : il invente un monde idéal où tout aurait parfaitement fonctionné si seulement nous avions agi.
+          </p>
+          <div class="takeaway-pill">
+            <strong>La leçon :</strong> Arrêtez de surinvestir dans ce scénario imaginaire. Ne pas agir était aussi un choix à l'époque. Acceptez-le, et surtout, utilisez cette frustration pour vous faire une promesse : la prochaine fois qu'une opportunité se présente, vous ne resterez pas spectateur. Transformez chaque regret en action future.
+          </div>
+        </article>
+
+        <!-- Question 2 -->
+        <article id="question2" class="question-bubble-card card-q2 bubble-reveal">
+          <div class="card-header-cute">
+            <div class="squircle-badge">
+              <i class="ph-fill ph-scales"></i>
+            </div>
+            <div>
+              <span class="tag-number">Question 02</span>
+              <h3>Le regret est-il la preuve d'un mauvais choix ?</h3>
+            </div>
+          </div>
+          <p>
+            Absolument pas. Le regret ne prouve pas que votre décision était stupide ; il prouve simplement que vous avez agi avec les informations et la maturité dont vous disposiez à cet instant précis.
+          </p>
+          <p>
+            Aujourd'hui, vous avez plus d'expérience, plus de recul. Mais ne jugez jamais votre version d'hier avec la sagesse d'aujourd'hui. C'est injuste envers vous-même :
+          </p>
+          <ul class="cute-list">
+            <li>Vous avez fait de votre mieux avec ce que vous saviez alors.</li>
+            <li>Accordez-vous de la bienveillance.</li>
+          </ul>
+          <p style="margin-bottom:0;">
+            Au lieu de vous punir, continuez à décider aujourd'hui avec vos forces actuelles, sans que la peur du passé ne paralyse vos mouvements.
+          </p>
+        </article>
+
+        <!-- Question 3 -->
+        <article id="question3" class="question-bubble-card card-q3 bubble-reveal">
+          <div class="card-header-cute">
+            <div class="squircle-badge">
+              <i class="ph-fill ph-hourglass-high"></i>
+            </div>
+            <div>
+              <span class="tag-number">Question 03</span>
+              <h3>Pourquoi les regrets se réveillent-ils souvent plus tard dans la vie ?</h3>
+            </div>
+          </div>
+          <p>
+            Dans la première partie de notre vie, nous courons : bâtir une carrière, subvenir aux besoins de la famille, honorer nos responsabilités. Nous sommes dans l'urgence permanente de l'action.
+          </p>
+          <p>
+            Puis, avec le temps, le rythme ralentit. Le silence s'installe. C'est à ce moment précis que les souvenirs prennent la parole : <em>« Qu'ai-je fait de toutes ces années ? Et maintenant, qu'est-ce qu'il me reste ? »</em>
+          </p>
+          <div class="takeaway-pill">
+            <strong>Le déclic :</strong> Voyez ce moment non pas comme une punition, mais comme une « réunion de bilan » personnelle. Ce n'est pas la fin, c'est une pause stratégique que la vie vous offre pour vous demander : <em>« Qu'est-ce que je peux encore accomplir aujourd'hui avec ce qui est devant moi ? »</em>
+          </div>
+        </article>
+
+        <!-- Question 4 -->
+        <article id="question4" class="question-bubble-card card-q4 bubble-reveal">
+          <div class="card-header-cute">
+            <div class="squircle-badge">
+              <i class="ph-fill ph-door-open"></i>
+            </div>
+            <div>
+              <span class="tag-number">Question 04</span>
+              <h3>Une opportunité manquée peut-elle revenir ?</h3>
+            </div>
+          </div>
+          <p>
+            La réponse est à la fois non et oui :
+          </p>
+          <ul class="cute-list">
+            <li><strong>Non, sous sa forme exacte :</strong> Les mêmes personnes, le même contexte et le même instant ne reviendront pas.</li>
+            <li><strong>Mais OUI, sous une autre forme :</strong> L'essence même de cette opportunité réapparaîtra un jour.</li>
+          </ul>
+          <p style="margin-bottom:0;">
+            La vie a cette façon surprenante de répéter les leçons sous des déguisements différents. Une nouvelle opportunité finira par frapper à votre porte. La seule question qui compte est : <strong>serez-vous prêt à ouvrir cette fois-ci, ou allez-vous encore hésiter ?</strong> Ne regardez plus la porte fermée derrière vous ; surveillez celle qui s'entrouvre aujourd'hui.
+          </p>
+        </article>
+
+        <!-- Question 5 -->
+        <article id="question5" class="question-bubble-card card-q5 bubble-reveal">
+          <div class="card-header-cute">
+            <div class="squircle-badge">
+              <i class="ph-fill ph-book-bookmark"></i>
+            </div>
+            <div>
+              <span class="tag-number">Question 05</span>
+              <h3>Comment faire la paix avec ce qui n'a jamais eu lieu ?</h3>
+            </div>
+          </div>
+          <p>
+            Pour trouver la paix intérieure, commencez par accepter une vérité simple : <strong>toutes les histoires n'ont pas vocation à être complètes.</strong>
+          </p>
+          <p>
+            Certaines situations ne traversent notre existence que pour nous donner de la profondeur, du relief et une meilleure compréhension de nous-mêmes.
+          </p>
+          <ul class="cute-list">
+            <li><strong>Reconnaissez vos efforts :</strong> Vous avez fait beaucoup de belles choses.</li>
+            <li>Ce qui est resté inachevé fait tout autant partie de votre richesse que vos grandes victoires.</li>
+          </ul>
+          <div class="takeaway-pill">
+            <strong>L'image à retenir :</strong> Considérez les occasions manquées comme une page blanche au milieu d'un carnet. Il n'est pas nécessaire de l'arracher. Il suffit de tourner la page pour commencer à écrire le chapitre suivant.
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Conclusion Macaron -->
+      <div class="conclusion-macaron-box bubble-reveal">
+        <h2>
+          <span>✨</span> Tournez la page et écrivez la suite
+        </h2>
+        <p style="font-size: 1.15rem; font-weight:600; color: var(--cute-ink-title);">
+          Ne laissez pas les fantômes de ce qui « aurait pu être » voler la beauté de ce qui peut encore être.
+        </p>
+        <p style="margin-bottom:0; color: var(--cute-ink-muted);">
+          La vie continue d'offrir des possibilités à ceux qui gardent l'esprit éveillé et le cœur prêt à agir.
+        </p>
+      </div>
+
+      <!-- Bloc Interactif / Discussion -->
+      <div class="interactive-cta-bubble bubble-reveal">
+        <h3>
+          <i class="ph-fill ph-chat-circle-dots text-xl"></i>
+          💬 À vous la parole :
+        </h3>
+        <p style="margin-bottom: 0.6rem;">
+          Y a-t-il un « acte manqué » avec lequel vous avez enfin réussi à faire la paix ? Quelle leçon en avez-vous tirée pour vos choix d'aujourd'hui ?
+        </p>
+        <p style="font-weight: 600; margin-bottom: 0; color: var(--pastel-lavender-text);">
+          Partagez votre réflexion en commentaire et transmettez cet article à quelqu'un qui a besoin d'entendre ce message aujourd'hui.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Footer Doux -->
+    <footer class="cute-footer bubble-reveal">
+      <div class="footer-emoji-avatar">
+        📖
+      </div>
+      <div style="font-family: var(--font-rounded); font-size: 1.2rem; font-weight: 700; color: var(--cute-ink-title); margin-bottom: 4px;">
+        Le carnet n'est pas terminé.
+      </div>
+      <div style="font-size: 0.9rem; color: var(--cute-ink-muted);">
+        Votre plus beau chapitre est celui que vous décidez d'écrire aujourd'hui.
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Script ultra-rapide -->
+  <script>
+    // 1. Barre de progression bonbon
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('candyProgressBar').style.width = (scrollY / docHeight) * 100 + '%';
+    });
+
+    // 2. Défilement doux du sommaire
+    document.querySelectorAll('.toc-bubble-grid a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // 3. Animation d'apparition rebondissante
+    const bubbleElements = document.querySelectorAll('.bubble-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-bounced');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    bubbleElements.forEach(el => observer.observe(el));
+
+    // 4. Commutateur Thème Jour / Nuit
+    const toggleBtn = document.getElementById('cuteThemeToggle');
+    const icon = document.getElementById('cuteThemeIcon');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('cute-peace-theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cute-peace-theme', next);
+      updateIcon(next);
+    });
+
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        icon.className = 'ph-fill ph-moon';
+        icon.style.color = '#d8b4fe';
+      } else {
+        icon.className = 'ph-fill ph-sun';
+        icon.style.color = '#fbbf24';
+      }
+    }
+  </script>
+</body>
+</html>
