@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quand la peur d'échouer dans sa carrière vole notre sommeil</title>
+  <meta name="description" content="Pourquoi votre métier ne définit pas votre valeur humaine. Une réflexion sur l'angoisse professionnelle et la paix intérieure.">
+
+  <!-- Typographies Éditoriales : Newsreader (Serif littéraire) & Inter (Structure) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       VARIABLES : PAPIER NATUREL & ENCRE VÉRITABLE (Style Presse Littéraire)
+       ========================================================================== */
+    :root {
+      --paper: #fbf9f4;            /* Papier naturel légèrement chaud */
+      --paper-card: #ffffff;
+      --paper-subtle: #f2eee3;
+      --ink: #1c1b18;              /* Noir d'encre doux */
+      --ink-secondary: #4a4740;
+      --ink-muted: #7d786e;
+      --accent: #8b3a2b;           /* Terre cuite de caractère */
+      --accent-tint: #f6eae7;
+      --rule: #e5dfd0;             /* Filet de séparation d'imprimerie */
+      --rule-dark: #1c1b18;
+      
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --paper: #141413;            /* Graphite d'imprimerie de nuit */
+      --paper-card: #1c1b19;
+      --paper-subtle: #242220;
+      --ink: #ece7dc;              /* Blanc cassé vieilli */
+      --ink-secondary: #b5afa4;
+      --ink-muted: #787368;
+      --accent: #d46b59;
+      --accent-tint: #2a1b18;
+      --rule: #2a2824;
+      --rule-dark: #ece7dc;
+    }
+
+    /* ==========================================================================
+       RESET & RYTHME ÉDITORIAL
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink-secondary);
+      font-family: var(--font-serif);
+      font-size: 1.22rem;
+      line-height: 1.85;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barre de lecture sobre */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      z-index: 100;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+    }
+
+    /* En-tête de publication minimal */
+    .masthead {
+      border-bottom: 1px solid var(--rule);
+      padding: 1.2rem 1.5rem;
+      background: var(--paper);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .masthead-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .publication-name {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.2s;
+    }
+    .theme-toggle-btn:hover {
+      border-color: var(--ink);
+    }
+
+    /* Corps du texte */
+    .article-layout {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    /* Typographie d'article */
+    .article-header {
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2.5rem;
+    }
+
+    .article-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.18;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+
+    .article-standfirst {
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--ink-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .article-meta {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    /* Lettrine traditionnelle (Drop Cap) */
+    .dropcap::first-letter {
+      float: left;
+      font-family: var(--font-serif);
+      font-size: 4.8rem;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 12px;
+      padding-bottom: 0;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    p {
+      margin-bottom: 1.8rem;
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.25;
+      margin: 3.5rem 0 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 2.2rem 0 0.8rem;
+    }
+
+    /* Table des matières sobre */
+    .editorial-toc {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      padding: 1.8rem 2rem;
+      margin: 2.5rem 0 3.5rem;
+      border-radius: 2px;
+    }
+    .editorial-toc-title {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+    }
+    .editorial-toc ol {
+      list-style: none;
+      counter-reset: toc-count;
+    }
+    .editorial-toc li {
+      counter-increment: toc-count;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .editorial-toc a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .editorial-toc a:hover {
+      border-bottom-color: var(--accent);
+      color: var(--accent);
+    }
+    .editorial-toc a::before {
+      content: counter(toc-count, decimal-leading-zero) ". ";
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-right: 0.4rem;
+    }
+
+    /* Listes littéraires */
+    .editorial-list {
+      list-style: none;
+      margin: 1.5rem 0 2rem;
+      padding-left: 0.5rem;
+    }
+    .editorial-list li {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .editorial-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Bloc de citation manuscrite */
+    .editorial-quote {
+      margin: 3.5rem 0;
+      padding: 2rem 2.5rem;
+      border-left: 2px solid var(--accent);
+      background: var(--paper-subtle);
+    }
+    .editorial-quote p {
+      font-size: 1.45rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 0;
+    }
+
+    /* Séparateur ornemental */
+    .ornament {
+      text-align: center;
+      margin: 3.5rem 0;
+      color: var(--ink-muted);
+      letter-spacing: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Bloc Réflexion finale */
+    .discussion-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+    .discussion-box {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+    .discussion-title {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Footer classique */
+    .article-footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--rule-dark);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 650px) {
+      body { font-size: 1.15rem; }
+      .article-layout { padding: 2.5rem 1.2rem 4rem; }
+      .editorial-quote { padding: 1.4rem 1.5rem; }
+      .editorial-quote p { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de progression -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <!-- En-tête de publication -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="#" class="publication-name">Essais &amp; Société</a>
+      <button class="theme-toggle-btn" id="themeBtn" aria-label="Changer le mode d'affichage">
+        <span id="themeLabel">Mode Sombre</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Article Principal -->
+  <main class="article-layout">
+
+    <article>
+      <!-- Titre et métadonnées -->
+      <header class="article-header">
+        <span class="article-kicker">Psychologie du travail</span>
+        <h1>Quand la peur d'échouer dans sa carrière vole notre sommeil</h1>
+        <p class="article-standfirst">
+          Pourquoi votre métier ne définit pas votre valeur humaine — et comment retrouver la paix intérieure face au doute professionnel.
+        </p>
+        <div class="article-meta">
+          <span>Temps de lecture : 5 minutes</span>
+          <span>•</span>
+          <span>Parcours &amp; Clarté</span>
+        </div>
+      </header>
+
+      <!-- Sommaire -->
+      <nav class="editorial-toc">
+        <div class="editorial-toc-title">Sommaire de l'essai</div>
+        <ol>
+          <li><a href="#section-angoisse">Ce que cache réellement l'angoisse professionnelle</a></li>
+          <li><a href="#section-echecs">La vie n'est pas une ligne droite, c'est une partie d'échecs</a></li>
+          <li><a href="#section-gare">La métaphore de la gare ferroviaire</a></li>
+          <li><a href="#section-role">Le travail est un rôle, pas la totalité de votre histoire</a></li>
+          <li><a href="#section-conclusion">Respirez et gardez le cap</a></li>
+        </ol>
+      </nav>
+
+      <!-- Texte -->
+      <p class="dropcap">
+        Il arrive des moments où nous avons plus peur pour notre carrière que pour notre vie elle-même. Nous en arrivons à croire que si notre parcours professionnel vacille, c'est toute notre existence qui s'effondre.
+      </p>
+
+      <p>
+        Cette angoisse ne fait pas la une des journaux, mais elle s'invite insidieusement dans nos nuits blanches.
+      </p>
+
+      <p>
+        Au début, tout semble linéaire : on vise le rôle suivant, le palier supérieur, la prochaine augmentation. Et puis, un jour, la courbe ralentit, stagne, voire descend. Un projet s'arrête, les règles du jeu changent, ou une question brutale surgit : <em>« Suis-je encore pertinent ? Ne suis-je pas en train de me faire remplacer ? »</em>
+      </p>
+
+      <div class="ornament">⁂</div>
+
+      <h2 id="section-angoisse">Ce que cache réellement l'angoisse professionnelle</h2>
+
+      <p>
+        Soyons honnêtes : la peur liée au travail dépasse largement la question matérielle du salaire de fin de mois. C'est une anxiété bien plus enracinée :
+      </p>
+
+      <ul class="editorial-list">
+        <li><strong>La peur du déclassement et de la comparaison :</strong> Le sentiment d'être laissé pour compte pendant que les autres avancent.</li>
+        <li><strong>L'angoisse de l'âge :</strong> Avoir l'impression que le temps joue désormais contre soi.</li>
+        <li><strong>La peur d'être remplacé :</strong> Ce sentiment d'obsolescence dans un monde qui s'accélère sans cesse.</li>
+      </ul>
+
+      <p>
+        Mais cette panique survient surtout lorsque nous commettons une erreur fondamentale : <strong>confondre notre métier et notre identité</strong>. Nous finissons par croire que si notre carrière réussit, nous existons ; et que si notre carrière flanche, nous ne valons plus rien.
+      </p>
+
+      <h2 id="section-echecs">1. La vie n'est pas une ligne droite, c'est une partie d'échecs</h2>
+
+      <p>
+        Si toutes les carrières étaient des lignes parfaitement ascendantes, nous serions tous des copies conformes. Les hauts et les bas ne sont pas des anomalies : ils sont la preuve même que vous êtes entré dans l'arène.
+      </p>
+
+      <p>
+        Voyez votre parcours professionnel comme une partie d'échecs :
+      </p>
+
+      <ul class="editorial-list">
+        <li>Parfois, vous avancez un pion d'une simple case.</li>
+        <li>Parfois, vous devez faire un pas de côté ou reculer une pièce maîtresse pour mieux défendre votre position.</li>
+        <li>Ce qui compte n'est pas le recul temporaire, mais la lucidité de votre prochain coup.</li>
+      </ul>
+
+      <p>
+        Dans le jeu de la vie, vous pouvez continuer à jouer tant que vous refusez d'abandonner. Et pour cela, une seule chose doit rester intacte : votre foi en vous-même.
+      </p>
+
+      <h2 id="section-gare">2. La métaphore de la gare ferroviaire</h2>
+
+      <p>
+        Lorsque le train de votre vie professionnelle s'arrête en gare, est-ce un échec ? Absolument pas.
+      </p>
+
+      <p>
+        En gare, certaines personnes descendent, d'autres montent, le moteur souffle un instant, puis le convoi repart. Un ralentissement dans votre carrière n'est pas un arrêt définitif :
+      </p>
+
+      <ul class="editorial-list">
+        <li>C'est une pause stratégique pour réajuster votre cap.</li>
+        <li>C'est l'occasion de développer de nouvelles compétences ou d'explorer une voie ignorée.</li>
+        <li>Ce n'est pas la fin du voyage, c'est un réalignement nécessaire.</li>
+      </ul>
+
+      <h2 id="section-role">3. Le travail est un rôle, pas la totalité de votre histoire</h2>
+
+      <p>
+        Le rôle d'un métier est de vous fournir une activité, des revenus et un terrain d'expression. Votre devoir envers vous-même est de ne jamais réduire toute votre existence à cette seule fonction.
+      </p>
+
+      <p>
+        <strong>Vous êtes un être humain avant d'être un titre sur une carte de visite.</strong>
+      </p>
+
+      <!-- Citation Éditoriale -->
+      <blockquote class="editorial-quote">
+        <p>« Ce passage difficile n'est pas toute mon histoire. C'est simplement un chapitre, et mon livre en comptera encore beaucoup d'autres. »</p>
+      </blockquote>
+
+      <h2 id="section-conclusion">En conclusion : Respirez et gardez le cap</h2>
+
+      <p>
+        Apprenez à écouter vos doutes sans leur donner les commandes de votre vie. Dites-leur : <em>« Je vous entends, mais je continuerai d'avancer et de vivre pleinement, parce que cette vie m'appartient. »</em>
+      </p>
+
+      <p>
+        Prenez soin de vous, préservez votre énergie, et n'oubliez jamais que votre valeur humaine reste intacte, quelles que soient les fluctuations de votre parcours.
+      </p>
+
+      <!-- Espace de Réflexion -->
+      <section class="discussion-section">
+        <div class="discussion-box">
+          <div class="discussion-title">À vous la parole</div>
+          <p style="font-size: 1.08rem; margin-bottom: 0.8rem;">
+            Avez-vous déjà traversé une période de creux professionnel qui vous a finalement permis de vous réinventer ? Comment avez-vous réussi à dissocier votre estime personnelle de votre statut professionnel ?
+          </p>
+          <p style="font-size: 0.95rem; color: var(--ink-muted); margin-bottom: 0;">
+            Partagez votre expérience en commentaire et transmettez cette lecture à un proche qui traverse une période de doute.
+          </p>
+        </div>
+      </section>
+
+      <!-- Pied de page -->
+      <footer class="article-footer">
+        <span>© Réflexions &amp; Carrière</span>
+        <span>Votre valeur n'est pas négociable.</span>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- Script minimal et ultra-rapide -->
+  <script>
+    // Barre de lecture
+    window.addEventListener('scroll', () => {
+      const top = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progressBar').style.width = (top / height) * 100 + '%';
+    });
+
+    // Bascule de thème sobre
+    const themeBtn = document.getElementById('themeBtn');
+    const themeLabel = document.getElementById('themeLabel');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('editorial-theme') || 'light';
+    root.setAttribute('data-theme', savedTheme);
+    themeLabel.textContent = savedTheme === 'dark' ? 'Mode Clair' : 'Mode Sombre';
+
+    themeBtn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('editorial-theme', next);
+      themeLabel.textContent = next === 'dark' ? 'Mode Clair' : 'Mode Sombre';
+    });
+  </script>
+</body>
+</html>
