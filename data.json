@@ -23,23 +23,21 @@
     { "title": "DMCA", "url": "dmca.html" }
   ],
   "posts": [
-    
-
-     {
+  {
     "id": 1,
     "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
     "category": "Finances & Société",
     "date": "2026-08-15",
     "url": "https://classroom8x.github.io/ts",
-    "excerpt": "Avez-vous l'impression de fournir des efforts considérables au quotidien sans jamais accumuler de patrimoine significatif ? Découvrez les pièges psychologiques de l'argent."
+    "excerpt": "Travailler plus ne suffit plus : découvrez comment l'inflation des aspirations, le piège du statut et les mythes de l'investissement freinent silencieusement votre liberté financière."
   },
   {
     "id": 2,
     "title": "Pourquoi vous vous sentez bloqué à 35 ans",
-    "category": "Psychologie",
+    "category": "Psychologie & Carrière",
     "date": "2026-08-17",
     "url": "https://classroom8x.github.io/siki.html",
-    "excerpt": "Arrivé à 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et leur travail acharné."
+    "excerpt": "Arrivé à l'âge de 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et le respect de toutes les règles établies."
   },
   {
     "id": 3,
@@ -47,31 +45,31 @@
     "category": "Philosophie & Sérénité",
     "date": "2026-08-17",
     "url": "https://classroom8x.github.io/sakhiyo.html",
-    "excerpt": "Ce sont ces pensées silencieuses qui viennent nous réveiller la nuit : apprenez à transformer les regrets du passé en énergie d'action bienveillante."
+    "excerpt": "Apprenez à transformer les fantômes du passé et les regrets de ce qui aurait pu être en une véritable énergie d'action bienveillante pour aujourd'hui."
   },
   {
     "id": 4,
-    "title": "Why Gemini 3.7 and Next-Gen AI Make Deep Focus More Essential Than Ever",
-    "category": "Technology",
-    "date": "2026-08-14",
+    "title": "Pourquoi vous vous sentez bloqué à 35 ans · Guide Doux & Stratégique",
+    "category": "Psychologie & Carrière",
+    "date": "2026-08-17",
     "url": "https://classroom8x.github.io/rise.html",
-    "excerpt": "As AI models get smarter and faster, human attention and creative stillness have become our rarest superpowers in a distracted world."
+    "excerpt": "Comprendre le cycle en trois phases (« Étincelle », « Enthousiasme » et « Épuisement ») pour débloquer votre potentiel et sortir du mur de la trentaine."
   },
   {
     "id": 5,
-    "title": "The Art of Saying No: Protecting Your Time and Energy",
-    "category": "Productivity",
-    "date": "2026-08-09",
+    "title": "Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle",
+    "category": "Psychologie & Carrière",
+    "date": "2026-08-17",
     "url": "https://classroom8x.github.io/rimeno.html",
-    "excerpt": "Saying yes to everything means saying no to your peace of mind—here is how learning to set healthy boundaries protects your daily energy."
+    "excerpt": "Ce sentiment d'étouffement n'est pas un manque de talent, mais l'aboutissement logique d'un cycle professionnel dans lequel s'enferment les profils appliqués."
   },
   {
     "id": 6,
-    "title": "Pourquoi tant d'hommes se sentent « bloqués » à 30-35 ans ? (Et comment en sortir)",
-    "category": "Autonomie",
+    "title": "Pourquoi tant d'hommes se sentent-ils « bloqués » à 30-35 ans ? (Et comment en sortir)",
+    "category": "Société & Carrière",
     "date": "2026-08-17",
     "url": "https://classroom8x.github.io/riku2.html",
-    "excerpt": "Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques pour bâtir sa propre liberté."
+    "excerpt": "Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques concrets pour bâtir sa propre liberté."
   },
   {
     "id": 7,
@@ -79,31 +77,31 @@
     "category": "Rituals",
     "date": "2026-08-10",
     "url": "https://classroom8x.github.io/post1.html",
-    "excerpt": "There is a particular kind of quiet that settles over a house early in the morning when the only sound is water hitting soil, offering a lesson in patience."
+    "excerpt": "There is a particular kind of quiet early in the morning when the only sound is water hitting soil, teaching us the silent power of patience."
   },
   {
     "id": 8,
-    "title": "Building a Minimalist Desk Setup That Inspires Creative Work",
-    "category": "Mindfulness",
-    "date": "2026-08-05",
+    "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil",
+    "category": "Psychologie du travail",
+    "date": "2026-08-15",
     "url": "https://classroom8x.github.io/noaia.html",
-    "excerpt": "A clean wooden desk, one notebook, and zero visual clutter can completely transform your focus and inspire deep creative work."
+    "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment retrouver la paix intérieure face aux doutes, à l'âge et à l'angoisse professionnelle."
   },
   {
     "id": 9,
-    "title": "Conseils Financiers : Reprogrammer la Mentalité de la Classe Moyenne",
-    "category": "Finance",
+    "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+    "category": "Finance & Esprit",
     "date": "2026-08-15",
     "url": "https://classroom8x.github.io/middle-class-tips.html",
-    "excerpt": "Découvrez comment l'inflation des désirs, le piège du statut social et les mythes de l'investissement freinent silencieusement votre liberté financière."
+    "excerpt": "Découvrez comment les réflexes inconscients, la course au statut social et les pièges d'épargne maintiennent la classe moyenne dans une stagnation perpétuelle."
   },
   {
     "id": 10,
     "title": "La Maîtrise de la Liberté Financière : Pourquoi l'école ne vous a jamais appris à gérer l'argent",
-    "category": "Finances & Éducation",
+    "category": "Éducation Financière",
     "date": "2026-08-16",
     "url": "https://classroom8x.github.io/maitrise.html",
-    "excerpt": "L'école nous a enseigné la trigonométrie et l'histoire, mais a oublié une leçon vitale : comprendre pourquoi votre compte est vide et comment faire fructifier votre argent."
+    "excerpt": "Comprendre les règles du jeu financier : distinction actif/passif, constitution d'un fonds d'urgence et gestion budgétaire avec la règle du 50/30/20."
   }
-  ]
+]
 }
