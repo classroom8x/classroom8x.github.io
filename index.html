@@ -99,8 +99,7 @@
     min-width:0;
   }
   .brand-icon{
-    width:30px;
-    height:30px;
+    width:30px;height:30px;
     flex:none;
     color:var(--green);
   }
@@ -273,7 +272,6 @@
   }
 
   /* ---------- Post list ---------- */
-  #postList{}
   .post-row{
     padding:20px 4px;
     border-bottom:1px solid var(--border);
@@ -444,6 +442,57 @@
   a:focus-visible, button:focus-visible, input:focus-visible{
     outline:2px solid var(--green);
     outline-offset:2px;
+  }
+
+  /* Post ke beech ka Link Box */
+  .auto-interlink-box {
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    margin: 24px 0;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  .auto-interlink-box strong {
+    color: #0f172a;
+  }
+  .auto-interlink-box a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+  .auto-interlink-box a:hover {
+    color: #1d4ed8;
+  }
+
+  /* Post ke aakhir ka Related Posts Box */
+  .auto-footer-interlinks {
+    margin-top: 35px;
+    padding: 18px 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  .auto-footer-interlinks h4 {
+    margin: 0 0 12px 0;
+    color: #0f172a;
+    font-size: 17px;
+  }
+  .auto-footer-interlinks ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .auto-footer-interlinks li {
+    margin-bottom: 8px;
+  }
+  .auto-footer-interlinks a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .auto-footer-interlinks a:hover {
+    text-decoration: underline;
   }
 </style>
 </head>
@@ -731,12 +780,17 @@
       return res.json();
     })
     .then(data => {
+      // 1. Posts ko Newest First (Latest Date sabse upar) sort karein
+      const sortedPosts = (data.posts || []).sort((a, b) => new Date(b.date) - new Date(a.date));
+
       renderSite(data);
       renderAuthor(data.author);
       renderFooterPages(data.pages);
-      renderCategories(data.posts);
-      state.allPosts = data.posts;
-      state.filtered = data.posts;
+      renderCategories(sortedPosts);
+      
+      // 2. State me sorted posts pass karein
+      state.allPosts = sortedPosts;
+      state.filtered = sortedPosts;
       renderNextBatch();
     })
     .catch(err => {
@@ -746,110 +800,5 @@
     });
 })();
 </script>
-  <!-- Internal Linking Styling -->
-<style>
-  /* Post ke beech me aane wala "Also Read" Box */
-  .auto-interlink-box {
-    background: #f8fafc;
-    border-left: 4px solid #3b82f6;
-    padding: 12px 18px;
-    margin: 25px 0;
-    border-radius: 6px;
-    font-size: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  }
-  .auto-interlink-box strong {
-    color: #1e293b;
-  }
-  .auto-interlink-box a {
-    color: #2563eb;
-    font-weight: 600;
-    text-decoration: underline;
-    margin-left: 5px;
-  }
-  .auto-interlink-box a:hover {
-    color: #1d4ed8;
-  }
-
-  /* Post ke last me aane wala "Related Posts" Box */
-  .auto-footer-interlinks {
-    margin-top: 35px;
-    padding: 20px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-  }
-  .auto-footer-interlinks h4 {
-    margin: 0 0 12px 0;
-    color: #0f172a;
-    font-size: 18px;
-  }
-  .auto-footer-interlinks ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  .auto-footer-interlinks li {
-    margin-bottom: 8px;
-  }
-  .auto-footer-interlinks a {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .auto-footer-interlinks a:hover {
-    text-decoration: underline;
-  }
-</style>
-
-<!-- Internal Linking CSS -->
-<style>
-  /* Post ke beech ka Link Box */
-  .auto-interlink-box {
-    background: #f1f5f9;
-    border-left: 4px solid #2563eb;
-    padding: 12px 16px;
-    margin: 24px 0;
-    border-radius: 6px;
-    font-size: 15px;
-  }
-  .auto-interlink-box strong {
-    color: #0f172a;
-  }
-  .auto-interlink-box a {
-    color: #2563eb;
-    font-weight: 600;
-    text-decoration: underline;
-    margin-left: 5px;
-  }
-
-  /* Post ke aakhir ka Related Posts Box */
-  .auto-footer-interlinks {
-    margin-top: 35px;
-    padding: 18px 22px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-  }
-  .auto-footer-interlinks h4 {
-    margin: 0 0 12px 0;
-    color: #0f172a;
-    font-size: 17px;
-  }
-  .auto-footer-interlinks ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  .auto-footer-interlinks li {
-    margin-bottom: 8px;
-  }
-  .auto-footer-interlinks a {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .auto-footer-interlinks a:hover {
-    text-decoration: underline;
-  }
-</style>
 </body>
 </html>
