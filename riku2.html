@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pourquoi tant d'hommes se sentent « bloqués » à 30-35 ans ? (Et comment en sortir)</title>
+  <meta name="description" content="Comprendre le cycle Étincelle, Enthousiasme et Épuisement chez les hommes de 30-35 ans et les stratégies concrètes pour en sortir.">
+
+  <!-- Polices ultra-légères : Inter (corps) & Source Serif 4 (titres éditoriaux) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons (icônes vectorielles légères) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ==========================================================================
+       SYSTÈME DE VARIABLES CSS RENOUVELÉ (Palette Terre de Sienne & Ardoise)
+       ========================================================================== */
+    :root {
+      --canvas-bg: #faf9f6;
+      --surface-base: #ffffff;
+      --surface-muted: #f2efe9;
+      --surface-accent: #ede7dc;
+      
+      --text-heading: #131b23;
+      --text-body: #3a4753;
+      --text-muted: #718090;
+      
+      --brand-primary: #c85a32;        /* Terre cuite chaleureuse */
+      --brand-primary-light: #faebe5;
+      --brand-spark: #d97706;          /* Or ambré */
+      --brand-spark-bg: #fef3c7;
+      --brand-energy: #0284c7;         /* Bleu horizon */
+      --brand-energy-bg: #e0f2fe;
+      --brand-burnout: #dc2626;        /* Rouge brique */
+      --brand-burnout-bg: #fee2e2;
+      --brand-growth: #059669;         /* Vert émeraude */
+      --brand-growth-bg: #d1fae5;
+      
+      --border-main: #e4ddd3;
+      --border-subtle: #ede7df;
+      
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-pill: 50px;
+      
+      --box-shadow: 0 10px 30px -4px rgba(26, 38, 51, 0.05);
+      --box-shadow-hover: 0 16px 36px -6px rgba(26, 38, 51, 0.09);
+      
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-editorial: 'Source Serif 4', Georgia, serif;
+    }
+
+    /* Thème Sombre : Nuit Profonde & Cuivre Lumineux */
+    [data-theme="dark"] {
+      --canvas-bg: #0e141b;
+      --surface-base: #161e27;
+      --surface-muted: #1e2834;
+      --surface-accent: #253342;
+      
+      --text-heading: #f0f4f8;
+      --text-body: #c5d2df;
+      --text-muted: #7e91a5;
+      
+      --brand-primary: #e0744c;
+      --brand-primary-light: #2e1d17;
+      --brand-spark: #fbbf24;
+      --brand-spark-bg: #322509;
+      --brand-energy: #38bdf8;
+      --brand-energy-bg: #0c2838;
+      --brand-burnout: #f87171;
+      --brand-burnout-bg: #351616;
+      --brand-growth: #34d399;
+      --brand-growth-bg: #0c2c20;
+      
+      --border-main: #263342;
+      --border-subtle: #1e2a37;
+      
+      --box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.6);
+      --box-shadow-hover: 0 16px 36px -6px rgba(0, 0, 0, 0.8);
+    }
+
+    /* ==========================================================================
+       RESET ET STRUCTURE DE BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--canvas-bg);
+      color: var(--text-body);
+      font-family: var(--font-ui);
+      font-size: 17px;
+      line-height: 1.8;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barre de progression de lecture */
+    .reading-progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 999;
+    }
+    .reading-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--brand-primary);
+      transition: width 0.08s ease-out;
+    }
+
+    /* Barre de navigation simplifiée */
+    .top-navigation {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 2rem;
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .theme-toggle-button {
+      background: var(--surface-base);
+      border: 1px solid var(--border-main);
+      color: var(--text-heading);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--box-shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .theme-toggle-button:hover {
+      transform: scale(1.05);
+      border-color: var(--brand-primary);
+    }
+
+    /* Conteneur principal centré (Pas de barre latérale) */
+    .article-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 5rem;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHIE
+       ========================================================================== */
+    h1, h2, .font-serif {
+      font-family: var(--font-editorial);
+      color: var(--text-heading);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.95rem;
+      font-weight: 600;
+      margin: 3.4rem 0 1.2rem;
+      scroll-margin-top: 80px;
+      letter-spacing: -0.015em;
+    }
+
+    h3 {
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--brand-primary);
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    p {
+      margin-bottom: 1.4rem;
+      color: var(--text-body);
+    }
+
+    /* En-tête de l'article */
+    .header-category-line {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.8rem;
+    }
+    .category-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border-main);
+    }
+    .category-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: var(--surface-base);
+      border: 1px solid var(--border-main);
+      padding: 0.35rem 1.2rem;
+      border-radius: var(--radius-pill);
+      color: var(--text-muted);
+    }
+
+    .article-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .article-metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2.8rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border-main);
+    }
+    .metadata-node {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Sommaire (Table des matières) */
+    .table-of-contents {
+      background: var(--surface-muted);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.2rem;
+      margin-bottom: 3.2rem;
+      box-shadow: var(--box-shadow);
+      border: 1px solid var(--border-main);
+    }
+    .toc-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-heading);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .toc-list {
+      list-style: none;
+      counter-reset: toc-item;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.2rem;
+    }
+    @media (max-width: 600px) {
+      .toc-list { grid-template-columns: 1fr; }
+    }
+    .toc-list li {
+      counter-increment: toc-item;
+      padding: 0.2rem 0;
+    }
+    .toc-list a {
+      text-decoration: none;
+      color: var(--text-body);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      transition: 0.2s ease;
+      border-bottom: 1px solid transparent;
+      padding: 0.15rem 0;
+    }
+    .toc-list a::before {
+      content: counter(toc-item) ".";
+      color: var(--brand-primary);
+      font-weight: 700;
+      margin-right: 0.7rem;
+      font-size: 0.8rem;
+      min-width: 1.4rem;
+    }
+    .toc-list a:hover {
+      color: var(--brand-primary);
+      border-bottom-color: var(--brand-primary);
+      transform: translateX(3px);
+    }
+
+    /* Bloc Lede / Accroche */
+    .editorial-lead {
+      font-family: var(--font-editorial);
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--text-heading);
+      padding: 2rem 2rem 2rem 2.6rem;
+      background: var(--surface-muted);
+      border-left: 6px solid var(--brand-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 2.8rem 0;
+    }
+
+    /* Citation centrale */
+    .editorial-quote {
+      font-family: var(--font-editorial);
+      font-size: 1.75rem;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.35;
+      color: var(--brand-primary);
+      margin: 3.5rem 0;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    .editorial-quote::before,
+    .editorial-quote::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: var(--brand-primary);
+      margin: 1.2rem auto;
+      opacity: 0.3;
+    }
+
+    /* Encadré d'information avec badge */
+    .highlight-card {
+      background: var(--surface-base);
+      border: 1px solid var(--border-main);
+      border-radius: var(--radius-md);
+      padding: 2rem 2rem 1.8rem;
+      margin: 2.5rem 0;
+      position: relative;
+      box-shadow: var(--box-shadow);
+    }
+    .highlight-badge {
+      position: absolute;
+      top: -12px;
+      left: 2rem;
+      background: var(--brand-primary);
+      color: #ffffff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 18px;
+      border-radius: var(--radius-pill);
+    }
+    .highlight-card p:last-child { margin-bottom: 0; }
+
+    /* Cartes des étapes */
+    .stages-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .stage-card {
+      background: var(--surface-base);
+      border: 1px solid var(--border-main);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: 0.25s ease;
+      box-shadow: var(--box-shadow);
+    }
+    .stage-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    .stage-card.stage-spark { border-top: 5px solid var(--brand-spark); }
+    .stage-card.stage-enthusiasm { border-top: 5px solid var(--brand-energy); }
+    .stage-card.stage-burnout { border-top: 5px solid var(--brand-burnout); }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .stage-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .stage-spark .stage-icon { background: var(--brand-spark-bg); color: var(--brand-spark); }
+    .stage-enthusiasm .stage-icon { background: var(--brand-energy-bg); color: var(--brand-energy); }
+    .stage-burnout .stage-icon { background: var(--brand-burnout-bg); color: var(--brand-burnout); }
+
+    .stage-title {
+      font-family: var(--font-editorial);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    /* Grille de comparaison (Causes) */
+    .grid-two-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .column-box {
+      background: var(--surface-base);
+      border: 1px solid var(--border-main);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.8rem;
+      box-shadow: var(--box-shadow);
+      transition: 0.25s ease;
+    }
+    .column-box:hover {
+      border-color: var(--brand-primary);
+      transform: translateY(-4px);
+    }
+    .column-box h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-heading);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .column-box h4 i { color: var(--brand-primary); font-size: 1.4rem; }
+    .column-box ul { list-style: none; padding: 0; }
+    .column-box li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--text-body);
+    }
+    .column-box li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: var(--brand-primary);
+      font-size: 0.7rem;
+      top: 0.1rem;
+    }
+
+    /* Liste de contrôle des solutions */
+    .solutions-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 2.5rem 0;
+    }
+    .solution-node {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      background: var(--surface-base);
+      padding: 1.6rem 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-main);
+      transition: 0.2s ease;
+    }
+    .solution-node:hover {
+      transform: translateX(4px);
+      border-color: var(--brand-primary);
+      background: var(--surface-muted);
+    }
+    .solution-icon {
+      color: var(--brand-primary);
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .solution-text {
+      font-size: 1rem;
+      color: var(--text-heading);
+    }
+    .solution-text strong {
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    /* Liste à puces stylisée */
+    .bullet-list {
+      list-style: none;
+      margin: 1rem 0 1.5rem;
+    }
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    .bullet-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--brand-primary);
+      font-weight: bold;
+    }
+
+    /* Conclusion */
+    .article-footer {
+      margin-top: 4.5rem;
+      padding-top: 3rem;
+      border-top: 2px solid var(--border-main);
+    }
+    .article-footer p {
+      font-family: var(--font-editorial);
+      font-size: 1.35rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-heading);
+      margin-bottom: 1.2rem;
+    }
+    .footer-note {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Animation au défilement */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: all 0.75s cubic-bezier(0.15, 0.85, 0.25, 1);
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .article-container { padding: 1rem 1.2rem 3rem; }
+      .editorial-lead { font-size: 1.2rem; padding: 1.5rem 1.5rem 1.5rem 1.8rem; }
+      .editorial-quote { font-size: 1.35rem; }
+      .stage-card { padding: 1.5rem; }
+      .solution-node { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de progression -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-fill" id="readingProgressBar"></div>
+  </div>
+
+  <!-- Bouton de bascule thème -->
+  <nav class="top-navigation">
+    <button class="theme-toggle-button" id="themeToggleButton" aria-label="Changer de thème visuel">
+      <i class="ph ph-moon" id="themeIconDisplay" style="font-size: 1.4rem;"></i>
+    </button>
+  </nav>
+
+  <!-- Article Principal -->
+  <article class="article-container">
+
+    <!-- En-tête -->
+    <header class="scroll-reveal">
+      <div class="header-category-line">
+        <span class="category-tag">Société &amp; Carrière</span>
+        <span class="category-divider"></span>
+      </div>
+      <h1>Pourquoi tant d'hommes se sentent-ils « bloqués » à 30-35 ans ? (Et comment en sortir)</h1>
+      <p class="article-subtitle">
+        Comprendre la crise silencieuse de la trentaine : de l'illusion du travail acharné aux leviers réels pour bâtir sa propre liberté.
+      </p>
+      
+      <div class="article-metadata">
+        <span class="metadata-node"><i class="ph ph-clock"></i> 5 min de lecture</span>
+        <span class="metadata-node"><i class="ph ph-compass"></i> Expérience Réelle</span>
+        <span style="flex:1;"></span>
+        <span class="category-tag" style="background:transparent; border:none; padding:0;">Classe Moyenne</span>
+        <span class="category-tag" style="background:transparent; border:none; padding:0;">Autonomie</span>
+      </div>
+    </header>
+
+    <!-- Table des matières -->
+    <nav class="table-of-contents scroll-reveal">
+      <div class="toc-title"><i class="ph ph-list-dashes"></i> Table des matières</div>
+      <ul class="toc-list">
+        <li><a href="#section-intro">La crise silencieuse</a></li>
+        <li><a href="#section-etape1">Étape 1 : L'Étincelle</a></li>
+        <li><a href="#section-etape2">Étape 2 : L'Enthousiasme</a></li>
+        <li><a href="#section-etape3">Étape 3 : Le Mur des 35 ans</a></li>
+        <li><a href="#section-causes">Pourquoi le dévouement ne suffit pas</a></li>
+        <li><a href="#section-solutions">Que faire pour en sortir ?</a></li>
+      </ul>
+    </nav>
+
+    <!-- Citation Lede -->
+    <div id="section-intro" class="editorial-lead scroll-reveal">
+      « Je travaille d’arrache-pied, mais je n'avance nulle part. »
+    </div>
+
+    <!-- Corps du texte -->
+    <section>
+      <p class="scroll-reveal">
+        Il existe des milliers de vidéos et d'articles qui tentent d'expliquer pourquoi beaucoup d'hommes — en particulier issus de la classe moyenne — ressentent un profond sentiment de stagnation et d'impuissance lorsqu'ils atteignent la trentaine.
+      </p>
+      
+      <p class="scroll-reveal">
+        Ce que je partage aujourd'hui ne vient pas d'un manuel théorique, mais d'une expérience concrète du monde réel. Pour comprendre cette crise silencieuse et trouver une porte de sortie, résumons le parcours d'un homme en trois étapes clés : <strong>L'Étincelle</strong>, <strong>L'Enthousiasme</strong> et <strong>L'Épuisement</strong>.
+      </p>
+
+      <div class="editorial-quote scroll-reveal">
+        « Le décalage entre la vision grandiose de vos 20 ans et votre réalité actuelle devient insupportable. »
+      </div>
+
+      <!-- Les 3 étapes -->
+      <h2 id="section-etape1" class="scroll-reveal">Le Cycle en 3 Étapes</h2>
+
+      <div class="stages-container">
+        
+        <!-- Étape 1 -->
+        <div class="stage-card stage-spark scroll-reveal">
+          <div class="stage-header">
+            <div class="stage-icon">
+              <i class="ph-fill ph-lightning"></i>
+            </div>
+            <h3 class="stage-title">Étape 1 : L'Étincelle (La vingtaine et les études)</h3>
+          </div>
+          <p>
+            Rappelez-vous vos 18-22 ans. C'est l'époque où vous débordez d'une énergie brute et d'une confiance presque naïve :
+          </p>
+          <ul class="bullet-list">
+            <li>Vous êtes prêt à relever n'importe quel défi sans la moindre peur.</li>
+            <li>Sortir au milieu de la nuit sur un coup de tête ? Jamais de refus.</li>
+            <li>Passer des nuits blanches à étudier ou à coder ? Facile.</li>
+            <li>Échouer 500 fois sur un problème ? Vous recommencez avec le sourire.</li>
+          </ul>
+          <p style="margin-bottom:0;">
+            À cet âge, notre cerveau nous convainc que rien n'est impossible. Nous pensons que le monde est à portée de main et qu'il suffira de travailler dur pour atteindre tous nos objectifs.
+          </p>
+        </div>
+
+        <!-- Étape 2 -->
+        <div id="section-etape2" class="stage-card stage-enthusiasm scroll-reveal">
+          <div class="stage-header">
+            <div class="stage-icon">
+              <i class="ph-fill ph-rocket-launch"></i>
+            </div>
+            <h3 class="stage-title">Étape 2 : L'Enthousiasme (L'entrée professionnelle)</h3>
+          </div>
+          <p>
+            Lorsque nous décrochons notre premier emploi ou lançons notre première activité, nous entrons dans la phase de l'enthousiasme total.
+          </p>
+          <p>
+            À l'université, le cercle était restreint : il était facile de se démarquer. Mais dans le monde réel, vous vous retrouvez face à des centaines de personnes tout aussi compétentes. Pour prouver votre valeur, vous vous donnez à 200 % :
+          </p>
+          <ul class="bullet-list">
+            <li>Vous ne comptez plus vos heures (jour et nuit).</li>
+            <li>Vous acceptez toutes les responsabilités sans hésiter.</li>
+            <li>Vous pensez que votre énergie et votre dévouement finiront forcément par payer.</li>
+          </ul>
+        </div>
+
+        <!-- Étape 3 -->
+        <div id="section-etape3" class="stage-card stage-burnout scroll-reveal">
+          <div class="stage-header">
+            <div class="stage-icon">
+              <i class="ph-fill ph-shield-warning"></i>
+            </div>
+            <h3 class="stage-title">Étape 3 : L'Épuisement et le Mur des 35 ans</h3>
+          </div>
+          <p>
+            Et puis arrive ce cap des 30-35 ans.
+          </p>
+          <p>
+            Un jour, vous vous posez et vous faites le bilan : <em>« Cela fait 10 ou 15 ans que je donne toute mon énergie. J'ai frappé à toutes les portes, suivi toutes les règles, travaillé sans relâche… Pourtant, je suis loin de mes objectifs. »</em>
+          </p>
+          <p style="margin-bottom:0;">
+            C'est ici que s'installe le sentiment d'être piégé (<em>stuck</em>). La perte de sens, l'absence de paix intérieure et la frustration prennent le dessus. Le gouffre entre les rêves de départ et le quotidien devient étouffant.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Pourquoi le dévouement ne suffit pas -->
+      <h2 id="section-causes" class="scroll-reveal">Pourquoi le dévouement ne suffit-il pas toujours ?</h2>
+      <p class="scroll-reveal">
+        Le succès dans le monde corporate dépend rarement du seul mérite. Voici les réalités que personne ne nous enseigne à l'école :
+      </p>
+
+      <div class="grid-two-columns scroll-reveal">
+        <div class="column-box">
+          <h4><i class="ph-fill ph-hourglass-medium"></i> 1. Timing &amp; Opportunités</h4>
+          <ul>
+            <li>Certaines personnes bénéficient dès le départ du bon mentorat ou du bon réseau relationnel.</li>
+            <li>Lorsqu'on vient de la classe moyenne, on apprend souvent tout sur le tas, parfois trop tard.</li>
+            <li>Le travail acharné sans levier stratégique ne produit pas automatiquement la chance.</li>
+          </ul>
+        </div>
+        <div class="column-box">
+          <h4><i class="ph-fill ph-buildings"></i> 2. Les Plafonds de Verre</h4>
+          <ul>
+            <li>Dans une entreprise, presque rien n'est sous votre contrôle direct.</li>
+            <li>Même si votre manager apprécie votre travail, les augmentations sont verrouillées par des politiques rigides.</li>
+            <li>Les gels de budget et recrutements externes bloquent l'ascension au mérite.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Que faire ? -->
+      <h2 id="section-solutions" class="scroll-reveal">Que faire si vous vous sentez bloqué aujourd'hui ?</h2>
+      
+      <div class="highlight-card scroll-reveal">
+        <span class="highlight-badge">Changement de paradigme</span>
+        <p>
+          Se plaindre ou continuer à foncer tête baissée contre le même mur ne changera rien pour les 15 prochaines années. Pour briser l'inertie, il faut réorienter méthodiquement son énergie.
+        </p>
+      </div>
+
+      <div class="solutions-checklist scroll-reveal">
+        
+        <div class="solution-node">
+          <i class="ph-fill ph-crown solution-icon"></i>
+          <div class="solution-text">
+            <strong>Reprenez le pouvoir de décision :</strong> Si vos revenus dépendent à 100 % d'une seule décision prise par votre employeur, vous n'avez aucun contrôle sur votre destin. Vous devez diversifier vos compétences et bâtir une autonomie financière.
+          </div>
+        </div>
+
+        <div class="solution-node">
+          <i class="ph-fill ph-timer solution-icon"></i>
+          <div class="solution-text">
+            <strong>La règle des 1 à 2 heures par jour :</strong> Gardez votre emploi pour assurer la sécurité financière de votre foyer, mais consacrez 1 à 2 heures chaque jour à un projet personnel, à l'apprentissage d'une compétence monétisable à forte valeur ou à une activité indépendante.
+          </div>
+        </div>
+
+        <div class="solution-node">
+          <i class="ph-fill ph-hourglass-high solution-icon"></i>
+          <div class="solution-text">
+            <strong>Patience stratégique :</strong> Vous avez donné 10 à 15 ans à bâtir le projet de quelqu'un d'autre. Donnez-vous maintenant 3 à 5 ans de travail régulier pour construire votre propre liberté.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="article-footer scroll-reveal">
+      <p>
+        Être bloqué à 35 ans n'est pas une sentence définitive. C'est l'étincelle qui vous force à cesser de sous-traiter votre futur et à poser vos propres règles du jeu.
+      </p>
+      <p>
+        Commencez aujourd'hui. Une heure à la fois, avec régularité et lucidité.
+      </p>
+      <div class="footer-note">
+        <i class="ph-fill ph-feather"></i> Rédigé pour ceux qui choisissent la construction plutôt que l'attente passive.
+      </div>
+    </footer>
+
+  </article>
+
+  <!-- Script JavaScript léger & performant -->
+  <script>
+    // 1. Barre de progression de lecture au scroll
+    window.addEventListener('scroll', () => {
+      const scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollMax = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('readingProgressBar').style.width = (scrollPos / scrollMax) * 100 + '%';
+    });
+
+    // 2. Révélation progressive des sections au défilement
+    const elementsToReveal = document.querySelectorAll('.scroll-reveal');
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    elementsToReveal.forEach(el => scrollObserver.observe(el));
+
+    // 3. Défilement doux lors du clic sur le sommaire
+    document.querySelectorAll('.toc-list a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({ top: targetElement.offsetTop - 60, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // 4. Commutateur Mode Sombre / Clair avec stockage local
+    const themeBtn = document.getElementById('themeToggleButton');
+    const themeIcon = document.getElementById('themeIconDisplay');
+    const savedTheme = localStorage.getItem('user-selected-theme');
+
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (savedTheme === 'dark') themeIcon.classList.replace('ph-moon', 'ph-sun');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIcon.classList.replace('ph-moon', 'ph-sun');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('user-selected-theme', 'light');
+        themeIcon.classList.replace('ph-sun', 'ph-moon');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('user-selected-theme', 'dark');
+        themeIcon.classList.replace('ph-moon', 'ph-sun');
+      }
+    });
+  </script>
+</body>
+</html>
