@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vous n'êtes pas votre carrière | Réflexions Nocturnes</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        sand: {
+                            50: '#FDFBF7',
+                            100: '#F7F3E9',
+                            200: '#EDE6D6',
+                            800: '#2C2724',
+                            900: '#1A1816',
+                        },
+                        amberGlow: '#D97736',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection {
+            background-color: #f3d5b5;
+            color: #1a1816;
+        }
+        .dark ::selection {
+            background-color: #d97736;
+            color: #ffffff;
+        }
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 4.8rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 14px;
+            padding-bottom: 2px;
+            color: #d97736;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-sand-50 text-sand-900 dark:bg-sand-900 dark:text-sand-100 font-sans antialiased transition-colors duration-500">
+
+    <!-- Progress Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-amberGlow to-amber-400 z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-sand-50/80 dark:bg-sand-900/80 border-b border-sand-200 dark:border-sand-800 transition-colors duration-500">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <span class="w-8 h-8 rounded-full bg-amberGlow/10 text-amberGlow flex items-center justify-center font-display font-bold text-sm group-hover:scale-105 transition-transform">É</span>
+                <span class="font-display tracking-widest text-xs uppercase text-sand-800 dark:text-sand-200">Chroniques de l'Âme</span>
+            </a>
+
+            <div class="flex items-center gap-4">
+                <!-- Ambient sound simulator -->
+                <button id="ambient-btn" class="p-2 rounded-full text-sand-800 dark:text-sand-200 hover:bg-sand-200 dark:hover:bg-sand-800 transition-all text-xs flex items-center gap-1.5" title="Ambiance Nocturne">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-amberGlow"></i>
+                    <span class="hidden sm:inline text-xs font-medium">Calme</span>
+                </button>
+
+                <!-- Dark / Light Theme Toggle -->
+                <button id="theme-toggle" class="p-2.5 rounded-full hover:bg-sand-200 dark:hover:bg-sand-800 text-sand-800 dark:text-sand-200 transition-colors" aria-label="Changer de thème">
+                    <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-6 pt-12 pb-24">
+
+        <!-- Article Metadata & Header -->
+        <article>
+            <div class="space-y-4 mb-10 text-center sm:text-left">
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-xs tracking-wider uppercase font-semibold text-amberGlow">
+                    <span class="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amberGlow/20">Philosophie de Vie</span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 5 min de lecture</span>
+                    <span>•</span>
+                    <span>Inspiré par Ashish Vidyarthi</span>
+                </div>
+
+                <h1 class="font-serif text-3xl sm:text-5xl font-semibold leading-tight sm:leading-tight text-sand-900 dark:text-white">
+                    Vous n'êtes pas votre carrière : cette angoisse invisible qui vole nos nuits
+                </h1>
+
+                <p class="font-serif italic text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 font-light">
+                    Quand l'obsession de la trajectoire professionnelle finit par éclipser la beauté de simplement exister.
+                </p>
+
+                <!-- Author Info -->
+                <div class="flex items-center justify-center sm:justify-start gap-3 pt-4 border-t border-sand-200 dark:border-sand-800">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-600 to-amber-300 flex items-center justify-center text-white font-bold text-base shadow-sm">
+                        AV
+                    </div>
+                    <div class="text-left text-xs">
+                        <p class="font-semibold text-sand-900 dark:text-sand-100">Ashish Vidyarthi</p>
+                        <p class="text-neutral-500 dark:text-neutral-400">Acteur, Penseur & Compagnon de route</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Post Body in French -->
+            <div class="prose prose-lg font-serif text-sand-800 dark:text-sand-200 leading-relaxed space-y-6 text-lg sm:text-xl">
+                
+                <p class="drop-cap">
+                    Parfois, nous finissons par avoir plus peur de notre carrière que de la vie elle-même. Comme si le fait que notre parcours professionnel trébuche signifiait instantanément que notre existence tout entière était anéantie. Cette nuit, je viens vous parler de cette angoisse sourde — celle qui ne passe pas aux informations télévisées, mais qui, en silence, vient voler notre sommeil.
+                </p>
+
+                <p>
+                    Au tout début d’un parcours, nous n’avons d’yeux que pour le sommet. Nous attendons avec frénésie le prochain rôle, le grade supérieur, le saut décisif. Et lorsque ce saut se produit, nous soupirons de soulagement : <em>« Ça y est, la voie est toute tracée, tout sera formidable. »</em>
+                </p>
+
+                <p>
+                    Puis, sans prévenir, un jour le graphique s’arrête. Il ralentit, ou pire, il commence à descendre. Les règles changent. Une pause forcée s’impose. Quelques années plus tard, des questions déchirantes commencent à résonner : <em>« Suis-je encore pertinent ? A-t-on encore besoin de moi ? »</em> Et la panique s'installe : <em>« Mon Dieu, que va-t-il m'arriver ? J'ai tout gâché... »</em>
+                </p>
+
+                <!-- Highlight Pull Quote -->
+                <div class="my-10 p-8 rounded-2xl bg-amber-500/5 dark:bg-amber-500/10 border-l-4 border-amberGlow relative overflow-hidden">
+                    <i data-lucide="quote" class="absolute -bottom-4 -right-4 w-28 h-28 text-amberGlow/10 pointer-events-none"></i>
+                    <p class="font-serif italic text-xl sm:text-2xl text-sand-900 dark:text-white font-medium leading-snug">
+                        « La peur de la carrière n'est pas qu'une simple angoisse financière. C'est la peur d'être dépassé, la peur de vieillir, et par-dessus tout : la terreur d'être remplacé. »
+                    </p>
+                </div>
+
+                <p>
+                    Mais cette angoisse n'apparaît que pour une seule raison : <strong>nous avons confondu notre identité avec notre fonction</strong>. Nous nous sommes mis à penser : <em>« Si ma carrière existe, j'existe ; si elle faiblit, je disparais. »</em>
+                </p>
+
+                <h2 class="font-display text-2xl font-bold tracking-wide pt-6 text-sand-900 dark:text-white border-b border-sand-200 dark:border-sand-800 pb-2">
+                    Le Changement de Perspective
+                </h2>
+
+                <p>
+                    Avez-vous remarqué qu’au gré des hauts et des bas, ce n’est pas uniquement votre poste qui change, mais votre regard sur le monde ? Dans la fougue de la jeunesse, nous pensons qu'il faut courir toujours plus vite. Avec le temps et les épreuves, nous découvrons une sagesse plus profonde : il est infiniment plus important d'apprendre à avancer avec précaution et équilibre.
+                </p>
+
+                <p>
+                    Au cours de ma propre vie en tant qu'acteur indépendant, j'ai réalisé une vérité essentielle : si la trajectoire d'une carrière n'était qu'une ligne droite ascendante, nous serions tous des clones identiques. Ces montées et ces descentes prouvent simplement une chose : <strong>vous êtes en mouvement sur un chemin authentique</strong>. Ce que nous nommons « échec » ou « retard » n'est bien souvent que le poison de la comparaison.
+                </p>
+
+                <!-- Interactive Chess Metaphor Card -->
+                <div class="my-8 p-6 rounded-xl bg-sand-100 dark:bg-sand-800/60 border border-sand-200 dark:border-sand-700/60 space-y-3 font-sans">
+                    <div class="flex items-center gap-2 text-amberGlow font-semibold text-sm">
+                        <i data-lucide="help-circle" class="w-4 h-4"></i>
+                        <span>La métaphore du jeu d'échecs</span>
+                    </div>
+                    <p class="font-serif text-lg leading-relaxed text-sand-800 dark:text-sand-200">
+                        La vie comme la carrière ressemblent à une partie d'échecs. Parfois vous avancez une pièce, parfois vous reculez pour mieux observer. <strong>Ce qui compte, ce n'est pas le recul, c'est le prochain coup.</strong> Et la plus belle règle dans le jeu de l'existence, c'est que personne ne peut déclarer forfait pour vous tant que vous choisissez de continuer à jouer.
+                    </p>
+                </div>
+
+                <p>
+                    Pour cela, une seule chose est indispensable : <strong>le courage</strong> (<em>« Hausla »</em>). Vous devez protéger, à n'importe quel prix, la foi inébranlable que vous avez en vous-même.
+                </p>
+
+                <p>
+                    Si ce soir votre cœur est lourd d'anxiété en pensant à votre avenir professionnel, rappelez-vous ceci : une phase creuse n'est pas une condamnation. C'est une pause. Une opportunité de réalignement. 
+                </p>
+
+                <p>
+                    Pensez à un train entrant en gare : il ralentit, s'arrête, des gens descendent, d'autres montent, puis il reprend inexorablement sa route. Les saisons changent, les règles évoluent, mais le train continue d'avancer.
+                </p>
+
+                <div class="p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 via-transparent to-transparent border border-amberGlow/30 text-center sm:text-left space-y-2">
+                    <p class="font-semibold font-sans text-sm uppercase tracking-wider text-amberGlow">Règle fondamentale à graver en soi</p>
+                    <p class="font-serif italic text-lg sm:text-xl text-sand-900 dark:text-white">
+                        Le rôle d'une carrière est de vous apporter un travail ; votre devoir est de ne jamais réduire votre humanité à ce travail. Vous traversez une existence immense, dont la profession n'est qu'un fragment.
+                    </p>
+                </div>
+
+                <h2 class="font-display text-2xl font-bold tracking-wide pt-6 text-sand-900 dark:text-white border-b border-sand-200 dark:border-sand-800 pb-2">
+                    Ce n'est qu'un chapitre, pas tout le livre
+                </h2>
+
+                <p>
+                    Respirez. Comme les battements réguliers de votre cœur, les cycles de la vie montent et descendent continuellement. Ce qui compte, c'est de vous préserver, vous, intact et serein. Car c'est uniquement lorsque vous vous sentez complet intérieurement que vous pouvez savourer la vie avec liberté et paix.
+                </p>
+
+                <p>
+                    Si demain matin une pensée anxiogène tente d'assombrir votre journée, répétez-vous ces mots :
+                </p>
+
+                <blockquote class="pl-6 border-l-2 border-amberGlow italic text-sand-700 dark:text-sand-300">
+                    « Ceci n'est pas toute mon histoire. Je souffre simplement d'une perception incomplète. Ce moment n'est qu'un chapitre parmi tant d'autres dans le grand livre de ma vie. »
+                </blockquote>
+
+                <p>
+                    Mettez de côté ces doutes qui vous dévorent. Dites-leur : <em>« Je vous entends, mais je continuerai à vivre pleinement, car cette vie m'appartient. »</em>
+                </p>
+
+                <p class="pt-4 font-serif text-lg font-medium text-amberGlow">
+                    Douce nuit à vous, chers amis. Prenez soin de votre esprit, gardez espoir et beaucoup d'amour.
+                </p>
+
+            </div>
+        </article>
+
+        <!-- Interactive Reflection Box -->
+        <section class="mt-16 p-8 rounded-2xl bg-sand-100 dark:bg-sand-800/80 border border-sand-200 dark:border-sand-700 text-center space-y-4">
+            <h3 class="font-display text-xl font-bold text-sand-900 dark:text-white">Votre pensée du soir</h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300 max-w-md mx-auto">
+                Partagez cet écrit ou emportez cette pensée avec vous avant de vous endormir.
+            </p>
+            <div class="flex justify-center gap-4 pt-2">
+                <button id="copy-quote-btn" class="px-5 py-2.5 rounded-full bg-amberGlow text-white text-xs font-semibold hover:bg-amber-600 transition-colors flex items-center gap-2 shadow-md">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span>Copier la citation clé</span>
+                </button>
+            </div>
+            <p id="copy-toast" class="text-xs text-amberGlow font-medium hidden">Citation copiée dans le presse-papier !</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-sand-200 dark:border-sand-800 text-center text-xs text-neutral-500 space-y-2">
+            <p>© Adapté avec soin à partir des paroles d'Ashish Vidyarthi.</p>
+            <p class="font-serif italic text-neutral-400">« Respirez, ce n'est qu'un chapitre. »</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Default to dark mode for calm night reading feel
+        if (localStorage.getItem('theme') === 'light') {
+            htmlElement.classList.remove('dark');
+        } else {
+            htmlElement.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Reading Scroll Progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Copy Quote Feature
+        const copyBtn = document.getElementById('copy-quote-btn');
+        const copyToast = document.getElementById('copy-toast');
+        const quoteToCopy = `« Le rôle d'une carrière est de vous donner du travail ; votre devoir est de ne pas vous réduire uniquement à ce travail. Vous êtes le livre tout entier, pas seulement ce chapitre. » — Ashish Vidyarthi`;
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(quoteToCopy).then(() => {
+                copyToast.classList.remove('hidden');
+                setTimeout(() => {
+                    copyToast.classList.add('hidden');
+                }, 3000);
+            });
+        });
+
+        // Ambient chime sound simulator
+        const ambientBtn = document.getElementById('ambient-btn');
+        let audioCtx;
+
+        ambientBtn.addEventListener('click', () => {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(432, audioCtx.currentTime); // 432 Hz calming frequency
+                
+                gain.gain.setValueAtTime(0, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 2.5);
+                
+                ambientBtn.classList.add('text-amberGlow');
+            } catch (e) {
+                console.log("Audio not supported or blocked");
+            }
+        });
+    </script>
+</body>
+</html>
