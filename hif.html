@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L’art de se réinventer | Journal Poétique & Inspirant</title>
+  
+  <!-- Polices Google : Playfair Display (élégant) & Plus Jakarta Sans (moderne et cute) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       VARIABLES DE COULEURS & THÈME COZY
+       ========================================== */
+    :root {
+      --bg-cream: #FAF6F0;
+      --bg-card: #FFFFFF;
+      --terracotta: #D97757;
+      --terracotta-soft: #FDEEE9;
+      --terracotta-hover: #c46344;
+      --sage: #7D9D8B;
+      --sage-soft: #EEF4F0;
+      --butter: #F7D688;
+      --lavender: #DDD4F0;
+      --text-main: #332B27;
+      --text-muted: #7E726B;
+      --border-subtle: #EFE8DE;
+      --shadow-cozy: 0 12px 35px -8px rgba(125, 102, 90, 0.08);
+      --shadow-hover: 0 20px 40px -10px rgba(217, 119, 87, 0.16);
+      --radius-sm: 14px;
+      --radius-md: 24px;
+      --radius-lg: 36px;
+    }
+
+    /* ==========================================
+       RESET & STYLES DE BASE
+       ========================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.8;
+      font-size: 1.08rem;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(247, 214, 136, 0.25) 0%, transparent 25%),
+        radial-gradient(circle at 90% 60%, rgba(221, 212, 240, 0.3) 0%, transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(253, 238, 233, 0.4) 0%, transparent 35%);
+      background-attachment: fixed;
+    }
+
+    /* Barre de progression de lecture */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--butter), var(--terracotta), var(--sage));
+      z-index: 1000;
+      border-radius: 0 5px 5px 0;
+      transition: width 0.1s ease-out;
+    }
+
+    /* ==========================================
+       NAVIGATION & HEADER
+       ========================================== */
+    header {
+      max-width: 860px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-card);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      box-shadow: var(--shadow-cozy);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--terracotta);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .icon-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-cozy);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-2px);
+      background: var(--terracotta-soft);
+    }
+
+    /* ==========================================
+       CONTAINER PRINCIPAL
+       ========================================== */
+    .container {
+      max-width: 820px;
+      margin: 1.5rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    /* HERO SECTION */
+    .hero-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 3rem 2.8rem;
+      box-shadow: var(--shadow-cozy);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-sticker {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.8rem;
+      background: var(--butter);
+      color: #694C05;
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 1.7rem;
+      padding: 0.3rem 1.2rem;
+      border-radius: 12px;
+      transform: rotate(4deg);
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.04);
+      user-select: none;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-pill {
+      background: var(--sage-soft);
+      color: var(--sage);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-time {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    h1.article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+    }
+
+    .article-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .author-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terracotta), var(--butter));
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .author-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .author-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================
+       CORPS DE L'ARTICLE
+       ========================================== */
+    .article-body {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 3rem;
+      box-shadow: var(--shadow-cozy);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .article-body p {
+      margin-bottom: 1.8rem;
+      color: #4A403A;
+      font-size: 1.12rem;
+    }
+
+    .lead-paragraph::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.2rem;
+      float: left;
+      line-height: 0.8;
+      padding-right: 1rem;
+      padding-top: 0.4rem;
+      color: var(--terracotta);
+      font-weight: 700;
+    }
+
+    h2.section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      color: var(--text-main);
+      margin: 2.8rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    /* CARTE CITATION COZY */
+    .quote-box {
+      background: linear-gradient(135deg, #FFF9F6 0%, #FAF1EC 100%);
+      border-left: 5px solid var(--terracotta);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 2rem 2.2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+
+    .quote-box::after {
+      content: "“";
+      position: absolute;
+      right: 1.5rem;
+      bottom: -1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: rgba(217, 119, 87, 0.12);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .quote-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .quote-box span {
+      font-size: 0.9rem;
+      color: var(--terracotta);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* BADGES DES RÔLES */
+    .role-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .role-chip {
+      background: #FAF7F2;
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .role-chip:hover {
+      background: var(--terracotta-soft);
+      border-color: var(--terracotta);
+      transform: scale(1.04);
+    }
+
+    /* LISTE DES INGRÉDIENTS */
+    .ingredients-card {
+      background: var(--sage-soft);
+      border-radius: var(--radius-md);
+      padding: 2rem 2.2rem;
+      margin: 2.2rem 0;
+      border: 2px dashed rgba(125, 157, 139, 0.4);
+    }
+
+    .ingredients-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: #2F4F3D;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .ingredients-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .ingredients-list li {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.05rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+      transition: transform 0.2s;
+    }
+
+    .ingredients-list li:hover {
+      transform: translateX(6px);
+      background: #FFFFFF;
+    }
+
+    .bullet-emoji {
+      font-size: 1.3rem;
+    }
+
+    /* ==========================================
+       WIDGET INTERACTIF : MON INVENTAIRE
+       ========================================== */
+    .interactive-tool {
+      background: linear-gradient(135deg, #F9F5FF 0%, #F5EFFF 100%);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      margin: 3rem 0;
+      border: 1px solid var(--lavender);
+      text-align: center;
+    }
+
+    .interactive-tool h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #4C3770;
+      margin-bottom: 0.5rem;
+    }
+
+    .interactive-tool p {
+      font-size: 0.95rem;
+      color: #6D5C8A;
+      margin-bottom: 1.5rem;
+    }
+
+    .tool-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-width: 500px;
+      margin: 0 auto 1.2rem;
+    }
+
+    .tool-inputs input {
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid #D6C8EB;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #FFFFFF;
+      transition: border-color 0.2s;
+    }
+
+    .tool-inputs input:focus {
+      border-color: #8C68CD;
+      box-shadow: 0 0 0 3px rgba(140, 104, 205, 0.15);
+    }
+
+    .magic-btn {
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(217, 119, 87, 0.3);
+      transition: transform 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .magic-btn:hover {
+      background: var(--terracotta-hover);
+      transform: translateY(-2px);
+    }
+
+    .recipe-result {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: #FFFFFF;
+      border-radius: var(--radius-sm);
+      border: 2px dashed #B8A2DC;
+      color: #3C275E;
+      font-weight: 600;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* ==========================================
+       SECTION INTERACTION (CLAPS & PARTAGE)
+       ========================================== */
+    .interaction-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .clap-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .clap-btn {
+      background: var(--terracotta-soft);
+      border: 2px solid var(--terracotta);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.6rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      transition: transform 0.15s ease;
+      user-select: none;
+    }
+
+    .clap-btn:active {
+      transform: scale(0.9);
+    }
+
+    .clap-count {
+      font-weight: 700;
+      color: var(--terracotta);
+      font-size: 1.1rem;
+    }
+
+    .share-btn {
+      background: var(--bg-cream);
+      border: 1px solid var(--border-subtle);
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .share-btn:hover {
+      background: var(--butter);
+    }
+
+    /* TOAST COPIE */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-main);
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================
+       FOOTER COZY
+       ========================================== */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem 4rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-heart {
+      color: var(--terracotta);
+      display: inline-block;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* ==========================================
+       RESPONSIVE DESIGN
+       ========================================== */
+    @media (max-width: 680px) {
+      .hero-card, .article-body {
+        padding: 2rem 1.4rem;
+      }
+      h1.article-title {
+        font-size: 2.1rem;
+      }
+      .hero-sticker {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+        transform: rotate(0);
+      }
+      .interaction-bar {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barre de progression -->
+  <div id="progress-bar"></div>
+
+  <!-- Header minimaliste -->
+  <header>
+    <div class="brand-pill">
+      <span>✨</span> L'Instant Réflexion
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Mode ambiance">☕</button>
+      <button class="icon-btn" onclick="shareArticle()" title="Partager">🔗</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO CARD -->
+    <section class="hero-card">
+      <div class="hero-sticker">✨ Pensée de 6h30</div>
+      
+      <div class="article-meta">
+        <span class="tag-pill">🌱 Développement & Résilience</span>
+        <span class="meta-time">⏱️ 5 min de lecture</span>
+      </div>
+
+      <h1 class="article-title">L’art de se réinventer : Vous n'êtes pas la recette, vous êtes le chef</h1>
+      
+      <p class="article-subtitle">
+        Comment dépasser le sentiment d'échec matinal et réutiliser vos forces intérieures pour cuisiner un nouveau chapitre de vie.
+      </p>
+
+      <div class="author-bar">
+        <div class="avatar-wrapper">
+          <div class="avatar">🎙️</div>
+        </div>
+        <div class="author-info">
+          <h4>Ashish Vidyarthi</h4>
+          <p>Acteur, Explorateur & Conférencier d'inspiration</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORPS DE L'ARTICLE -->
+    <article class="article-body">
+
+      <p class="lead-paragraph">
+        Il est 6h30 du matin. Pour moi, l’aube est toujours le moment le plus magique de la journée. C’est là où naissent mes podcasts, mes réflexions et mes nouvelles envies de créer. Mais soyons honnêtes un instant : dans nos vies, il arrive des moments où l’on a l’impression que tout s’arrête.
+      </p>
+
+      <p>
+        On se donne du mal, on travaille dur, mais les résultats ne viennent pas. Pire encore, on regarde autour de soi et on voit les autres réussir, avancer, briller. Alors, un sentiment amer s’installe : <strong>celui de se sentir complètement vaincu.</strong>
+      </p>
+
+      <p>
+        La douleur est la même pour tout le monde. Que vos épreuves se déroulent dans l’intimité ou sous les projecteurs du public, la déception est universelle. Mais un jour, après avoir touché le fond, j’ai compris une vérité libératrice :
+      </p>
+
+      <!-- BOÎTE CITATION -->
+      <div class="quote-box">
+        <p>« Ma vie n'est pas un simple sujet de conversation pour le monde. C’est MA vie. Et s’il faut en faire quelque chose d’exceptionnel, la responsabilité n'incombe à personne d'autre qu'à moi. »</p>
+        <span>— La prise de conscience</span>
+      </div>
+
+      <h2 class="section-heading">🍳 La métaphore du Chef : Recette vs Ingrédients</h2>
+      
+      <p>
+        Quand les propositions ont commencé à se faire rares en tant qu'acteur, je me suis posé la question fatidique : <em>« Qui suis-je si je ne joue plus ? »</em>
+      </p>
+
+      <p>
+        Nous avons tous tendance à nous enfermer dans des étiquettes rigides et des métiers précis :
+      </p>
+
+      <div class="role-grid">
+        <span class="role-chip">📊 Je suis Comptable</span>
+        <span class="role-chip">👩‍🏫 Je suis Enseignante</span>
+        <span class="role-chip">🛍️ Je suis Commerçant</span>
+        <span class="role-chip">🏡 Je suis Parent au foyer</span>
+        <span class="role-chip">🎭 Je suis Acteur</span>
+      </div>
+
+      <p>
+        Et lorsque ce rôle précis traverse une crise, nous croyons à tort que nous ne savons plus rien faire. <strong>C'est une illusion.</strong>
+      </p>
+
+      <p>
+        Étant un passionné de cuisine, j'ai choisi de repenser mon existence comme un banquet :
+        <strong>Votre travail actuel n'est qu'une « recette ». Mais vous, au fond, vous êtes le chef qui possède les « ingrédients » de base.</strong> Si un plat ne plaît plus ou rate sa cuisson, jetez-vous vos épices et vos talents pour autant ? Non. Vous prenez ces mêmes ingrédients pour concocter un nouveau plat savoureux.
+      </p>
+
+      <!-- LISTE DES INGRÉDIENTS -->
+      <div class="ingredients-card">
+        <h3>🥗 Mes 5 Ingrédients Intérieurs</h3>
+        <ul class="ingredients-list">
+          <li><span class="bullet-emoji">🎨</span> <strong>La créativité spontanée :</strong> Le plaisir pur de concevoir du neuf.</li>
+          <li><span class="bullet-emoji">🧩</span> <strong>Relier les points (Connect the dots) :</strong> Faire dialoguer des idées opposées.</li>
+          <li><span class="bullet-emoji">💬</span> <strong>L'amour du contact humain :</strong> Échanger, écouter et raconter des histoires.</li>
+          <li><span class="bullet-emoji">📚</span> <strong>La soif continue d'apprendre :</strong> Rester un élève curieux du monde.</li>
+          <li><span class="bullet-emoji">🍜</span> <strong>La passion du voyage et du goût :</strong> S'émerveiller de chaque terroir.</li>
+        </ul>
+      </div>
+
+      <h2 class="section-heading">📚 Le courage de se rééduquer : Retrain Yourself</h2>
+
+      <p>
+        Quand l’opportunité de donner ma toute première conférence en entreprise pour <em>Voltas</em> s'est présentée, j'étais terrifié. Je ne venais pas du monde corporatif, j'ignorais tout du jargon des ressources humaines. 
+      </p>
+
+      <p>
+        Mais j’ai choisi l'humilité de l'apprentissage :
+      </p>
+
+      <p>
+        J'ai dévoré des revues économiques. Lorsque j'étais invité à une conférence pour intervenir en fin d'après-midi, <strong>j'arrivais dès 8h du matin</strong> pour m'asseoir au fond de la salle et écouter les experts. J'ai posé des questions sans craindre de paraître ignorant auprès de mentors généreux comme mon ami Emmanuel David.
+      </p>
+
+      <p>
+        Grâce à mes ingrédients (l'écoute, la voix, l'empathie), j'avais créé une toute nouvelle recette : <strong>celle de conférencier d'inspiration.</strong>
+      </p>
+
+      <h2 class="section-heading">🏗️ L'esprit « We Also Make Steel »</h2>
+
+      <p>
+        Une publicité légendaire de la marque <em>Tata Steel</em> m'a toujours inspiré. Leur slogan disait simplement : <em>« We also make steel »</em> (Nous fabriquons aussi de l'acier), rappelant que leur vraie mission était de bâtir la nation et d'enrichir la vie des gens.
+      </p>
+
+      <p>
+        J'ai alors décidé d'élargir mes horizons :
+      </p>
+      <p>
+        Au lieu de me restreindre aux films en hindi, j'ai joué à travers <strong>11 langues différentes</strong>. Et plus récemment, j'ai embrassé mes passions gourmandes pour devenir blogueur de voyage et critique culinaire sur le web. Je n'ai pas changé qui je suis, j'ai simplement donné à mes compétences un tout nouveau terrain de jeu.
+      </p>
+
+      <!-- WIDGET INTERACTIF -->
+      <div class="interactive-tool">
+        <h3>✨ Inventaire : Révélez votre nouvelle recette</h3>
+        <p>Entrez 2 ingrédients intérieurs que vous possédez (ex: écoute, organisation, humour...) :</p>
+        
+        <div class="tool-inputs">
+          <input type="text" id="ing1" placeholder="Ingrédient 1 (ex: Sens de l'organisation)">
+          <input type="text" id="ing2" placeholder="Ingrédient 2 (ex: Passion pour l'écriture)">
+        </div>
+
+        <button class="magic-btn" onclick="generateRecipe()">
+          <span>🔮</span> Générer ma nouvelle piste
+        </button>
+
+        <div id="recipeResult" class="recipe-result"></div>
+      </div>
+
+      <h2 class="section-heading">🌟 Ce qu'il faut garder dans son cœur</h2>
+
+      <p>
+        Se réinventer n'est pas un claquement de doigts. Ce n'est pas une formule magique, c'est une décision d'artisan. Si vous vous sentez bloqué aujourd'hui :
+      </p>
+
+      <p>
+        <strong>1. Dressez l'inventaire de vos ingrédients :</strong> Vos forces humaines ne disparaissent jamais avec un poste perdu.<br>
+        <strong>2. Rééduquez-vous sans honte :</strong> L'apprentissage continu est la plus belle preuve de jeunesse.<br>
+        <strong>3. Refusez qu'une seule étiquette vous résume.</strong>
+      </p>
+
+      <p>
+        Tant que vous respirez, l'espoir est bien vivant. Vous êtes ici pour une raison précieuse, et chaque lever de soleil vous remet les clés de la cuisine pour inventer une recette encore plus belle.
+      </p>
+
+      <div class="quote-box">
+        <p>« Al Shukran Bandhu, Al Shukran Zindagi. »</p>
+        <span>(Gratitude mon ami, Merci infiniment à la vie)</span>
+      </div>
+
+      <!-- BARRE D'INTERACTION -->
+      <div class="interaction-bar">
+        <div class="clap-container">
+          <button class="clap-btn" id="clapBtn" onclick="addClap()">👏</button>
+          <span class="clap-count" id="clapText">48 Inspirations</span>
+        </div>
+
+        <button class="share-btn" onclick="copyLink()">
+          <span>📋</span> Copier le lien du journal
+        </button>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Conçu avec <span class="footer-heart">♥</span> pour les matins où l'on a besoin d'un nouveau souffle.</p>
+  </footer>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="toast">Lien copié dans votre presse-papiers ! ✨</div>
+
+  <!-- SCRIPT JS -->
+  <script>
+    // 1. Barre de progression au défilement
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // 2. Compteur d'applaudissements (Clap)
+    let claps = 48;
+    function addClap() {
+      claps++;
+      document.getElementById('clapText').innerText = `${claps} Inspirations`;
+      
+      const btn = document.getElementById('clapBtn');
+      btn.style.transform = "scale(1.2) rotate(-10deg)";
+      setTimeout(() => {
+        btn.style.transform = "scale(1) rotate(0deg)";
+      }, 200);
+
+      // Création de petites étoiles flottantes
+      createSparkle(btn);
+    }
+
+    function createSparkle(element) {
+      const sparkle = document.createElement('div');
+      sparkle.innerText = '✨';
+      sparkle.style.position = 'absolute';
+      sparkle.style.left = '50%';
+      sparkle.style.top = '0%';
+      sparkle.style.transform = 'translate(-50%, -50%)';
+      sparkle.style.pointerEvents = 'none';
+      sparkle.style.fontSize = '1.4rem';
+      sparkle.style.transition = 'all 0.8s ease-out';
+      element.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.style.top = '-40px';
+        sparkle.style.opacity = '0';
+      }, 20);
+
+      setTimeout(() => sparkle.remove(), 850);
+    }
+
+    // 3. Mini-outil interactif de Recette
+    function generateRecipe() {
+      const i1 = document.getElementById('ing1').value.trim();
+      const i2 = document.getElementById('ing2').value.trim();
+      const res = document.getElementById('recipeResult');
+
+      if (!i1 || !i2) {
+        res.style.display = 'block';
+        res.innerHTML = "💡 <em>Veuillez inscrire vos deux ingrédients pour laisser la magie opérer !</em>";
+        return;
+      }
+
+      const suggestions = [
+        `En combinant <strong>"${i1}"</strong> et <strong>"${i2}"</strong>, vous pourriez lancer un atelier de mentorat, un podcast thématique ou créer un guide pratique inspirant !`,
+        `Votre alliage de <strong>"${i1}"</strong> & <strong>"${i2}"</strong> fait de vous un médiateur unique. C'est exactement le profil recherché pour innover dans de nouveaux projets !`,
+        `Ce mélange de <strong>"${i1}"</strong> et <strong>"${i2}"</strong> est une signature rare. Et si vous testiez une toute nouvelle façon d'accompagner les autres ?`
+      ];
+
+      const randomText = suggestions[Math.floor(Math.random() * suggestions.length)];
+      res.style.display = 'block';
+      res.innerHTML = `🍳 <strong>Nouvelle Recette en vue :</strong><br>${randomText}`;
+    }
+
+    // 4. Copier le lien & Toast
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href);
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function shareArticle() {
+      if (navigator.share) {
+        navigator.share({
+          title: "L’art de se réinventer : Vous êtes le chef",
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        copyLink();
+      }
+    }
+
+    // 5. Bascule Ambiance (mode nuit chaleureux)
+    let isDark = false;
+    function toggleTheme() {
+      isDark = !isDark;
+      if (isDark) {
+        document.documentElement.style.setProperty('--bg-cream', '#221C1A');
+        document.documentElement.style.setProperty('--bg-card', '#2D2522');
+        document.documentElement.style.setProperty('--text-main', '#F5ECE6');
+        document.documentElement.style.setProperty('--text-muted', '#B8A89F');
+        document.documentElement.style.setProperty('--border-subtle', '#443833');
+      } else {
+        document.documentElement.style.setProperty('--bg-cream', '#FAF6F0');
+        document.documentElement.style.setProperty('--bg-card', '#FFFFFF');
+        document.documentElement.style.setProperty('--text-main', '#332B27');
+        document.documentElement.style.setProperty('--text-muted', '#7E726B');
+        document.documentElement.style.setProperty('--border-subtle', '#EFE8DE');
+      }
+    }
+  </script>
+</body>
+</html>
