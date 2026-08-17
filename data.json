@@ -26,188 +26,84 @@
     
 
      {
-      "id": 23,
-      "title": "Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
-      "category": "Life",
-      "date": "2026-08-15",
-      "url": "../ts.html",
-      "excerpt": "La classe moyenne ne stagne pas à cause de ses revenus, mais à cause de la course "
-    },
-    {
-      "id": 22,
-      "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
-      "category": "Life",
-      "date": "2026-08-15",
-      "url": "../ts.html",
-      "excerpt": "La classe moyenne ne stagne pas à cause de ses revenus, mais à cause de la course "
-    },
-    {
-      "id": 21,
-      "title": "Why Gemini 3.7 and Next-Gen AI Make Deep Focus More Essential Than Ever",
-      "category": "Technology",
-      "date": "2026-08-14",
-      "url": "posts/gemini-3-7-and-deep-focus.html",
-      "excerpt": "As AI models get smarter and faster, human attention and creative stillness have become our rarest superpowers."
-    },
-    {
-      "id": 20,
-      "title": "The Art of Saying No: Protecting Your Time and Energy",
-      "category": "Productivity",
-      "date": "2026-08-12",
-      "url": "posts/the-art-of-saying-no.html",
-      "excerpt": "Saying yes to everything means saying no to your peace of mind. Here is how I learned to set healthy boundaries."
-    },
-    {
-      "id": 19,
-      "title": "Building a Minimalist Desk Setup That Inspires Creative Work",
-      "category": "Lifestyle",
-      "date": "2026-08-09",
-      "url": "posts/minimalist-desk-setup-inspiration.html",
-      "excerpt": "A clean wooden desk, one notebook, a mechanical keyboard, and the freedom of zero visual clutter."
-    },
-    {
-      "id": 18,
-      "title": "Why I Switched Back to Physical Books in an All-Digital Age",
-      "category": "Mindfulness",
-      "date": "2026-08-05",
-      "url": "posts/switching-back-to-physical-books.html",
-      "excerpt": "Screens give us information, but paper pages give us understanding and a quiet place to think."
-    },
-    {
-      "id": 17,
-      "title": "Lightweight Operating Systems for Low-Spec Laptops to Try in 2026",
-      "category": "Technology",
-      "date": "2026-08-02",
-      "url": "posts/lightweight-os-for-low-spec-laptops.html",
-      "excerpt": "How to breathe new life into older hardware with optimized distributions and lightweight workflows."
-    },
-    {
-      "id": 16,
-      "title": "Morning Walks Without Headphones: Tuning Into the City Awakening",
-      "category": "Rituals",
-      "date": "2026-07-29",
-      "url": "posts/morning-walks-without-headphones.html",
-      "excerpt": "Replacing podcasts and playlists with the natural soundscape of sunrise completely changed my mornings."
-    },
-    {
-      "id": 15,
-      "title": "The Power of Evening Reviews: Closing Each Day With Clarity",
-      "category": "Productivity",
-      "date": "2026-07-25",
-      "url": "posts/power-of-evening-reviews.html",
-      "excerpt": "A five-minute reflection every night prevents burnout and sets tomorrow on autopilot."
-    },
-    {
-      "id": 14,
-      "title": "Making Pour-Over Coffee: A Lesson in Slow Craft and Patience",
-      "category": "Rituals",
-      "date": "2026-07-20",
-      "url": "posts/art-of-pour-over-coffee.html",
-      "excerpt": "Grinding beans, watching the bloom, and enjoying the slow alchemy of a single morning cup."
-    },
-    {
-      "id": 13,
-      "title": "Digital Declutter: How to Clean Up Your Digital Life in 3 Steps",
-      "category": "Lifestyle",
-      "date": "2026-07-16",
-      "url": "posts/digital-declutter-three-steps.html",
-      "excerpt": "From unread emails to endless photo libraries—simple steps to regain control over digital noise."
-    },
-    {
-      "id": 12,
-      "title": "Why Solitude is Not Loneliness: Rediscovering Your Inner Voice",
-      "category": "Mindfulness",
-      "date": "2026-07-11",
-      "url": "posts/solitude-is-not-loneliness.html",
-      "excerpt": "Learning to sit comfortably with your own thoughts without reaching for a screen to distract yourself."
-    },
-    {
-      "id": 11,
-      "title": "How Indoor Plants Changed the Atmosphere of My Work Space",
-      "category": "Plants",
-      "date": "2026-07-06",
-      "url": "posts/indoor-plants-workspace-transformation.html",
-      "excerpt": "Adding greenery is not just about aesthetics; it is about bringing living calm into concrete rooms."
-    },
-    {
-      "id": 10,
-      "title": "The Joy of Simple Cooking: Rediscovering Basic Seasonal Ingredients",
-      "category": "Kitchen",
-      "date": "2026-07-01",
-      "url": "posts/joy-of-simple-seasonal-cooking.html",
-      "excerpt": "Good food doesn't need 20 ingredients. Fresh herbs, salt, olive oil, and time are often all you need."
-    },
-    {
-      "id": 9,
-      "title": "Why You Don't Need Every Notification Turned On",
-      "category": "Lifestyle",
-      "date": "2026-06-25",
-      "url": "posts/turn-off-your-notifications.html",
-      "excerpt": "I turned off all app badges and sound alerts for 30 days. Here is what happened to my stress levels."
-    },
-    {
-      "id": 8,
-      "title": "Monochrome Coding: Why High Contrast Themes Reduced My Eye Strain",
-      "category": "Technology",
-      "date": "2026-06-20",
-      "url": "posts/monochrome-coding-eye-strain.html",
-      "excerpt": "Ditching flashy neon syntax themes for understated grayscale editor themes."
-    },
-    {
-      "id": 7,
-      "title": "The Weekend Reset: Preparing for a Calm Monday",
-      "category": "Rituals",
-      "date": "2026-06-14",
-      "url": "posts/weekend-reset-routine.html",
-      "excerpt": "A light Sunday tidy-up and meal prep that removes the dreaded Sunday night anxiety."
-    },
-    {
-      "id": 6,
-      "title": "Monstera Care Guide: Secrets to Thriving Fenestrations",
-      "category": "Plants",
-      "date": "2026-06-08",
-      "url": "posts/monstera-deliciosa-care-guide.html",
-      "excerpt": "Light requirements, soil mixtures, and watering schedules for growing gigantic Swiss cheese leaves."
-    },
-    {
-      "id": 5,
-      "title": "Baking Sourdough at Home: Embracing the Slow Ferment",
-      "category": "Kitchen",
-      "date": "2026-06-01",
-      "url": "posts/baking-sourdough-at-home.html",
-      "excerpt": "Flour, water, wild yeast, and why good bread simply refuses to be rushed."
-    },
-    {
-      "id": 4,
-      "title": "How to Build a Capsule Wardrobe and Eliminate Decision Fatigue",
-      "category": "Lifestyle",
-      "date": "2026-05-24",
-      "url": "posts/capsule-wardrobe-decision-fatigue.html",
-      "excerpt": "Fewer choices in the morning leads to clearer thinking throughout the entire day."
-    },
-    {
-      "id": 3,
-      "title": "Creating a Cozy Reading Corner in a Small Apartment",
-      "category": "Home",
-      "date": "2026-05-18",
-      "url": "posts/cozy-reading-corner-small-apartment.html",
-      "excerpt": "One comfortable chair, a warm lamp, and a dedicated corner for getting lost in stories."
-    },
-    {
-      "id": 2,
-      "title": "The Simple Habit of Drinking Warm Herbal Tea at Dusk",
-      "category": "Rituals",
-      "date": "2026-05-10",
-      "url": "posts/warm-herbal-tea-at-dusk.html",
-      "excerpt": "Signaling to your body that the workday is done with chamomile, mint, and a few quiet breaths."
-    },
-    {
-      "id": 1,
-      "title": "Slow Living in a Fast World: An Introduction to Verdant Notes",
-      "category": "Mindfulness",
-      "date": "2026-05-01",
-      "url": "posts/welcome-to-verdant-notes.html",
-      "excerpt": "Why this blog exists and how small, intentional choices can transform our everyday lives."
-    }
+    "id": 1,
+    "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+    "category": "Finances & Société",
+    "date": "2026-08-15",
+    "url": "https://classroom8x.github.io/ts",
+    "excerpt": "Avez-vous l'impression de fournir des efforts considérables au quotidien sans jamais accumuler de patrimoine significatif ? Découvrez les pièges psychologiques de l'argent."
+  },
+  {
+    "id": 2,
+    "title": "Pourquoi vous vous sentez bloqué à 35 ans",
+    "category": "Psychologie",
+    "date": "2026-08-17",
+    "url": "https://classroom8x.github.io/siki.html",
+    "excerpt": "Arrivé à 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et leur travail acharné."
+  },
+  {
+    "id": 3,
+    "title": "« Et si… ? » : 5 questions puissantes pour faire la paix avec les occasions manquées",
+    "category": "Philosophie & Sérénité",
+    "date": "2026-08-17",
+    "url": "https://classroom8x.github.io/sakhiyo.html",
+    "excerpt": "Ce sont ces pensées silencieuses qui viennent nous réveiller la nuit : apprenez à transformer les regrets du passé en énergie d'action bienveillante."
+  },
+  {
+    "id": 4,
+    "title": "Why Gemini 3.7 and Next-Gen AI Make Deep Focus More Essential Than Ever",
+    "category": "Technology",
+    "date": "2026-08-14",
+    "url": "https://classroom8x.github.io/rise.html",
+    "excerpt": "As AI models get smarter and faster, human attention and creative stillness have become our rarest superpowers in a distracted world."
+  },
+  {
+    "id": 5,
+    "title": "The Art of Saying No: Protecting Your Time and Energy",
+    "category": "Productivity",
+    "date": "2026-08-09",
+    "url": "https://classroom8x.github.io/rimeno.html",
+    "excerpt": "Saying yes to everything means saying no to your peace of mind—here is how learning to set healthy boundaries protects your daily energy."
+  },
+  {
+    "id": 6,
+    "title": "Pourquoi tant d'hommes se sentent « bloqués » à 30-35 ans ? (Et comment en sortir)",
+    "category": "Autonomie",
+    "date": "2026-08-17",
+    "url": "https://classroom8x.github.io/riku2.html",
+    "excerpt": "Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques pour bâtir sa propre liberté."
+  },
+  {
+    "id": 7,
+    "title": "The Quiet Art of Watering Plants Every Morning",
+    "category": "Rituals",
+    "date": "2026-08-10",
+    "url": "https://classroom8x.github.io/post1.html",
+    "excerpt": "There is a particular kind of quiet that settles over a house early in the morning when the only sound is water hitting soil, offering a lesson in patience."
+  },
+  {
+    "id": 8,
+    "title": "Building a Minimalist Desk Setup That Inspires Creative Work",
+    "category": "Mindfulness",
+    "date": "2026-08-05",
+    "url": "https://classroom8x.github.io/noaia.html",
+    "excerpt": "A clean wooden desk, one notebook, and zero visual clutter can completely transform your focus and inspire deep creative work."
+  },
+  {
+    "id": 9,
+    "title": "Conseils Financiers : Reprogrammer la Mentalité de la Classe Moyenne",
+    "category": "Finance",
+    "date": "2026-08-15",
+    "url": "https://classroom8x.github.io/middle-class-tips.html",
+    "excerpt": "Découvrez comment l'inflation des désirs, le piège du statut social et les mythes de l'investissement freinent silencieusement votre liberté financière."
+  },
+  {
+    "id": 10,
+    "title": "La Maîtrise de la Liberté Financière : Pourquoi l'école ne vous a jamais appris à gérer l'argent",
+    "category": "Finances & Éducation",
+    "date": "2026-08-16",
+    "url": "https://classroom8x.github.io/maitrise.html",
+    "excerpt": "L'école nous a enseigné la trigonométrie et l'histoire, mais a oublié une leçon vitale : comprendre pourquoi votre compte est vide et comment faire fructifier votre argent."
+  }
   ]
 }
