@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quand la peur d'échouer dans sa carrière vole notre sommeil · Guide Doux</title>
+  <meta name="description" content="Pourquoi votre métier ne définit pas votre valeur humaine. Apprenez à apaiser l'anxiété professionnelle.">
+
+  <!-- Polices mignonnes et esthétiques : Quicksand & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN avec configuration personnalisée -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            cute: ['"Quicksand"', 'sans-serif'],
+          },
+          colors: {
+            pastel: {
+              cream: '#faf7f2',
+              cardLight: '#ffffff',
+              borderLight: '#ede4d8',
+              peachBg: '#ffe8e6',
+              peachText: '#e11d48',
+              lavenderBg: '#f3e8ff',
+              lavenderText: '#9333ea',
+              skyBg: '#e0f2fe',
+              skyText: '#0284c7',
+              mintBg: '#dcfce7',
+              mintText: '#16a34a',
+              amberBg: '#fef3c7',
+              amberText: '#d97706',
+              darkBg: '#110e1b',
+              darkCard: '#1a162b',
+              darkCardAlt: '#231e38',
+              darkBorder: '#2e2746'
+            }
+          },
+          boxShadow: {
+            'cute': '0 12px 30px -8px rgba(225, 29, 72, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02)',
+            'cute-hover': '0 18px 36px -6px rgba(168, 85, 247, 0.16)',
+            'dark-cute': '0 12px 32px -8px rgba(0, 0, 0, 0.6)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icônes vectorielles Phosphor -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* Micro-ajustements */
+    .fade-bubble {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .fade-bubble.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  </style>
+</head>
+
+<body class="bg-pastel-cream dark:bg-pastel-darkBg text-slate-700 dark:text-slate-200 font-sans transition-colors duration-300 antialiased selection:bg-rose-300 selection:text-rose-900">
+
+  <!-- Barre de progression Bonbon -->
+  <div class="fixed top-0 left-0 w-full h-1.5 bg-transparent z-50">
+    <div id="progressBar" class="h-full bg-gradient-to-r from-pastel-peachText via-pastel-lavenderText to-pastel-mintText w-0 rounded-r-full transition-all duration-75"></div>
+  </div>
+
+  <!-- Barre supérieure Flottante -->
+  <nav class="sticky top-0 z-40 backdrop-blur-md bg-pastel-cream/85 dark:bg-pastel-darkBg/85 border-b border-pastel-borderLight dark:border-pastel-darkBorder py-3.5 px-6">
+    <div class="max-w-3xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 font-cute font-bold text-sm text-slate-800 dark:text-white">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-400 animate-pulse shadow-sm"></span>
+        <span>Sérénité &amp; Carrière</span>
+      </div>
+      <button id="themeToggle" class="w-10 h-10 rounded-2xl bg-white dark:bg-pastel-darkCard border border-pastel-borderLight dark:border-pastel-darkBorder flex items-center justify-center text-amber-500 dark:text-purple-300 shadow-sm hover:scale-105 transition-transform active:scale-95">
+        <i class="ph-fill ph-sun text-lg" id="themeIcon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Conteneur Principal (Sans barre latérale, centré) -->
+  <main class="max-w-3xl mx-auto px-5 sm:px-8 py-10 sm:py-16">
+
+    <!-- En-tête de l'article -->
+    <header class="fade-bubble mb-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pastel-peachBg dark:bg-rose-950/50 text-pastel-peachText dark:text-rose-300 text-xs font-cute font-bold uppercase tracking-wider mb-5 shadow-sm">
+        <i class="ph-fill ph-sparkle text-sm"></i>
+        Psychologie &amp; Sommeil • 5 min de lecture
+      </div>
+
+      <h1 class="font-cute text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.25] tracking-tight mb-5">
+        Quand la peur d'échouer dans sa carrière <span class="bg-gradient-to-r from-rose-500 via-purple-500 to-amber-500 bg-clip-text text-transparent">vole notre sommeil</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-slate-500 dark:text-slate-300 font-medium leading-relaxed mb-6">
+        Pourquoi votre métier ne définit pas votre valeur humaine et comment apaiser la panique de l'avenir.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-semibold text-slate-400 dark:text-slate-500 pb-5 border-b-2 border-dashed border-pastel-borderLight dark:border-pastel-darkBorder">
+        <span class="flex items-center gap-1.5"><i class="ph-fill ph-moon-stars text-rose-400"></i> Nuits paisibles</span>
+        <span class="flex items-center gap-1.5"><i class="ph-fill ph-shield-check text-purple-400"></i> Estime de soi</span>
+        <span class="flex-1"></span>
+        <span class="text-rose-500 dark:text-rose-300 font-cute text-sm">🌿 Prendre soin de soi</span>
+      </div>
+    </header>
+
+    <!-- Citation d'accroche (Lede Douillet) -->
+    <div class="fade-bubble p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-pastel-peachBg/70 via-pastel-lavenderBg/60 to-white dark:from-pastel-darkCard dark:to-pastel-darkCardAlt border border-pastel-borderLight dark:border-pastel-darkBorder shadow-cute dark:shadow-dark-cute mb-12">
+      <div class="flex items-start gap-3.5">
+        <span class="text-2xl sm:text-3xl">☁️</span>
+        <p class="font-cute text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100 leading-relaxed m-0">
+          « Il arrive des moments où nous avons plus peur pour notre carrière que pour notre vie elle-même. Nous en arrivons à croire que si notre parcours professionnel vacille, c'est toute notre existence qui s'effondre. »
+        </p>
+      </div>
+    </div>
+
+    <!-- Sommaire Pastel (Macaron Matrix) -->
+    <nav class="fade-bubble mb-14 p-6 rounded-3xl bg-white dark:bg-pastel-darkCard border border-pastel-borderLight dark:border-pastel-darkBorder shadow-cute dark:shadow-dark-cute">
+      <div class="flex items-center gap-2 text-xs font-cute font-bold tracking-wider text-purple-500 dark:text-purple-300 uppercase mb-4">
+        <i class="ph-fill ph-bookmarks text-base"></i>
+        Au sommaire de cette bulle de calme
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <a href="#angoisse" class="flex items-center gap-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 transition-colors p-2.5 rounded-2xl hover:bg-rose-50 dark:hover:bg-rose-950/30">
+          <span class="w-6 h-6 rounded-xl bg-pastel-peachBg text-pastel-peachText flex items-center justify-center text-xs font-bold">1</span>
+          Ce que cache l'angoisse
+        </a>
+        <a href="#echecs" class="flex items-center gap-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-purple-500 dark:hover:text-purple-400 transition-colors p-2.5 rounded-2xl hover:bg-purple-50 dark:hover:bg-purple-950/30">
+          <span class="w-6 h-6 rounded-xl bg-pastel-amberBg text-pastel-amberText flex items-center justify-center text-xs font-bold">2</span>
+          La vie est une partie d'échecs
+        </a>
+        <a href="#gare" class="flex items-center gap-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors p-2.5 rounded-2xl hover:bg-sky-50 dark:hover:bg-sky-950/30">
+          <span class="w-6 h-6 rounded-xl bg-pastel-skyBg text-pastel-skyText flex items-center justify-center text-xs font-bold">3</span>
+          La métaphore de la gare
+        </a>
+        <a href="#role" class="flex items-center gap-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors p-2.5 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-950/30">
+          <span class="w-6 h-6 rounded-xl bg-pastel-mintBg text-pastel-mintText flex items-center justify-center text-xs font-bold">4</span>
+          Le travail est un simple rôle
+        </a>
+      </div>
+    </nav>
+
+    <!-- Corps de l'article -->
+    <section class="space-y-6">
+      
+      <p class="fade-bubble text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+        Cette angoisse ne fait pas la une des journaux, mais elle s'invite insidieusement dans nos nuits blanches.
+      </p>
+
+      <p class="fade-bubble text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+        Au début, tout semble linéaire : on vise le rôle suivant, le palier supérieur, la prochaine augmentation. Et puis, un jour, la courbe ralentit, stagne, voire descend. Un projet s'arrête, les règles du jeu changent, ou une question brutale surgit : <em>« Suis-je encore pertinent ? Ne suis-je pas en train de me faire remplacer ? »</em>
+      </p>
+
+      <!-- SECTION 1 : LES 3 PEURS CACHÉES -->
+      <div id="angoisse" class="fade-bubble pt-6">
+        <h2 class="font-cute text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3 mb-6">
+          <span class="w-9 h-9 rounded-2xl bg-pastel-peachBg text-pastel-peachText flex items-center justify-center text-lg font-bold">🔍</span>
+          Ce que cache réellement l'angoisse professionnelle
+        </h2>
+
+        <p class="text-slate-600 dark:text-slate-300 mb-6">
+          Soyons honnêtes : la peur liée au travail dépasse largement la question du salaire de fin de mois. C'est une peur beaucoup plus profonde :
+        </p>
+
+        <!-- Cartes des 3 Peurs -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          
+          <div class="p-5 rounded-3xl bg-white dark:bg-pastel-darkCard border border-pastel-borderLight dark:border-pastel-darkBorder shadow-cute dark:shadow-dark-cute">
+            <div class="w-10 h-10 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center text-xl mb-3">
+              📉
+            </div>
+            <h3 class="font-cute font-bold text-base text-slate-900 dark:text-white mb-1.5">Le Déclassement</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              Le sentiment d'être « laissé pour compte » pendant que les autres avancent.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-3xl bg-white dark:bg-pastel-darkCard border border-pastel-borderLight dark:border-pastel-darkBorder shadow-cute dark:shadow-dark-cute">
+            <div class="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center text-xl mb-3">
+              ⏳
+            </div>
+            <h3 class="font-cute font-bold text-base text-slate-900 dark:text-white mb-1.5">L'Angoisse de l'Âge</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              Avoir l'impression que le temps joue désormais contre nous.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-3xl bg-white dark:bg-pastel-darkCard border border-pastel-borderLight dark:border-pastel-darkBorder shadow-cute dark:shadow-dark-cute">
+            <div class="w-10 h-10 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center text-xl mb-3">
+              🤖
+            </div>
+            <h3 class="font-cute font-bold text-base text-slate-900 dark:text-white mb-1.5">Être Remplacé</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              Ce sentiment d'obsolescence dans un monde qui va toujours plus vite.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="p-5 rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/40 text-sm text-rose-900 dark:text-rose-200">
+          💡 <strong>L'erreur fondamentale :</strong> confondre son métier et son identité. Nous finissons par croire : <em>« Si ma carrière réussit, j'existe ; si ma carrière flanche, je ne vaux plus rien. »</em>
+        </div>
+      </div>
+
+      <!-- SECTION 2 : ÉCHECS -->
+      <div id="echecs" class="fade-bubble pt-6">
+        <div class="p-7 rounded-3xl bg-white dark:bg-pastel-darkCard border border-amber-100 dark:border-amber-950/50 shadow-cute dark:shadow-dark-cute">
+          <div class="flex items-center gap-3.5 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-pastel-amberBg text-pastel-amberText flex items-center justify-center text-2xl">
+              ♟️
+            </div>
+            <div>
+              <span class="text-xs font-cute font-bold tracking-wider text-amber-600 dark:text-amber-400 uppercase">Leçon 01</span>
+              <h2 class="font-cute text-xl sm:text-2xl font-bold text-slate-900 dark:text-white m-0">
+                La vie n'est pas une ligne droite, c'est une partie d'échecs
+              </h2>
+            </div>
+          </div>
+          
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base mb-4">
+            Si toutes les carrières étaient des lignes parfaitement ascendantes, nous serions tous des copies conformes. Les hauts et les bas ne sont pas des anomalies : ils sont la preuve même que vous êtes dans l'arène.
+          </p>
+
+          <ul class="space-y-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4 pl-1">
+            <li class="flex items-start gap-2.5">
+              <span class="text-amber-500 font-bold">✨</span>
+              <span>Parfois, vous avancez un pion d'une case.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-amber-500 font-bold">✨</span>
+              <span>Parfois, vous devez faire un pas de côté ou reculer une pièce maîtresse pour mieux défendre votre jeu.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-amber-500 font-bold">✨</span>
+              <span>Ce qui compte n'est pas le recul temporaire, mais votre prochain coup.</span>
+            </li>
+          </ul>
+
+          <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 m-0">
+            Dans le jeu de la vie, vous pouvez continuer à jouer tant que vous refusez d'abandonner. Une seule chose doit rester intacte : <strong>votre foi en vous-même.</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 3 : LA GARE -->
+      <div id="gare" class="fade-bubble pt-6">
+        <div class="p-7 rounded-3xl bg-white dark:bg-pastel-darkCard border border-sky-100 dark:border-sky-950/50 shadow-cute dark:shadow-dark-cute">
+          <div class="flex items-center gap-3.5 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-pastel-skyBg text-pastel-skyText flex items-center justify-center text-2xl">
+              🚂
+            </div>
+            <div>
+              <span class="text-xs font-cute font-bold tracking-wider text-sky-600 dark:text-sky-400 uppercase">Leçon 02</span>
+              <h2 class="font-cute text-xl sm:text-2xl font-bold text-slate-900 dark:text-white m-0">
+                La métaphore de la gare ferroviaire
+              </h2>
+            </div>
+          </div>
+          
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base mb-4">
+            Lorsque le train de votre vie professionnelle s'arrête en gare, est-ce un échec ? Non. En gare, certaines personnes descendent, d'autres montent, le moteur souffle un instant, puis le train repart.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-2xl bg-sky-50 dark:bg-sky-950/30 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+              🌱 Une pause stratégique pour réajuster votre cap.
+            </div>
+            <div class="p-3.5 rounded-2xl bg-sky-50 dark:bg-sky-950/30 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+              💡 L'occasion de développer une nouvelle voie.
+            </div>
+            <div class="p-3.5 rounded-2xl bg-sky-50 dark:bg-sky-950/30 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+              🧭 Ce n'est pas la fin, c'est un réalignement.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4 : LE RÔLE -->
+      <div id="role" class="fade-bubble pt-6">
+        <div class="p-7 rounded-3xl bg-white dark:bg-pastel-darkCard border border-purple-100 dark:border-purple-950/50 shadow-cute dark:shadow-dark-cute">
+          <div class="flex items-center gap-3.5 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-pastel-lavenderBg text-pastel-lavenderText flex items-center justify-center text-2xl">
+              🎭
+            </div>
+            <div>
+              <span class="text-xs font-cute font-bold tracking-wider text-purple-600 dark:text-purple-400 uppercase">Leçon 03</span>
+              <h2 class="font-cute text-xl sm:text-2xl font-bold text-slate-900 dark:text-white m-0">
+                Le travail est un rôle, pas la totalité de votre histoire
+              </h2>
+            </div>
+          </div>
+          
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base mb-4">
+            Le rôle d'un métier est de vous fournir une activité, des revenus et un terrain d'expression. Votre devoir est de ne pas réduire toute votre existence à ce simple rôle.
+          </p>
+
+          <div class="p-4 rounded-2xl bg-purple-50 dark:bg-purple-950/40 text-purple-900 dark:text-purple-200 font-cute font-bold text-base mb-4">
+            🌸 Vous êtes un être humain avant d'être un titre sur une carte de visite.
+          </div>
+
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base m-0">
+            La prochaine fois qu'une pensée anxiogène concernant votre avenir professionnel tente de gâcher votre soirée, rappelez-vous cette vérité libératrice.
+          </p>
+        </div>
+      </div>
+
+      <!-- CARTE D'AFFIRMATION ROSE PÊCHE -->
+      <div class="fade-bubble p-7 rounded-3xl bg-gradient-to-r from-rose-100/80 via-purple-100/80 to-amber-100/80 dark:from-rose-950/40 dark:via-purple-950/40 dark:to-amber-950/40 border border-rose-200 dark:border-rose-900/40 text-center shadow-cute">
+        <span class="text-3xl mb-3 block">📖</span>
+        <p class="font-cute text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug m-0">
+          « Ce passage difficile n'est pas toute mon histoire. C'est simplement un chapitre, et mon livre en comptera encore beaucoup d'autres. »
+        </p>
+      </div>
+
+      <!-- CONCLUSION -->
+      <div class="fade-bubble pt-6">
+        <h2 class="font-cute text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+          ✨ En conclusion : Respirez et gardez le cap
+        </h2>
+        
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base mb-4">
+          Apprenez à écouter vos doutes sans leur donner les commandes de votre vie. Dites-leur : <em>« Je vous entends, mais je continuerai d'avancer et de vivre pleinement, parce que cette vie m'appartient. »</em>
+        </p>
+
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+          Prenez soin de vous, préservez votre énergie, et n'oubliez jamais que <strong>votre valeur humaine reste intacte</strong>, quelles que soient les fluctuations de votre parcours.
+        </p>
+      </div>
+
+      <!-- ESPACE DISCUSSION INTERACTIF (BULLE BONBON) -->
+      <div class="fade-bubble p-7 rounded-3xl bg-gradient-to-br from-pastel-mintBg/80 to-pastel-skyBg/80 dark:from-emerald-950/40 dark:to-sky-950/40 border border-emerald-100 dark:border-emerald-900/40 shadow-cute">
+        <h3 class="font-cute font-bold text-lg sm:text-xl text-slate-900 dark:text-white flex items-center gap-2 mb-3">
+          <i class="ph-fill ph-chat-circle-dots text-emerald-600 text-2xl"></i>
+          💬 À vous la parole :
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-3">
+          Avez-vous déjà traversé une période de creux professionnel qui vous a finalement permis de vous réinventer ? Comment avez-vous réussi à dissocier votre estime personnelle de votre statut professionnel ?
+        </p>
+        <p class="text-xs sm:text-sm font-cute font-bold text-emerald-700 dark:text-emerald-300 m-0">
+          Partagez votre expérience en commentaire et envoyez cet article à un ami ou collègue qui traverse actuellement une période de doute au travail !
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Footer Doux -->
+    <footer class="fade-bubble mt-16 pt-8 border-t-2 border-dashed border-pastel-borderLight dark:border-pastel-darkBorder text-center">
+      <div class="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-2xl mx-auto mb-3 shadow-sm">
+        🌸
+      </div>
+      <div class="font-cute text-lg font-bold text-slate-800 dark:text-white mb-1">
+        Votre existence a une valeur infinie.
+      </div>
+      <div class="text-xs sm:text-sm text-slate-400">
+        Dormez en paix ce soir. Demain est une nouvelle opportunité.
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Script ultra-rapide sans dépendance -->
+  <script>
+    // 1. Barre de progression bonbon
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progressBar').style.width = (scrollY / docHeight) * 100 + '%';
+    });
+
+    // 2. Animation d'apparition douce au scroll
+    const bubbleElements = document.querySelectorAll('.fade-bubble');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    bubbleElements.forEach(el => observer.observe(el));
+
+    // 3. Basculeur Thème Jour / Nuit avec mémorisation
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('cute-sleep-theme') || 'light';
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+      themeIcon.className = 'ph-fill ph-moon text-lg text-purple-300';
+    }
+
+    themeBtn.addEventListener('click', () => {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('cute-sleep-theme', 'light');
+        themeIcon.className = 'ph-fill ph-sun text-lg text-amber-500';
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('cute-sleep-theme', 'dark');
+        themeIcon.className = 'ph-fill ph-moon text-lg text-purple-300';
+      }
+    });
+  </script>
+</body>
+</html>
