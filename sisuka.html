@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="menu.css">
+  <script src="menu.js" defer></script>
+  <title>Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle</title>
+
+  <!-- Polices : Sans-serif épuré + Serif éditorial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ----- Palette de couleurs : Sable chaud, terracotta & bleu nuit profond ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Thème Sombre */
+    [data-theme="dark"] {
+      --bg-body: #141e28;
+      --bg-surface: #1f2b36;
+      --bg-card: #25323e;
+      --bg-soft: #2a3846;
+      --text-primary: #ede8df;
+      --text-secondary: #c9d0d4;
+      --text-muted: #8e9fa8;
+      --accent: #f2b89a;           /* Blush lumineux */
+      --accent-soft: #dbaa8a;
+      --border: #33424f;
+      --shadow: 0 10px 28px rgba(0,0,0,0.6);
+      --card-border: #3d4e5e;
+      --highlight-bg: #2a3846;
+    }
+
+    /* Thème Clair (Défaut) */
+    :root {
+      --bg-body: #faf7f2;          /* Sable chaud */
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-soft: #f0ebe2;
+      --text-primary: #1e2a32;
+      --text-secondary: #3f4d57;
+      --text-muted: #7d8d96;
+      --accent: #c97b63;           /* Terracotta */
+      --accent-soft: #e5c3b2;
+      --border: #e2d8cc;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+      --card-border: #e2d8cc;
+      --highlight-bg: #f0ebe2;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.75;
+      font-size: 17px;
+      transition: background 0.25s, color 0.25s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barre de progression de lecture */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 999;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.1s ease;
+    }
+
+    /* Navigation supérieure */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 2rem;
+      background: transparent;
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .theme-toggle {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 44px;
+      height: 44px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: var(--shadow);
+    }
+    .theme-toggle:hover {
+      transform: scale(1.04);
+      border-color: var(--accent);
+    }
+
+    /* Conteneur principal */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 5rem;
+    }
+
+    /* Typographie */
+    h1, h2, .serif {
+      font-family: 'Source Serif 4', serif;
+    }
+    h1 {
+      font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 3.2rem 0 1rem;
+      color: var(--text-primary);
+      scroll-margin-top: 80px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--accent);
+      margin: 2.2rem 0 0.6rem;
+    }
+
+    p {
+      margin-bottom: 1.4rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* En-tête */
+    .category-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.8rem;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 0.35rem 1.2rem;
+      border-radius: 30px;
+      color: var(--text-muted);
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2.8rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Table des matières */
+    .toc {
+      background: var(--bg-soft);
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 3.2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .toc-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .toc ul {
+      list-style: none;
+      counter-reset: toc;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.2rem;
+    }
+    @media (max-width: 600px) {
+      .toc ul { grid-template-columns: 1fr; }
+    }
+    .toc li {
+      counter-increment: toc;
+      padding: 0.2rem 0;
+    }
+    .toc a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      transition: 0.2s;
+      border-bottom: 1px solid transparent;
+      padding: 0.15rem 0;
+      font-weight: 400;
+    }
+    .toc a::before {
+      content: counter(toc) ".";
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.7rem;
+      font-size: 0.8rem;
+      min-width: 1.4rem;
+    }
+    .toc a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* Lede */
+    .lede {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--text-primary);
+      padding: 2rem 2rem 2rem 2.8rem;
+      background: var(--bg-soft);
+      border-left: 6px solid var(--accent);
+      border-radius: 0 24px 24px 0;
+      margin: 2.8rem 0;
+    }
+
+    /* Citations / Pull Quote */
+    .pull-quote {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.35;
+      color: var(--accent);
+      margin: 3.5rem 0;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    .pull-quote::before,
+    .pull-quote::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1.2rem auto;
+      opacity: 0.3;
+    }
+
+    /* Encadrés d'information avec badge flottant */
+    .info-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem 2rem 1.8rem;
+      margin: 2.5rem 0;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .info-box-label {
+      position: absolute;
+      top: -12px;
+      left: 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 18px;
+      border-radius: 30px;
+    }
+    .info-box p:last-child { margin-bottom: 0; }
+
+    /* Grille de cartes */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.8rem;
+      margin: 2.5rem 0;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      transition: 0.25s;
+      box-shadow: var(--shadow);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+    }
+    .card.highlight {
+      border: 2px solid var(--accent);
+      background: var(--bg-surface);
+    }
+    .card-badge {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: var(--accent-soft);
+      color: var(--text-primary);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 30px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .card-value {
+      font-family: 'Source Serif 4', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0.5rem 0 0.4rem;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Timeline des étapes */
+    .step-list {
+      margin: 2.5rem 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 0.5rem 2rem;
+    }
+    .step-item {
+      display: flex;
+      gap: 1.8rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-day {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      min-width: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .step-text {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    /* Cartes en colonnes */
+    .col-card h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-primary);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .col-card h4 i { color: var(--accent); font-size: 1.4rem; }
+    .col-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .col-card li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+    .col-card li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.1rem;
+    }
+
+    /* Liste de contrôle (Checklist) */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 2.5rem 0;
+    }
+    .check-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      background: var(--bg-surface);
+      padding: 1.5rem 2rem;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+    .check-item:hover {
+      transform: translateX(4px);
+      border-color: var(--accent);
+      background: var(--bg-soft);
+    }
+    .check-icon {
+      color: var(--accent);
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .check-text {
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+    .check-text strong { font-weight: 600; color: var(--text-primary); }
+
+    /* FAQ interactive intégrée */
+    details {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      padding: 1.2rem 1.6rem;
+      transition: 0.2s;
+    }
+    details[open] {
+      background: var(--bg-soft);
+      border-color: var(--accent);
+    }
+    summary {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    details[open] summary::after { content: '−'; }
+    details p {
+      margin-top: 1rem;
+      margin-bottom: 0;
+      font-size: 0.98rem;
+    }
+
+    /* Conclusion */
+    .conclusion {
+      margin-top: 4.5rem;
+      padding-top: 3rem;
+      border-top: 2px solid var(--border);
+    }
+    .conclusion p {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-primary);
+      margin-bottom: 1.2rem;
+    }
+    .author-sign {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Animation au défilement */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: all 0.75s cubic-bezier(0.15, 0.85, 0.25, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .container { padding: 1rem 1.2rem 3rem; }
+      .lede { font-size: 1.2rem; padding: 1.5rem 1.5rem 1.5rem 1.8rem; }
+      .pull-quote { font-size: 1.35rem; }
+      .card { padding: 1.5rem; }
+      .step-item { flex-direction: column; gap: 0.3rem; }
+      .step-day { min-width: auto; }
+      .toc ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de progression -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Bouton Thème -->
+  <nav class="top-nav">
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+      <i class="ph ph-moon" id="themeIcon" style="font-size: 1.4rem;"></i>
+    </button>
+  </nav>
+
+  <article class="container">
+
+    <!-- En-tête -->
+    <header class="reveal">
+      <div class="category-wrapper">
+        <span class="tag">Psychologie &amp; Carrière</span>
+        <span class="divider-line"></span>
+      </div>
+      <h1>Pourquoi vous vous sentez bloqué à 35 ans</h1>
+      <p class="subtitle">Comprendre le cycle « Étincelle, Enthousiasme, Épuisement » et les leviers réels pour briser l'inertie.</p>
+      <div class="meta">
+        <span class="meta-item"><i class="ph ph-clock"></i> 5 min de lecture</span>
+        <span class="meta-item"><i class="ph ph-calendar-blank"></i> Guide Pratique</span>
+        <span style="flex:1;"></span>
+        <span class="tag" style="background:transparent; border:none; padding:0;">Évolution</span>
+        <span class="tag" style="background:transparent; border:none; padding:0;">Autonomie</span>
+      </div>
+    </header>
+
+    <!-- Table des matières -->
+    <nav class="toc reveal">
+      <div class="toc-title"><i class="ph ph-list-dashes"></i> Dans cet article</div>
+      <ul>
+        <li><a href="#section-1">L'illusion des règles</a></li>
+        <li><a href="#section-2">Phase 1 : L'Étincelle</a></li>
+        <li><a href="#section-3">Phase 2 : L'Enthousiasme</a></li>
+        <li><a href="#section-4">Phase 3 : Le Mur des 35 ans</a></li>
+        <li><a href="#section-5">Les causes invisibles</a></li>
+        <li><a href="#section-6">Reprendre le contrôle</a></li>
+        <li><a href="#section-7">Foire aux questions</a></li>
+      </ul>
+    </nav>
+
+    <div class="lede reveal">
+      Arrivé à l'âge de 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde. Vous avez travaillé dur, vous avez respecté toutes les règles, et pourtant, vous avez l'impression de frapper un plafond de verre invisible.
+    </div>
+
+    <section class="body-content">
+      <p class="reveal">Ce sentiment d'étouffement n'est pas dû à un manque d'intelligence ou de talent. C'est l'aboutissement prévisible d'un piège psychologique et professionnel dans lequel tombent les personnes les plus rigoureuses.</p>
+
+      <div class="grid-cards reveal">
+        <div class="card">
+          <div class="card-value">20-25 ans</div>
+          <p class="card-desc">L'énergie pure, les nuits blanches, la croyance totale que chaque effort sera récompensé.</p>
+        </div>
+        <div class="card highlight">
+          <div class="card-badge">Le constat</div>
+          <div class="card-value">35 ans</div>
+          <p class="card-desc">L'épuisement face à des structures rigides où le mérite ne suffit plus à progresser.</p>
+        </div>
+      </div>
+
+      <h2 id="section-1" class="reveal">1. L'Illusion du Système et des Règles</h2>
+      <p class="reveal">On nous apprend très tôt que l'effort est une équation linéaire : travaillez bien à l'école, obtenez un diplôme, faites vos preuves en entreprise, et la réussite suivra. Mais à 35 ans, la réalité du marché brise souvent ce modèle théorique.</p>
+
+      <div class="info-box reveal">
+        <span class="info-box-label">Le diagnostic</span>
+        <p>Le sentiment d'être bloqué (<em>stuck</em>) n'est pas un échec personnel : c'est le moment précis où l'on réalise que les règles du jeu institutionnel ne sont pas conçues pour récompenser uniquement le dévouement.</p>
+      </div>
+
+      <div class="pull-quote reveal">
+        « Frapper inlassablement contre le même mur avec plus de force ne crée pas une porte. Cela crée seulement de l'épuisement. »
+      </div>
+
+      <h2 id="section-2" class="reveal">Phase 1 : L'Étincelle (The Spark)</h2>
+      <p class="reveal">Durant vos années d'études ou au début de votre vie d'adulte, vous possédez une étincelle incroyable. À cet âge, rien ne semble impossible. Vous relevez tous les défis, vous voyagez léger, et vous ne dites jamais « non » à une opportunité.</p>
+      <p class="reveal">C'est une période euphorique portée par la conviction intime que n'importe quel sommet peut être conquis par la seule volonté.</p>
+
+      <h2 id="section-3" class="reveal">Phase 2 : L'Enthousiasme Débordant</h2>
+      <p class="reveal">Lorsque vous intégrez le marché du travail, cette étincelle se transforme en un moteur à plein régime :</p>
+
+      <div class="step-list reveal">
+        <div class="step-item">
+          <span class="step-day"><i class="ph-fill ph-lightning"></i> Ambition</span>
+          <p class="step-text">Vous travaillez jour et nuit pour prouver que vous faites partie de l'élite de votre secteur.</p>
+        </div>
+        <div class="step-item">
+          <span class="step-day"><i class="ph-fill ph-arrows-clockwise"></i> Volume</span>
+          <p class="step-text">Vous multipliez les heures sans compter, persuadé que le surmenage est le garant de votre ascension.</p>
+        </div>
+        <div class="step-item">
+          <span class="step-day"><i class="ph-fill ph-check-circle"></i> Patience</span>
+          <p class="step-text">Vous acceptez les compromis en espérant qu'une reconnaissance future récompensera vos sacrifices.</p>
+        </div>
+      </div>
+
+      <h2 id="section-4" class="reveal">Phase 3 : Le Mur des 35 ans &amp; L'Épuisement</h2>
+      <p class="reveal">Vers la trentaine avancée, le décalage devient insoutenable. Vous avez donné vos meilleures années à une organisation, mais vos objectifs financiers et personnels restent bloqués.</p>
+      <p class="reveal">La fatigue accumulée et la routine transforment l'enthousiasme originel en résignation silencieuse.</p>
+
+      <h2 id="section-5" class="reveal">Pourquoi Cela Arrive-t-il ? Les 2 Causes Invisibles</h2>
+      <p class="reveal">Pour débloquer la situation, il faut regarder avec lucidité les mécanismes structurels :</p>
+
+      <div class="grid-cards reveal">
+        <div class="card col-card">
+          <h4><i class="ph-fill ph-hourglass-high"></i> 1. Le Facteur Opportunité</h4>
+          <ul>
+            <li>La réussite conventionnelle dépend du bon timing</li>
+            <li>Nécessite d'être entouré des bons décideurs au bon moment</li>
+            <li>Un travail irréprochable ne crée pas mécaniquement la chance</li>
+          </ul>
+        </div>
+        <div class="card col-card">
+          <h4><i class="ph-fill ph-buildings"></i> 2. La Rigidité Hiérarchique</h4>
+          <ul>
+            <li>L'ancienneté des cadres bloque l'ascension naturelle</li>
+            <li>Les jeux politiques internes priment sur la compétence</li>
+            <li>Votre salaire et vos promotions restent sous plafond</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="section-6" class="reveal">Comment Reprendre le Contrôle de Votre Vie ?</h2>
+      <p class="reveal">Rester passif dans cette inertie ne fera qu'aggraver la situation jusqu'à la retraite. Voici les principes d'action recommandés :</p>
+
+      <div class="checklist reveal">
+        <div class="check-item">
+          <i class="ph-fill ph-crown check-icon"></i>
+          <span class="check-text">
+            <strong>Développez une compétence unique et monétisable :</strong> Ne collectionnez plus les diplômes passifs. Devenez un expert incontournable sur une compétence précise qui vous permet de générer des revenus indépendants de votre fiche de paie.
+          </span>
+        </div>
+        <div class="check-item">
+          <i class="ph-fill ph-timer check-icon"></i>
+          <span class="check-text">
+            <strong>Appliquez la règle des 1 à 2 heures quotidiennes :</strong> Même exténué par votre poste actuel, réservez 60 à 120 minutes par jour pour bâtir votre propre infrastructure. Si vous avez consacré 10 ans à bâtir l'entreprise d'un autre, donnez-vous 3 à 5 ans pour la vôtre.
+          </span>
+        </div>
+        <div class="check-item">
+          <i class="ph-fill ph-compass check-icon"></i>
+          <span class="check-text">
+            <strong>Changez de perspective stratégique :</strong> Acceptez que la voie traditionnelle a atteint ses limites pour vous. Osez explorer des territoires où vous détenez 100 % de l'arbitrage et du pouvoir décisionnel.
+          </span>
+        </div>
+      </div>
+
+      <h2 id="section-7" class="reveal">Questions Fréquemment Posées (FAQ)</h2>
+      
+      <div class="reveal">
+        <details open>
+          <summary>Est-ce normal de se sentir coincé à 35 ans ?</summary>
+          <p>Absolument. C'est une prise de conscience universelle : le décalage entre les efforts colossaux fournis pendant 10 à 15 ans et les récompenses réelles distribuées par le modèle d'entreprise traditionnel.</p>
+        </details>
+
+        <details>
+          <summary>Comment sortir de cette stagnation sans prendre de risques fous ?</summary>
+          <p>La solution n'est pas de démissionner du jour au lendemain, mais de construire une seconde voie en parallèle (projet, compétences indépendantes) grâce à 1 ou 2 heures de travail quotidien focalisé.</p>
+        </details>
+
+        <details>
+          <summary>Le travail acharné ne suffit-il donc pas ?</summary>
+          <p>Le travail acharné est un carburant puissant, mais sans effet de levier ni contrôle sur vos décisions, il produit simplement de l'usure précoce sans garantir la liberté financière ou personnelle.</p>
+        </details>
+      </div>
+
+    </section>
+
+    <!-- Pied de page & Conclusion -->
+    <footer class="conclusion reveal">
+      <p>Avoir 35 ans et se sentir coincé n'est pas la fin d'une trajectoire. C'est le signal d'alarme nécessaire pour arrêter de déléguer son destin et commencer à bâtir ses propres règles.</p>
+      <p>Récupérez votre temps, cultivez une compétence rare et avancez chaque jour avec méthode.</p>
+      <div class="author-sign">
+        <i class="ph-fill ph-feather"></i> Rédigé pour ceux qui refusent l'inertie des compromis.
+      </div>
+    </footer>
+  </article>
+
+  <!-- Script interactif : Thème, Progression et Défilement fluide -->
+  <script>
+    // Barre de progression
+    window.addEventListener('scroll', () => {
+      const top = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progressBar').style.width = (top / height) * 100 + '%';
+    });
+
+    // Révélation progressive au défilement
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('active');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => obs.observe(el));
+
+    // Défilement doux de la table des matières
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) window.scrollTo({ top: target.offsetTop - 50, behavior: 'smooth' });
+      });
+    });
+
+    // Bascule de Thème (Clair / Sombre) avec mémorisation
+    const btn = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const stored = localStorage.getItem('theme');
+
+    if (stored) {
+      document.documentElement.setAttribute('data-theme', stored);
+      if (stored === 'dark') icon.classList.replace('ph-moon', 'ph-sun');
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      icon.classList.replace('ph-moon', 'ph-sun');
+    }
+
+    btn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme');
+      if (cur === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        icon.classList.replace('ph-sun', 'ph-moon');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        icon.classList.replace('ph-moon', 'ph-sun');
+      }
+    });
+  </script>
+</body>
+</html>
