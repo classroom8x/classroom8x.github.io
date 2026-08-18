@@ -5,13 +5,13 @@
   },
   "author": {
     "name": "Anuj Patel",
-    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+    "photo": "https://classroom8x.github.io/author/author.jpeg",
     "bio": "Writer, developer, and minimal living enthusiast. Exploring tech, mindfulness, and the beauty of slowing down in a fast-paced world.",
     "socials": [
-      { "name": "Twitter", "url": "https://twitter.com/", "icon": "twitter" },
-      { "name": "Instagram", "url": "https://instagram.com/", "icon": "instagram" },
-      { "name": "YouTube", "url": "https://youtube.com/", "icon": "youtube" },
-      { "name": "Email", "url": "mailto:anujpatel@example.com", "icon": "mail" }
+      { "name": "Twitter", "url": "https://x.com/byanujpatel", "icon": "twitter" },
+      { "name": "Instagram", "url": "https://instagram.com/anuj_patel__97", "icon": "instagram" },
+      { "name": "YouTube", "url": "https://www.youtube.com/@anuj_patel_32", "icon": "youtube" },
+      { "name": "Email", "url": "mailto:nk521760@gmail.com", "icon": "mail" }
     ]
   },
   "pages": [
@@ -23,157 +23,138 @@
     { "title": "DMCA", "url": "dmca.html" }
   ],
   "posts": [
-  {
-    "id": 1,
-    "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
-    "category": "Finances & Société",
-    "date": "2026-08-15",
-    "url": "https://classroom8x.github.io/ts",
-    "excerpt": "Travailler plus ne suffit plus : découvrez comment l'inflation des aspirations, le piège du statut et les mythes de l'investissement freinent silencieusement votre liberté financière."
-  },
-  {
-    "id": 2,
-    "title": "Pourquoi vous vous sentez bloqué à 35 ans",
-    "category": "Psychologie & Carrière",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/siki.html",
-    "excerpt": "Arrivé à l'âge de 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et le respect de toutes les règles établies."
-  },
-  {
-    "id": 3,
-    "title": "« Et si… ? » : 5 questions puissantes pour faire la paix avec les occasions manquées",
-    "category": "Philosophie & Sérénité",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/sakhiyo.html",
-    "excerpt": "Apprenez à transformer les fantômes du passé et les regrets de ce qui aurait pu être en une véritable énergie d'action bienveillante pour aujourd'hui."
-  },
-  {
-    "id": 4,
-    "title": "Pourquoi vous vous sentez bloqué à 35 ans · Guide Doux & Stratégique",
-    "category": "Psychologie & Carrière",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/rise.html",
-    "excerpt": "Comprendre le cycle en trois phases (« Étincelle », « Enthousiasme » et « Épuisement ») pour débloquer votre potentiel et sortir du mur de la trentaine."
-  },
-  {
-    "id": 5,
-    "title": "Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle",
-    "category": "Psychologie & Carrière",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/rimeno.html",
-    "excerpt": "Ce sentiment d'étouffement n'est pas un manque de talent, mais l'aboutissement logique d'un cycle professionnel dans lequel s'enferment les profils appliqués."
-  },
-  {
-    "id": 6,
-    "title": "Pourquoi tant d'hommes se sentent-ils « bloqués » à 30-35 ans ? (Et comment en sortir)",
-    "category": "Société & Carrière",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/riku2.html",
-    "excerpt": "Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques concrets pour bâtir sa propre liberté."
-  },
-  {
-    "id": 7,
-    "title": "The Quiet Art of Watering Plants Every Morning",
-    "category": "Rituals",
-    "date": "2026-08-10",
-    "url": "https://classroom8x.github.io/post1.html",
-    "excerpt": "There is a particular kind of quiet early in the morning when the only sound is water hitting soil, teaching us the silent power of patience."
-  },
-  {
-    "id": 8,
-    "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil",
-    "category": "Psychologie du travail",
-    "date": "2026-08-15",
-    "url": "https://classroom8x.github.io/noaia.html",
-    "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment retrouver la paix intérieure face aux doutes, à l'âge et à l'angoisse professionnelle."
-  },
-  {
-    "id": 9,
-    "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
-    "category": "Finance & Esprit",
-    "date": "2026-08-15",
-    "url": "https://classroom8x.github.io/middle-class-tips.html",
-    "excerpt": "Découvrez comment les réflexes inconscients, la course au statut social et les pièges d'épargne maintiennent la classe moyenne dans une stagnation perpétuelle."
-  },
-  {
-    "id": 10,
-    "title": "La Maîtrise de la Liberté Financière : Pourquoi l'école ne vous a jamais appris à gérer l'argent",
-    "category": "Éducation Financière",
-    "date": "2026-08-16",
-    "url": "https://classroom8x.github.io/maitrise.html",
-    "excerpt": "Comprendre les règles du jeu financier : distinction actif/passif, constitution d'un fonds d'urgence et gestion budgétaire avec la règle du 50/30/20."
-  },
-{
-    "id": 11,
-    "title": "Vous n'êtes pas votre carrière : cette angoisse invisible qui vole nos nuits",
-    "category": "Philosophie de Vie",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/sinu.html",
-    "excerpt": "Quand l'obsession de la trajectoire professionnelle finit par éclipser la beauté d'exister : pourquoi votre carrière n'est qu'un chapitre et non tout le livre de votre vie."
-  },
-  {
-    "id": 12,
-    "title": "La Jeunesse : Pourquoi elle n'est pas un problème, mais une possibilité infinie",
-    "category": "Philosophie & Sérénité",
-    "date": "2026-08-17",
-    "url": "https://classroom8x.github.io/siok.html",
-    "excerpt": "5 questions fondamentales pour naviguer dans vos doutes, faire la paix avec l'expérience des aînés et bâtir vos propres fondations avec passion."
-  },
     {
-  "id": 13,
-  "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil · Guide Doux",
-  "category": "Psychologie & Sommeil",
-  "date": "2026-08-17",
-  "url": "https://classroom8x.github.io/cumi.html",
-  "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment apaiser la panique de l'avenir pour retrouver des nuits paisibles."
-},
+      "id": 1,
+      "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+      "category": "Finances & Liberté",
+      "url": "https://classroom8x.github.io/ts",
+      "excerpt": "Travailler plus ne suffit plus : découvrez comment l'inflation des aspirations, le piège du statut et les mythes de l'investissement freinent silencieusement votre liberté financière."
+    },
     {
-    "id": 14,
-    "title": "L'Art de Dire Non : Protéger Votre Temps et Votre Énergie",
-    "category": "Mode de Vie & Bien-être",
-    "date": "2026-08-09",
-    "url": "https://classroom8x.github.io/post/p1",
-    "excerpt": "Dire oui à tout, c'est renoncer à sa tranquillité d'esprit : apprenez à fixer des limites saines pour préserver votre énergie."
-  },
-  {
-    "id": 15,
-    "title": "Créer un Espace de Travail Minimaliste qui Inspire la Créativité",
-    "category": "Pleine Conscience & Organisation",
-    "date": "2026-08-05",
-    "url": "https://classroom8x.github.io/post/p2",
-    "excerpt": "Un bureau en bois épuré, un carnet et zéro encombrement visuel pour libérer pleinement son esprit créatif."
-  },
-  {
-    "id": 16,
-    "title": "Pourquoi je Suis Revenu aux Livres Papier à l'Ère du Tout-Numérique",
-    "category": "Technologie & Réflexion",
-    "date": "2026-08-02",
-    "url": "https://classroom8x.github.io/post/p3",
-    "excerpt": "Si les écrans apportent l'information instantanée, les pages en papier offrent une véritable compréhension et un calme indispensable pour penser."
-  },
-  {
-    "id": 17,
-    "title": "Systèmes d'Exploitation Légers pour les PC Portables Anciens en 2026",
-    "category": "Technologie & Informatique",
-    "date": "2026-07-29",
-    "url": "https://classroom8x.github.io/post/p4",
-    "excerpt": "Comment redonner une seconde vie à votre ancien matériel informatique grâce à des distributions optimisées et des méthodes de travail légères."
-  },
-  {
-    "id": 18,
-    "title": "Marches Matinales sans Écouteurs : Se Connecter au Réveil de la Ville",
-    "category": "Productivité & Santé",
-    "date": "2026-07-25",
-    "url": "https://classroom8x.github.io/post/p5",
-    "excerpt": "Remplacer les podcasts et la musique par les bruits naturels de l'aube transforme radicalement la clarté d'esprit matinale."
-  },
-  {
-    "id": 19,
-    "title": "Le Pouvoir du Bilan du Soir : Clôturer Chaque Journée avec Clarté",
-    "category": "Rituels & Productivité",
-    "url": "https://classroom8x.github.io/post/p6",
-    "excerpt": "Une réflexion de cinq minutes chaque soir permet d'éviter l'épuisement professionnel et de préparer efficacement la journée du lendemain."
-  }
-    
-]
+      "id": 2,
+      "title": "Pourquoi vous vous sentez bloqué à 35 ans",
+      "category": "Carrière & Psychologie",
+      "url": "https://classroom8x.github.io/siki.html",
+      "excerpt": "Arrivé à l'âge de 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et le respect de toutes les règles établies."
+    },
+    {
+      "id": 3,
+      "title": "« Et si… ? » : 5 questions puissantes pour faire la paix avec les occasions manquées",
+      "category": "Philosophie & Sérénité",
+      "url": "https://classroom8x.github.io/sakhiyo.html",
+      "excerpt": "Apprenez à transformer les fantômes du passé et les regrets de ce qui aurait pu être en une véritable énergie d'action bienveillante pour aujourd'hui."
+    },
+    {
+      "id": 4,
+      "title": "Pourquoi vous vous sentez bloqué à 35 ans · Guide Doux & Stratégique",
+      "category": "Carrière & Psychologie",
+      "url": "https://classroom8x.github.io/rise.html",
+      "excerpt": "Comprendre le cycle en trois phases (« Étincelle », « Enthousiasme » et « Épuisement ») pour débloquer votre potentiel et sortir du mur de la trentaine."
+    },
+    {
+      "id": 5,
+      "title": "Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle",
+      "category": "Carrière & Psychologie",
+      "url": "https://classroom8x.github.io/rimeno.html",
+      "excerpt": "Ce sentiment d'étouffement n'est pas un manque de talent, mais l'aboutissement logique d'un cycle professionnel dans lequel s'enferment les profils appliqués."
+    },
+    {
+      "id": 6,
+      "title": "Pourquoi tant d'hommes se sentent-ils « bloqués » à 30-35 ans ? (Et comment en sortir)",
+      "category": "Carrière & Psychologie",
+      "url": "https://classroom8x.github.io/riku2.html",
+      "excerpt": "Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques concrets pour bâtir sa propre liberté."
+    },
+    {
+      "id": 7,
+      "title": "The Quiet Art of Watering Plants Every Morning",
+      "category": "Rituels & Bien-être",
+      "url": "https://classroom8x.github.io/post1.html",
+      "excerpt": "There is a particular kind of quiet early in the morning when the only sound is water hitting soil, teaching us the silent power of patience."
+    },
+    {
+      "id": 8,
+      "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil",
+      "category": "Carrière & Psychologie",
+      "url": "https://classroom8x.github.io/noaia.html",
+      "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment retrouver la paix intérieure face aux doutes, à l'âge et à l'angoisse professionnelle."
+    },
+    {
+      "id": 9,
+      "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+      "category": "Finances & Liberté",
+      "url": "https://classroom8x.github.io/middle-class-tips.html",
+      "excerpt": "Découvrez comment les réflexes inconscients, la course au statut social et les pièges d'épargne maintiennent la classe moyenne dans une stagnation perpétuelle."
+    },
+    {
+      "id": 10,
+      "title": "La Maîtrise de la Liberté Financière : Pourquoi l'école ne vous a jamais appris à gérer l'argent",
+      "category": "Finances & Liberté",
+      "url": "https://classroom8x.github.io/maitrise.html",
+      "excerpt": "Comprendre les règles du jeu financier : distinction actif/passif, constitution d'un fonds d'urgence et gestion budgétaire avec la règle du 50/30/20."
+    },
+    {
+      "id": 11,
+      "title": "Vous n'êtes pas votre carrière : cette angoisse invisible qui vole nos nuits",
+      "category": "Philosophie & Sérénité",
+      "url": "https://classroom8x.github.io/sinu.html",
+      "excerpt": "Quand l'obsession de la trajectoire professionnelle finit par éclipser la beauté d'exister : pourquoi votre carrière n'est qu'un chapitre et non tout le livre de votre vie."
+    },
+    {
+      "id": 12,
+      "title": "La Jeunesse : Pourquoi elle n'est pas un problème, mais une possibilité infinie",
+      "category": "Philosophie & Sérénité",
+      "url": "https://classroom8x.github.io/siok.html",
+      "excerpt": "5 questions fondamentales pour naviguer dans vos doutes, faire la paix avec l'expérience des aînés et bâtir vos propres fondations avec passion."
+    },
+    {
+      "id": 13,
+      "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil · Guide Doux",
+      "category": "Philosophie & Sérénité",
+      "url": "https://classroom8x.github.io/cumi.html",
+      "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment apaiser la panique de l'avenir pour retrouver des nuits paisibles."
+    },
+    {
+      "id": 14,
+      "title": "L'Art de Dire Non : Protéger Votre Temps et Votre Énergie",
+      "category": "Rituels & Bien-être",
+      "url": "https://classroom8x.github.io/post/p1",
+      "excerpt": "Dire oui à tout, c'est renoncer à sa tranquillité d'esprit : apprenez à fixer des limites saines pour préserver votre énergie."
+    },
+    {
+      "id": 15,
+      "title": "Créer un Espace de Travail Minimaliste qui Inspire la Créativité",
+      "category": "Technologie & Minimalisme",
+      "url": "https://classroom8x.github.io/post/p2",
+      "excerpt": "Un bureau en bois épuré, un carnet et zéro encombrement visuel pour libérer pleinement son esprit créatif."
+    },
+    {
+      "id": 16,
+      "title": "Pourquoi je Suis Revenu aux Livres Papier à l'Ère du Tout-Numérique",
+      "category": "Technologie & Minimalisme",
+      "url": "https://classroom8x.github.io/post/p3",
+      "excerpt": "Si les écrans apportent l'information instantanée, les pages en papier offrent une véritable compréhension et un calme indispensable pour penser."
+    },
+    {
+      "id": 17,
+      "title": "Systèmes d'Exploitation Légers pour les PC Portables Anciens en 2026",
+      "category": "Technologie & Minimalisme",
+      "url": "https://classroom8x.github.io/post/p4",
+      "excerpt": "Comment redonner une seconde vie à votre ancien matériel informatique grâce à des distributions optimisées et des méthodes de travail légères."
+    },
+    {
+      "id": 18,
+      "title": "Marches Matinales sans Écouteurs : Se Connecter au Réveil de la Ville",
+      "category": "Rituels & Bien-être",
+      "url": "https://classroom8x.github.io/post/p5",
+      "excerpt": "Remplacer les podcasts et la musique par les bruits naturels de l'aube transforme radicalement la clarté d'esprit matinale."
+    },
+    {
+      "id": 19,
+      "title": "Le Pouvoir du Bilan du Soir : Clôturer Chaque Journée avec Clarté",
+      "category": "Rituels & Bien-être",
+      "url": "https://classroom8x.github.io/post/p6",
+      "excerpt": "Une réflexion de cinq minutes chaque soir permet d'éviter l'épuisement professionnel et de préparer efficacement la journée du lendemain."
+    }
+  ]
 }
