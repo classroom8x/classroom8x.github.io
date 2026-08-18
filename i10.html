@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdant Notes — Slow thoughts on simple living</title>
+<meta name="description" content="A quiet corner of the internet for notes on plants, kitchens, and slow living.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f8f2;
+    --surface:#eaf1e3;
+    --card:#ffffff;
+    --green-deep:#1f3d2b;
+    --green:#3f7d4f;
+    --green-soft:#8fb996;
+    --green-pale:#dfead8;
+    --text:#28312a;
+    --text-muted:#66715f;
+    --border:#dbe6d3;
+    --highlight-bg:#ffe58f;
+    --highlight-text:#1f3d2b;
+    --shadow-sm: 0 2px 5px rgba(31,61,43,0.05);
+    --shadow-md: 0 6px 20px rgba(31,61,43,0.08);
+    --radius: 14px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="dark"]{
+    --bg:#111813;
+    --surface:#17221b;
+    --card:#1d2b22;
+    --green-deep:#e2ede4;
+    --green:#5ebb76;
+    --green-soft:#7fa987;
+    --green-pale:#24392b;
+    --text:#e4ede5;
+    --text-muted:#8ea693;
+    --border:#263c2e;
+    --highlight-bg:#4d6b24;
+    --highlight-text:#ffffff;
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.3);
+    --shadow-md: 0 6px 20px rgba(0,0,0,0.4);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .3s ease, color .3s ease;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  button{font:inherit;}
+
+  .site-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+  }
+
+  /* Reading Progress Bar */
+  #scrollProgress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:3.5px;
+    width:0%;
+    background:linear-gradient(90deg, var(--green-soft), var(--green));
+    z-index:100;
+    transition:width 0.1s linear;
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:40;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:12px 20px;
+    background:rgba(245,248,242,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    transition:background-color .3s ease, border-color .3s ease;
+  }
+  [data-theme="dark"] .topbar{
+    background:rgba(17,24,19,0.92);
+  }
+
+  .topbar-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+  }
+  .menu-btn, .icon-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:var(--card);
+    color:var(--green-deep);
+    cursor:pointer;
+    flex:none;
+    transition:var(--transition);
+  }
+  .menu-btn:hover, .icon-btn:hover{background:var(--green-pale);}
+  .menu-btn span{
+    display:block;
+    width:16px;
+    height:2px;
+    margin:2px auto;
+    background:var(--green-deep);
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .menu-btn.active span:nth-child(2){opacity:0;}
+  .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+  }
+  .brand-icon{
+    width:30px;height:30px;
+    flex:none;
+    color:var(--green);
+  }
+  .brand-text .site-name{
+    font-size:1.2rem;
+    color:var(--green-deep);
+    white-space:nowrap;
+  }
+  .brand-text .tagline{
+    font-size:0.72rem;
+    color:var(--text-muted);
+    letter-spacing:.02em;
+    white-space:nowrap;
+  }
+
+  .topbar-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .search-wrap{
+    position:relative;
+    width:min(260px, 35vw);
+    flex:none;
+  }
+  .search-wrap .search-icon{
+    position:absolute;
+    left:11px;
+    top:50%;
+    transform:translateY(-50%);
+    width:15px;height:15px;
+    color:var(--text-muted);
+    pointer-events:none;
+  }
+  .search-kbd{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:0.7rem;
+    background:var(--green-pale);
+    color:var(--green-deep);
+    padding:2px 6px;
+    border-radius:6px;
+    font-weight:600;
+    pointer-events:none;
+  }
+  .search-clear{
+    position:absolute;
+    right:8px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:var(--text-muted);
+    cursor:pointer;
+    padding:4px;
+    display:none;
+    border-radius:50%;
+  }
+  .search-clear:hover{color:var(--green-deep);}
+  #searchInput{
+    width:100%;
+    padding:8px 34px 8px 34px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    font-size:0.86rem;
+    outline:none;
+    transition:var(--transition);
+  }
+  #searchInput:focus{
+    border-color:var(--green-soft);
+    box-shadow:0 0 0 3px var(--green-pale);
+  }
+
+  /* ---------- Sidebar ---------- */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,25,18,0.45);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:45;
+  }
+  .overlay.show{opacity:1;pointer-events:auto;}
+
+  .sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:280px;
+    background:var(--surface);
+    border-right:1px solid var(--border);
+    transform:translateX(-100%);
+    transition:transform .25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 20px;
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar-nav{
+    padding:16px 12px;
+    overflow-y:auto;
+    flex:1;
+  }
+  .sidebar-nav .section-label, .sidebar-footer .section-label{
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--text-muted);
+    padding:8px 12px 6px;
+    font-weight:600;
+  }
+  .sidebar-nav a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:9px 12px;
+    border-radius:9px;
+    font-size:0.92rem;
+    color:var(--green-deep);
+    font-weight:500;
+    transition:var(--transition);
+  }
+  .sidebar-nav a:hover, .sidebar-nav a.active{background:var(--green-pale);}
+  .sidebar-footer{
+    border-top:1px solid var(--border);
+    padding:14px 12px 18px;
+  }
+  .sidebar-footer a{
+    display:block;
+    padding:6px 12px;
+    font-size:0.84rem;
+    color:var(--text-muted);
+    border-radius:7px;
+  }
+  .sidebar-footer a:hover{background:var(--green-pale); color:var(--green-deep);}
+
+  /* ---------- Layout ---------- */
+  .layout{
+    max-width:1180px;
+    margin:0 auto;
+    padding:32px 20px 60px;
+    display:grid;
+    grid-template-columns:minmax(0,720px) 300px;
+    gap:48px;
+    justify-content:center;
+  }
+
+  .feed-controls{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .chips-list{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding:2px 0;
+  }
+  .chips-list::-webkit-scrollbar{display:none;}
+  .chip{
+    padding:6px 14px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    font-size:0.82rem;
+    color:var(--text-muted);
+    font-weight:500;
+    cursor:pointer;
+    transition:var(--transition);
+    white-space:nowrap;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .chip:hover, .chip.active{
+    background:var(--green-deep);
+    color:var(--bg);
+    border-color:var(--green-deep);
+  }
+
+  .sort-select{
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:6px 10px;
+    border-radius:12px;
+    font-size:0.82rem;
+    outline:none;
+    cursor:pointer;
+  }
+
+  /* ---------- Post Cards ---------- */
+  .post-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+    margin-bottom:18px;
+    box-shadow:var(--shadow-sm);
+    transition:var(--transition);
+  }
+  .post-card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-md);
+    border-color:var(--green-soft);
+  }
+  .card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .post-meta{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    font-size:0.78rem;
+    color:var(--text-muted);
+  }
+  .cat-pill{
+    background:var(--green-pale);
+    color:var(--green-deep);
+    padding:3px 9px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:0.75rem;
+    cursor:pointer;
+    transition:var(--transition);
+  }
+  .cat-pill:hover{background:var(--green); color:#fff;}
+  .post-actions{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .action-btn{
+    background:transparent;
+    border:none;
+    color:var(--text-muted);
+    padding:6px;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:var(--transition);
+  }
+  .action-btn:hover{background:var(--green-pale); color:var(--green-deep);}
+  .action-btn.saved{color:#e6a23c;}
+  .action-btn svg{width:16px;height:16px;}
+
+  .post-card h2{
+    margin:0 0 8px;
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    line-height:1.35;
+  }
+  .post-card h2 a{color:var(--green-deep); transition:color .2s;}
+  .post-card h2 a:hover{color:var(--green);}
+  .post-card p{
+    margin:0;
+    color:var(--text-muted);
+    font-size:0.94rem;
+    line-height:1.6;
+  }
+
+  /* Search Highlight */
+  mark.highlight{
+    background:var(--highlight-bg);
+    color:var(--highlight-text);
+    padding:0 3px;
+    border-radius:3px;
+    font-weight:inherit;
+  }
+
+  /* Skeletons */
+  .skeleton-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+    margin-bottom:18px;
+  }
+  .skeleton{
+    background:linear-gradient(90deg, var(--surface) 25%, var(--bg) 50%, var(--surface) 75%);
+    background-size:200% 100%;
+    animation:shimmer 1.5s infinite;
+    border-radius:6px;
+  }
+  @keyframes shimmer{0%{background-position:200% 0;} 100%{background-position:-200% 0;}}
+
+  /* Aside Widgets */
+  .aside{display:flex;flex-direction:column;gap:22px;}
+  .author-card, .newsletter-card, .categories-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:var(--shadow-sm);
+  }
+  .author-card{text-align:center;}
+  .author-card img{
+    width:76px;height:76px;
+    border-radius:50%;
+    margin:0 auto 12px;
+    object-fit:cover;
+    border:3px solid var(--green-pale);
+  }
+  .author-card h3{font-family:'Fraunces', serif; font-size:1.15rem; margin:0 0 6px; color:var(--green-deep);}
+  .author-card p{font-size:0.86rem; color:var(--text-muted); margin:0 0 14px;}
+  .socials{display:flex; justify-content:center; gap:8px;}
+  .socials a{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--green-pale);color:var(--green-deep);
+    display:flex;align-items:center;justify-content:center;
+    transition:var(--transition);
+  }
+  .socials a:hover{background:var(--green);color:#fff;}
+  .socials svg{width:15px;height:15px;}
+
+  .newsletter-card h4{margin:0 0 6px; font-family:'Fraunces', serif; font-size:1.05rem; color:var(--green-deep);}
+  .newsletter-card p{font-size:0.84rem; color:var(--text-muted); margin:0 0 12px;}
+  .newsletter-form{display:flex; flex-direction:column; gap:8px;}
+  .newsletter-input{
+    padding:9px 12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    font-size:0.86rem;
+    outline:none;
+  }
+  .newsletter-btn{
+    padding:9px;
+    border-radius:10px;
+    background:var(--green-deep);
+    color:var(--bg);
+    border:none;
+    font-weight:600;
+    font-size:0.85rem;
+    cursor:pointer;
+    transition:var(--transition);
+  }
+  .newsletter-btn:hover{background:var(--green); color:#fff;}
+
+  .categories-card h4{font-size:0.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin:0 0 12px;}
+  .categories-card ul li{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dashed var(--border); font-size:0.88rem;}
+  .categories-card ul li:last-child{border-bottom:none;}
+  .categories-card .count{background:var(--surface); color:var(--text-muted); font-size:0.75rem; font-weight:600; padding:2px 8px; border-radius:10px;}
+
+  /* Toast Notification */
+  .toast{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%) translateY(100px);
+    background:var(--green-deep);
+    color:var(--bg);
+    padding:10px 20px;
+    border-radius:30px;
+    font-size:0.88rem;
+    font-weight:500;
+    box-shadow:var(--shadow-md);
+    opacity:0;
+    pointer-events:none;
+    transition:transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    z-index:90;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0); opacity:1;}
+
+  /* Back to Top */
+  .back-to-top{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    width:42px;height:42px;
+    background:var(--green-deep);
+    color:var(--bg);
+    border-radius:50%;
+    border:none;
+    box-shadow:var(--shadow-md);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(10px);
+    transition:var(--transition);
+    z-index:35;
+  }
+  .back-to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .back-to-top:hover{background:var(--green); transform:translateY(-3px);}
+
+  #sentinel{height:1px;}
+  .loader{display:none; align-items:center; justify-content:center; gap:8px; padding:20px; color:var(--text-muted); font-size:0.86rem;}
+  .loader.show{display:flex;}
+  .leaf-spin{width:16px;height:16px;color:var(--green);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .empty-state{
+    text-align:center;
+    padding:50px 20px;
+    background:var(--card);
+    border:1px dashed var(--border);
+    border-radius:var(--radius);
+    color:var(--text-muted);
+  }
+  .reset-btn{
+    margin-top:12px;
+    padding:8px 18px;
+    background:var(--green-pale);
+    color:var(--green-deep);
+    border:1px solid var(--border);
+    border-radius:20px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .reset-btn:hover{background:var(--green); color:#fff;}
+
+  footer.site-footer{text-align:center; padding:30px 20px 45px; color:var(--text-muted); font-size:0.84rem; border-top:1px solid var(--border);}
+
+  @media (max-width:920px){
+    .layout{grid-template-columns:1fr; padding:20px 16px 40px;}
+    .aside{display:none;}
+  }
+  @media (max-width:640px){
+    .search-wrap{width:min(150px, 40vw);}
+    .search-kbd{display:none;}
+    .brand-text .tagline{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+<div class="overlay" id="overlay"></div>
+<div class="toast" id="toast">Message</div>
+
+<aside class="sidebar" id="sidebar" aria-label="Site menu">
+  <div class="sidebar-head">
+    <span class="site-name" style="color:var(--green-deep); font-size:1.1rem;">Menu</span>
+    <button class="icon-btn" id="sidebarClose" aria-label="Close menu">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="section-label">Browse</div>
+    <a href="#" data-cat="all" class="active">All Notes</a>
+    <a href="#" id="sidebarSavedLink">Saved Notes <span class="count" id="sidebarSavedCount">0</span></a>
+    <div class="section-label" id="sidebarCategoriesLabel" style="display:none;">Categories</div>
+    <div id="sidebarCategories"></div>
+  </nav>
+  <div class="sidebar-footer" id="sidebarFooter">
+    <div class="section-label">Important Pages</div>
+  </div>
+</aside>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="brand">
+      <svg class="brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 6C13 6 7 15 7 24c0 9 6 18 17 18 9 0 15-7 15-17C39 14 33 6 24 6Z" fill="var(--green-pale)"/>
+        <path d="M24 40c0-14 0-22 12-30" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M24 40c0-11-4-17-12-22" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-text">
+        <span class="site-name" id="siteNameText">Verdant Notes</span>
+        <span class="tagline" id="siteTaglineText">Slow thoughts on simple living</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="topbar-right">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+      <input type="search" id="searchInput" placeholder="Search..." aria-label="Search notes">
+      <span class="search-kbd" id="searchKbd">/</span>
+      <button class="search-clear" id="searchClear" aria-label="Clear search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main class="layout">
+  <section>
+    <div class="feed-controls">
+      <div class="chips-list" id="chipsList">
+        <button class="chip active" data-cat="all">All Notes</button>
+        <button class="chip" id="savedChip">🔖 Saved (<span id="savedChipCount">0</span>)</button>
+      </div>
+
+      <select class="sort-select" id="sortSelect" aria-label="Sort posts">
+        <option value="latest">Sort: Latest</option>
+        <option value="oldest">Sort: Oldest</option>
+        <option value="quick">Quick Reads (&lt; 3 min)</option>
+      </select>
+    </div>
+
+    <ul id="postList">
+      <li class="skeleton-card"><div class="skeleton" style="width:120px;height:16px;margin-bottom:12px;"></div><div class="skeleton" style="width:70%;height:22px;margin-bottom:12px;"></div><div class="skeleton" style="width:100%;height:16px;margin-bottom:6px;"></div><div class="skeleton" style="width:50%;height:16px;"></div></li>
+      <li class="skeleton-card"><div class="skeleton" style="width:90px;height:16px;margin-bottom:12px;"></div><div class="skeleton" style="width:80%;height:22px;margin-bottom:12px;"></div><div class="skeleton" style="width:100%;height:16px;margin-bottom:6px;"></div><div class="skeleton" style="width:40%;height:16px;"></div></li>
+    </ul>
+
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div>No notes found for your selection.</div>
+      <button class="reset-btn" id="resetBtn">Clear Filters</button>
+    </div>
+
+    <div id="sentinel"></div>
+    <div class="loader" id="loader">
+      <svg class="leaf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c5 0 9 4 9 9-5 0-9-4-9-9Z"/><path d="M12 21c-5 0-9-4-9-9 5 0 9 4 9 9Z"/></svg>
+      Loading more notes…
+    </div>
+  </section>
+
+  <aside class="aside">
+    <div class="author-card">
+      <img id="authorPhoto" src="" alt="">
+      <h3 id="authorName"></h3>
+      <p id="authorBio"></p>
+      <div class="socials" id="authorSocials"></div>
+    </div>
+
+    <div class="newsletter-card">
+      <h4>Letters from the garden</h4>
+      <p>Slow thoughts & monthly plant recipes straight to your inbox.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed! Thank you.'); this.reset();">
+        <input type="email" required placeholder="your.email@domain.com" class="newsletter-input">
+        <button type="submit" class="newsletter-btn">Join Letter</button>
+      </form>
+    </div>
+
+    <div class="categories-card" id="categoriesCard" style="display:none;">
+      <h4>Categories</h4>
+      <ul id="categoriesList"></ul>
+    </div>
+  </aside>
+</main>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<footer class="site-footer" id="siteFooter">
+  © <span id="year"></span> Verdant Notes. All rights reserved.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const PAGE_SIZE = 8;
+  const state = {
+    allPosts: [],
+    filtered: [],
+    rendered: 0,
+    query: "",
+    selectedCat: "all",
+    sortBy: "latest",
+    showSavedOnly: false,
+    savedIds: new Set(JSON.parse(localStorage.getItem('verdant_saved') || '[]'))
+  };
+
+  const socialIcons = {
+    twitter: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4a4.1 4.1 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2Z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.8 2.8 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.8 2.8 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.8 2.8 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.8 2.8 0 0 0 2-2C22 15.2 22 12 22 12Z"/><path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="var(--card)"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>'
+  };
+
+  /* ---------- Toast helper ---------- */
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+  window.showToast = showToast;
+
+  /* ---------- Helpers ---------- */
+  function escapeHtml(str){
+    return String(str || '').replace(/[&<>"']/g, s => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[s]));
+  }
+
+  function highlightText(text, query){
+    if(!query || !text) return escapeHtml(text);
+    const escapedText = escapeHtml(text);
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    return escapedText.replace(regex, '<mark class="highlight">$1</mark>');
+  }
+
+  function formatDate(iso){
+    if(!iso) return '';
+    const d = new Date(iso + "T00:00:00");
+    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  }
+
+  function calculateReadTime(text){
+    const words = (text || '').trim().split(/\s+/).length;
+    const minutes = Math.max(1, Math.ceil(words / 40));
+    return `${minutes} min read`;
+  }
+
+  /* ---------- Theme Management ---------- */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const savedTheme = localStorage.getItem('verdant_theme') || 
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('verdant_theme', theme);
+    if(theme === 'dark'){
+      themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+    } else {
+      themeIcon.innerHTML = '<path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>';
+    }
+  }
+  applyTheme(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---------- Progress Bar ---------- */
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scrollProgress').style.width = (scrolled || 0) + "%";
+
+    // Back to top button
+    const btt = document.getElementById('backToTop');
+    if(winScroll > 400){ btt.classList.add('show'); } else { btt.classList.remove('show'); }
+  });
+
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ---------- Bookmarks System ---------- */
+  function updateSavedCount(){
+    const count = state.savedIds.size;
+    document.getElementById('savedChipCount').textContent = count;
+    document.getElementById('sidebarSavedCount').textContent = count;
+  }
+
+  function toggleSavePost(id, e){
+    if(e) e.stopPropagation();
+    const strId = String(id);
+    if(state.savedIds.has(strId)){
+      state.savedIds.delete(strId);
+      showToast("Note removed from saved list");
+    } else {
+      state.savedIds.add(strId);
+      showToast("Note saved for offline reading ✨");
+    }
+    localStorage.setItem('verdant_saved', JSON.stringify([...state.savedIds]));
+    updateSavedCount();
+    applyFilters();
+  }
+
+  /* ---------- Share System ---------- */
+  function sharePost(title, url, e){
+    if(e) e.stopPropagation();
+    const fullUrl = new URL(url, window.location.href).href;
+    if(navigator.share){
+      navigator.share({ title: title, url: fullUrl }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        showToast("Link copied to clipboard! 📋");
+      }).catch(() => {
+        showToast("Failed to copy link");
+      });
+    }
+  }
+
+  /* ---------- Render Functions ---------- */
+  function renderSite(data){
+    if(!data || !data.site) return;
+    document.getElementById('siteNameText').textContent = data.site.name;
+    document.getElementById('siteTaglineText').textContent = data.site.tagline;
+    document.title = data.site.name + " — " + data.site.tagline;
+    document.getElementById('siteFooter').innerHTML =
+      "© <span id='year'></span> " + escapeHtml(data.site.name) + ". All rights reserved.";
+    document.getElementById('year').textContent = new Date().getFullYear();
+  }
+
+  function renderAuthor(author){
+    if(!author) return;
+    document.getElementById('authorPhoto').src = author.photo || '';
+    document.getElementById('authorPhoto').alt = author.name || '';
+    document.getElementById('authorName').textContent = author.name || '';
+    document.getElementById('authorBio').textContent = author.bio || '';
+    const wrap = document.getElementById('authorSocials');
+    wrap.innerHTML = (author.socials || []).map(s =>
+      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" aria-label="${escapeHtml(s.name)}">${socialIcons[s.icon] || ''}</a>`
+    ).join('');
+  }
+
+  function renderFooterPages(pages){
+    if(!pages) return;
+    const el = document.getElementById('sidebarFooter');
+    pages.forEach(p => {
+      const a = document.createElement('a');
+      a.href = p.url;
+      a.textContent = p.title;
+      el.appendChild(a);
+    });
+  }
+
+  function renderCategories(posts){
+    const counts = {};
+    posts.forEach(p => { 
+      if(p.category) counts[p.category] = (counts[p.category] || 0) + 1; 
+    });
+    const cats = Object.keys(counts).sort();
+    if(!cats.length) return;
+
+    // Sidebar
+    const list = document.getElementById('categoriesList');
+    list.innerHTML = cats.map(c =>
+      `<li><a href="#" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</a><span class="count">${counts[c]}</span></li>`
+    ).join('');
+    document.getElementById('categoriesCard').style.display = 'block';
+
+    const sideLabel = document.getElementById('sidebarCategoriesLabel');
+    const sideWrap = document.getElementById('sidebarCategories');
+    sideLabel.style.display = 'block';
+    sideWrap.innerHTML = cats.map(c =>
+      `<a href="#" data-cat="${escapeHtml(c)}"><span>${escapeHtml(c)}</span> <span>${counts[c]}</span></a>`
+    ).join('');
+
+    // Quick chips
+    const chipsList = document.getElementById('chipsList');
+    const savedChip = document.getElementById('savedChip');
+    cats.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.dataset.cat = c;
+      btn.textContent = `${c} (${counts[c]})`;
+      chipsList.insertBefore(btn, savedChip);
+    });
+  }
+
+  function postCardHtml(post){
+    const isSaved = state.savedIds.has(String(post.id || post.url));
+    const titleHighlighted = highlightText(post.title, state.query);
+    const excerptHighlighted = highlightText(post.excerpt, state.query);
+    const readTime = calculateReadTime(post.excerpt || post.title);
+
+    return `
+      <li class="post-card">
+        <div class="card-top">
+          <div class="post-meta">
+            ${post.category ? `<span class="cat-pill" data-cat="${escapeHtml(post.category)}">${escapeHtml(post.category)}</span>` : ''}
+            <span>•</span>
+            <span>${formatDate(post.date)}</span>
+            <span>•</span>
+            <span>${readTime}</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn ${isSaved ? 'saved' : ''}" onclick="window.__toggleSave('${escapeHtml(post.id || post.url)}', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="window.__sharePost('${escapeHtml(post.title)}', '${escapeHtml(post.url)}', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="${escapeHtml(post.url)}">${titleHighlighted}</a></h2>
+        <p>${excerptHighlighted}</p>
+      </li>`;
+  }
+
+  window.__toggleSave = toggleSavePost;
+  window.__sharePost = sharePost;
+
+  function renderNextBatch(){
+    const list = document.getElementById('postList');
+    const empty = document.getElementById('emptyState');
+    const next = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
+
+    if(state.rendered === 0){ list.innerHTML = ""; }
+    if(state.filtered.length === 0){
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      list.insertAdjacentHTML('beforeend', next.map(postCardHtml).join(''));
+    }
+    state.rendered += next.length;
+
+    // Active chip highlight
+    document.querySelectorAll('[data-cat]').forEach(el => {
+      el.classList.toggle('active', !state.showSavedOnly && el.dataset.cat === state.selectedCat);
+    });
+    document.getElementById('savedChip').classList.toggle('active', state.showSavedOnly);
+  }
+
+  /* ---------- Filtering & Sorting ---------- */
+  function applyFilters(){
+    const q = state.query.toLowerCase();
+
+    state.filtered = state.allPosts.filter(p => {
+      const isSaved = state.savedIds.has(String(p.id || p.url));
+      if(state.showSavedOnly && !isSaved) return false;
+
+      const title = (p.title || '').toLowerCase();
+      const excerpt = (p.excerpt || '').toLowerCase();
+      const matchesQuery = !q || title.includes(q) || excerpt.includes(q);
+      const matchesCat = state.showSavedOnly || !state.selectedCat || state.selectedCat === 'all' || p.category === state.selectedCat;
+
+      return matchesQuery && matchesCat;
+    });
+
+    // Sorting
+    if(state.sortBy === 'latest'){
+      state.filtered.sort((a,b) => new Date(b.date) - new Date(a.date));
+    } else if(state.sortBy === 'oldest'){
+      state.filtered.sort((a,b) => new Date(a.date) - new Date(b.date));
+    } else if(state.sortBy === 'quick'){
+      state.filtered = state.filtered.filter(p => {
+        const words = (p.excerpt || p.title || '').trim().split(/\s+/).length;
+        return Math.ceil(words / 40) <= 2;
+      });
+    }
+
+    state.rendered = 0;
+    renderNextBatch();
+  }
+
+  /* ---------- Keyboard Shortcuts ---------- */
+  document.addEventListener('keydown', (e) => {
+    // Focus search on '/' or 'Ctrl+K' / 'Cmd+K'
+    if((e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') ||
+       ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')){
+      e.preventDefault();
+      document.getElementById('searchInput').focus();
+    }
+    // Escape key
+    if(e.key === 'Escape'){
+      document.getElementById('searchInput').blur();
+      closeSidebar();
+    }
+  });
+
+  /* ---------- Search & Clear ---------- */
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+  const searchKbd = document.getElementById('searchKbd');
+
+  let debounceTimer;
+  searchInput.addEventListener('input', (e) => {
+    const val = e.target.value;
+    searchClear.style.display = val ? 'block' : 'none';
+    searchKbd.style.display = val ? 'none' : 'block';
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      state.query = val.trim();
+      applyFilters();
+    }, 150);
+  });
+
+  searchClear.addEventListener('click', () => {
+    searchInput.value = "";
+    state.query = "";
+    searchClear.style.display = 'none';
+    searchKbd.style.display = 'block';
+    applyFilters();
+    searchInput.focus();
+  });
+
+  /* ---------- Event Listeners ---------- */
+  document.getElementById('sortSelect').addEventListener('change', (e) => {
+    state.sortBy = e.target.value;
+    applyFilters();
+  });
+
+  document.getElementById('savedChip').addEventListener('click', () => {
+    state.showSavedOnly = !state.showSavedOnly;
+    applyFilters();
+  });
+
+  document.getElementById('sidebarSavedLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    state.showSavedOnly = true;
+    closeSidebar();
+    applyFilters();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  document.addEventListener('click', (e) => {
+    const catLink = e.target.closest('[data-cat]');
+    if(catLink){
+      e.preventDefault();
+      state.showSavedOnly = false;
+      state.selectedCat = catLink.dataset.cat;
+      closeSidebar();
+      applyFilters();
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    searchInput.value = "";
+    state.query = "";
+    state.selectedCat = "all";
+    state.showSavedOnly = false;
+    state.sortBy = "latest";
+    document.getElementById('sortSelect').value = "latest";
+    searchClear.style.display = 'none';
+    searchKbd.style.display = 'block';
+    applyFilters();
+  });
+
+  /* ---------- Infinite scroll ---------- */
+  const loader = document.getElementById('loader');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting && state.rendered < state.filtered.length){
+        loader.classList.add('show');
+        setTimeout(() => {
+          renderNextBatch();
+          loader.classList.remove('show');
+        }, 180);
+      }
+    });
+  }, { rootMargin: '200px' });
+  observer.observe(document.getElementById('sentinel'));
+
+  /* ---------- Sidebar toggle ---------- */
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const menuBtn = document.getElementById('menuBtn');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+    menuBtn.classList.add('active');
+    menuBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+    menuBtn.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  menuBtn.addEventListener('click', () => {
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+  });
+  overlay.addEventListener('click', closeSidebar);
+  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+
+  /* ---------- Load data ---------- */
+  updateSavedCount();
+
+  fetch('data.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(res => {
+      if(!res.ok) throw new Error('Network error');
+      return res.json();
+    })
+    .then(data => {
+      const rawPosts = Array.isArray(data) ? data : (data.posts || []);
+
+      const sortedPosts = [...rawPosts].sort((a, b) => {
+        if (a.id && b.id) return b.id - a.id;
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      renderSite(data);
+      renderAuthor(data.author);
+      renderFooterPages(data.pages);
+      renderCategories(sortedPosts);
+
+      state.allPosts = sortedPosts;
+      applyFilters();
+    })
+    .catch(err => {
+      document.getElementById('postList').innerHTML =
+        `<li class="empty-state" style="display:block;">
+          Failed to load <code>data.json</code>. Please ensure you are running through a local web server (e.g. <code>python3 -m http.server</code>).
+        </li>`;
+      console.error(err);
+    });
+})();
+</script>
+</body>
+</html>
