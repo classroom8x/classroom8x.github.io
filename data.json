@@ -126,7 +126,55 @@
   "date": "2026-08-17",
   "url": "https://classroom8x.github.io/cumi.html",
   "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment apaiser la panique de l'avenir pour retrouver des nuits paisibles."
-}
+},
+    {
+    "id": 14,
+    "title": "L'Art de Dire Non : Protéger Votre Temps et Votre Énergie",
+    "category": "Mode de Vie & Bien-être",
+    "date": "2026-08-09",
+    "url": "https://classroom8x.github.io/post/p1",
+    "excerpt": "Dire oui à tout, c'est renoncer à sa tranquillité d'esprit : apprenez à fixer des limites saines pour préserver votre énergie."
+  },
+  {
+    "id": 15,
+    "title": "Créer un Espace de Travail Minimaliste qui Inspire la Créativité",
+    "category": "Pleine Conscience & Organisation",
+    "date": "2026-08-05",
+    "url": "https://classroom8x.github.io/post/p2",
+    "excerpt": "Un bureau en bois épuré, un carnet et zéro encombrement visuel pour libérer pleinement son esprit créatif."
+  },
+  {
+    "id": 16,
+    "title": "Pourquoi je Suis Revenu aux Livres Papier à l'Ère du Tout-Numérique",
+    "category": "Technologie & Réflexion",
+    "date": "2026-08-02",
+    "url": "https://classroom8x.github.io/post/p3",
+    "excerpt": "Si les écrans apportent l'information instantanée, les pages en papier offrent une véritable compréhension et un calme indispensable pour penser."
+  },
+  {
+    "id": 17,
+    "title": "Systèmes d'Exploitation Légers pour les PC Portables Anciens en 2026",
+    "category": "Technologie & Informatique",
+    "date": "2026-07-29",
+    "url": "https://classroom8x.github.io/post/p4",
+    "excerpt": "Comment redonner une seconde vie à votre ancien matériel informatique grâce à des distributions optimisées et des méthodes de travail légères."
+  },
+  {
+    "id": 18,
+    "title": "Marches Matinales sans Écouteurs : Se Connecter au Réveil de la Ville",
+    "category": "Productivité & Santé",
+    "date": "2026-07-25",
+    "url": "https://classroom8x.github.io/post/p5",
+    "excerpt": "Remplacer les podcasts et la musique par les bruits naturels de l'aube transforme radicalement la clarté d'esprit matinale."
+  },
+  {
+    "id": 19,
+    "title": "Le Pouvoir du Bilan du Soir : Clôturer Chaque Journée avec Clarté",
+    "category": "Rituels & Productivité",
+    "date": "2026-07-20",
+    "url": "https://classroom8x.github.io/post/p6",
+    "excerpt": "Une réflexion de cinq minutes chaque soir permet d'éviter l'épuisement professionnel et de préparer efficacement la journée du lendemain."
+  }
     
 ]
 }
