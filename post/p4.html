@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ : L'Anatomie du Logement Abordable Régulé • Life Sutras</title>
+  
+  <!-- Polices Google : Space Grotesk (Architecturale & Moderne) + Manrope (Lisibilité Suisse) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       VARIABLES : NORDIC BLUEPRINT (CLAIR, GÉOMÉTRIQUE & PRÉCIS)
+       ========================================================== */
+    :root {
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Manrope', -apple-system, sans-serif;
+
+      --bg-canvas: #F4F6F9;
+      --surface: #FFFFFF;
+      --surface-subtle: #EEF2F6;
+      
+      --ink-black: #0F172A;
+      --ink-muted: #475569;
+      --ink-light: #94A3B8;
+
+      /* Accents Blueprint & Signal */
+      --blueprint-blue: #1D4ED8;
+      --blueprint-soft: #EFF6FF;
+      --blueprint-border: #BFDBFE;
+
+      --signal-orange: #EA580C;
+      --signal-soft: #FFF7ED;
+      --signal-border: #FED7AA;
+
+      --emerald-accent: #059669;
+      --emerald-soft: #ECFDF5;
+
+      --line-color: #E2E8F0;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      
+      --shadow-blueprint: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+      --shadow-hover: 0 12px 28px -4px rgba(29, 78, 216, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--ink-black);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grille de fond style papier millimétré architectural */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Barre de progression Blueprint */
+    #progress-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--blueprint-blue);
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    /* ==========================================================
+       NAVIGATION STYLE FICHE TECHNIQUE
+       ========================================================== */
+    .top-header {
+      max-width: 920px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .blueprint-nav {
+      background: var(--surface);
+      border: 1px solid var(--line-color);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-blueprint);
+    }
+
+    .nav-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-code {
+      background: var(--blueprint-soft);
+      color: var(--blueprint-blue);
+      border: 1px solid var(--blueprint-border);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .nav-btn {
+      background: var(--ink-black);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--blueprint-blue);
+    }
+
+    /* ==========================================================
+       HERO EDITORIAL
+       ========================================================== */
+    .hero-section {
+      max-width: 920px;
+      margin: 48px auto 36px;
+      padding: 0 24px;
+    }
+
+    .doc-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--signal-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink-black);
+      margin-bottom: 20px;
+    }
+
+    .doc-lead {
+      font-size: 1.25rem;
+      color: var(--ink-muted);
+      max-width: 760px;
+      line-height: 1.65;
+    }
+
+    /* ==========================================================
+       MAIN CONTENT CONTAINER
+       ========================================================== */
+    .content-wrapper {
+      max-width: 920px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .blueprint-card {
+      background: var(--surface);
+      border: 1px solid var(--line-color);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 5vw, 50px);
+      box-shadow: var(--shadow-blueprint);
+    }
+
+    .intro-summary-box {
+      background: var(--blueprint-soft);
+      border: 1px solid var(--blueprint-border);
+      border-left: 4px solid var(--blueprint-blue);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin-bottom: 36px;
+      font-size: 1.1rem;
+      color: var(--ink-black);
+    }
+
+    /* ==========================================================
+       ACCORDION FAQ (LES 7 QUESTIONS FONDAMENTALES)
+       ========================================================== */
+    .faq-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 36px 0;
+    }
+
+    .faq-item {
+      border: 1px solid var(--line-color);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--blueprint-border);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .faq-trigger {
+      width: 100%;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--ink-black);
+      gap: 16px;
+    }
+
+    .faq-number {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--blueprint-blue);
+      background: var(--blueprint-soft);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--blueprint-border);
+    }
+
+    .faq-icon {
+      font-size: 1.4rem;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      color: var(--ink-muted);
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      color: var(--signal-orange);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #FAFCFE;
+      border-top: 1px solid transparent;
+    }
+
+    .faq-item.active .faq-content {
+      border-top-color: var(--line-color);
+      max-height: 800px;
+    }
+
+    .faq-body-text {
+      padding: 24px;
+      color: var(--ink-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .faq-body-text strong {
+      color: var(--ink-black);
+    }
+
+    /* ==========================================================
+       WIDGET INTERACTIF : ÉCHÉANCIER DE PAIEMENT EN DIRECT
+       ========================================================== */
+    .schedule-widget {
+      background: #FAFCFE;
+      border: 2px solid var(--blueprint-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 4vw, 36px);
+      margin: 48px 0;
+    }
+
+    .widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .widget-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink-black);
+    }
+
+    .price-selector {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line-color);
+    }
+
+    .price-selector input {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      width: 110px;
+      border: none;
+      outline: none;
+      color: var(--blueprint-blue);
+    }
+
+    .timeline-milestones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .milestone-node {
+      background: var(--surface);
+      border: 1px solid var(--line-color);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      position: relative;
+    }
+
+    .milestone-step {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 4px;
+    }
+
+    .milestone-amount {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink-black);
+      margin-bottom: 4px;
+    }
+
+    .milestone-desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================
+       CARTE ANOMALIE DE MARCHÉ (VALEUR DE REMPLACEMENT)
+       ========================================================== */
+    .anomaly-box {
+      background: var(--signal-soft);
+      border: 1px solid var(--signal-border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      margin: 36px 0;
+    }
+
+    .anomaly-tag {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--signal-orange);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .anomaly-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--ink-black);
+    }
+
+    /* Footer */
+    .article-footer-meta {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ligne de progression -->
+  <div id="progress-line"></div>
+
+  <!-- Header Blueprint -->
+  <header class="top-header">
+    <div class="blueprint-nav">
+      <div class="nav-label">
+        <span class="badge-code">DOC.701</span>
+        <span>Life Sutras • Guide Investisseur</span>
+      </div>
+      <a href="#echeancier" class="nav-btn">Simuler l'Échéancier</a>
+    </div>
+  </header>
+
+  <!-- Hero Document -->
+  <section class="hero-section">
+    <div class="doc-meta">
+      <span>✦ Rapport Technique & Décryptage</span>
+    </div>
+    <h1 class="doc-title">
+      Logements Abordables Régulés : Les 7 Réponses Essentielles Avant d'Investir
+    </h1>
+    <p class="doc-lead">
+      Pourquoi acheter au tarif plafond gouvernemental représente l'une des rares opportunités d'acquérir un actif sous sa stricte valeur de reconstruction.
+    </p>
+  </section>
+
+  <!-- Contenu Principal -->
+  <main class="content-wrapper">
+    <article class="blueprint-card">
+
+      <div class="intro-summary-box">
+        📌 <strong>La Thèse Centrale :</strong> Le programme d'habitat abordable encadré par l'État impose un prix de vente au mètre carré inférieur au coût des matériaux bruts et de la main-d'œuvre si vous deviez bâtir vous-même. Voici la synthèse des 7 questions les plus posées.
+      </div>
+
+      <!-- ACCORDION FAQ -->
+      <div class="faq-stack">
+
+        <!-- Q1 -->
+        <div class="faq-item active">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">01</span>
+              Qui est éligible et comment structurer l'achat ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              <strong>Règle d'or : Un seul bien par foyer fiscal.</strong> L'époux, l'épouse et les enfants mineurs constituent une seule entité. En revanche, <strong>tout enfant adulte de plus de 18 ans ou les parents retraités</strong> constituent des entités juridiques distinctes. Une même famille élargie peut donc acquérir légalement 2 à 3 lots distincts pour bâtir un patrimoine locatif solide.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">02</span>
+              Quel est le calendrier des paiements et des tirages au sort ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              La trésorerie est ultra-progressive et protège l'acheteur :
+              <br>• <strong>5 %</strong> à l'inscription initiale.
+              <br>• <strong>20 %</strong> uniquement si votre dossier est retenu au tirage au sort officiel (organisé sous contrôle public sous 2 à 3 mois).
+              <br>• <strong>75 % restants</strong> étalés sur 3 ans en 6 mensualités égales de 12,5 % tous les six mois.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">03</span>
+              Faut-il acheter « Prêt-à-habiter » ou « Sur plan » ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              <strong>Privilégiez impérativement les nouveaux lancements sur plan (attribution originale).</strong> Les quelques projets déjà livrés sur le marché secondaire se négocient avec une surcote spéculative de +80 % à +100 %. En entrant à l'attribution initiale au tarif réglementé, vous captez l'intégralité de la plus-value de livraison.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">04</span>
+              Quelle est la qualité réelle de construction ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              Les nouveaux chantiers n'utilisent plus la maçonnerie artisanale de briques. Ils sont construits via la <strong>technologie de coffrage aluminium monolithique (type Mivan)</strong> : murs en béton armé coulé, résistance sismique supérieure, isolation renforcée et livraison plus rapide sans fissures de plâtre.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">05</span>
+              Faut-il revendre dès la livraison pour empocher le gain ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              <strong>Erreur classique du débutant !</strong> Même si le bien double de valeur à la remise des clés, <strong>gardez-le pour le cash-flow locatif</strong>. Ces appartements compacts offrent un taux d'occupation de 98 % et un rendement locatif brut de 6 % à 8 %, bien supérieur aux grands appartements de luxe. C'est une machine à distribuer des dividendes réels.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">06</span>
+              Pourquoi l'offre est-elle strictement limitée ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              Le plan d'urbanisme limite à <strong>1 ou 2 projets de ce type maximum par secteur</strong> (parcelles closes de 5 acres). Aujourd'hui, plus de 80 % à 85 % des parcelles autorisées ont déjà été allouées et développées. La rareté foncière mécanique garantit la pérennité de la demande.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span style="display:flex; align-items:center; gap:12px;">
+              <span class="faq-number">07</span>
+              Pourquoi parle-t-on d'un achat « sous la valeur de reconstruction » ?
+            </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-body-text">
+              Faites le test : achetez un terrain nu, engagez un architecte, achetez l'acier, le ciment, les sanitaires et payez la main-d'œuvre pour un 3 pièces avec deux salles de bain et balcons. <strong>Le coût des matériaux dépasse le prix plafonné auquel le promoteur est contraint de vous vendre l'appartement fini.</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- WIDGET ÉCHÉANCIER DE PAIEMENT INTERACTIF -->
+      <section class="schedule-widget" id="echeancier">
+        <div class="widget-header">
+          <div>
+            <h3 class="widget-title">⚙️ Simulateur de Déblocage des Fonds</h3>
+            <p style="font-size: 0.9rem; color: var(--ink-muted);">Visualisez l'effort d'épargne étape par étape :</p>
+          </div>
+          <div class="price-selector">
+            <label for="flat-price" style="font-size:0.85rem; font-weight:700; color:var(--ink-muted);">Prix Total (€) :</label>
+            <input type="number" id="flat-price" value="30000" step="5000" oninput="updateMilestones()">
+          </div>
+        </div>
+
+        <div class="timeline-milestones">
+          <div class="milestone-node">
+            <div class="milestone-step">Étape 01 • Dépôt (5%)</div>
+            <div class="milestone-amount" id="m-step1">1 500 €</div>
+            <div class="milestone-desc">À l'inscription initiale au tirage au sort.</div>
+          </div>
+
+          <div class="milestone-node" style="border-color: var(--blueprint-border); background: var(--blueprint-soft);">
+            <div class="milestone-step" style="color: var(--blueprint-blue);">Étape 02 • Attribution (20%)</div>
+            <div class="milestone-amount" id="m-step2" style="color: var(--blueprint-blue);">6 000 €</div>
+            <div class="milestone-desc">Uniquement après confirmation du tirage au sort officiel.</div>
+          </div>
+
+          <div class="milestone-node">
+            <div class="milestone-step">Étape 03 à 08 • 6 Tranches (12.5%)</div>
+            <div class="milestone-amount" id="m-step3">3 750 € <span style="font-size:0.8rem; font-weight:500;">/ 6 mois</span></div>
+            <div class="milestone-desc">Étalé sur 36 mois selon l'avancement du chantier.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARTE ANOMALIE DE MARCHÉ -->
+      <div class="anomaly-box">
+        <span class="anomaly-tag">💡 La Règle du Pragmatique</span>
+        <h4>Ne spéculez pas sur du vent : achetez des briques à prix coûtant</h4>
+        <p style="color: var(--ink-muted); margin: 0; font-size: 1.05rem;">
+          Lorsque vous achetez une action cotée sous sa valeur comptable (*Book Value*) sans endettement excessif, vous réalisez un investissement de valeur (*Value Investing*). Ce modèle immobilier applique exactement la même règle d'or.
+        </p>
+      </div>
+
+      <footer class="article-footer-meta">
+        <div><strong>Life Sutras</strong> • Série Décryptage & Analyse Immobilière</div>
+        <div>Révision technique certifiée</div>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- ==========================================================
+       LOGIQUE JS
+       ========================================================== -->
+  <script>
+    // 1. Barre de lecture fluide
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-line').style.width = scrolled + '%';
+    });
+
+    // 2. Accordéon FAQ
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Fermer tous les éléments
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+      
+      // Ouvrir si non actif
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    // 3. Calculateur dynamique des tranches de paiement
+    function updateMilestones() {
+      const total = parseFloat(document.getElementById('flat-price').value) || 0;
+      
+      const step1 = total * 0.05;
+      const step2 = total * 0.20;
+      const stepInstallment = total * 0.125;
+
+      document.getElementById('m-step1').innerText = step1.toLocaleString('fr-FR') + ' €';
+      document.getElementById('m-step2').innerText = step2.toLocaleString('fr-FR') + ' €';
+      document.getElementById('m-step3').innerHTML = stepInstallment.toLocaleString('fr-FR') + ' € <span style="font-size:0.8rem; font-weight:500;">/ 6 mois</span>';
+    }
+
+    // Initialisation
+    updateMilestones();
+  </script>
+</body>
+</html>

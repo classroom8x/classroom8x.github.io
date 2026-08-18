@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astro-Vastu & Réussite Scolaire ✏️ • Focus Lab</title>
+  
+  <!-- Polices Google : DM Serif Display (Académique & Chaleureuse) + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       VARIABLES : FOCUS LAB & ACADEMIC STUDIO (CLAIR, VIF & PRÉCIS)
+       ========================================================== */
+    :root {
+      --font-title: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --bg-desk: #FAF8F5;
+      --surface: #FFFFFF;
+      --surface-paper: #F4EFEB;
+      
+      --ink-main: #181A1D;
+      --ink-muted: #565C65;
+      --ink-faint: #98A0AB;
+
+      /* Surligneurs & Accents Focus */
+      --highlighter-yellow: #FEF08A;
+      --highlighter-mint: #A7F3D0;
+      --highlighter-blue: #BAE6FD;
+      
+      --accent-blue: #2563EB;
+      --accent-blue-soft: #EFF6FF;
+      --accent-teal: #0D9488;
+      --accent-teal-soft: #F0FDFA;
+      --accent-amber: #D97706;
+
+      --border-desk: #E6E0D6;
+      --border-focus: #181A1D;
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      
+      --shadow-paper: 0 4px 16px rgba(24, 26, 29, 0.04);
+      --shadow-lift: 0 10px 24px -4px rgba(24, 26, 29, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-desk);
+      color: var(--ink-main);
+      font-family: var(--font-body);
+      font-size: 1.12rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fil de progression fluo */
+    #study-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue), #F59E0B);
+      width: 0%;
+      z-index: 1000;
+    }
+
+    /* ==========================================================
+       TOP NAVIGATION BAR
+       ========================================================== */
+    .lab-nav {
+      max-width: 880px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .nav-container {
+      background: var(--surface);
+      border: 2px solid var(--border-desk);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-paper);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-main);
+      text-decoration: none;
+    }
+
+    .brand-badge {
+      background: var(--highlighter-yellow);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-tool-btn {
+      background: var(--ink-main);
+      color: #FFF;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s ease;
+    }
+
+    .nav-tool-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       HERO / EN-TÊTE DE L'ARTICLE
+       ========================================================== */
+    .article-hero {
+      max-width: 880px;
+      margin: 50px auto 32px;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .post-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--accent-teal-soft);
+      color: var(--accent-teal);
+      border: 1px solid rgba(13, 148, 136, 0.2);
+      padding: 4px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink-main);
+      margin-bottom: 20px;
+    }
+
+    .post-subtitle {
+      font-size: 1.25rem;
+      color: var(--ink-muted);
+      max-width: 720px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    .post-meta-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      background: var(--surface-paper);
+      padding: 6px 16px;
+      border-radius: 30px;
+      border: 1px solid var(--border-desk);
+    }
+
+    /* Surlignage mignon */
+    .hl-yellow {
+      background: var(--highlighter-yellow);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .hl-mint {
+      background: var(--highlighter-mint);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================
+       ARTICLE CONTAINER & CONTENT
+       ========================================================== */
+    .main-wrapper {
+      max-width: 880px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .content-card {
+      background: var(--surface);
+      border: 2px solid var(--border-desk);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 6vw, 60px);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .lead-box {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      background: var(--surface-paper);
+      border-left: 4px solid var(--ink-main);
+      padding: 24px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-bottom: 36px;
+    }
+
+    .content-card h2 {
+      font-family: var(--font-title);
+      font-size: 2.1rem;
+      font-weight: 400;
+      margin: 48px 0 20px;
+      color: var(--ink-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .content-card p {
+      margin-bottom: 24px;
+      color: var(--ink-main);
+    }
+
+    /* ==========================================================
+       LES 7 SUTRAS (GRILLE STUDIO ACADÉMIQUE)
+       ========================================================== */
+    .sutras-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin: 36px 0;
+    }
+
+    .sutra-box {
+      border: 1.5px solid var(--border-desk);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      background: var(--surface);
+      transition: all 0.2s ease;
+    }
+
+    .sutra-box:hover {
+      border-color: var(--ink-main);
+      box-shadow: 4px 4px 0px var(--ink-main);
+      transform: translateY(-2px);
+    }
+
+    .sutra-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .sutra-index {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      background: var(--accent-teal-soft);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .sutra-box h3 {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+      color: var(--ink-main);
+    }
+
+    .sutra-box p {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* ==========================================================
+       WIDGET 1 : AUDIT DU BUREAU D'ÉTUDE INTERACTIF
+       ========================================================== */
+    .audit-widget {
+      background: var(--surface-paper);
+      border: 2px solid var(--border-desk);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      margin: 44px 0;
+    }
+
+    .widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .widget-title {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+    }
+
+    .audit-score-pill {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: var(--surface);
+      border: 1.5px solid var(--border-desk);
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: var(--accent-blue);
+    }
+
+    .checklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-desk);
+      cursor: pointer;
+      font-size: 0.98rem;
+      transition: border-color 0.15s ease;
+    }
+
+    .check-row:hover {
+      border-color: var(--ink-main);
+    }
+
+    .check-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--ink-main);
+      cursor: pointer;
+    }
+
+    /* ==========================================================
+       WIDGET 2 : LE BOUCLIER CHROMATIQUE DES QCM / CONCOURS
+       ========================================================== */
+    .exam-tshirt-card {
+      background: #FFFFFF;
+      border: 2px dashed var(--accent-blue);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      margin: 40px 0;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 600px) {
+      .exam-tshirt-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    .tshirt-visual {
+      width: 120px;
+      height: 140px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--ink-main);
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      box-shadow: 4px 4px 0px var(--ink-main);
+    }
+
+    .tshirt-top-half {
+      height: 50%;
+      background: #A7F3D0; /* Vert Doux */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #065F46;
+      border-bottom: 1.5px solid var(--ink-main);
+    }
+
+    .tshirt-bottom-half {
+      height: 50%;
+      background: #BAE6FD; /* Bleu Ciel */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #075985;
+    }
+
+    .tshirt-content h4 {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .tshirt-content p {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .article-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-desk);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fil de progression -->
+  <div id="study-progress"></div>
+
+  <!-- Barre Supérieure -->
+  <header class="lab-nav">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="brand-badge">STUDIO</span>
+        <span>FOCUS & RÉUSSITE</span>
+      </a>
+      <a href="#audit" class="nav-tool-btn">Tester mon Espace</a>
+    </div>
+  </header>
+
+  <!-- En-tête Hero -->
+  <section class="article-hero">
+    <div class="post-tag">⚡ Neuro-Ergonomie & Astro-Vastu Pratique</div>
+    <h1 class="post-title">
+      7 Sutras Concrets pour Décupler la Concentration et Réussir les Concours
+    </h1>
+    <p class="post-subtitle">
+      Comment éliminer le brouillard cérébral, éradiquer les erreurs d'inattention aux examens QCM et aménager un sanctuaire d'étude sans démolir de murs.
+    </p>
+    <div class="post-meta-strip">
+      <span>📖 Guide Concours & Université</span>
+      <span>•</span>
+      <span>⏱ 7 min de lecture</span>
+    </div>
+  </section>
+
+  <!-- Contenu Principal -->
+  <main class="main-wrapper">
+    <article class="content-card">
+
+      <div class="lead-box">
+        Soyons clairs dès le départ : <strong>aucun rituel ni aménagement ne remplacera jamais l'effort acharné (<span class="hl-yellow">Purushartha</span>).</strong> L'enfant d'ouvrier qui étudie 14 heures par jour dans une pièce étroite décrochera toujours ses concours d'excellence face à un élève paresseux assis dans un bureau parfaitement orienté.
+        <br><br>
+        Le but de ces 7 sutras est simple : <strong>empêcher un élève qui a travaillé pour 93 % de perdre bêtement 8 points</strong> à cause du brouillard mental, de la mauvaise posture ou d'une erreur de case sur sa grille QCM.
+      </div>
+
+      <h2>L'Architecture de la Concentration : Les 7 Sutras</h2>
+
+      <div class="sutras-grid">
+
+        <!-- SUTRA 1 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 01</span>
+            <span>🚫 🛏️</span>
+          </div>
+          <h3>Interdiction Formelle d'Étudier sur le Lit</h3>
+          <p>Le lit envoie au cerveau un signal hormonal d'endormissement et d'avachissement. Pour absorber et retenir des concepts denses, la colonne vertébrale doit être érigée. On ne passe pas un examen de 3 heures allongé : l'entraînement du corps doit refléter les conditions réelles de l'épreuve.</p>
+        </div>
+
+        <!-- SUTRA 2 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 02</span>
+            <span>🪵 👣</span>
+          </div>
+          <h3>La Table de Bois & L'Ancrage des Pieds</h3>
+          <p>Privilégiez une table et une chaise en bois massif plutôt que des fauteuils en plastique synthétique. L'étudiant doit retirer ses chaussures et poser ses pieds sur un repose-pieds d'ancrage sous la table pour stabiliser son système nerveux.</p>
+        </div>
+
+        <!-- SUTRA 3 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 03</span>
+            <span>🧱 👑</span>
+          </div>
+          <h3>La « Position du Dirigeant » (Dos au Mur Plein)</h3>
+          <p>Comme les hauts dirigeants dans leur bureau, l'étudiant doit avoir un <strong>mur solide et plein derrière son dos</strong>, jamais le vide, une porte ouverte ou un couloir. Cette configuration libère le cerveau reptilien de la surveillance inconsciente de l'arrière et décuple la profondeur de focus.</p>
+        </div>
+
+        <!-- SUTRA 4 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 04</span>
+            <span>🪞 📵</span>
+          </div>
+          <h3>Zéro Écran Parasite & Zéro Grand Miroir</h3>
+          <p>Aucun téléviseur et aucun grand miroir ne doit se trouver dans l'angle de vision de l'espace de travail. Les reflets constants et les écrans en veille créent des micro-interruptions attentionnelles invisibles mais épuisantes.</p>
+        </div>
+
+        <!-- SUTRA 5 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 05</span>
+            <span>🚪 🧼</span>
+          </div>
+          <h3>La Porte des Sanitaires Hors du Champ de Vision</h3>
+          <p>Si la pièce comprend une salle d'eau attenante, l'axe du bureau doit être disposé de telle sorte que l'intérieur des toilettes ne soit jamais visible depuis la chaise de travail.</p>
+        </div>
+
+        <!-- SUTRA 6 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 06</span>
+            <span>📺 📱</span>
+          </div>
+          <h3>La Règle du Grand Écran pour le Divertissement</h3>
+          <p>Pour éliminer le piège du smartphone dissimulé dans un coin avec des écouteurs, appliquez une règle familiale limpide : <em>« Si tu veux regarder des vidéos ou un film pour te détendre, fais-le sur le grand écran du salon. »</em> Cela régule naturellement les dérives addictives sans conflit toxique.</p>
+        </div>
+
+        <!-- SUTRA 7 -->
+        <div class="sutra-box">
+          <div class="sutra-top">
+            <span class="sutra-index">SUTRA 07 • CONCOURS</span>
+            <span>🎯 👕</span>
+          </div>
+          <h3>Le Duo Chromatique Spécial QCM (Bleu Ciel & Vert Doux)</h3>
+          <p>Pour les concours à épreuves de choix multiples (type prépa, médecine, concours administratifs), le port d'un haut bicolore — <span class="hl-mint">vert clair sur le haut</span> (Mercure : vivacité d'analyse) et <span class="hl-blue">bleu ciel sur le bas</span> (Saturne : calme et précision) — aide à stabiliser les ondes cérébrales et prévient les inversions d'inattention sur les grilles de réponses.</p>
+        </div>
+
+      </div>
+
+      <!-- WIDGET VISUEL : TENUE DE CONCOURS -->
+      <div class="exam-tshirt-card">
+        <div class="tshirt-visual">
+          <div class="tshirt-top-half">VERT CLAIR</div>
+          <div class="tshirt-bottom-half">BLEU CIEL</div>
+        </div>
+        <div class="tshirt-content">
+          <h4>Le Bouclier Anti-Erreurs d'Inattention</h4>
+          <p>
+            Ce réglage chromatique simple ne remplace pas les révisions, mais aide à éliminer les deux drames classiques des concours QCM : <strong>le décalage d'une ligne sur la grille de correction</strong> et l'hésitation paniquée entre deux options finales (50/50).
+          </p>
+        </div>
+      </div>
+
+      <!-- WIDGET INTERACTIF : AUDIT DU SANCTUAIRE D'ÉTUDE -->
+      <section class="audit-widget" id="audit">
+        <div class="widget-header">
+          <h3 class="widget-title">📋 Auto-Diagnostic de l'Espace de Travail</h3>
+          <div class="audit-score-pill" id="score-pill">Optimisation : 0 / 5</div>
+        </div>
+        <p style="font-size: 0.95rem; color: var(--ink-muted); margin-bottom: 20px;">
+          Cochez les critères validés dans la chambre ou le bureau de votre enfant :
+        </p>
+
+        <div class="checklist-items">
+          <label class="check-row">
+            <input type="checkbox" onchange="calcAudit()">
+            <span>La révision se fait strictement assis à une table (jamais allongé sur le lit)</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" onchange="calcAudit()">
+            <span>Le dos de l'étudiant est protégé par un mur solide et plein</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" onchange="calcAudit()">
+            <span>Les pieds sont posés à plat ou sur un repose-pieds (sans chaussures fermées)</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" onchange="calcAudit()">
+            <span>Aucun téléviseur ni grand miroir ne se trouve dans son champ visuel direct</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" onchange="calcAudit()">
+            <span>Le divertissement numérique est déporté sur un écran partagé</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- CONCLUSION -->
+      <h2>En Conclusion : Harmoniser sans Fanatisme</h2>
+      <p>
+        Inutile de vous ruiner auprès d'experts occultes. Mettez ces 7 principes en place dès cette semaine. Vous offrirez à votre enfant un cadre où son potentiel intellectuel peut enfin s'exprimer sans parasite extérieur.
+      </p>
+
+      <footer class="article-footer">
+        <div><strong>Life Sutras</strong> • Pédagogie & Sciences Cognitives</div>
+        <div>Conseils applicables immédiatement</div>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- ==========================================================
+       JAVASCRIPT DU STUDIO
+       ========================================================== -->
+  <script>
+    // 1. Barre de progression fluide
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('study-progress').style.width = scrolled + '%';
+    });
+
+    // 2. Calculateur d'Audit du Bureau
+    function calcAudit() {
+      const checkboxes = document.querySelectorAll('.check-row input[type="checkbox"]');
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) checkedCount++;
+      });
+
+      const pill = document.getElementById('score-pill');
+      pill.innerText = `Optimisation : ${checkedCount} / 5`;
+
+      if (checkedCount >= 4) {
+        pill.style.background = "#DCFCE7";
+        pill.style.color = "#15803D";
+      } else if (checkedCount >= 2) {
+        pill.style.background = "#FEF9C3";
+        pill.style.color = "#854D0E";
+      } else {
+        pill.style.background = "#FEE2E2";
+        pill.style.color = "#991B1B";
+      }
+    }
+  </script>
+</body>
+</html>
