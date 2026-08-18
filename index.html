@@ -410,6 +410,38 @@
     border-radius:2px;
   }
 
+  /* Load More Button Container */
+  .load-more-wrap{
+    text-align:center;
+    margin:28px 0 10px;
+    display:none;
+  }
+  .load-more-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:11px 28px;
+    background:var(--card);
+    border:1.5px solid var(--border);
+    border-radius:25px;
+    color:var(--green-deep);
+    font-weight:600;
+    font-size:0.9rem;
+    cursor:pointer;
+    box-shadow:var(--shadow-sm);
+    transition:var(--transition);
+  }
+  .load-more-btn:hover{
+    background:var(--green-pale);
+    border-color:var(--green-soft);
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-md);
+  }
+  .load-more-btn.loading .btn-text{display:none;}
+  .load-more-btn.loading .leaf-spin{display:block;}
+  .load-more-btn .leaf-spin{display:none; width:16px; height:16px; color:var(--green); animation:spin 1s linear infinite;}
+
   /* Skeletons */
   .skeleton-card{
     background:var(--card);
@@ -425,9 +457,14 @@
     border-radius:6px;
   }
   @keyframes shimmer{0%{background-position:200% 0;} 100%{background-position:-200% 0;}}
+  @keyframes spin{to{transform:rotate(360deg);}}
 
   /* Aside Widgets */
-  .aside{display:flex;flex-direction:column;gap:20px;}
+  .aside{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
   .author-card, .categories-card{
     background:var(--card);
     border:1px solid var(--border);
@@ -503,12 +540,6 @@
   .back-to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
   .back-to-top:hover{background:var(--green);}
 
-  #sentinel{height:1px;}
-  .loader{display:none; align-items:center; justify-content:center; gap:8px; padding:16px; color:var(--text-muted); font-size:0.84rem;}
-  .loader.show{display:flex;}
-  .leaf-spin{width:16px;height:16px;color:var(--green);animation:spin 1s linear infinite;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-
   .empty-state{
     text-align:center;
     padding:40px 16px;
@@ -535,8 +566,16 @@
 
   /* ---------- Responsive Breakpoints ---------- */
   @media (max-width:880px){
-    .layout{grid-template-columns:100%; gap:24px; padding:18px 14px 40px;}
-    .aside{display:none;}
+    /* Mobile me 1-column layout banega aur sidebar feed ke niche dikhega */
+    .layout{
+      grid-template-columns:100%;
+      gap:32px;
+      padding:18px 14px 40px;
+    }
+    .aside{
+      display:flex;
+      margin-top:10px;
+    }
   }
 
   @media (max-width:540px){
@@ -627,13 +666,16 @@
       <button class="reset-btn" id="resetBtn">Clear Filters</button>
     </div>
 
-    <div id="sentinel"></div>
-    <div class="loader" id="loader">
-      <svg class="leaf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c5 0 9 4 9 9-5 0-9-4-9-9Z"/><path d="M12 21c-5 0-9-4-9-9 5 0 9 4 9 9Z"/></svg>
-      Loading more notes…
+    <!-- 15 Posts ke baad Load More Button -->
+    <div class="load-more-wrap" id="loadMoreWrap">
+      <button class="load-more-btn" id="loadMoreBtn">
+        <span class="btn-text">Load More Notes</span>
+        <svg class="leaf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c5 0 9 4 9 9-5 0-9-4-9-9Z"/><path d="M12 21c-5 0-9-4-9-9 5 0 9 4 9 9Z"/></svg>
+      </button>
     </div>
   </section>
 
+  <!-- Sidebar: Desktop par Right side rahega, Mobile par Feed ke niche automatically stack hoga -->
   <aside class="aside">
     <div class="author-card">
       <img id="authorPhoto" src="" alt="">
@@ -661,7 +703,8 @@
 (function(){
   "use strict";
 
-  const PAGE_SIZE = 8;
+  // 15 Posts Batching
+  const PAGE_SIZE = 15;
   const state = {
     allPosts: [],
     filtered: [],
@@ -709,7 +752,7 @@
     return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
   }
 
-  /* ---------- Back to Top Scroll ---------- */
+  /* ---------- Back to Top ---------- */
   window.addEventListener('scroll', () => {
     const winScroll = document.documentElement.scrollTop;
     const btt = document.getElementById('backToTop');
@@ -799,7 +842,7 @@
     const cats = Object.keys(counts).sort();
     if(!cats.length) return;
 
-    // Sidebar
+    // Sidebar & Aside Widget
     const list = document.getElementById('categoriesList');
     list.innerHTML = cats.map(c =>
       `<li><a href="#" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</a><span class="count">${counts[c]}</span></li>`
@@ -813,7 +856,7 @@
       `<a href="#" data-cat="${escapeHtml(c)}"><span>${escapeHtml(c)}</span> <span>${counts[c]}</span></a>`
     ).join('');
 
-    // Quick horizontal chips
+    // Quick chips
     const chipsList = document.getElementById('chipsList');
     const savedChip = document.getElementById('savedChip');
     cats.forEach(c => {
@@ -857,18 +900,29 @@
   function renderNextBatch(){
     const list = document.getElementById('postList');
     const empty = document.getElementById('emptyState');
+    const loadMoreWrap = document.getElementById('loadMoreWrap');
     const next = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
 
     if(state.rendered === 0){ list.innerHTML = ""; }
+    
     if(state.filtered.length === 0){
       empty.style.display = 'block';
+      loadMoreWrap.style.display = 'none';
     } else {
       empty.style.display = 'none';
       list.insertAdjacentHTML('beforeend', next.map(postCardHtml).join(''));
     }
+
     state.rendered += next.length;
 
-    // Active chips
+    // Load More visibility check
+    if(state.rendered < state.filtered.length){
+      loadMoreWrap.style.display = 'block';
+    } else {
+      loadMoreWrap.style.display = 'none';
+    }
+
+    // Active chip highlight
     document.querySelectorAll('[data-cat]').forEach(el => {
       el.classList.toggle('active', !state.showSavedOnly && el.dataset.cat === state.selectedCat);
     });
@@ -967,20 +1021,15 @@
     applyFilters();
   });
 
-  /* ---------- Infinite Scroll ---------- */
-  const loader = document.getElementById('loader');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting && state.rendered < state.filtered.length){
-        loader.classList.add('show');
-        setTimeout(() => {
-          renderNextBatch();
-          loader.classList.remove('show');
-        }, 180);
-      }
-    });
-  }, { rootMargin: '200px' });
-  observer.observe(document.getElementById('sentinel'));
+  // Load More Button Event
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  loadMoreBtn.addEventListener('click', () => {
+    loadMoreBtn.classList.add('loading');
+    setTimeout(() => {
+      renderNextBatch();
+      loadMoreBtn.classList.remove('loading');
+    }, 200);
+  });
 
   /* ---------- Sidebar Drawer ---------- */
   const sidebar = document.getElementById('sidebar');
