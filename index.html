@@ -443,57 +443,6 @@
     outline:2px solid var(--green);
     outline-offset:2px;
   }
-
-  /* Post ke beech ka Link Box */
-  .auto-interlink-box {
-    background: #f1f5f9;
-    border-left: 4px solid #2563eb;
-    padding: 12px 16px;
-    margin: 24px 0;
-    border-radius: 6px;
-    font-size: 15px;
-  }
-  .auto-interlink-box strong {
-    color: #0f172a;
-  }
-  .auto-interlink-box a {
-    color: #2563eb;
-    font-weight: 600;
-    text-decoration: underline;
-    margin-left: 5px;
-  }
-  .auto-interlink-box a:hover {
-    color: #1d4ed8;
-  }
-
-  /* Post ke aakhir ka Related Posts Box */
-  .auto-footer-interlinks {
-    margin-top: 35px;
-    padding: 18px 22px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-  }
-  .auto-footer-interlinks h4 {
-    margin: 0 0 12px 0;
-    color: #0f172a;
-    font-size: 17px;
-  }
-  .auto-footer-interlinks ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  .auto-footer-interlinks li {
-    margin-bottom: 8px;
-  }
-  .auto-footer-interlinks a {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .auto-footer-interlinks a:hover {
-    text-decoration: underline;
-  }
 </style>
 </head>
 <body>
@@ -605,11 +554,13 @@
   }
 
   function formatDate(iso){
+    if(!iso) return '';
     const d = new Date(iso + "T00:00:00");
-    return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
   }
 
   function renderSite(data){
+    if(!data || !data.site) return;
     document.getElementById('siteNameText').textContent = data.site.name;
     document.getElementById('siteTaglineText').textContent = data.site.tagline;
     document.title = data.site.name + " — " + data.site.tagline;
@@ -619,17 +570,19 @@
   }
 
   function renderAuthor(author){
-    document.getElementById('authorPhoto').src = author.photo;
-    document.getElementById('authorPhoto').alt = author.name;
-    document.getElementById('authorName').textContent = author.name;
-    document.getElementById('authorBio').textContent = author.bio;
+    if(!author) return;
+    document.getElementById('authorPhoto').src = author.photo || '';
+    document.getElementById('authorPhoto').alt = author.name || '';
+    document.getElementById('authorName').textContent = author.name || '';
+    document.getElementById('authorBio').textContent = author.bio || '';
     const wrap = document.getElementById('authorSocials');
-    wrap.innerHTML = author.socials.map(s =>
+    wrap.innerHTML = (author.socials || []).map(s =>
       `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" aria-label="${escapeHtml(s.name)}">${socialIcons[s.icon] || ''}</a>`
     ).join('');
   }
 
   function renderFooterPages(pages){
+    if(!pages) return;
     const el = document.getElementById('sidebarFooter');
     pages.forEach(p => {
       const a = document.createElement('a');
@@ -641,7 +594,9 @@
 
   function renderCategories(posts){
     const counts = {};
-    posts.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+    posts.forEach(p => { 
+      if(p.category) counts[p.category] = (counts[p.category] || 0) + 1; 
+    });
     const cats = Object.keys(counts).sort();
     if(!cats.length) return;
 
@@ -663,12 +618,12 @@
     return `
       <li class="post-row">
         <div class="post-meta">
-          <span class="cat">${escapeHtml(post.category)}</span>
+          <span class="cat">${escapeHtml(post.category || '')}</span>
           <span class="dot"></span>
           <span>${formatDate(post.date)}</span>
         </div>
         <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
-        <p>${escapeHtml(post.excerpt)}</p>
+        <p>${escapeHtml(post.excerpt || '')}</p>
       </li>`;
   }
 
@@ -703,10 +658,12 @@
   }
 
   function applyFilter(query, category){
-    state.query = query.trim();
+    state.query = (query || "").trim();
     const q = state.query.toLowerCase();
     state.filtered = state.allPosts.filter(p => {
-      const matchesQuery = !q || p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q);
+      const title = (p.title || '').toLowerCase();
+      const excerpt = (p.excerpt || '').toLowerCase();
+      const matchesQuery = !q || title.includes(q) || excerpt.includes(q);
       const matchesCat = !category || category === 'all' || p.category === category;
       return matchesQuery && matchesCat;
     });
@@ -780,15 +737,21 @@
       return res.json();
     })
     .then(data => {
-      // 1. Posts ko Newest First (Latest Date sabse upar) sort karein
-      const sortedPosts = (data.posts || []).sort((a, b) => new Date(b.date) - new Date(a.date));
+      // Direct array ho ya { posts: [...] } object, safe extract karein
+      const rawPosts = Array.isArray(data) ? data : (data.posts || []);
+
+      // JSON ki aakhri/highest ID wali latest post sabse upar show karne ke liye sorting:
+      const sortedPosts = [...rawPosts].sort((a, b) => {
+        if (a.id && b.id) return b.id - a.id; // Highest ID first (Latest post first)
+        return new Date(b.date) - new Date(a.date); // Agar id na mile to date se sort karega
+      });
 
       renderSite(data);
       renderAuthor(data.author);
       renderFooterPages(data.pages);
       renderCategories(sortedPosts);
       
-      // 2. State me sorted posts pass karein
+      // State me sorted posts pass karein
       state.allPosts = sortedPosts;
       state.filtered = sortedPosts;
       renderNextBatch();
