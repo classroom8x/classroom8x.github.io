@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Manifeste du Cocon Familial — Édition Douceur & Vérité</title>
+    
+    <!-- Google Fonts Flavour 2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Quicksand:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --matcha-subtle: #E8F0E9;
+            --matcha-dark: #3B5B45;
+            --matcha-accent: #6C9A77;
+            --lavender-mist: #EFEAFF;
+            --lavender-deep: #584988;
+            --lavender-card: #FAF8FF;
+            --vanilla-bg: #FCFBF7;
+            --sun-butter: #FFF2B2;
+            --text-title: #1C1924;
+            --text-body: #474354;
+            --white-pure: #FFFFFF;
+            --radius-bento: 24px;
+            --radius-pill: 50px;
+            --shadow-bento: 0 10px 30px rgba(88, 73, 136, 0.06);
+            --shadow-float: 0 15px 35px rgba(108, 154, 119, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--vanilla-bg);
+            color: var(--text-body);
+            line-height: 1.8;
+            background-image: radial-gradient(#D9E5DC 1.2px, transparent 1.2px);
+            background-size: 26px 26px;
+        }
+
+        /* Top Cute Progress Tracker */
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(239, 234, 255, 0.5);
+            z-index: 1000;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--matcha-accent), var(--lavender-deep));
+            border-radius: 0 10px 10px 0;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Header Navigation */
+        .site-header {
+            max-width: 1180px;
+            margin: 25px auto 0;
+            padding: 12px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-badge {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--lavender-deep);
+            background: var(--lavender-mist);
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1.5px solid #DED6F7;
+        }
+
+        .header-tags {
+            display: flex;
+            gap: 12px;
+        }
+
+        .tag-pill {
+            background: var(--matcha-subtle);
+            color: var(--matcha-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+        }
+
+        /* Hero Showcase */
+        .hero-banner {
+            max-width: 1180px;
+            margin: 35px auto 40px;
+            padding: 40px 30px;
+            text-align: center;
+            background: linear-gradient(180deg, #F5F1FF 0%, rgba(245, 241, 255, 0) 100%);
+            border-radius: 36px;
+        }
+
+        .sticker-badge {
+            display: inline-block;
+            background: var(--sun-butter);
+            color: #6E5300;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 4px 10px rgba(255, 242, 178, 0.6);
+            margin-bottom: 20px;
+            transform: rotate(-1.5deg);
+        }
+
+        .hero-title {
+            font-family: 'Epilogue', serif;
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.2;
+            color: var(--text-title);
+            max-width: 900px;
+            margin: 0 auto 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto 25px;
+            color: #676179;
+        }
+
+        /* 2-Column Bento Layout */
+        .main-container {
+            max-width: 1180px;
+            margin: 0 auto 70px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 35px;
+            align-items: start;
+        }
+
+        /* Left Side: Editorial Story */
+        .editorial-content {
+            background: var(--white-pure);
+            border-radius: var(--radius-bento);
+            padding: 50px 48px;
+            box-shadow: var(--shadow-bento);
+            border: 1px solid rgba(88, 73, 136, 0.08);
+        }
+
+        .editorial-content p {
+            font-size: 1.08rem;
+            margin-bottom: 24px;
+            color: #383445;
+        }
+
+        .editorial-content h2 {
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--lavender-deep);
+            margin: 45px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .editorial-content h2 span {
+            background: var(--lavender-mist);
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: inline-grid;
+            place-items: center;
+            font-size: 1.1rem;
+        }
+
+        /* Bento Interactive Card: L'Équation Parentale */
+        .equation-box {
+            background: linear-gradient(135deg, #F0F6F2 0%, #FAF5FF 100%);
+            border: 2px solid #D5E5DA;
+            border-radius: var(--radius-bento);
+            padding: 28px;
+            margin: 35px 0;
+        }
+
+        .equation-box h3 {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--matcha-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .equation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .eq-item {
+            background: var(--white-pure);
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 1px solid #E8E5F2;
+        }
+
+        .eq-item.constant {
+            border-left: 5px solid var(--matcha-accent);
+        }
+        .eq-item.variable {
+            border-left: 5px solid var(--lavender-deep);
+        }
+
+        .eq-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+        }
+        .constant .eq-title { color: var(--matcha-dark); }
+        .variable .eq-title { color: var(--lavender-deep); }
+
+        .eq-value {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text-title);
+        }
+
+        /* Story Quote Block */
+        .thought-card {
+            background: var(--lavender-card);
+            border-radius: 20px;
+            padding: 28px 30px;
+            margin: 35px 0;
+            border: 1px solid #E9E2FE;
+            position: relative;
+        }
+
+        .thought-card::before {
+            content: '“';
+            font-family: 'Epilogue', serif;
+            font-size: 4.5rem;
+            color: #D6C9F8;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+            opacity: 0.5;
+        }
+
+        .thought-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: var(--lavender-deep);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Right Sidebar (Cute Tools) */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: sticky;
+            top: 25px;
+        }
+
+        .side-card {
+            background: var(--white-pure);
+            border-radius: var(--radius-bento);
+            padding: 25px;
+            box-shadow: var(--shadow-bento);
+            border: 1px solid rgba(88, 73, 136, 0.07);
+        }
+
+        .side-card h4 {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-title);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* The Father's Pledge Checklist */
+        .pledge-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pledge-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-body);
+        }
+
+        .check-bubble {
+            background: var(--matcha-subtle);
+            color: var(--matcha-dark);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Author Mini Card */
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--matcha-subtle);
+            padding: 16px;
+            border-radius: 18px;
+        }
+
+        .author-icon {
+            font-size: 2rem;
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .author-text h5 {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            color: var(--matcha-dark);
+            font-size: 0.98rem;
+        }
+        .author-text p {
+            font-size: 0.8rem;
+            color: #55725E;
+        }
+
+        /* Interactive Like & Share */
+        .cheer-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--lavender-mist) 0%, #E6DDFF 100%);
+            border: 1.5px solid #D2C4FA;
+            color: var(--lavender-deep);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            padding: 14px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .cheer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-float);
+        }
+
+        /* Footer */
+        .site-footer {
+            max-width: 1180px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.88rem;
+            color: #8C869B;
+            border-top: 1px dashed #DDD7EB;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 950px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .editorial-content {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Indicator -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a href="#" class="brand-badge">
+            🌱 Le Cocon <span>| Essai Vivant</span>
+        </a>
+        <div class="header-tags">
+            <span class="tag-pill">Pédiatrie du Cœur</span>
+            <span class="tag-pill">Société & Carrière</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-banner">
+        <div class="sticker-badge">✨ Réflexion sans tabou pour les jeunes parents</div>
+        <h1 class="hero-title">Pourquoi nous devons reprendre nos enfants aux crèches</h1>
+        <p class="hero-subtitle">
+            Quand la course aux promotions détruit les cinq années d'or de nos tout-petits : redéfinir le travail, l'engagement paternel et l'entraide de village.
+        </p>
+    </section>
+
+    <!-- 2-Column Content Layout -->
+    <div class="main-container">
+
+        <!-- Main Blog Post Article -->
+        <article class="editorial-content">
+
+            <p>
+                Il a suffi d'une série de vidéos révélant des violences inouïes au sein d'une garderie d'entreprise réputée pour faire voler en éclats le vernis rassurant du modèle de garde moderne. Derrière les caméras de surveillance et les promesses marketing, une réalité crue demeure : <strong>la patience, la tendresse et la sécurité affective ne s'achètent pas au taux horaire.</strong>
+            </p>
+
+            <p>
+                Même une mère ou un père dévoué ressent parfois un épuisement viscéral après une demi-heure de pleurs intenses. Comment concevoir alors qu'une employée anonyme, chargée de cinq ou dix bambins qui ne sont pas les siens, possède la dévotion nécessaire pour ne jamais déraper ?
+            </p>
+
+            <div class="thought-card">
+                <div class="thought-text">
+                    « Nos propres enfants sont les êtres les plus précieux à nos yeux, mais ils ne sont que des statistiques pour ceux qui les gardent contre rémunération. Ne confiez pas votre cœur à un système bancal. »
+                </div>
+            </div>
+
+            <h2><span>01</span> L'Équation Mathématique du Foyer</h2>
+            <p>
+                Dans la vie d'une famille, tout est question de balance. Pourtant, beaucoup de jeunes couples inversent la formule fondamentale en traitant l'enfant comme une contrainte ajustable et l'emploi de bureau comme une fatalité immuable.
+            </p>
+
+            <!-- Interactive Equation Box -->
+            <div class="equation-box">
+                <h3>📐 La Nouvelle Matrice Familiale :</h3>
+                <div class="equation-grid">
+                    <div class="eq-item constant">
+                        <div class="eq-title">Constante Absolue</div>
+                        <div class="eq-value">👶 Le bébé grandit sous l'œil de ses parents (0-5 ans)</div>
+                    </div>
+                    <div class="eq-item variable">
+                        <div class="eq-title">Variables Flexibles</div>
+                        <div class="eq-value">💼 Emploi, travail à distance, train de vie & dépenses</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Si une mère de 26 ans prend deux ou trois années de recul pour cocooner ses petits ou pivote vers des missions de conseil et du travail indépendant, sa vie active ne s'arrête pas : il lui reste encore 40 ans de carrière productive devant elle. En revanche, un bébé de 2 ans n'aura plus jamais deux ans.
+            </p>
+
+            <h2><span>02</span> Le Devoir Sacré du Partenaire</h2>
+            <p>
+                La parentalité contemporaine a commis une grave erreur en transformant la garde d'enfants en une charge mentale exclusivement féminine. Quand une jeune maman jongle entre son tire-lait, ses dossiers professionnels et la peur de laisser son nourrisson, ce n'est pas à elle de se consumer.
+            </p>
+            <p>
+                C'est à l'homme de se lever et d'assumer son rôle protecteur : simplifier son quotidien, réduire ses sorties superflues, renoncer à l'achat du dernier smartphone et dire avec force : <em>« Reste près de notre enfant, je prends en charge les finances du foyer. »</em>
+            </p>
+
+            <h2><span>03</span> Réinventer le « Village » autour de la Maison</h2>
+            <p>
+                Pour éviter l'isolement parental, la solution n'est pas d'envoyer l'enfant dans un centre anonyme, mais de rebâtir une communauté d'amour :
+            </p>
+            <p>
+                <strong>1. Les Grands-parents comme Sentinelles d'Amour :</strong> Ne transformez pas vos mères et belles-mères en femmes de ménage épuisées. Donnez-leur le rôle noble de veiller et de câliner, tout en embauchant une aide extérieure pour la lessive et le repassage.
+            </p>
+            <p>
+                <strong>2. La Solidarité entre Voisines :</strong> Dans chaque quartier ou résidence, organisez un réseau de garde tournante. Quatre mères bienveillantes peuvent s'épauler : l'une veille sur le groupe de petits pendant une matinée sécurisée, offrant ainsi du répit et du temps de travail calme aux autres.
+            </p>
+
+            <div class="thought-card">
+                <div class="thought-text">
+                    « Aucun être humain sur cette planète ne mérite autant le meilleur traitement qu'un tout-petit. Tous les autres doivent accepter de s'ajuster à son rythme. »
+                </div>
+            </div>
+
+            <h2>Conclusion : Le Temps ne se Rapproche Pas, Il s'Échappe</h2>
+            <p>
+                Dans 40 ans, lorsque vos enfants seront adultes, personne ne se souviendra de votre évaluation annuelle de 2026 ni de votre titre d'Assistant Manager. Mais votre enfant portera en lui, pour toujours, l'assurance inébranlable d'avoir été aimé, protégé et regardé grandir dans la chaleur de son propre foyer.
+            </p>
+
+        </article>
+
+        <!-- Right Bento Sidebar -->
+        <aside class="sidebar">
+
+            <!-- Author Box -->
+            <div class="author-box">
+                <div class="author-icon">☕</div>
+                <div class="author-text">
+                    <h5>Chronique Slow Parenting</h5>
+                    <p>Pour des choix familiaux assumés et apaisés.</p>
+                </div>
+            </div>
+
+            <!-- Father's Pledge Box -->
+            <div class="side-card">
+                <h4>🛡️ Le Pacte du Père</h4>
+                <ul class="pledge-list">
+                    <li class="pledge-item">
+                        <span class="check-bubble">✓</span>
+                        <span>Prioriser le repos et la santé mentale de la maman.</span>
+                    </li>
+                    <li class="pledge-item">
+                        <span class="check-bubble">✓</span>
+                        <span>Supprimer les dépenses de luxe futiles pendant 3 ans.</span>
+                    </li>
+                    <li class="pledge-item">
+                        <span class="check-bubble">✓</span>
+                        <span>Garantir que le bébé reste dans le cocon familial.</span>
+                    </li>
+                    <li class="pledge-item">
+                        <span class="check-bubble">✓</span>
+                        <span>Considérer le sacrifice maternel comme inestimable.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Co-op Tips Box -->
+            <div class="side-card" style="background: var(--matcha-subtle); border-color: #D3E5D7;">
+                <h4 style="color: var(--matcha-dark);">🌿 L'Idée Pratique</h4>
+                <p style="font-size: 0.88rem; color: #435E4B; line-height: 1.6;">
+                    Regroupez-vous à 3 ou 4 familles amies de votre quartier pour transformer un salon en salle de jeux sécurisée avec rotations d'horaires. Moins de stress, 0€ de frais de crèche !
+                </p>
+            </div>
+
+            <!-- Cute Interactive Button -->
+            <button class="cheer-btn" id="cheerBtn" onclick="sendCheer()">
+                <span>💛 J'adhère à ce manifeste</span>
+                <span id="cheerCount">(328)</span>
+            </button>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>Le Cocon Édition • Réflexions écrites avec bienveillance pour l'avenir de nos enfants.</p>
+        <p style="margin-top: 6px; font-size: 0.78rem;">Design unique V2 • Ni modèle réutilisé, ni compromis sur la douceur.</p>
+    </footer>
+
+    <!-- Reading Progress and Interaction Script -->
+    <script>
+        // Reading progress indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Cheer count button
+        let count = 328;
+        let clicked = false;
+        function sendCheer() {
+            if (!clicked) {
+                count++;
+                document.getElementById('cheerCount').innerText = `(${count})`;
+                document.getElementById('cheerBtn').style.background = 'linear-gradient(135deg, #FFEAA7 0%, #FFF2B2 100%)';
+                document.getElementById('cheerBtn').style.color = '#6E5300';
+                clicked = true;
+            }
+        }
+    </script>
+
+</body>
+</html>
