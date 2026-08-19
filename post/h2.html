@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Art de se Réinventer • Journal Poétique</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-canvas: #fcf9f5;
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(230, 218, 206, 0.6);
+            --primary: #4a5d4e;       /* Sage vert doux */
+            --accent: #d88373;        /* Terracotta blush */
+            --accent-soft: #f7e8e4;
+            --text-main: #2d312e;
+            --text-muted: #737b74;
+            --gold: #c29d59;
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --shadow-soft: 0 15px 35px -10px rgba(74, 93, 78, 0.08);
+            --shadow-glow: 0 0 40px rgba(216, 131, 115, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.85;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Pastel Blobs */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.55;
+            animation: floatSlow 12s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 450px;
+            height: 450px;
+            background: #e2ede5;
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: #fae4df;
+            bottom: 50px;
+            right: -80px;
+            animation-duration: 16s;
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 40px) scale(1.08); }
+        }
+
+        /* Reading Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Header Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Sacramento', cursive;
+            font-size: 2.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .audio-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary);
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .audio-pill:hover {
+            transform: translateY(-2px);
+            background: #fff;
+            border-color: var(--accent);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.4; }
+        }
+
+        /* Main Container */
+        .wrapper {
+            max-width: 760px;
+            margin: 40px auto 100px;
+            padding: 0 24px;
+        }
+
+        /* Article Header */
+        .article-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .article-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.3rem, 5vw, 3.4rem);
+            font-weight: 600;
+            line-height: 1.15;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .article-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 580px;
+            margin: 0 auto 28px;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e4d3c4, #b7c7b8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        /* Breathing Interactive Widget */
+        .breath-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: var(--shadow-soft), var(--shadow-glow);
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hum-circle {
+            width: 90px;
+            height: 90px;
+            margin: 20px auto;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-soft), #fff);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sacramento', cursive;
+            font-size: 1.8rem;
+            color: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(216, 131, 115, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .hum-circle.breathing {
+            animation: breatheAnimation 5s infinite ease-in-out;
+        }
+
+        @keyframes breatheAnimation {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(216, 131, 115, 0.2); }
+            50% { transform: scale(1.25); box-shadow: 0 0 35px rgba(216, 131, 115, 0.5); }
+        }
+
+        /* Body Content Styling */
+        .post-body {
+            font-size: 1.1rem;
+            color: #383d39;
+        }
+
+        .post-body p {
+            margin-bottom: 24px;
+        }
+
+        .dropcap {
+            float: left;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.2rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 12px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .quote-box {
+            position: relative;
+            background: linear-gradient(135deg, rgba(247, 232, 228, 0.4), rgba(226, 237, 229, 0.4));
+            border-left: 3px solid var(--accent);
+            padding: 28px 32px;
+            margin: 40px 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem;
+            font-style: italic;
+            color: var(--primary);
+            line-height: 1.5;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin: 30px 0 12px;
+            text-transform: uppercase;
+        }
+
+        /* Interactive Question Reflection Box */
+        .reflection-card {
+            background: #ffffff;
+            border: 1.5px dashed var(--accent);
+            border-radius: var(--radius-lg);
+            padding: 35px 30px;
+            margin: 50px 0;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .reflection-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thought-input {
+            width: 100%;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 15px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: var(--bg-canvas);
+            resize: none;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .thought-input:focus {
+            border-color: var(--accent);
+            background: #fff;
+        }
+
+        .save-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .saved-whisper {
+            display: none;
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* Footer */
+        .post-footer {
+            text-align: center;
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .om-signature {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        .om-signature:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Reading Progress -->
+    <div id="progress-bar"></div>
+
+    <!-- Ambient Blobs -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+
+    <!-- Nav -->
+    <nav class="nav-bar">
+        <a href="#" class="logo">Souffle & Pensées</a>
+        <button class="audio-pill" id="soundBtn" onclick="toggleBreathing()">
+            <span class="pulse-dot"></span>
+            <span id="audioText">Mettre des écouteurs • Fredonner</span>
+        </button>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="wrapper">
+        <header class="article-header">
+            <span class="tag">Méditation & Métamorphose</span>
+            <h1 class="article-title">L'Art de se Réinventer sans s'Oublier : Réveiller nos Trésors Endormis</h1>
+            <p class="article-subtitle">« Il fut un temps où je croyais que renaître signifiait tout effacer... Mais la vie m’a murmuré un autre secret. »</p>
+            
+            <div class="author-meta">
+                <div class="avatar">🌱</div>
+                <span>Par <strong>L'Observateur Silencieux</strong></span>
+                <span>•</span>
+                <span>5 min de lecture apaisante</span>
+            </div>
+        </header>
+
+        <!-- Interactive Breathing Moment -->
+        <section class="breath-card">
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Mettez vos écouteurs, fermez doucement les yeux et ressentez la résonance...</p>
+            <div class="hum-circle breathing" id="humNode" title="Cliquez pour respirer">
+                Hmm...
+            </div>
+            <p style="font-size: 0.88rem; color: var(--primary); font-style: italic;">« Ne cherchez rien à comprendre. Écoutez simplement ce son qui vous accompagne depuis l'origine. »</p>
+        </section>
+
+        <!-- Article Content -->
+        <article class="post-body">
+            <p><span class="dropcap">I</span>l y a une vibration qui ne nous a jamais quittés. La vie est ainsi faite, mon ami : tout bouge, chaque aube apporte son flot de nouvelles, ses défis inattendus, ses élans d'espoir. Parfois, nous recevons des louanges ; d’autres fois, nous essuyons des critiques. Les fortunes fluctuent, les relations se transforment, les circonstances s’estompent... mais au centre de ce tourbillon, à l'image de ce doux murmure intérieur, certaines choses demeurent inaltérables.</p>
+
+            <p>Quand nous cessons de leur accorder notre attention, elles ne disparaissent pas. Elles s'éloignent simplement sur la pointe des pieds, étouffées par le fracas du monde extérieur.</p>
+
+            <div class="quote-box">
+                « Se réinventer ne signifie pas devenir un étranger pour soi-même, ni jeter aux oubliettes tout ce que l’on a appris avec tant de tendresse. »
+            </div>
+
+            <div class="section-badge">✨ La Danse des Saisons et du Souffle</div>
+            <p>Dans cette époque frénétique, on nous répète qu'il faut absolument changer pour ne pas devenir des fossiles. J'ai longtemps cru que la « réinvention » imposait une rupture totale : effacer son passé, oublier ses apprentissages, endosser le costume d’une personne toute neuve.</p>
+
+            <p>Mais la vie m'a enseigné une leçon bien plus douce à travers le souffle. Voyez-vous, nous respirons en hiver dans l'air glacé, et nous respirons en été sous le soleil brûlant. La sensation est différente, mais cela ne rend pas le souffle d'hiver illégitime ou inutile. Ce que nous créons de nouveau ne nécessite en rien la destruction de l'ancien.</p>
+
+            <div class="section-badge">🌿 Nos Atouts en Hibernation</div>
+            <p>J'ai compris que le véritable renouveau consiste à réveiller ce qui était simplement endormi. J'appelle cela nos <em>« Atouts en Hibernation »</em> (<strong>Hibernated Assets</strong>). Ce sont ces forces latentes, ces désirs purs que nous avions enfouis un jour en nous disant : <em>« Ce n'est pas le bon moment, je n'en ai plus besoin pour survivre. »</em></p>
+
+            <p>C'est peut-être ce courage singulier que vous avez oublié... Cette curiosité d'enfant engloutie sous la charge du quotidien... Ou ces rêves artistiques différés à force d'attendre « l'instant parfait ».</p>
+
+            <!-- Reflection Interactive Box -->
+            <section class="reflection-card">
+                <h3>💬 Une question pour votre nuit</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">
+                    Qu'y a-t-il en vous qui s'est tu, sans pour autant mourir ? Quel est ce désir ou cette passion qui, dès que vous y pensez, fait naître un doux sourire mêlé d'un brin de nostalgie ?
+                </p>
+                <textarea class="thought-input" id="userReflection" rows="3" placeholder="Écrivez ici ce trésor endormi (un art, un rêve, un sourire libre...)..."></textarea>
+                <button class="save-btn" onclick="saveWhisper()">Déposer ce vœu en douceur</button>
+                <div class="saved-whisper" id="whisperMsg">✨ Votre trésor est précieusement gardé. Nul besoin de tout résoudre ce soir.</div>
+            </section>
+
+            <p>Ne cherchez pas toutes les réponses aujourd'hui. Gardez juste cette question blottie contre votre cœur. Si ce soir, avant de fermer les yeux, vous parvenez à vous sentir ne serait-ce qu'un peu plus proche de cette part oubliée de vous-même... alors considérez votre journée comme pleinement réussie.</p>
+
+            <p>D'ici notre prochaine rencontre, au milieu du vacarme du monde, continuez d'écouter votre propre murmure.</p>
+        </article>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <div class="om-signature">ॐ</div>
+            <p>Prenez soin de votre souffle intérieur.</p>
+            <p style="margin-top: 6px; font-size: 0.8rem; opacity: 0.7;">© Journal Poétique • Conçu avec sérénité</p>
+        </footer>
+    </main>
+
+    <script>
+        // Reading Progress Tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Humming / Breathing Interaction
+        let isBreathing = true;
+        function toggleBreathing() {
+            const humCircle = document.getElementById('humNode');
+            const audioText = document.getElementById('audioText');
+            
+            isBreathing = !isBreathing;
+            if (isBreathing) {
+                humCircle.classList.add('breathing');
+                audioText.innerText = "Mode Fredonnement Actif";
+            } else {
+                humCircle.classList.remove('breathing');
+                audioText.innerText = "Reprendre le souffle";
+            }
+        }
+
+        // Thought Whisper Saver
+        function saveWhisper() {
+            const input = document.getElementById('userReflection');
+            const msg = document.getElementById('whisperMsg');
+            if (input.value.trim() !== "") {
+                msg.style.display = 'block';
+                input.style.borderColor = '#4a5d4e';
+            }
+        }
+    </script>
+</body>
+</html>

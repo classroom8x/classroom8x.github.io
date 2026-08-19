@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Nid Devenu Silencieux • Journal d'un Père</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --parchment: #FAF5EE;
+            --paper-card: rgba(255, 253, 249, 0.9);
+            --ink-primary: #2B211E;
+            --ink-muted: #6E6259;
+            --stamp-blue: #4A6B82;
+            --stamp-blue-soft: #E4ECF0;
+            --terracotta-warm: #C86D51;
+            --terracotta-soft: #F7EAE5;
+            --amber-gold: #C98A41;
+            --border-soft: #E6DCce;
+            --shadow-cozy: 0 16px 36px -10px rgba(74, 53, 43, 0.08);
+            --shadow-stamp: 0 4px 14px rgba(74, 107, 130, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--parchment);
+            color: var(--ink-primary);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.85;
+            overflow-x: hidden;
+            position: relative;
+            background-image: radial-gradient(rgba(110, 98, 89, 0.08) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* Reading Progress */
+        #reading-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--stamp-blue), var(--terracotta-warm), var(--amber-gold));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Flying Paper Plane Effect Container */
+        .sky-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Header Navigation */
+        .vintage-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            backdrop-filter: blur(12px);
+            background: rgba(250, 245, 238, 0.85);
+            border-bottom: 1px dashed var(--border-soft);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ink-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .postage-tag {
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            background: var(--stamp-blue-soft);
+            color: var(--stamp-blue);
+            padding: 2px 10px;
+            border-radius: 4px;
+            border: 1px dashed var(--stamp-blue);
+            transform: rotate(-3deg);
+        }
+
+        .action-plane-btn {
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            color: var(--ink-primary);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-cozy);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-plane-btn:hover {
+            border-color: var(--terracotta-warm);
+            color: var(--terracotta-warm);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .editorial-container {
+            max-width: 760px;
+            margin: 40px auto 120px;
+            padding: 0 24px;
+        }
+
+        /* Post Card Envelope Header */
+        .letter-envelope-header {
+            background: var(--paper-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 20px;
+            padding: 45px 38px 35px;
+            margin-bottom: 45px;
+            box-shadow: var(--shadow-cozy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Airmail decorative top bar */
+        .letter-envelope-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--terracotta-warm) 0,
+                var(--terracotta-warm) 15px,
+                #fff 15px,
+                #fff 30px,
+                var(--stamp-blue) 30px,
+                var(--stamp-blue) 45px,
+                #fff 45px,
+                #fff 60px
+            );
+        }
+
+        .category-stamp {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--terracotta-warm);
+            margin-bottom: 16px;
+        }
+
+        .letter-title {
+            font-family: 'Lora', serif;
+            font-size: clamp(2.1rem, 5vw, 3.1rem);
+            font-weight: 600;
+            line-height: 1.25;
+            color: var(--ink-primary);
+            margin-bottom: 20px;
+        }
+
+        .letter-sub {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.12rem;
+            color: var(--ink-muted);
+            line-height: 1.6;
+            margin-bottom: 26px;
+        }
+
+        .postmark-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-soft);
+            padding-top: 18px;
+            font-size: 0.86rem;
+            color: var(--ink-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .author-sign {
+            font-family: 'Caveat', cursive;
+            font-size: 1.45rem;
+            color: var(--ink-primary);
+        }
+
+        /* Post Body */
+        .post-content {
+            font-size: 1.1rem;
+            color: #382F2C;
+        }
+
+        .post-content p {
+            margin-bottom: 26px;
+        }
+
+        .initiale {
+            float: left;
+            font-family: 'Lora', serif;
+            font-size: 4rem;
+            line-height: 0.85;
+            padding-right: 12px;
+            padding-top: 4px;
+            color: var(--terracotta-warm);
+            font-weight: 600;
+        }
+
+        /* Interactive Perspective Switch Card */
+        .perspective-switch {
+            background: var(--paper-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 18px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-cozy);
+            text-align: center;
+        }
+
+        .switch-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--stamp-blue);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .switch-quote {
+            font-family: 'Lora', serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--ink-primary);
+            margin: 12px 0 20px;
+            line-height: 1.5;
+        }
+
+        /* Highlight Ribbon Box */
+        .heart-quote {
+            background: var(--terracotta-soft);
+            border-left: 4px solid var(--terracotta-warm);
+            border-radius: 0 16px 16px 0;
+            padding: 24px 28px;
+            margin: 38px 0;
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--ink-primary);
+        }
+
+        .dialogue-card {
+            background: #fff;
+            border: 1px dashed var(--stamp-blue);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin: 32px 0;
+            box-shadow: var(--shadow-stamp);
+        }
+
+        .dialogue-card strong {
+            color: var(--stamp-blue);
+        }
+
+        /* Handwritten Note Widget */
+        .notebook-card {
+            background: #FFFDF9;
+            border: 1px solid var(--border-soft);
+            border-radius: 20px;
+            padding: 34px 28px;
+            margin: 50px 0;
+            box-shadow: var(--shadow-cozy);
+            position: relative;
+        }
+
+        .notebook-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--ink-primary);
+            margin-bottom: 8px;
+        }
+
+        .notebook-card p {
+            font-size: 0.95rem;
+            color: var(--ink-muted);
+            margin-bottom: 18px;
+        }
+
+        .warm-textarea {
+            width: 100%;
+            height: 95px;
+            border: 1px solid var(--border-soft);
+            border-radius: 12px;
+            padding: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            background: var(--parchment);
+            outline: none;
+            resize: none;
+            transition: all 0.3s;
+        }
+
+        .warm-textarea:focus {
+            border-color: var(--terracotta-warm);
+            background: #fff;
+        }
+
+        .send-wish-btn {
+            background: var(--terracotta-warm);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(200, 109, 81, 0.25);
+        }
+
+        .send-wish-btn:hover {
+            transform: translateY(-2px);
+            background: #b55d42;
+        }
+
+        /* Footer */
+        .letter-footer {
+            text-align: center;
+            border-top: 1px dashed var(--border-soft);
+            padding: 50px 0 30px;
+            font-size: 0.9rem;
+            color: var(--ink-muted);
+        }
+
+        .om-seal {
+            font-size: 2.2rem;
+            color: var(--terracotta-warm);
+            margin-bottom: 12px;
+            display: inline-block;
+            transition: transform 0.4s;
+        }
+        .om-seal:hover {
+            transform: rotate(10deg) scale(1.15);
+        }
+
+        /* Flying Plane Keyframe */
+        .paper-plane-anim {
+            position: absolute;
+            font-size: 1.8rem;
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Reading Progress -->
+    <div id="reading-track"></div>
+
+    <!-- Sky Canvas for Interactive Flying Planes -->
+    <div class="sky-canvas" id="skyCanvas"></div>
+
+    <!-- Navigation -->
+    <nav class="vintage-nav">
+        <a href="#" class="nav-logo">
+            <span>Correspondances</span>
+            <span class="postage-tag">Par Avion ✈️</span>
+        </a>
+        <button class="action-plane-btn" onclick="launchPaperPlane(event)">
+            <span>💌 Envoyer une pensée</span>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="editorial-container">
+        
+        <!-- Header Envelope -->
+        <header class="letter-envelope-header">
+            <span class="category-stamp">Parentalité & Envol • Réflexions d'un Père</span>
+            <h1 class="letter-title">Le Nid Devenu Silencieux : Ce n’est pas une Fin, c’est la Diplomation de l’Amour</h1>
+            <p class="letter-sub">« Quand les enfants partent vivre au loin, la maison s’éteint dans un silence étrange... Mais un foyer vide est souvent la preuve d’un cœur rempli d’amour. »</p>
+            
+            <div class="postmark-meta">
+                <span>📍 De Bombay aux États-Unis (et partout où ils volent)</span>
+                <span class="author-sign">Avec tendresse, Ashish Vidyarthi</span>
+            </div>
+        </header>
+
+        <!-- Article Post Body -->
+        <article class="post-content">
+            <p><span class="initiale">O</span>n a beau s'y préparer mentalement pendant des années, la vérité crue est qu'on ne l'est jamais vraiment. Le jour arrive, l’enfant boucle ses valises, franchit la porte, et cette maison qui vibrait de rires, de pas précipités et de musique se retrouve soudainement plongée dans un silence assourdissant. Vous partez en voyage, vous rentrez... et cette routine familière n'existe plus.</p>
+
+            <p>Dans les premiers temps, une sensation vertigineuse vous serre la gorge : <em>« Avais-je une mission ? Est-ce que mon rôle de parent est désormais terminé ? »</em></p>
+
+            <div class="perspective-switch">
+                <span class="switch-badge">🌱 La Grande Métamorphose</span>
+                <div class="switch-quote">
+                    « Votre rôle n’est pas terminé. Il s’est simplement transformé. Hier, vous veilliez sur chacun de ses pas ; aujourd'hui, vous êtes devenu son phare invisible. »
+                </div>
+            </div>
+
+            <p>J'ai compris qu'il est devenu assez grand pour assumer ses propres erreurs. À des milliers de kilomètres, vous ne pouvez plus intervenir physiquement pour réparer chaque accroc. Mais lui faire sentir que vous êtes là, solide et confiant, apaise autant votre solitude que la sienne.</p>
+
+            <div class="heart-quote">
+                « Le départ d’un enfant n’est pas une perte parentale : c’est la diplomation de la parentalité. C’est pour ce jour précis que vous l’avez élevé avec tant de soin. »
+            </div>
+
+            <p>Il m'est arrivé une histoire révélatrice quand mon fils Mowgli (Arth) est parti à l'étranger. Je me retenais de montrer ma tristesse. Un ami m'a demandé : <em>« Alors, il s'en va, tu as mal au cœur ? »</em> J'ai répondu timidement : <em>« Non, c'est sa croissance, je veux qu'il parte. »</em> Il a insisté : <em>« Arrête, dis la vérité, ça fait mal, non ? »</em> Et quand j'ai enfin admis : <em>« Oui, ça fait mal... »</em>, il a aussitôt rétorqué : <em>« Mais pourquoi tu as mal ? Laisse-le s'envoler ! »</em></p>
+
+            <p>Le monde extérieur aime parfois remuer la blessure pour vous sermonner ensuite. Pourtant, avoir le cœur serré n'enlève rien à la beauté de leur envol.</p>
+
+            <!-- Dialogue Box -->
+            <div class="dialogue-card">
+                <p><strong>L'appel vidéo du dimanche :</strong></p>
+                <p style="margin-bottom: 8px; font-style: italic;">— « Baba, je quitte mon emploi pour en commencer un nouveau. »</p>
+                <p style="margin-bottom: 8px;">— « Attends, viens on en discute d'abord ! »</p>
+                <p style="margin-bottom: 0; font-style: italic; color: var(--terracotta-warm);">— « Baba, je ne demande pas ton autorisation... Je t'informe avec joie. »</p>
+            </div>
+
+            <p>J'en ris souvent en lui disant : <em>« Je t'avais dit que tu pourrais faire ce que tu veux une fois adulte... mais je pensais à tes 35 ans, pas à tes 18 ans ! »</em> Il a aujourd'hui 25 ans. Il prend ses propres décisions, écoute moins mes conseils qu'avant, mais notre présence mutuelle est plus pure que jamais.</p>
+
+            <p>Oui, il y a du manque. Oui, il y a parfois cette pointe de culpabilité quand il me dit : <em>« Pourquoi tu ne viens pas aux États-Unis me voir ? »</em> et que la vie m'appelle ailleurs. C'est tout ce mélange d'amour, de nostalgie et de fierté qui façonne l'âme d'un père.</p>
+
+            <div class="heart-quote">
+                « Il s'est éloigné géographiquement, mais l'éducation et l'amour que nous lui avons donnés le gardent blotti tout près de nous. »
+            </div>
+
+            <p>À tous les parents dont la maison résonne du vide ce soir : ne vous reprochez pas de ressentir ce manque. Regardez cet espace vide comme le sanctuaire d'un amour accompli. Soyez heureux, car ils volent de leurs propres ailes.</p>
+        </article>
+
+        <!-- Interactive Note Box -->
+        <section class="notebook-card">
+            <h3>✉️ Un vœu pour celui ou celle qui vole au loin</h3>
+            <p>Écrivez un mot tendre ou une pensée bienveillante pour un enfant, un proche ou vous-même :</p>
+            <textarea class="warm-textarea" id="noteField" placeholder="« Vole haut, mon enfant. Mon cœur sera toujours ta maison... »"></textarea>
+            <button class="send-wish-btn" onclick="sendWish(event)">Faire s'envoler ce mot doux 🕊️</button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="letter-footer">
+            <div class="om-seal">ॐ</div>
+            <p>Prenez soin de ceux que vous aimez, par-delà les fuseaux horaires.</p>
+            <p style="margin-top: 6px; font-size: 0.8rem; opacity: 0.7;">Journal intime • Inspiré des confidences d'Ashish Vidyarthi</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Reading Progress Tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-track').style.width = scrolled + '%';
+        });
+
+        // Launch Paper Plane Animation
+        function launchPaperPlane(e) {
+            const sky = document.getElementById('skyCanvas');
+            const plane = document.createElement('div');
+            plane.className = 'paper-plane-anim';
+            plane.innerHTML = '✈️';
+            
+            const startX = e.clientX || window.innerWidth / 2;
+            const startY = e.clientY || 100;
+
+            plane.style.left = `${startX}px`;
+            plane.style.top = `${startY}px`;
+            sky.appendChild(plane);
+
+            setTimeout(() => {
+                const targetX = startX + (Math.random() * 400 - 200) + (Math.random() > 0.5 ? 300 : -300);
+                const targetY = -150;
+                plane.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px) scale(0.4) rotate(${Math.random() * 40 - 20}deg)`;
+                plane.style.opacity = '0';
+            }, 50);
+
+            setTimeout(() => {
+                plane.remove();
+            }, 1600);
+        }
+
+        // Send Wish Action
+        function sendWish(e) {
+            const input = document.getElementById('noteField');
+            if (input.value.trim() !== "") {
+                launchPaperPlane(e);
+                setTimeout(() => {
+                    alert("✨ Votre pensée a pris son envol à travers les nuages.");
+                    input.value = "";
+                }, 400);
+            } else {
+                alert("Écrivez d'abord une pensée d'amour dans le carnet.");
+            }
+        }
+    </script>
+</body>
+</html>

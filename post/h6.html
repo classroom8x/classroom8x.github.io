@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Votre Rythme • Journal de Vie & Sérénité</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,600&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #FAF7F2;
+            --card-surface: rgba(255, 255, 255, 0.82);
+            --card-border: rgba(226, 217, 204, 0.7);
+            --text-dark: #2B2625;
+            --text-muted: #7A726D;
+            --sage: #7B9E87;
+            --sage-light: #EBF2ED;
+            --terracotta: #D47A65;
+            --terracotta-soft: #F9ECE8;
+            --honey: #E0A96D;
+            --lavender-soft: #EDE8F5;
+            --radius-pill: 999px;
+            --radius-card: 24px;
+            --shadow-subtle: 0 12px 32px -8px rgba(60, 50, 45, 0.06);
+            --shadow-float: 0 20px 40px -12px rgba(212, 122, 101, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.85;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Reading Progress */
+        #progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--terracotta), var(--honey), var(--sage));
+            z-index: 1000;
+            transition: width 0.15s ease-out;
+        }
+
+        /* Ambient Glow Background */
+        .ambient-sphere {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .sphere-1 {
+            width: 480px;
+            height: 480px;
+            background: #FCE8E2;
+            top: -120px;
+            right: -80px;
+        }
+        .sphere-2 {
+            width: 420px;
+            height: 420px;
+            background: #E5EFE8;
+            bottom: 100px;
+            left: -100px;
+        }
+
+        /* Top Header */
+        header.site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(226, 217, 204, 0.4);
+        }
+
+        .brand-logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brand-logo span {
+            color: var(--terracotta);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-surface);
+            border: 1px solid var(--card-border);
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+        .btn-pill:hover {
+            transform: translateY(-2px);
+            border-color: var(--terracotta);
+            background: #fff;
+        }
+
+        /* Main Container */
+        main.content-wrap {
+            max-width: 780px;
+            margin: 50px auto 120px;
+            padding: 0 24px;
+        }
+
+        /* Hero Article Header */
+        .article-hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            color: var(--sage);
+            background: var(--sage-light);
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 22px;
+        }
+
+        .main-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 22px;
+        }
+
+        .article-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            max-width: 640px;
+            margin: 0 auto 30px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+        .author-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .author-chip img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--terracotta-soft);
+        }
+
+        /* Interactive Mindset Compass Banner */
+        .compass-card {
+            background: linear-gradient(135deg, var(--terracotta-soft), var(--sage-light));
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 28px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: var(--shadow-float);
+        }
+        .compass-card h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+        .compass-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+        .breath-btn {
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(212, 122, 101, 0.3);
+        }
+        .breath-btn:hover {
+            transform: scale(1.04);
+            background: #c36b57;
+        }
+
+        /* Question Cards Styling */
+        .question-section {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .question-card {
+            background: var(--card-surface);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 36px 32px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+        .question-card:hover {
+            border-color: rgba(212, 122, 101, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .q-number {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--terracotta);
+            margin-bottom: 10px;
+        }
+
+        .q-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.65rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 18px;
+            line-height: 1.35;
+        }
+
+        .question-card p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #3f3938;
+        }
+
+        .quote-inset {
+            background: #fff;
+            border-left: 4px solid var(--honey);
+            padding: 16px 20px;
+            border-radius: 0 16px 16px 0;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+        }
+
+        .takeaway-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.84rem;
+            font-weight: 500;
+            background: var(--sage-light);
+            color: var(--sage);
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+            margin-top: 10px;
+        }
+
+        /* Interactive Micro Reflection Note */
+        .journal-box {
+            background: #fff;
+            border: 2px dashed var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 36px 30px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        .journal-box h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .journal-box textarea {
+            width: 100%;
+            height: 90px;
+            border: 1px solid #e2ded8;
+            border-radius: 16px;
+            padding: 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            margin: 16px 0 12px;
+            resize: none;
+            background: var(--bg-cream);
+            outline: none;
+            transition: border 0.3s;
+        }
+        .journal-box textarea:focus {
+            border-color: var(--terracotta);
+            background: #fff;
+        }
+
+        /* Footer */
+        footer.site-footer {
+            border-top: 1px solid var(--card-border);
+            padding: 60px 20px 40px;
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+        .footer-heart {
+            color: var(--terracotta);
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        /* Floating Confetti / Affirmation Toast */
+        #affirmation-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-dark);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+        #affirmation-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div id="progress-indicator"></div>
+
+    <!-- Soft Ambient Lights -->
+    <div class="ambient-sphere sphere-1"></div>
+    <div class="ambient-sphere sphere-2"></div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <a href="#" class="brand-logo">Le Fil <span>Doux.</span></a>
+        <div class="header-actions">
+            <button class="btn-pill" onclick="sendHeart()">✨ Déposer une étincelle</button>
+        </div>
+    </header>
+
+    <!-- Main Blog Content -->
+    <main class="content-wrap">
+        
+        <!-- Hero Header -->
+        <article class="article-hero">
+            <span class="category-badge">🌱 Philosophie du Quotidien</span>
+            <h1 class="main-title">La Pression du Temps : Et si vous n’étiez pas en retard, mais simplement en chemin ?</h1>
+            <p class="article-lead">« Nous croyons souvent que la vie est une course olympique. Voici 5 questions douces pour faire la paix avec votre propre calendrier. »</p>
+            
+            <div class="meta-info">
+                <div class="author-chip">
+                    <span>✨ Adapté des réflexions d'Ashish Vidyarthi</span>
+                </div>
+                <span>•</span>
+                <span>6 min de lecture bienveillante</span>
+            </div>
+        </article>
+
+        <!-- Interactive Compass Card -->
+        <section class="compass-card">
+            <h4>Respirez profondément un instant... 🍃</h4>
+            <p>Quelqu'un achète une maison à 28 ans, un autre découvre sa passion à 52 ans. Arrêtons de regarder la montre des autres.</p>
+            <button class="breath-btn" onclick="triggerAffirmation()">« Je suis exactement là où je dois être »</button>
+        </section>
+
+        <!-- Blog Body: The 5 Questions -->
+        <div class="question-section">
+
+            <!-- Question 1 -->
+            <section class="question-card">
+                <span class="q-number">Question 01</span>
+                <h2 class="q-title">À quel âge la vie est-elle censée être enfin « réglée » ?</h2>
+                <p>Soyons honnêtes : <strong>la vie n’est jamais entièrement « réglée » (sorted).</strong> Ce que nous prenons pour de l'assurance chez les autres n'est souvent qu'une capacité acquise à ignorer ce qui ne compte pas à cet instant précis.</p>
+                <p>La vie n’a pas de programme scolaire figé. À chaque âge s’ouvrent de nouveaux chapitres qui nous donnent l’occasion d’être vivants, d’oser de nouvelles erreurs et de faire de nouvelles découvertes. Ne paniquez pas si votre horizon vous paraît encore flou : vous n’êtes pas en retard, <strong>vous êtes simplement présent et en train d’apprendre.</strong></p>
+                <div class="takeaway-tag">💡 Clé : Présence > Perfection</div>
+            </section>
+
+            <!-- Question 2 -->
+            <section class="question-card">
+                <span class="q-number">Question 02</span>
+                <h2 class="q-title">Qui a donc décrété ces fameuses dates limites ?</h2>
+                <p>Marié à 26 ans, au sommet de sa carrière à 35, retraité à 60... Qui a écrit ces règles gravées dans la pierre ? Personne. Nous les avons simplement acceptées par mimétisme social.</p>
+                <p>Chaque être humain grandit avec une histoire, des responsabilités et un point de départ singuliers. Comment un calendrier universel pourrait-il s'appliquer à des vies aussi diverses ?</p>
+                <div class="quote-inset">
+                    « L'horloge de la comparaison vous fera toujours croire qu'il vous manque quelque chose. Ne regardez pas ce qui manque, remplissez votre propre agenda avec ce qui fait battre votre cœur. »
+                </div>
+                <div class="takeaway-tag">📅 Clé : Votre vie, votre propre calendrier</div>
+            </section>
+
+            <!-- Question 3 -->
+            <section class="question-card">
+                <span class="q-number">Question 03</span>
+                <h2 class="q-title">Mariage, succès, enfants : pourquoi cette hâte fébrile ?</h2>
+                <p>Cette urgence provient de la peur : la peur que si ce n’est pas fait maintenant, tout sera perdu. Mais posez-vous cette question sincère : <em>Qu’est-ce qui fait le plus mal dans la vie ? Prendre une décision précipitée qui s'avère mauvaise, ou prendre un peu plus de temps pour choisir en conscience ?</em></p>
+                <p>Le mariage, les enfants ou les promotions ne sont pas des trophées d'arrivée d'un marathon. Ce sont des étapes qui se vivent en chemin. Si vous avancez sous la seule contrainte sociale, ce fardeau alourdira votre âme.</p>
+                <div class="takeaway-tag">🌿 Clé : La préparation vaut mieux que la vitesse</div>
+            </section>
+
+            <!-- Question 4 -->
+            <section class="question-card">
+                <span class="q-number">Question 04</span>
+                <h2 class="q-title">Et si j’avais totalement déraillé de ma trajectoire ?</h2>
+                <p>Si cette interrogation traverse votre esprit, réjouissez-vous : <strong>cela signifie que vous êtes pleinement conscient, sensible et vivant.</strong> Vous n’avez pas déraillé, car il n’existe aucun rail universel.</p>
+                <p>Certaines trajectoires sont droites, d'autres font des virages vertigineux. Il n’y a pas de raccourcis magiques. En cheminant sur votre route sinueuse, vous découvrez des facettes de vous-même que vous n'auriez jamais rencontrées sur une autoroute rectiligne.</p>
+                <div class="quote-inset">
+                    « Ne gardez pas les yeux fixés uniquement sur l’arrivée. Regardez le paysage en marchant : il est riche d’enseignements précieux. »
+                </div>
+                <div class="takeaway-tag">🧭 Clé : L'exploration n'est pas un égarement</div>
+            </section>
+
+            <!-- Question 5 -->
+            <section class="question-card">
+                <span class="q-number">Question 05</span>
+                <h2 class="q-title">Peut-on réécrire sa propre chronologie ?</h2>
+                <p>Absolument, et c’est d’ailleurs l'essence même de notre liberté. Beaucoup subissent les tournants de la vie avec dépit ; les personnes libres, elles, choisissent de s'adapter avec élégance et courage.</p>
+                <p>Changer de métier, apprendre une langue, recommencer à zéro, ralentir le pas... C'est comme jouer une partie d'échecs : parfois on avance, parfois on recule d'une case pour mieux se repositionner. Non pas par contrainte, mais par <strong>choix conscient</strong>.</p>
+                <div class="takeaway-tag">♟️ Clé : La vie est un jeu de choix, non une fatalité</div>
+            </section>
+
+        </div>
+
+        <!-- Interactive Reflection Note Box -->
+        <section class="journal-box">
+            <h3>💌 Votre Note Douce pour Ce Soir</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Quelle est la chose pour laquelle vous pouvez cesser de vous mettre la pression aujourd'hui ?</p>
+            <textarea id="reflection-input" placeholder="Ex: Arrêter de me comparer professionnellement, m'accorder du temps..."></textarea>
+            <button class="breath-btn" onclick="saveReflection()">Garder cette promesse avec soi</button>
+        </section>
+
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-heart">🕊️</div>
+        <p><strong>La vie n'est pas un examen : être en retard n'existe pas.</strong></p>
+        <p style="margin-top: 8px; font-size: 0.82rem; opacity: 0.7;">Écrit avec douceur & bienveillance • Inspiré des réflexions d'Ashish Vidyarthi</p>
+    </footer>
+
+    <!-- Floating Toast Notification -->
+    <div id="affirmation-toast">✨ Vous êtes sur votre propre fuseau horaire.</div>
+
+    <script>
+        // Reading Progress Tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-indicator').style.width = scrolled + '%';
+        });
+
+        // Toast Notification Trigger
+        function triggerAffirmation(customText) {
+            const toast = document.getElementById('affirmation-toast');
+            if (customText) toast.innerText = customText;
+            else toast.innerText = "✨ Vous êtes exactement là où vous devez être.";
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3200);
+        }
+
+        function sendHeart() {
+            triggerAffirmation("🤍 Prenez soin de votre souffle et de votre rythme.");
+        }
+
+        function saveReflection() {
+            const val = document.getElementById('reflection-input').value.trim();
+            if (val !== "") {
+                triggerAffirmation("🌿 Promesse enregistrée dans votre cœur.");
+                document.getElementById('reflection-input').value = "";
+            } else {
+                triggerAffirmation("✍️ Écrivez quelques mots pour vous-même d'abord.");
+            }
+        }
+    </script>
+</body>
+</html>

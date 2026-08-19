@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="lavender">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quand la Peur Devient Boussole : 5 Questions de Vie | Ashish Vidyarthi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette Bento Pastel / Lavender & Apricot */
+            --bg: #F7F5F9;
+            --card-bg: #FFFFFF;
+            --card-subtle: #F0EDF6;
+            --text: #211C27;
+            --text-muted: #6B6275;
+            --primary: #FF7E5F;
+            --primary-light: #FFEBE5;
+            --accent-lavender: #8E7DBE;
+            --accent-lavender-light: #ECE8F7;
+            --accent-sage: #6B9080;
+            --accent-sage-light: #EAF2EC;
+            --border: #E5DFEE;
+            --shadow-bento: 0 12px 32px -8px rgba(90, 70, 110, 0.08);
+            --shadow-hover: 0 18px 40px -6px rgba(90, 70, 110, 0.14);
+            --radius-pill: 999px;
+            --radius-card: 24px;
+            --radius-sm: 14px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #131118;
+            --card-bg: #1E1A24;
+            --card-subtle: #272230;
+            --text: #F3EFF7;
+            --text-muted: #9D93A8;
+            --primary: #FFA085;
+            --primary-light: #3D221B;
+            --accent-lavender: #B3A4DE;
+            --accent-lavender-light: #2B233C;
+            --accent-sage: #8CB4A2;
+            --accent-sage-light: #1E2B24;
+            --border: #322B3D;
+            --shadow-bento: 0 12px 32px -8px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 18px 40px -6px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Reading Tracker Bar */
+        .progress-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-lavender), var(--primary), var(--accent-sage));
+            width: 0%;
+            z-index: 1000;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            background: var(--primary-light);
+            color: var(--primary);
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            font-size: 1.2rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-circle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text);
+            box-shadow: var(--shadow-bento);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-circle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-lavender);
+        }
+
+        /* Header Hero */
+        .hero {
+            text-align: center;
+            padding: 40px 0 20px 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+            background: var(--accent-lavender-light);
+            color: var(--accent-lavender);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Audio Monologue Bar Aesthetic */
+        .audio-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-bento);
+            margin-bottom: 40px;
+        }
+
+        .play-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .wave-bars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 16px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            height: 100%;
+            background: var(--accent-lavender);
+            border-radius: 2px;
+            animation: bounce 1.2s ease-in-out infinite alternate;
+        }
+        .wave-bar:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+        .wave-bar:nth-child(3) { animation-delay: 0.4s; height: 90%; }
+        .wave-bar:nth-child(4) { animation-delay: 0.1s; height: 40%; }
+        .wave-bar:nth-child(5) { animation-delay: 0.3s; height: 80%; }
+
+        @keyframes bounce {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1); }
+        }
+
+        /* Question Quick Navigator (Bento Pills) */
+        .q-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 8px 0 24px 0;
+            scrollbar-width: none;
+            margin-bottom: 24px;
+        }
+        .q-nav::-webkit-scrollbar { display: none; }
+
+        .q-pill {
+            white-space: nowrap;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-bento);
+            transition: all 0.2s ease;
+        }
+
+        .q-pill:hover, .q-pill.active {
+            background: var(--text);
+            color: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        /* Bento Question Cards */
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            padding: 36px;
+            margin-bottom: 36px;
+            box-shadow: var(--shadow-bento);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .bento-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .q-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--accent-lavender);
+            opacity: 0.4;
+            position: absolute;
+            top: 24px;
+            right: 32px;
+        }
+
+        .q-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.85rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 18px;
+            padding-right: 60px;
+            color: var(--text);
+        }
+
+        .card-content p {
+            margin-bottom: 18px;
+            color: var(--text);
+            font-size: 1.05rem;
+        }
+
+        .highlight-quote {
+            background: var(--card-subtle);
+            border-left: 3px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 20px 0;
+            font-style: italic;
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.35rem;
+            color: var(--text);
+        }
+
+        .personal-story {
+            background: var(--accent-sage-light);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            border: 1px dashed var(--accent-sage);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--accent-sage);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Handwritten Sticky Note */
+        .sticky-note {
+            background: #FEF9D9;
+            color: #332B1A;
+            padding: 24px;
+            border-radius: 12px;
+            transform: rotate(-1deg);
+            box-shadow: var(--shadow-bento);
+            margin: 36px 0;
+            font-family: 'Reenie Beanie', cursive;
+            font-size: 1.7rem;
+            line-height: 1.3;
+            border-left: 8px solid #F3DB70;
+        }
+
+        /* Interactive Reframer Tool */
+        .interactive-tool {
+            background: linear-gradient(135deg, var(--accent-lavender-light), var(--card-bg));
+            border: 2px dashed var(--accent-lavender);
+            border-radius: var(--radius-card);
+            padding: 32px;
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .tool-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            max-width: 540px;
+            margin: 20px auto 14px auto;
+        }
+
+        .tool-input {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text);
+            font-family: inherit;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .reframe-output {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            margin-top: 18px;
+            font-style: italic;
+            font-size: 1.05rem;
+            display: none;
+            animation: fadeIn 0.4s ease;
+            box-shadow: var(--shadow-bento);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Author & Comment Section */
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius-card);
+            margin: 40px 0;
+        }
+
+        .author-pic {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Discussion form */
+        .feedback-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: var(--radius-card);
+            margin-bottom: 60px;
+        }
+
+        .feedback-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .feedback-card textarea {
+            width: 100%;
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--card-subtle);
+            color: var(--text);
+            font-family: inherit;
+            resize: vertical;
+            margin: 16px 0;
+            outline: none;
+        }
+
+        /* Toast Popup */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text);
+            color: var(--bg);
+            padding: 12px 28px;
+            border-radius: var(--radius-pill);
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-hover);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+
+        .toast.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .bento-card { padding: 24px; }
+            .q-number { font-size: 2.8rem; top: 16px; right: 20px; }
+            .input-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-track" id="progTrack"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="nav-logo">
+                <span>🧭</span>
+                <div>Cap sur Soi</div>
+            </a>
+            <div class="nav-actions">
+                <button class="btn-circle" id="themeBtn" title="Mode Nuit / Jour">🌓</button>
+                <button class="btn-circle" id="shareBtn" title="Partager">🔗</button>
+            </div>
+        </nav>
+
+        <!-- Hero Header -->
+        <header class="hero">
+            <span class="badge">🎙️ 5 Questions Clés</span>
+            <h1>La Peur n'est pas un Frein,<br><i style="font-family:'Instrument Serif';">Elle est une Direction</i></h1>
+            <p class="hero-lead">
+                Nous la prenons souvent pour une ennemie. Pourtant, la peur n'est pas là pour vous arrêter, mais pour vous indiquer où se trouve votre prochaine grande étape de vie.
+            </p>
+            
+            <div class="audio-pill">
+                <div class="play-indicator">▶</div>
+                <div class="wave-bars">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+                <span style="font-size: 0.88rem; font-weight: 600;">Monologue inspiré par Ashish Vidyarthi</span>
+            </div>
+        </header>
+
+        <!-- Quick Bento Jump Pills -->
+        <div class="q-nav">
+            <a href="#q1" class="q-pill">1. Pourquoi maintenant ?</a>
+            <a href="#q2" class="q-pill">2. Être prêt ≠ Être sans peur</a>
+            <a href="#q3" class="q-pill">3. La peur de repartir de zéro</a>
+            <a href="#q4" class="q-pill">4. Écouter au lieu d'obéir</a>
+            <a href="#q5" class="q-pill">5. Le vrai visage du courage</a>
+        </div>
+
+        <!-- Article Bento Body -->
+        <article>
+
+            <!-- Question 1 -->
+            <section class="bento-card" id="q1">
+                <div class="q-number">01</div>
+                <h2 class="q-title">Pourquoi la peur surgit-elle précisément au seuil de notre croissance ?</h2>
+                <div class="card-content">
+                    <p>
+                        Avez-vous remarqué ? Au moment exact où vous sentez que vous allez franchir un palier, une vague d'angoisse s'installe. Pourquoi ? Parce que <strong>la croissance brise votre ancienne identité</strong>.
+                    </p>
+                    <p>
+                        Votre peur murmure : <em>« Reste là où les gens te connaissent déjà. Tu es bon dans ce rôle, pourquoi tout remettre en jeu ? »</em> Le cerveau adore ce qui lui est familier, même si cet endroit est devenu étouffant ou ennuyeux.
+                    </p>
+                    <div class="highlight-quote">
+                        « Tout ce qui me semble très confortable signifie simplement que je fais plus de la même chose. C'est vers ce qui m'effraie que je choisis de marcher. »
+                    </div>
+                </div>
+            </section>
+
+            <!-- Question 2 -->
+            <section class="bento-card" id="q2">
+                <div class="q-number">02</div>
+                <h2 class="q-title">La peur est-elle le signe que je ne suis pas encore prêt ?</h2>
+                <div class="card-content">
+                    <p>
+                        Pas du tout. Même lorsque vous serez infiniment préparé, la peur sera toujours là. 
+                    </p>
+                    <p>
+                        Je suis acteur depuis des décennies, et pourtant, avant chaque entrée sur scène, avant chaque premier clap de tournage, le trac m'envahit. Cette peur prouve simplement que <strong>vous respectez l'opportunité</strong>. Elle vous rappelle que ce moment compte et vous pousse à donner le meilleur de vous-même.
+                    </p>
+                    <p>
+                        Être prêt ne signifie pas « être sans peur ». Personne ne devient totalement invincible. Être prêt, c'est simplement se dire : <em>« J'ai peur, mais j'avance avec elle. »</em>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Question 3 -->
+            <section class="bento-card" id="q3">
+                <div class="q-number">03</div>
+                <h2 class="q-title">Pourquoi ai-je si peur de perdre ce que j'ai déjà bâti ?</h2>
+                <div class="card-content">
+                    <p>
+                        Parce que nous y avons investi du temps, de la sueur et notre fierté. La véritable terreur n'est pas seulement de perdre un statut, mais de redevenir un « zéro ».
+                    </p>
+                    <div class="personal-story">
+                        <div class="story-header">🎬 Une tranche de vie d'Ashish</div>
+                        Lorsque j'ai commencé à tourner dans le cinéma du Sud de l'Inde après plus de 25 films à succès en Hindi, personne ne me connaissait là-bas. J'ai dû recommencer comme un débutant complet. Mais j'ai compris une chose capitale : <strong>la vie ne m'avait pas remis à zéro, elle m'offrait un nouveau format.</strong>
+                    </div>
+                    <p style="margin-top: 18px;">
+                        Celui qui avance en apprenant ne repart jamais de zéro : tout ce qu'il a vécu s'ajoute à son bagage.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Sticky Reminder Note -->
+            <div class="sticky-note">
+                « Repartir à zéro est une illusion de l'esprit. Vous n'êtes pas au point de départ, vous explorez une toute nouvelle toile avec l'expérience d'un peintre aguerri. »
+            </div>
+
+            <!-- Question 4 -->
+            <section class="bento-card" id="q4">
+                <div class="q-number">04</div>
+                <h2 class="q-title">Comment empêcher la peur de dicter mes choix ?</h2>
+                <div class="card-content">
+                    <p>
+                        Le piège classique est de vouloir faire taire la peur ou de l'ignorer. Plus vous l'ignorez, plus elle devient autoritaire et prend le contrôle de vos décisions.
+                    </p>
+                    <p>
+                        Faites l'inverse : <strong>invitez-la à la table et parlez-lui</strong>. Demandez-lui : <em>« Qu'essaies-tu de me signaler ? De quoi veux-tu me protéger ? »</em> Lorsque vous humanisez votre peur, vous découvrez qu'elle ne voulait pas être votre patron, mais seulement un conseiller de vigilance.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Interactive Fear Reframer Widget -->
+            <div class="interactive-tool">
+                <h3 class="tool-title">L'Atelier du Recadrage 🪄</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Quelle peur vous retient en ce moment ? Tapez-la ci-dessous :</p>
+                <div class="input-group">
+                    <input type="text" id="userFear" class="tool-input" placeholder="ex: J'ai peur d'échouer si je lance ce projet...">
+                    <button class="btn-action" onclick="reframeFear()">Transformer</button>
+                </div>
+                <div class="reframe-output" id="outputCard"></div>
+            </div>
+
+            <!-- Question 5 -->
+            <section class="bento-card" id="q5">
+                <div class="q-number">05</div>
+                <h2 class="q-title">À quoi ressemble le véritable courage ?</h2>
+                <div class="card-content">
+                    <p>
+                        Le courage n'est ni théâtral, ni assourdissant. Il ne s'agit pas de frapper sur sa poitrine en criant qu'on est invincible.
+                    </p>
+                    <p>
+                        Le courage est un murmure calme et résolu. C'est cette voix intérieure qui dit tout bas : <strong>« Il n'y a aucune garantie, j'ai le cœur qui bat la chamade... mais je le ferai quand même. »</strong>
+                    </p>
+                    <div class="highlight-quote">
+                        « Le courage ne crie pas. Il pose un pied devant l'autre, tout doucement, jour après jour. »
+                    </div>
+                </div>
+            </section>
+
+            <!-- Author Card -->
+            <div class="author-box">
+                <div class="author-pic">🎭</div>
+                <div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Ashish Vidyarthi</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        Acteur national indien primé, conférencier motivationnel et voyageur passionné qui partage des clés simples pour une vie pleine et authentique.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Comment / Note Box -->
+            <section class="feedback-card">
+                <h3>Et vous, quel pas allez-vous faire aujourd'hui ?</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">
+                    Partagez votre réflexion ou le sujet que vous aimeriez explorer lors de nos prochaines 5 questions.
+                </p>
+                <textarea id="commentBox" rows="3" placeholder="Écrivez votre message ou votre question ici..."></textarea>
+                <button class="btn-action" onclick="sendComment()">Partager ma pensée ✉️</button>
+            </section>
+
+        </article>
+    </div>
+
+    <!-- Toast Component -->
+    <div class="toast" id="toast">Message envoyé avec succès ✨</div>
+
+    <script>
+        // Reading Progress Tracking
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progTrack').style.width = progress + '%';
+        });
+
+        // Theme Toggle (Lavender Light / Velvet Dark)
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'lavender' : 'dark';
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            themeBtn.textContent = targetTheme === 'dark' ? '☀️' : '🌓';
+        });
+
+        // Interactive Fear Reframer
+        function reframeFear() {
+            const input = document.getElementById('userFear').value.trim();
+            const output = document.getElementById('outputCard');
+            
+            if (input === "") {
+                triggerToast("Veuillez d'abord écrire votre peur ! 🌱");
+                return;
+            }
+
+            const reframes = [
+                `💡 « Cette peur est le signe que ce projet vous tient profondément à cœur. N'attendez pas qu'elle disparaisse, invitez-la à vos côtés et faites le premier pas. »`,
+                `🧭 « Votre peur protège simplement votre ancienne version. Rappelez-lui gentiment que vous êtes capable de grandir sans danger. »`,
+                `✨ « Ce n'est pas un mur, mais un portail. Vous n'êtes pas en train de tout risquer, vous êtes en train d'apprendre un format supérieur. »`
+            ];
+
+            const randomQuote = reframes[Math.floor(Math.random() * reframes.length)];
+            output.innerHTML = `<strong>Écoute bienveillante :</strong><br>${randomQuote}`;
+            output.style.display = 'block';
+        }
+
+        // Feedback / Comment action
+        function sendComment() {
+            const comment = document.getElementById('commentBox');
+            if (comment.value.trim() !== "") {
+                triggerToast("Merci pour votre partage inspirant ! 🕊️");
+                comment.value = "";
+            } else {
+                triggerToast("Écrivez un petit mot d'abord ✨");
+            }
+        }
+
+        // Share Action
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: "La Peur comme Boussole - Ashish Vidyarthi",
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                triggerToast("Lien copié dans le presse-papier ! 📎");
+            }
+        });
+
+        // Toast Helper
+        function triggerToast(text) {
+            const toast = document.getElementById('toast');
+            toast.textContent = text;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 3200);
+        }
+    </script>
+</body>
+</html>

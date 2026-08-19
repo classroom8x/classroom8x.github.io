@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Poids du Silence — Journal Nocturne</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-night: #13151F;
+            --surface-night: #1C1F2E;
+            --surface-hover: #252A3D;
+            --accent-candle: #F4BA74;
+            --accent-lavender: #B8AFF5;
+            --accent-rose: #EFA7A7;
+            --text-primary: #EDEBF5;
+            --text-muted: #9DA3BC;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-night);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.85;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(184, 175, 245, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(244, 186, 116, 0.07) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        /* Top Atmospheric Bar */
+        .ambient-bar {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            padding: 0.8rem 1.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(28, 31, 46, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 60px;
+        }
+
+        .ambient-brand {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--accent-candle);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ambient-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .ambient-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--accent-lavender);
+        }
+
+        /* Container */
+        .container {
+            max-width: 760px;
+            margin: 3.5rem auto 6rem;
+            padding: 0 1.5rem;
+        }
+
+        /* Article Header */
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .tag-pill {
+            display: inline-block;
+            background: rgba(184, 175, 245, 0.12);
+            color: var(--accent-lavender);
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .blog-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .blog-title span {
+            color: var(--accent-candle);
+            font-style: italic;
+        }
+
+        .blog-subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            font-weight: 300;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Post Card */
+        .post-body {
+            background: var(--surface-night);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 3.8rem 3.2rem;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+        }
+
+        @media (max-width: 640px) {
+            .post-body {
+                padding: 2.2rem 1.6rem;
+            }
+        }
+
+        p {
+            font-size: 1.08rem;
+            color: #C8CDDF;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .first-letter-cap::first-letter {
+            font-family: var(--font-serif);
+            font-size: 4.2rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 1rem;
+            color: var(--accent-lavender);
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            color: var(--text-primary);
+            margin: 3rem 0 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Interactive "Unsent Letter" Fold Card */
+        .unsent-letter {
+            background: linear-gradient(145deg, #24293E, #1E2133);
+            border: 1px dashed rgba(244, 186, 116, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2.8rem 0;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .unsent-letter:hover {
+            border-color: var(--accent-candle);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .letter-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--accent-candle);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .letter-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #EDE8F5;
+            padding-top: 0;
+        }
+
+        .unsent-letter.open .letter-content {
+            max-height: 300px;
+            padding-top: 1.4rem;
+        }
+
+        /* Highlight Blockquote */
+        .poetic-quote {
+            border-left: 2px solid var(--accent-rose);
+            padding: 1.2rem 0 1.2rem 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        .poetic-quote p {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #F8E7E7;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Candle Lighting Widget */
+        .candle-shrine {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2.2rem;
+            text-align: center;
+            margin-top: 3.5rem;
+        }
+
+        .candle-icon {
+            font-size: 2.5rem;
+            display: inline-block;
+            cursor: pointer;
+            filter: drop-shadow(0 0 0px var(--accent-candle));
+            transition: all 0.4s ease;
+        }
+
+        .candle-icon.lit {
+            filter: drop-shadow(0 0 25px var(--accent-candle));
+            transform: scale(1.15);
+        }
+
+        .candle-action-btn {
+            margin-top: 1rem;
+            background: linear-gradient(135deg, var(--accent-candle), #DE9A4B);
+            color: #13151F;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .candle-action-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 20px rgba(244, 186, 116, 0.4);
+        }
+
+        /* Author Signoff */
+        .author-footer {
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-ring {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-lavender), var(--accent-candle));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .night-wish {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-lavender);
+            font-size: 1.15rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Floating Sanctuary Bar -->
+    <header class="ambient-bar">
+        <div class="ambient-brand">
+            <span>✨</span> Le Sanctuaire des Âmes
+        </div>
+        <button class="ambient-btn" id="soundToggle">
+            <span>🔔</span> <span id="soundLabel">Carillon apaisant</span>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <header class="blog-header">
+            <span class="tag-pill">Introspection Nocturne</span>
+            <h1 class="blog-title">Le Poids du Silence : <span>Quand les mots n'ont nulle part où aller</span></h1>
+            <p class="blog-subtitle">Ce soir, prenons un moment pour honorer ce calme extérieur qui, parfois, cache une âme tout simplement épuisée.</p>
+        </header>
+
+        <article class="post-body">
+            
+            <p class="first-letter-cap">Parfois, nous ne nous taisons pas par manque de choses à dire. Nous nous taisons parce que nous avons fini par comprendre, avec une lucidité douloureuse, qu'il n'y a personne en face pour réellement écouter.</p>
+
+            <p>Ces mots de ce soir sont dédiés à cette forme particulière de silence : celle qui semble si paisible de l'extérieur, mais qui pèse si lourdement à l'intérieur. Nous apprenons tous, avec le temps, l'art de dissimuler nos peines. Notre visage affiche une normalité impeccable, notre voix reste posée, et nous répondons machinalement : <em>« Tout va bien, je gère. »</em></p>
+
+            <p>Mais au fond de nous, nous savons la vérité. Ce n'est pas un mensonge total, c'est une <strong>demi-vérité polie</strong>. Parce que la vérité brute, c'est que nous n'avons plus le courage d'expliquer ce qui nous brise.</p>
+
+            <!-- Unsent Letter Interaction -->
+            <div class="unsent-letter" id="letterCard">
+                <div class="letter-header">
+                    <span>✉️ Métaphore : La lettre jamais envoyée</span>
+                    <span id="letterHint">Cliquer pour déplier ▾</span>
+                </div>
+                <div class="letter-content">
+                    « Garder le silence face à sa douleur, c’est comme plier soigneusement une lettre bouleversante, l’enfermer dans un tiroir secret de son âme, et refuser pour toujours de la poster. »
+                </div>
+            </div>
+
+            <h2>Le silence n'est pas une faiblesse</h2>
+            <p>Se murer dans le silence n'est pas une défaite. C'est souvent un <strong>réflexe vital de survie</strong>. Car nous savons que si nous parlons, nous risquons de recevoir des conseils maladroits, des leçons de morale, ou pire : le sentiment d'être jugé ou incompris. Alors, on lâche l'affaire. On murmure un simple <em>« Laisse tomber »</em>.</p>
+
+            <p>Avez-vous remarqué que les personnes les plus silencieuses sont souvent celles qui comprennent le plus profondément les autres ? Elles savent combien la douleur humaine est délicate. Mais lorsqu'une peine ne rencontre que le silence, ce silence finit lui-même par s'épuiser.</p>
+
+            <div class="poetic-quote">
+                <p>« Le jour est trop bruyant pour entendre notre âme. Mais dès que la nuit s’installe, le silence se met à parler avec une clarté désarmante. »</p>
+            </div>
+
+            <h2>Tu n'es pas invisible, tu es juste discret</h2>
+            <p>Si ce soir tu te sens mis de côté, ignoré ou invisible parce que tu ne fais pas d'éclat, rappelle-toi ceci : <strong>ne pas crier ne signifie pas être inexistant</strong>. L'absence de vacarme n'a jamais été une faiblesse.</p>
+
+            <p>La guérison ne réclame pas du bruit. Elle réclame seulement une chose : <strong>ta propre permission</strong>. La permission d'accueillir ce qui te fait mal, de nommer ta fatigue et de cesser de faire semblant d'être invincible.</p>
+
+            <p>Si ce soir ton silence te paraît ne serait-ce qu'un tout petit peu plus doux, sache que tu as accompli quelque chose d'immense : tu as arrêté de te juger pour ta vulnérabilité.</p>
+
+            <!-- Interactive Shrine -->
+            <div class="candle-shrine">
+                <div class="candle-icon" id="candle">🕯️</div>
+                <p style="font-size: 0.95rem; margin: 0.8rem 0 0.2rem; color: #EDEBF5;">Allume une lueur pour ton cœur ce soir</p>
+                <button class="candle-action-btn" id="lightBtn">Allumer la flamme</button>
+            </div>
+
+            <!-- Footer Meta -->
+            <footer class="author-footer">
+                <div class="author-meta">
+                    <div class="author-ring">🌙</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.95rem;">Ashish Vidyarthi</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted);">Voix du soir & Pensées bienveillantes</div>
+                    </div>
+                </div>
+                <div class="night-wish">Douce nuit & Paix intérieure ✨</div>
+            </footer>
+
+        </article>
+    </main>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Unsent letter unfold interaction
+        const letterCard = document.getElementById('letterCard');
+        const letterHint = document.getElementById('letterHint');
+        
+        letterCard.addEventListener('click', () => {
+            letterCard.classList.toggle('open');
+            if (letterCard.classList.contains('open')) {
+                letterHint.textContent = 'Replier ▴';
+            } else {
+                letterHint.textContent = 'Cliquer pour déplier ▾';
+            }
+        });
+
+        // Digital Candle Lighting Interaction
+        const candle = document.getElementById('candle');
+        const lightBtn = document.getElementById('lightBtn');
+        let isLit = false;
+
+        lightBtn.addEventListener('click', () => {
+            isLit = !isLit;
+            if (isLit) {
+                candle.classList.add('lit');
+                candle.textContent = '🔥';
+                lightBtn.textContent = 'Flamme allumée • Paix trouvée';
+                lightBtn.style.background = 'linear-gradient(135deg, #B8AFF5, #8E84D6)';
+            } else {
+                candle.classList.remove('lit');
+                candle.textContent = '🕯️';
+                lightBtn.textContent = 'Allumer la flamme';
+                lightBtn.style.background = 'linear-gradient(135deg, #F4BA74, #DE9A4B)';
+            }
+        });
+
+        // Web Audio API: Peaceful Soft Chime Sound (Zero external audio files needed)
+        let audioCtx;
+        const soundBtn = document.getElementById('soundToggle');
+        
+        soundBtn.addEventListener('click', () => {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            const freqs = [528, 660, 792, 1056]; // Solfeggio / Harmonic relaxing chord
+            freqs.forEach((freq, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.15);
+                
+                gain.gain.setValueAtTime(0, audioCtx.currentTime + idx * 0.15);
+                gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + idx * 0.15 + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + idx * 0.15 + 2.5);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(audioCtx.currentTime + idx * 0.15);
+                osc.stop(audioCtx.currentTime + idx * 0.15 + 2.6);
+            });
+
+            soundBtn.style.borderColor = 'var(--accent-candle)';
+            setTimeout(() => {
+                soundBtn.style.borderColor = 'var(--border-glass)';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
