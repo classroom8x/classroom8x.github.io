@@ -155,6 +155,76 @@
       "category": "Rituels & Bien-être",
       "url": "https://classroom8x.github.io/post/p6",
       "excerpt": "Une réflexion de cinq minutes chaque soir permet d'éviter l'épuisement professionnel et de préparer efficacement la journée du lendemain."
-    }
+    },
+    {
+    "id": 20,
+    "title": "L'Art du Détachement Matériel : Pourquoi Posséder Moins Rend Plus Libre",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h1",
+    "excerpt": "Découvrez comment le désencombrement physique et mental permet de réduire le stress quotidien et de retrouver une clarté essentielle pour vos projets de vie."
+  },
+  {
+    "id": 21,
+    "title": "Sortir de la Rat Race : Construire des Revenus Décorrélés de Votre Temps",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/post/h2",
+    "excerpt": "Échanger ses heures contre un salaire a ses limites : explorez les leviers stratégiques et l'effet de levier pour bâtir des actifs financiers pérennes."
+  },
+  {
+    "id": 22,
+    "title": "La Peur de l'Échec Professionnel : Comment Transformer Vos Doutes en Moteur",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/post/h3",
+    "excerpt": "Le syndrome de l'imposteur et l'anxiété du statut paralysent l'action. Apprenez à recadrer vos appréhensions pour oser franchir les paliers décisifs de votre parcours."
+  },
+  {
+    "id": 23,
+    "title": "L'Épargne Stratégique : Les Règles Indispensables Avant Tout Investissement",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/post/h4",
+    "excerpt": "Pourquoi investir sans filet de sécurité est une erreur critique : guide pratique pour structurer votre fonds d'urgence et assainir votre trésorerie personnelle."
+  },
+  {
+    "id": 24,
+    "title": "Le Silence Intérieur à l'Ère Hyperconnectée : Retrouver Votre Focus Profond",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h5",
+    "excerpt": "Face aux notifications incessantes et à la surcharge cognitive, réapprenez à préserver des plages de solitude réparatrice pour régénérer votre créativité."
+  },
+  {
+    "id": 25,
+    "title": "Plafonnement de Carrière : Comment Rompre l'Inertie des Années de Routine",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/post/h6",
+    "excerpt": "Quand l'expérience ne se traduit plus en opportunités stimulantes : techniques concrètes pour pivoter, développer de nouvelles compétences et redéfinir sa trajectoire."
+  },
+  {
+    "id": 26,
+    "title": "Richesse Invisible vs Signes Extérieurs : La Vraie Définition de l'Indépendance",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/post/h7",
+    "excerpt": "Vivre pour impressionner les autres détruit le patrimoine : comprenez pourquoi la liberté d'emploi du temps vaut bien plus que tous les marqueurs de statut éphémères."
+  },
+  {
+    "id": 27,
+    "title": "Faire la Paix avec le Temps Qui Passe : Accepter ses Choix sans Regret",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h8",
+    "excerpt": "Une réflexion apaisante pour cesser de ressasser les bifurcations non prises et concentrer toute son énergie vitale sur ce qui dépend réellement de nous."
+  },
+  {
+    "id": 28,
+    "title": "L'Épuisement Silencieux : Reconnaître le Burn-out Avant la Rupture",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/post/h9",
+    "excerpt": "Les signaux d'alerte physiques et psychologiques que l'on ignore trop souvent, et comment réinstaurer des limites saines entre vie professionnelle et personnelle."
+  },
+  {
+    "id": 29,
+    "title": "L'Effet Cumulé des Petites Décisions : Le Secret de la Croissance à Long Terme",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h10",
+    "excerpt": "Les grands accomplissements ne naissent pas de coups d'éclat soudains, mais de la répétition patiente et invisible de micro-habitudes bien calibrées."
+  }
   ]
 }
