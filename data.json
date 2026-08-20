@@ -15,12 +15,12 @@
     ]
   },
   "pages": [
-    { "title": "About", "url": "../about.html" },
-    { "title": "Contact", "url": "../contact.html" },
-    { "title": "Privacy Policy", "url": "../privacy-policy.html" },
-    { "title": "Terms & Conditions", "url": "../terms.html" },
-    { "title": "Disclaimer", "url": "../disclaimer.html" },
-    { "title": "DMCA", "url": "../dmca.html" }
+    { "title": "About", "url": "../page/about.html" },
+    { "title": "Contact", "url": "../page/contact.html" },
+    { "title": "Privacy Policy", "url": "../page/privacy-policy.html" },
+    { "title": "Terms & Conditions", "url": "../page/terms.html" },
+    { "title": "Disclaimer", "url": "../page/disclaimer.html" },
+    { "title": "DMCA", "url": "../page/dmca.html" }
   ],
   "posts": [
     {
