@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-moi — Classroom 8x ✨ Un café & un mot doux</title>
+    
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Cute Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- DESIGN SYSTEM & PALETTE ESTHÉTIQUE --- */
+        :root {
+            --bg-creme: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --rose-soft: #F9ECE8;
+            --rose-accent: #E09F8F;
+            --terracotta: #C8755D;
+            --vert-sauge: #E8EDE6;
+            --vert-accent: #7D947B;
+            --gold-accent: #D9A74A;
+            --text-main: #3C3331;
+            --text-muted: #7E7270;
+            --border-soft: rgba(200, 117, 93, 0.14);
+            --shadow-soft: 0 10px 30px rgba(74, 53, 49, 0.05);
+            --shadow-hover: 0 15px 35px rgba(200, 117, 93, 0.12);
+            --radius-main: 24px;
+            --radius-pill: 999px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-creme);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND ORBS --- */
+        .bg-decor {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .decor-1 { top: -60px; right: -100px; background: var(--rose-soft); }
+        .decor-2 { top: 45%; left: -120px; background: var(--vert-sauge); }
+        .decor-3 { bottom: 80px; right: 10%; background: #FFF1D6; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            color: var(--terracotta);
+            font-style: italic;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--terracotta);
+        }
+
+        /* --- HEADER SECTION --- */
+        .contact-header {
+            text-align: center;
+            padding: 4.5rem 8% 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--rose-soft);
+            color: var(--terracotta);
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .contact-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+        .contact-header h1 em {
+            font-family: 'Caveat', cursive;
+            color: var(--terracotta);
+            font-size: 3.4rem;
+            font-style: normal;
+        }
+        .contact-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* --- MAIN CONTACT LAYOUT --- */
+        .contact-container {
+            padding: 1rem 8% 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.35fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* --- LEFT SIDE: INFO CARDS --- */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            padding: 2rem;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--rose-accent);
+        }
+
+        .email-highlight-box {
+            background: linear-gradient(135deg, #FFF7F5 0%, #F6FAF4 100%);
+            border: 1px dashed var(--rose-accent);
+        }
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .icon-email { background: var(--rose-soft); color: var(--terracotta); }
+        .icon-clock { background: var(--vert-sauge); color: var(--vert-accent); }
+        .icon-chat { background: #FFF4D9; color: var(--gold-accent); }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+        }
+        .email-display {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            word-break: break-all;
+            margin-bottom: 1rem;
+            display: block;
+            text-decoration: none;
+        }
+        .email-display:hover {
+            color: var(--terracotta);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-small {
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-main);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .btn-small:hover {
+            background: var(--terracotta);
+            color: #fff;
+            border-color: var(--terracotta);
+        }
+
+        /* --- RIGHT SIDE: FORM --- */
+        .form-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            padding: 3rem;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+        .form-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .form-card > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        input, select, textarea {
+            width: 100%;
+            background: #FAF7F2;
+            border: 1px solid rgba(200, 117, 93, 0.18);
+            padding: 12px 18px;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            outline: none;
+            transition: var(--transition);
+        }
+        input:focus, select:focus, textarea:focus {
+            background: #fff;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 4px rgba(200, 117, 93, 0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .btn-submit {
+            background: var(--terracotta);
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: var(--radius-pill);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(200, 117, 93, 0.25);
+        }
+        .btn-submit:hover {
+            background: #b5634b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(200, 117, 93, 0.35);
+        }
+
+        /* --- FAQ MINI SECTION --- */
+        .faq-section {
+            padding: 3rem 8% 5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .faq-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.4rem;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .faq-card {
+            background: var(--bg-card);
+            padding: 1.8rem;
+            border-radius: var(--radius-main);
+            border: 1px solid var(--border-soft);
+        }
+        .faq-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--terracotta);
+        }
+        .faq-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- TOAST NOTIFICATION --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--text-main);
+            color: #fff;
+            padding: 14px 26px;
+            border-radius: var(--radius-pill);
+            font-size: 0.92rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            pointer-events: none;
+            z-index: 999;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 8%;
+            background: #F4EFEB;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .footer-socials a:hover {
+            color: var(--terracotta);
+            transform: translateY(-3px);
+        }
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .form-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-decor decor-1"></div>
+    <div class="bg-decor decor-2"></div>
+    <div class="bg-decor decor-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="about.html" class="logo">
+            <i class="fa-solid fa-sparkles" style="color: var(--gold-accent);"></i>
+            Classroom<span>8x</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Finances Douces</a></li>
+            <li><a href="#">Motivation</a></li>
+            <li><a href="about.html">À Propos</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="contact-header">
+        <div class="header-badge">
+            <i class="fa-regular fa-envelope"></i> Restons Connectés
+        </div>
+        <h1>Écrivez-moi un <em>doux message</em></h1>
+        <p>Une question sur la gestion de votre budget, une idée d'article, une proposition de partenariat ou simplement un mot d'encouragement ? Je vous lis avec grand plaisir !</p>
+    </header>
+
+    <!-- Main Contact Section -->
+    <section class="contact-container">
+        
+        <!-- Left Side : Email & Infos -->
+        <div class="contact-info">
+            
+            <!-- Email Box with Copy Feature -->
+            <div class="info-card email-highlight-box">
+                <div class="info-card-header">
+                    <div class="card-icon icon-email">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <div>
+                        <h3>Adresse Directe</h3>
+                        <span style="font-size: 0.8rem; color: var(--terracotta); font-weight: 600;">Réponse personnelle garantie</span>
+                    </div>
+                </div>
+                
+                <a href="mailto:nk521760@gmail.com" class="email-display" id="myEmail">nk521760@gmail.com</a>
+
+                <div class="action-buttons">
+                    <button class="btn-small" onclick="copyEmail()">
+                        <i class="fa-regular fa-copy"></i> Copier l'email
+                    </button>
+                    <a href="mailto:nk521760@gmail.com" class="btn-small">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir Mail
+                    </a>
+                </div>
+            </div>
+
+            <!-- Response Time Box -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="card-icon icon-clock">
+                        <i class="fa-regular fa-hourglass-half"></i>
+                    </div>
+                    <div>
+                        <h3>Délais de réponse</h3>
+                    </div>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">
+                    Je réponds généralement sous <strong>24 à 48 heures</strong> (autour d'un bon café ☕).
+                </p>
+            </div>
+
+            <!-- Topics & Collabs -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="card-icon icon-chat">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div>
+                        <h3>Partenariats & Médias</h3>
+                    </div>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">
+                    Pour toute collaboration éthique en lien avec l'éducation financière, l'organisation et le développement personnel, n'hésitez pas à préciser l'objet dans votre email.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right Side : Interactive Form -->
+        <div class="form-card">
+            <h2>Formulaire de Contact ✨</h2>
+            <p>Remplissez les quelques champs ci-dessous pour m'envoyer un message en direct :</p>
+
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Votre joli prénom *</label>
+                        <input type="text" id="name" placeholder="Ex. Camille" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Votre adresse email *</label>
+                        <input type="email" id="email" placeholder="camille@exemple.fr" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">De quoi s'agit-il ?</label>
+                    <select id="subject">
+                        <option value="question">🌱 Une question Finance / Budget</option>
+                        <option value="motivation">✨ Un mot doux & Motivation</option>
+                        <option value="collab">☕ Proposition de collaboration / Partenariat</option>
+                        <option value="autre">💡 Autre sujet</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Votre message *</label>
+                    <textarea id="message" placeholder="Écrivez votre message ici avec toute votre bienveillance..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span>Envoyer le message</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- Mini FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-title">
+            <h2>Petites questions courantes 💭</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Quelques réponses rapides pour vous guider</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h4>Proposez-vous des coachings privés ?</h4>
+                <p>Pour le moment, toutes mes ressources et astuces sont partagées gratuitement sur le blog <em>Classroom 8x</em>.</p>
+            </div>
+            <div class="faq-card">
+                <h4>Puis-je proposer un article invité ?</h4>
+                <p>Absolument ! Envoyez-moi votre proposition et vos idées de sujets via le formulaire ou directement par email.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check" style="color: #92E3A9;"></i>
+        <span id="toastMsg">Action réussie !</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-socials">
+            <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <p class="footer-copy">
+            Fait avec amour & café • © <span id="year"></span> <strong>classroom8x.github.io</strong> — Tous droits réservés.
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toast Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        // Copy Email to Clipboard Function
+        function copyEmail() {
+            const email = "nk521760@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast("✨ Adresse 'nk521760@gmail.com' copiée dans le presse-papier !");
+            }).catch(err => {
+                showToast("Email : " + email);
+            });
+        }
+
+        // Form Submission Handling
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const userEmail = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Feedback visually
+            showToast(`💌 Merci ${name} ! Votre message a été préparé.`);
+
+            // Ouvre le client de messagerie prérempli vers votre adresse
+            setTimeout(() => {
+                window.location.href = `mailto:nk521760@gmail.com?subject=[Classroom8x] ${encodeURIComponent(subject)}&body=${encodeURIComponent("Bonjour,\n\n" + message + "\n\nDe la part de : " + name + " (" + userEmail + ")")}`;
+            }, 800);
+
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
