@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions d'Utilisation — Classroom 8x ✨ Respect & Clarté</title>
+    
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Cute Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- DESIGN SYSTEM & PALETTE ESTHÉTIQUE --- */
+        :root {
+            --bg-creme: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --rose-soft: #F9ECE8;
+            --rose-accent: #E09F8F;
+            --terracotta: #C8755D;
+            --vert-sauge: #E8EDE6;
+            --vert-accent: #7D947B;
+            --gold-accent: #D9A74A;
+            --text-main: #3C3331;
+            --text-muted: #7E7270;
+            --border-soft: rgba(200, 117, 93, 0.14);
+            --shadow-soft: 0 10px 30px rgba(74, 53, 49, 0.05);
+            --shadow-hover: 0 15px 35px rgba(200, 117, 93, 0.12);
+            --radius-main: 24px;
+            --radius-pill: 999px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-creme);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND DECORATIONS --- */
+        .bg-decor {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .decor-1 { top: -60px; right: -90px; background: var(--rose-soft); }
+        .decor-2 { top: 40%; left: -100px; background: var(--vert-sauge); }
+        .decor-3 { bottom: 80px; right: 8%; background: #FFF1D6; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            color: var(--terracotta);
+            font-style: italic;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--terracotta);
+        }
+
+        /* --- HEADER --- */
+        .terms-header {
+            text-align: center;
+            padding: 4.5rem 8% 2.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #FFF4D9;
+            color: #9C711C;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .terms-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .terms-header h1 em {
+            font-family: 'Caveat', cursive;
+            color: var(--terracotta);
+            font-size: 3.2rem;
+            font-style: normal;
+        }
+        .terms-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Summary Badges */
+        .summary-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.8rem;
+        }
+        .summary-pill {
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-soft);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .summary-pill i {
+            color: var(--terracotta);
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        .terms-container {
+            max-width: 900px;
+            margin: 2rem auto 6rem;
+            padding: 0 8%;
+        }
+
+        .terms-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            padding: 3.5rem 3rem;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .terms-section {
+            margin-bottom: 3rem;
+        }
+        .terms-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+        }
+        .terms-title-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--rose-soft);
+            color: var(--terracotta);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .terms-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            color: var(--text-main);
+        }
+
+        .terms-section p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+        }
+
+        .terms-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.2rem;
+        }
+        .terms-section ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+        .terms-section ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 5px;
+            color: var(--rose-accent);
+            font-size: 0.9rem;
+        }
+
+        /* --- HIGHLIGHT DISCLAIMER BOX --- */
+        .disclaimer-box {
+            background: linear-gradient(135deg, #FFF9ED 0%, #FAF4EB 100%);
+            border-left: 4px solid var(--gold-accent);
+            padding: 1.5rem;
+            border-radius: 0 18px 18px 0;
+            margin: 1.5rem 0;
+        }
+        .disclaimer-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #8C6615;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .disclaimer-box p {
+            color: #6C5B42;
+            font-size: 0.92rem;
+            margin-bottom: 0;
+        }
+
+        /* --- CONTACT CALLOUT --- */
+        .contact-highlight {
+            background: var(--vert-sauge);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(125, 148, 123, 0.25);
+        }
+        .contact-highlight h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-highlight p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .btn-email {
+            background: var(--vert-accent);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-email:hover {
+            background: #657a63;
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 8%;
+            background: #F4EFEB;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .footer-socials a:hover {
+            color: var(--terracotta);
+            transform: translateY(-3px);
+        }
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .terms-header h1 {
+                font-size: 2.2rem;
+            }
+            .terms-card {
+                padding: 2.2rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-decor decor-1"></div>
+    <div class="bg-decor decor-2"></div>
+    <div class="bg-decor decor-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="about.html" class="logo">
+            <i class="fa-solid fa-sparkles" style="color: var(--gold-accent);"></i>
+            Classroom<span>8x</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Finances Douces</a></li>
+            <li><a href="#">Motivation</a></li>
+            <li><a href="about.html">À Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="terms-header">
+        <div class="header-badge">
+            <i class="fa-solid fa-scroll"></i> Règles & Cadre d'Utilisation
+        </div>
+        <h1>Conditions Générales <em>d'Utilisation</em></h1>
+        <p>Bienvenue sur <strong>classroom8x.github.io</strong>. Pour que cet espace d'inspiration et de partage financier reste agréable, bienveillant et sécurisé pour tous, voici quelques règles simples à respecter.</p>
+        
+        <div class="summary-wrapper">
+            <div class="summary-pill"><i class="fa-solid fa-feather-pointed"></i> Accès libre & bienveillant</div>
+            <div class="summary-pill"><i class="fa-solid fa-copyright"></i> Contenus protégés</div>
+            <div class="summary-pill"><i class="fa-solid fa-circle-info"></i> But purement informatif</div>
+        </div>
+    </header>
+
+    <!-- Main Terms Content -->
+    <main class="terms-container">
+        <div class="terms-card">
+
+            <!-- Section 1 : Acceptation -->
+            <section class="terms-section">
+                <div class="terms-title">
+                    <div class="terms-title-icon"><i class="fa-solid fa-handshake"></i></div>
+                    <h2>1. Acceptation des Conditions</h2>
+                </div>
+                <p>
+                    L'accès et l'utilisation du blog accessible à l'adresse <strong>https://classroom8x.github.io</strong> impliquent l'acceptation pleine et entière des présentes Conditions Générales d'Utilisation (CGU).
+                </p>
+                <p>
+                    Si vous n'êtes pas en accord avec tout ou partie de ces règles, nous vous invitons avec respect à ne pas poursuivre votre navigation sur ce site.
+                </p>
+            </section>
+
+            <!-- Section 2 : Avertissement Financier / Non-Conseil -->
+            <section class="terms-section">
+                <div class="terms-title">
+                    <div class="terms-title-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h2>2. Avertissement & Nature du Contenu Financier</h2>
+                </div>
+                
+                <div class="disclaimer-box">
+                    <h4><i class="fa-solid fa-triangle-exclamation"></i> Pas de conseil en investissement agréé</h4>
+                    <p>
+                        Tous les articles, bilans budgétaires, astuces d'épargne et publications de motivation partagés sur <em>Classroom 8x</em> sont créés à titre <strong>strictement personnel, pédagogique et informatif</strong>.
+                    </p>
+                </div>
+                <p>
+                    En aucun cas les écrits du blog ne doivent être interprétés comme des recommandations de placement certifiées, des conseils juridiques ou financiers au sens des instances de régulation financière (comme l'AMF en France).
+                </p>
+                <p>
+                    Vous demeurez seul(e) et unique responsable de vos décisions financières et budgétaires. Nous vous encourageons vivement à consulter un professionnel financier qualifié avant tout investissement conséquent.
+                </p>
+            </section>
+
+            <!-- Section 3 : Propriété Intellectuelle -->
+            <section class="terms-section">
+                <div class="terms-title">
+                    <div class="terms-title-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    <h2>3. Propriété Intellectuelle & Droits d'Auteur</h2>
+                </div>
+                <p>
+                    L'ensemble des éléments présents sur <em>Classroom 8x</em> (textes, articles, structure, design, logo, charte graphique et sélections de citations) est protégé par le droit d'auteur et la législation relative à la propriété intellectuelle.
+                </p>
+                <ul>
+                    <li><strong>Usage personnel autorisé :</strong> Vous êtes chaleureusement invité(e) à lire, partager des extraits avec citation claire et lien vers le blog original.</li>
+                    <li><strong>Interdiction de reproduction intégrale :</strong> La copie intégrale, la reproduction automatisée (scraping) ou la revente des guides et contenus sans accord préalable écrit est formellement interdite.</li>
+                </ul>
+            </section>
+
+            <!-- Section 4 : Bienveillance et Usage Autorisé -->
+            <section class="terms-section">
+                <div class="terms-title">
+                    <div class="terms-title-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h2>4. Bienveillance & Règles de Conduite</h2>
+                </div>
+                <p>
+                    Pour préserver l'atmosphère chaleureuse et apaisante du blog :
+                </p>
+                <ul>
+                    <li>Les messages envoyés via le formulaire de contact ou par courriel doivent demeurer courtois, respectueux et bienveillants.</li>
+                    <li>Tout comportement malveillant (envoi de spam, tentative de piratage, injection de code ou dénigrement) pourra faire l'objet d'un signalement et d'un blocage immédiat.</li>
+                </ul>
+            </section>
+
+            <!-- Section 5 : Liens Externes & Hébergement -->
+            <section class="terms-section">
+                <div class="terms-title">
+                    <div class="terms-title-icon"><i class="fa-solid fa-link"></i></div>
+                    <h2>5. Liens Externes & GitHub Pages</h2>
+                </div>
+                <p>
+                    Ce blog est hébergé de façon statique via <strong>GitHub Pages</strong>. Il peut occasionnellement contenir des liens vers des sites partenaires, des outils de productivité ou des lectures inspirantes.
+                </p>
+                <p>
+                    Nous n'exerçons aucun contrôle sur le contenu ou les pratiques de confidentialité de ces sites tiers et déclinons toute responsabilité quant à leur utilisation.
+                </p>
+            </section>
+
+            <!-- Section 6 : Limitation de Responsabilité -->
+            <section class="terms-section">
+                <div class="terms-title">
+                    <div class="terms-title-icon"><i class="fa-solid fa-shield"></i></div>
+                    <h2>6. Limitation de Responsabilité</h2>
+                </div>
+                <p>
+                    Nous nous efforçons de fournir des informations précises et à jour. Cependant, nous ne pouvons garantir l'absence totale d'erreurs typographiques ou d'évolutions législatives/financières non répercutées immédiatement.
+                </p>
+                <p>
+                    L'éditeur du blog <em>Classroom 8x</em> ne saurait être tenu responsable des pertes, manques à gagner ou désagréments résultant de la lecture ou de l'application des idées partagées sur ce blog.
+                </p>
+            </section>
+
+            <!-- Section 7 : Contact Box -->
+            <div class="contact-highlight">
+                <h3>Une question au sujet de ces conditions ?</h3>
+                <p>Pour toute demande de droit de reproduction, question ou partenariat, écrivez-nous en toute simplicité :</p>
+                <a href="mailto:nk521760@gmail.com" class="btn-email">
+                    <i class="fa-regular fa-envelope"></i> nk521760@gmail.com
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-socials">
+            <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <p class="footer-copy">
+            Fait avec amour & clarté • © <span id="year"></span> <strong>classroom8x.github.io</strong> — Tous droits réservés.
+        </p>
+    </footer>
+
+    <!-- DYNAMIC SCRIPT -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
