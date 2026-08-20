@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avertissement Légal (Disclaimer) — Classroom 8x ✨ Éthique & Transparence</title>
+    
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Cute Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- DESIGN SYSTEM & PALETTE ESTHÉTIQUE --- */
+        :root {
+            --bg-creme: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --rose-soft: #F9ECE8;
+            --rose-accent: #E09F8F;
+            --terracotta: #C8755D;
+            --vert-sauge: #E8EDE6;
+            --vert-accent: #7D947B;
+            --gold-accent: #D9A74A;
+            --text-main: #3C3331;
+            --text-muted: #7E7270;
+            --border-soft: rgba(200, 117, 93, 0.14);
+            --shadow-soft: 0 10px 30px rgba(74, 53, 49, 0.05);
+            --shadow-hover: 0 15px 35px rgba(200, 117, 93, 0.12);
+            --radius-main: 24px;
+            --radius-pill: 999px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-creme);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND ORBS --- */
+        .bg-decor {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .decor-1 { top: -60px; left: -90px; background: #FFF1D6; }
+        .decor-2 { top: 40%; right: -110px; background: var(--rose-soft); }
+        .decor-3 { bottom: 90px; left: 8%; background: var(--vert-sauge); }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            color: var(--terracotta);
+            font-style: italic;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--terracotta);
+        }
+
+        /* --- HEADER --- */
+        .disclaimer-header {
+            text-align: center;
+            padding: 4.5rem 8% 2.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #FFF4D9;
+            color: #9C711C;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .disclaimer-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .disclaimer-header h1 em {
+            font-family: 'Caveat', cursive;
+            color: var(--terracotta);
+            font-size: 3.2rem;
+            font-style: normal;
+        }
+        .disclaimer-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Quick Pills */
+        .summary-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.8rem;
+        }
+        .summary-pill {
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-soft);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .summary-pill i {
+            color: var(--terracotta);
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .disclaimer-container {
+            max-width: 900px;
+            margin: 2rem auto 6rem;
+            padding: 0 8%;
+        }
+
+        .disclaimer-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            padding: 3.5rem 3rem;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .disclaimer-section {
+            margin-bottom: 3rem;
+        }
+        .disclaimer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        .icon-gold { background: #FFF4D9; color: var(--gold-accent); }
+        .icon-rose { background: var(--rose-soft); color: var(--terracotta); }
+        .icon-vert { background: var(--vert-sauge); color: var(--vert-accent); }
+
+        .disclaimer-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .disclaimer-section p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.2rem;
+        }
+        .disclaimer-section ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+        .disclaimer-section ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 5px;
+            color: var(--rose-accent);
+            font-size: 0.9rem;
+        }
+
+        /* --- BIG CALLOUT WARNING BOX --- */
+        .hero-warning-box {
+            background: linear-gradient(135deg, #FFF9ED 0%, #FAF2E6 100%);
+            border: 1px dashed var(--gold-accent);
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+        .warning-badge-icon {
+            font-size: 2rem;
+            color: var(--gold-accent);
+            line-height: 1;
+        }
+        .hero-warning-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #8A6414;
+            margin-bottom: 0.4rem;
+        }
+        .hero-warning-box p {
+            color: #695738;
+            font-size: 0.93rem;
+            margin: 0;
+        }
+
+        /* --- CONTACT BOX --- */
+        .contact-highlight {
+            background: var(--rose-soft);
+            border-radius: 20px;
+            padding: 2.2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(224, 159, 143, 0.3);
+        }
+        .contact-highlight h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-highlight p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .btn-email {
+            background: var(--terracotta);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 26px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-email:hover {
+            background: #b5634b;
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 8%;
+            background: #F4EFEB;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .footer-socials a:hover {
+            color: var(--terracotta);
+            transform: translateY(-3px);
+        }
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .disclaimer-header h1 {
+                font-size: 2.2rem;
+            }
+            .disclaimer-card {
+                padding: 2.2rem 1.5rem;
+            }
+            .hero-warning-box {
+                flex-direction: column;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Decor Orbs -->
+    <div class="bg-decor decor-1"></div>
+    <div class="bg-decor decor-2"></div>
+    <div class="bg-decor decor-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="about.html" class="logo">
+            <i class="fa-solid fa-sparkles" style="color: var(--gold-accent);"></i>
+            Classroom<span>8x</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Finances Douces</a></li>
+            <li><a href="#">Motivation</a></li>
+            <li><a href="about.html">À Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="disclaimer-header">
+        <div class="header-badge">
+            <i class="fa-solid fa-scale-balanced"></i> Avertissement & Transparence
+        </div>
+        <h1>Clause de Non-Responsabilité <em>(Disclaimer)</em></h1>
+        <p>Pour avancer ensemble en toute confiance et sérénité sur <strong>classroom8x.github.io</strong>, découvrez notre charte de transparence concernant nos astuces financières et nos billets de motivation.</p>
+        
+        <div class="summary-wrapper">
+            <div class="summary-pill"><i class="fa-solid fa-graduation-cap"></i> Contenu 100% Pédagogique</div>
+            <div class="summary-pill"><i class="fa-solid fa-coins"></i> Pas de conseil AMF/CIF</div>
+            <div class="summary-pill"><i class="fa-solid fa-heart"></i> Responsabilité Individuelle</div>
+        </div>
+    </header>
+
+    <!-- Main Disclaimer Content -->
+    <main class="disclaimer-container">
+        <div class="disclaimer-card">
+
+            <!-- Highlight Warning Banner -->
+            <div class="hero-warning-box">
+                <div class="warning-badge-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div>
+                    <h3>En un coup d'œil : Votre argent, vos décisions</h3>
+                    <p>Les publications du blog <em>Classroom 8x</em> ne constituent pas des conseils en investissement financier agréés. Vos choix d'épargne et de vie vous appartiennent entièrement.</p>
+                </div>
+            </div>
+
+            <!-- Section 1 : Non-conseil financier -->
+            <section class="disclaimer-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-gold"><i class="fa-solid fa-building-columns"></i></div>
+                    <h2>1. Absence de Conseil Financier Personnalisé</h2>
+                </div>
+                <p>
+                    L'ensemble des articles, tableurs budgétaires partagés, guides d'organisation et réflexions monétaires publiés sur <strong>https://classroom8x.github.io</strong> reflètent uniquement des retours d'expérience personnels, des opinions subjectives et du contenu éducatif.
+                </p>
+                <ul>
+                    <li>L'auteur du blog n'est ni Conseiller en Investissements Financiers (CIF), ni Conseiller en Gestion de Patrimoine (CGP), ni courtier agréé par l'AMF ou l'ACPR.</li>
+                    <li>Aucun contenu sur ce site ne doit être considéré comme une incitation à investir, acheter ou vendre des actifs financiers spécifiques (actions, ETF, crypto-actifs, immobilier, etc.).</li>
+                </ul>
+            </section>
+
+            <!-- Section 2 : Risques liés aux investissements -->
+            <section class="disclaimer-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-rose"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h2>2. Risques Financiers & Perte en Capital</h2>
+                </div>
+                <p>
+                    Tout investissement ou placement comporte des risques inhérents, y compris un risque de perte totale ou partielle du capital investi.
+                </p>
+                <p>
+                    Les performances passées ou les exemples budgétaires mentionnés dans les articles ne préjugent en rien des résultats futurs. Nous vous conseillons de n'investir que des sommes dont vous n'avez pas un besoin immédiat et de consulter un professionnel certifié avant tout engagement patrimonial majeur.
+                </p>
+            </section>
+
+            <!-- Section 3 : Motivation & Bien-être -->
+            <section class="disclaimer-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-vert"><i class="fa-solid fa-seedling"></i></div>
+                    <h2>3. Publications de Motivation & Mindset</h2>
+                </div>
+                <p>
+                    Les articles consacrés au développement personnel, à la productivité, aux affirmations positives et à l'état d'esprit (mindset) sont proposés dans le seul but d'apporter inspiration, réconfort et motivation au quotidien.
+                </p>
+                <p>
+                    Ils ne remplacent en aucun cas un accompagnement médical, thérapeutique ou psychologique certifié.
+                </p>
+            </section>
+
+            <!-- Section 4 : Liens d'Affiliation & Partenariats -->
+            <section class="disclaimer-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-gold"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <h2>4. Liens d'Affiliation & Transparence</h2>
+                </div>
+                <p>
+                    Afin de maintenir ce blog gratuit et d'assurer son fonctionnement sur GitHub Pages, certains liens peuvent être des liens d'affiliation éthiques (livres recommandés, outils de budget pratiques).
+                </p>
+                <p>
+                    Si vous effectuez un achat via ces liens, nous pouvons recevoir une petite commission <strong>sans aucun surcoût pour vous</strong>. Nous ne recommandons que des ressources testées et sincèrement alignées avec la philosophie bienveillante de <em>Classroom 8x</em>.
+                </p>
+            </section>
+
+            <!-- Section 5 : Exactitude des informations -->
+            <section class="disclaimer-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-rose"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h2>5. Évolution des Lois & Exactitude</h2>
+                </div>
+                <p>
+                    Les règles fiscales, les taux de livrets d'épargne et les réglementations économiques évoluent constamment. Bien que nous fassions de notre mieux pour maintenir les informations à jour, nous ne pouvons garantir l'exhaustivité ou l'exactitude perpétuelle de l'ensemble des archives du blog.
+                </p>
+            </section>
+
+            <!-- Section 6 : Contact Callout -->
+            <div class="contact-highlight">
+                <h3>Une question sur cet avertissement ?</h3>
+                <p>Pour toute demande de clarification ou pour nous faire part d'une suggestion, écrivez-nous :</p>
+                <a href="mailto:nk521760@gmail.com" class="btn-email">
+                    <i class="fa-regular fa-envelope"></i> nk521760@gmail.com
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-socials">
+            <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <p class="footer-copy">
+            Fait avec amour, éthique & café • © <span id="year"></span> <strong>classroom8x.github.io</strong> — Tous droits réservés.
+        </p>
+    </footer>
+
+    <!-- DYNAMIC SCRIPT -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
