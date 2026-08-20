@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique DMCA & Droits d'Auteur — Classroom 8x ✨ Respect de la Création</title>
+    
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Cute Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- DESIGN SYSTEM & PALETTE ESTHÉTIQUE --- */
+        :root {
+            --bg-creme: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --rose-soft: #F9ECE8;
+            --rose-accent: #E09F8F;
+            --terracotta: #C8755D;
+            --vert-sauge: #E8EDE6;
+            --vert-accent: #7D947B;
+            --gold-accent: #D9A74A;
+            --text-main: #3C3331;
+            --text-muted: #7E7270;
+            --border-soft: rgba(200, 117, 93, 0.14);
+            --shadow-soft: 0 10px 30px rgba(74, 53, 49, 0.05);
+            --shadow-hover: 0 15px 35px rgba(200, 117, 93, 0.12);
+            --radius-main: 24px;
+            --radius-pill: 999px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-creme);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND ORBS --- */
+        .bg-decor {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .decor-1 { top: -60px; right: -90px; background: var(--vert-sauge); }
+        .decor-2 { top: 40%; left: -110px; background: var(--rose-soft); }
+        .decor-3 { bottom: 90px; right: 8%; background: #FFF1D6; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            color: var(--terracotta);
+            font-style: italic;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--terracotta);
+        }
+
+        /* --- HEADER --- */
+        .dmca-header {
+            text-align: center;
+            padding: 4.5rem 8% 2.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--rose-soft);
+            color: var(--terracotta);
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .dmca-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .dmca-header h1 em {
+            font-family: 'Caveat', cursive;
+            color: var(--terracotta);
+            font-size: 3.2rem;
+            font-style: normal;
+        }
+        .dmca-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Summary Badges */
+        .summary-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.8rem;
+        }
+        .summary-pill {
+            background: #fff;
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-soft);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .summary-pill i {
+            color: var(--terracotta);
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .dmca-container {
+            max-width: 900px;
+            margin: 2rem auto 6rem;
+            padding: 0 8%;
+        }
+
+        .dmca-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-main);
+            padding: 3.5rem 3rem;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .dmca-section {
+            margin-bottom: 3rem;
+        }
+        .dmca-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        .icon-rose { background: var(--rose-soft); color: var(--terracotta); }
+        .icon-vert { background: var(--vert-sauge); color: var(--vert-accent); }
+        .icon-gold { background: #FFF4D9; color: var(--gold-accent); }
+
+        .dmca-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .dmca-section p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+        }
+
+        .dmca-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.2rem;
+        }
+        .dmca-section ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+        .dmca-section ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 5px;
+            color: var(--rose-accent);
+            font-size: 0.9rem;
+        }
+
+        /* --- NOTICE STEP BOX --- */
+        .step-box {
+            background: linear-gradient(135deg, #FFF9F7 0%, #F5F9F4 100%);
+            border: 1px dashed var(--rose-accent);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        .step-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- CONTACT BOX --- */
+        .contact-highlight {
+            background: linear-gradient(135deg, #FFF6F3 0%, #F6FAF4 100%);
+            border-radius: 20px;
+            padding: 2.2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            border: 1px solid var(--border-soft);
+        }
+        .contact-highlight h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-highlight p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .btn-email {
+            background: var(--terracotta);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 26px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-email:hover {
+            background: #b5634b;
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 8%;
+            background: #F4EFEB;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .footer-socials a:hover {
+            color: var(--terracotta);
+            transform: translateY(-3px);
+        }
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .dmca-header h1 {
+                font-size: 2.2rem;
+            }
+            .dmca-card {
+                padding: 2.2rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-decor decor-1"></div>
+    <div class="bg-decor decor-2"></div>
+    <div class="bg-decor decor-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="about.html" class="logo">
+            <i class="fa-solid fa-sparkles" style="color: var(--gold-accent);"></i>
+            Classroom<span>8x</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Finances Douces</a></li>
+            <li><a href="#">Motivation</a></li>
+            <li><a href="about.html">À Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="dmca-header">
+        <div class="header-badge">
+            <i class="fa-solid fa-shield-halved"></i> Protection des Droits d'Auteur
+        </div>
+        <h1>Politique DMCA & <em>Propriété</em></h1>
+        <p>Sur <strong>classroom8x.github.io</strong>, nous valorisons la créativité et respectons scrupuleusement la propriété intellectuelle d'autrui conformément au DMCA et au droit international.</p>
+        
+        <div class="summary-wrapper">
+            <div class="summary-pill"><i class="fa-solid fa-certificate"></i> Conforme DMCA (17 U.S.C. § 512)</div>
+            <div class="summary-pill"><i class="fa-solid fa-bolt"></i> Retrait rapide (24-48h)</div>
+            <div class="summary-pill"><i class="fa-solid fa-envelope"></i> nk521760@gmail.com</div>
+        </div>
+    </header>
+
+    <!-- Main DMCA Content -->
+    <main class="dmca-container">
+        <div class="dmca-card">
+
+            <!-- Section 1 : Engagement -->
+            <section class="dmca-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-rose"><i class="fa-solid fa-heart-circle-check"></i></div>
+                    <h2>1. Notre Respect pour la Propriété Intellectuelle</h2>
+                </div>
+                <p>
+                    Le blog <strong>Classroom 8x</strong> veille rigoureusement à créer des textes originaux (astuces budgétaires, citations de motivation et réflexions) et à utiliser des médias libres de droits (notamment via des plateformes comme <em>Unsplash</em>, <em>Pexels</em> ou des créations graphiques propres).
+                </p>
+                <p>
+                    Si toutefois vous estimez de bonne foi qu'un élément (texte, image, citation protégée) présent sur notre site viole vos droits d'auteur, nous nous engageons à traiter votre requête et à retirer le contenu litigieux dans les plus brefs délais.
+                </p>
+            </section>
+
+            <!-- Section 2 : Procédure de Notification (Takedown) -->
+            <section class="dmca-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-vert"><i class="fa-solid fa-file-signature"></i></div>
+                    <h2>2. Comment Soumettre une Demande de Retrait (DMCA Notice)</h2>
+                </div>
+                <p>
+                    Pour que votre notification soit recevable au sens du DMCA, veuillez nous transmettre par email les éléments suivants :
+                </p>
+
+                <div class="step-box">
+                    <h4><i class="fa-solid fa-list-check"></i> Éléments requis pour votre email :</h4>
+                    <ul>
+                        <li><strong>Identification de l'œuvre protégée :</strong> Description précise du contenu dont vous êtes l'auteur ou le représentant légal.</li>
+                        <li><strong>Localisation sur le blog :</strong> L'URL exacte (lien de la page sur <code>classroom8x.github.io</code>) où se trouve l'élément concerné.</li>
+                        <li><strong>Vos coordonnées :</strong> Nom complet, organisation, adresse email et numéro de téléphone pour vous répondre.</li>
+                        <li><strong>Déclaration de bonne foi :</strong> Une mention stipulant que vous estimez en toute sincérité que l'usage contesté n'est pas autorisé par l'ayant droit.</li>
+                        <li><strong>Signature électronique :</strong> Votre nom complet faisant office de signature électronique.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3 : Délais & Traitement -->
+            <section class="dmca-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-gold"><i class="fa-solid fa-clock"></i></div>
+                    <h2>3. Délais de Prise en Compte & Retrait</h2>
+                </div>
+                <p>
+                    Dès réception d'une demande complète et justifiée, notre équipe s'engage à :
+                </p>
+                <ul>
+                    <li>Examiner votre requête sous <strong>24 à 48 heures ouvrées</strong>.</li>
+                    <li>Supprimer ou désactiver immédiatement l'accès au contenu litigieux si l'infraction est constatée.</li>
+                    <li>Vous confirmer par retour de mail que la mesure corrective a bien été appliquée.</li>
+                </ul>
+            </section>
+
+            <!-- Section 4 : Contre-Notification -->
+            <section class="dmca-section">
+                <div class="section-title-wrap">
+                    <div class="section-icon icon-rose"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h2>4. Procédure de Contre-Notification</h2>
+                </div>
+                <p>
+                    Si vous pensez qu'un contenu a été retiré par erreur ou mauvaise identification (par exemple dans le cadre du <em>Fair Use</em> / courte citation éducative), une contre-notification écrite peut être adressée à notre agent désigné à l'adresse ci-dessous.
+                </p>
+            </section>
+
+            <!-- Section 5 : Contact Agent DMCA -->
+            <div class="contact-highlight">
+                <h3>Agent Désigné DMCA / Droits d'Auteur</h3>
+                <p>Veuillez faire parvenir toute notification officielle de violation avec pour objet <strong>[DMCA Request]</strong> à :</p>
+                <a href="mailto:nk521760@gmail.com?subject=[DMCA%20Request]%20Signalement%20de%20contenu" class="btn-email">
+                    <i class="fa-regular fa-envelope"></i> nk521760@gmail.com
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-socials">
+            <a href="#" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <p class="footer-copy">
+            Fait avec amour, respect & clarté • © <span id="year"></span> <strong>classroom8x.github.io</strong> — Tous droits réservés.
+        </p>
+    </footer>
+
+    <!-- DYNAMIC SCRIPT -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
