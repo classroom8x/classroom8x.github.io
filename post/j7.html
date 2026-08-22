@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Minimalisme Heureux & La Magie des Fêtes | Mindset Financier #02</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cozy: #FAF6F0;
+            --card-surface: rgba(255, 255, 255, 0.92);
+            --sakura: #E58C7A;
+            --sakura-soft: #FDEEEB;
+            --butter: #F4D06F;
+            --butter-soft: #FDF7E7;
+            --chestnut: #362C28;
+            --muted-wood: #766B65;
+            --border-warm: rgba(229, 140, 122, 0.2);
+            --shadow-subtle: 0 8px 24px -2px rgba(54, 44, 40, 0.05);
+            --shadow-floating: 0 16px 36px -6px rgba(229, 140, 122, 0.12);
+            --radius-pill: 9999px;
+            --radius-card: 24px;
+            --radius-inner: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Epilogue', sans-serif;
+            background-color: var(--bg-cozy);
+            color: var(--chestnut);
+            line-height: 1.8;
+            background-image: 
+                radial-gradient(circle at 8% 15%, rgba(229, 140, 122, 0.12) 0%, transparent 35%),
+                radial-gradient(circle at 92% 75%, rgba(244, 208, 111, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Reading Tracker */
+        #reading-gauge {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sakura), var(--butter));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        .page-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 36px 20px 90px;
+        }
+
+        /* Top Nav */
+        .cozy-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 26px;
+            background: var(--card-surface);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-warm);
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 44px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--sakura);
+        }
+
+        .nav-logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--sakura);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .pill-time {
+            background: var(--butter-soft);
+            color: #8A6D14;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: var(--radius-pill);
+        }
+
+        /* Header */
+        .article-hero {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .kicker-tag {
+            display: inline-block;
+            background: var(--sakura-soft);
+            color: var(--sakura);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+            line-height: 1.25;
+            color: var(--chestnut);
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--muted-wood);
+            max-width: 680px;
+            margin: 0 auto 24px;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--muted-wood);
+        }
+
+        .avatar-glow {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--butter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(244, 208, 111, 0.4);
+        }
+
+        /* Interactive De-Clutter Box */
+        .declutter-widget {
+            background: var(--card-surface);
+            border-radius: var(--radius-card);
+            padding: 34px 28px;
+            border: 1px solid var(--border-warm);
+            box-shadow: var(--shadow-floating);
+            margin: 44px 0;
+        }
+
+        .declutter-widget h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .declutter-widget p.sub {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--muted-wood);
+            margin-bottom: 24px;
+        }
+
+        .item-category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            background: var(--bg-cozy);
+            border: 1px solid var(--border-warm);
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--chestnut);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--sakura);
+            color: white;
+            border-color: var(--sakura);
+        }
+
+        .rule-counter-box {
+            background: var(--bg-cozy);
+            border-radius: var(--radius-inner);
+            padding: 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ctrl-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-warm);
+            background: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--chestnut);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s;
+        }
+
+        .ctrl-btn:hover {
+            transform: scale(1.1);
+            background: var(--sakura-soft);
+        }
+
+        .counter-val {
+            font-family: 'Space Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--sakura);
+            min-width: 60px;
+        }
+
+        .verdict-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--chestnut);
+        }
+
+        /* Post Body */
+        .content-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--card-surface);
+            border-radius: var(--radius-card);
+            padding: 38px 32px;
+            border: 1px solid rgba(54, 44, 40, 0.06);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .blog-card h2 {
+            font-family: 'Lora', serif;
+            font-size: 1.65rem;
+            color: var(--chestnut);
+            margin-bottom: 16px;
+        }
+
+        .blog-card p {
+            font-size: 1.05rem;
+            color: #4A3E39;
+            margin-bottom: 18px;
+        }
+
+        .blog-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Bento Grid: 2 Pillars */
+        .two-col-bento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 680px) {
+            .two-col-bento { grid-template-columns: 1fr; }
+            .blog-card { padding: 26px 20px; }
+        }
+
+        .bento-card {
+            padding: 22px;
+            border-radius: var(--radius-inner);
+            border: 1px solid transparent;
+        }
+
+        .bento-pink {
+            background: var(--sakura-soft);
+            border-color: rgba(229, 140, 122, 0.3);
+        }
+
+        .bento-yellow {
+            background: var(--butter-soft);
+            border-color: rgba(244, 208, 111, 0.3);
+        }
+
+        .bento-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: var(--chestnut);
+        }
+
+        .bento-card p {
+            font-size: 0.92rem;
+            color: #574B45;
+            margin: 0;
+        }
+
+        /* Interactive Festive Gift Checker */
+        .gift-audit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .gift-btn {
+            background: var(--bg-cozy);
+            border: 2px solid transparent;
+            padding: 16px 12px;
+            border-radius: var(--radius-inner);
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--chestnut);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .gift-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--sakura);
+        }
+
+        .gift-btn.selected {
+            background: var(--sakura-soft);
+            border-color: var(--sakura);
+            color: var(--sakura);
+        }
+
+        .gift-btn span.emoji {
+            font-size: 1.8rem;
+        }
+
+        #gift-verdict-box {
+            background: white;
+            border-radius: var(--radius-inner);
+            padding: 20px;
+            margin-top: 16px;
+            border-left: 4px solid var(--sakura);
+            display: none;
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Callout Box */
+        .kitchen-callout {
+            background: linear-gradient(135deg, #FFF9F0 0%, #FDF3E3 100%);
+            border-left: 5px solid var(--butter);
+            padding: 22px 24px;
+            border-radius: var(--radius-inner);
+            margin: 24px 0;
+        }
+
+        .kitchen-callout h4 {
+            color: #8C660D;
+            margin-bottom: 6px;
+            font-size: 1.05rem;
+        }
+
+        .kitchen-callout p {
+            color: #554433;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Final Action Box */
+        .bottom-action-banner {
+            background: linear-gradient(135deg, #362C28 0%, #4E403B 100%);
+            color: white;
+            border-radius: var(--radius-card);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .bottom-action-banner h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--butter);
+        }
+
+        .bottom-action-banner p {
+            color: #DCD3CE;
+            max-width: 580px;
+            margin: 0 auto 24px;
+            font-size: 0.98rem;
+        }
+
+        .btn-sweet {
+            background: var(--sakura);
+            color: white;
+            font-weight: 700;
+            border: none;
+            padding: 14px 34px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 20px rgba(229, 140, 122, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-sweet:hover {
+            transform: scale(1.05);
+            background: #d87d6a;
+        }
+
+        /* Footer Interactions */
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 32px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-warm);
+        }
+
+        .like-badge-btn {
+            background: white;
+            border: 1px solid var(--border-warm);
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--sakura);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .like-badge-btn:hover {
+            transform: translateY(-2px);
+            background: var(--sakura-soft);
+        }
+
+        .floating-blossom {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.4rem;
+            animation: floatUpSlow 1.1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUpSlow {
+            0% { transform: translateY(0) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-90px) scale(1.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="reading-gauge"></div>
+
+    <div class="page-container">
+        <!-- Cozy Nav -->
+        <nav class="cozy-nav">
+            <div class="nav-logo">
+                <span class="nav-logo-dot"></span>
+                <span>Mindset Financier #02</span>
+            </div>
+            <div class="pill-time">
+                🍵 7 min de sagesse
+            </div>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="article-hero">
+            <span class="kicker-tag">Clarté Mentale, Épargne & Fêtes</span>
+            <h1>Le Minimalisme Heureux : Désencombrer sa Vie, son Portefeuille et ses Cadeaux</h1>
+            <p class="hero-lead">
+                Être minimaliste ne signifie pas se priver ni vivre chichement. Il s'agit de libérer l'énergie bloquée dans nos placards, d'élaguer nos placements et d'assainir nos échanges de fêtes.
+            </p>
+            <div class="author-meta">
+                <div class="avatar-glow">🕊️</div>
+                <div>Par <strong>Guide de la Sérénité Pratique</strong> • Série Art de Vivre & Finances</div>
+            </div>
+        </header>
+
+        <!-- Interactive Widget 1: The One-In-One-Out Rule -->
+        <section class="declutter-widget">
+            <h3>⚖️ La Règle d'Or : « Un dedans = Un dehors »</h3>
+            <p class="sub">Fixez une limite stricte pour ne plus jamais accumuler d'énergie morte :</p>
+
+            <div class="item-category-tabs">
+                <button class="tab-btn active" onclick="selectCategory('shirts', this)">👔 Chemises</button>
+                <button class="tab-btn" onclick="selectCategory('sheets', this)">🛏️ Draps de lit</button>
+                <button class="tab-btn" onclick="selectCategory('funds', this)">📊 Fonds Mutuels</button>
+                <button class="tab-btn" onclick="selectCategory('stocks', this)">📈 Actions Directes</button>
+            </div>
+
+            <div class="rule-counter-box">
+                <span style="font-size: 0.85rem; font-weight: 700; color: var(--muted-wood);" id="cap-label">Nombre maximum autorisé dans vos placards :</span>
+                <div class="counter-controls">
+                    <button class="ctrl-btn" onclick="changeCap(-1)">−</button>
+                    <span class="counter-val" id="cap-number">12</span>
+                    <button class="ctrl-btn" onclick="changeCap(1)">+</button>
+                </div>
+                <div class="verdict-text" id="cap-feedback">✨ Équilibre parfait : chaque nouvel achat force le départ d'une ancienne pièce usée !</div>
+            </div>
+        </section>
+
+        <!-- Main Blog Content -->
+        <main class="content-stack">
+
+            <!-- Section 1 -->
+            <article class="blog-card">
+                <h2>1. Pourquoi se priver d'un café ne vous rendra jamais riche</h2>
+                <p>
+                    La majorité des gens associent le minimalisme à une forme de radinerie : compter chaque centime, porter des vêtements troués et vivre dans la frustration. C’est une erreur totale. <strong>Personne ne s'est jamais enrichi ni n'a trouvé le bonheur uniquement en se privant de vivre.</strong>
+                </p>
+                <p>
+                    Le véritable minimalisme consiste à éliminer le <em>bruit matériel</em> et la charge mentale. Chaque objet stocké sous un lit, entassé dans une malle en attendant « de perdre 5 kilos », ou chaque vieille tenue de cérémonie conservée par nostalgie absorbe votre énergie vitale et freine l'arrivée de nouvelles opportunités.
+                </p>
+            </article>
+
+            <!-- Section 2: Investments -->
+            <article class="blog-card">
+                <h2>2. Le Minimalisme Boursier : Arrêtez la « Di-worsification »</h2>
+                <p>
+                    Dans les finances personnelles, beaucoup collectionnent 30 à 40 fonds mutuels ou 50 actions différentes dans l'espoir de « diversifier ». En réalité, vous ne diversifiez rien : vous achetez les mêmes entreprises en boucle et transformez votre portefeuille en billet de loterie ingérable.
+                </p>
+
+                <div class="two-col-bento">
+                    <div class="bento-card bento-pink">
+                        <h4>📊 3 à 4 Fonds suffisent</h4>
+                        <p>
+                            Un bon fonds Large Cap, un Mid Cap, et un Flexi/Small Cap de qualité. Rien de plus. Au-delà, c'est de la dilution stérile.
+                        </p>
+                    </div>
+                    <div class="bento-card bento-yellow">
+                        <h4>🌱 La Règle des 10 Plantes</h4>
+                        <p>
+                            Si vous achetez 50 plantes vertes, vous n'aurez pas le temps de les arroser et 40 mourront. Concentrez-vous sur 10 excellentes entreprises que vous suivez de près.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Section 3: Festive Gifts -->
+            <article class="blog-card">
+                <h2>3. L'Énergie des Fêtes : Refuser les Cadeaux Empoisonnés</h2>
+                <p>
+                    À l'approche des fêtes (comme Diwali ou Noël), une valse hypocrite s'installe. Des connaissances lointaines débarquent avec des coffrets impersonnels uniquement pour « se faire bien voir » ou préparer le terrain pour un service futur.
+                </p>
+                
+                <!-- Interactive Festive Checker -->
+                <div style="margin: 24px 0;">
+                    <span style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--sakura);">🔍 Audit Énergétique d'un Cadeau Reçu :</span>
+                    <div class="gift-audit-grid">
+                        <button class="gift-btn" onclick="checkGift('choc', this)">
+                            <span class="emoji">🍫</span>
+                            <span>Chocolats Industriels</span>
+                        </button>
+                        <button class="gift-btn" onclick="checkGift('electro', this)">
+                            <span class="emoji">📱</span>
+                            <span>Gadget Électronique</span>
+                        </button>
+                        <button class="gift-btn" onclick="checkGift('dryfruits', this)">
+                            <span class="emoji">🥜</span>
+                            <span>Fruits Secs Lourds</span>
+                        </button>
+                        <button class="gift-btn" onclick="checkGift('homemade', this)">
+                            <span class="emoji">🍯</span>
+                            <span>Douceur Maison</span>
+                        </button>
+                    </div>
+
+                    <div id="gift-verdict-box">
+                        <h4 id="gift-verdict-title" style="margin-bottom: 6px; color: var(--sakura);"></h4>
+                        <p id="gift-verdict-desc" style="font-size: 0.92rem; margin: 0;"></p>
+                    </div>
+                </div>
+
+                <div class="kitchen-callout">
+                    <h4>💛 La Magie des Douceurs Préparées en Couple</h4>
+                    <p>
+                        Au lieu d'acheter des boîtes de confiseries transformées ou de transmettre paresseusement des paquets reçus d'autrui, préparez vos gâteaux et douceurs jaunes (Jupiter/prospérité) ensemble dans la cuisine. L'amour et l'énergie partagés entre conjoints lors de cette préparation rayonnent sur tout le foyer !
+                    </p>
+                </div>
+            </article>
+
+            <!-- Final Banner -->
+            <section class="bottom-action-banner">
+                <h3>Prêt(e) à alléger votre vie dès ce week-end ?</h3>
+                <p>
+                    Ouvrez votre dressing, donnez 6 chemises inutilisées, élaguez vos lignes d'actions superflues et cuisinez une belle douceur maison avec votre moitié.
+                </p>
+                <button class="btn-sweet" onclick="alert('✨ Magnifique décision ! Moins de fouillis = Plus de paix et de vraie abondance.')">
+                    🌿 Je passe à l'action !
+                </button>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="blog-footer">
+            <button class="like-badge-btn" onclick="sendBlossom(event)">
+                <span>🌸</span>
+                <span id="like-total">64</span> J'aime
+            </button>
+            <div style="font-size: 0.85rem; color: var(--muted-wood);">
+                Mindset Financier #02 • Moins de désordre, plus de clarté.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Reading Progress Tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-gauge').style.width = scrolled + '%';
+        });
+
+        // Declutter Category State
+        const categoryData = {
+            shirts: { label: "Nombre max de chemises dans votre garde-robe :", default: 12, unit: "chemises" },
+            sheets: { label: "Nombre max de parures de lit par chambre :", default: 4, unit: "parures" },
+            funds: { label: "Nombre max de fonds mutuels dans votre portefeuille :", default: 3, unit: "fonds" },
+            stocks: { label: "Nombre max d'actions directes sous surveillance :", default: 10, unit: "entreprises" }
+        };
+
+        let currentCat = 'shirts';
+        let currentCap = 12;
+
+        function selectCategory(catKey, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCat = catKey;
+            currentCap = categoryData[catKey].default;
+            document.getElementById('cap-label').innerText = categoryData[catKey].label;
+            document.getElementById('cap-number').innerText = currentCap;
+            updateFeedback();
+        }
+
+        function changeCap(delta) {
+            currentCap = Math.max(1, currentCap + delta);
+            document.getElementById('cap-number').innerText = currentCap;
+            updateFeedback();
+        }
+
+        function updateFeedback() {
+            const fb = document.getElementById('cap-feedback');
+            if (currentCap <= categoryData[currentCat].default) {
+                fb.innerText = "✨ Zone de Sérénité : Clarté mentale et énergie circulante optimale !";
+                fb.style.color = "var(--sakura)";
+            } else {
+                fb.innerText = "⚠️ Attention à la surcharge : l'encombrement commence à diluer votre attention.";
+                fb.style.color = "#8A6D14";
+            }
+        }
+
+        // Festive Gift Audit Tool
+        const giftInsights = {
+            choc: {
+                title: "🍫 Chocolats Transformés du Commerce : À Éviter",
+                desc: "Cadeau de facilité par excellence. Rempli de conservateurs, sans intention humaine. Préférez des friandises faites maison ou n'offrez rien de superflu."
+            },
+            electro: {
+                title: "📱 Gadgets Électroniques de Connaissances : Prudence",
+                desc: "Dans les traditions énergétiques, recevoir des appareils de personnes avec qui le lien n'est pas pur alourdit l'atmosphère. Réservez l'électronique aux proches intimes."
+            },
+            dryfruits: {
+                title: "🥜 Fruits Secs Commerciaux : Énergie Lourde",
+                desc: "Offerts machinalement pour 's'acquitter d'une corvée'. Les fruits secs industriels n'apportent pas la vibration joyeuse et solaire d'une pâtisserie fraîchement dorée."
+            },
+            homemade: {
+                title: "🍯 Douceurs Maison Dorées : La Bénédiction Suprême (Jupiter)",
+                desc: "Préparées en cuisine avec amour, ces douceurs apportent prospérité, harmonie conjugale et gratitude sincère. C'est le plus beau cadeau à partager !"
+            }
+        };
+
+        function checkGift(type, btn) {
+            document.querySelectorAll('.gift-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            const box = document.getElementById('gift-verdict-box');
+            const title = document.getElementById('gift-verdict-title');
+            const desc = document.getElementById('gift-verdict-desc');
+
+            const data = giftInsights[type];
+            title.innerText = data.title;
+            desc.innerText = data.desc;
+            box.style.display = 'block';
+        }
+
+        // Floating Blossom Animation on Like
+        let likes = 64;
+        let liked = false;
+
+        function sendBlossom(e) {
+            if (!liked) {
+                likes++;
+                document.getElementById('like-total').innerText = likes;
+                liked = true;
+            }
+
+            for (let i = 0; i < 4; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'floating-blossom';
+                petal.innerText = ['🌸', '✨', '🍯', '🌿'][Math.floor(Math.random() * 4)];
+                petal.style.left = (e.clientX + (Math.random() * 40 - 20)) + 'px';
+                petal.style.top = e.clientY + 'px';
+                document.body.appendChild(petal);
+
+                setTimeout(() => petal.remove(), 1100);
+            }
+        }
+    </script>
+</body>
+</html>

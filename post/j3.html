@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Énergie Secrète de votre Photo de Profil | Guide Numérique & Psychologique</title>
+  
+  <!-- Polices Google Fonts : Syne (Moderne & Cute) & Plus Jakarta Sans (Lisibilité) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Newsreader:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-canvas: #FAF8F5;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(235, 228, 218, 0.8);
+      --text-dark: #24272C;
+      --text-soft: #5C626C;
+      --text-muted: #8E95A2;
+
+      /* Palette Pastel "Matcha & Soft Peach" */
+      --matcha: #689D86;
+      --matcha-light: #EBF4F0;
+      --peach: #F69076;
+      --peach-light: #FDF0EC;
+      --lilac: #9E8BE3;
+      --lilac-light: #F2EEFC;
+      --honey: #E8A838;
+      --honey-light: #FDF6E9;
+
+      --radius-xl: 30px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --radius-pill: 999px;
+
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 18px 40px rgba(104, 157, 134, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-dark);
+      line-height: 1.85;
+      font-size: 1.05rem;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(235, 244, 240, 0.9) 0%, transparent 40%),
+        radial-gradient(circle at 90% 45%, rgba(253, 240, 236, 0.8) 0%, transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(242, 238, 252, 0.7) 0%, transparent 45%);
+      background-attachment: fixed;
+      padding-bottom: 90px;
+    }
+
+    /* Reading Progress Bar */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--matcha), var(--peach));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
+    /* Floating Cute Header */
+    .header-wrapper {
+      position: sticky;
+      top: 16px;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 900;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-pill);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--matcha);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .badge-ep {
+      background: var(--peach-light);
+      color: var(--peach);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Container */
+    .main-container {
+      max-width: 820px;
+      margin: 40px auto 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .tag-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tag-pill {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: white;
+      border: 1px solid #EFEAE3;
+      color: var(--text-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      line-height: 1.22;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    h1 span {
+      background: linear-gradient(120deg, var(--matcha), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1.2rem;
+      color: var(--text-soft);
+      max-width: 680px;
+      margin: 0 auto;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Post Content Structure */
+    .post-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 38px;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.55rem;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      margin: 22px 0 10px 0;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #404550;
+    }
+
+    /* Highlight Badges & Bento Items */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .bento-card {
+      background: white;
+      border: 1px solid rgba(225, 218, 208, 0.7);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      text-align: left;
+    }
+
+    .bento-card .emoji {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .bento-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+
+    .bento-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .callout {
+      border-radius: var(--radius-md);
+      padding: 22px 26px;
+      margin: 24px 0;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .callout-peach {
+      background: var(--peach-light);
+      border-left: 4px solid var(--peach);
+      color: #7E3E2C;
+    }
+
+    .callout-matcha {
+      background: var(--matcha-light);
+      border-left: 4px solid var(--matcha);
+      color: #2D5846;
+    }
+
+    blockquote {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      text-align: center;
+      padding: 24px 10px;
+      color: #383D48;
+      border-top: 1px dashed var(--card-border);
+      border-bottom: 1px dashed var(--card-border);
+      margin: 26px 0;
+    }
+
+    /* INTERACTIVE WIDGET 1 : DP CHECKER */
+    .widget-box {
+      background: linear-gradient(135deg, #FFFFFF, var(--matcha-light));
+      border: 2px solid #D6E8DF;
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      margin: 20px 0;
+    }
+
+    .dp-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .dp-btn {
+      background: white;
+      border: 1px solid #D6E8DF;
+      border-radius: var(--radius-sm);
+      padding: 12px 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      color: var(--text-dark);
+    }
+
+    .dp-btn:hover, .dp-btn.active {
+      border-color: var(--matcha);
+      background: var(--matcha);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .dp-result {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border: 1px dashed var(--matcha);
+      font-size: 0.95rem;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* INTERACTIVE WIDGET 2 : CONTACT REFRAMER */
+    .reframer-box {
+      background: linear-gradient(135deg, #FFFFFF, var(--lilac-light));
+      border: 2px solid #E4DCFA;
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      margin: 20px 0;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      flex: 1;
+      min-width: 220px;
+      padding: 14px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #D6C8F7;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .btn-action {
+      background: var(--lilac);
+      color: white;
+      border: none;
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: #8974D9;
+      transform: translateY(-2px);
+    }
+
+    .reframing-output {
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--lilac);
+      font-weight: 600;
+      display: none;
+    }
+
+    /* Footer CTA */
+    .author-card {
+      background: linear-gradient(135deg, #FFFDFB 0%, var(--peach-light) 100%);
+      border: 1px solid #FCDFD7;
+      text-align: center;
+    }
+
+    .btn-reaction {
+      background: white;
+      border: 1px solid #E8DDD7;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-reaction:hover {
+      border-color: var(--peach);
+      color: var(--peach);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 650px) {
+      h1 { font-size: 2rem; }
+      .card { padding: 24px; }
+      .header-wrapper { padding: 0 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress"></div>
+
+  <!-- Navbar -->
+  <div class="header-wrapper">
+    <header>
+      <a href="#" class="brand-logo">
+        <span>🍵</span> Énergie & Présence
+      </a>
+      <span class="badge-ep">Masterclass #02</span>
+    </header>
+  </div>
+
+  <div class="main-container">
+
+    <!-- Hero Header -->
+    <div class="hero-section">
+      <div class="tag-group">
+        <span class="tag-pill">📱 Psychologie WhatsApp</span>
+        <span class="tag-pill">⏱️ 6 min de lecture</span>
+        <span class="tag-pill">✨ Aura Numérique</span>
+      </div>
+      <h1>Votre Photo de Profil <span>Révèle Votre Énergie</span></h1>
+      <p class="hero-lead">Pourquoi vos choix visuels, les coches bleues et la manière dont vous enregistrez vos contacts façonnent secrètement votre paix intérieure et vos relations.</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="post-content">
+
+      <!-- Section 1 : L'Avatar et l'Aura -->
+      <article class="card">
+        <h2>🌿 La photo de profil : Votre première porte énergétique</h2>
+        <p>Dans la première partie de cette série, nous avons exploré comment nos choix d'avatars reflètent notre état intérieur. À l'ère numérique, votre photo de profil (DP) sur WhatsApp, LinkedIn ou Instagram est votre première signature vibratoire.</p>
+        
+        <p>Beaucoup choisissent des images par simple réflexe ou par mimétisme, sans réaliser qu'elles transmettent de la confusion, du vide ou un besoin compulsif de reconnaissance.</p>
+
+        <blockquote>
+          « Si vous y croyez, c’est le fleuve sacré du Gange ; si vous n’y croyez pas, ce n’est que de l’eau qui coule. Mais vos choix numériques ont un impact tangible sur vos interactions. »
+        </blockquote>
+      </article>
+
+      <!-- Section 2 : Les Erreurs Visuelles Fréquentes -->
+      <article class="card">
+        <h2>🔍 Les 5 Pièges Courants à Corriger</h2>
+        
+        <div class="bento-grid">
+          <div class="bento-card">
+            <span class="emoji">🌑</span>
+            <h4>L'Écran Noir</h4>
+            <p>Laisser un profil vide signale une baisse de moral ou une rupture de lien. Remplacez-le par une photo de nature que <strong>vous avez vous-même prise</strong>.</p>
+          </div>
+
+          <div class="bento-card">
+            <span class="emoji">📸</span>
+            <h4>Le Selfie Déformé</h4>
+            <p>Un visage trop collé à l'objectif crée une distorsion inconsciente. Privilégiez un cadrage type buste / passeport net et aéré.</p>
+          </div>
+
+          <div class="bento-card">
+            <span class="emoji">🏎️</span>
+            <h4>La Béquille d'Ego</h4>
+            <p>Poser adossé à une voiture de luxe ou une balustrade transfère votre autorité sur l'objet plutôt que sur votre présence personnelle.</p>
+          </div>
+
+          <div class="bento-card">
+            <span class="emoji">🤝</span>
+            <h4>La Pose VIP / Politicien</h4>
+            <p>Afficher une photo avec une personnalité publique dilue votre propre aura au profit de la leur. Assumez votre propre identité.</p>
+          </div>
+        </div>
+
+        <div class="callout callout-peach">
+          <div>
+            <strong>L'authenticité temporelle :</strong> Mettre une photo d'il y a trois ans pour dissimuler ses cheveux gris ou son âge actuel est une fuite. Assumez votre évolution tous les 3 à 5 mois : l'assurance sincère est infiniment plus magnétique.
+          </div>
+        </div>
+      </article>
+
+      <!-- Interactive Widget 1 : DP Checker -->
+      <article class="card">
+        <h2>✨ Testez l'Énergie de Votre Avatar Actuel</h2>
+        <p>Sélectionnez le type d'image que vous utilisez actuellement pour découvrir son diagnostic immédiat :</p>
+        
+        <div class="widget-box">
+          <div class="dp-options">
+            <button class="dp-btn active" data-type="portrait"><span>👤</span> Portrait Naturel</button>
+            <button class="dp-btn" data-type="black"><span>⬛</span> Fond Noir / Vide</button>
+            <button class="dp-btn" data-type="car"><span>🚘</span> Voiture / Statut</button>
+            <button class="dp-btn" data-type="cartoon"><span>🎨</span> Avatar Animé</button>
+            <button class="dp-btn" data-type="nature"><span>🍃</span> Nature Personnelle</button>
+          </div>
+
+          <div class="dp-result" id="dpResultText">
+            ✅ <strong>Excellent choix :</strong> Un portrait franc et lumineux met en valeur votre aura individuelle et inspire une confiance saine et directe.
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3 : Transparence & Coches Bleues -->
+      <article class="card">
+        <h2>👀 Le Mystère des Coches Bleues (Read Receipts)</h2>
+        <p>Désactiver les accusés de lecture (les fameuses coches bleues) pour « lire en cachette » est devenu monnaie courante. Mais quelle énergie cela installe-t-il dans vos échanges ?</p>
+
+        <p>Cette habitude génère de l'incertitude, de la méfiance passive et une friction inutile dans votre quotidien. La vraie maîtrise de soi ne consiste pas à se cacher derrière un réglage technique, mais à savoir répondre en temps voulu avec clarté et sérénité.</p>
+
+        <div class="callout callout-matcha">
+          <div>
+            <strong>Conseil Clé :</strong> Cultivez la transparence. Ne laissez pas la peur du jugement d'un responsable ou d'un proche dicter vos paramètres de communication.
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4 : Le Re-cadrage de Contact (Psychological Hack) -->
+      <article class="card">
+        <h2>🪄 L'Astuce Psychologique : Renommer vos Contacts Difficiles</h2>
+        <p>Avez-vous enregistré dans votre téléphone un patron autoritaire, un associé exigeant ou un membre de votre belle-famille avec un surnom sec ou agressif ?</p>
+        
+        <p>Chaque fois que leur nom apparaît à l'écran, votre cerveau sécrète une micro-dose de cortisol et d'irritation. Pour inverser instantanément cette réaction conditionnée, **re-cadrez leur nom avec bienveillance et respect** :</p>
+
+        <!-- Interactive Widget 2 : Contact Reframer -->
+        <div class="reframer-box">
+          <label style="font-weight: 700; font-size: 0.95rem; color: #43336B;">
+            Testez le Re-cadrage Instantané :
+          </label>
+          <div class="input-row">
+            <input type="text" id="contactInput" class="input-field" placeholder="Ex: Chef Tyran, Belle-Mère..." />
+            <button class="btn-action" id="btnReframe">Re-cadrer le Contact ✨</button>
+          </div>
+
+          <div class="reframing-output" id="reframeOutput"></div>
+        </div>
+
+        <p style="margin-top: 15px; font-size: 0.95rem; color: var(--text-soft);">
+          En modifiant un simple libellé par une formule respectueuse (par ex. en ajoutant une marque d'honneur ou un terme chaleureux), vous conditionnez votre esprit au calme pendant les 15 prochains jours. Faites le test !
+        </p>
+      </article>
+
+      <!-- Author Callout & Community CTA -->
+      <article class="card author-card">
+        <h2>🌸 Construisons une Communauté de Clarté</h2>
+        <p style="max-width: 580px; margin: 0 auto; color: var(--text-soft);">
+          Chaque détail de notre quotidien numérique peut devenir un outil de paix ou une source de stress. Si cette réflexion vous a apporté de la valeur, partagez-la avec un proche !
+        </p>
+
+        <button class="btn-reaction" id="btnInspire">
+          <span>💖</span> <span id="inspireText">Inspirant & Utile !</span> (<span id="inspireCount">189</span>)
+        </button>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© Présence & Sagesse Numérique • Guide de Psychologie Pratique.</p>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Micro-Interactions -->
+  <script>
+    // 1. Barre de progression de lecture
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress').style.width = scrolled + '%';
+    });
+
+    // 2. Widget : Audit DP
+    const dpResponses = {
+      portrait: "✅ <strong>Excellent choix :</strong> Un portrait franc, bien éclairé et de face met en valeur votre aura individuelle et inspire une confiance saine.",
+      black: "⚠️ <strong>Attention :</strong> Une photo noire absorbe l'énergie et signale une fermeture. Privilégiez une belle photo de nature prise par vos soins.",
+      car: "💡 <strong>Conseil :</strong> S'appuyer sur un véhicule ou un objet de statut transfère votre valeur vers l'extérieur. Montrez votre propre présence.",
+      cartoon: "🎨 <strong>Note :</strong> Adapté aux moins de 18 ans. En tant qu'adulte professionnel, préférez une image authentique de vous-même.",
+      nature: "🌿 <strong>Très bien :</strong> Idéal si vous souhaitez rester discret. Veillez simplement à ce qu'il s'agisse d'un cliché original capturé par vous."
+    };
+
+    const dpButtons = document.querySelectorAll('.dp-btn');
+    const dpResultText = document.getElementById('dpResultText');
+
+    dpButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        dpButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const type = btn.getAttribute('data-type');
+        dpResultText.innerHTML = dpResponses[type];
+      });
+    });
+
+    // 3. Widget : Re-cadrage de Contact
+    const contactInput = document.getElementById('contactInput');
+    const btnReframe = document.getElementById('btnReframe');
+    const reframeOutput = document.getElementById('reframeOutput');
+
+    btnReframe.addEventListener('click', () => {
+      const val = contactInput.value.trim();
+      if (!val) {
+        alert('Veuillez entrer un nom ou une description de contact.');
+        return;
+      }
+
+      let suggestion = `✨ <strong>Nouveau nom suggéré :</strong> "${val} (Guide & Bienveillance)" ou "M./Mme ${val} ✨"`;
+      reframeOutput.style.display = 'block';
+      reframeOutput.innerHTML = suggestion + `<br><small style="color: #6C5CA3; font-weight:400;">Enregistrez-le ainsi dans votre répertoire et observez l'apaisement dès son prochain appel.</small>`;
+    });
+
+    // 4. Reaction Button
+    let reacted = false;
+    const btnInspire = document.getElementById('btnInspire');
+    const inspireCount = document.getElementById('inspireCount');
+    const inspireText = document.getElementById('inspireText');
+
+    btnInspire.addEventListener('click', () => {
+      if (!reacted) {
+        let count = parseInt(inspireCount.innerText);
+        inspireCount.innerText = count + 1;
+        btnInspire.style.borderColor = 'var(--peach)';
+        btnInspire.style.color = 'var(--peach)';
+        inspireText.innerText = 'Merci pour votre lecture !';
+        reacted = true;
+      }
+    });
+  </script>
+</body>
+</html>

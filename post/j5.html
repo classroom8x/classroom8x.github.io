@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Échelle Secrète de 0 à 100 : Comment Repérer les Tendances Avant la Foule</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FAF8F5;
+            --surface: #FFFFFF;
+            --ink: #22252A;
+            --ink-soft: #636A79;
+            --lavender: #7C5CFC;
+            --lavender-soft: #EFEAFF;
+            --matcha: #10B981;
+            --matcha-soft: #E1F8F0;
+            --peach: #FF7E67;
+            --peach-soft: #FFEFEA;
+            --cream-card: #F4EFEA;
+            --border: rgba(34, 37, 42, 0.08);
+            --border-highlight: rgba(124, 92, 252, 0.25);
+            --shadow-soft: 0 8px 30px rgba(34, 37, 42, 0.04);
+            --shadow-card: 0 16px 40px -8px rgba(124, 92, 252, 0.08);
+            --radius-pill: 9999px;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--ink);
+            line-height: 1.8;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(124, 92, 252, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 65%, rgba(16, 185, 129, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Top Reading Line */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--lavender), var(--matcha));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        .layout-container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 32px 20px 80px;
+        }
+
+        /* Nav Header */
+        .glass-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 48px;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--lavender);
+        }
+
+        .badge-pill {
+            background: var(--lavender-soft);
+            color: var(--lavender);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+        }
+
+        /* Hero Article */
+        .article-header {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .sub-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--matcha);
+            background: var(--matcha-soft);
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+            line-height: 1.22;
+            color: var(--ink);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .header-lead {
+            font-size: 1.18rem;
+            color: var(--ink-soft);
+            max-width: 680px;
+            margin: 0 auto 28px;
+            font-weight: 400;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+        }
+
+        .avatar-ring {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--peach-soft);
+            border: 2px solid var(--peach);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Interactive Bento Simulator: The 0-100 Trend Wheel */
+        .interactive-simulator {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            border: 1px solid var(--border-highlight);
+            box-shadow: var(--shadow-card);
+            margin: 48px 0;
+            position: relative;
+        }
+
+        .simulator-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .simulator-head h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .range-slider-wrapper {
+            margin: 28px 0 20px;
+        }
+
+        .slider-custom {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 10px;
+            border-radius: var(--radius-pill);
+            background: linear-gradient(90deg, #10B981 0%, #7C5CFC 50%, #FF7E67 100%);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .slider-custom::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 3px solid var(--lavender);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .slider-custom::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+            margin-top: 8px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .phase-display-card {
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .phase-meta-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .phase-tag {
+            font-weight: 800;
+            font-size: 0.85rem;
+            font-family: 'Space Mono', monospace;
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+        }
+
+        .phase-reward {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+
+        .phase-desc {
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+        }
+
+        /* Post Content Styling */
+        .post-body {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 38px 34px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .content-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            margin-bottom: 18px;
+            color: var(--ink);
+        }
+
+        .content-card p {
+            font-size: 1.05rem;
+            color: #3B4252;
+            margin-bottom: 18px;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Metaphor Box (Le Lait Frais) */
+        .metaphor-box {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFF1E6 100%);
+            border-left: 5px solid var(--peach);
+            padding: 24px 26px;
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+        }
+
+        .metaphor-box h4 {
+            color: var(--peach);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metaphor-box p {
+            font-size: 0.95rem;
+            color: #4A4036;
+            margin: 0;
+        }
+
+        /* Bento Grid 2 Columns */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 680px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .interactive-simulator { padding: 24px 18px; }
+            .content-card { padding: 28px 20px; }
+        }
+
+        .bento-item {
+            padding: 22px;
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+        }
+
+        .bento-smart {
+            background: var(--matcha-soft);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .bento-trap {
+            background: var(--peach-soft);
+            border-color: rgba(255, 126, 103, 0.2);
+        }
+
+        .bento-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bento-item p {
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            margin: 0;
+        }
+
+        /* Quotes */
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--lavender);
+            border-left: 4px solid var(--lavender);
+            padding-left: 20px;
+            margin: 28px 0;
+        }
+
+        /* Final Action Box */
+        .action-card {
+            background: linear-gradient(135deg, #22252A 0%, #363B46 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .action-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            color: #C3C7D2;
+            max-width: 580px;
+            margin: 0 auto 24px;
+            font-size: 0.98rem;
+        }
+
+        .btn-join {
+            background: var(--matcha);
+            color: white;
+            font-weight: 700;
+            border: none;
+            padding: 14px 34px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-join:hover {
+            transform: translateY(-2px);
+            background: #0ea372;
+        }
+
+        /* Footer Reactions */
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 32px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .reaction-bubble {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .reaction-bubble:hover {
+            transform: scale(1.05);
+            background: var(--lavender-soft);
+        }
+
+        .sparkle-float {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.4rem;
+            animation: rise 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="layout-container">
+        <!-- Top Glass Nav -->
+        <nav class="glass-nav">
+            <div class="brand-box">
+                <span>📈 Mindset Financier #03</span>
+            </div>
+            <div class="badge-pill">
+                Lecture • 7 min
+            </div>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="sub-tag">Psychologie des Cycles & Investissement</div>
+            <h1>Repérer la Tendance : Le Cycle Secret de 0 à 100</h1>
+            <p class="header-lead">
+                Arrêtez de demander « quelle action ou quel bien acheter aujourd’hui ». Apprenez d’abord à situer la vague pour récolter la crème et éviter le piège du dernier acheteur.
+            </p>
+            <div class="author-meta">
+                <div class="avatar-ring">🧭</div>
+                <div>Par <strong>Visionnaire Pragmatique</strong> • Guide Stratégique</div>
+            </div>
+        </header>
+
+        <!-- INTERACTIVE TREND SIMULATOR (Bento Component) -->
+        <section class="interactive-simulator">
+            <div class="simulator-head">
+                <h3><span>🔍</span> Simulateur du Cycle de Tendance</h3>
+                <span id="slider-percentage" style="font-family: 'Space Mono'; font-weight: 700; color: var(--lavender); font-size: 1.1rem;">Étape : 20 - 30%</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--ink-soft);">
+                Déplacez le curseur pour explorer qui achète, qui vend et où se trouve réellement la valeur à chaque étape du cycle :
+            </p>
+
+            <div class="range-slider-wrapper">
+                <input type="range" min="0" max="100" value="25" step="10" class="slider-custom" id="trendSlider" oninput="updateTrendState(this.value)">
+                <div class="slider-labels">
+                    <span>0% (Genèse)</span>
+                    <span>50% (Validation)</span>
+                    <span>100% (Saturation FOMO)</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Result Card -->
+            <div class="phase-display-card" id="phaseCard">
+                <div class="phase-meta-top">
+                    <span class="phase-tag" id="phaseTag" style="background: var(--lavender-soft); color: var(--lavender);">PHASE 20-30% : LES ÉCLAIREURS</span>
+                    <span class="phase-reward" id="phaseReward">Gain potentiel : Maximum</span>
+                </div>
+                <h4 class="phase-title" id="phaseTitle">Les Bâtisseurs Calmes & Analytiques</h4>
+                <p class="phase-desc" id="phaseDesc">
+                    Ces acteurs ne sont pas distraits par le bruit ambiant. Ils analysent les données à froid, passent 5 à 6 heures par jour à structurer leur conviction et entrent sur le marché sans aucune concurrence. C'est ici que se crée la vraie richesse.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Blog Body -->
+        <main class="post-body">
+
+            <!-- Section 1 -->
+            <article class="content-card">
+                <h2>Arrêtez la Précipitation : La Tendance Avant l'Actif</h2>
+                <p>
+                    Lors de mes consultations, la première question que l'on me pose est toujours la même : <em>« Donne-moi vite une bonne action, un bon fonds mutuel ou le meilleur projet immobilier ! »</em>
+                </p>
+                <p>
+                    Ma réponse ne varie jamais : <strong>calmez-vous</strong>. Avant de savoir *quoi* acheter, vous devez comprendre *où* se situe la tendance globale. Aucun conseiller ne peut créer ou déplacer une tendance pour vous ; son rôle est simplement de vous indiquer où elle se trouve sur une échelle de <strong>0 à 100</strong>.
+                </p>
+                
+                <div class="metaphor-box">
+                    <h4>🥛 La Métaphore du Lait Frais et de la Crème</h4>
+                    <p>
+                        Le lait n'est jamais aussi pur et riche en crème qu'au moment précis où il est extrait à la ferme, malgré l'odeur brute de l'étable. Au fur et à mesure qu'il passe d'intermédiaire en intermédiaire, qu'il est emballé puis distribué en supermarché, il est pasteurisé et écrémé. <br><br>
+                        <strong>En investissement, c'est identique :</strong> quand une opportunité arrive aux actualités télévisées avec un packaging parfait, la crème a déjà été consommée par ceux arrivés entre 10 et 50.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Section 2 -->
+            <article class="content-card">
+                <h2>La Radiographie d'un Cycle de Marché</h2>
+                <p>
+                    Que l'on parle de l'immobilier à Gurgaon ou Mumbai, des secteurs technologiques, des infrastructures ou même des carrières professionnelles, chaque vague traverse des paliers précis :
+                </p>
+
+                <div class="bento-grid">
+                    <div class="bento-item bento-smart">
+                        <h4 style="color: #0d9668;">🟢 De 40 à 60% : La Zone Idéale</h4>
+                        <p>
+                            C'est le domaine des personnes intelligentes et pragmatiques (ingénieurs, médecins, cadres). Ils posent 2 ou 3 questions essentielles, saisissent la vision, investissent et retournent à leur travail. Le gain y est propre, sécurisé et puissant.
+                        </p>
+                    </div>
+
+                    <div class="bento-item bento-trap">
+                        <h4 style="color: #e0533c;">🔴 De 80 à 100% : Le Piège des Cyniques</h4>
+                        <p>
+                            Ceux qui ont douté pendant des années arrivent enfin quand tout le monde en parle. Ils achètent au sommet avec arrogance, puis crient à l'arnaque quand le marché se retourne.
+                        </p>
+                    </div>
+                </div>
+
+                <blockquote>
+                    « Le marché est un grand transfert : les pionniers de 10-20% revendent avec sérénité à ceux qui arrivent affolés entre 80 et 100%. »
+                </blockquote>
+            </article>
+
+            <!-- Section 3 -->
+            <article class="content-card">
+                <h2>Les Sceptiques du Salon et la Théorie du « Plus Grand Fou »</h2>
+                <p>
+                    Remarquez comme les médias s’empressent de publier les pires gros titres lorsqu'une ville connaît 15 minutes d'inondation ou un pic de pollution saisonnier. Les observateurs passifs ricanent sur leurs écrans : <em>« Vous voyez, cette ville est invivable, le marché va s'effondrer ! »</em>
+                </p>
+                <p>
+                    Pendant ce temps, les infrastructures de plusieurs milliards s'érigent, les ponts se construisent et la valeur réelle se démultiplie. Quand ces mêmes sceptiques réalisent enfin leur erreur 8 ans plus tard, ils achètent les biens 4 fois plus cher, persuadés d'être enfin "prudents".
+                </p>
+                <p>
+                    C'est l'illustration pure de la <strong>théorie du plus grand fou</strong> (<em>Greater Fool Theory</em>) : chacun pense vendre à plus naïf que soi, jusqu’au moment où il ne reste plus personne pour racheter au sommet.
+                </p>
+            </article>
+
+            <!-- Action Box -->
+            <section class="action-card">
+                <h3>Où se trouvent vos actifs aujourd'hui ?</h3>
+                <p>
+                    Actuellement, certaines opportunités se situent entre 20-30% de leur cycle, tandis que d'autres franchissent 50-60%. Ne naviguez plus à l'aveugle dans les vagues de foule.
+                </p>
+                <button class="btn-join" onclick="alert('🌱 Première étape franchie : Observez la data avec calme et sang-froid !')">
+                    Rejoindre la Démarche Consciente ✨
+                </button>
+            </section>
+
+        </main>
+
+        <!-- Footer Interactions -->
+        <footer class="article-footer">
+            <div style="display: flex; gap: 12px;">
+                <button class="reaction-bubble" onclick="dropReaction('💡', event)">
+                    <span>💡</span> <span>Lumineux</span>
+                </button>
+                <button class="reaction-bubble" onclick="dropReaction('🚀', event)">
+                    <span>🚀</span> <span>Visionnaire</span>
+                </button>
+                <button class="reaction-bubble" onclick="dropReaction('☕', event)">
+                    <span>☕</span> <span>Pragmatique</span>
+                </button>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--ink-soft);">
+                Mindset Series • Pas de vent, que du tangible.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Interactive Trend Phases Data
+        const phases = [
+            {
+                min: 0, max: 15,
+                tag: "0 - 10% : LA GENÈSE INVISIBLE",
+                tagBg: "var(--matcha-soft)",
+                tagColor: "var(--matcha)",
+                reward: "Gain : Astronomique (Risque d'incertitude max)",
+                title: "Décisions Politiques & Conditions Naissantes",
+                desc: "Nouvelles lois, changements géopolitiques, réformes de fond. Presque personne n'est au courant. Le modèle n'existe pas encore, seules les conditions préalables s'assemblent."
+            },
+            {
+                min: 16, max: 25,
+                tag: "10 - 20% : LES FONDATEURS",
+                tagBg: "var(--matcha-soft)",
+                tagColor: "var(--matcha)",
+                reward: "Gain : Élite / Fondateurs",
+                title: "Création des Modèles et Premiers Capitaux",
+                desc: "Les décideurs et bâtisseurs détectent les signaux faibles, injectent les premiers fonds et conçoivent l'écosystème qui portera la future tendance."
+            },
+            {
+                min: 26, max: 38,
+                tag: "20 - 30% : LES ÉCLAIREURS ANALYTIQUES",
+                tagBg: "var(--lavender-soft)",
+                tagColor: "var(--lavender)",
+                reward: "Gain : Maximum & Maîtrisé",
+                title: "L'Analyse à Froid & Sans Bruit",
+                desc: "Des esprits calmes et disciplinés, libres des horaires de bureau conventionnels, analysent la data sans influence émotionnelle et bâtissent leur position avec conviction."
+            },
+            {
+                min: 39, max: 48,
+                tag: "30 - 40% : LE CERCLE DE CONFIANCE",
+                tagBg: "var(--lavender-soft)",
+                tagColor: "var(--lavender)",
+                reward: "Gain : Très Élevé",
+                title: "L'Entourage Direct & Proches",
+                desc: "Les proches des éclaireurs leur font confiance d'instinct. Sans forcément maîtriser toute la technicité, ils profitent pleinement de la première vague d'ascension."
+            },
+            {
+                min: 49, max: 62,
+                tag: "50 - 60% : LES PRAGMATIQUES AVISÉS",
+                tagBg: "var(--matcha-soft)",
+                tagColor: "var(--matcha)",
+                reward: "Gain : Excellent Ratio Risque/Rendement",
+                title: "Ingénieurs, Médecins & Professionnels",
+                desc: "Le point d'entrée idéal pour les personnes occupées : ils posent 2 ou 3 questions solides, comprennent la mécanique, investissent et retournent sereinement à leur carrière."
+            },
+            {
+                min: 63, max: 78,
+                tag: "60 - 75% : LES SUIVEURS DE VALIDATION",
+                tagBg: "var(--cream-card)",
+                tagColor: "#8D6B4F",
+                reward: "Gain : Modéré / Décent",
+                title: "Ceux qui avaient besoin de voir pour croire",
+                desc: "Ils avaient vu l'opportunité à 40%, mais hésitaient. En voyant leurs pairs réussir, ils montent à bord. Le gain est encore acceptable, mais la crème diminue."
+            },
+            {
+                min: 79, max: 100,
+                tag: "80 - 100% : LE PIÈGE DU FOMO & SCEPTICISME",
+                tagBg: "var(--peach-soft)",
+                tagColor: "var(--peach)",
+                reward: "Gain : Négatif / Risque de Krach",
+                title: "Les Acheteurs Tardifs & Cyniques",
+                desc: "Après avoir critiqué le projet pendant des années, ils achètent sous l'effet de panique (FOMO) au plus haut. C'est à ce moment précis que les pionniers (10-30%) leur revendent leurs positions."
+            }
+        ];
+
+        function updateTrendState(val) {
+            const num = parseInt(val);
+            document.getElementById('slider-percentage').innerText = `Curseur : ${num}%`;
+
+            const current = phases.find(p => num >= p.min && num <= p.max) || phases[phases.length - 1];
+
+            const tagEl = document.getElementById('phaseTag');
+            tagEl.innerText = current.tag;
+            tagEl.style.background = current.tagBg;
+            tagEl.style.color = current.tagColor;
+
+            document.getElementById('phaseReward').innerText = current.reward;
+            document.getElementById('phaseTitle').innerText = current.title;
+            document.getElementById('phaseDesc').innerText = current.desc;
+        }
+
+        // Cute Reactions Animation
+        function dropReaction(emoji, e) {
+            const spark = document.createElement('div');
+            spark.className = 'sparkle-float';
+            spark.innerText = emoji;
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            document.body.appendChild(spark);
+
+            setTimeout(() => {
+                spark.remove();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

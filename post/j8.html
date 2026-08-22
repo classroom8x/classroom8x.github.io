@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Fonds Mutuels Sont-ils Vraiment Bons ? La Vérité sur les Frais Invisibles | Mindset Financier #05</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-canvas: #F4FBF7;
+            --surface-card: rgba(255, 255, 255, 0.9);
+            --mint-primary: #10B981;
+            --mint-soft: #D1FAE5;
+            --sorbet-apricot: #FF7849;
+            --sorbet-soft: #FFE8E0;
+            --cobalt-dark: #0F172A;
+            --slate-text: #475569;
+            --border-fresh: rgba(16, 185, 129, 0.2);
+            --shadow-float: 0 16px 36px -8px rgba(16, 185, 129, 0.12);
+            --shadow-subtle: 0 6px 20px -2px rgba(15, 23, 42, 0.04);
+            --radius-pill: 9999px;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--cobalt-dark);
+            line-height: 1.8;
+            background-image: 
+                radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 88% 80%, rgba(255, 120, 73, 0.1) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Top Reading Progress */
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mint-primary), var(--sorbet-apricot));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .wrapper {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 36px 20px 90px;
+        }
+
+        /* Top Floating Bar */
+        .glass-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 26px;
+            background: var(--surface-card);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-fresh);
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 48px;
+        }
+
+        .series-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--mint-primary);
+        }
+
+        .pulse-mint {
+            width: 10px;
+            height: 10px;
+            background: var(--mint-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--mint-primary);
+        }
+
+        .read-time-badge {
+            background: var(--sorbet-soft);
+            color: var(--sorbet-apricot);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: var(--radius-pill);
+        }
+
+        /* Header Hero */
+        .hero-banner {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .kicker {
+            display: inline-block;
+            background: var(--mint-soft);
+            color: #065F46;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+            line-height: 1.2;
+            color: var(--cobalt-dark);
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+
+        .hero-intro {
+            font-size: 1.15rem;
+            color: var(--slate-text);
+            max-width: 680px;
+            margin: 0 auto 26px;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--slate-text);
+        }
+
+        .author-bubble {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--sorbet-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 2px solid var(--sorbet-apricot);
+        }
+
+        /* Parental Insight Card */
+        .parental-insight {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%);
+            border-left: 5px solid var(--mint-primary);
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .parental-insight h4 {
+            color: #065F46;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .parental-insight p {
+            font-size: 0.95rem;
+            color: #334155;
+            margin: 0;
+        }
+
+        /* Interactive Expense Ratio Simulator */
+        .fee-simulator-box {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            padding: 34px 28px;
+            border: 1px solid var(--border-fresh);
+            box-shadow: var(--shadow-float);
+            margin: 44px 0;
+        }
+
+        .sim-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .sim-header h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: var(--cobalt-dark);
+        }
+
+        .slider-control-group {
+            margin: 24px 0;
+        }
+
+        .slider-meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .custom-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: var(--radius-pill);
+            background: #E2E8F0;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--sorbet-apricot);
+            border: 3px solid #FFF;
+            box-shadow: 0 4px 10px rgba(255, 120, 73, 0.4);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .custom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .calc-output-bento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .calc-tile {
+            background: var(--bg-canvas);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        .calc-tile.danger-zone {
+            background: var(--sorbet-soft);
+            border-color: var(--sorbet-apricot);
+        }
+
+        .calc-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--cobalt-dark);
+            margin: 6px 0;
+        }
+
+        .calc-caption {
+            font-size: 0.8rem;
+            color: var(--slate-text);
+        }
+
+        /* Post Body */
+        .blog-body-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .editorial-card {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            padding: 38px 34px;
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .editorial-card h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--cobalt-dark);
+            margin-bottom: 16px;
+        }
+
+        .editorial-card p {
+            font-size: 1.05rem;
+            color: #334155;
+            margin-bottom: 18px;
+        }
+
+        .editorial-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Real Estate Broker Analogy Callout */
+        .analogy-banner {
+            background: linear-gradient(135deg, #FFF6F3 0%, #FFECE5 100%);
+            border-left: 5px solid var(--sorbet-apricot);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 22px 0;
+        }
+
+        .analogy-banner h4 {
+            color: #C2410C;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .analogy-banner p {
+            font-size: 0.95rem;
+            color: #431407;
+            margin: 0;
+        }
+
+        /* Age Horizon Interactive Picker */
+        .age-picker-box {
+            background: var(--bg-canvas);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+            border: 1px solid var(--border-fresh);
+        }
+
+        .age-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .age-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-fresh);
+            background: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cobalt-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .age-btn.active {
+            background: var(--mint-primary);
+            color: white;
+            border-color: var(--mint-primary);
+        }
+
+        #age-strategy-desc {
+            font-size: 0.95rem;
+            color: #1E293B;
+            line-height: 1.6;
+        }
+
+        /* Index vs Active Comparison Table */
+        .bento-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 26px 0;
+        }
+
+        @media (max-width: 680px) {
+            .bento-table { grid-template-columns: 1fr; }
+            .editorial-card { padding: 26px 20px; }
+        }
+
+        .table-col {
+            padding: 22px;
+            border-radius: var(--radius-md);
+        }
+
+        .col-active {
+            background: var(--sorbet-soft);
+            border: 1px solid rgba(255, 120, 73, 0.3);
+        }
+
+        .col-index {
+            background: var(--mint-soft);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .table-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .table-col ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .table-col ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .col-active ul li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .col-index ul li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        /* Final Action Box */
+        .takeaway-banner {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .takeaway-banner h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.85rem;
+            margin-bottom: 12px;
+            color: var(--mint-soft);
+        }
+
+        .takeaway-banner p {
+            color: #CBD5E1;
+            max-width: 580px;
+            margin: 0 auto 24px;
+            font-size: 0.98rem;
+        }
+
+        .btn-mint {
+            background: var(--mint-primary);
+            color: white;
+            font-weight: 700;
+            border: none;
+            padding: 14px 34px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-mint:hover {
+            transform: scale(1.04);
+            background: #0ea372;
+        }
+
+        /* Footer */
+        .footer-action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 32px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-fresh);
+        }
+
+        .like-pill-interactive {
+            background: white;
+            border: 1px solid var(--border-fresh);
+            padding: 10px 24px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--mint-primary);
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.2s ease;
+        }
+
+        .like-pill-interactive:hover {
+            background: var(--mint-soft);
+            transform: translateY(-2px);
+        }
+
+        .sparkle-pop {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.4rem;
+            animation: riseGlow 1.1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes riseGlow {
+            0% { transform: translateY(0) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-90px) scale(1.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="reading-progress"></div>
+
+    <div class="wrapper">
+        <!-- Glass Nav -->
+        <nav class="glass-nav">
+            <div class="series-pill">
+                <span class="pulse-mint"></span>
+                <span>Mindset Financier #05</span>
+            </div>
+            <div class="read-time-badge">
+                ⏱️ 8 min de lucidité
+            </div>
+        </nav>
+
+        <!-- Hero Header -->
+        <header class="hero-banner">
+            <span class="kicker">Analyse Sans Concession</span>
+            <h1>Les Fonds Mutuels Sont-ils Vraiment la Panacée ?</h1>
+            <p class="hero-intro">
+                L’analogie du courtier immobilier, les 2,5 % de frais annuels qui dévorent 40 % de vos gains futurs et la supériorité mathématique des <strong>Fonds Indiciels (Index)</strong>.
+            </p>
+            <div class="author-box">
+                <div class="author-bubble">📊</div>
+                <div>Par <strong>Guide de l'Épargne Réfléchie</strong> • Série Éducation Patrimoniale</div>
+            </div>
+        </header>
+
+        <!-- Parental Insight Box -->
+        <div class="parental-insight">
+            <h4>💡 Conseil Éducatif : Écoutez les Ados & Regardez leur Réseau</h4>
+            <p>
+                Avant de dépenser des fortunes chez des conseillers d'orientation ou des astrologues pour connaître l'avenir de vos enfants, regardez simplement leurs abonnements YouTube, leurs centres d'intérêt et les photos de profil de leurs cercles d'amis. L'éducation financière ne s'apprend pas à l'école : transmettez-leur les bons réflexes dès 18-25 ans !
+            </p>
+        </div>
+
+        <!-- Interactive Expense Simulator -->
+        <section class="fee-simulator-box">
+            <div class="sim-header">
+                <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--sorbet-apricot);">Simulateur de Frais Cachés</span>
+                <h3>L'Impact Dévastateur de l'Expense Ratio</h3>
+            </div>
+
+            <div class="slider-control-group">
+                <div class="slider-meta-row">
+                    <span>Montant investi :</span>
+                    <span id="amount-text" style="color: var(--mint-primary);">25 000 €</span>
+                </div>
+                <input type="range" min="5000" max="100000" step="5000" value="25000" class="custom-slider" id="amountSlider" oninput="runFeeSim()">
+            </div>
+
+            <div class="slider-control-group">
+                <div class="slider-meta-row">
+                    <span>Durée de placement :</span>
+                    <span id="years-text" style="color: var(--sorbet-apricot);">15 ans</span>
+                </div>
+                <input type="range" min="5" max="25" step="1" value="15" class="custom-slider" id="yearsSlider" oninput="runFeeSim()">
+            </div>
+
+            <div class="calc-output-bento">
+                <div class="calc-tile">
+                    <div class="calc-caption">Capital Final en Fonds Indiciel (0,15% TER)</div>
+                    <div class="calc-value" style="color: var(--mint-primary);" id="index-val">~98 000 €</div>
+                    <div class="calc-caption">Rendement de marché préservé</div>
+                </div>
+
+                <div class="calc-tile danger-zone">
+                    <div class="calc-caption">Capital Final en Fonds Actif (2,50% TER)</div>
+                    <div class="calc-value" style="color: #C2410C;" id="active-val">~68 000 €</div>
+                    <div class="calc-caption">Après ponction annuelle des frais</div>
+                </div>
+
+                <div class="calc-tile">
+                    <div class="calc-caption">Perte Sèche en Frais & Dilution</div>
+                    <div class="calc-value" style="color: var(--sorbet-apricot);" id="loss-val">−30 000 €</div>
+                    <div class="calc-caption">Directement versée aux intermédiaires</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Blog Articles -->
+        <main class="blog-body-stack">
+
+            <!-- Section 1 -->
+            <article class="editorial-card">
+                <h2>1. L'Analogie du Courtier Immobilier Gourmand</h2>
+                <p>
+                    Imaginez la scène suivante : vous achetez un appartement à 200 000 € par l'intermédiaire d'un agent immobilier. Vous lui réglez sa commission de 1 % (2 000 €). Tout le monde est ravi.
+                </p>
+                <p>
+                    Un an plus tard, l'agent sonne à votre porte : <em>« Bonjour ! C'est pour ma commission annuelle de 2 % parce que vous continuez à habiter dans la maison. »</em> Vous le mettriez dehors immédiatement.
+                </p>
+
+                <div class="analogy-banner">
+                    <h4>🏡 Pourtant, c'est exactement ce que font les Fonds Mutuels Actifs !</h4>
+                    <p>
+                        Que votre portefeuille grimpe ou qu'il s'effondre de 20 % pendant une crise, la société de gestion prélève <strong>2 à 2,5 % de votre capital total chaque année</strong>. Sur 15 ans, ces frais cumulés associés aux taxes et à la rotation de portefeuille absorbent entre <strong>40 % et 50 % de vos gains réels</strong>.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Section 2 -->
+            <article class="editorial-card">
+                <h2>2. L'Illusion des « Super-Gestionnaires » & Le Biais du Survivant</h2>
+                <p>
+                    En Inde comme en Europe, on compte des milliers de fonds pour seulement quelques centaines de grandes entreprises cotées dignes d'intérêt. 
+                </p>
+                <p>
+                    Pourquoi les sociétés de gestion créent-elles continuellement de nouveaux fonds ? Parce que c'est une stratégie de loterie : sur 50 fonds lancés, 2 ou 3 afficheront par pur hasard des performances records sur 3 ans. La société ferme les fonds perdants, surmédiatise les gagnants, et attire l'épargne du grand public.
+                </p>
+            </article>
+
+            <!-- Section 3: Age & Horizon -->
+            <article class="editorial-card">
+                <h2>3. La Variable Clé : Quel Âge Avez-Vous ?</h2>
+                <p>
+                    Le dogme classique proclame : <em>« Mettez votre argent en SIP et oubliez pendant 15 ans. »</em> Mais cette promesse ne vaut rien si elle ne prend pas en compte votre étape de vie :
+                </p>
+
+                <div class="age-picker-box">
+                    <div class="age-tabs">
+                        <button class="age-btn active" onclick="switchAge('young', this)">🌱 20 à 30 ans (Début de carrière)</button>
+                        <button class="age-btn" onclick="switchAge('senior', this)">💼 45 à 55 ans (Charges & Famille)</button>
+                    </div>
+                    <div id="age-strategy-desc">
+                        <strong>Votre super-pouvoir : le temps.</strong> Vous avez devant vous deux à trois cycles économiques complets (15-20 ans). Si le marché s'effondre, vous avez le temps de laisser rebondir. Les fonds indiciels passifs réguliers sont votre meilleure arme d'enrichissement.
+                    </div>
+                </div>
+            </article>
+
+            <!-- Section 4: Comparison Bento -->
+            <article class="editorial-card">
+                <h2>4. Fonds Actifs vs Fonds Indiciels (Index)</h2>
+                <p>
+                    Si vous souhaitez investir sur les marchés actions sans enrichir les intermédiaires, voici la règle d'or :
+                </p>
+
+                <div class="bento-table">
+                    <div class="table-col col-active">
+                        <h4 style="color: #C2410C;">Fonds Mutuels Actifs Classiques</h4>
+                        <ul>
+                            <li>Frais de gestion élevés (1,8 % à 2,5 %)</li>
+                            <li>Commissions de courtage cachées (*Trail Commissions*)</li>
+                            <li>Rotation excessive des actions (*Portfolio Churning*)</li>
+                            <li>Sous-performent le marché dans 85% des cas sur 10 ans</li>
+                        </ul>
+                    </div>
+
+                    <div class="table-col col-index">
+                        <h4 style="color: #065F46;">Fonds Indiciels Passifs (Index Direct)</h4>
+                        <ul>
+                            <li>Frais ultra-minimes (0,05 % à 0,20 %)</li>
+                            <li>Zéro commission d'intermédiaire en mode Direct</li>
+                            <li>Faible erreur de suivi (*Tracking Error*)</li>
+                            <li>Capte 100 % de la croissance économique réelle</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Final Takeaway -->
+            <section class="takeaway-banner">
+                <h3>Prenez le Contrôle de Vos Investissements</h3>
+                <p>
+                    Ouvrez un compte en direct, évitez d'accumuler 25 lignes de fonds inutiles, ciblez un fonds indiciel large à frais réduits et alignez vos placements avec vos réels besoins de vie.
+                </p>
+                <button class="btn-mint" onclick="alert('🚀 Bravo ! Vous investissez désormais avec clarté, rigueur et indépendance.')">
+                    🌱 Passer au Mode Direct & Épuré
+                </button>
+            </section>
+
+        </main>
+
+        <!-- Footer Interactions -->
+        <footer class="footer-action-row">
+            <button class="like-pill-interactive" onclick="giveMintLove(event)">
+                <span>💚</span>
+                <span id="mint-like-count">48</span> J'aime
+            </button>
+            <div style="font-size: 0.85rem; color: var(--slate-text);">
+                Série Mindset Financier #05 • Ni dogme, ni illusion : que des faits.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Reading Progress Tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress').style.width = scrolled + '%';
+        });
+
+        // Fee Simulator Logic
+        function runFeeSim() {
+            const principal = parseFloat(document.getElementById('amountSlider').value);
+            const years = parseInt(document.getElementById('yearsSlider').value);
+
+            document.getElementById('amount-text').innerText = `${principal.toLocaleString()} €`;
+            document.getElementById('years-text').innerText = `${years} an${years > 1 ? 's' : ''}`;
+
+            const marketReturn = 0.11; // 11% nominal market return
+            const indexFee = 0.0015;   // 0.15% TER
+            const activeFee = 0.025;   // 2.50% TER
+
+            // Compound formula: P * (1 + r)^t
+            const indexFinal = Math.round(principal * Math.pow(1 + (marketReturn - indexFee), years));
+            const activeFinal = Math.round(principal * Math.pow(1 + (marketReturn - activeFee), years));
+            const lostDifference = indexFinal - activeFinal;
+
+            document.getElementById('index-val').innerText = `~${indexFinal.toLocaleString()} €`;
+            document.getElementById('active-val').innerText = `~${activeFinal.toLocaleString()} €`;
+            document.getElementById('loss-val').innerText = `−${lostDifference.toLocaleString()} €`;
+        }
+
+        runFeeSim();
+
+        // Age Switcher
+        const ageInsights = {
+            young: "<strong>Votre super-pouvoir : le temps.</strong> Vous avez devant vous deux à trois cycles économiques complets (15-20 ans). Si le marché traverse un krach, vous avez tout le temps d'attendre la reprise. Les fonds indiciels passifs à bas coût programmés chaque mois constituent votre meilleur levier d'enrichissement.",
+            senior: "<strong>Votre priorité : la disponibilité du capital.</strong> À cet âge, des dépenses majeures approchent (études supérieures des enfants, santé, mariage). Si vous placez tout en actions et que le marché chute de 30 % l'année où vous devez décaisser, vous subirez une perte irrémédiable. Privilégiez des supports sécurisés et des obligations court terme pour les besoins à moins de 5 ans."
+        };
+
+        function switchAge(type, btn) {
+            document.querySelectorAll('.age-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('age-strategy-desc').innerHTML = ageInsights[type];
+        }
+
+        // Like Animation
+        let likes = 48;
+        let liked = false;
+
+        function giveMintLove(e) {
+            if (!liked) {
+                likes++;
+                document.getElementById('mint-like-count').innerText = likes;
+                liked = true;
+            }
+
+            for (let i = 0; i < 4; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'sparkle-pop';
+                spark.innerText = ['🌱', '✨', '💚', '📈'][Math.floor(Math.random() * 4)];
+                spark.style.left = (e.clientX + (Math.random() * 40 - 20)) + 'px';
+                spark.style.top = e.clientY + 'px';
+                document.body.appendChild(spark);
+
+                setTimeout(() => spark.remove(), 1100);
+            }
+        }
+    </script>
+</body>
+</html>

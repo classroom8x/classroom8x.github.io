@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Or Souverain (SGB) : Pourquoi il surclasse l'or physique | Mindset Financier #06</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-linen: #FAF7F0;
+            --surface-card: rgba(255, 255, 255, 0.9);
+            --gold-primary: #C58B35;
+            --gold-light: #F7E8CE;
+            --gold-glow: #EFC47A;
+            --olive-dark: #2C3527;
+            --olive-soft: #EAEFE8;
+            --sage-accent: #607456;
+            --text-dark: #2B2927;
+            --text-muted: #6E6862;
+            --border-soft: rgba(197, 139, 53, 0.2);
+            --shadow-subtle: 0 10px 30px -4px rgba(44, 53, 39, 0.06);
+            --shadow-float: 0 20px 40px -10px rgba(197, 139, 53, 0.15);
+            --radius-pill: 9999px;
+            --radius-lg: 26px;
+            --radius-md: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-linen);
+            color: var(--text-dark);
+            line-height: 1.8;
+            background-image: 
+                radial-gradient(circle at 10% 12%, rgba(239, 196, 122, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 85%, rgba(96, 116, 86, 0.1) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Reading Progress */
+        #scroll-tracker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--sage-accent));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        .main-wrapper {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 36px 20px 90px;
+        }
+
+        /* Top Bar */
+        .aesthetic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 28px;
+            background: var(--surface-card);
+            backdrop-filter: blur(14px);
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 50px;
+        }
+
+        .series-tag {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+        }
+
+        .gold-gem {
+            width: 10px;
+            height: 10px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        .read-pill {
+            background: var(--olive-soft);
+            color: var(--sage-accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+        }
+
+        /* Hero */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .category-chip {
+            display: inline-block;
+            background: var(--gold-light);
+            color: #8C5B14;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.2rem, 4.4vw, 3.3rem);
+            line-height: 1.22;
+            color: var(--olive-dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 660px;
+            margin: 0 auto 28px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .avatar-coin {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFE8B8, #D89838);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(197, 139, 53, 0.25);
+        }
+
+        /* Community Goal Banner: DP Part 2 Deal */
+        .community-banner {
+            background: linear-gradient(135deg, #FFF8EE 0%, #FAF0DF 100%);
+            border: 1px dashed var(--gold-primary);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .banner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .banner-title {
+            font-weight: 700;
+            color: #7D4E0D;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+        }
+
+        .progress-rail {
+            width: 100%;
+            height: 10px;
+            background: rgba(197, 139, 53, 0.15);
+            border-radius: var(--radius-pill);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D49B45, #C58B35);
+            width: 72%;
+            border-radius: var(--radius-pill);
+            transition: width 0.4s ease;
+        }
+
+        /* Interactive Simulator */
+        .gold-calc-widget {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            padding: 36px 30px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-float);
+            margin: 48px 0;
+        }
+
+        .calc-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .calc-header h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            color: var(--olive-dark);
+        }
+
+        .slider-group {
+            margin: 28px 0;
+        }
+
+        .slider-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .gold-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: var(--radius-pill);
+            background: #E8DECE;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .gold-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            border: 3px solid #FFF;
+            box-shadow: 0 4px 10px rgba(197, 139, 53, 0.4);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .gold-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .calc-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .result-card {
+            background: var(--bg-linen);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(197, 139, 53, 0.15);
+        }
+
+        .result-card.highlight {
+            background: #FDF4E5;
+            border-color: var(--gold-primary);
+        }
+
+        .result-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--olive-dark);
+            margin: 6px 0;
+        }
+
+        .result-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Post Content */
+        .blog-body {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .article-card {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            padding: 38px 34px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .article-card h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.7rem;
+            color: var(--olive-dark);
+            margin-bottom: 16px;
+        }
+
+        .article-card p {
+            font-size: 1.05rem;
+            color: #3D3935;
+            margin-bottom: 18px;
+        }
+
+        .article-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Comparison Bento */
+        .bento-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        @media (max-width: 768px) {
+            .bento-compare { grid-template-columns: 1fr; }
+            .article-card { padding: 26px 20px; }
+        }
+
+        .compare-tile {
+            padding: 22px;
+            border-radius: var(--radius-md);
+            background: white;
+            border: 1px solid var(--border-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .compare-tile.winner {
+            background: #FAF3E6;
+            border: 2px solid var(--gold-primary);
+            position: relative;
+        }
+
+        .winner-badge {
+            position: absolute;
+            top: -12px;
+            right: 14px;
+            background: var(--gold-primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: var(--radius-pill);
+        }
+
+        .compare-tile h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--olive-dark);
+        }
+
+        .compare-tile ul {
+            list-style: none;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .compare-tile ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .compare-tile ul li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+
+        /* Quote Callout */
+        .callout-wisdom {
+            background: var(--olive-soft);
+            border-left: 4px solid var(--sage-accent);
+            padding: 22px 24px;
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+        }
+
+        .callout-wisdom p {
+            color: #2F3E29;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Final Action Box */
+        .family-card {
+            background: linear-gradient(135deg, #2C3527 0%, #3B4634 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .family-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.85rem;
+            margin-bottom: 12px;
+            color: #F7E8CE;
+        }
+
+        .family-card p {
+            color: #D3DCD0;
+            max-width: 580px;
+            margin: 0 auto 24px;
+            font-size: 0.98rem;
+        }
+
+        .btn-gold {
+            background: linear-gradient(90deg, #E6B567, #C58B35);
+            color: white;
+            font-weight: 700;
+            border: none;
+            padding: 14px 34px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 20px rgba(197, 139, 53, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .btn-gold:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 25px rgba(197, 139, 53, 0.5);
+        }
+
+        /* Footer Reactions */
+        .footer-interactions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 32px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .like-pill-btn {
+            background: white;
+            border: 1px solid var(--border-soft);
+            padding: 10px 24px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--gold-primary);
+            transition: transform 0.2s ease;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .like-pill-btn:hover {
+            transform: translateY(-2px);
+            background: var(--gold-light);
+        }
+
+        .coin-pop {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.4rem;
+            animation: floatSparkle 1.1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatSparkle {
+            0% { transform: translateY(0) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-90px) scale(1.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-tracker"></div>
+
+    <div class="main-wrapper">
+        <!-- Navigation -->
+        <nav class="aesthetic-nav">
+            <div class="series-tag">
+                <span class="gold-gem"></span>
+                <span>Mindset Financier #06</span>
+            </div>
+            <div class="read-pill">
+                ☕ 6 min d'analyse
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="hero-section">
+            <span class="category-chip">Bons d'Or Souverains (SGB) & Stratégie</span>
+            <h1>L'Or Souverain : Pourquoi le Papier Détrône le Métal</h1>
+            <p class="hero-lead">
+                Comment profiter de la hausse historique de l'or, toucher <strong>+2,5 % d'intérêts garantis</strong> par an, et bénéficier d'une <strong>exonération fiscale totale</strong> à l'échéance.
+            </p>
+            <div class="author-card">
+                <div class="avatar-coin">👑</div>
+                <div>Par <strong>Guide de l'Épargne Réfléchie</strong> • Série Éducation Patrimoniale</div>
+            </div>
+        </header>
+
+        <!-- Community Progress Banner -->
+        <div class="community-banner">
+            <div class="banner-header">
+                <span class="banner-title">✨ Débloquer la Partie 2 du Guide « Photos de Profil & Énergie »</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: var(--gold-primary);" id="likes-milestone">36 / 50 Mentions J'aime</span>
+            </div>
+            <div class="progress-rail">
+                <div class="progress-fill" id="goal-progress" style="width: 72%;"></div>
+            </div>
+            <p style="font-size: 0.88rem; color: #694C24; margin: 0;">
+                Suite à l'engouement incroyable sur la première vidéo, il reste encore de nombreux secrets à révéler. Un simple clic sur le cœur en bas permettra d'atteindre l'objectif et de sortir la suite sans attendre !
+            </p>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <section class="gold-calc-widget">
+            <div class="calc-header">
+                <span style="font-size: 0.82rem; font-weight: 800; color: var(--gold-primary); text-transform: uppercase;">Simulateur d'Avantage SGB</span>
+                <h3>Comparez vos Gains sur 8 Ans</h3>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-label-row">
+                    <span>Quantité d'or investie :</span>
+                    <span style="color: var(--gold-primary);" id="gold-grams-display">25 grammes</span>
+                </div>
+                <input type="range" min="1" max="100" value="25" class="gold-slider" id="goldSlider" oninput="calculateReturns(this.value)">
+            </div>
+
+            <div class="calc-results-grid">
+                <div class="result-card">
+                    <div class="result-sub">Capital Or Estimé</div>
+                    <div class="result-num" id="gold-value">~1 275 €</div>
+                    <div class="result-sub">Suit le cours de l'or pur</div>
+                </div>
+                <div class="result-card highlight">
+                    <div class="result-sub">Bonus d'Intérêts (+2,5%/an)</div>
+                    <div class="result-num" style="color: var(--gold-primary);" id="sgb-bonus">+255 €</div>
+                    <div class="result-sub">Reversé directement sur compte</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-sub">Impôt sur la Plus-Value</div>
+                    <div class="result-num" style="color: var(--sage-accent);">0 € (Exonéré)</div>
+                    <div class="result-sub">À maturité (8 ans)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Blog Articles -->
+        <main class="blog-body">
+
+            <!-- Section 1 -->
+            <article class="article-card">
+                <h2>Le Problème de l'Or Physique Traditionnel</h2>
+                <p>
+                    Dans l'imaginaire collectif, posséder de l'or signifie détenir des bijoux ou des pièces dans un coffre. Pourtant, dès que vous achetez de l'or physique, vous perdez immédiatement entre <strong>8 % et 20 %</strong> en frais de fabrication (<em>making charges</em>) et en taxes.
+                </p>
+                <p>
+                    Ajoutez à cela le risque constant de cambriolage, le coût de location d'un coffre bancaire et l'incertitude sur la pureté lors de la revente. L'or physique est un trésor sentimental, mais un véhicule d'investissement imparfait.
+                </p>
+            </article>
+
+            <!-- Section 2: Comparison Bento -->
+            <article class="article-card">
+                <h2>Les 3 Voies pour Détenir de l'Or</h2>
+                <p>
+                    Voici pourquoi les <strong>Bons d'Or Souverains (SGB)</strong> émis par la Banque Centrale (RBI) au nom de l'État constituent l'option la plus lucrative et sécurisée du marché :
+                </p>
+
+                <div class="bento-compare">
+                    <div class="compare-tile">
+                        <div>
+                            <h4>💍 Or Physique</h4>
+                            <ul>
+                                <li>Frais de façonnage élevés</li>
+                                <li>Risque de vol & pureté</li>
+                                <li>Taxation à la revente</li>
+                                <li>Rendement passif : 0%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="compare-tile">
+                        <div>
+                            <h4>📊 ETF & Or Digital</h4>
+                            <ul>
+                                <li>Frais de gestion annuels</li>
+                                <li>Facilement négociable</li>
+                                <li>Imposition des plus-values</li>
+                                <li>Aucun coupon d'intérêt</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="compare-tile winner">
+                        <span class="winner-badge">RECOMMANDÉ</span>
+                        <div>
+                            <h4>👑 Bons Souverains (SGB)</h4>
+                            <ul>
+                                <li><strong>+2,5 % par an</strong> d'intérêts garantis</li>
+                                <li><strong>0 % d'impôt</strong> sur la plus-value à 8 ans</li>
+                                <li>Garanti à 100 % par l'État</li>
+                                <li>Format numérique (zéro vol)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Section 3 -->
+            <article class="article-card">
+                <h2>La Règle des 10 à 15 % & L'Effet Cascade (SIP)</h2>
+                <p>
+                    Combien d'or devriez-vous détenir ? Une allocation équilibrée se situe idéalement entre <strong>10 % et 15 % de votre patrimoine global</strong>. 
+                </p>
+                <p>
+                    L'or joue un double rôle : il protège votre capital en période de récession et compense mécaniquement l'affaiblissement de la monnaie face au dollar.
+                </p>
+
+                <div class="callout-wisdom">
+                    <p>
+                        💡 <strong>L'astuce de la rente en cascade :</strong> En souscrivant à chaque nouvelle tranche émise par le gouvernement (souvent programmées en novembre, décembre, janvier et février), vous créez un mécanisme d'échéance échelonnée. Dans 8 ans, vous recevrez chaque mois un capital revalorisé, libre d'impôt, formant une véritable rente.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Family & Alignment Box -->
+            <section class="family-card">
+                <h3>Aligner toute la Famille</h3>
+                <p>
+                    Ne prenez pas ces décisions financières en solitaire. Partagez ces explications avec votre conjoint(e) et vos enfants. Lorsque tout le foyer comprend pourquoi l'or souverain dématérialisé surpasse les bijoux de vitrine, les choix budgétaires se font dans l'harmonie et sans malentendus.
+                </p>
+                <button class="btn-gold" onclick="alert('🌟 Partagez cet article avec vos proches pour bâtir ensemble un patrimoine serein !')">
+                    Partager avec la Famille 💌
+                </button>
+            </section>
+
+        </main>
+
+        <!-- Footer Interactions -->
+        <footer class="footer-interactions">
+            <button class="like-pill-btn" id="main-like-btn" onclick="addCommunityLike(event)">
+                <span>💛</span>
+                <span id="like-number">36</span> J'aime
+            </button>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+                Série Mindset Financier • Du savoir tangible et actionnable.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Progress Tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-tracker').style.width = scrolled + '%';
+        });
+
+        // SGB Returns Calculator
+        const goldPricePerGram = 51; // baseline unit price reference
+
+        function calculateReturns(grams) {
+            document.getElementById('gold-grams-display').innerText = `${grams} gramme${grams > 1 ? 's' : ''}`;
+            
+            const totalGoldValue = grams * goldPricePerGram;
+            // 2.5% per year over 8 years = 20% cumulative interest
+            const totalInterestBonus = Math.round(totalGoldValue * 0.025 * 8);
+
+            document.getElementById('gold-value').innerText = `~${totalGoldValue.toLocaleString()} €`;
+            document.getElementById('sgb-bonus').innerText = `+${totalInterestBonus.toLocaleString()} €`;
+        }
+
+        // Initial Calculation
+        calculateReturns(25);
+
+        // Community Likes & Floating Coin Animation
+        let likes = 36;
+        const targetLikes = 50;
+        let hasVoted = false;
+
+        function addCommunityLike(e) {
+            if (!hasVoted) {
+                likes++;
+                document.getElementById('like-number').innerText = likes;
+                document.getElementById('likes-milestone').innerText = `${likes} / ${targetLikes} Mentions J'aime`;
+                
+                const percentage = Math.min((likes / targetLikes) * 100, 100);
+                document.getElementById('goal-progress').style.width = `${percentage}%`;
+
+                if (likes >= targetLikes) {
+                    alert("🎉 Objectif des 50 J'aime atteint ! La Partie 2 du guide sur les photos de profil sera publiée très vite !");
+                }
+                hasVoted = true;
+            }
+
+            // Create coin sparkle effect
+            for (let i = 0; i < 4; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin-pop';
+                coin.innerText = ['🪙', '✨', '💛', '🌟'][Math.floor(Math.random() * 4)];
+                coin.style.left = (e.clientX + (Math.random() * 40 - 20)) + 'px';
+                coin.style.top = e.clientY + 'px';
+                document.body.appendChild(coin);
+
+                setTimeout(() => coin.remove(), 1100);
+            }
+        }
+    </script>
+</body>
+</html>

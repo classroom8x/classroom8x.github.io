@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ce que votre Photo de Profil dit de vous | Blog Énergie & Subconscient</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-warm: #FAF7F2;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --primary: #E07A5F;
+            --primary-soft: #FDE8E1;
+            --secondary: #81B29A;
+            --secondary-soft: #E8F3EE;
+            --accent-yellow: #F2CC8F;
+            --text-main: #2D3142;
+            --text-muted: #6B7280;
+            --border-soft: rgba(224, 122, 95, 0.15);
+            --shadow-sm: 0 4px 20px -2px rgba(45, 49, 66, 0.05);
+            --shadow-lg: 0 20px 40px -8px rgba(224, 122, 95, 0.12);
+            --radius-xl: 28px;
+            --radius-md: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-warm);
+            color: var(--text-main);
+            line-height: 1.75;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(224, 122, 95, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(129, 178, 154, 0.12) 0%, transparent 45%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Top Progress Bar */
+        #read-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Aesthetic Header Bar */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 28px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 50px;
+        }
+
+        .brand-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        .read-time-pill {
+            background: var(--secondary-soft);
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 999px;
+        }
+
+        /* Hero Article */
+        .article-hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 18px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            line-height: 1.25;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 28px;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Disclaimer Card */
+        .disclaimer-card {
+            background: linear-gradient(135deg, #FFF9F5 0%, #FFF2EB 100%);
+            border: 1px dashed var(--primary);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .disclaimer-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .disclaimer-text h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .disclaimer-text p {
+            font-size: 0.92rem;
+            color: #555;
+            margin: 0;
+        }
+
+        /* Interactive DP Auditor Widget */
+        .interactive-auditor {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-lg);
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .interactive-auditor h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .picker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .dp-option-btn {
+            background: white;
+            border: 2px solid transparent;
+            padding: 14px 10px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .dp-option-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-yellow);
+        }
+
+        .dp-option-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .dp-option-btn span.emoji {
+            font-size: 1.8rem;
+        }
+
+        #audit-result-box {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid var(--secondary);
+            text-align: left;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Post Content Cards */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .reading-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease;
+        }
+
+        .reading-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .reading-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .reading-card p {
+            margin-bottom: 16px;
+            color: #4A4E69;
+        }
+
+        .reading-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Aesthetic Badges inside cards */
+        .insight-pill {
+            background: var(--secondary-soft);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #2F5A47;
+        }
+
+        .insight-pill span {
+            font-size: 1.5rem;
+        }
+
+        /* Comparison Grid */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 28px 0;
+        }
+
+        @media (max-width: 640px) {
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+
+        .compare-box {
+            padding: 24px;
+            border-radius: var(--radius-md);
+        }
+
+        .compare-box.bad {
+            background: #FFF3F2;
+            border: 1px solid #FFD3CF;
+        }
+
+        .compare-box.good {
+            background: #F1F8F4;
+            border: 1px solid #C2E3D3;
+        }
+
+        .compare-box h4 {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .compare-box ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+            color: #4B5563;
+        }
+
+        .compare-box ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 22px;
+        }
+
+        .compare-box.bad ul li::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            color: #E63946;
+            font-weight: bold;
+        }
+
+        .compare-box.good ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* 50 Day Challenge Card */
+        .challenge-banner {
+            background: linear-gradient(135deg, #2D3142 0%, #4F5D75 100%);
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: 40px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .challenge-banner::before {
+            content: "✨";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.05;
+            top: -20px;
+            right: -20px;
+        }
+
+        .challenge-banner h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 14px;
+        }
+
+        .challenge-banner p {
+            color: #D8DBE2;
+            max-width: 600px;
+            margin: 0 auto 24px;
+            font-size: 1rem;
+        }
+
+        .btn-magic {
+            background: var(--accent-yellow);
+            color: var(--text-main);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(242, 204, 143, 0.4);
+        }
+
+        .btn-magic:hover {
+            transform: scale(1.05);
+            background: #f7d7a5;
+        }
+
+        /* Engagement Bar / Footer of Blog */
+        .blog-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 24px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .like-btn-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cute-like-btn {
+            background: white;
+            border: 1px solid var(--border-soft);
+            padding: 10px 22px;
+            border-radius: 999px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--primary);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cute-like-btn:hover {
+            transform: translateY(-2px);
+            background: var(--primary-soft);
+        }
+
+        .share-tag {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating Hearts Animation */
+        .floating-heart {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: floatUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translate(0, 0) scale(0.6); opacity: 1; }
+            100% { transform: translate(var(--rx), -120px) scale(1.4); opacity: 0; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="read-progress"></div>
+
+    <div class="container">
+        <!-- Top Nav Pill -->
+        <nav class="top-nav">
+            <div class="brand-pill">
+                <span class="brand-dot"></span>
+                <span>Vibe & Psychologie</span>
+            </div>
+            <div class="read-time-pill">
+                ☕ 6 min de lecture
+            </div>
+        </nav>
+
+        <!-- Main Blog Header -->
+        <header class="article-hero">
+            <span class="tag-badge">Subconscient & Énergie Digitale</span>
+            <h1>Chaque Photo de Profil (DP) a un Secret à Raconter</h1>
+            <p class="hero-lead">
+                Et si votre simple photo WhatsApp trahissait vos blocages, vos peurs secrètes ou le stress de vos relations ? Découvrez la vérité psychologique et énergétique derrière 95% des profils.
+            </p>
+            <div class="author-box">
+                <div class="author-avatar">🧘‍♂️</div>
+                <div>
+                    <strong>Guide de l'Esprit Conscient</strong> • Publié avec bienveillance
+                </div>
+            </div>
+        </header>
+
+        <!-- Disclaimer Box -->
+        <div class="disclaimer-card">
+            <div class="disclaimer-icon">💡</div>
+            <div class="disclaimer-text">
+                <h4>Le "Syndrome de Vikram-Bétâl" & la Bienveillance</h4>
+                <p>
+                    Ce guide n'est pas là pour juger, mais pour éclairer. Comme un grand frère qui ne peut pas garder la vérité pour lui, je vous invite à tester ces principes sans dogmatisme pendant <strong>50 jours</strong>. Observez par vous-même les changements énergétiques dans votre quotidien !
+                </p>
+            </div>
+        </div>
+
+        <!-- Interactive Diagnostic Simulator -->
+        <section class="interactive-auditor">
+            <span class="card-tag">✨ Outil Rapide d'Auto-Diagnostic</span>
+            <h3>Quelle est votre Photo de Profil actuelle ?</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Cliquez sur votre style de photo pour révéler ce que dit votre subconscient :</p>
+            
+            <div class="picker-grid">
+                <button class="dp-option-btn" onclick="analyzeDP('glasses', this)">
+                    <span class="emoji">🕶️</span>
+                    <span>Lunettes Noires</span>
+                </button>
+                <button class="dp-option-btn" onclick="analyzeDP('side', this)">
+                    <span class="emoji">👤</span>
+                    <span>Pose de Profil</span>
+                </button>
+                <button class="dp-option-btn" onclick="analyzeDP('couple', this)">
+                    <span class="emoji">💍</span>
+                    <span>Couple Fusionnel</span>
+                </button>
+                <button class="dp-option-btn" onclick="analyzeDP('trio', this)">
+                    <span class="emoji">👥</span>
+                    <span>3 Personnes</span>
+                </button>
+                <button class="dp-option-btn" onclick="analyzeDP('baby', this)">
+                    <span class="emoji">👶</span>
+                    <span>Enfant / Bébé</span>
+                </button>
+                <button class="dp-option-btn" onclick="analyzeDP('pet', this)">
+                    <span class="emoji">🐾</span>
+                    <span>Animal de Compagnie</span>
+                </button>
+            </div>
+
+            <div id="audit-result-box">
+                <h4 id="audit-title" style="color: var(--primary); margin-bottom: 6px;"></h4>
+                <p id="audit-desc" style="font-size: 0.95rem; color: var(--text-main); margin: 0;"></p>
+            </div>
+        </section>
+
+        <!-- Main Blog Content -->
+        <main class="content-section">
+            
+            <!-- Section 1 -->
+            <article class="reading-card">
+                <span class="card-tag">Observation N°1</span>
+                <h2>Pourquoi 95% des gens se trompent de photo</h2>
+                <p>
+                    Sur WhatsApp, Instagram ou LinkedIn, notre photo de profil (notre « DP ») n’est pas qu’un simple rectangle de pixels. C’est le premier signal vibratoire que vous envoyez au monde avant même d'avoir prononcé un mot. 
+                </p>
+                <p>
+                    La majorité des gens choisissent leur photo en mode « pilote automatique », guidés par des impulsions inconscientes : le besoin de prouver son bonheur, la peur du regard direct, ou une blessure passée.
+                </p>
+                <div class="insight-pill">
+                    <span>🌱</span>
+                    <div>
+                        <strong>Le taux de base statistique :</strong> Comme pour toutes les règles d'observation humaine, il existe des exceptions. Mais pour plus de 9 personnes sur 10, aligner son image débloque une clarté mentale immédiate.
+                    </div>
+                </div>
+            </article>
+
+            <!-- Section 2: The Mistakes -->
+            <article class="reading-card">
+                <span class="card-tag">Les Pièges Inconscients</span>
+                <h2>Les 6 Types de Photos à Remplacer Immédiatement</h2>
+                
+                <p><strong>1. Les lunettes de soleil en permanence 🕶️</strong><br>
+                Certes, cela donne un air mystérieux et élégant. Mais sur le plan énergétique, masquer vos yeux bloque le contact d'âme à âme et signale une réticence à être vu tel que vous êtes. Enlevez-les pendant 50 jours et constatez la franchise des nouvelles connexions.</p>
+
+                <p><strong>2. La pose de côté / visage à demi caché 📐</strong><br>
+                Montrer seulement une moitié de visage ou regarder ailleurs traduit souvent une blessure de trahison vécue entre 19 et 25 ans, ou une peur sourde de revivre une déception. Regarder l'objectif bien en face guérit cette insécurité.</p>
+
+                <p><strong>3. Les photos de couple sur un compte personnel 💍</strong><br>
+                Votre téléphone est votre espace individuel. Lorsqu'un conjoint ressent le besoin impérieux d'afficher son partenaire en photo principale, cela traduit souvent une anxiété de validation ou un stress relationnel sous-jacent. Gardez vos souvenirs amoureux en fond d'écran ou dans votre portefeuille.</p>
+
+                <p><strong>4. Le groupe de trois personnes 👥</strong><br>
+                Trois personnes sur une petite vignette circulaire créent de la dispersion et de la confusion visuelle. Les interlocuteurs ne savent pas à quelle énergie s'adresser, ce qui attire des quiproquos professionnels et relationnels.</p>
+
+                <p><strong>5. Les animaux seuls ou en vedette 🐾</strong><br>
+                Remplacer son propre visage par son animal de compagnie reflète souvent une fatigue du contact humain, un repli émotionnel ou des non-dits avec l'entourage proche.</p>
+            </article>
+
+            <!-- Comparison Table -->
+            <article class="reading-card">
+                <span class="card-tag">Le Guide Pratique</span>
+                <h2>L'Anatomie de la Photo Parfaite</h2>
+                <p>
+                    Quelle est donc la photo de profil idéale selon les lois de l'harmonie et de l'énergie claire ?
+                </p>
+
+                <div class="compare-grid">
+                    <div class="compare-box bad">
+                        <h4 style="color: #E63946;">À Éviter 🚫</h4>
+                        <ul>
+                            <li>Fond sombre de fête de nuit avec verres d'alcool</li>
+                            <li>Photo à 3 personnes ou groupe flou</li>
+                            <li>Visage détourné ou lunettes noires</li>
+                            <li>Photos de défunts (qui retiennent l'énergie dans le passé)</li>
+                        </ul>
+                    </div>
+
+                    <div class="compare-box good">
+                        <h4 style="color: #2F5A47;">À Adopter ✨</h4>
+                        <ul>
+                            <li>Être <strong>seul(e)</strong> sur l'image</li>
+                            <li>Regard <strong>droit et franc</strong> vers la caméra</li>
+                            <li>Lumière naturelle du jour</li>
+                            <li>Fond naturel : eau claire, lac, verdure ou montagne</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 50 Days Challenge -->
+            <section class="challenge-banner">
+                <h3>Le Défi Zen des 50 Jours</h3>
+                <p>
+                    Changez votre photo de profil dès aujourd'hui pour un cliché lumineux, seul(e), de face, en pleine nature. Donnez-vous 50 jours sans la modifier et observez votre paix intérieure.
+                </p>
+                <button class="btn-magic" onclick="joinChallenge()">🌿 Je relève le défi !</button>
+            </section>
+
+        </main>
+
+        <!-- Blog Footer & Social Interactions -->
+        <footer-actions class="blog-actions">
+            <div class="like-btn-container">
+                <button class="cute-like-btn" id="like-btn" onclick="sendLove(event)">
+                    <span>❤️</span>
+                    <span id="like-count">53</span> J'aime
+                </button>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Cliquez pour envoyer des ondes positives !</span>
+            </div>
+            <div class="share-tag">
+                Partagez ce conseil à vos proches 💌
+            </div>
+        </footer-actions>
+
+        <footer>
+            <p>Pensé avec cœur • Cultivez une vie paisible, authentique et alignée.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Reading Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('read-progress').style.width = scrolled + '%';
+        });
+
+        // Interactive DP Analyzer
+        const interpretations = {
+            glasses: {
+                title: "🕶️ Le Bouclier de Protection",
+                desc: "Les lunettes noires masquent l'expression sincère des yeux. Votre subconscient cherche à garder une distance de sécurité avec le monde extérieur. Essayez une photo les yeux découverts pendant quelques semaines !"
+            },
+            side: {
+                title: "👤 L'Esquive Émotionnelle",
+                desc: "Montrer un seul côté du visage indique souvent une ancienne blessure ou la crainte d'être trahi. En osant regarder l'objectif bien en face, vous affirmez votre assurance et votre confiance."
+            },
+            couple: {
+                title: "💍 La Quête de Réassurance",
+                desc: "Placer le couple en DP sur votre ligne personnelle traduit souvent un besoin inconscient de prouver l'harmonie ou une tension non formulée. Laissez votre profil rayonner pour vous-même !"
+            },
+            trio: {
+                title: "👥 La Dispersion d'Énergie",
+                desc: "Trois personnes créent un triangle d'ambiguïté visuelle. Vos interlocuteurs ressentent une confusion énergétique. Préférez une photo solo pour vos échanges."
+            },
+            baby: {
+                title: "👶 La Projection Affective",
+                desc: "Mettre son enfant ou bébé montre un amour infini mais indique parfois un effacement personnel. Votre propre individualité mérite aussi d'être reconnue et honorée."
+            },
+            pet: {
+                title: "🐾 Le Refuge Secret",
+                desc: "Remplacer votre portrait par un animal révèle souvent une lassitude des tensions humaines du moment. Prenez un temps pour vous ressourcer en pleine nature."
+            }
+        };
+
+        function analyzeDP(type, btn) {
+            // Remove active states
+            document.querySelectorAll('.dp-option-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const resultBox = document.getElementById('audit-result-box');
+            const titleEl = document.getElementById('audit-title');
+            const descEl = document.getElementById('audit-desc');
+
+            const data = interpretations[type];
+            titleEl.innerText = data.title;
+            descEl.innerText = data.desc;
+
+            resultBox.style.display = 'block';
+        }
+
+        // Like Button with floating hearts
+        let count = 53;
+        let liked = false;
+
+        function sendLove(e) {
+            const btn = document.getElementById('like-btn');
+            const countEl = document.getElementById('like-count');
+            
+            if (!liked) {
+                count++;
+                countEl.innerText = count;
+                liked = true;
+                btn.style.background = 'var(--primary-soft)';
+            }
+
+            // Create 4-5 floating hearts
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerText = ['💖', '✨', '🌸', '🕊️', '❤️'][Math.floor(Math.random() * 5)];
+                heart.style.left = (e.clientX - 10 + (Math.random() * 40 - 20)) + 'px';
+                heart.style.top = (e.clientY - 10) + 'px';
+                heart.style.setProperty('--rx', (Math.random() * 60 - 30) + 'px');
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 1200);
+            }
+        }
+
+        function joinChallenge() {
+            alert("🌿 Magnifique décision ! Prenez une belle photo souriante à la lumière du jour et laissez la magie des 50 jours opérer.");
+        }
+    </script>
+</body>
+</html>

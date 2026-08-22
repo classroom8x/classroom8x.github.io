@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Énigme de l'Abondance & La Paix Intérieure | Série Money Mindset #1</title>
+  
+  <!-- Typographies Google Fonts Modernes & Éditoriales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- CSS TOKENS & THÈME AESTHETIC --- */
+    :root {
+      --bg-cream: #FAF7F2;
+      --bg-card: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(230, 222, 212, 0.7);
+      --text-dark: #1E232A;
+      --text-soft: #5A606A;
+      --text-light: #8C93A0;
+      
+      /* Palette Pastel Vibrant */
+      --pastel-coral: #FF7F66;
+      --pastel-coral-soft: #FFEFEA;
+      --pastel-sage: #6AA883;
+      --pastel-sage-soft: #EDF7F1;
+      --pastel-lavender: #8E7CE6;
+      --pastel-lavender-soft: #F2EFFD;
+      --pastel-butter: #F7C948;
+      --pastel-butter-soft: #FEF9E7;
+      --terracotta: #C85A32;
+
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-pill: 999px;
+
+      --shadow-subtle: 0 8px 30px rgba(0, 0, 0, 0.03);
+      --shadow-float: 0 16px 40px rgba(255, 127, 102, 0.08);
+      --shadow-card: 0 12px 32px rgba(45, 35, 30, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.85;
+      font-size: 1.08rem;
+      background-image: 
+        radial-gradient(circle at 5% 10%, rgba(255, 239, 234, 0.7) 0%, transparent 30%),
+        radial-gradient(circle at 95% 40%, rgba(237, 247, 241, 0.8) 0%, transparent 35%),
+        radial-gradient(circle at 50% 85%, rgba(242, 239, 253, 0.7) 0%, transparent 40%);
+      background-attachment: fixed;
+      padding-bottom: 90px;
+    }
+
+    /* Barre de progression fluide */
+    #progress-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pastel-coral), var(--pastel-lavender), var(--pastel-sage));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Navbar flottante Aesthetic */
+    .nav-wrapper {
+      position: sticky;
+      top: 18px;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 900;
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--terracotta);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-ep {
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: var(--pastel-coral-soft);
+      color: var(--pastel-coral);
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Container Principal */
+    .article-container {
+      max-width: 800px;
+      margin: 45px auto 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Header */
+    .post-hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .meta-pills {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: white;
+      border: 1px solid #EFEAE4;
+      color: var(--text-soft);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    h1 {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(2.3rem, 5vw, 3.4rem);
+      line-height: 1.18;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 22px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-lead {
+      font-size: 1.22rem;
+      color: var(--text-soft);
+      max-width: 660px;
+      margin: 0 auto;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Cartes Éditoriales */
+    .post-body {
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .content-card:hover {
+      box-shadow: var(--shadow-float);
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      margin: 24px 0 10px 0;
+      color: var(--text-dark);
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: #3C424E;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Outil Interactif : Le Biais de Conditionnement */
+    .analogy-box {
+      background: var(--pastel-butter-soft);
+      border: 2px dashed #E5D298;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      margin: 22px 0;
+    }
+
+    .analogy-equation {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .equation-item {
+      background: white;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .equation-item span.highlight {
+      display: block;
+      color: var(--terracotta);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* Les 4 Piliers Interactifs */
+    .pillars-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 26px 0;
+    }
+
+    .pillar-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      border: 1px solid #ECE7E1;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: #DDD;
+      transition: background 0.25s ease;
+    }
+
+    .pillar-card:hover, .pillar-card.active {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+    }
+
+    .pillar-card.p1:hover, .pillar-card.p1.active { border-color: var(--pastel-coral); }
+    .pillar-card.p1::before { background: var(--pastel-coral); }
+
+    .pillar-card.p2:hover, .pillar-card.p2.active { border-color: var(--pastel-sage); }
+    .pillar-card.p2::before { background: var(--pastel-sage); }
+
+    .pillar-card.p3:hover, .pillar-card.p3.active { border-color: var(--pastel-lavender); }
+    .pillar-card.p3::before { background: var(--pastel-lavender); }
+
+    .pillar-card.p4:hover, .pillar-card.p4.active { border-color: var(--pastel-butter); }
+    .pillar-card.p4::before { background: var(--pastel-butter); }
+
+    .pillar-emoji {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .pillar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    /* Citation Callout */
+    .quote-callout {
+      background: linear-gradient(135deg, var(--pastel-coral-soft), #FFF);
+      border-left: 4px solid var(--pastel-coral);
+      padding: 28px;
+      border-radius: var(--radius-md);
+      margin: 26px 0;
+      font-family: 'Newsreader', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #382A25;
+    }
+
+    .quote-author {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--terracotta);
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Cartes Mythe vs Lucidité */
+    .myth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .myth-box {
+      background: #FFF5F5;
+      border: 1px solid #FFE0E0;
+      padding: 20px;
+      border-radius: var(--radius-md);
+    }
+
+    .myth-box.truth {
+      background: var(--pastel-sage-soft);
+      border: 1px solid #CDE7D7;
+    }
+
+    .myth-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .myth-box .myth-label { color: #D64545; }
+    .myth-box.truth .myth-label { color: var(--pastel-sage); }
+
+    /* Zone Interaction & Claps */
+    .bottom-cta {
+      background: linear-gradient(135deg, #FFFDFB 0%, var(--pastel-lavender-soft) 100%);
+      border: 1px solid #E6E0F8;
+      text-align: center;
+      padding: 44px 30px;
+      border-radius: var(--radius-xl);
+    }
+
+    .clap-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-clap {
+      background: white;
+      border: 2px solid #E0DBF5;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--pastel-lavender);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 18px rgba(142, 124, 230, 0.12);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-clap:hover {
+      transform: scale(1.05);
+      border-color: var(--pastel-lavender);
+      background: var(--pastel-lavender-soft);
+    }
+
+    .btn-clap:active {
+      transform: scale(0.96);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-light);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 700px) {
+      .content-card { padding: 26px 20px; }
+      .myth-grid { grid-template-columns: 1fr; }
+      .nav-wrapper { padding: 0 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress-indicator"></div>
+
+  <!-- Barre de Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <div class="brand">
+        <span>🌱</span> Money Mindset
+      </div>
+      <span class="badge-ep">Masterclass #01</span>
+    </nav>
+  </div>
+
+  <div class="article-container">
+    
+    <!-- Hero Article -->
+    <header class="post-hero">
+      <div class="meta-pills">
+        <span class="meta-pill">🧠 Psychologie de l'Abondance</span>
+        <span class="meta-pill">⏱️ 5 min de lecture</span>
+        <span class="meta-pill">🌿 Les 4 Piliers</span>
+      </div>
+      <h1>L'Énigme de l'Abondance : <em>Pourquoi votre posture mentale définit votre paix intérieure</em></h1>
+      <p class="hero-lead">Et si tout ce que l'on vous a appris sur l'argent, la noblesse de la pauvreté et la quête du bonheur reposait sur une fausse équation ?</p>
+    </header>
+
+    <!-- Corps de l'Article -->
+    <main class="post-body">
+
+      <!-- Section 1 : L'analogie d'enfance -->
+      <article class="content-card">
+        <h2>🧩 Le Test Logique que nous avons tous raté</h2>
+        <p>Souvenez-vous des exercices de logique à l'école primaire :</p>
+        
+        <div class="analogy-box">
+          <p style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">Complétez la suite logique :</p>
+          <div class="analogy-equation">
+            <div class="equation-item">Poisson : Nager :: <span class="highlight">Aigle : Voler</span></div>
+            <div class="equation-item">Homme d'affaires / Parle d'argent : Cupide :: <span class="highlight">Homme Vertueux : ???</span></div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-soft); margin-top: 10px;">
+            Inconsciemment, notre culture nous souffle la réponse : <em>« L'homme bon est forcément pauvre ou détaché. »</em>
+          </p>
+        </div>
+
+        <p>C'est ce court-circuit mental qui bloque des millions de personnes. Nous avons associé le fait de parler d'investissement et de stratégie financière à un défaut moral, et la passivité économique à une forme de vertu. Pourtant, sans carburant, aucun idéal ne tient la distance.</p>
+      </article>
+
+      <!-- Section 2 : L'Écosystème des 4 Piliers -->
+      <article class="content-card">
+        <h2>🏛️ L'Équation de Vie : Les 4 Piliers Fondamentaux</h2>
+        <p>Pour résoudre une équation complexe, il faut identifier ses constantes et maîtriser ses variables. Toute vie équilibrée s'articule autour de 4 piliers indissociables :</p>
+
+        <div class="pillars-container">
+          <!-- Pilier 1 -->
+          <div class="pillar-card p1 active">
+            <span class="pillar-emoji">🏡</span>
+            <div class="pillar-title">1. Le Sanctuaire Foncier</div>
+            <div class="pillar-desc">Votre résidence principale, vos actifs immobiliers et le patrimoine tangible transmis à vos enfants.</div>
+          </div>
+          <!-- Pilier 2 -->
+          <div class="pillar-card p2">
+            <span class="pillar-emoji">💍</span>
+            <div class="pillar-title">2. Le Foyer & Les Liens</div>
+            <div class="pillar-desc">La vie de couple, l'éducation des enfants et la solidité émotionnelle de votre noyau familial.</div>
+          </div>
+          <!-- Pilier 3 -->
+          <div class="pillar-card p3">
+            <span class="pillar-emoji">🌱</span>
+            <div class="pillar-title">3. Le Money Mindset</div>
+            <div class="pillar-desc">L'énergie et la compétence requises pour attirer, multiplier et protéger les capitaux.</div>
+          </div>
+          <!-- Pilier 4 -->
+          <div class="pillar-card p4">
+            <span class="pillar-emoji">🕊️</span>
+            <div class="pillar-title">4. Le « Sukoon » (Sérénité)</div>
+            <div class="pillar-desc">La finalité suprême : la paix de l'esprit, le calme intérieur et la liberté d'être.</div>
+          </div>
+        </div>
+
+        <p>Remarquez la hiérarchie : <strong>les piliers 1 et 2 ne peuvent pas tenir sans le pilier 3</strong>. Et tous n'ont qu'un seul objectif : atteindre le pilier 4, le <em>Sukoon</em> (la sérénité totale).</p>
+      </article>
+
+      <!-- Section 3 : Mythes et Fausses Croyances -->
+      <article class="content-card">
+        <h2>⚡ Déconstruire les Dictons Populaires</h2>
+        
+        <div class="myth-grid">
+          <div class="myth-box">
+            <span class="myth-label">❌ Dicton Populaire</span>
+            <strong>« L'argent ne fait pas le bonheur. »</strong>
+            <p style="font-size: 0.88rem; margin-top: 6px; color: #555;">Une formule souvent utilisée pour justifier l'ignorance financière.</p>
+          </div>
+          <div class="myth-box truth">
+            <span class="myth-label">✨ Réalité Lucide</span>
+            <strong>« L'argent achète les options et la liberté. »</strong>
+            <p style="font-size: 0.88rem; margin-top: 6px; color: #2E5A3D;">Si l'argent ne vous rend pas heureux, c'est que vous ne savez pas où ni comment l'allouer intelligemment.</p>
+          </div>
+        </div>
+
+        <div class="myth-grid">
+          <div class="myth-box">
+            <span class="myth-label">❌ Dicton Populaire</span>
+            <strong>« L'argent n'est pas tout dans la vie. »</strong>
+            <p style="font-size: 0.88rem; margin-top: 6px; color: #555;">Vrai en apparence, mais dangereux dans la pratique.</p>
+          </div>
+          <div class="myth-box truth">
+            <span class="myth-label">✨ Réalité Lucide</span>
+            <strong>Rien n'est « tout » à lui seul.</strong>
+            <p style="font-size: 0.88rem; margin-top: 6px; color: #2E5A3D;">Ni le travail, ni la santé, ni l'amour. Mais lorsque l'argent manque, tout le reste commence à se fissurer.</p>
+          </div>
+        </div>
+
+        <div class="quote-callout">
+          « Une chose ne devient “tout” que le jour où vous la perdez. Perdez votre santé, elle devient votre seule obsession. Retirez l'argent d'un foyer, et chaque discussion tournera autour de son absence. »
+          <span class="quote-author">— Note de synthèse Money Mindset</span>
+        </div>
+      </article>
+
+      <!-- Section 4 : Le Respect de l'Énergie Financière -->
+      <article class="content-card">
+        <h2>🪔 L'Allégorie de la Prospérité : Respect vs Avarice</h2>
+        <p>Dans les traditions orientales, on ne peut pas prier la prospérité (<em>Lakshmi</em>) une seule nuit de fête à Diwali et passer les 364 autres jours de l'année à mépriser l'argent ou à dire qu'il est « sale ».</p>
+
+        <p>Il existe un abîme entre deux attitudes souvent confondues :</p>
+        <ul style="padding-left: 24px; color: #3C424E; margin-bottom: 18px;">
+          <li style="margin-bottom: 8px;"><strong>L'Avidité (Greed) :</strong> Une émotion toxique, compulsive et réactive, sans plan d'action ni contrôle émotionnel.</li>
+          <li><strong>L'Ambition Constructive :</strong> Développer des compétences légales, créer des flux de revenus solides, sécuriser l'avenir de ses enfants et maîtriser ses investissements.</li>
+        </ul>
+
+        <p>Le monde moderne est rempli de commerçants prêts à siphonner vos liquidités (« Achetez ceci, consommez cela »). Mais rares sont ceux qui vous apprennent à **colmater les fuites invisibles** de votre compte en banque dues à un mauvais conditionnement mental.</p>
+      </article>
+
+      <!-- Section 5 : Appel à l'action / Claps -->
+      <section class="bottom-cta">
+        <h2>Prêt à changer de paradigme ?</h2>
+        <p style="max-width: 540px; margin: 0 auto; font-size: 1rem; color: var(--text-soft);">
+          Cette série de masterclasses quotidiennes a pour mission de vous apporter clarté, rigueur logique et sérénité financière. Prenez une boisson chaude chaque soir et explorons cela pas à pas.
+        </p>
+
+        <div class="clap-container">
+          <button class="btn-clap" id="btnClap">
+            <span id="clapIcon">👏</span> 
+            <span id="clapCountText">Inspirant ! (128)</span>
+          </button>
+          <span style="font-size: 0.82rem; color: var(--text-light);">Cliquez pour valider votre engagement d'aujourd'hui</span>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© Money Mindset Series • Allier Intelligence Financière, Philosophie & Paix d'Esprit.</p>
+    </footer>
+
+  </div>
+
+  <!-- Micro-Interactions JavaScript -->
+  <script>
+    // 1. Barre de progression de lecture
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-indicator').style.width = scrolled + '%';
+    });
+
+    // 2. Interaction avec les Cartes Piliers
+    const pillarCards = document.querySelectorAll('.pillar-card');
+    pillarCards.forEach(card => {
+      card.addEventListener('click', () => {
+        pillarCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+
+    // 3. Bouton Clap Dynamique
+    let claps = 128;
+    let hasClapped = false;
+    const btnClap = document.getElementById('btnClap');
+    const clapText = document.getElementById('clapCountText');
+    const clapIcon = document.getElementById('clapIcon');
+
+    btnClap.addEventListener('click', () => {
+      if (!hasClapped) {
+        claps++;
+        clapText.innerText = `Inspirant ! (${claps})`;
+        btnClap.style.borderColor = 'var(--pastel-coral)';
+        btnClap.style.color = 'var(--pastel-coral)';
+        clapIcon.innerText = '💖';
+        hasClapped = true;
+      }
+    });
+  </script>
+</body>
+</html>
