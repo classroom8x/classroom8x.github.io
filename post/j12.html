@@ -1,299 +1,291 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Mindset #1 — Le Piège de La La Land | L'Art du Patrimoine</title>
-    
-    <!-- Google Fonts (Playfair Display & Plus Jakarta Sans) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Illusion du « La-La Land » | Série Mindset Financier #01</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts : Fraunces (Editorial Cute Serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: '#FDFBF7',
-                        warmSand: '#F4EFEA',
-                        terracotta: '#D97757',
-                        terracottaHover: '#C26344',
-                        sage: '#7C9082',
-                        charcoal: '#242220',
-                        muted: '#6E6B68'
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFFDF9',
+            softrose: '#FFEAE6',
+            blush: '#FCE7F3',
+            lavender: '#F3E8FF',
+            matcha: '#EAF7EE',
+            mocha: '#2E221E',
+            warmgray: '#786F6A',
+            terracotta: '#D96B52',
+            honey: '#F59E0B'
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        ::selection {
-            background-color: #F4EFEA;
-            color: #D97757;
-        }
-        .prose p {
-            margin-bottom: 1.5rem;
-            line-height: 1.85;
-            color: #383533;
-        }
-        .highlight-quote {
-            border-left: 3px solid #D97757;
-            padding-left: 1.25rem;
-            font-style: italic;
-            color: #242220;
-        }
-    </style>
+  <style>
+    /* Custom Aesthetics */
+    body {
+      background-color: #FFFDF9;
+      color: #2E221E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    ::selection {
+      background-color: #FFEAE6;
+      color: #D96B52;
+    }
+    .badge-glow {
+      box-shadow: 0 4px 20px -2px rgba(217, 107, 82, 0.15);
+    }
+    .cute-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cute-card:hover {
+      transform: translateY(-3px);
+    }
+    /* Smooth Reading Progress Bar */
+    #progress-bar {
+      transition: width 0.1s ease-out;
+    }
+  </style>
 </head>
-<body class="bg-cream text-charcoal font-sans antialiased selection:bg-terracotta/20 selection:text-terracotta">
+<body class="antialiased selection:bg-softrose">
 
-    <!-- Reading Progress Bar -->
-    <div id="progressBar" class="fixed top-0 left-0 h-1 bg-terracotta z-50 transition-all duration-150 w-0"></div>
+  <!-- Progress Bar -->
+  <div class="fixed top-0 left-0 w-full h-1.5 z-50 bg-transparent">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-terracotta via-pink-400 to-purple-400 w-0"></div>
+  </div>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 bg-cream/90 backdrop-blur-md border-b border-warmSand z-40 px-6 py-4">
-        <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <span class="w-8 h-8 rounded-full bg-terracotta/10 text-terracotta flex items-center justify-center font-serif font-bold text-lg">M</span>
-                <span class="font-serif font-bold text-xl tracking-tight">Mindset<span class="text-terracotta">.</span>Finance</span>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleModal()" class="text-xs font-semibold px-4 py-2 bg-charcoal text-white rounded-full hover:bg-terracotta transition duration-200 flex items-center gap-1.5 shadow-sm">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                    <span>Consultation 7 min</span>
-                </button>
-            </div>
-        </div>
+  <!-- Cute Floating Nav -->
+  <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+    <nav class="bg-white/85 backdrop-blur-md border border-amber-900/5 px-5 py-3.5 rounded-full shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-softrose flex items-center justify-center text-terracotta text-sm">✨</span>
+        <span class="font-serif font-bold tracking-tight text-lg text-mocha">Mindset & Monnaie</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-block text-xs font-semibold px-3 py-1 bg-lavender text-purple-700 rounded-full">
+          Épisode #01
+        </span>
+        <a href="#like-section" class="text-xs font-semibold px-4 py-2 bg-mocha text-white rounded-full hover:bg-terracotta transition">
+          S'abonner 💌
+        </a>
+      </div>
     </nav>
+  </header>
 
-    <!-- Main Container -->
-    <main class="max-w-3xl mx-auto px-5 pt-12 pb-24">
+  <!-- Hero Section -->
+  <main class="max-w-3xl mx-auto px-5 pt-12 pb-24">
+    
+    <header class="text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-softrose border border-terracotta/10 text-terracotta text-xs font-semibold badge-glow">
+        <span>🏔️ Immobilier & Psychologie</span> • <span>6 min de lecture</span>
+      </div>
 
-        <!-- Header / Meta -->
-        <header class="mb-10 text-center sm:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
-                <i data-lucide="compass" class="w-3.5 h-3.5"></i>
-                Série Mindset #01
-            </div>
-            <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight text-charcoal mb-5">
-                Le syndrome de « La La Land » : Acheter dans les nuages ou préserver son héritage ?
-            </h1>
-            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-muted border-b border-warmSand pb-6">
-                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 5 min de lecture</span>
-                <span>•</span>
-                <span class="flex items-center gap-1"><i data-lucide="bookmark" class="w-3.5 h-3.5"></i> Décisions Immobilières</span>
-                <span>•</span>
-                <span class="text-sage font-medium flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Guide Pratique</span>
-            </div>
-        </header>
+      <h1 class="text-3xl sm:text-5xl font-serif font-bold text-mocha tracking-tight leading-[1.2]">
+        L'Illusion du « La-La Land » : <br/>
+        <span class="italic font-normal text-terracotta">Pourquoi vous ne devriez pas acheter ce chalet de rêve</span>
+      </h1>
 
-        <!-- Article Body -->
-        <article class="prose max-w-none text-base sm:text-lg">
-            
-            <p class="text-xl leading-relaxed text-charcoal/90 font-serif italic mb-8">
-                « Et si on achetait un petit chalet au sommet d'une colline brumeuse pour y couler des jours heureux ? » Tout le monde a déjà fait ce rêve inspiré par les films romantiques. Pourtant, dans le monde réel, c’est le moyen le plus rapide de geler son capital dans un gouffre sans fin.
-            </p>
+      <p class="text-warmgray text-base sm:text-lg max-w-2xl mx-auto font-normal">
+        Entre fantasmes cinématographiques dans les hauteurs et braderie émotionnelle de nos héritages : décryptage d'un piège financier très répandu.
+      </p>
 
-            <!-- Card: Concept 1 -->
-            <div class="my-8 p-6 bg-warmSand/60 rounded-2xl border border-warmSand">
-                <h3 class="font-serif text-xl font-bold text-charcoal mb-3 flex items-center gap-2">
-                    <i data-lucide="mountain" class="w-5 h-5 text-terracotta"></i>
-                    1. L'Illusion du « Refuge Perché » (La La Land Property)
-                </h3>
-                <p class="text-sm sm:text-base text-muted mb-0">
-                    Ces charmantes maisons de campagne vendues entre 30 000 et 50 000 € vous promettent un double miracle : une villégiature magique et un revenu locatif automatique toute l'année. <strong>C'est un mirage complet.</strong>
-                </p>
-            </div>
-
-            <p>
-                Dans la réalité :
-            </p>
-            <ul class="space-y-3 mb-6 list-none pl-0">
-                <li class="flex items-start gap-3 text-sm sm:text-base">
-                    <i data-lucide="alert-circle" class="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"></i>
-                    <span><strong>L'entretien invisible :</strong> Il vous faudra payer un gardien à distance qui, sans contrôle direct, risque de sous-louer votre bien ou d'engendrer des soucis juridiques.</span>
-                </li>
-                <li class="flex items-start gap-3 text-sm sm:text-base">
-                    <i data-lucide="coffee" class="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"></i>
-                    <span><strong>La corvée des vacances :</strong> Le jour où vous y arrivez enfin, qui nettoie ? Qui cuisine ? Vous devenez le domestique de votre propre lieu de repos.</span>
-                </li>
-                <li class="flex items-start gap-3 text-sm sm:text-base">
-                    <i data-lucide="map-pin" class="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"></i>
-                    <span><strong>L'enfermement géographique :</strong> Le monde est vaste. Pourquoi vous enchaîner à vie au même flanc de colline ?</span>
-                </li>
-            </ul>
-
-            <!-- Smart Strategy Box -->
-            <div class="my-8 p-6 bg-sage/10 rounded-2xl border border-sage/20">
-                <h4 class="font-serif text-lg font-bold text-sage mb-2 flex items-center gap-2">
-                    <i data-lucide="lightbulb" class="w-5 h-5"></i> La Stratégie Alternative : Le Voyage Sans Contrainte
-                </h4>
-                <p class="text-sm text-charcoal/80 mb-0">
-                    Prenez ce capital, investissez-le dans des actifs stables générant du rendement. Utilisez ensuite ces dividendes annuels (2 500 € à 4 000 €) pour séjourner dans des <strong>hôtels 5 étoiles</strong> différents chaque année : Goa, les Alpes, l'Himalaya ou la Bretagne. Zéro ménage, zéro gestionnaire à surveiller, pure sérénité.
-                </p>
-            </div>
-
-            <!-- Interactive Simulator Widget -->
-            <div class="my-10 p-6 bg-white rounded-2xl border border-warmSand shadow-sm">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-xs font-bold uppercase tracking-wider text-terracotta">Simulateur Rapide</span>
-                    <i data-lucide="calculator" class="w-4 h-4 text-muted"></i>
-                </div>
-                <h4 class="font-serif text-lg font-bold mb-4">Acheter un Cottage vs Investir & Voyager en Palace</h4>
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-xs font-medium text-muted">Capital Envisagé (€) : <span id="capitalVal" class="text-charcoal font-bold">35 000 €</span></label>
-                        <input type="range" id="capitalInput" min="20000" max="100000" step="5000" value="35000" class="w-full accent-terracotta h-1.5 bg-warmSand rounded-lg cursor-pointer">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 pt-2 border-t border-warmSand text-center">
-                        <div class="p-3 bg-warmSand/40 rounded-xl">
-                            <span class="text-[11px] text-muted block mb-1">Option A : Cottage</span>
-                            <span class="text-xs font-semibold text-terracotta">Frais fixes & Soucis</span>
-                        </div>
-                        <div class="p-3 bg-sage/15 rounded-xl">
-                            <span class="text-[11px] text-sage block mb-1">Option B : Dividendes / An</span>
-                            <span id="dividendOutput" class="text-sm font-bold text-charcoal">~ 2 800 € / an en Hôtels 5★</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3 class="font-serif text-2xl font-bold text-charcoal mt-10 mb-4">
-                2. Biens Hérités & Bijoux de Famille : Ne Bradez Pas la Mémoire
-            </h3>
-
-            <p>
-                Le second piège psychologique concerne les biens reçus par héritage ou donation. Comme nous n'avons pas versé notre propre sueur pour les acquérir, le subconscient a tendance à les sous-évaluer et à vouloir s'en débarrasser au rabais :
-            </p>
-
-            <div class="highlight-quote my-6">
-                « Vendre en catastrophe un appartement estimé à 80 000 € pour 65 000 €, ou aller chez le bijoutier refondre l’or 24 carats de sa grand-mère pour suivre une mode éphémère... c'est détruire de la valeur pure. »
-            </div>
-
-            <p>
-                Cet or rapporté avec dévotion par vos aînés possède une pureté et une histoire. La mode est cyclique : ce que vous trouvez démodé aujourd'hui redeviendra iconique demain. Prenez le temps, consultez des experts neutres, évaluez posément et ne prenez jamais de décision patrimoniale sous le coup de l'impatience.
-            </p>
-
-            <!-- Education Note -->
-            <div class="mt-8 p-5 bg-warmSand/40 rounded-xl border-l-4 border-charcoal">
-                <p class="text-xs sm:text-sm text-charcoal mb-0 font-medium">
-                    💡 <strong>Conseil pour les parents :</strong> Partagez ces principes de bon sens avec vos adolescents dès 15 ans. La culture financière ne s'apprend pas à l'école, elle se forge dans les discussions de famille.
-                </p>
-            </div>
-
-        </article>
-
-        <!-- Social Action / Like Goal Banner -->
-        <section class="mt-14 p-6 bg-warmSand/80 rounded-3xl text-center border border-warmSand">
-            <h4 class="font-serif text-xl font-bold mb-2">Vous avez aimé cette perspective ?</h4>
-            <p class="text-xs sm:text-sm text-muted max-w-md mx-auto mb-5">
-                Si nous atteignons l'objectif de <strong>50 likes</strong>, nous publierons une série exclusive de 5 jours dédiée au décryptage du mindset immobilier.
-            </p>
-            
-            <button id="likeBtn" onclick="addLike()" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-charcoal hover:text-terracotta rounded-full shadow-sm font-semibold text-sm transition transform active:scale-95 border border-warmSand">
-                <i data-lucide="heart" id="heartIcon" class="w-4 h-4 transition-colors"></i>
-                <span id="likeText">J'aime cet article</span> (<span id="likeCount">37</span>)
-            </button>
-        </section>
-
-        <!-- Author / Footer Box -->
-        <footer class="mt-12 pt-8 border-t border-warmSand flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-            <p>© 2026 Série Money Mindset — Développé avec simplicité et clarté.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-terracotta">YouTube</a>
-                <a href="#" class="hover:text-terracotta">Newsletter</a>
-                <a href="#" class="hover:text-terracotta">Contact</a>
-            </div>
-        </footer>
-
-    </main>
-
-    <!-- 7-Min Advisory Modal -->
-    <div id="consultModal" class="fixed inset-0 bg-charcoal/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-warmSand relative transform transition-all">
-            <button onclick="toggleModal()" class="absolute top-5 right-5 text-muted hover:text-charcoal">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <div class="w-10 h-10 rounded-full bg-terracotta/10 text-terracotta flex items-center justify-center mb-4">
-                <i data-lucide="sparkles" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-serif text-xl font-bold mb-1">Conseil Éclair de 7 Minutes</h3>
-            <p class="text-xs text-muted mb-4">
-                Vous hésitez sur une opportunité ou un bien hérité ? Échangez gratuitement 7 minutes par message audio ou appel rapide.
-            </p>
-            <form onsubmit="handleForm(event)" class="space-y-3">
-                <input type="text" placeholder="Votre prénom" required class="w-full text-xs px-4 py-2.5 rounded-xl border border-warmSand focus:outline-none focus:border-terracotta">
-                <input type="email" placeholder="Votre email ou WhatsApp" required class="w-full text-xs px-4 py-2.5 rounded-xl border border-warmSand focus:outline-none focus:border-terracotta">
-                <textarea rows="2" placeholder="Votre question en quelques mots..." class="w-full text-xs px-4 py-2.5 rounded-xl border border-warmSand focus:outline-none focus:border-terracotta"></textarea>
-                <button type="submit" class="w-full bg-terracotta text-white py-2.5 rounded-xl text-xs font-semibold hover:bg-terracottaHover transition">Envoyer la demande</button>
-            </form>
-            <p id="formFeedback" class="text-[11px] text-sage text-center mt-2 hidden">Merci ! Nous vous recontacterons très vite.</p>
+      <!-- Author Card -->
+      <div class="pt-4 flex items-center justify-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-200 to-rose-300 p-0.5 shadow-sm">
+          <div class="w-full h-full bg-white rounded-full flex items-center justify-center text-base">☕</div>
         </div>
-    </div>
+        <div class="text-left text-xs">
+          <p class="font-bold text-mocha">Série Psychologie de l'Argent</p>
+          <p class="text-warmgray">Conseiller Indépendant & Mentor</p>
+        </div>
+      </div>
+    </header>
 
-    <!-- Scripts -->
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
+    <hr class="my-10 border-amber-900/10" />
 
-        // Reading Progress Indicator
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
+    <!-- Blog Content in French -->
+    <article class="space-y-8 text-mocha/90 text-base sm:text-[17px] leading-relaxed">
+      
+      <!-- Introduction Note -->
+      <div class="p-5 bg-gradient-to-r from-softrose/70 to-blush/40 rounded-3xl border border-rose-100 space-y-2">
+        <p class="text-xs font-bold uppercase tracking-wider text-terracotta">🌸 Note de l'épisode</p>
+        <p class="text-sm text-mocha/80 italic">
+          Bienvenue dans le 1ᵉʳ numéro de notre série dédiée au <strong>Money Mindset</strong>. Aujourd'hui, parlons vrai : pourquoi vouloir posséder une bicoque isolée sur une montagne est l'une des pires décisions financières modernes.
+        </p>
+      </div>
 
-        // Interactive Simulator
-        const capInput = document.getElementById('capitalInput');
-        const capVal = document.getElementById('capitalVal');
-        const divOut = document.getElementById('dividendOutput');
+      <!-- Section 1 -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-serif font-bold text-mocha flex items-center gap-2">
+          <span>1.</span> Le mirage du chalet perdu dans la brume
+        </h2>
+        
+        <p>
+          Nous avons tous en tête ces scènes idylliques de films romantiques où les héros s'évadent dans un refuge niché sur les sommets. Vous visitez un village pittoresque en vacances, le vent est doux, la vue est imprenable, et soudain l'envie vous prend : <em>« Et si j'achetais ce cottage à 25 ou 35 000 euros pour y vivre paisiblement ? »</em>
+        </p>
 
-        capInput.addEventListener('input', (e) => {
-            const val = parseInt(e.target.value);
-            capVal.innerText = val.toLocaleString('fr-FR') + ' €';
-            const annualReturn = Math.round(val * 0.08); // 8% avg estimated yield
-            divOut.innerText = `~ ${annualReturn.toLocaleString('fr-FR')} € / an en Hôtels 5★`;
-        });
+        <p>
+          C'est ce que j'appelle <strong>« geler son argent »</strong>. Sur le papier, les agents immobiliers vous vendent un rêve : vous l'habiterez quelques semaines et le reste de l'année, il s'autofinancera en location. 
+        </p>
 
-        // Like Counter
-        let likes = 37;
-        let liked = false;
-        function addLike() {
-            if (!liked) {
-                likes++;
-                liked = true;
-                document.getElementById('likeCount').innerText = likes;
-                document.getElementById('heartIcon').classList.add('text-terracotta', 'fill-terracotta');
-                document.getElementById('likeText').innerText = "Merci pour votre soutien !";
-            }
+        <!-- Quote Box -->
+        <div class="border-l-4 border-terracotta pl-4 py-2 italic text-mocha font-serif text-lg bg-softrose/20 rounded-r-2xl">
+          « Dans le monde réel, ce modèle d'affaires ne fonctionne pas. C’est un gouffre logistique et un piège pour votre tranquillité. »
+        </div>
+
+        <p>
+          Que se passe-t-il vraiment ? Vous devrez embaucher un gardien local que vous ne connaissez pas, gérer des problèmes d'ordre public, des litiges juridiques et un entretien colossal. Et quand vous voudrez enfin y aller pour vous reposer : qui fera le ménage ? Qui préparera les repas ? Vous travaillerez plus là-bas que chez vous !
+        </p>
+
+        <!-- Cute Insight Card -->
+        <div class="cute-card p-5 bg-matcha/60 rounded-2xl border border-emerald-200/50 space-y-2">
+          <p class="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+            <span>🌿</span> L'Alternative Intelligente
+          </p>
+          <p class="text-sm text-emerald-950">
+            Au lieu d’immobiliser votre capital dans un seul point géographique, investissez-le là où le rendement locatif est garanti. Utilisez ensuite ces dividendes (2 000 à 3 500 € par an) pour séjourner dans des hôtels 5 étoiles différents chaque saison : dans les Alpes, en bord de mer ou à l'autre bout du monde. Soyez libre !
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="space-y-4 pt-4">
+        <h2 class="text-2xl font-serif font-bold text-mocha flex items-center gap-2">
+          <span>2.</span> Héritages & Bijoux de Famille : Ne bradez pas la mémoire
+        </h2>
+
+        <p>
+          Le second piège psychologique concerne la gestion des biens hérités ou offerts par les parents. Dès qu'un terrain ou une maison de famille est transmis, on observe une étrange précipitation à « s'en débarrasser » au rabais : une propriété qui vaut 80 000 € est bradée à 65 000 € juste pour encaisser vite.
+        </p>
+
+        <p>
+          C’est exactement la même tragédie que pour l’or ancien légué par nos mères et grands-mères. Elles ont économisé chaque gramme d’or pur 22 ou 24 carats avec dévotion. Et que font les héritiers ? Ils courent chez le bijoutier pour refondre le métal selon la mode du moment, perdant au passage des pourcentages considérables de valeur et d'authenticité.
+        </p>
+
+        <div class="p-4 bg-lavender/50 rounded-2xl border border-purple-100 text-sm space-y-1">
+          <p class="font-bold text-purple-900">💡 Le biais de l'argent non mérité :</p>
+          <p class="text-purple-950/80">
+            Parce que cet argent n'est pas le fruit de votre propre sueur, votre cerveau a tendance à le sous-évaluer. C'est une erreur fondamentale. Un euro reçu en héritage a exactement la même valeur qu'un euro gagné à la sueur de votre front. Respectez ce labeur accumulé.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="space-y-4 pt-4">
+        <h2 class="text-2xl font-serif font-bold text-mocha flex items-center gap-2">
+          <span>3.</span> Éduquer la nouvelle génération dès 15 ans
+        </h2>
+
+        <p>
+          L'intelligence financière n'est pas réservée aux étudiants en économie ou en commerce. Peu importe la voie choisie par vos adolescents (sciences, arts, lettres), chacun devra manipuler de l'argent tout au long de sa vie.
+        </p>
+        <p>
+          Prenez le temps d'asseoir vos enfants et d'aborder ces réflexions avec eux. Forger un état d'esprit sain face au patrimoine dès l'adolescence leur évitera des dizaines de mauvais choix à l'âge adulte.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- Call to Action Box -->
+    <section id="like-section" class="mt-14 p-6 sm:p-8 bg-gradient-to-b from-white to-softrose/40 rounded-3xl border border-terracotta/20 shadow-sm space-y-6 text-center">
+      
+      <div class="space-y-2">
+        <span class="text-2xl">🎁</span>
+        <h3 class="text-xl sm:text-2xl font-serif font-bold text-mocha">
+          Une question sur votre projet immobilier ?
+        </h3>
+        <p class="text-xs sm:text-sm text-warmgray max-w-lg mx-auto">
+          Pour mes abonnés : posez-moi votre doute. Si vous avez une décision bloquée, je vous offre un audit rapide de 7 minutes par message pour jouer l'avocat du diable et clarifier votre vision.
+        </p>
+      </div>
+
+      <!-- Interactive Like Goal Component -->
+      <div class="p-4 bg-white/90 rounded-2xl border border-amber-900/5 max-w-md mx-auto space-y-3">
+        <div class="flex justify-between items-center text-xs font-semibold text-warmgray">
+          <span>Objectif pour la suite de la série :</span>
+          <span class="text-terracotta font-bold"><span id="like-count">38</span> / 50 Mentions J'aime</span>
+        </div>
+        
+        <!-- Progress bar for likes -->
+        <div class="w-full bg-stone-100 rounded-full h-2 overflow-hidden">
+          <div id="like-bar" class="bg-terracotta h-full rounded-full transition-all duration-300" style="width: 76%;"></div>
+        </div>
+
+        <button id="like-btn" class="w-full py-2.5 px-4 bg-terracotta text-white rounded-xl text-xs font-bold hover:bg-opacity-90 active:scale-95 transition flex items-center justify-center gap-2 shadow-sm">
+          <span>❤️</span> Donner un Like & Débloquer l'Épisode #02
+        </button>
+      </div>
+
+      <p class="text-[11px] text-warmgray italic">
+        « Si nous atteignons 50 likes, je publie dès demain un guide exclusif sur la psychologie d'achat immobilier sans pièges. »
+      </p>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-amber-900/10 text-center text-xs text-warmgray space-y-3">
+      <div class="flex justify-center gap-4 text-mocha/70 font-medium">
+        <a href="#" class="hover:text-terracotta transition">Épisodes</a> •
+        <a href="#" class="hover:text-terracotta transition">Calculateur Rendement</a> •
+        <a href="#" class="hover:text-terracotta transition">Contact WhatsApp</a>
+      </div>
+      <p>© 2026 Série Mindset & Monnaie. Tous droits réservés.</p>
+    </footer>
+
+  </main>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // 2. Interactive Like Counter with Target Animation
+    let count = 38;
+    const maxGoal = 50;
+    const likeBtn = document.getElementById('like-btn');
+    const likeCountSpan = document.getElementById('like-count');
+    const likeBar = document.getElementById('like-bar');
+    let hasLiked = false;
+
+    likeBtn.addEventListener('click', () => {
+      if (!hasLiked) {
+        count++;
+        hasLiked = true;
+        likeCountSpan.textContent = count;
+        
+        // Update bar
+        const percent = Math.min((count / maxGoal) * 100, 100);
+        likeBar.style.width = percent + '%';
+
+        likeBtn.innerHTML = '<span>🎉</span> Merci ! Votre vote est comptabilisé';
+        likeBtn.classList.replace('bg-terracotta', 'bg-emerald-600');
+
+        if (count >= 50) {
+          alert("✨ Bravo ! Objectif atteint. Le prochain épisode sur l'état d'esprit immobilier sera posté demain !");
         }
-
-        // Modal Handler
-        function toggleModal() {
-            const modal = document.getElementById('consultModal');
-            modal.classList.toggle('hidden');
-        }
-
-        function handleForm(e) {
-            e.preventDefault();
-            document.getElementById('formFeedback').classList.remove('hidden');
-            setTimeout(() => {
-                toggleModal();
-                document.getElementById('formFeedback').classList.add('hidden');
-            }, 2000);
-        }
-    </script>
+      }
+    });
+  </script>
 </body>
 </html>
