@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technologie Mivan vs Maçonnerie • L'Avenir de l'Immobilier</title>
+
+    <!-- Google Fonts : Outfit (Moderne, Arrondie & Dynamique) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        glacier: '#F1F7FC',
+                        skyTech: {
+                            50: '#EBF5FF',
+                            100: '#D6EBFF',
+                            200: '#B0D7FF',
+                            500: '#0284C7',
+                            600: '#0369A1',
+                            700: '#075985',
+                        },
+                        lemon: {
+                            50: '#FEFCE8',
+                            100: '#FEF9C3',
+                            200: '#FEF08A',
+                            400: '#FACC15',
+                            500: '#EAB308',
+                        },
+                        coral: '#F43F5E',
+                        deepNavy: '#0B132B',
+                        cloudMuted: '#526071'
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    },
+                    boxShadow: {
+                        'fresh': '0 12px 35px -8px rgba(2, 132, 199, 0.08)',
+                        'cyan-glow': '0 15px 35px -5px rgba(2, 132, 199, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F1F7FC;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(214, 235, 255, 0.8) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(254, 240, 138, 0.45) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .tech-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(214, 235, 255, 0.85);
+        }
+        .shimmer-cyan {
+            background: linear-gradient(135deg, #0284C7 0%, #075985 60%, #EAB308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="text-deepNavy font-sans antialiased selection:bg-skyTech-100 selection:text-skyTech-700 min-h-screen relative overflow-x-hidden">
+
+    <!-- Jauge de lecture Cyan -->
+    <div id="read-bar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-skyTech-500 via-lemon-400 to-skyTech-600 w-0 z-50 transition-all duration-150"></div>
+
+    <!-- Navigation Flottante -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="tech-card rounded-full px-5 py-3 flex items-center justify-between shadow-fresh">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-skyTech-500 to-skyTech-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                    🏗️
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-deepNavy leading-none">TECH-IMMO LAB</span>
+                    <span class="text-[10px] text-cloudMuted font-medium">Génie Civil & Valeur Patrimoniale</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <span class="hidden sm:inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-lemon-100 text-deepNavy border border-lemon-200">
+                    ⚡ Rupture Technologique
+                </span>
+                <button onclick="shareArticle()" class="text-xs font-semibold text-white bg-deepNavy hover:bg-skyTech-700 px-4 py-1.5 rounded-full transition flex items-center gap-1.5 shadow-sm active:scale-95">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                    <span>Partager</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-20 sm:px-6">
+
+        <!-- Hero Header -->
+        <section class="text-center space-y-4 mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-skyTech-50 text-skyTech-600 text-xs font-bold border border-skyTech-200 shadow-sm">
+                <span>🔬 ANALYSE COMPARATIVE STRUCTURELLE</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-deepNavy tracking-tight">
+                Technologie Mivan vs Maçonnerie traditionnelle : <br class="hidden sm:inline">
+                <span class="shimmer-cyan">Pourquoi vos vieux appartements risquent de perdre leur valeur</span>
+            </h1>
+
+            <p class="text-cloudMuted text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                Pour une voiture ou un smartphone, nous exigeons le dernier standard technologique. Pourquoi l'ignorer sur le plus gros investissement de notre vie ?
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-cloudMuted pt-2">
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-skyTech-500"></i> 5 min d'audit</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-lemon-500"></i> Coffrage Aluminium vs Brique</span>
+            </div>
+        </section>
+
+        <!-- Contexte & Rupture -->
+        <section class="tech-card rounded-4xl p-6 sm:p-8 shadow-fresh mb-10 relative overflow-hidden">
+            <div class="p-4 rounded-3xl bg-skyTech-50/80 border border-skyTech-200 flex items-start gap-3.5">
+                <span class="text-2xl">💡</span>
+                <p class="text-xs sm:text-sm text-deepNavy leading-relaxed">
+                    Le secteur immobilier vit sa plus grande transformation depuis des décennies avec la généralisation du <strong>coffrage aluminium monolithique (Mivan)</strong>. Posséder un bien en briques construit entre 2000 et 2015 sans anticiper cette transition pourrait vous coûter des dizaines de milliers d'euros.
+                </p>
+            </div>
+        </section>
+
+        <!-- 1. Qu'est-ce que la technologie Mivan ? -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-skyTech-500 text-white font-bold text-sm flex items-center justify-center shadow-sm">1</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-deepNavy">Qu'est-ce que la technologie Mivan ?</h2>
+            </div>
+
+            <div class="tech-card rounded-4xl p-6 sm:p-8 shadow-fresh space-y-4">
+                <p class="text-xs sm:text-sm text-cloudMuted leading-relaxed">
+                    Originaire de Malaisie et adoptée massivement à l'échelle internationale, la technologie Mivan remplace les échafaudages en bois et la maçonnerie traditionnelle par un <strong>système de coffrage intégral en aluminium</strong> réutilisable.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                    <div class="p-4 rounded-3xl bg-white border border-skyTech-100 space-y-2 text-center sm:text-left">
+                        <div class="w-8 h-8 rounded-xl bg-skyTech-50 text-skyTech-600 flex items-center justify-center text-sm font-bold mx-auto sm:mx-0">
+                            🏢
+                        </div>
+                        <h4 class="font-bold text-xs sm:text-sm text-deepNavy">100% Béton Armé</h4>
+                        <p class="text-[11px] sm:text-xs text-cloudMuted leading-normal">
+                            Murs porteurs et dalles coulés d'un seul bloc (monolithique). Zéro joint de maçonnerie fragile.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-white border border-skyTech-100 space-y-2 text-center sm:text-left">
+                        <div class="w-8 h-8 rounded-xl bg-lemon-100 text-deepNavy flex items-center justify-center text-sm font-bold mx-auto sm:mx-0">
+                            ✨
+                        </div>
+                        <h4 class="font-bold text-xs sm:text-sm text-deepNavy">Finitions Parfaites</h4>
+                        <p class="text-[11px] sm:text-xs text-cloudMuted leading-normal">
+                            Surfaces lisses sans plâtre épais ni enduit qui finit par cloquer et se fissurer avec l'âge.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-white border border-skyTech-100 space-y-2 text-center sm:text-left">
+                        <div class="w-8 h-8 rounded-xl bg-skyTech-50 text-skyTech-600 flex items-center justify-center text-sm font-bold mx-auto sm:mx-0">
+                            ⚡
+                        </div>
+                        <h4 class="font-bold text-xs sm:text-sm text-deepNavy">Chantier Éclair</h4>
+                        <p class="text-[11px] sm:text-xs text-cloudMuted leading-normal">
+                            Gros œuvre réduit de 12 à 18 mois. Livraison sécurisée et charges financières allégées.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Le talon d'Achille de la brique rouge -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-coral text-white font-bold text-sm flex items-center justify-center shadow-sm">2</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-deepNavy">Le talon d'Achille des vieux bâtiments en briques</h2>
+            </div>
+
+            <div class="tech-card rounded-4xl p-6 sm:p-8 shadow-fresh space-y-5">
+                <p class="text-xs sm:text-sm text-cloudMuted leading-relaxed">
+                    Les appartements conventionnels souffrent d’un défaut physique structurel : <strong class="text-coral">l'effet de capillarité</strong>.
+                </p>
+
+                <!-- Comparateur Interactif Mivan vs Brique -->
+                <div class="p-5 rounded-3xl bg-gradient-to-br from-white to-skyTech-50 border border-skyTech-200 space-y-4">
+                    <div class="flex justify-between items-center text-xs font-bold">
+                        <span class="text-cloudMuted">Inspectez la différence structurelle :</span>
+                        <div class="flex rounded-full bg-white p-1 border border-skyTech-200 shadow-sm">
+                            <button id="btn-brick" onclick="switchTech('brick')" class="px-3 py-1 rounded-full bg-coral text-white font-bold text-xs transition">🧱 Brique Classique</button>
+                            <button id="btn-mivan" onclick="switchTech('mivan')" class="px-3 py-1 rounded-full text-cloudMuted text-xs transition">💎 Mivan Monolithique</button>
+                        </div>
+                    </div>
+
+                    <div id="tech-display" class="p-4 rounded-2xl bg-white border border-rose-100 text-xs sm:text-sm text-cloudMuted space-y-2">
+                        <span class="font-bold text-coral flex items-center gap-1.5">
+                            <i data-lucide="alert-octagon" class="w-4 h-4"></i> Infiltrations & Vieillissement précoce (Brique Rouge)
+                        </span>
+                        <p class="leading-relaxed">
+                            La brique absorbe l'humidité comme une éponge. Au fil des cycles de pluie et de chaleur, les microfissures traversent les façades, la peinture s'effrite et le ravalement en copropriété devient un gouffre financier ingérable.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-lemon-50 border border-lemon-200 text-xs sm:text-sm text-deepNavy flex items-start gap-3">
+                    <span class="text-xl">⏳</span>
+                    <p class="leading-relaxed">
+                        <strong class="font-bold">Le mirage de la reconstruction (Redevelopment) :</strong> Compter sur le rachat de votre vieil immeuble par un promoteur prend en moyenne <strong>10 à 15 ans</strong> de litiges juridiques, votes bloqués et retards administratifs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. L'Effet Nokia -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-skyTech-500 text-white font-bold text-sm flex items-center justify-center shadow-sm">3</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-deepNavy">L’« Effet Nokia » dans l’immobilier</h2>
+            </div>
+
+            <div class="tech-card rounded-4xl p-6 sm:p-8 shadow-fresh space-y-4">
+                <p class="text-xs sm:text-sm text-cloudMuted leading-relaxed">
+                    Comme Nokia face aux smartphones ou les voitures sans direction assistée : le marché secondaire pénalise inexorablement les technologies obsolètes.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="p-4 rounded-3xl bg-white border border-skyTech-100 space-y-1.5">
+                        <span class="text-xs font-bold text-skyTech-600 flex items-center gap-1.5">
+                            <i data-lucide="trending-down" class="w-4 h-4"></i> La décote à la revente
+                        </span>
+                        <p class="text-xs text-cloudMuted leading-relaxed">
+                            Les acheteurs se détournent des bâtisses de 15–20 ans en briques. Les prix stagnent ou baissent face à l'offre neuve monolithique.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-lemon-50/60 border border-lemon-200 space-y-1.5">
+                        <span class="text-xs font-bold text-deepNavy flex items-center gap-1.5">
+                            <i data-lucide="leaf" class="w-4 h-4"></i> L'atout des éco-quartiers
+                        </span>
+                        <p class="text-xs text-cloudMuted leading-relaxed">
+                            Les programmes neufs intègrent stations de recyclage d'eau (STP) et solaire, divisant les charges mensuelles de copropriété.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Stratégie d'Arbitrage Patrimonial -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-lemon-400 text-deepNavy font-bold text-sm flex items-center justify-center shadow-sm">4</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-deepNavy">Stratégie d'arbitrage : Vendre l'ancien pour le neuf</h2>
+            </div>
+
+            <div class="tech-card rounded-4xl p-6 sm:p-8 shadow-fresh space-y-6">
+                <!-- Tableau Comparatif Restructuré -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-skyTech-200 text-deepNavy font-bold">
+                                <th class="py-3 px-3">Critère</th>
+                                <th class="py-3 px-3 text-coral">Bâtiment Ancien (Brique)</th>
+                                <th class="py-3 px-3 text-skyTech-600">Neuf (Technologie Mivan)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-skyTech-100 text-cloudMuted">
+                            <tr>
+                                <td class="py-3 px-3 font-semibold text-deepNavy">Valeur Actuelle</td>
+                                <td class="py-3 px-3">~100 000 € – 120 000 €</td>
+                                <td class="py-3 px-3 font-medium text-deepNavy">~110 000 € – 130 000 €</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-3 font-semibold text-deepNavy">Projection à 4 ans</td>
+                                <td class="py-3 px-3 text-rose-500 font-bold">Stagnation / ~90 000 €</td>
+                                <td class="py-3 px-3 text-skyTech-600 font-bold">Appréciation / ~140 000 €</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-3 font-semibold text-deepNavy">Charges d'entretien</td>
+                                <td class="py-3 px-3">En hausse constante</td>
+                                <td class="py-3 px-3">Faibles et maîtrisées</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-3 font-semibold text-deepNavy">Durabilité</td>
+                                <td class="py-3 px-3">Dégradation après 20–25 ans</td>
+                                <td class="py-3 px-3">Pérenne sur plusieurs générations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Conseil Pratique Arbitrage -->
+                <div class="p-4 rounded-3xl bg-skyTech-50 border border-skyTech-200 text-xs sm:text-sm text-deepNavy leading-relaxed">
+                    💡 <strong class="font-bold">La règle d'or :</strong> Mieux vaut vendre un vieil appartement spacieux mais dégradé pour racheter un bien légèrement plus compact, bâti en Mivan dans un emplacement porteur. Vous transmettez ainsi un <strong>patrimoine liquide et sans charges cachées</strong> à vos enfants.
+                </div>
+            </div>
+        </section>
+
+        <!-- En résumé / Checklist -->
+        <section class="bg-deepNavy text-white rounded-4xl p-6 sm:p-8 shadow-cyan-glow mb-12 relative overflow-hidden">
+            <div class="flex items-center gap-2 mb-4 text-lemon-200">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <h3 class="text-xl sm:text-2xl font-bold">Les 3 réflexes d'un acheteur avisé</h3>
+            </div>
+
+            <div class="space-y-3 text-xs sm:text-sm">
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md flex items-start gap-2.5">
+                    <span class="text-lemon-400 font-bold">01.</span>
+                    <span><strong>Exigez la méthode de construction</strong> : posez la question du coffrage aluminium avant toute offre.</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md flex items-start gap-2.5">
+                    <span class="text-lemon-400 font-bold">02.</span>
+                    <span><strong>Surveillez l'âge de votre parc</strong> avant que les frais d'entretien n'anéantissent la rentabilité.</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md flex items-start gap-2.5">
+                    <span class="text-lemon-400 font-bold">03.</span>
+                    <span><strong>Misez sur la pérennité technologique</strong> pour protéger votre capital sur 30 à 50 ans.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espace Débat & Sondage -->
+        <section class="tech-card rounded-4xl p-6 sm:p-8 shadow-fresh text-center space-y-5 border border-skyTech-200">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="text-3xl">🗳️</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-deepNavy">Qu'en pensez-vous ?</h3>
+                <p class="text-xs sm:text-sm text-cloudMuted">
+                    Préférez-vous acheter de l'ancien rénové ou investir directement dans du neuf bâti avec les nouvelles technologies de coffrage ?
+                </p>
+            </div>
+
+            <!-- Boutons de Vote -->
+            <div id="poll-box" class="max-w-md mx-auto space-y-2.5">
+                <button onclick="submitVote('mivan')" class="w-full p-4 rounded-3xl bg-skyTech-50 hover:bg-skyTech-100 border border-skyTech-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group text-deepNavy">
+                    <span class="flex items-center gap-2">
+                        <span>💎</span> 100% Neuf & Technologie Mivan
+                    </span>
+                    <span class="text-skyTech-600 group-hover:translate-x-1 transition">→</span>
+                </button>
+
+                <button onclick="submitVote('ancien')" class="w-full p-4 rounded-3xl bg-lemon-50 hover:bg-lemon-100 border border-lemon-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group text-deepNavy">
+                    <span class="flex items-center gap-2">
+                        <span>🧱</span> L'ancien rénové pour le charme/espace
+                    </span>
+                    <span class="text-lemon-500 group-hover:translate-x-1 transition">→</span>
+                </button>
+            </div>
+
+            <!-- Résultat du Sondage -->
+            <div id="poll-result" class="hidden max-w-md mx-auto space-y-3 pt-2">
+                <div class="p-4 rounded-2xl bg-skyTech-50 border border-skyTech-200 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-deepNavy">
+                        <span>💎 Neuf & Mivan Monolithique</span>
+                        <span class="text-skyTech-600">79%</span>
+                    </div>
+                    <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                        <div id="bar-mivan" class="bg-skyTech-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-lemon-50 border border-lemon-200 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-deepNavy">
+                        <span>🧱 Ancien rénové</span>
+                        <span class="text-lemon-500">21%</span>
+                    </div>
+                    <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                        <div id="bar-ancien" class="bg-lemon-400 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-cloudMuted">Merci pour votre participation au débat ! 💬</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-cloudMuted border-t border-skyTech-100">
+        <p>Laboratoire d'audit technologique & patrimonial 🏗️</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 tech-card border border-skyTech-300 text-deepNavy px-4 py-3 rounded-2xl shadow-fresh transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-2 text-xs font-medium">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-skyTech-500"></i>
+        <span>Lien de l'article copié !</span>
+    </div>
+
+    <!-- Script JS -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Barre de défilement
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('read-bar').style.width = progress + '%';
+        });
+
+        // 2. Switcher Interactif Mivan vs Brique
+        function switchTech(type) {
+            const display = document.getElementById('tech-display');
+            const btnBrick = document.getElementById('btn-brick');
+            const btnMivan = document.getElementById('btn-mivan');
+
+            if(type === 'brick') {
+                btnBrick.className = 'px-3 py-1 rounded-full bg-coral text-white font-bold text-xs transition';
+                btnMivan.className = 'px-3 py-1 rounded-full text-cloudMuted text-xs transition';
+                display.className = 'p-4 rounded-2xl bg-white border border-rose-100 text-xs sm:text-sm text-cloudMuted space-y-2';
+                display.innerHTML = `
+                    <span class="font-bold text-coral flex items-center gap-1.5">
+                        <i data-lucide="alert-octagon" class="w-4 h-4"></i> Infiltrations & Vieillissement précoce (Brique Rouge)
+                    </span>
+                    <p class="leading-relaxed">
+                        La brique absorbe l'humidité comme une éponge. Au fil des cycles de pluie et de chaleur, les microfissures traversent les façades, la peinture s'effrite et le ravalement en copropriété devient un gouffre financier ingérable.
+                    </p>
+                `;
+            } else {
+                btnMivan.className = 'px-3 py-1 rounded-full bg-skyTech-500 text-white font-bold text-xs transition';
+                btnBrick.className = 'px-3 py-1 rounded-full text-cloudMuted text-xs transition';
+                display.className = 'p-4 rounded-2xl bg-white border border-skyTech-200 text-xs sm:text-sm text-cloudMuted space-y-2';
+                display.innerHTML = `
+                    <span class="font-bold text-skyTech-600 flex items-center gap-1.5">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i> Béton Armé Monolithique Étanche (Mivan)
+                    </span>
+                    <p class="leading-relaxed">
+                        Coulé sans aucun joint, le béton armé offre une étanchéité quasi totale et une résistance sismique supérieure. Zéro cloquage, surface ultra-lisse et valeur préservée sur des décennies.
+                    </p>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // 3. Sondage Interactif
+        function submitVote(choice) {
+            document.getElementById('poll-box').classList.add('hidden');
+            const res = document.getElementById('poll-result');
+            res.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('bar-mivan').style.width = '79%';
+                document.getElementById('bar-ancien').style.width = '21%';
+            }, 100);
+        }
+
+        // 4. Partage
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Technologie Mivan vs Brique Traditionnelle',
+                    text: 'Pourquoi les vieux appartements risquent de perdre leur valeur.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+            }
+        }
+    </script>
+</body>
+</html>

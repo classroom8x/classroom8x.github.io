@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investissement Immobilier : Décrypter le Marché & 7 Réponses Clés</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts : Instrument Serif (Chic Architectural) + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Instrument Serif"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            parchment: {
+              50: '#FCFAF7',
+              100: '#F7F3EC',
+              200: '#EFE8DC',
+              300: '#E3D8C4',
+            },
+            terracotta: {
+              50: '#FDF5F2',
+              100: '#FCEBE4',
+              300: '#F5BBA7',
+              500: '#DE6B48',
+              600: '#C75736',
+              700: '#A44124',
+            },
+            matcha: {
+              50: '#F6F8F3',
+              100: '#E9EFE2',
+              300: '#BDCEA8',
+              500: '#7E9966',
+              600: '#647D4E',
+            },
+            slateblue: {
+              50: '#F2F5F8',
+              100: '#E1E9F0',
+              500: '#4A6B82',
+              700: '#2F4858',
+            },
+            amberwood: {
+              100: '#FEF4E2',
+              400: '#FBB13C',
+              600: '#D98E18',
+            },
+            onyx: {
+              800: '#2B2B2A',
+              900: '#1B1C1D',
+            }
+          },
+          boxShadow: {
+            'aesthetic': '0 20px 40px -15px rgba(222, 107, 72, 0.08), 0 8px 16px -4px rgba(0, 0, 0, 0.03)',
+            'soft': '0 12px 30px -5px rgba(43, 43, 42, 0.05)',
+            'clay': '0 8px 0 0 #C75736',
+            'clay-pressed': '0 2px 0 0 #C75736',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F7F3EC;
+      border-radius: 999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #DE6B48;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+
+<body class="bg-parchment-50 text-onyx-800 font-sans antialiased selection:bg-terracotta-100 selection:text-terracotta-700">
+
+  <!-- Aesthetic Header / Top Pill Navigation -->
+  <div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
+    <nav class="glass-pill border border-parchment-200/80 shadow-soft px-5 py-2.5 rounded-full flex items-center gap-6 text-xs sm:text-sm font-semibold text-onyx-800">
+      <a href="#" class="flex items-center gap-2 text-terracotta-600 font-bold">
+        <span class="w-2.5 h-2.5 rounded-full bg-terracotta-500 animate-pulse"></span>
+        <span class="tracking-tight font-serif text-lg text-onyx-900">ImmoClarté</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-5 text-onyx-800/80">
+        <a href="#contexte" class="hover:text-terracotta-600 transition-colors">Le Défi</a>
+        <a href="#questions" class="hover:text-terracotta-600 transition-colors">Les 7 Réponses</a>
+        <a href="#arbitrage" class="hover:text-terracotta-600 transition-colors">Simulateur</a>
+        <a href="#formation" class="hover:text-terracotta-600 transition-colors">Masterclass 25 ép.</a>
+      </div>
+
+      <a href="#formation" class="bg-terracotta-500 hover:bg-terracotta-600 text-white px-4 py-1.5 rounded-full font-bold transition-all shadow-sm hover:scale-105 flex items-center gap-1.5">
+        <i data-lucide="bell" class="w-3.5 h-3.5"></i>
+        <span>S'abonner</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="pt-32 pb-16 px-5 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      
+      <!-- Top Tag -->
+      <div class="inline-flex items-center gap-2 bg-matcha-100/90 text-matcha-600 border border-matcha-300/60 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+        <i data-lucide="key-round" class="w-3.5 h-3.5"></i>
+        <span>Guide Stratégique de l'Investisseur Averti</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-onyx-900 leading-[1.08] mb-6">
+        Décrypter le Marché, Éviter les Pièges & <span class="italic text-terracotta-600 underline decoration-terracotta-300 decoration-wavy underline-offset-8">7 Réponses Clés</span>.
+      </h1>
+
+      <p class="text-base sm:text-lg text-onyx-800/80 max-w-2xl mx-auto leading-relaxed mb-8">
+        Entre baisses de taux, incitations fiscales et bruit médiatique : le problème n'est pas le manque d'opportunités, mais <strong>l'absence de clarté sur la valeur réelle des actifs</strong>.
+      </p>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3.5">
+        <a href="#questions" class="px-6 py-3 rounded-2xl bg-onyx-900 hover:bg-onyx-800 text-parchment-50 font-semibold text-sm shadow-soft transition-all hover:scale-102 flex items-center gap-2">
+          <span>Lire les 7 Grilles de Lecture</span>
+          <i data-lucide="arrow-down-right" class="w-4 h-4 text-terracotta-300"></i>
+        </a>
+        <a href="#arbitrage" class="px-6 py-3 rounded-2xl bg-white border border-parchment-300 text-onyx-900 font-semibold text-sm hover:bg-parchment-100 transition-all flex items-center gap-2">
+          <span>Outil d'Arbitrage 2BHK vs 3BHK</span>
+          <i data-lucide="sparkles" class="w-4 h-4 text-amberwood-400"></i>
+        </a>
+      </div>
+
+      <!-- Stat Badges Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mt-12 max-w-3xl mx-auto">
+        <div class="bg-white/80 border border-parchment-200 p-4 rounded-2xl shadow-sm text-left">
+          <span class="text-xs text-onyx-800/60 block font-medium">Bruit Médiatique</span>
+          <p class="text-sm sm:text-base font-bold text-terracotta-600 mt-0.5">800k "invendus" démystifiés</p>
+        </div>
+        <div class="bg-white/80 border border-parchment-200 p-4 rounded-2xl shadow-sm text-left">
+          <span class="text-xs text-onyx-800/60 block font-medium">Technologie Clé</span>
+          <p class="text-sm sm:text-base font-bold text-matcha-600 mt-0.5">Coffrage Alu (Mivan)</p>
+        </div>
+        <div class="bg-white/80 border border-parchment-200 p-4 rounded-2xl shadow-sm text-left col-span-2 sm:col-span-1">
+          <span class="text-xs text-onyx-800/60 block font-medium">Corridors Gagnants</span>
+          <p class="text-sm sm:text-base font-bold text-slateblue-500 mt-0.5">Axes Aéroports & Fret</p>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Section 1 : Contexte & Le Constat -->
+  <section id="contexte" class="py-12 px-5">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-parchment-200 shadow-soft">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-xl bg-terracotta-100 text-terracotta-600 flex items-center justify-center">
+          <i data-lucide="compass" class="w-5 h-5"></i>
+        </span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-normal text-onyx-900">Le Vrai Défi de l'Acheteur Moderne</h2>
+      </div>
+      <p class="text-sm sm:text-base text-onyx-800/85 leading-relaxed">
+        Entre les récentes baisses de taux d'intérêt, les allègements sur les droits d'enregistrement et les avis contradictoires, acheter un bien peut vite ressembler à un parcours du combattant. <strong>L'erreur courante est d'analyser le prix au mètre carré sans comprendre la mécanique financière sous-jacente</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2 : Les 7 Questions Incontournables -->
+  <section id="questions" class="py-16 px-5">
+    <div class="max-w-5xl mx-auto">
+      
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-terracotta-600 font-bold text-xs uppercase tracking-widest block mb-2">Décryptage Terrain</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-onyx-900">Les 7 Questions Essentielles</h2>
+      </div>
+
+      <!-- Question Cards Grid -->
+      <div class="space-y-6">
+
+        <!-- Question 1 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-terracotta-300">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-terracotta-50 text-terracotta-600 text-xs font-bold">01 • Comparatif Financier</span>
+            <span class="text-xs text-onyx-800/50 font-medium">Arbitrage VEFA vs Ancien</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-4">
+            Prêt-à-habiter ou Vente sur Plan (VEFA) : Lequel est réellement le plus rentable ?
+          </h3>
+          
+          <div class="bg-parchment-50 rounded-2xl p-5 border border-parchment-200 mb-5">
+            <p class="text-xs font-bold text-onyx-800 uppercase tracking-wide mb-2">Le Paradoxe des Prix :</p>
+            <div class="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+              <div class="bg-white p-3.5 rounded-xl border border-parchment-200">
+                <span class="text-onyx-800/60 block">Bien achevé (Clé en main)</span>
+                <span class="font-bold text-onyx-900 text-base">1,05 Crore <span class="text-xs font-normal text-onyx-800/60">(≈ 105 000 €)</span></span>
+              </div>
+              <div class="bg-white p-3.5 rounded-xl border border-terracotta-100">
+                <span class="text-terracotta-600 block font-semibold">Projet en construction à côté</span>
+                <span class="font-bold text-terracotta-600 text-base">1,30 Crore <span class="text-xs font-normal text-onyx-800/60">(≈ 130 000 €)</span></span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-sm sm:text-base text-onyx-800/80 leading-relaxed mb-4">
+            La réaction immédiate est de crier au surcoût. Mais c’est une erreur d’analyse si vous omettez 3 facteurs majeurs :
+          </p>
+
+          <ul class="grid sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+            <li class="p-4 rounded-2xl bg-parchment-100/70 border border-parchment-200">
+              <strong class="text-onyx-900 block mb-1">1. Qualité du bâti</strong>
+              Le bien achevé utilise souvent des normes datées face aux nouveaux standards techniques.
+            </li>
+            <li class="p-4 rounded-2xl bg-parchment-100/70 border border-parchment-200">
+              <strong class="text-onyx-900 block mb-1">2. Échéancier (ex: 20:80)</strong>
+              Payer par tranches étale le coût du capital et fait économiser 3 à 4 ans d'intérêts bancaires.
+            </li>
+            <li class="p-4 rounded-2xl bg-parchment-100/70 border border-parchment-200">
+              <strong class="text-onyx-900 block mb-1">3. Plus-value de quartier</strong>
+              Les prestations neuves et la maturation du secteur compensent largement l'écart initial.
+            </li>
+          </ul>
+        </article>
+
+        <!-- Question 2 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-matcha-300">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-matcha-50 text-matcha-600 text-xs font-bold">02 • Démystification Médias</span>
+            <span class="text-xs text-onyx-800/50 font-medium">Réalité Économique vs Hype</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-4">
+            Le mythe des « 800 000 logements invendus » : Faut-il avoir peur ?
+          </h3>
+          <p class="text-sm sm:text-base text-onyx-800/80 leading-relaxed mb-4">
+            Les gros titres aiment semer la panique en brandissant des stocks fantômes. La vérité du terrain est tout autre :
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="p-5 rounded-2xl bg-matcha-50/50 border border-matcha-100">
+              <strong class="text-matcha-600 font-bold block mb-1 text-sm">🏗️ Construction par phases (RERA)</strong>
+              Un projet de 1 500 logements n’est jamais lâché d'un coup : il est étalé sur 5 à 6 ans et livré tour par tour sous contrôle réglementaire strict.
+            </div>
+            <div class="p-5 rounded-2xl bg-matcha-50/50 border border-matcha-100">
+              <strong class="text-matcha-600 font-bold block mb-1 text-sm">📈 Pression démographique colossale</strong>
+              L'urbanisation massive et les millions de nouveaux actifs créent un besoin structurel insatiable pour les biens viabilisés (eau, élec, accès).
+            </div>
+          </div>
+        </article>
+
+        <!-- Question 3 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-amberwood-400">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-amberwood-100 text-amberwood-600 text-xs font-bold">03 • Typologie & Rendement</span>
+            <span class="text-xs text-onyx-800/50 font-medium">Stratégie 2BHK vs 3BHK</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-4">
+            2 Chambres (2BHK) vs 3 Chambres (3BHK) : Que choisir ?
+          </h3>
+          <p class="text-sm sm:text-base text-onyx-800/80 leading-relaxed mb-4">
+            À 35-40 ans, beaucoup s’endettent au plafond pour un 3 chambres par projection familiale. Pourtant, le 2 chambres surpasse le 3 chambres sur deux points clés :
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-amberwood-100/40 border border-amberwood-400/30">
+              <div class="flex items-center gap-2 font-bold text-onyx-900 text-sm mb-1">
+                <i data-lucide="repeat" class="w-4 h-4 text-amberwood-600"></i>
+                Liquidité & Taux d'Occupation
+              </div>
+              <p class="text-xs sm:text-sm text-onyx-800/80">Le 2 pièces se loue et se revend 2 à 3 fois plus vite car il correspond au budget de la majorité des ménages.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-amberwood-100/40 border border-amberwood-400/30">
+              <div class="flex items-center gap-2 font-bold text-onyx-900 text-sm mb-1">
+                <i data-lucide="split" class="w-4 h-4 text-amberwood-600"></i>
+                La Règle de Multiplication
+              </div>
+              <p class="text-xs sm:text-sm text-onyx-800/80">Acheter <strong>deux appartements de 2 pièces</strong> offre un meilleur rendement et diversifie votre risque locatif par rapport à un unique grand 3 pièces.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Question 4 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-terracotta-300">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-terracotta-50 text-terracotta-600 text-xs font-bold">04 • Psychologie de l'Acheteur</span>
+            <span class="text-xs text-onyx-800/50 font-medium">L'analogie du Mariage Parfait</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-3">
+            Le piège des exigences irréalistes : L'analogie du « mariage parfait »
+          </h3>
+          <p class="text-sm sm:text-base text-onyx-800/80 leading-relaxed mb-4">
+            Chercher un bien ultra-luxueux, hyper-central avec 3 chambres pour un budget plancher, c'est comme exiger un partenaire avec une liste de 20 critères parfaits : <em>cela n'existe pas</em>.
+          </p>
+          <div class="p-5 rounded-2xl bg-terracotta-50/60 border-l-4 border-terracotta-500 text-xs sm:text-sm text-onyx-800/90 space-y-2">
+            <p>🎯 <strong>Clarifiez l'objectif :</strong> Habiter (confort, écoles) ou Investir (rentabilité, revente facile) ?</p>
+            <p>✂️ <strong>Discipline budgétaire :</strong> On ne taille pas un costume 3 pièces avec un mètre de tissu. Mieux vaut un superbe 2 pièces dans un quartier porteur qu'un 3 pièces médiocre dans une zone sans avenir.</p>
+          </div>
+        </article>
+
+        <!-- Question 5 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-slateblue-500">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-slateblue-50 text-slateblue-500 text-xs font-bold">05 • Macroéconomie</span>
+            <span class="text-xs text-onyx-800/50 font-medium">Ville Macro vs Micro-Quartier</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-3">
+            Quel est le facteur le plus important ? (Indice : Ce n'est pas seulement le quartier)
+          </h3>
+          <p class="text-sm sm:text-base text-onyx-800/80 leading-relaxed">
+            Le mantra « Emplacement, Emplacement, Emplacement » est incomplet. <strong>Le critère n°1 absolu est le dynamisme de la métropole macro</strong>. Si la ville souffre d'un exode des talents ou d'une stagnation économique, le meilleur quartier ne protégera pas votre capital. Choisissez la bonne locomotive urbaine avant de choisir la rue.
+          </p>
+        </article>
+
+        <!-- Question 6 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-matcha-300">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-matcha-50 text-matcha-600 text-xs font-bold">06 • Technique & Nouveaux Secteurs</span>
+            <span class="text-xs text-onyx-800/50 font-medium">Technologie Mivan & Logistique</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-4">
+            Qualité de construction (Mivan) & L'essor des entrepôts logistiques
+          </h3>
+          <div class="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="p-5 rounded-2xl bg-white border border-parchment-300">
+              <span class="font-bold text-onyx-900 block mb-1 text-sm">🏗️ Coffrage Aluminium (Mivan)</span>
+              Le béton banché élimine les infiltrations, multiplie la longévité du bâtiment par 3 ou 4 et diminue les charges. La brique classique subira une décote rapide.
+            </div>
+            <div class="p-5 rounded-2xl bg-white border border-parchment-300">
+              <span class="font-bold text-onyx-900 block mb-1 text-sm">📦 Logistique vs Malls</span>
+              Les centres commerciaux s'essoufflent face au e-commerce. Les entrepôts urbains et hubs de distribution génèrent des flux de trésorerie ultra résilients.
+            </div>
+          </div>
+        </article>
+
+        <!-- Question 7 -->
+        <article class="bg-white rounded-3xl p-7 sm:p-9 border border-parchment-200 shadow-aesthetic transition-all hover:border-terracotta-300">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="px-3.5 py-1 rounded-full bg-terracotta-50 text-terracotta-600 text-xs font-bold">07 • Opportunités Spécifiques</span>
+            <span class="text-xs text-onyx-800/50 font-medium">Corridors & Logement Abordable</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-onyx-900 mb-4">
+            Micro-marchés à surveiller & Logements abordables réglementés
+          </h3>
+          <div class="space-y-3 text-xs sm:text-sm text-onyx-800/80">
+            <div class="p-4 rounded-2xl bg-parchment-50 border border-parchment-200 flex items-start gap-3">
+              <i data-lucide="navigation" class="w-5 h-5 text-terracotta-500 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-onyx-900 block">Les Corridors Stratégiques (ex: Dwarka Expressway)</strong>
+                Les axes reliant directement les aéroports, pôles tertiaires et bassins d'emplois constituent les placements les plus sûrs à 5-10 ans.
+              </div>
+            </div>
+            <div class="p-4 rounded-2xl bg-parchment-50 border border-parchment-200 flex items-start gap-3">
+              <i data-lucide="shield" class="w-5 h-5 text-matcha-600 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-onyx-900 block">L'opportunité mathématique du Logement Abordable</strong>
+                Acheter un 2 pièces réglementé à un prix au m² inférieur au coût de revient d'une construction individuelle représente une valeur refuge imbattable.
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3 : Mini Outil d'Arbitrage Interactif -->
+  <section id="arbitrage" class="py-16 px-5 bg-parchment-100">
+    <div class="max-w-3xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-parchment-200 shadow-soft">
+      <div class="text-center mb-8">
+        <span class="text-terracotta-600 text-xs font-bold uppercase tracking-wider">Outil Rapide</span>
+        <h3 class="font-serif text-2xl sm:text-3xl font-normal text-onyx-900 mt-1">
+          Simulateur d'Arbitrage : 2BHK ou 3BHK ?
+        </h3>
+        <p class="text-xs sm:text-sm text-onyx-800/70 mt-1">Sélectionnez votre priorité pour recevoir la recommandation stratégique :</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6" id="arbitrage-options">
+        <button onclick="setArbitrage('rendement', this)" class="p-3.5 rounded-2xl border border-parchment-300 text-xs font-bold text-onyx-800 hover:border-terracotta-500 transition-all bg-parchment-50 active-choice">
+          💰 Rendement & Location
+        </button>
+        <button onclick="setArbitrage('famille', this)" class="p-3.5 rounded-2xl border border-parchment-300 text-xs font-bold text-onyx-800 hover:border-terracotta-500 transition-all bg-parchment-50">
+          🏡 Confort Familial
+        </button>
+        <button onclick="setArbitrage('budget', this)" class="p-3.5 rounded-2xl border border-parchment-300 text-xs font-bold text-onyx-800 hover:border-terracotta-500 transition-all bg-parchment-50 col-span-2 sm:col-span-1">
+          🛡️ Sécurité Budgétaire
+        </button>
+      </div>
+
+      <!-- Result Card -->
+      <div id="arbitrage-result" class="p-5 rounded-2xl bg-terracotta-50/70 border border-terracotta-200 text-xs sm:text-sm text-onyx-900 leading-relaxed">
+        <strong>Recommandation : 2BHK (2 Chambres).</strong> Le 2 pièces offre le taux d'occupation le plus haut et se revend très facilement. Si votre budget le permet, achetez 2 x 2BHK plutôt qu'un grand 3BHK pour doubler vos flux.
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 : Annonce Grande Série de Formations (Masterclass 20-25 vidéos) -->
+  <section id="formation" class="py-20 px-5">
+    <div class="max-w-5xl mx-auto bg-gradient-to-br from-onyx-900 via-onyx-800 to-terracotta-700 text-parchment-50 rounded-[2.5rem] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+      
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-terracotta-500/30 text-terracotta-300 border border-terracotta-400/30 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+          📢 Nouveau Programme Exclusif
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal leading-tight mb-4">
+          Une Grande Série de Formations Immobilières Arrive 🎬
+        </h2>
+        <p class="text-sm sm:text-base text-parchment-200/85 leading-relaxed mb-8">
+          Parce que l'immobilier ne s'improvise pas, je lance très prochainement une série de <strong>20 à 25 vidéos courtes (7 à 8 minutes)</strong> pour décortiquer chaque étape de votre futur achat : estimation de la juste valeur, pièges de négociation, clauses juridiques et audit technique.
+        </p>
+
+        <!-- Syllabus Tag Badges -->
+        <div class="flex flex-wrap gap-2 mb-10 text-xs">
+          <span class="bg-white/10 px-3 py-1.5 rounded-xl">📐 Métré réel & Loading</span>
+          <span class="bg-white/10 px-3 py-1.5 rounded-xl">🤝 Psychologie en Négociation</span>
+          <span class="bg-white/10 px-3 py-1.5 rounded-xl">⚖️ Conformité RERA & Notaire</span>
+          <span class="bg-white/10 px-3 py-1.5 rounded-xl">🏢 Logistique Urbaine</span>
+        </div>
+
+        <!-- Interactive Question Poll -->
+        <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/15 mb-8">
+          <h4 class="font-serif text-xl text-white mb-2">Quelle question vous bloque le plus actuellement ?</h4>
+          <p class="text-xs text-parchment-200/70 mb-4">Cliquez pour voter et orienter le premier épisode de la série :</p>
+          
+          <div class="grid sm:grid-cols-2 gap-2.5 text-xs font-semibold" id="block-poll">
+            <button onclick="voteHurdle(this, 'Estimer la valeur réelle')" class="poll-chip text-left p-3 rounded-xl bg-white/10 hover:bg-terracotta-500 transition-all border border-white/10">
+              🔍 Estimer la juste valeur du bien
+            </button>
+            <button onclick="voteHurdle(this, 'Négocier face au promoteur')" class="poll-chip text-left p-3 rounded-xl bg-white/10 hover:bg-terracotta-500 transition-all border border-white/10">
+              🤝 Réussir ma négociation de prix
+            </button>
+            <button onclick="voteHurdle(this, 'Choisir la bonne ville/zone')" class="poll-chip text-left p-3 rounded-xl bg-white/10 hover:bg-terracotta-500 transition-all border border-white/10">
+              🗺️ Identifier les corridors d'avenir
+            </button>
+            <button onclick="voteHurdle(this, 'Arbitrer VEFA vs Clé en main')" class="poll-chip text-left p-3 rounded-xl bg-white/10 hover:bg-terracotta-500 transition-all border border-white/10">
+              🏗️ Risques VEFA vs Ancien
+            </button>
+          </div>
+
+          <div id="poll-ack" class="hidden mt-3 text-xs text-terracotta-300 bg-terracotta-500/20 p-2.5 rounded-xl text-center">
+            ✨ Vote pris en compte ! Cette thématique sera traitée en priorité dans les premiers épisodes.
+          </div>
+        </div>
+
+        <!-- Subscription Action -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#" class="px-7 py-3.5 rounded-2xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-sm shadow-clay hover:translate-y-1 hover:shadow-clay-pressed transition-all flex items-center gap-2">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span>S'abonner à la chaîne & activer la cloche 🔔</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quote Banner -->
+  <section class="py-12 px-5 text-center">
+    <div class="max-w-2xl mx-auto">
+      <blockquote class="font-serif text-2xl sm:text-3xl text-onyx-900 italic mb-3">
+        « L'immobilier n'est ni tout noir ni tout blanc : avec de la méthode et de la clarté, vous ferez toujours les bons choix. »
+      </blockquote>
+      <div class="w-12 h-0.5 bg-terracotta-500 mx-auto mt-4"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-5 border-t border-parchment-200 bg-white text-center text-xs text-onyx-800/60">
+    <p>© 2026 ImmoClarté • Tous droits réservés • Décryptages Indépendants & Stratégie Patrimoniale</p>
+  </footer>
+
+  <!-- Vanilla JS Script -->
+  <script>
+    // Lucide Icons init
+    lucide.createIcons();
+
+    // Arbitrage Mini Tool
+    function setArbitrage(type, btn) {
+      document.querySelectorAll('#arbitrage-options button').forEach(b => {
+        b.classList.remove('border-terracotta-500', 'bg-terracotta-50', 'text-terracotta-600');
+        b.classList.add('bg-parchment-50');
+      });
+      btn.classList.remove('bg-parchment-50');
+      btn.classList.add('border-terracotta-500', 'bg-terracotta-50', 'text-terracotta-600');
+
+      const res = document.getElementById('arbitrage-result');
+      if (type === 'rendement') {
+        res.innerHTML = "<strong>Recommandation : 2BHK (2 Chambres).</strong> Taux d'occupation maximal, revente rapide. Privilégiez 2 x 2BHK plutôt qu'un 3BHK pour maximiser vos cashflows.";
+      } else if (type === 'famille') {
+        res.innerHTML = "<strong>Recommandation : 3BHK ciblé.</strong> Achetez pour habiter uniquement si votre budget est sécurisé sans compromis sur l'école et la proximité des transports.";
+      } else if (type === 'budget') {
+        res.innerHTML = "<strong>Recommandation : 2BHK dans un secteur dynamique.</strong> Ne faites pas l'erreur d'acheter un 3BHK bas de gamme dans une zone morte juste pour avoir une pièce de plus.";
+      }
+    }
+
+    // Hurdle Poll Vote
+    function voteHurdle(btn, topic) {
+      document.querySelectorAll('.poll-chip').forEach(b => {
+        b.classList.add('opacity-40', 'pointer-events-none');
+      });
+      btn.classList.remove('opacity-40');
+      btn.classList.add('bg-terracotta-500', 'border-terracotta-400');
+      
+      const ack = document.getElementById('poll-ack');
+      ack.classList.remove('hidden');
+      ack.innerText = `✨ Choix enregistré : « ${topic} ». Rendez-vous dans la masterclass !`;
+    }
+  </script>
+
+</body>
+</html>

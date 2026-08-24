@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Au-delà de l'Immobilier | Les 4 Piliers Fondamentaux</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts: Fraunces (Chic & Cozy Serif) + Plus Jakarta Sans (Modern & Clean) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FDFBF7',
+              100: '#F8F4EE',
+              200: '#EFE9DE',
+            },
+            coral: {
+              50: '#FFF5F2',
+              100: '#FFE8E2',
+              300: '#FFB8A5',
+              500: '#E87A5D',
+              600: '#D26346',
+            },
+            sage: {
+              50: '#F4F7F5',
+              100: '#E4ECE7',
+              300: '#ADC4B6',
+              500: '#739580',
+              600: '#5C7C68',
+            },
+            honey: {
+              100: '#FEF3D6',
+              400: '#F3C352',
+              500: '#E2AB2E',
+            },
+            lavender: {
+              100: '#F0EDF9',
+              300: '#C8BDE8',
+              500: '#8E78C9',
+            },
+            charcoal: {
+              800: '#2C2B2A',
+              900: '#1C1B1A',
+            }
+          },
+          boxShadow: {
+            'cute': '0 10px 30px -5px rgba(232, 122, 93, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
+            'card': '0 15px 35px -5px rgba(44, 43, 42, 0.06), 0 5px 15px rgba(0, 0, 0, 0.03)',
+            'pill': '0 6px 20px rgba(232, 122, 93, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Background grid subtle effect */
+    .bg-dots {
+      background-image: radial-gradient(#E87A5D 0.75px, transparent 0.75px), radial-gradient(#739580 0.75px, #FDFBF7 0.75px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+      background-opacity: 0.15;
+    }
+    
+    .blob {
+      filter: blur(50px);
+      opacity: 0.45;
+    }
+
+    /* Custom smooth transition */
+    .cute-card {
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cute-card:hover {
+      transform: translateY(-6px);
+    }
+  </style>
+</head>
+
+<body class="bg-cream-50 text-charcoal-800 font-sans antialiased overflow-x-hidden selection:bg-coral-100 selection:text-coral-600">
+
+  <!-- Ambient Blobs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-coral-100 blob"></div>
+    <div class="absolute top-1/3 -right-24 w-96 h-96 rounded-full bg-sage-100 blob"></div>
+    <div class="absolute bottom-10 left-1/4 w-80 h-80 rounded-full bg-honey-100 blob"></div>
+  </div>
+
+  <!-- Header / Nav -->
+  <nav class="sticky top-0 z-50 bg-cream-50/85 backdrop-blur-md border-b border-cream-200/80 transition-all">
+    <div class="max-w-6xl mx-auto px-5 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-coral-500 to-honey-400 flex items-center justify-center text-white shadow-pill transition-transform group-hover:scale-105">
+          <i data-lucide="compass" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="font-serif font-bold text-xl text-charcoal-900 tracking-tight block leading-tight">Clarté & Vie</span>
+          <span class="text-xs text-coral-600 font-semibold tracking-wide uppercase">Boîte à outils d'émancipation</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-charcoal-800/80">
+        <a href="#histoire" class="hover:text-coral-500 transition-colors">La Mission</a>
+        <a href="#piliers" class="hover:text-coral-500 transition-colors">Les 4 Piliers</a>
+        <a href="#programme" class="hover:text-coral-500 transition-colors">À Venir</a>
+        <a href="#objectif" class="hover:text-coral-500 transition-colors">Cap 1 000 ✨</a>
+      </div>
+
+      <a href="#objectif" class="inline-flex items-center gap-2 bg-charcoal-900 text-cream-50 px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-coral-500 transition-all duration-300 shadow-sm hover:shadow-pill group">
+        <span>S'abonner</span>
+        <i data-lucide="bell" class="w-4 h-4 text-honey-400 group-hover:rotate-12 transition-transform"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative z-10 pt-12 pb-20 px-5">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <!-- Cute Tag -->
+      <div class="inline-flex items-center gap-2 bg-white/90 border border-coral-100 shadow-sm px-4 py-1.5 rounded-full text-xs font-bold text-coral-600 mb-6 uppercase tracking-wider animate-pulse">
+        <span>✨ Au-delà de la pierre & du béton</span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-charcoal-900 leading-[1.18] mb-6">
+        Les 4 Piliers Fondamentaux pour <span class="relative inline-block text-coral-500 italic">
+          Réussir sa Vie
+          <svg class="absolute left-0 -bottom-2 w-full h-3 text-coral-300/60 -z-10" viewBox="0 0 100 20" preserveAspectRatio="none">
+            <path d="M0,15 Q50,0 100,15" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span> & Prendre les Bonnes Décisions.
+      </h1>
+
+      <!-- Intro Subtitle -->
+      <p class="text-lg sm:text-xl text-charcoal-800/80 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
+        Bien plus qu'une simple chaîne immobilière : une méthode concrète pour structurer votre foyer, assainir vos finances, apaiser vos relations et clarifier votre chemin.
+      </p>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#piliers" class="px-7 py-3.5 rounded-full bg-coral-500 hover:bg-coral-600 text-white font-bold shadow-pill hover:scale-105 transition-all flex items-center gap-2">
+          <span>Explorer les 4 Piliers</span>
+          <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+        <a href="#histoire" class="px-7 py-3.5 rounded-full bg-white/90 border border-cream-200 text-charcoal-800 hover:bg-cream-100 font-semibold transition-all">
+          Lire la mise au point 📖
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1 : L'Histoire & La Révélation (The 2 Messages) -->
+  <section id="histoire" class="relative z-10 py-16 px-5">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white/95 rounded-3xl p-8 sm:p-12 shadow-card border border-cream-200 relative overflow-hidden">
+        
+        <div class="flex items-center gap-3 mb-6">
+          <span class="p-2.5 rounded-2xl bg-honey-100 text-honey-500 inline-block">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900">
+            Une mise au point s'imposait...
+          </h2>
+        </div>
+
+        <p class="text-charcoal-800/85 text-base sm:text-lg leading-relaxed mb-8">
+          Récemment, j’ai reçu <strong>deux messages</strong> qui m’ont fait beaucoup réfléchir et m’ont poussé à clarifier la vision profonde de ce projet :
+        </p>
+
+        <!-- The 2 Messages Grid -->
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          
+          <!-- Message 1 -->
+          <div class="p-6 rounded-2xl bg-sage-50 border border-sage-100/80 relative">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center font-bold text-xs">1</span>
+              <span class="font-bold text-sage-600 text-sm tracking-wide">Le compliment touchant</span>
+            </div>
+            <p class="text-sm sm:text-base text-charcoal-800/90 italic leading-relaxed">
+              « Une personne m'a expliqué qu'une de mes vidéos avait servi de <strong>guide concret pour résoudre une situation délicate au sein de sa famille</strong>. C’est exactement ma mission : créer une boîte à outils pour les moments charnières de la vie. »
+            </p>
+          </div>
+
+          <!-- Message 2 -->
+          <div class="p-6 rounded-2xl bg-coral-50 border border-coral-100/80 relative">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-8 h-8 rounded-full bg-coral-500 text-white flex items-center justify-center font-bold text-xs">2</span>
+              <span class="font-bold text-coral-600 text-sm tracking-wide">L'étiquette réductrice</span>
+            </div>
+            <p class="text-sm sm:text-base text-charcoal-800/90 italic leading-relaxed">
+              « <em>Ah oui, je connais ta chaîne, tu parles d’immobilier, c'est ça ?</em> »<br>
+              Non, ce projet ne se résume pas à acheter des mètres carrés. L'immobilier n'est que la première pièce d'un édifice bien plus grand.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Takeaway highlight -->
+        <div class="bg-gradient-to-r from-cream-100 to-cream-50 p-5 rounded-2xl border-l-4 border-coral-500">
+          <p class="text-charcoal-900 font-semibold text-sm sm:text-base">
+            🎯 <strong>Mon objectif :</strong> Vous apporter de la clarté et des méthodes pratiques autour des <span class="text-coral-600">4 Piliers d'une Vie Épanouie</span>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 : Les 4 Piliers (Interactive Cards) -->
+  <section id="piliers" class="relative z-10 py-20 px-5 bg-gradient-to-b from-transparent via-cream-100/50 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 bg-coral-100/70 text-coral-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+          🏛️ L'Édifice Complet
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal-900 mb-4">
+          Les 4 Piliers d'une Vie Épanouie
+        </h2>
+        <p class="text-charcoal-800/75">
+          Pour bâtir une vie sereine et prospère, nous devons travailler sur ces quatre dimensions indissociables :
+        </p>
+      </div>
+
+      <!-- Pillars Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Pilier 1 -->
+        <div class="cute-card bg-white rounded-3xl p-7 shadow-card border border-cream-200 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-coral-100 text-coral-500 flex items-center justify-center mb-6 shadow-sm">
+              <i data-lucide="home" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-coral-600">Pilier 01</span>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mt-1 mb-3">
+              Le Foyer & Patrimoine Physique
+            </h3>
+            <p class="text-sm text-charcoal-800/80 leading-relaxed">
+              Avoir son propre toit et sécuriser un patrimoine tangible. C’est le socle matériel essentiel de votre sécurité personnelle et familiale, quelle que soit votre étape de vie.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-cream-100 flex items-center gap-2 text-xs font-semibold text-coral-500">
+            <span>Le socle tangible</span>
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Pilier 2 -->
+        <div class="cute-card bg-white rounded-3xl p-7 shadow-card border border-cream-200 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center mb-6 shadow-sm">
+              <i data-lucide="heart-handshake" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sage-600">Pilier 02</span>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mt-1 mb-3">
+              Relations & Harmonie Familiale
+            </h3>
+            <p class="text-sm text-charcoal-800/80 leading-relaxed">
+              Un foyer sans relations saines n'est qu'une coquille vide. Gérer les personnalités difficiles, accueillir les proches, préparer l'avenir des enfants et transmettre sans conflit fraternel.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-cream-100 flex items-center gap-2 text-xs font-semibold text-sage-600">
+            <span>Sujets sans tabou</span>
+            <i data-lucide="users" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Pilier 3 -->
+        <div class="cute-card bg-white rounded-3xl p-7 shadow-card border border-cream-200 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-honey-100 text-honey-500 flex items-center justify-center mb-6 shadow-sm">
+              <i data-lucide="coins" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-honey-500">Pilier 03</span>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mt-1 mb-3">
+              Argent & Clarté Financière
+            </h3>
+            <p class="text-sm text-charcoal-800/80 leading-relaxed">
+              Maîtriser l'argent plutôt que le subir. Notre série de <strong>10 vidéos sur l'esprit financier</strong> pose les bases indispensables (en moins de 3h au total !) pour vous et vos ados.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-cream-100 flex items-center gap-2 text-xs font-semibold text-honey-500">
+            <span>10 vidéos (&lt; 3h)</span>
+            <i data-lucide="zap" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Pilier 4 -->
+        <div class="cute-card bg-white rounded-3xl p-7 shadow-card border border-cream-200 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-lavender-100 text-lavender-500 flex items-center justify-center mb-6 shadow-sm">
+              <i data-lucide="flower2" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-lavender-500">Pilier 04</span>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mt-1 mb-3">
+              Clarté & Spiritualité Pratique
+            </h3>
+            <p class="text-sm text-charcoal-800/80 leading-relaxed">
+              Zéro phrase creuse façon « rêvez grand ». La vraie spiritualité s'épanouit quand les besoins matériels, familiaux et financiers de base sont sécurisés et maîtrisés avec méthode.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-cream-100 flex items-center gap-2 text-xs font-semibold text-lavender-500">
+            <span>Outils concrets</span>
+            <i data-lucide="sparkle" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3 : Ce qui arrive bientôt sur la chaîne (Upcoming Topics) -->
+  <section id="programme" class="relative z-10 py-16 px-5">
+    <div class="max-w-5xl mx-auto">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-coral-500 font-bold text-xs uppercase tracking-widest block mb-1">🚀 En cours de préparation</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal-900">
+            Les Futures Thématiques Clés
+          </h2>
+        </div>
+        <p class="text-sm text-charcoal-800/70 max-w-sm">
+          Vos retours nourrissent chaque vidéo. Voici les dossiers chauds qui arrivent très vite :
+        </p>
+      </div>
+
+      <!-- Bento-style Grid -->
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Theme 1: Immobilier Pratique -->
+        <div class="bg-white rounded-3xl p-7 shadow-card border border-cream-200 hover:border-coral-300 transition-colors">
+          <div class="flex items-center justify-between mb-5">
+            <span class="p-3 bg-coral-50 text-coral-500 rounded-2xl">
+              <i data-lucide="building-2" class="w-6 h-6"></i>
+            </span>
+            <span class="text-xs bg-cream-100 text-charcoal-800 px-3 py-1 rounded-full font-bold">Immo Terrain</span>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-4">
+            L'Immobilier en Pratique
+          </h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-charcoal-800/80">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-coral-500 shrink-0 mt-0.5"></i>
+              <span><strong>Appartement indépendant vs Résidence avec services</strong> : Quel choix pour vous ?</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-coral-500 shrink-0 mt-0.5"></i>
+              <span><strong>Sur plan vs Clé en main</strong> : Vrais risques & opportunités.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-coral-500 shrink-0 mt-0.5"></i>
+              <span><strong>Pièges techniques cachés</strong> : Loading de surface, taxes & conformité.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-coral-500 shrink-0 mt-0.5"></i>
+              <span><strong>Évaluation & Négociation</strong> : Face au vendeur en confiance.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Theme 2: Carrière & Retraite -->
+        <div class="bg-white rounded-3xl p-7 shadow-card border border-cream-200 hover:border-sage-300 transition-colors">
+          <div class="flex items-center justify-between mb-5">
+            <span class="p-3 bg-sage-50 text-sage-600 rounded-2xl">
+              <i data-lucide="briefcase" class="w-6 h-6"></i>
+            </span>
+            <span class="text-xs bg-cream-100 text-charcoal-800 px-3 py-1 rounded-full font-bold">Carrière</span>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-4">
+            Transitions & Travail
+          </h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-charcoal-800/80">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-sage-600 shrink-0 mt-0.5"></i>
+              <span><strong>Avenir pro des jeunes</strong> : Ce que recherche le marché aujourd'hui.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-sage-600 shrink-0 mt-0.5"></i>
+              <span><strong>Retraite anticipée (VRS)</strong> : Quitter le public ou une grande boîte en sérénité.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-sage-600 shrink-0 mt-0.5"></i>
+              <span><strong>Femmes au foyer (30-50 ans)</strong> : Monétiser son temps & ses compétences.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Theme 3: Boîte à Outils Décisionnelle -->
+        <div class="bg-white rounded-3xl p-7 shadow-card border border-cream-200 hover:border-honey-300 transition-colors">
+          <div class="flex items-center justify-between mb-5">
+            <span class="p-3 bg-honey-100 text-honey-500 rounded-2xl">
+              <i data-lucide="sliders" class="w-6 h-6"></i>
+            </span>
+            <span class="text-xs bg-cream-100 text-charcoal-800 px-3 py-1 rounded-full font-bold">Méthode</span>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-4">
+            Boîte à Outils Décisionnelle
+          </h3>
+          <p class="text-sm text-charcoal-800/80 leading-relaxed mb-4">
+            Comme un artisan a besoin de ses outils, nous avons besoin de grilles de décision claires.
+          </p>
+          <div class="p-4 rounded-2xl bg-cream-100/60 border border-cream-200">
+            <div class="flex items-center gap-2 text-xs font-bold text-charcoal-900 mb-1">
+              <i data-lucide="check" class="w-4 h-4 text-honey-500"></i>
+              Grilles d'arbitrage
+            </div>
+            <p class="text-xs text-charcoal-800/70">
+              Des canevas prêts à l'emploi pour vos choix d'achats, investissements et réorientations.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4 : Objectif 1000 Abonnés & Sondage Interactif -->
+  <section id="objectif" class="relative z-10 py-20 px-5">
+    <div class="max-w-4xl mx-auto bg-gradient-to-br from-charcoal-900 to-charcoal-800 text-cream-50 rounded-[2.5rem] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+      
+      <!-- Decorative background icon -->
+      <i data-lucide="radio" class="absolute -right-8 -bottom-8 w-64 h-64 text-white/5 pointer-events-none"></i>
+
+      <div class="relative z-10">
+        
+        <!-- Header -->
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-3 h-3 rounded-full bg-coral-500 animate-ping"></span>
+          <span class="text-coral-400 uppercase font-bold text-xs tracking-wider">Cap Stratégique</span>
+        </div>
+
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-4">
+          Objectif : Le Cap des 1 000 Abonnés pour lancer nos Directs YouTube 🎙️
+        </h2>
+
+        <p class="text-cream-200/80 text-sm sm:text-base leading-relaxed mb-8">
+          Ce seuil débloquera les <strong>sessions de questions-réponses en direct sur YouTube</strong>. Chacun pourra poser ses questions par écrit, débloquer ses situations de vie et profiter des retours partagés avec l'ensemble de la communauté.
+        </p>
+
+        <!-- Animated Goal Progress Bar -->
+        <div class="bg-white/10 p-6 rounded-3xl backdrop-blur-md border border-white/10 mb-10">
+          <div class="flex justify-between items-center text-sm font-semibold mb-3">
+            <span class="flex items-center gap-2">
+              <i data-lucide="users" class="w-4 h-4 text-coral-400"></i>
+              Progression communautaire
+            </span>
+            <span class="text-coral-300 font-bold" id="counter">860 / 1 000 abonnés</span>
+          </div>
+
+          <div class="w-full bg-white/20 h-4 rounded-full overflow-hidden p-0.5">
+            <div id="progress-bar" class="h-full bg-gradient-to-r from-honey-400 via-coral-500 to-coral-400 rounded-full transition-all duration-1000 ease-out" style="width: 86%;"></div>
+          </div>
+          <p class="text-xs text-cream-200/60 mt-2 text-right">Plus que 140 abonnés avant la 1ère session Live !</p>
+        </div>
+
+        <!-- Interactive Voting : What to watch first? -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8">
+          <h3 class="font-serif text-xl font-bold text-white mb-2 flex items-center gap-2">
+            <span>🗳️ Quel sujet souhaitez-vous voir en priorité ?</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-cream-200/70 mb-5">Votez en un clic pour influencer l'ordre de sortie des prochaines vidéos :</p>
+
+          <div class="grid sm:grid-cols-2 gap-3" id="poll-container">
+            <button onclick="vote(this, 'Immobilier & Négociation')" class="poll-btn text-left p-3.5 rounded-2xl bg-white/10 hover:bg-coral-500/30 border border-white/10 hover:border-coral-400 transition-all text-xs sm:text-sm font-medium flex items-center justify-between group">
+              <span>🏢 Immobilier & Négociation</span>
+              <i data-lucide="thumbs-up" class="w-4 h-4 text-cream-200/60 group-hover:text-coral-300"></i>
+            </button>
+            <button onclick="vote(this, 'Départ anticipé & Retraite (VRS)')" class="poll-btn text-left p-3.5 rounded-2xl bg-white/10 hover:bg-coral-500/30 border border-white/10 hover:border-coral-400 transition-all text-xs sm:text-sm font-medium flex items-center justify-between group">
+              <span>🌅 Départs anticipés & VRS</span>
+              <i data-lucide="thumbs-up" class="w-4 h-4 text-cream-200/60 group-hover:text-coral-300"></i>
+            </button>
+            <button onclick="vote(this, 'Carrière des jeunes')" class="poll-btn text-left p-3.5 rounded-2xl bg-white/10 hover:bg-coral-500/30 border border-white/10 hover:border-coral-400 transition-all text-xs sm:text-sm font-medium flex items-center justify-between group">
+              <span>🚀 Avenir pro des jeunes</span>
+              <i data-lucide="thumbs-up" class="w-4 h-4 text-cream-200/60 group-hover:text-coral-300"></i>
+            </button>
+            <button onclick="vote(this, 'Reconversion & Femmes au foyer')" class="poll-btn text-left p-3.5 rounded-2xl bg-white/10 hover:bg-coral-500/30 border border-white/10 hover:border-coral-400 transition-all text-xs sm:text-sm font-medium flex items-center justify-between group">
+              <span>💡 Reconversion & Femmes (30-50)</span>
+              <i data-lucide="thumbs-up" class="w-4 h-4 text-cream-200/60 group-hover:text-coral-300"></i>
+            </button>
+          </div>
+
+          <div id="vote-feedback" class="hidden mt-4 text-center text-xs font-semibold text-coral-300 bg-coral-500/20 py-2 rounded-xl">
+            ✨ Merci pour votre vote ! C'est pris en compte pour le prochain tournage.
+          </div>
+        </div>
+
+        <!-- 3 Simple Ways to Help -->
+        <div class="mt-12">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-coral-400 mb-4">
+            🤝 Comment m'aider dès aujourd'hui :
+          </h3>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-center flex flex-col items-center">
+              <span class="text-2xl mb-1">🔔</span>
+              <p class="font-bold text-xs text-white">1. S'abonner</p>
+              <p class="text-[11px] text-cream-200/60 mt-1">Activez la cloche de notification pour ne rien manquer.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-center flex flex-col items-center">
+              <span class="text-2xl mb-1">💌</span>
+              <p class="font-bold text-xs text-white">2. Partager</p>
+              <p class="text-[11px] text-cream-200/60 mt-1">Transmettez la chaîne à 2 ou 3 proches qui en ont besoin.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-center flex flex-col items-center">
+              <span class="text-2xl mb-1">💬</span>
+              <p class="font-bold text-xs text-white">3. Échanger</p>
+              <p class="text-[11px] text-cream-200/60 mt-1">Partagez vos questions & expériences en commentaire.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="copyShareLink()" class="px-7 py-3.5 rounded-full bg-coral-500 hover:bg-coral-600 text-white font-bold transition-all shadow-pill flex items-center gap-2">
+            <i data-lucide="share-2" class="w-4 h-4"></i>
+            <span>Partager cette page à un proche</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Toast Notification (Hidden by default) -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-charcoal-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-coral-500/30">
+    <i data-lucide="check" class="w-5 h-5 text-coral-400"></i>
+    <span class="text-xs font-semibold" id="toast-text">Lien copié dans le presse-papier !</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-cream-200 py-12 px-5 bg-white/70">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <span class="font-serif font-bold text-lg text-charcoal-900 block">Au-delà de l'Immobilier</span>
+        <p class="text-xs text-charcoal-800/60 mt-1">Vers plus de clarté, d'autonomie financière et d'épanouissement personnel.</p>
+      </div>
+      <p class="text-xs text-charcoal-800/50 font-medium">
+        © 2026 Clarté & Vie • Fait avec bienveillance 🌱
+      </p>
+    </div>
+  </footer>
+
+  <!-- Vanilla JS Interactive Scripts -->
+  <script>
+    // Init Lucide Icons
+    lucide.createIcons();
+
+    // Interactive Poll Logic
+    function vote(btn, choice) {
+      const buttons = document.querySelectorAll('.poll-btn');
+      buttons.forEach(b => {
+        b.classList.remove('bg-coral-500', 'text-white');
+        b.classList.add('opacity-50', 'pointer-events-none');
+      });
+      btn.classList.remove('opacity-50');
+      btn.classList.add('bg-coral-500', 'text-white', 'scale-[1.02]');
+
+      const feedback = document.getElementById('vote-feedback');
+      feedback.classList.remove('hidden');
+      feedback.innerText = `✨ Choix enregistré : « ${choice} ». Merci pour votre soutien !`;
+    }
+
+    // Share link copy with cute toast
+    function copyShareLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast("Lien de partage copié dans le presse-papier ! 💌");
+      }).catch(() => {
+        showToast("Lien prêt à être partagé ! ✨");
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+
+</body>
+</html>

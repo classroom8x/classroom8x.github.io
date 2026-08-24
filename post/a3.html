@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrière pour nos filles • Partie 2</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        blush: {
+                            50: '#fff5f7',
+                            100: '#feedf1',
+                            200: '#fccfd9',
+                            300: '#faa6ba',
+                            500: '#e84e75',
+                            600: '#cc2954',
+                        },
+                        lavender: {
+                            50: '#f8f7ff',
+                            100: '#efeaff',
+                            200: '#ddd2ff',
+                            500: '#8b5cf6',
+                        },
+                        cream: '#faf8f5',
+                        charcoal: '#2d2629',
+                        subtle: '#6b5e64'
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 35px -5px rgba(232, 78, 117, 0.08)',
+                        'cute': '0 15px 30px -10px rgba(139, 92, 246, 0.12)',
+                        'floating': '0 20px 40px -15px rgba(0, 0, 0, 0.06)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Décorations & animations douces */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 240, 245, 0.9);
+        }
+        .cute-gradient-text {
+            background: linear-gradient(135deg, #e84e75 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        .floating-badge {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-blush-200 selection:text-blush-600 relative overflow-x-hidden min-h-screen">
+
+    <!-- Jauge de lecture en haut -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-blush-500 via-lavender-500 to-blush-500 z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Éléments d'ambiance d'arrière-plan pastel -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-blush-100/60 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-32 w-80 h-80 bg-lavender-100/70 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 left-1/4 w-[500px] h-[500px] bg-blush-50/80 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Navigation Minimaliste & Flottante -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="glass-card rounded-full px-5 py-3 flex items-center justify-between shadow-floating">
+            <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-full bg-gradient-to-br from-blush-500 to-lavender-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                    ✨
+                </span>
+                <span class="font-serif italic font-bold tracking-wide text-sm sm:text-base cute-gradient-text">Édition Carrière Féminine</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="copy-btn" class="flex items-center gap-1.5 text-xs font-medium bg-white/90 hover:bg-blush-50 text-subtle px-3.5 py-1.5 rounded-full border border-blush-100 transition shadow-sm">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5 text-blush-500"></i>
+                    <span>Partager</span>
+                </button>
+                <button id="like-pill" class="flex items-center gap-1.5 text-xs font-semibold bg-blush-500 hover:bg-blush-600 text-white px-3.5 py-1.5 rounded-full transition shadow-sm active:scale-95">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 fill-current"></i>
+                    <span id="like-count">248</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-20 sm:px-6">
+        
+        <!-- Hero Header de l'article -->
+        <div class="text-center space-y-4 mb-12">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lavender-100 text-lavender-500 text-xs font-semibold tracking-wide floating-badge border border-lavender-200">
+                <span>🌸 SÉRIE SPÉCIALE • PARTIE 2</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-charcoal">
+                Construire une indépendance durable plutôt qu'un <span class="cute-gradient-text">« emploi vitrine »</span>
+            </h1>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-subtle pt-2">
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-blush-500"></i> 4 min de lecture</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-lavender-500"></i> Stratégie d'émancipation</span>
+            </div>
+        </div>
+
+        <!-- Introduction & Problématique -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-soft mb-8 border border-blush-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-blush-100/60 to-transparent rounded-bl-full pointer-events-none"></div>
+            
+            <p class="text-base sm:text-lg leading-relaxed text-subtle mb-5">
+                Dans le <a href="#" class="text-blush-500 underline font-medium hover:text-blush-600">premier volet de cette série</a>, nous avons posé une question fondamentale : <strong class="text-charcoal font-semibold">pourquoi tant de femmes brillantes quittent-elles le monde professionnel après seulement quelques années ?</strong>
+            </p>
+
+            <div class="p-4 rounded-2xl bg-blush-50/70 border-l-4 border-blush-500 text-charcoal text-sm sm:text-base leading-relaxed">
+                « La plupart des parents et des jeunes femmes font l’erreur de confondre <em>trouver un emploi rapidement</em> et <em>bâtir une carrière durable</em>. Trop souvent, les jeunes filles démarrent comme des fusées à 22 ans, pour finir complètement épuisées et contraintes d'abandonner entre 28 et 33 ans. »
+            </div>
+
+            <p class="mt-5 text-sm sm:text-base text-subtle">
+                Pour qu’une femme reste financièrement autonome de <strong class="text-charcoal font-semibold">25 à 75 ans</strong>, nous devons changer de paradigme. Voici les vérités pratiques et les points stratégiques à adopter dès aujourd'hui.
+            </p>
+        </section>
+
+        <!-- Point 1 : Le piège du job vitrine -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blush-500 text-white font-bold text-sm shadow-sm">1</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-charcoal">Arrêter le piège du « job vitrine » pour le mariage</h2>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-soft space-y-4">
+                <p class="text-subtle text-sm sm:text-base leading-relaxed">
+                    Regardons une réalité sociologique en face :
+                </p>
+
+                <!-- Comparaison Cute UI -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-white/80 p-4 rounded-2xl border border-lavender-200">
+                        <div class="flex items-center gap-2 text-lavender-500 font-bold text-xs uppercase tracking-wide mb-2">
+                            <i data-lucide="user-check" class="w-4 h-4"></i> Pour un jeune homme
+                        </div>
+                        <p class="text-xs sm:text-sm text-subtle leading-normal">
+                            S’il n’est pas encore stable, les parents restent confiants, développent chez lui le sens des responsabilités et l’encouragent à entreprendre sereinement.
+                        </p>
+                    </div>
+
+                    <div class="bg-blush-50/70 p-4 rounded-2xl border border-blush-200">
+                        <div class="flex items-center gap-2 text-blush-500 font-bold text-xs uppercase tracking-wide mb-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Pour une jeune fille
+                        </div>
+                        <p class="text-xs sm:text-sm text-subtle leading-normal">
+                            La panique s'installe. On la pousse vers un emploi sous-payé (250 à 350 €/mois) juste pour afficher sur son profil marital : <em>« Elle est en entreprise »</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white/90 rounded-2xl p-4 border border-blush-100 flex items-start gap-3 mt-4">
+                    <span class="text-xl">⚠️</span>
+                    <p class="text-xs sm:text-sm text-subtle leading-relaxed">
+                        <strong class="text-charcoal font-semibold">Le résultat ?</strong> Tout le salaire part en loyer, transport et frais du quotidien. Zéro épargne, pas de montée en compétences, et un épuisement précoce. <span class="text-blush-600 font-medium">Ne bradez pas son énergie pour un simple standing social.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Point 2 : Les 3 piliers stratégiques -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-lavender-500 text-white font-bold text-sm shadow-sm">2</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-charcoal">Les 3 piliers stratégiques pour un avenir pérenne</h2>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-subtle mb-4 px-1">
+                Pour qu'un métier puisse s'adapter aux différentes saisons de la vie (mariage, maternité, foyer), appliquez ces trois filtres :
+            </p>
+
+            <div class="space-y-4">
+                <!-- Pilier A -->
+                <div class="glass-card p-5 sm:p-6 rounded-3xl border border-blush-100/80 shadow-soft hover:shadow-cute transition duration-300">
+                    <div class="flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-2xl bg-blush-100 text-blush-500 flex items-center justify-center shrink-0">
+                            <i data-lucide="battery-charging" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-charcoal">A. Évaluer l’énergie & la résistance au stress</h3>
+                            <p class="text-xs sm:text-sm text-subtle mt-1 leading-relaxed">
+                                Pousser une fille vers un poste corporate ultra-stressant par simple fierté parentale conduit à un abandon dès le 1<sup>er</sup> enfant. Le métier doit être pensé pour s'inscrire dans la durée.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilier B -->
+                <div class="glass-card p-5 sm:p-6 rounded-3xl border border-lavender-100/80 shadow-soft hover:shadow-cute transition duration-300">
+                    <div class="flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-2xl bg-lavender-100 text-lavender-500 flex items-center justify-center shrink-0">
+                            <i data-lucide="brain" class="w-5 h-5"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-bold text-sm sm:text-base text-charcoal">B. Privilégier le travail « au-dessus du cou »</h3>
+                            <p class="text-xs sm:text-sm text-subtle mt-1 leading-relaxed">
+                                Évitez l'usure physique (10h de présence rigide, trajets longs). Misez sur <strong>le digital, le conseil, la finance, la gestion ou l'enseignement spécialisé</strong> : ces compétences s'exercent facilement en télétravail ou freelance durant la maternité.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilier C -->
+                <div class="glass-card p-5 sm:p-6 rounded-3xl border border-blush-100/80 shadow-soft hover:shadow-cute transition duration-300">
+                    <div class="flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-2xl bg-blush-100 text-blush-500 flex items-center justify-center shrink-0">
+                            <i data-lucide="compass" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-charcoal">C. La stabilité géographique et le réalisme</h3>
+                            <p class="text-xs sm:text-sm text-subtle mt-1 leading-relaxed">
+                                Passer 6 ans à préparer des concours ultra-élitistes avec mutations forcées détruit souvent l'équilibre. Visez des postes intermédiaires stables localement sans gaspiller vos plus belles années.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Point 3 : Vie de famille & Désengagement parental -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blush-500 text-white font-bold text-sm shadow-sm">3</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-charcoal">L'illusion du « désengagement parental »</h2>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-soft space-y-4">
+                <p class="text-subtle text-sm sm:text-base leading-relaxed">
+                    Beaucoup pensent encore : <em>« Une fois mariée, c’est à son mari et à ses beaux-parents de gérer. »</em> <strong>C’est une erreur majeure.</strong>
+                </p>
+
+                <div class="bg-gradient-to-r from-blush-50 to-lavender-50 p-5 rounded-2xl border border-blush-100/70 space-y-2.5">
+                    <div class="flex items-center gap-2 text-xs font-bold text-charcoal">
+                        <i data-lucide="heart-handshake" class="w-4 h-4 text-blush-500"></i>
+                        Un soutien actif et inconditionnel
+                    </div>
+                    <p class="text-xs sm:text-sm text-subtle leading-relaxed">
+                        Le mythe de l'équilibre vie pro/perso sans aide n'existe pas. Si vous voulez qu'elle réussisse, vous (ses parents) devez rester un pilier logistique, moral et financier — exactement comme vous le feriez pour le projet d'un fils.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Point 4 : High-Income Skills -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-lavender-500 text-white font-bold text-sm shadow-sm">4</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-charcoal">Miser sur les « High-Income Skills »</h2>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-soft text-center sm:text-left">
+                <div class="flex flex-col sm:flex-row items-center gap-5">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-lavender-500 to-blush-500 text-white flex items-center justify-center shrink-0 shadow-cute">
+                        <i data-lucide="gem" class="w-8 h-8"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-bold text-base sm:text-lg text-charcoal">Maîtriser une compétence monétisable rare</h3>
+                        <p class="text-xs sm:text-sm text-subtle leading-relaxed">
+                            L'objectif n'est pas d'être enchaînée à un 9h-18h toute sa vie. Une femme avec une compétence recherchée ne dépendra jamais financièrement de personne. N'hésitez pas à financer et investir dans les compétences ou le business de votre fille !
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- En Résumé (Card Checklist) -->
+        <section class="bg-gradient-to-br from-blush-500 to-lavender-500 rounded-3xl p-6 sm:p-8 text-white shadow-cute mb-12">
+            <div class="flex items-center gap-2 mb-4">
+                <i data-lucide="check-check" class="w-6 h-6"></i>
+                <h2 class="font-serif text-2xl font-bold">En résumé</h2>
+            </div>
+            <p class="text-xs sm:text-sm text-white/90 mb-5">
+                Une carrière féminine réussie se mesure sur <strong>sa durabilité sur 30 à 40 ans</strong>, pas sur sa précipitation à 23 ans :
+            </p>
+            <ul class="space-y-3 text-xs sm:text-sm">
+                <li class="flex items-start gap-2.5 bg-white/10 backdrop-blur-sm p-3 rounded-xl">
+                    <span class="text-blush-200 font-bold">✕</span>
+                    <span>Fuyez les emplois sous-payés sans montée en compétences réelles.</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-white/10 backdrop-blur-sm p-3 rounded-xl">
+                    <span class="text-blush-200 font-bold">✓</span>
+                    <span>Développez des compétences flexibles, orientées expertise intellectuelle.</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-white/10 backdrop-blur-sm p-3 rounded-xl">
+                    <span class="text-blush-200 font-bold">✓</span>
+                    <span>Planifiez lucidement chaque étape en accord avec les saisons de la vie de famille.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Module Interactif / Sondage & Discussion -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-floating border border-lavender-200" id="interaction">
+            <div class="text-center max-w-lg mx-auto space-y-2 mb-6">
+                <span class="text-2xl">💬</span>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-charcoal">Qu'en pensez-vous ?</h3>
+                <p class="text-xs sm:text-sm text-subtle">
+                    Pensez-vous que les compétences flexibles et le travail indépendant offrent un meilleur avenir aux femmes que les emplois de bureau traditionnels ?
+                </p>
+            </div>
+
+            <!-- Boutons de Vote Interactifs -->
+            <div id="poll-container" class="space-y-3 max-w-md mx-auto">
+                <button onclick="vote('flex')" class="poll-btn w-full p-4 rounded-2xl bg-white hover:bg-blush-50 border border-blush-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group shadow-sm">
+                    <span class="flex items-center gap-2">
+                        <span>✨</span> Oui, vive l'indépendance & la flexibilité !
+                    </span>
+                    <span class="text-blush-500 group-hover:translate-x-1 transition">→</span>
+                </button>
+
+                <button onclick="vote('bureau')" class="poll-btn w-full p-4 rounded-2xl bg-white hover:bg-lavender-50 border border-lavender-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group shadow-sm">
+                    <span class="flex items-center gap-2">
+                        <span>🏢</span> Non, la sécurité d'un emploi de bureau prime
+                    </span>
+                    <span class="text-lavender-500 group-hover:translate-x-1 transition">→</span>
+                </button>
+            </div>
+
+            <!-- Résultat du vote (Masqué au début) -->
+            <div id="poll-results" class="hidden max-w-md mx-auto space-y-4 pt-2">
+                <div class="p-4 rounded-2xl bg-white border border-blush-100 space-y-2">
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span>✨ Indépendance & Flexibilité</span>
+                        <span id="res-flex" class="text-blush-500">84%</span>
+                    </div>
+                    <div class="w-full bg-cream h-2.5 rounded-full overflow-hidden">
+                        <div id="bar-flex" class="bg-blush-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-white border border-lavender-100 space-y-2">
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span>🏢 Emploi traditionnel de bureau</span>
+                        <span id="res-bureau" class="text-lavender-500">16%</span>
+                    </div>
+                    <div class="w-full bg-cream h-2.5 rounded-full overflow-hidden">
+                        <div id="bar-bureau" class="bg-lavender-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p class="text-center text-xs text-subtle">Merci pour votre participation ! ✨</p>
+            </div>
+
+            <!-- Zone de partage rapide -->
+            <div class="mt-8 pt-6 border-t border-blush-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <div class="text-xs text-subtle">
+                    Partagez cet article avec une jeune femme ou une famille qui en a besoin.
+                </div>
+                <button onclick="shareArticle()" class="px-5 py-2.5 rounded-full bg-charcoal text-white hover:bg-black text-xs font-semibold flex items-center gap-2 transition shadow-sm active:scale-95">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    Partager l'article
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Pastel -->
+    <footer class="text-center py-8 text-xs text-subtle border-t border-blush-100">
+        <p>Créé avec bienveillance pour l'avenir de nos filles 🌷</p>
+    </footer>
+
+    <!-- Toast Notification pour le partage -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-card border border-blush-300 text-charcoal px-4 py-3 rounded-2xl shadow-floating transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-2 text-xs font-medium">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-blush-500"></i>
+        <span>Lien de l'article copié dans le presse-papier !</span>
+    </div>
+
+    <!-- Script JS Interactif -->
+    <script>
+        // Initialiser les icônes Lucide
+        lucide.createIcons();
+
+        // 1. Barre de progression de défilement
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        });
+
+        // 2. Gestion des Likes
+        let likes = 248;
+        let hasLiked = false;
+        const likeBtn = document.getElementById('like-pill');
+        const likeCount = document.getElementById('like-count');
+
+        likeBtn.addEventListener('click', () => {
+            if (!hasLiked) {
+                likes++;
+                likeCount.textContent = likes;
+                hasLiked = true;
+                likeBtn.classList.add('scale-110');
+                setTimeout(() => likeBtn.classList.remove('scale-110'), 200);
+            }
+        });
+
+        // 3. Sondage Interactif
+        function vote(choice) {
+            document.getElementById('poll-container').classList.add('hidden');
+            const resContainer = document.getElementById('poll-results');
+            resContainer.classList.remove('hidden');
+
+            setTimeout(() => {
+                document.getElementById('bar-flex').style.width = '84%';
+                document.getElementById('bar-bureau').style.width = '16%';
+            }, 100);
+        }
+
+        // 4. Partage & Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            if (message) toast.querySelector('span').innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Carrière pour nos filles (Partie 2)',
+                    text: 'Construire une indépendance durable plutôt qu’un emploi vitrine.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showToast("Lien copié dans le presse-papier ! ✨");
+            }
+        }
+
+        document.getElementById('copy-btn').addEventListener('click', shareArticle);
+    </script>
+</body>
+</html>

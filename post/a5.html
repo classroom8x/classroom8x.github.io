@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratégie Patrimoniale • Le Reliquat de Prêt Immobilier</title>
+
+    <!-- Google Fonts : DM Serif Display (Élégance financière) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"DM Serif Display"', 'serif'],
+                    },
+                    colors: {
+                        atelier: '#F6F8F5',
+                        pistachio: {
+                            50: '#F1F7F3',
+                            100: '#E1EFE6',
+                            200: '#C2DEC9',
+                            400: '#52A676',
+                            500: '#2E7D52',
+                            700: '#1B4D32',
+                            900: '#0E291B',
+                        },
+                        sand: {
+                            50: '#FDFBF7',
+                            100: '#F8F1E4',
+                            200: '#EEDCBF',
+                            400: '#D49C50',
+                            500: '#B87D32',
+                        },
+                        evergreen: '#142018',
+                        charcoalMuted: '#58675C'
+                    },
+                    boxShadow: {
+                        'cozy': '0 12px 30px -10px rgba(20, 32, 24, 0.06)',
+                        'mint-glow': '0 15px 35px -8px rgba(46, 125, 82, 0.12)',
+                        'gold-glow': '0 15px 35px -8px rgba(212, 156, 80, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-atelier {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(225, 239, 230, 0.8);
+        }
+        .cute-badge-pill {
+            background: linear-gradient(135deg, #F1F7F3 0%, #F8F1E4 100%);
+            border: 1px solid #C2DEC9;
+        }
+        .accent-gradient-text {
+            background: linear-gradient(135deg, #1B4D32 0%, #B87D32 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-atelier text-evergreen font-sans antialiased selection:bg-pistachio-100 selection:text-pistachio-700 min-h-screen relative overflow-x-hidden">
+
+    <!-- Jauge de lecture verte émeraude -->
+    <div id="scroll-meter" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-pistachio-500 via-sand-400 to-pistachio-700 w-0 z-50 transition-all duration-150"></div>
+
+    <!-- Navigation Flottante -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="glass-atelier rounded-full px-5 py-3 flex items-center justify-between shadow-cozy border border-pistachio-100">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-pistachio-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                    🏦
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif italic text-sm sm:text-base text-evergreen leading-none">Atelier Patrimonial</span>
+                    <span class="text-[10px] text-charcoalMuted font-semibold tracking-wider uppercase">Stratégie & Optimisation</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-pistachio-50 border border-pistachio-200 text-pistachio-700 text-xs font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-pistachio-500 animate-pulse"></span>
+                    Bouclier Actif
+                </div>
+                <button onclick="shareArticle()" class="text-xs font-semibold text-white bg-evergreen hover:bg-pistachio-900 px-4 py-1.5 rounded-full transition flex items-center gap-1.5 shadow-sm active:scale-95">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                    <span>Partager</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-20 sm:px-6">
+
+        <!-- Hero Header -->
+        <section class="text-center space-y-4 mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full cute-badge-pill text-pistachio-700 text-xs font-bold shadow-sm">
+                <span>🛡️ FINANCES PERSONNELLES & PATRIMOINE</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-evergreen">
+                Pourquoi vous ne devriez <span class="text-sand-500 italic">PAS</span> rembourser totalement votre prêt immobilier
+            </h1>
+
+            <p class="font-serif italic text-lg sm:text-xl text-charcoalMuted max-w-xl mx-auto">
+                « 5 avantages méconnus de conserver un reliquat stratégique de 5 % à 8 % »
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-charcoalMuted pt-2">
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-pistachio-500"></i> 4 min de lecture</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-sand-500"></i> Arbitrage & Sécurité</span>
+            </div>
+        </section>
+
+        <!-- Contexte & Hypothèse Stratégique -->
+        <section class="glass-atelier rounded-[2.2rem] p-6 sm:p-8 shadow-cozy mb-10 border border-pistachio-100 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-sand-100/60 rounded-full blur-2xl pointer-events-none"></div>
+
+            <p class="text-base sm:text-lg leading-relaxed text-charcoalMuted mb-5">
+                La plupart des gens ont une obsession : se débarrasser au plus vite de leurs dettes pour enfin pouvoir dire <strong class="text-evergreen">« cette maison m'appartient à 100 % »</strong>. Pourtant, d’un point de vue purement stratégique et patrimonial, solder totalement son crédit n'est pas toujours la décision la plus avisée.
+            </p>
+
+            <!-- Le scénario clé -->
+            <div class="p-5 rounded-3xl bg-pistachio-50/80 border border-pistachio-200/70 space-y-2">
+                <div class="flex items-center gap-2 text-xs font-bold text-pistachio-700 uppercase tracking-wide">
+                    <i data-lucide="help-circle" class="w-4 h-4"></i> Le scénario du reliquat
+                </div>
+                <p class="text-xs sm:text-sm text-evergreen leading-relaxed">
+                    Imaginons qu'il ne vous reste plus que <strong>5 % à 8 % du capital</strong> à rembourser (quelques milliers d'euros). Au lieu de solder ce reliquat d'un coup, que se passerait-il si vous réduisiez vos mensualités au minimum pour <em>faire durer cette petite ligne de crédit actif</em> ?
+                </p>
+            </div>
+        </section>
+
+        <!-- Mini Simulateur Interactif d'Arbitrage -->
+        <section class="glass-atelier rounded-[2.2rem] p-6 sm:p-7 shadow-mint-glow mb-12 border border-pistachio-200">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="p-2 rounded-xl bg-pistachio-100 text-pistachio-700"><i data-lucide="calculator" class="w-4 h-4"></i></span>
+                    <h3 class="font-serif font-bold text-base sm:text-lg text-evergreen">Simulateur de micro-reliquat (5%)</h3>
+                </div>
+                <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-sand-100 text-sand-500">Live Arbitrage</span>
+            </div>
+
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs font-semibold text-charcoalMuted">
+                        <span>Capital restant conservé :</span>
+                        <span id="loan-amount-text" class="text-pistachio-700 font-bold text-sm">5 000 €</span>
+                    </div>
+                    <input type="range" id="loan-slider" min="2000" max="15000" value="5000" step="500"
+                           class="w-full h-2 bg-pistachio-100 rounded-lg appearance-none cursor-pointer accent-pistachio-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <div class="p-3.5 rounded-2xl bg-white border border-pistachio-100">
+                        <span class="text-[11px] text-charcoalMuted block">Coût mensuel d'intérêts estimé</span>
+                        <span id="cost-calc" class="font-serif font-bold text-sm sm:text-base text-evergreen">~ 6 € / mois</span>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-pistachio-50 border border-pistachio-200">
+                        <span class="text-[11px] text-pistachio-700 block font-medium">Bénéfices acquis</span>
+                        <span class="font-bold text-xs sm:text-sm text-pistachio-700">Protection + Coffre + Top-up</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LES 5 AVANTAGES -->
+        
+        <!-- 1. Revente rapide -->
+        <section class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-pistachio-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">1</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-evergreen">Une revente beaucoup plus rapide et valorisée</h2>
+            </div>
+
+            <div class="glass-atelier rounded-[2rem] p-6 shadow-cozy space-y-4 border border-pistachio-100">
+                <p class="text-xs sm:text-sm text-charcoalMuted leading-relaxed">
+                    Une propriété sur laquelle court encore un prêt bancaire actif inspire immédiatement confiance sur le marché immobilier :
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="p-4 rounded-2xl bg-sand-50/70 border border-sand-200 space-y-1.5">
+                        <span class="text-xs font-bold text-sand-500 flex items-center gap-1.5">
+                            <i data-lucide="badge-check" class="w-4 h-4"></i> Garantie juridique
+                        </span>
+                        <p class="text-xs text-charcoalMuted leading-normal">
+                            La banque a vérifié la conformité des titres et l'évaluation du bien. Cela prouve à l'acheteur l'absence de vice caché sur le plan légal.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-pistachio-50/70 border border-pistachio-200 space-y-1.5">
+                        <span class="text-xs font-bold text-pistachio-700 flex items-center gap-1.5">
+                            <i data-lucide="repeat" class="w-4 h-4"></i> Transfert ultra-fluide
+                        </span>
+                        <p class="text-xs text-charcoalMuted leading-normal">
+                            Si l'acheteur passe par la même banque, le transfert du dossier est quasi automatique. Fini les longs mois d'attente pour récupérer les actes originaux.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sécurité des titres originaux -->
+        <section class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-sand-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">2</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-evergreen">La sécurité absolue de vos titres originaux</h2>
+            </div>
+
+            <div class="glass-atelier rounded-[2rem] p-6 shadow-cozy space-y-4 border border-pistachio-100">
+                <p class="text-xs sm:text-sm text-charcoalMuted leading-relaxed">
+                    Où sont conservés vos actes de propriété originaux ? Dans un tiroir ? Au fond d'un coffre personnel ?
+                </p>
+
+                <div class="p-4 rounded-2xl bg-white border border-pistachio-200 flex items-start gap-3.5">
+                    <div class="p-2.5 rounded-xl bg-sand-100 text-sand-500 shrink-0">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <div class="space-y-1 text-xs sm:text-sm text-charcoalMuted leading-relaxed">
+                        <strong class="text-evergreen">Protection contre les vols, pertes et captations d'héritage :</strong>
+                        Pour les personnes âgées, les successions complexes ou les personnes qui déménagent régulièrement pour le travail, la banque garde précieusement les documents officiels dans ses <span class="text-pistachio-700 font-semibold">coffres blindés hautement sécurisés</span> pour une mensualité minime.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Protection juridique litiges & usurpation -->
+        <section class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-pistachio-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">3</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-evergreen">Une protection en béton contre les litiges & l'usurpation</h2>
+            </div>
+
+            <div class="glass-atelier rounded-[2rem] p-6 shadow-cozy space-y-3 border border-pistachio-100">
+                <p class="text-xs sm:text-sm text-charcoalMuted leading-relaxed">
+                    Prouver votre droit de propriété et empêcher les contestations est infiniment plus facile lorsqu'une banque détient une <strong>garantie légale continue</strong> sur le bien.
+                </p>
+
+                <div class="p-4 rounded-2xl bg-pistachio-50/70 border border-pistachio-200 flex items-start gap-3">
+                    <span class="text-xl">🏡</span>
+                    <p class="text-xs sm:text-sm text-charcoalMuted leading-relaxed">
+                        <strong class="text-evergreen">Le cas des résidences secondaires & biens éloignés :</strong> Souvent exposés aux risques de squat ou de litiges cadastraux. Conserver un micro-prêt adosse la banque comme <em>vigie juridique</em> : personne ne peut manipuler les actes d'un bien officiellement sous gage bancaire.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Réserve de liquidités (Prêt Top-Up) -->
+        <section class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-sand-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">4</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-evergreen">Une réserve de liquidités accessible (Prêt Top-Up)</h2>
+            </div>
+
+            <div class="glass-atelier rounded-[2rem] p-6 shadow-cozy space-y-4 border border-pistachio-100">
+                <p class="text-xs sm:text-sm text-charcoalMuted leading-relaxed">
+                    Face aux imprévus (études des enfants, travaux urgents, opportunité d'investissement), comparez :
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="p-4 rounded-2xl bg-white border border-rose-200">
+                        <span class="text-xs font-bold text-rose-500 block mb-1">✕ Prêt Immo Clôturé</span>
+                        <p class="text-xs text-charcoalMuted">
+                            Obligation de souscrire un prêt personnel ou crédit conso aux taux d'intérêt souvent très élevés.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-pistachio-50 border border-pistachio-300">
+                        <span class="text-xs font-bold text-pistachio-700 block mb-1">✓ Ligne Immo Active (Top-Up)</span>
+                        <p class="text-xs text-charcoalMuted">
+                            Extension de crédit instantanée aux taux immobiliers préférentiels, sans refaire tout le dossier hypothécaire.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Coût financier nul / Arbitrage -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-pistachio-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">5</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-evergreen">Un coût financier nul (L'arbitrage financier)</h2>
+            </div>
+
+            <div class="glass-atelier rounded-[2rem] p-6 shadow-cozy space-y-3.5 border border-pistachio-100">
+                <div class="p-4 rounded-2xl bg-sand-50/80 border border-sand-200 text-xs sm:text-sm text-evergreen leading-relaxed">
+                    « Mais je continue à payer des intérêts ! » — <strong class="text-sand-500">C'est une illusion mathématique.</strong>
+                </div>
+
+                <ul class="space-y-2 text-xs sm:text-sm text-charcoalMuted">
+                    <li class="flex items-start gap-2">
+                        <span class="text-pistachio-500 font-bold">•</span>
+                        <span>Le capital restant est si faible que les intérêts annuels représentent une somme minime.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-pistachio-500 font-bold">•</span>
+                        <span>Le capital non injecté reste disponible sur des placements sécurisés (obligations, livrets, assurance-vie).</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-pistachio-500 font-bold">•</span>
+                        <span>Si le rendement de votre épargne dépasse le taux du micro-prêt, l'opération est financièrement <strong class="text-evergreen">neutre voire rentable</strong>.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Synthèse Bouclier Stratégique -->
+        <section class="bg-evergreen text-atelier rounded-[2.2rem] p-6 sm:p-8 shadow-mint-glow mb-12 relative overflow-hidden">
+            <div class="flex items-center gap-2 mb-4 text-sand-200">
+                <i data-lucide="shield" class="w-5 h-5"></i>
+                <h3 class="font-serif text-2xl font-bold">En conclusion : Le bouclier patrimonial</h3>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-atelier/80 mb-5 leading-relaxed">
+                Clôturer son prêt procure une satisfaction psychologique, mais conserver un reliquat actif offre 4 leviers incomparables :
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center gap-2.5">
+                    <span>🏦</span> <span>Titres ultra-sécurisés en coffre bancaire.</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center gap-2.5">
+                    <span>⚖️</span> <span>Protection juridique continue anti-litiges.</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center gap-2.5">
+                    <span>⚡</span> <span>Revente plus fluide pour les acquéreurs.</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center gap-2.5">
+                    <span>💳</span> <span>Ligne d'urgence Top-Up à taux immo.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espace Vote & Débat -->
+        <section class="glass-atelier rounded-[2.2rem] p-6 sm:p-8 shadow-cozy text-center space-y-5 border border-pistachio-200">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="text-3xl">🗳️</span>
+                <h3 class="font-serif text-2xl font-bold text-evergreen">Et vous, quelle est votre stratégie ?</h3>
+                <p class="text-xs sm:text-sm text-charcoalMuted">
+                    Préfériez-vous le sentiment d'être à 100 % libre de dettes, ou privilégiez-vous ces leviers de flexibilité et de sécurité financière ?
+                </p>
+            </div>
+
+            <!-- Boutons de Vote -->
+            <div id="vote-section" class="max-w-md mx-auto space-y-2.5">
+                <button onclick="registerStrategyVote('shield')" class="w-full p-4 rounded-3xl bg-pistachio-50 hover:bg-pistachio-100 border border-pistachio-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group text-evergreen">
+                    <span class="flex items-center gap-2">
+                        <span>🛡️</span> Le Bouclier & la Flexibilité Stratégique
+                    </span>
+                    <span class="text-pistachio-700 group-hover:translate-x-1 transition">→</span>
+                </button>
+
+                <button onclick="registerStrategyVote('zero')" class="w-full p-4 rounded-3xl bg-sand-50 hover:bg-sand-100 border border-sand-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group text-evergreen">
+                    <span class="flex items-center gap-2">
+                        <span>🕊️</span> Être à 100 % libre de dettes (Zéro dette)
+                    </span>
+                    <span class="text-sand-500 group-hover:translate-x-1 transition">→</span>
+                </button>
+            </div>
+
+            <!-- Résultats après vote -->
+            <div id="vote-results" class="hidden max-w-md mx-auto space-y-3 pt-2">
+                <div class="p-4 rounded-2xl bg-pistachio-50 border border-pistachio-200 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-evergreen">
+                        <span>🛡️ Bouclier & Flexibilité Stratégique</span>
+                        <span class="text-pistachio-700">68%</span>
+                    </div>
+                    <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                        <div id="bar-shield" class="bg-pistachio-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-sand-50 border border-sand-200 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-evergreen">
+                        <span>🕊️ Satisfaction psychologique (0 dette)</span>
+                        <span class="text-sand-500">32%</span>
+                    </div>
+                    <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                        <div id="bar-zero" class="bg-sand-400 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-charcoalMuted">Merci pour votre participation au débat ! 💬</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-charcoalMuted border-t border-pistachio-100">
+        <p>Atelier d'optimisation financière & patrimoniale 🌿</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-atelier border border-pistachio-300 text-evergreen px-4 py-3 rounded-2xl shadow-cozy transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-2 text-xs font-medium">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-pistachio-500"></i>
+        <span>Lien de l'article copié !</span>
+    </div>
+
+    <!-- Script JS -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Barre de défilement
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-meter').style.width = progress + '%';
+        });
+
+        // 2. Simulateur interactif de micro-reliquat
+        const slider = document.getElementById('loan-slider');
+        const loanText = document.getElementById('loan-amount-text');
+        const costCalc = document.getElementById('cost-calc');
+
+        slider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            loanText.innerText = `${val.toLocaleString('fr-FR')} €`;
+            // Approximation de coût d'intérêt mensuel à ~1.5% taux annuel
+            const monthlyCost = Math.round((val * 0.015) / 12);
+            costCalc.innerText = `~ ${monthlyCost} € / mois`;
+        });
+
+        // 3. Système de vote
+        function registerStrategyVote(choice) {
+            document.getElementById('vote-section').classList.add('hidden');
+            const res = document.getElementById('vote-results');
+            res.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('bar-shield').style.width = '68%';
+                document.getElementById('bar-zero').style.width = '32%';
+            }, 100);
+        }
+
+        // 4. Partage & Toast
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Pourquoi ne PAS rembourser totalement son prêt immo',
+                    text: '5 avantages méconnus de garder un reliquat stratégique.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+            }
+        }
+    </script>
+</body>
+</html>

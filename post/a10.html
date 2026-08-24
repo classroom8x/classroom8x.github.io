@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pourquoi Se Comparer N'est Pas Forcément Une Erreur | Clarté de Vie</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Lora (Chic Literary Serif) + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Lora', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            vanilla: {
+              50: '#FDFBF7',
+              100: '#F9F5EC',
+              200: '#F1E9D7',
+            },
+            lilac: {
+              50: '#F7F5FC',
+              100: '#EFEBF9',
+              200: '#DFD5F2',
+              400: '#A992D8',
+              600: '#7352B8',
+              700: '#5C3E9C',
+            },
+            peach: {
+              50: '#FFF7F2',
+              100: '#FEEDDF',
+              200: '#FCD8BE',
+              400: '#F79D65',
+              600: '#E06B28',
+            },
+            sage: {
+              50: '#F4F7F4',
+              100: '#E4EDE4',
+              400: '#8FB48F',
+              600: '#547A54',
+            },
+            midnight: {
+              800: '#2A293E',
+              900: '#181728',
+            }
+          },
+          boxShadow: {
+            'journal': '0 12px 35px -8px rgba(115, 82, 184, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03)',
+            'paper': '0 20px 40px -15px rgba(24, 23, 40, 0.06)',
+            'pill': '0 6px 18px rgba(115, 82, 184, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .paper-texture {
+      background-color: #FDFBF7;
+      background-image: radial-gradient(#DFD5F2 0.7px, transparent 0.7px);
+      background-size: 24px 24px;
+    }
+    .tape-badge {
+      transform: rotate(-1.5deg);
+    }
+  </style>
+</head>
+
+<body class="paper-texture text-midnight-800 font-sans antialiased selection:bg-lilac-200 selection:text-lilac-700">
+
+  <!-- Aesthetic Journal Navigation -->
+  <div class="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
+    <nav class="bg-white/90 backdrop-blur-md border border-lilac-100 shadow-journal px-6 py-3 rounded-full flex items-center gap-6 text-xs sm:text-sm font-semibold text-midnight-800">
+      <a href="#" class="flex items-center gap-2 text-lilac-600 font-bold">
+        <span class="w-2.5 h-2.5 rounded-full bg-peach-400"></span>
+        <span class="font-serif italic text-base text-midnight-900">Psychologie & Clarté</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-midnight-800/75">
+        <a href="#pieges" class="hover:text-lilac-600 transition-colors">Les 5 Pièges</a>
+        <a href="#package" class="hover:text-lilac-600 transition-colors">La Règle du Package</a>
+        <a href="#coulisses" class="hover:text-lilac-600 transition-colors">Coulisses vs Scène</a>
+        <a href="#reflexion" class="hover:text-lilac-600 transition-colors">Auto-Évaluation</a>
+      </div>
+
+      <a href="#reflexion" class="bg-midnight-900 hover:bg-lilac-600 text-white px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-peach-200"></i>
+        <span>S'abonner</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="pt-32 pb-16 px-5 relative">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <!-- Cute Tag -->
+      <div class="inline-flex items-center gap-2 bg-lilac-100/80 text-lilac-700 border border-lilac-200 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 tape-badge shadow-sm">
+        <span>⚖️ Réflexion Lucide & Sans Tabou</span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-midnight-900 leading-[1.2] mb-6">
+        Pourquoi Se Comparer N'est Pas Une Erreur <br>
+        <span class="italic text-lilac-600 font-medium">(Mais pourquoi nous le faisons tous de travers)</span>.
+      </h1>
+
+      <p class="text-base sm:text-lg text-midnight-800/80 max-w-2xl mx-auto leading-relaxed mb-8">
+        « Ne te compare jamais aux autres » est un conseil bienveillant mais <strong>pratiquement impossible à appliquer</strong>. Comparer est un mécanisme d'évaluation inné. Le drame commence quand nous appliquons la logique d'un comparateur d'objets à la complexité des vies humaines.
+      </p>
+
+      <!-- Analogy Card -->
+      <div class="max-w-3xl mx-auto bg-white/90 rounded-3xl p-6 sm:p-8 border border-lilac-100 shadow-paper text-left">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-9 h-9 rounded-xl bg-peach-100 text-peach-600 flex items-center justify-center">
+            <i data-lucide="smartphone" class="w-5 h-5"></i>
+          </span>
+          <h2 class="font-serif text-xl font-bold text-midnight-900">L'Analogie du Smartphone</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-midnight-800/85 leading-relaxed">
+          Quand vous achetez un téléphone, vous comparez son autonomie, son capteur photo et son processeur. Pour une voiture ou un logement, vous pesez les options et les prix. Pour des objets matériels, la comparaison est <strong>saine, logique et rationnelle</strong>.
+          <br><br>
+          <span class="text-lilac-700 font-semibold">Le problème ?</span> Nous appliquons ce comparatif aux êtres humains de façon <strong>partielle, asymétrique et biaisée</strong>.
+        </p>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Section 1 : Les 5 Pièges Quotidiens -->
+  <section id="pieges" class="py-16 px-5">
+    <div class="max-w-5xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-lilac-600 font-bold text-xs uppercase tracking-widest block mb-2">🎭 Psychologie du Quotidien</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-midnight-900 font-normal">
+          Les 5 Pièges de la Comparaison Biaisée
+        </h2>
+        <p class="text-xs sm:text-sm text-midnight-800/70 mt-2">
+          Voici comment nous sabotons quotidiennement notre propre paix intérieure :
+        </p>
+      </div>
+
+      <!-- The 5 Traps Grid -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Piège 1 -->
+        <div class="bg-white rounded-3xl p-7 border border-lilac-100 shadow-journal hover:border-peach-300 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-full bg-peach-100 text-peach-600 font-bold text-xs flex items-center justify-center">01</span>
+              <span class="text-xs font-semibold text-peach-600 bg-peach-50 px-3 py-1 rounded-full">Façade Sociale</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-midnight-900 mb-2">
+              Les Apparences Familiales et Sociales
+            </h3>
+            <p class="text-xs sm:text-sm text-midnight-800/80 leading-relaxed">
+              Lors d'un mariage ou d'une fête, on observe la belle-fille ou le gendre du voisin et l'on décrète en 15 secondes : <em>« Quelle chance ils ont, quelle famille parfaite ! »</em> On projette une harmonie absolue sur un instantané soigneusement mis en scène.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-vanilla-200 text-xs italic text-midnight-800/60">
+            Piège : Confondre une photo de famille avec la réalité des 365 jours de l'année.
+          </div>
+        </div>
+
+        <!-- Piège 2 -->
+        <div class="bg-white rounded-3xl p-7 border border-lilac-100 shadow-journal hover:border-lilac-300 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-full bg-lilac-100 text-lilac-600 font-bold text-xs flex items-center justify-center">02</span>
+              <span class="text-xs font-semibold text-lilac-600 bg-lilac-50 px-3 py-1 rounded-full">Parentalité</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-midnight-900 mb-2">
+              Le Syndrome de « L’Enfant Parfait » du Voisin
+            </h3>
+            <p class="text-xs sm:text-sm text-midnight-800/80 leading-relaxed">
+              Reprocher à son enfant de ne pas être aussi brillant en classe ou aussi doué en musique que celui de la voisine. C'est oublier que chaque enfant possède ses propres talents et que les parents d'en face mènent d'autres combats invisibles.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-vanilla-200 text-xs italic text-midnight-800/60">
+            Piège : Détruire l'estime d'un enfant au nom d'une vitrine extérieure.
+          </div>
+        </div>
+
+        <!-- Piège 3 -->
+        <div class="bg-white rounded-3xl p-7 border border-lilac-100 shadow-journal hover:border-sage-400 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-full bg-sage-100 text-sage-600 font-bold text-xs flex items-center justify-center">03</span>
+              <span class="text-xs font-semibold text-sage-600 bg-sage-50 px-3 py-1 rounded-full">Monde du Travail</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-midnight-900 mb-2">
+              Les Guerres de Clocher en Entreprise
+            </h3>
+            <p class="text-xs sm:text-sm text-midnight-800/80 leading-relaxed">
+              Les équipes techniques envient les commerciaux pour leurs primes et leur visibilité sans voir la pression féroce du chiffre et l'épuisement des voyages. Les commerciaux envient la stabilité des supports sans voir leurs contraintes opérationnelles écrasantes.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-vanilla-200 text-xs italic text-midnight-800/60">
+            Piège : Envier la récompense sans accepter la nature du labeur.
+          </div>
+        </div>
+
+        <!-- Piège 4 -->
+        <div class="bg-white rounded-3xl p-7 border border-lilac-100 shadow-journal hover:border-peach-300 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-8 h-8 rounded-full bg-peach-100 text-peach-600 font-bold text-xs flex items-center justify-center">04</span>
+              <span class="text-xs font-semibold text-peach-600 bg-peach-50 px-3 py-1 rounded-full">Course au Statut</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-midnight-900 mb-2">
+              Le Piège du Statut & du Prestige Extérieur
+            </h3>
+            <p class="text-xs sm:text-sm text-midnight-800/80 leading-relaxed">
+              Passer sa vie à mesurer sa valeur au millimètre : quelle grille indiciaire, quel ministère confère le plus de prestige (<em>izzat</em>). Réduire toute son existence à un concours réussi il y a 15 ans rétrécit considérablement l'horizon d'une vie.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-vanilla-200 text-xs italic text-midnight-800/60">
+            Piège : L'illusion que le titre hiérarchique remplace la paix intérieure.
+          </div>
+        </div>
+
+        <!-- Piège 5 (Plein Largeur - Le Plus Dévastateur) -->
+        <div class="md:col-span-2 bg-gradient-to-br from-lilac-50 via-white to-peach-50 rounded-3xl p-8 border-2 border-lilac-200 shadow-paper">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="p-2.5 rounded-2xl bg-lilac-600 text-white font-bold text-sm">
+              <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+            </span>
+            <div>
+              <span class="text-xs font-bold text-lilac-700 uppercase tracking-wide">Piège 05 • L'Erreur la plus dévastatrice</span>
+              <h3 class="font-serif text-2xl font-bold text-midnight-900">
+                L’Asymétrie : Comparer son Faible au Point Fort de l'Autre
+              </h3>
+            </div>
+          </div>
+          
+          <p class="text-sm text-midnight-800/85 leading-relaxed mb-6">
+            C’est le mécanisme qui crée une souffrance garantie : nous prenons notre point le plus vulnérable et le comparons au point le plus éclatant de quelqu'un d'autre :
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-3 text-xs mb-6">
+            <div class="bg-white/80 p-4 rounded-2xl border border-lilac-100">
+              <span class="text-peach-600 font-bold block mb-1">Votre conjoint ne travaille pas ?</span>
+              Vous enviez le confort financier du double revenu du voisin.
+            </div>
+            <div class="bg-white/80 p-4 rounded-2xl border border-lilac-100">
+              <span class="text-peach-600 font-bold block mb-1">Vos enfants sont turbulents ?</span>
+              Vous enviez le calme apparent des enfants d'un ami.
+            </div>
+            <div class="bg-white/80 p-4 rounded-2xl border border-lilac-100">
+              <span class="text-peach-600 font-bold block mb-1">Vous devez faire des sacrifices ?</span>
+              Vous enviez l'héritage ou l'aide reçue par un collègue.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-midnight-900 text-vanilla-50 text-xs sm:text-sm font-medium leading-relaxed">
+            💥 <strong>Le Monstre de Perfection :</strong> En assemblant les points forts de dix personnes différentes (la richesse d'un tel, la santé d'un autre, la liberté d'un troisième), vous créez un être imaginaire parfait contre lequel votre propre vie perdra <em>systématiquement</em>.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 2 : La Règle du "Package Global" (Interactive Scale) -->
+  <section id="package" class="py-16 px-5 bg-vanilla-100">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-peach-600 font-bold text-xs uppercase tracking-widest block mb-2">⚖️ La Solution Rationnelle</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-midnight-900 font-normal">
+          La Règle du « Package Global »
+        </h2>
+        <p class="text-xs sm:text-sm text-midnight-800/70 mt-2">
+          Si la comparaison est inévitable, appliquez-la avec honnêteté : <strong>comparez le package entier, ou ne comparez rien du tout</strong>.
+        </p>
+      </div>
+
+      <!-- Interactive Scale Explorer -->
+      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-lilac-100 shadow-paper">
+        <p class="text-xs font-bold text-midnight-900 uppercase tracking-wide mb-4 text-center">
+          Explorez les deux faces indissociables de chaque trajectoire de vie :
+        </p>
+
+        <!-- Profile Selector Buttons -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-8" id="package-selectors">
+          <button onclick="showPackage('salaire', this)" class="package-btn p-3 rounded-2xl border border-lilac-200 text-xs font-bold text-midnight-800 bg-lilac-50/50 hover:bg-lilac-100 transition-all flex items-center justify-center gap-2 active-pkg">
+            <span>💼 Le Très Haut Salaire</span>
+          </button>
+          <button onclick="showPackage('paisible', this)" class="package-btn p-3 rounded-2xl border border-lilac-200 text-xs font-bold text-midnight-800 bg-white hover:bg-lilac-100 transition-all flex items-center justify-center gap-2">
+            <span>🌿 La Vie Paisible Sans Stress</span>
+          </button>
+          <button onclick="showPackage('jeunesse', this)" class="package-btn p-3 rounded-2xl border border-lilac-200 text-xs font-bold text-midnight-800 bg-white hover:bg-lilac-100 transition-all flex items-center justify-center gap-2">
+            <span>✈️ Les Années Voyage & Loisirs</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Package Content Display -->
+        <div class="grid sm:grid-cols-2 gap-4" id="package-content">
+          <!-- Left: The Visible Advantage -->
+          <div class="p-6 rounded-2xl bg-sage-50 border border-sage-100">
+            <div class="flex items-center gap-2 text-sage-600 font-bold text-sm mb-2">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+              <span>Ce que vous voyez (L'Avantage)</span>
+            </div>
+            <p id="pkg-visible" class="text-xs sm:text-sm text-midnight-800/90 leading-relaxed font-medium">
+              Gagne 2 à 3 fois plus que la moyenne, roule en belle voiture, statut professionnel valorisé et grand patrimoine immobilier.
+            </p>
+          </div>
+
+          <!-- Right: The Invisible Cost -->
+          <div class="p-6 rounded-2xl bg-peach-50 border border-peach-100">
+            <div class="flex items-center gap-2 text-peach-600 font-bold text-sm mb-2">
+              <i data-lucide="eye-off" class="w-4 h-4"></i>
+              <span>Ce que vous oubliez (Le Coût Réel)</span>
+            </div>
+            <p id="pkg-cost" class="text-xs sm:text-sm text-midnight-800/90 leading-relaxed font-medium">
+              Semaines de 70 heures, charge mentale permanente, absence auprès des enfants en bas âge, sacrifices sur le sommeil et la santé physique.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-vanilla-200 text-center">
+          <p class="text-xs sm:text-sm text-midnight-900 font-serif italic">
+            « Dans la réalité, la vie équilibre presque toujours les plateaux de la balance. Tout avantage a un coût ; toute liberté a un prix. »
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3 : Coulisses vs Scène Publique -->
+  <section id="coulisses" class="py-16 px-5">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="bg-gradient-to-br from-midnight-900 to-midnight-800 text-vanilla-50 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        
+        <div class="relative z-10 max-w-2xl">
+          <span class="text-peach-300 font-bold text-xs uppercase tracking-wider block mb-2">🎯 Actions & Conséquences</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-normal leading-tight mb-4">
+            Sortir Définitivement de l'Amertume
+          </h2>
+          <p class="text-xs sm:text-sm text-vanilla-100/80 leading-relaxed mb-6">
+            Nos vies actuelles sont en grande partie <strong>la somme exacte de nos choix passés</strong> :
+          </p>
+
+          <div class="space-y-3 text-xs sm:text-sm mb-8">
+            <div class="p-4 rounded-2xl bg-white/10 border border-white/10 flex items-start gap-3">
+              <span class="text-peach-300 font-bold">1.</span>
+              <p>Si vous avez privilégié les expériences, la liberté et les loisirs pendant 15 ans pendant qu'un autre travaillait 80h par semaine, <strong>il est inutile d'envier son patrimoine aujourd'hui</strong>.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/10 border border-white/10 flex items-start gap-3">
+              <span class="text-peach-300 font-bold">2.</span>
+              <p><strong>Si les conséquences ne vous plaisent pas :</strong> modifiez vos actions futures dès maintenant avec discipline.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/10 border border-white/10 flex items-start gap-3">
+              <span class="text-peach-300 font-bold">3.</span>
+              <p><strong>Si vous ne voulez pas modifier vos actions :</strong> assumez et acceptez pleinement vos conséquences actuelles, sans rancœur ni jalousie.</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-lilac-600/30 border border-lilac-400/40 text-xs sm:text-sm text-lilac-200">
+            ✨ <strong>La Règle d'Or :</strong> Ne comparez jamais vos coulisses (vos doutes, votre fatigue, votre désordre) à la scène publique des autres (leurs réussites polies et filtrées).
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4 : Auto-Évaluation & Réflexion Interactive -->
+  <section id="reflexion" class="py-16 px-5 bg-vanilla-50">
+    <div class="max-w-3xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-lilac-100 shadow-journal">
+      
+      <div class="text-center mb-8">
+        <span class="text-lilac-600 text-xs font-bold uppercase tracking-wider">💬 Espace de Partage & Clarté</span>
+        <h3 class="font-serif text-2xl sm:text-3xl text-midnight-900 mt-1">
+          Et Vous ? Où se situe votre piège de comparaison ?
+        </h3>
+        <p class="text-xs sm:text-sm text-midnight-800/70 mt-1">
+          Prenez 10 secondes pour identifier votre réflexe le plus fréquent :
+        </p>
+      </div>
+
+      <!-- Quick Poll Chips -->
+      <div class="grid sm:grid-cols-2 gap-3 mb-6" id="reflexion-poll">
+        <button onclick="recordReflexion(this, 'Les finances et le patrimoine')" class="ref-btn text-left p-3.5 rounded-2xl border border-vanilla-200 hover:border-lilac-600 text-xs font-semibold text-midnight-800 bg-vanilla-50 transition-all flex items-center justify-between">
+          <span>💰 Revenus & Patrimoine des collègues</span>
+          <i data-lucide="check-circle" class="w-4 h-4 text-lilac-400"></i>
+        </button>
+        <button onclick="recordReflexion(this, 'L\\\'harmonie familiale')" class="ref-btn text-left p-3.5 rounded-2xl border border-vanilla-200 hover:border-lilac-600 text-xs font-semibold text-midnight-800 bg-vanilla-50 transition-all flex items-center justify-between">
+          <span>👨‍👩‍👧 La famille « parfaite » des autres</span>
+          <i data-lucide="check-circle" class="w-4 h-4 text-lilac-400"></i>
+        </button>
+        <button onclick="recordReflexion(this, 'La réussite des enfants')" class="ref-btn text-left p-3.5 rounded-2xl border border-vanilla-200 hover:border-lilac-600 text-xs font-semibold text-midnight-800 bg-vanilla-50 transition-all flex items-center justify-between">
+          <span>🎓 Les résultats des enfants du voisin</span>
+          <i data-lucide="check-circle" class="w-4 h-4 text-lilac-400"></i>
+        </button>
+        <button onclick="recordReflexion(this, 'Le statut professionnel')" class="ref-btn text-left p-3.5 rounded-2xl border border-vanilla-200 hover:border-lilac-600 text-xs font-semibold text-midnight-800 bg-vanilla-50 transition-all flex items-center justify-between">
+          <span>🏆 Le titre hiérarchique et le prestige</span>
+          <i data-lucide="check-circle" class="w-4 h-4 text-lilac-400"></i>
+        </button>
+      </div>
+
+      <!-- Reflection feedback -->
+      <div id="reflexion-ack" class="hidden p-4 rounded-2xl bg-lilac-50 border border-lilac-200 text-xs sm:text-sm text-lilac-700 text-center mb-6">
+        🌱 Merci pour votre lucidité. Reconnaître le biais est déjà la moitié du chemin vers la sérénité.
+      </div>
+
+      <!-- Subscription Action Box -->
+      <div class="p-6 rounded-2xl bg-vanilla-100 border border-vanilla-200 text-center">
+        <h4 class="font-serif text-lg font-bold text-midnight-900 mb-1">
+          Moins de Débats Stériles, Plus de Clarté 🕊️
+        </h4>
+        <p class="text-xs text-midnight-800/75 max-w-lg mx-auto mb-4">
+          Abonnez-vous à la chaîne pour recevoir nos prochaines analyses pratiques sur la gestion financière, les relations et la prise de décision.
+        </p>
+        <button onclick="copyShareLink()" class="px-6 py-3 rounded-full bg-midnight-900 hover:bg-lilac-600 text-white font-bold text-xs shadow-pill transition-all flex items-center gap-2 mx-auto">
+          <i data-lucide="share-2" class="w-4 h-4 text-peach-300"></i>
+          <span>Partager cette réflexion avec un proche</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-midnight-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-lilac-400/30 text-xs font-semibold">
+    <i data-lucide="check" class="w-4 h-4 text-peach-300"></i>
+    <span id="toast-text">Lien copié avec succès ! 💌</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-10 px-5 border-t border-vanilla-200 text-center text-xs text-midnight-800/60">
+    <p>© 2026 Clarté de Vie • Bâtissez votre équilibre, protégez votre famille • Tous droits réservés</p>
+  </footer>
+
+  <!-- Vanilla JS Interactive Scripts -->
+  <script>
+    // Init Lucide Icons
+    lucide.createIcons();
+
+    // Package Global Data
+    const packageData = {
+      salaire: {
+        visible: "Gagne 2 à 3 fois plus que la moyenne, roule en belle voiture, statut professionnel valorisé et grand patrimoine immobilier.",
+        cost: "Semaines de 70 heures, charge mentale permanente, absence auprès des enfants en bas âge, sacrifices sur le sommeil et la santé physique."
+      },
+      paisible: {
+        visible: "Horaires stricts, soirées libres tous les soirs, zéro stress le week-end, présence maximale pour la famille et les loisirs personnels.",
+        cost: "Marges de manœuvre financières plus étroites, renoncement à certains projets d'envergure, progression de patrimoine plus lente."
+      },
+      jeunesse: {
+        visible: "15 ans de voyages, sorties, liberté géographique totale, expériences inoubliables et souvenirs de jeunesse intenses.",
+        cost: "Retard sur l'acquisition de la résidence principale, épargne de précaution plus modeste et nécessité d'un rattrapage financier plus tard."
+      }
+    };
+
+    function showPackage(key, btn) {
+      document.querySelectorAll('.package-btn').forEach(b => {
+        b.classList.remove('bg-lilac-100', 'border-lilac-600', 'text-lilac-700');
+        b.classList.add('bg-white');
+      });
+      btn.classList.remove('bg-white');
+      btn.classList.add('bg-lilac-100', 'border-lilac-600', 'text-lilac-700');
+
+      document.getElementById('pkg-visible').innerText = packageData[key].visible;
+      document.getElementById('pkg-cost').innerText = packageData[key].cost;
+    }
+
+    // Record Poll
+    function recordReflexion(btn, name) {
+      document.querySelectorAll('.ref-btn').forEach(b => {
+        b.classList.add('opacity-40', 'pointer-events-none');
+      });
+      btn.classList.remove('opacity-40');
+      btn.classList.add('border-lilac-600', 'bg-lilac-100');
+      document.getElementById('reflexion-ack').classList.remove('hidden');
+    }
+
+    // Share link copy
+    function copyShareLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast("Lien copié dans le presse-papier ! 💌");
+      }).catch(() => {
+        showToast("Lien prêt à être partagé ! ✨");
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+
+</body>
+</html>

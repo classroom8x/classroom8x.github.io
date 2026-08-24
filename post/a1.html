@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Builder Floor vs Tour de Luxe : Le Guide Ultime Immobilier</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Découvrez le comparatif ultime entre un Builder Floor (petit immeuble indépendant) et un appartement en grande tour résidentielle premium. Prix, sécurité, finitions et ROI.">
+    <meta name="keywords" content="immobilier, investissement locatif, builder floor, appartement standing, copropriété, rentabilité immobilière">
+    <meta name="author" content="Expertise Immobilière">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fdf4f7',
+                            100: '#fbe8ef',
+                            200: '#f7d5e2',
+                            500: '#e05388',
+                            600: '#c93b70',
+                            700: '#a82956',
+                            900: '#5c1730',
+                        },
+                        pastel: {
+                            rose: '#FFE5EC',
+                            lilac: '#E8EAFF',
+                            mint: '#E2FBE8',
+                            sun: '#FFF5EB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .reading-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, #e05388, #8b5cf6);
+            width: 0%;
+            z-index: 100;
+            transition: width 0.1s ease-out;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-card {
+            background: rgba(24, 24, 27, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .soft-shadow {
+            box-shadow: 0 20px 40px -15px rgba(224, 83, 136, 0.07);
+        }
+    </style>
+</head>
+
+<body class="bg-[#FAF9F6] dark:bg-[#0F0F12] text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-brand-100 selection:text-brand-700 transition-colors duration-300">
+
+    <!-- Reading Progress Bar -->
+    <div id="progressBar" class="reading-progress-bar"></div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-40 glass-card transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-500 to-indigo-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-building-wheat text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Immo<span class="text-brand-500">Clarté</span></span>
+                    <span class="text-[10px] tracking-wider uppercase font-semibold text-slate-400">Guide & Analyse</span>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-amber-400 flex items-center justify-center hover:scale-105 transition">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+                <a href="#comparateur" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider shadow-md shadow-brand-500/25 hover:shadow-brand-500/40 transition">
+                    <i class="fa-solid fa-bolt"></i> Verdict Rapide
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 lg:py-16">
+        
+        <!-- Hero Header -->
+        <article class="space-y-6 max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-700/40 text-brand-700 dark:text-brand-300 text-xs font-bold tracking-wide uppercase">
+                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                Dossier Spécial Investissement & Achat
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                Builder Floor ou Appartement en Tour Résidentielle : <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-500">Où Placer Votre Capital ?</span>
+            </h1>
+
+            <!-- Meta info -->
+            <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 dark:text-slate-400 pt-2 pb-6 border-b border-slate-200 dark:border-zinc-800">
+                <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Auteur" class="w-7 h-7 rounded-full object-cover border border-brand-300">
+                    <span class="font-medium text-slate-700 dark:text-slate-200">Alexandre Dumas-Dubois</span>
+                </div>
+                <span>•</span>
+                <div><i class="fa-regular fa-clock mr-1.5 text-brand-500"></i> Lecture : 7 min (~1 100 mots)</div>
+                <span>•</span>
+                <div><i class="fa-solid fa-shield-halved mr-1.5 text-emerald-500"></i> Analyse 100% Indépendante</div>
+            </div>
+        </article>
+
+        <!-- Layout Grid: Content + Sticky Sidebar -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-10">
+            
+            <!-- Main Editorial Content (800+ Words) -->
+            <div class="lg:col-span-8 space-y-8 text-base leading-relaxed text-slate-700 dark:text-slate-300">
+
+                <!-- Summary Intro Card -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-pastel-rose via-white to-pastel-lilac dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-800 border border-brand-200/50 dark:border-zinc-700 soft-shadow">
+                    <p class="font-medium text-slate-800 dark:text-slate-200 text-lg leading-relaxed">
+                        Pendant des années, le <strong>« Builder Floor »</strong> (immeuble indépendant de 3 à 4 étages, un appartement par palier) a représenté le graal pour les acheteurs en quête de rapidité de livraison et de prix cassés. Mais en 2026, la donne a radicalement changé face à l'essor des <strong>résidences verticales de grand standing</strong>. 
+                    </p>
+                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">
+                        Voici une analyse minutieuse en 10 points pour vous éviter les erreurs de parcours et choisir le logement parfaitement aligné avec vos impératifs de confort et de rentabilité.
+                    </p>
+                </div>
+
+                <!-- Section 1 -->
+                <section class="space-y-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center text-sm font-black">1</span>
+                        L'Évolution du Prix : La fin d'un rabais historique
+                    </h2>
+                    <p>
+                        Entre 2009 et 2014, les retards massifs des grands projets ont poussé les acquéreurs vers les petits immeubles indépendants construits en 12 à 18 mois. À l’époque, un Builder Floor coûtait jusqu'à <strong>50 % moins cher</strong> qu'un bien en complexe résidentiel neuf. 
+                    </p>
+                    <p>
+                        Aujourd'hui, cet écart s'est presque totalement résorbé. À localisation équivalente, les prix au mètre carré sont désormais quasiment à parité. Le Builder Floor a perdu son argument massue numéro un : le prix d'aubaine.
+                    </p>
+                </section>
+
+                <!-- Section 2 -->
+                <section class="space-y-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center text-sm font-black">2</span>
+                        Qualité Constructive : Standardisation vs Finitions de Façade
+                    </h2>
+                    <p>
+                        Dans un Builder Floor, la qualité relève souvent d'une loterie. Les finitions cosmétiques (placages brillants, faux-plafonds, carrelages tape-à-l'œil) masquent fréquemment des économies drastiques sur la structure : diamètres d'armatures réduits, absence de normes antisismiques certifiées ou portes intérieures en composite bas de gamme.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border-l-4 border-amber-500 text-amber-900 dark:text-amber-200 text-sm">
+                        <strong>À retenir :</strong> Les projets d'envergure utilisent le coffrage aluminium (technologie Mivan) et font l'objet d'audits d'ingénierie tiers que les petits artisans ne peuvent pas s'offrir.
+                    </div>
+                </section>
+
+                <!-- Section 3 & 4 -->
+                <section class="space-y-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center text-sm font-black">3</span>
+                        Architecture, Agencement & Vue : L'Étouffement vs L'Horizon
+                    </h2>
+                    <p>
+                        Parce qu'ils sont construits sur des parcelles rectangulaires enclavées entre deux voisins, les Builder Floors souffrent d'un problème congénital de <strong>ventilation croisée</strong>. Les cuisines et salles d'eau se retrouvent souvent aveugles ou sans balcon utilitaire.
+                    </p>
+                    <p>
+                        À l'inverse, un appartement en étage élevé dans une tour offre :
+                    </p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <li class="p-3 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>Zéro vis-à-vis direct à 5 mètres</span>
+                        </li>
+                        <li class="p-3 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>Disparition quasi-totale des moustiques</span>
+                        </li>
+                        <li class="p-3 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>Lumière naturelle ininterrompue</span>
+                        </li>
+                        <li class="p-3 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i>
+                            <span>Isolation acoustique des bruits de rue</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section 5 -->
+                <section class="space-y-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center text-sm font-black">4</span>
+                        Gestion de Copropriété : L'Enfer des 4 Voisins
+                    </h2>
+                    <p>
+                        C’est le point noir ignoré par les acheteurs enthousiastes. Dans un immeuble de 4 appartements :
+                    </p>
+                    <blockquote class="p-5 rounded-2xl bg-slate-100 dark:bg-zinc-800/80 border-l-4 border-brand-500 italic text-slate-700 dark:text-slate-300">
+                        « Qui paie la révision de l'ascenseur quand l'habitant du rez-de-chaussée refuse au motif qu'il prend les escaliers ? Qui nettoie la cage d'escalier ? Qui répare la pompe à eau partagée ? »
+                    </blockquote>
+                    <p>
+                        Sans syndic professionnel ni cadre juridique strict, les litiges entre copropriétaires virent rapidement à l'impasse relationnelle, même au sein d'une même famille. Dans un grand ensemble géré par une association de résidents (ASL/RWA), chaque propriétaire verse une provision mensuelle fixe et tout est délégué à des professionnels.
+                    </p>
+                </section>
+
+                <!-- Section 6 & 7 -->
+                <section class="space-y-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center text-sm font-black">5</span>
+                        Sécurité & Équipements de Vie (Lifestyle)
+                    </h2>
+                    <p>
+                        La vie moderne ne se résume pas à 150 m² habitables. Pouvoir faire une promenade nocturne après le dîner sans craindre le trafic routier, avoir accès à une piscine semi-olympique chauffée, à un club-house et à une salle de musculation au pied de l'ascenseur transforme le quotidien.
+                    </p>
+                    <p>
+                        Le Builder Floor impose une sortie directe sur la voie publique, une surveillance minimale (au mieux un gardien de nuit non encadré) et aucune infrastructure récréative collective.
+                    </p>
+                </section>
+
+                <!-- Section 8 & 9 -->
+                <section class="space-y-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center text-sm font-black">6</span>
+                        Revente & "Smart Money" : Où vont les capitaux avisés ?
+                    </h2>
+                    <p>
+                        L'offre de Builder Floors ne cessera d'augmenter car dès qu'une vieille maison de ville est détruite, 4 nouveaux lots sont remis sur le marché. Cette surabondance structurelle crée un plafond de verre sur la <strong>plus-value de revente</strong>.
+                    </p>
+                    <p>
+                        À l’inverse, la « Smart Money » privilégie les grands programmes de marque reconnue. La rareté foncière, les prestations haut de gamme et la fluidité de la gestion locative assurent une appréciation constante et une bien meilleure liquidité.
+                    </p>
+                </section>
+
+                <!-- Le Bonus Juridique -->
+                <section class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-900 to-slate-900 text-white space-y-4 shadow-xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/30 border border-indigo-400/30 text-indigo-200 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-star text-amber-300"></i> Le Point Révélation
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-display font-bold">
+                        Le Décalage Surface Réelle vs Titre de Propriété
+                    </h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Un des non-dits majeurs du Builder Floor réside dans l'ambiguïté entre la <em>surface au sol construite</em> et la <em>surface légale certifiée</em> au cadastre. Les extensions sur balcons ou cages d'escaliers non déclarées créent des blocages insurmontables lors d'une revente avec prêt bancaire. Dans un complexe certifié et labellisé (type RERA / VEFA), la surface habitable nette (Carpet Area) est gravée dans le marbre et vérifiable au centimètre près.
+                    </p>
+                </section>
+
+                <!-- Tableau Comparatif -->
+                <section id="comparateur" class="space-y-4 pt-4">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white">
+                        Synthèse Comparative en un Coup d'Œil
+                    </h2>
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-zinc-800 glass-card">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-100 dark:bg-zinc-800/80 text-slate-700 dark:text-slate-200 uppercase font-bold text-[11px] tracking-wider">
+                                <tr>
+                                    <th class="p-4">Critère Clé</th>
+                                    <th class="p-4 text-brand-600">Builder Floor</th>
+                                    <th class="p-4 text-indigo-500">Tour Résidentielle</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-zinc-800">
+                                <tr>
+                                    <td class="p-4 font-semibold">Intimité & Bruit</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Mitoyenneté forte, bruits de rue</td>
+                                    <td class="p-4 text-emerald-600 font-medium"><i class="fa-solid fa-check mr-1"></i> Totale en étage élevé</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">Frais & Syndic</td>
+                                    <td class="p-4 text-rose-500">Informel, disputes fréquentes</td>
+                                    <td class="p-4 text-emerald-600 font-medium"><i class="fa-solid fa-check mr-1"></i> Syndic pro & transparent</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">Équipements (Loisirs)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Néant</td>
+                                    <td class="p-4 text-emerald-600 font-medium"><i class="fa-solid fa-check mr-1"></i> Club-house, piscine, parcs</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">Potentiel Plus-Value</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Moyen (concurrence forte)</td>
+                                    <td class="p-4 text-emerald-600 font-medium"><i class="fa-solid fa-check mr-1"></i> Élevé (actif de prestige)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Conclusion & Checklist -->
+                <section class="space-y-4 pt-6 border-t border-slate-200 dark:border-zinc-800">
+                    <h2 class="text-2xl font-display font-bold text-slate-900 dark:text-white">
+                        Verdict Final : Que Choisir en 2026 ?
+                    </h2>
+                    <p>
+                        Si votre objectif est de construire vous-même avec des associés pour revendre à court terme, le modèle du Builder Floor reste un excellent véhicule d'affaires pour les professionnels du bâtiment. 
+                    </p>
+                    <p>
+                        En revanche, pour une <strong>résidence principale familiale</strong> ou un <strong>investissement patrimonial serein</strong>, l'appartement en résidence premium s'impose sur tous les plans : qualité de vie, sécurité hermétique, entretien clé en main et pérennité du capital.
+                    </p>
+                </section>
+
+            </div>
+
+            <!-- Sticky Sidebar (Interactive & Cute Aesthetic) -->
+            <aside class="lg:col-span-4 space-y-6">
+                
+                <!-- Quick Tool: Mini Quiz / Selector -->
+                <div class="p-6 rounded-3xl glass-card border border-brand-200/60 dark:border-zinc-800 sticky top-24 soft-shadow space-y-5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-pastel-rose text-brand-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold text-slate-900 dark:text-white text-sm">Aide à la Décision</h4>
+                            <p class="text-xs text-slate-500">Trouvez votre profil en 1 clic</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Votre Priorité N°1 :</label>
+                        <select id="prioritySelect" class="w-full p-3 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                            <option value="lifestyle">Qualité de vie & Espaces verts</option>
+                            <option value="custom">Indépendance & Faible copropriété</option>
+                            <option value="resale">Sécurité du capital & Revente</option>
+                        </select>
+                        <button onclick="calculateRecommendation()" class="w-full py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition shadow-md">
+                            Afficher la Recommandation
+                        </button>
+                    </div>
+
+                    <div id="resultBox" class="hidden p-4 rounded-2xl bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-700/40 text-xs leading-relaxed text-brand-900 dark:text-brand-200 transition-all">
+                        <!-- Dynamic Text by JS -->
+                    </div>
+
+                    <hr class="border-slate-200 dark:border-zinc-800">
+
+                    <!-- Newsletter Mini-Card -->
+                    <div class="space-y-3">
+                        <h5 class="font-display font-bold text-slate-900 dark:text-white text-sm">Le Décodeur Immo</h5>
+                        <p class="text-xs text-slate-500">Recevez chaque semaine nos analyses sans concessions sur le marché.</p>
+                        <div class="flex gap-2">
+                            <input type="email" placeholder="votre@email.com" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:ring-1 focus:ring-brand-500">
+                            <button class="px-4 py-2 rounded-xl bg-brand-500 text-white text-xs font-bold hover:bg-brand-600 transition">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-slate-200 dark:border-zinc-800 py-10 bg-white dark:bg-zinc-950 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ImmoClarté. Conçu pour des décisions immobilières éclairées.</p>
+            <div class="flex items-center gap-4 text-slate-400 text-sm">
+                <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vanilla JavaScript for Interactivity -->
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // Theme Toggle (Dark / Light Mode)
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Initialize Theme from User Preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Mini Recommendation Logic
+        function calculateRecommendation() {
+            const val = document.getElementById('prioritySelect').value;
+            const resultBox = document.getElementById('resultBox');
+            resultBox.classList.remove('hidden');
+
+            if (val === 'lifestyle' || val === 'resale') {
+                resultBox.innerHTML = '<strong>Recommandation : Tour Résidentielle Premium</strong><br>Votre profil exige tranquillité d\'esprit, gestion déléguée et pérennité de valeur marchande.';
+            } else {
+                resultBox.innerHTML = '<strong>Recommandation : Builder Floor sous conditions</strong><br>Idéal uniquement si vous achetez avec un cercle de confiance ou si vous maîtrisez la maîtrise d’ouvrage locale.';
+            }
+        }
+    </script>
+
+</body>
+</html>

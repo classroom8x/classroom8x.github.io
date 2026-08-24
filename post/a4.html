@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destin ou Libre Arbitre • Quête de Clarté</title>
+
+    <!-- Google Fonts : Cormorant Garamond (Sérif Mystique & Poétique) + Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                    },
+                    colors: {
+                        cosmos: '#F6F5FC',
+                        starlight: '#FAF9FF',
+                        indigoPastel: {
+                            50: '#EEF2FF',
+                            100: '#E0E7FF',
+                            200: '#C7D2FE',
+                            500: '#6366F1',
+                            600: '#4F46E5',
+                            900: '#1E1B4B',
+                        },
+                        amethyst: {
+                            100: '#F3E8FF',
+                            200: '#E9D5FF',
+                            400: '#C084FC',
+                            500: '#A855F7',
+                        },
+                        sunbeam: '#FEF3C7',
+                        nocturne: '#1E1A2E',
+                        mist: '#645E7A'
+                    },
+                    boxShadow: {
+                        'celestial': '0 15px 35px -10px rgba(99, 102, 241, 0.12)',
+                        'star-glow': '0 0 25px rgba(168, 85, 247, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F6F5FC;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(224, 231, 255, 0.6) 0%, transparent 40%),
+                radial-gradient(circle at 90% 60%, rgba(243, 232, 255, 0.7) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(254, 243, 199, 0.4) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .frosted-glass {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .shimmer-text {
+            background: linear-gradient(135deg, #4F46E5 0%, #A855F7 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .star-sparkle {
+            animation: twinkle 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="text-nocturne font-sans antialiased selection:bg-amethyst-200 selection:text-indigoPastel-900 min-h-screen relative overflow-x-hidden">
+
+    <!-- Jauge de lecture étoilée -->
+    <div id="read-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigoPastel-500 via-amethyst-400 to-indigoPastel-600 w-0 z-50 transition-all duration-150"></div>
+
+    <!-- Navigation Capsule Cosmique -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="frosted-glass rounded-full px-5 py-3 flex items-center justify-between shadow-celestial">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigoPastel-500 to-amethyst-400 text-white flex items-center justify-center text-xs shadow-sm">
+                    ✨
+                </div>
+                <div>
+                    <span class="font-serif italic font-bold text-sm sm:text-base text-nocturne block leading-none">Philosophie & Conscience</span>
+                    <span class="text-[10px] text-mist tracking-wider uppercase font-medium">Clarté Intérieure</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <button id="ananda-pill" class="hidden sm:flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-indigoPastel-50 text-indigoPastel-600 border border-indigoPastel-100">
+                    <span>🕉️ Ananda (Paix)</span>
+                </button>
+                <button onclick="shareLink()" class="text-xs font-semibold text-white bg-nocturne hover:bg-indigoPastel-900 px-4 py-1.5 rounded-full transition flex items-center gap-1.5 shadow-sm active:scale-95">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                    <span>Partager</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-20 sm:px-6">
+
+        <!-- Hero Header -->
+        <section class="text-center space-y-4 mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-indigoPastel-100 text-indigoPastel-600 text-xs font-semibold shadow-sm star-sparkle">
+                <span>🌌 DIALOGUE UNIVERSEL • ÉTUDE DE SOI</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-nocturne">
+                Destin ou libre arbitre : <br class="hidden sm:inline">
+                <span class="shimmer-text">Sommes-nous réellement maîtres de notre vie ?</span>
+            </h1>
+
+            <!-- Citation Ananda -->
+            <div class="max-w-xl mx-auto p-4 rounded-3xl bg-white/70 border border-indigoPastel-100/80 shadow-sm text-xs sm:text-sm text-mist leading-relaxed italic">
+                « Beaucoup cherchent la motivation ; très peu cherchent la clarté. Pourtant, la motivation n'est qu'un soulagement temporaire, tandis que la clarté apporte une paix intérieure profonde et durable (Ananda). »
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-mist pt-2">
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-amethyst-500"></i> 5 min de réflexion</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="compass" class="w-3.5 h-3.5 text-indigoPastel-500"></i> Dépassement des dogmes</span>
+            </div>
+        </section>
+
+        <!-- 1. Le piège du mot « Croire » -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-indigoPastel-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">1</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-nocturne">Le piège du mot « Croire »</h2>
+            </div>
+
+            <div class="frosted-glass rounded-4xl p-6 sm:p-8 shadow-celestial space-y-4">
+                <p class="text-sm sm:text-base text-mist leading-relaxed">
+                    Dans notre société, les gens disent souvent : <em class="text-nocturne">« Je crois en l'astrologie »</em> ou <em class="text-nocturne">« Je ne crois pas au destin »</em>.
+                </p>
+
+                <!-- Comparaison Paris / Capital -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                    <div class="p-4 rounded-3xl bg-indigoPastel-50/60 border border-indigoPastel-100 space-y-2">
+                        <span class="text-xs font-bold text-indigoPastel-600 flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> Le fait établi
+                        </span>
+                        <p class="text-xs sm:text-sm text-mist leading-normal">
+                            Dites-vous : <em>« Je crois que Paris est la capitale de la France »</em> ? Non, c'est un fait observable et vérifié.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-amethyst-100/50 border border-amethyst-200/60 space-y-2">
+                        <span class="text-xs font-bold text-amethyst-500 flex items-center gap-1.5">
+                            <i data-lucide="eye" class="w-4 h-4"></i> L'honnêteté intellectuelle
+                        </span>
+                        <p class="text-xs sm:text-sm text-mist leading-normal">
+                            Au lieu de balayer un sujet par « je n'y crois pas », soyons plus lucides : <em>« Je ne comprends pas ce sujet »</em> ou <em>« Je ne souhaite pas l'étudier »</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-sunbeam/40 border border-yellow-200/60 text-xs sm:text-sm text-nocturne flex items-center gap-3">
+                    <span class="text-xl">💡</span>
+                    <span>Remplacer la croyance par la <strong>recherche de compréhension</strong> élimine immédiatement la frustration et les conflits stériles.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Les 3 métaphores -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-amethyst-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">2</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-nocturne">Destin et Libre Arbitre : 3 métaphores</h2>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-mist mb-5">
+                Pour visualiser comment ces deux forces coexistent en harmonie sans s'annuler :
+            </p>
+
+            <div class="space-y-4">
+                <!-- Métaphore A -->
+                <div class="frosted-glass p-6 rounded-4xl shadow-celestial space-y-3 border-l-4 border-indigoPastel-500">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-2xl bg-indigoPastel-100 text-indigoPastel-600 flex items-center justify-center font-bold text-sm shrink-0">A</span>
+                        <h3 class="font-serif font-bold text-lg sm:text-xl text-nocturne">La toile et la peinture</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-mist leading-relaxed">
+                        À la naissance, la vie vous attribue une toile (<strong class="text-nocturne">votre destin</strong>). Certains naissent avec une toile blanche immaculée (famille aisée, santé), d'autres avec une toile sombre ou noire (épreuves, difficultés matérielles).
+                    </p>
+                    <div class="p-3.5 rounded-2xl bg-white/80 border border-indigoPastel-100 text-xs text-mist">
+                        🎨 <strong>Le libre arbitre :</strong> Vous ne choisissez pas la couleur initiale de la toile. En revanche, ce que vous peignez dessus relève de votre volonté. L'Histoire regorge de personnes ayant peint les plus beaux chefs-d'œuvre blancs sur des toiles noires.
+                    </div>
+                </div>
+
+                <!-- Métaphore B -->
+                <div class="frosted-glass p-6 rounded-4xl shadow-celestial space-y-3 border-l-4 border-amethyst-500">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-2xl bg-amethyst-100 text-amethyst-500 flex items-center justify-center font-bold text-sm shrink-0">B</span>
+                        <h3 class="font-serif font-bold text-lg sm:text-xl text-nocturne">La donne au jeu de cartes</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-mist leading-relaxed">
+                        Le destin, c'est la main de cartes qui vous est distribuée au départ : impossible de la choisir. Le libre arbitre, c'est votre manière de la jouer. <strong class="text-nocturne">Un joueur d'exception peut remporter la partie avec une mauvaise main</strong>, tandis qu'un joueur distrait perdra malgré d'excellentes cartes.
+                    </p>
+                </div>
+
+                <!-- Métaphore C -->
+                <div class="frosted-glass p-6 rounded-4xl shadow-celestial space-y-3 border-l-4 border-sunbeam">
+                    <div class="flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-2xl bg-sunbeam text-nocturne flex items-center justify-center font-bold text-sm shrink-0">C</span>
+                        <h3 class="font-serif font-bold text-lg sm:text-xl text-nocturne">L’opportunité imprévue (« Le tremblement de terre »)</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-mist leading-relaxed">
+                        Un enfant issu d'un milieu modeste qui devient chef d'État : sa détermination et son travail relèvent de son libre arbitre. Mais les bouleversements historiques et les concours de circonstances relèvent du destin. <strong class="text-nocturne">L'effort individuel prépare l'ascension, mais le timing dépend de forces extérieures.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Le ratio 70 / 30 Interactif -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-indigoPastel-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">3</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-nocturne">Le ratio 70 / 30 : Où vous situez-vous ?</h2>
+            </div>
+
+            <div class="frosted-glass rounded-4xl p-6 sm:p-8 shadow-celestial space-y-6">
+                <p class="text-xs sm:text-sm text-mist">
+                    Dans l'analyse des trajectoires de vie, on observe deux dynamiques majeures. Déplacez le curseur pour explorer les profils :
+                </p>
+
+                <!-- Slider Interactif 70/30 -->
+                <div class="bg-white/90 p-5 rounded-3xl border border-indigoPastel-100 space-y-4">
+                    <div class="flex justify-between items-center text-xs font-bold">
+                        <span id="label-action" class="text-indigoPastel-600">⚡ Libre Arbitre (Action) : 70%</span>
+                        <span id="label-fate" class="text-amethyst-500">🌙 Destin (Circonstances) : 30%</span>
+                    </div>
+
+                    <input type="range" id="ratio-slider" min="10" max="90" value="70" step="5" 
+                           class="w-full h-2 bg-indigoPastel-100 rounded-lg appearance-none cursor-pointer accent-indigoPastel-600">
+
+                    <div id="ratio-description" class="p-4 rounded-2xl bg-indigoPastel-50/70 text-xs sm:text-sm text-mist leading-relaxed transition-all">
+                        <strong class="text-nocturne block mb-1">Profil Actif Pragmatique :</strong>
+                        Des personnes très combatives et autonomes. Elles ne consultent jamais de devins ou d'astrologues car leur volonté brute façonne immédiatement leur réalité quotidienne.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. L'astrologie authentique : Une météo, pas de la magie -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-amethyst-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">4</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-nocturne">L'astrologie authentique : Une météo, pas de la magie</h2>
+            </div>
+
+            <div class="frosted-glass rounded-4xl p-6 sm:p-8 shadow-celestial space-y-5">
+                <p class="text-xs sm:text-sm text-mist leading-relaxed">
+                    Si un médecin est incompétent, nous ne condamnons pas toute la médecine. Si un avocat est malhonnête, la justice ne cesse pas d'exister. Les trois métiers qui exploitent le plus souvent l'angoisse humaine sont <strong>les médecins, les avocats et les astrologues</strong>, car on ne les consulte qu'en crise.
+                </p>
+
+                <!-- Carte Analogie Météo -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-3xl bg-gradient-to-br from-indigoPastel-50 to-white border border-indigoPastel-100 space-y-2">
+                        <div class="flex items-center gap-2 text-indigoPastel-600 font-bold text-xs">
+                            <i data-lucide="cloud-rain" class="w-4 h-4"></i> L'analogie du parapluie
+                        </div>
+                        <p class="text-xs sm:text-sm text-mist leading-normal">
+                            S'il doit pleuvoir ce soir, vous ne pouvez pas stopper la pluie (<strong>destin</strong>). Mais prévenu par le bulletin météo, vous prenez un parapluie (<strong>libre arbitre</strong>).
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-gradient-to-br from-amethyst-50 to-white border border-amethyst-100 space-y-2">
+                        <div class="flex items-center gap-2 text-amethyst-500 font-bold text-xs">
+                            <i data-lucide="bell" class="w-4 h-4"></i> Les invités imprévus
+                        </div>
+                        <p class="text-xs sm:text-sm text-mist leading-normal">
+                            Des invités sonnent à midi à l'improviste ? C'est la panique. S'ils préviennent la veille, vous cuisinez sereinement. L'anticipation transforme l'angoisse en préparation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Synthèse Clarté -->
+        <section class="bg-gradient-to-br from-indigoPastel-900 via-nocturne to-indigoPastel-900 text-white rounded-4xl p-6 sm:p-8 shadow-celestial mb-12 relative overflow-hidden">
+            <div class="flex items-center gap-2 mb-4 text-amethyst-200">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                <h3 class="font-serif text-2xl font-bold">Trouver la paix dans la lucidité</h3>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-indigoPastel-200 mb-5">
+                Vivre en harmonie ne consiste pas à être fataliste ni à croire qu'on contrôle l'univers :
+            </p>
+
+            <div class="space-y-2.5 text-xs sm:text-sm">
+                <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md flex items-start gap-2.5">
+                    <span class="text-amethyst-300 font-bold">1.</span>
+                    <span><strong>Acceptez votre point de départ</strong> : votre toile, votre donne initiale de cartes.</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md flex items-start gap-2.5">
+                    <span class="text-amethyst-300 font-bold">2.</span>
+                    <span><strong>Exercez votre libre arbitre à 100%</strong> sur ce qui dépend de vous (attitude, travail, droiture).</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-white/10 backdrop-blur-md flex items-start gap-2.5">
+                    <span class="text-amethyst-300 font-bold">3.</span>
+                    <span><strong>Anticipez les cycles</strong> pour traverser les tempêtes avec un parapluie plutôt qu'en victime.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sondage & Question de Clôture -->
+        <section class="frosted-glass rounded-4xl p-6 sm:p-8 shadow-celestial text-center space-y-5 border border-amethyst-200">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="text-3xl">🌌</span>
+                <h3 class="font-serif text-2xl font-bold text-nocturne">Et vous, qu'en pensez-vous ?</h3>
+                <p class="text-xs sm:text-sm text-mist">
+                    Avez-vous l'impression que les grands tournants de votre vie ont été le fruit de votre volonté ou d'un timing extérieur imprévisible ?
+                </p>
+            </div>
+
+            <!-- Boutons de Vote -->
+            <div id="survey-box" class="max-w-md mx-auto space-y-2.5">
+                <button onclick="recordVote('will')" class="w-full p-4 rounded-3xl bg-white hover:bg-indigoPastel-50 border border-indigoPastel-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group">
+                    <span class="flex items-center gap-2">
+                        <span>⚡</span> Ma volonté et mes actions directes
+                    </span>
+                    <span class="text-indigoPastel-600 group-hover:translate-x-1 transition">→</span>
+                </button>
+                <button onclick="recordVote('fate')" class="w-full p-4 rounded-3xl bg-white hover:bg-amethyst-50 border border-amethyst-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group">
+                    <span class="flex items-center gap-2">
+                        <span>🌙</span> Un timing extérieur et des synchronicités
+                    </span>
+                    <span class="text-amethyst-500 group-hover:translate-x-1 transition">→</span>
+                </button>
+            </div>
+
+            <!-- Résultat du Sondage -->
+            <div id="survey-results" class="hidden max-w-md mx-auto space-y-3 pt-2">
+                <div class="p-4 rounded-2xl bg-white border border-indigoPastel-100 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-nocturne">
+                        <span>⚡ Volonté & Action directe</span>
+                        <span class="text-indigoPastel-600">54%</span>
+                    </div>
+                    <div class="w-full bg-cosmos h-2 rounded-full overflow-hidden">
+                        <div id="bar-will" class="bg-indigoPastel-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-amethyst-100 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-nocturne">
+                        <span>🌙 Timing du Destin & Circonstances</span>
+                        <span class="text-amethyst-500">46%</span>
+                    </div>
+                    <div class="w-full bg-cosmos h-2 rounded-full overflow-hidden">
+                        <div id="bar-fate" class="bg-amethyst-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-mist">Merci d'avoir enrichi cette réflexion ! ✨</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-mist border-t border-indigoPastel-100">
+        <p>En quête de clarté et d'apaisement intérieur • Ananda 🕊️</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast-notif" class="fixed bottom-6 right-6 z-50 frosted-glass border border-indigoPastel-200 text-nocturne px-4 py-3 rounded-2xl shadow-celestial transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-2 text-xs font-medium">
+        <i data-lucide="sparkle" class="w-4 h-4 text-indigoPastel-500"></i>
+        <span>Lien copié dans le presse-papier !</span>
+    </div>
+
+    <!-- Script JS -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Barre de défilement
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('read-progress').style.width = progress + '%';
+        });
+
+        // 2. Curseur Interactif 70/30
+        const slider = document.getElementById('ratio-slider');
+        const labelAction = document.getElementById('label-action');
+        const labelFate = document.getElementById('label-fate');
+        const ratioDesc = document.getElementById('ratio-description');
+
+        slider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            const fateVal = 100 - val;
+            labelAction.innerText = `⚡ Libre Arbitre (Action) : ${val}%`;
+            labelFate.innerText = `🌙 Destin (Circonstances) : ${fateVal}%`;
+
+            if(val >= 60) {
+                ratioDesc.innerHTML = `<strong class="text-nocturne block mb-1">Profil Actif Pragmatique (${val}% Action) :</strong>
+                Des personnes très combatives et autonomes. Leur volonté brute façonne leur réalité, elles créent leurs opportunités par l'effort continu sans attendre de signes.`;
+                ratioDesc.className = "p-4 rounded-2xl bg-indigoPastel-50/70 text-xs sm:text-sm text-mist leading-relaxed transition-all";
+            } else if(val <= 40) {
+                ratioDesc.innerHTML = `<strong class="text-nocturne block mb-1">Profil Sensible aux Cycles (${fateVal}% Destin) :</strong>
+                Des personnes qui, malgré des efforts constants, traversent des cycles de blocages imprévisibles et bénéficient d'une compréhension du calendrier de leur vie et des opportunités extérieures.`;
+                ratioDesc.className = "p-4 rounded-2xl bg-amethyst-50/70 text-xs sm:text-sm text-mist leading-relaxed transition-all";
+            } else {
+                ratioDesc.innerHTML = `<strong class="text-nocturne block mb-1">Équilibre Alchimique (50/50) :</strong>
+                Une parfaite synergie entre l'effort personnel maximal et la souplesse face aux synchronicités et événements imprévus du destin.`;
+                ratioDesc.className = "p-4 rounded-2xl bg-sunbeam/30 text-xs sm:text-sm text-mist leading-relaxed transition-all";
+            }
+        });
+
+        // 3. Sondage
+        function recordVote(type) {
+            document.getElementById('survey-box').classList.add('hidden');
+            const res = document.getElementById('survey-results');
+            res.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('bar-will').style.width = '54%';
+                document.getElementById('bar-fate').style.width = '46%';
+            }, 100);
+        }
+
+        // 4. Partage & Toast
+        function shareLink() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Destin ou Libre Arbitre ?',
+                    text: 'Sommes-nous réellement maîtres de notre vie ? Analyse et métaphores.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                const toast = document.getElementById('toast-notif');
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+            }
+        }
+    </script>
+</body>
+</html>

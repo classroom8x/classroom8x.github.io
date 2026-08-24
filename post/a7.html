@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investissement Immobilier • Les 3 Indicateurs Clés</title>
+
+    <!-- Google Fonts : Syne (Typo Studio Architecture) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Syne"', 'sans-serif'],
+                    },
+                    colors: {
+                        studio: '#FAF6F0',
+                        coral: {
+                            50: '#FFF2EE',
+                            100: '#FFE2DB',
+                            200: '#FFC4B7',
+                            400: '#FA6E59',
+                            500: '#E8513A',
+                            600: '#C73822',
+                        },
+                        ochre: {
+                            50: '#FFF9ED',
+                            100: '#FEF0D4',
+                            200: '#FCDFA7',
+                            500: '#E59934',
+                        },
+                        slateDark: '#231E1C',
+                        clay: '#6B5E59',
+                        blueprint: '#EAE2D5'
+                    },
+                    borderRadius: {
+                        '3xl': '1.75rem',
+                        '4xl': '2.25rem',
+                    },
+                    boxShadow: {
+                        'studio': '0 14px 30px -10px rgba(35, 30, 28, 0.07)',
+                        'glow-coral': '0 12px 35px -8px rgba(232, 81, 58, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF6F0;
+            background-image: radial-gradient(#E8DED1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .studio-card {
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid #EFE6D9;
+            backdrop-filter: blur(10px);
+        }
+
+        .blueprint-tag {
+            background: #FFF2EE;
+            border: 1px dashed #FA6E59;
+        }
+
+        .gradient-coral {
+            background: linear-gradient(135deg, #E8513A 0%, #E59934 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="text-slateDark font-sans antialiased selection:bg-coral-100 selection:text-coral-600 min-h-screen relative overflow-x-hidden">
+
+    <!-- Jauge de lecture Coral -->
+    <div id="read-progress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-coral-500 via-ochre-500 to-coral-500 w-0 z-50 transition-all duration-150"></div>
+
+    <!-- Navigation Studio Flottante -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="studio-card rounded-full px-5 py-3 flex items-center justify-between shadow-studio">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-coral-500 text-white flex items-center justify-center font-display font-bold text-xs shadow-sm">
+                    📐
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-xs sm:text-sm text-slateDark tracking-tight">STUDIO IMMO • DATA</span>
+                    <span class="text-[10px] text-clay font-medium">Audit & Métriques Structurelles</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <a href="#calculator" class="hidden sm:flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-coral-50 text-coral-600 hover:bg-coral-100 transition border border-coral-200">
+                    <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+                    <span>Simulateur</span>
+                </a>
+                <button onclick="sharePage()" class="text-xs font-semibold text-white bg-slateDark hover:bg-black px-4 py-1.5 rounded-full transition flex items-center gap-1.5 shadow-sm active:scale-95">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                    <span>Partager</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-20 sm:px-6">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full blueprint-tag text-coral-600 text-xs font-bold shadow-sm">
+                <span>🏗️ GUIDE STRATÉGIQUE D'ACHAT IMMOBILIER</span>
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-slateDark tracking-tight">
+                Les 3 indicateurs clés que <span class="gradient-coral">90 % des acheteurs ignorent</span>
+            </h1>
+
+            <p class="text-clay text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                Ne vous laissez plus éblouir par la vue ou la cuisine offerte. La véritable rentabilité et le confort reposent sur des métriques précises.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-clay pt-2">
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-coral-500"></i> 4 min de lecture</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="shield-alert" class="w-3.5 h-3.5 text-ochre-500"></i> Pièges promoteurs déjoués</span>
+            </div>
+        </section>
+
+        <!-- Intro Box -->
+        <section class="studio-card rounded-4xl p-6 sm:p-8 shadow-studio mb-10 relative overflow-hidden">
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-2xl bg-ochre-100 text-ochre-500 flex items-center justify-center shrink-0 mt-0.5">
+                    <i data-lucide="eye" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-2 text-xs sm:text-sm text-clay leading-relaxed">
+                    <h3 class="font-display font-bold text-base text-slateDark">Au-delà de l'illusion esthétique</h3>
+                    <p>
+                        Lorsqu'on visite un appartement, on regarde les finitions, la lumière ou les cadeaux commerciaux. Pourtant, la valeur intrinsèque d'un bien immobilier — qu'il s'agisse de votre résidence ou d'un investissement locatif — dépend de <strong class="text-slateDark">trois piliers mathématiques et fonciers</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Le Taux de Loading -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-coral-500 text-white font-display font-bold text-sm flex items-center justify-center shadow-sm">1</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-slateDark">Le taux de « Loading » (Surface utile vs facturée)</h2>
+            </div>
+
+            <div class="studio-card rounded-4xl p-6 sm:p-8 shadow-studio space-y-5">
+                <p class="text-xs sm:text-sm text-clay leading-relaxed">
+                    Le <strong class="text-slateDark">Loading</strong> désigne le ratio entre la surface privative réelle de votre logement et la surface brute totale facturée par le promoteur (incluant couloirs, ascenseurs, hall d'accueil, gaines techniques).
+                </p>
+
+                <!-- Formule mathématique cute -->
+                <div class="p-4 rounded-3xl bg-studio border border-blueprint text-center space-y-1.5">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-coral-600">Formule mathématique</span>
+                    <div class="font-display text-xs sm:text-sm text-slateDark font-semibold">
+                        Taux de Loading (%) = <span class="bg-white px-2 py-0.5 rounded-lg border border-coral-200">1 − (Surface privative ÷ Surface facturée)</span> × 100
+                    </div>
+                </div>
+
+                <!-- Pièges & Interprétation -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                    <div class="p-4 rounded-2xl bg-coral-50/70 border border-coral-200 space-y-1">
+                        <span class="text-xs font-bold text-coral-600 flex items-center gap-1.5">
+                            <i data-lucide="alert-triangle" class="w-4 h-4"></i> Loading > 35–40 %
+                        </span>
+                        <p class="text-xs text-clay leading-normal">
+                            Vous surpayez lourdement pour des espaces communs et des couloirs dont vous ne profitez pas directement chez vous.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-ochre-50/70 border border-ochre-200 space-y-1">
+                        <span class="text-xs font-bold text-ochre-500 flex items-center gap-1.5">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Loading < 20–25 %
+                        </span>
+                        <p class="text-xs text-clay leading-normal">
+                            Attention ! Vous êtes souvent dans du logement ultra-dense. Les parties communes, espaces verts et piscines seront minuscules et saturés.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Ratio d'or 70/30 -->
+                <div class="p-4 rounded-2xl bg-white border border-coral-200 flex items-center gap-3">
+                    <span class="text-2xl">✨</span>
+                    <div class="text-xs sm:text-sm text-clay">
+                        <strong class="text-slateDark font-semibold">L'équilibre idéal (Standing) :</strong> Environ <span class="text-coral-600 font-bold">70 % de surface privative</span> pour 30 % d'espaces partagés. Cela garantit un cadre aéré tout en maximisant votre surface habitable.
+                    </div>
+                </div>
+
+                <!-- Simulateur Interactif de Loading -->
+                <div id="calculator" class="p-5 rounded-3xl bg-studio border border-coral-200/80 space-y-4 pt-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-display font-bold text-slateDark flex items-center gap-1.5">
+                            <i data-lucide="sliders" class="w-4 h-4 text-coral-500"></i> Calculez votre Loading
+                        </span>
+                        <span id="loading-badge" class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-coral-100 text-coral-600">30% (Idéal Standing)</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs text-clay">
+                                <span>Surface Privative Habitable (Carpet) :</span>
+                                <span id="carpet-val" class="font-bold text-slateDark">70 m²</span>
+                            </div>
+                            <input type="range" id="carpet-range" min="30" max="150" value="70" step="5" class="w-full h-2 bg-coral-100 rounded-lg appearance-none cursor-pointer accent-coral-500">
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs text-clay">
+                                <span>Surface Facturée (Super Built-up) :</span>
+                                <span id="billed-val" class="font-bold text-slateDark">100 m²</span>
+                            </div>
+                            <input type="range" id="billed-range" min="40" max="220" value="100" step="5" class="w-full h-2 bg-coral-100 rounded-lg appearance-none cursor-pointer accent-coral-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. La Densité par Acre -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-ochre-500 text-white font-display font-bold text-sm flex items-center justify-center shadow-sm">2</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-slateDark">La densité par Acre (Units per Acre)</h2>
+            </div>
+
+            <div class="studio-card rounded-4xl p-6 sm:p-8 shadow-studio space-y-5">
+                <p class="text-xs sm:text-sm text-clay leading-relaxed">
+                    La densité mesure le <strong>nombre total d'appartements</strong> divisé par la superficie totale du terrain (en acres ou hectares).
+                </p>
+
+                <!-- Comparatif Projet A vs B -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-3xl bg-white border border-ochre-200 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-display font-bold text-xs text-slateDark">PROJET A (Standing)</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700">50 log./acre</span>
+                        </div>
+                        <p class="text-xs text-clay leading-normal">
+                            Ascenseurs fluides, stationnements faciles, quote-part d'espaces verts et de piscine très généreuse par habitant.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-coral-50/70 border border-coral-200 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-display font-bold text-xs text-slateDark">PROJET B (Saturé)</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-coral-200 text-coral-700">110 log./acre</span>
+                        </div>
+                        <p class="text-xs text-clay leading-normal">
+                            Le promoteur tente souvent de vous séduire avec des « cadeaux » (clim, cuisine offerte). Mais vous aurez <strong class="text-coral-600">plus du double de résidents</strong> pour partager les mêmes équipements !
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-studio border border-blueprint flex items-start gap-3">
+                    <span class="text-xl">🏢</span>
+                    <p class="text-xs text-clay leading-relaxed">
+                        <strong class="text-slateDark">La typologie compte aussi :</strong> Un programme constitué majoritairement de 2 pièces (2BHK) génère des flux et une promiscuité bien plus intenses qu'un projet composé uniquement de 4 pièces familiaux (4BHK).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. L'Inventory Overhang -->
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-xl bg-coral-500 text-white font-display font-bold text-sm flex items-center justify-center shadow-sm">3</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-slateDark">L'« Inventory Overhang » (Délai d'absorption)</h2>
+            </div>
+
+            <div class="studio-card rounded-4xl p-6 sm:p-8 shadow-studio space-y-5">
+                <p class="text-xs sm:text-sm text-clay leading-relaxed">
+                    L’<strong class="text-slateDark">Inventory Overhang</strong> représente le temps nécessaire (en mois) pour écouler tous les logements neufs invendus sur un micro-marché au rythme actuel des transactions.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div class="p-4 rounded-2xl bg-white border border-coral-100 space-y-1">
+                        <span class="text-xs font-bold text-coral-600 flex items-center gap-1.5">
+                            <i data-lucide="trending-down" class="w-4 h-4"></i> Délai élevé (> 30–48 mois)
+                        </span>
+                        <p class="text-xs text-clay leading-normal">
+                            Marché saturé. L'offre dépasse la demande : les prix stagnent et la revente sera longue et difficile.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-ochre-50/70 border border-ochre-200 space-y-1">
+                        <span class="text-xs font-bold text-ochre-500 flex items-center gap-1.5">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i> Délai court (< 9–12 mois)
+                        </span>
+                        <p class="text-xs text-clay leading-normal">
+                            Forte tension acheteuse, les stocks partent vite : signal idéal pour une appréciation rapide de la valeur.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- La règle de la rareté foncière -->
+                <div class="p-4 rounded-3xl bg-slateDark text-white space-y-2">
+                    <div class="flex items-center gap-2 text-ochre-200 font-display text-xs font-bold">
+                        <i data-lucide="gem" class="w-4 h-4"></i> La règle d'or de la rareté foncière
+                    </div>
+                    <p class="text-xs text-studio/90 leading-relaxed">
+                        Si un projet standing est lancé dans une zone géographique entièrement urbanisée où <strong class="text-ochre-200">il ne reste aucun terrain constructible</strong>, le potentiel de plus-value est maximal car aucune nouvelle concurrence ne pourra s'y implanter.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checklist Interactive avant d'acheter -->
+        <section class="studio-card rounded-4xl p-6 sm:p-8 shadow-studio border-2 border-coral-200 mb-12">
+            <div class="flex items-center gap-2.5 mb-4">
+                <i data-lucide="clipboard-check" class="w-5 h-5 text-coral-500"></i>
+                <h3 class="font-display font-bold text-lg sm:text-xl text-slateDark">La checklist à exiger avant de signer</h3>
+            </div>
+
+            <p class="text-xs sm:text-sm text-clay mb-5">
+                Cochez les points vérifiés auprès de votre promoteur ou agent immobilier :
+            </p>
+
+            <div class="space-y-3" id="checklist">
+                <label class="p-3.5 rounded-2xl bg-studio hover:bg-coral-50/50 border border-blueprint flex items-start gap-3 cursor-pointer transition">
+                    <input type="checkbox" onchange="updateChecklist()" class="mt-0.5 w-4 h-4 accent-coral-500 rounded cursor-pointer">
+                    <span class="text-xs text-clay leading-normal"><strong class="text-slateDark">Ratio Privatif / Facturé :</strong> Avez-vous vérifié le taux de Loading (viser ~70/30) ?</span>
+                </label>
+
+                <label class="p-3.5 rounded-2xl bg-studio hover:bg-coral-50/50 border border-blueprint flex items-start gap-3 cursor-pointer transition">
+                    <input type="checkbox" onchange="updateChecklist()" class="mt-0.5 w-4 h-4 accent-coral-500 rounded cursor-pointer">
+                    <span class="text-xs text-clay leading-normal"><strong class="text-slateDark">Densité par Acre :</strong> Avez-vous validé le ratio de logements sur le plan de masse global ?</span>
+                </label>
+
+                <label class="p-3.5 rounded-2xl bg-studio hover:bg-coral-50/50 border border-blueprint flex items-start gap-3 cursor-pointer transition">
+                    <input type="checkbox" onchange="updateChecklist()" class="mt-0.5 w-4 h-4 accent-coral-500 rounded cursor-pointer">
+                    <span class="text-xs text-clay leading-normal"><strong class="text-slateDark">Inventory Overhang :</strong> Avez-vous vérifié les stocks invendus et la rareté foncière du quartier ?</span>
+                </label>
+            </div>
+
+            <div id="check-badge" class="mt-4 p-3 rounded-xl bg-coral-100 text-coral-600 text-xs font-semibold text-center hidden">
+                🎉 Félicitations ! Votre dossier d'analyse est complet et sécurisé.
+            </div>
+        </section>
+
+        <!-- Espace Interaction / Débat -->
+        <section class="studio-card rounded-4xl p-6 sm:p-8 shadow-studio text-center space-y-5 border border-coral-200">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="text-3xl">💬</span>
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-slateDark">Et vous ?</h3>
+                <p class="text-xs sm:text-sm text-clay">
+                    Avez-vous déjà calculé la densité ou le taux de parties communes de votre résidence actuelle ?
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                <button onclick="recordOpinion('jamais')" class="px-5 py-3 rounded-2xl bg-coral-50 hover:bg-coral-100 border border-coral-200 text-xs font-semibold text-coral-600 transition flex-1">
+                    🔍 Jamais calculé auparavant
+                </button>
+                <button onclick="recordOpinion('expert')" class="px-5 py-3 rounded-2xl bg-ochre-50 hover:bg-ochre-100 border border-ochre-200 text-xs font-semibold text-ochre-500 transition flex-1">
+                    📐 Oui, je surveille mes ratios
+                </button>
+            </div>
+
+            <div id="feedback-msg" class="text-xs text-clay italic hidden">
+                Merci pour votre retour ! Partagez vos calculs ou questions ci-dessous.
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-clay border-t border-blueprint">
+        <p>Studio d'analyse immobilière & prospective urbaine 📐</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 studio-card border border-coral-300 text-slateDark px-4 py-3 rounded-2xl shadow-studio transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-2 text-xs font-medium">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-coral-500"></i>
+        <span>Lien copié dans le presse-papier !</span>
+    </div>
+
+    <!-- Script JS -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Barre de progression
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('read-progress').style.width = progress + '%';
+        });
+
+        // 2. Simulateur de Loading interactif
+        const carpetRange = document.getElementById('carpet-range');
+        const billedRange = document.getElementById('billed-range');
+        const carpetVal = document.getElementById('carpet-val');
+        const billedVal = document.getElementById('billed-val');
+        const loadingBadge = document.getElementById('loading-badge');
+
+        function updateLoadingCalc() {
+            let carpet = parseInt(carpetRange.value);
+            let billed = parseInt(billedRange.value);
+
+            // Ajustement si carpet dépasse billed
+            if(carpet > billed) {
+                billed = carpet + 10;
+                billedRange.value = billed;
+            }
+
+            carpetVal.innerText = `${carpet} m²`;
+            billedVal.innerText = `${billed} m²`;
+
+            const loadingPct = Math.round((1 - (carpet / billed)) * 100);
+
+            if (loadingPct >= 28 && loadingPct <= 34) {
+                loadingBadge.innerText = `${loadingPct}% • Idéal Standing (70/30)`;
+                loadingBadge.className = "text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700";
+            } else if (loadingPct > 34) {
+                loadingBadge.innerText = `${loadingPct}% • Perte d'espace élevée`;
+                loadingBadge.className = "text-[11px] font-bold px-2.5 py-1 rounded-full bg-coral-100 text-coral-600";
+            } else {
+                loadingBadge.innerText = `${loadingPct}% • Risque saturation commune`;
+                loadingBadge.className = "text-[11px] font-bold px-2.5 py-1 rounded-full bg-ochre-100 text-ochre-500";
+            }
+        }
+
+        carpetRange.addEventListener('input', updateLoadingCalc);
+        billedRange.addEventListener('input', updateLoadingCalc);
+
+        // 3. Checklist Interactive
+        function updateChecklist() {
+            const checkedCount = document.querySelectorAll('#checklist input[type="checkbox"]:checked').length;
+            const badge = document.getElementById('check-badge');
+            if (checkedCount === 3) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // 4. Débat
+        function recordOpinion(type) {
+            document.getElementById('feedback-msg').classList.remove('hidden');
+        }
+
+        // 5. Partage
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Investissement Immobilier : 3 Métriques Ignorées',
+                    text: 'Découvrez le Loading, la Densité et l’Inventory Overhang avant d’acheter.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+            }
+        }
+    </script>
+</body>
+</html>

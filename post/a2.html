@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientation Carrière de nos Filles • Partie 1</title>
+
+    <!-- Google Fonts : Fraunces (Cute Soft Serif) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Fraunces"', 'serif'],
+                    },
+                    colors: {
+                        canvas: '#FAF7F2',
+                        peach: {
+                            50: '#FFF5F0',
+                            100: '#FFE8DC',
+                            200: '#FFD1BC',
+                            400: '#FF8A5C',
+                            500: '#F26430',
+                        },
+                        sage: {
+                            50: '#F3F8F5',
+                            100: '#E4EFE9',
+                            200: '#C7DFD3',
+                            500: '#427A65',
+                            600: '#2E5949',
+                        },
+                        butter: '#FDF7E7',
+                        espresso: '#2B211E',
+                        muted: '#6E625D'
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    },
+                    boxShadow: {
+                        'cozy': '0 12px 30px -8px rgba(43, 33, 30, 0.06)',
+                        'glow-peach': '0 12px 35px -5px rgba(255, 138, 92, 0.18)',
+                        'glow-sage': '0 12px 35px -5px rgba(66, 122, 101, 0.18)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .paper-card {
+            background: #FFFFFF;
+            border: 1px solid #F0E8DF;
+        }
+        .tape-badge {
+            background: rgba(255, 232, 220, 0.85);
+            backdrop-filter: blur(4px);
+            transform: rotate(-1.5deg);
+        }
+        .gradient-text-warm {
+            background: linear-gradient(135deg, #F26430 0%, #D94676 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
+        }
+        .animate-gentle {
+            animation: gentle-float 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-canvas text-espresso font-sans antialiased selection:bg-peach-200 selection:text-peach-500 min-h-screen relative overflow-x-hidden">
+
+    <!-- Progress Indicator Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-peach-400 via-sage-500 to-peach-500 w-0 z-50 transition-all duration-150"></div>
+
+    <!-- Floating Aesthetic Header -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <div class="paper-card rounded-full px-5 py-3 flex items-center justify-between shadow-cozy backdrop-blur-md bg-white/90">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-peach-100 flex items-center justify-center text-peach-500">
+                    <i data-lucide="sprout" class="w-4 h-4"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif italic font-bold text-xs sm:text-sm text-espresso leading-none">Édition Fondations & Avenir</span>
+                    <span class="text-[10px] text-muted font-medium">Série Carrière • Partie 1</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="copyQuote()" class="text-xs font-semibold text-muted hover:text-espresso px-3 py-1.5 rounded-full bg-canvas border border-peach-100 transition flex items-center gap-1.5">
+                    <i data-lucide="bookmark" class="w-3.5 h-3.5 text-sage-500"></i>
+                    <span class="hidden sm:inline">Sauvegarder</span>
+                </button>
+                <button onclick="shareArticle()" class="text-xs font-semibold text-white bg-peach-500 hover:bg-peach-400 px-4 py-1.5 rounded-full transition flex items-center gap-1.5 shadow-sm active:scale-95">
+                    <i data-lucide="share" class="w-3.5 h-3.5"></i>
+                    <span>Partager</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-20 sm:px-6">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full tape-badge text-peach-500 text-xs font-bold border border-peach-200 shadow-sm animate-gentle">
+                <span>🌱 SÉRIE ESSENTIELLE • GUIDE PARENTAL & FÉMININ</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-espresso">
+                Comment orienter la carrière de nos filles ?
+            </h1>
+
+            <p class="font-serif italic text-lg sm:text-xl text-muted max-w-xl mx-auto">
+                « Entre indépendance financière, réalité du mariage et paix d’esprit »
+            </p>
+
+            <!-- Tags publics cibles -->
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+                <span class="px-3 py-1 rounded-xl bg-sage-100 text-sage-600 text-xs font-medium flex items-center gap-1">
+                    <i data-lucide="user" class="w-3 h-3"></i> Jeunes femmes 18–25 ans
+                </span>
+                <span class="px-3 py-1 rounded-xl bg-butter text-espresso text-xs font-medium flex items-center gap-1">
+                    <i data-lucide="users" class="w-3 h-3"></i> Parents de filles & de garçons
+                </span>
+                <span class="px-3 py-1 rounded-xl bg-peach-100 text-peach-500 text-xs font-medium flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3 h-3"></i> 5 min de lecture
+                </span>
+            </div>
+        </section>
+
+        <!-- Intro Callout Box -->
+        <section class="paper-card rounded-4xl p-6 sm:p-8 shadow-cozy mb-10 border-peach-100 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-peach-100/50 rounded-full blur-2xl pointer-events-none"></div>
+
+            <p class="text-base sm:text-lg leading-relaxed text-muted mb-4">
+                Aujourd’hui, nous ouvrons une série essentielle consacrée à l’avenir professionnel de nos enfants. Cet article s’adresse aux jeunes femmes, à leurs parents, mais aussi aux parents de garçons, car la réussite et la stabilité d’un foyer concernent tout le monde.
+            </p>
+
+            <div class="p-4 sm:p-5 rounded-3xl bg-sage-50 border border-sage-200/80">
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">🕊️</span>
+                    <div>
+                        <h4 class="font-serif font-bold text-sm sm:text-base text-sage-600 mb-1">Le grand paradoxe contemporain</h4>
+                        <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                            Sur le plan historique et constitutionnel, les femmes n’ont jamais eu autant de droits : des réformes sociétales aux postes de pilotes de chasse, le plafond de verre vole en éclats. 
+                            <strong>Pourtant, une question fondamentale demeure : nos mères, sœurs et filles sont-elles réellement plus heureuses et plus sereines aujourd’hui ?</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-muted mt-4 text-center italic">
+                Voici une analyse sans filtre, pragmatique et ancrée dans la réalité du terrain.
+            </p>
+        </section>
+
+        <!-- 1. Rivalité des genres -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-peach-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">1</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-espresso">Sortir du piège de la « rivalité des genres »</h2>
+            </div>
+
+            <div class="paper-card rounded-4xl p-6 sm:p-7 shadow-cozy space-y-4 border-peach-100">
+                <p class="text-sm sm:text-base text-muted leading-relaxed">
+                    Pendant des décennies, la société a fait croire que seul le fils pouvait « faire briller le nom de famille ». Aujourd’hui, les filles réussissent brillamment, mais une nouvelle dérive est apparue :
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-3xl bg-canvas border border-peach-100 space-y-2">
+                        <span class="text-xs font-bold text-peach-500 tracking-wide uppercase flex items-center gap-1.5">
+                            <i data-lucide="shield-alert" class="w-4 h-4"></i> Le nouveau conditionnement
+                        </span>
+                        <p class="text-xs sm:text-sm text-muted leading-normal">
+                            Faire croire qu'en l'absence d'une carrière agressive, elles « finiront à la cuisine », réduisant la vie de famille à une corvée dévalorisante.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-sage-50 border border-sage-200/60 space-y-2">
+                        <span class="text-xs font-bold text-sage-600 tracking-wide uppercase flex items-center gap-1.5">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i> La véritable force
+                        </span>
+                        <p class="text-xs sm:text-sm text-muted leading-normal">
+                            Les femmes possèdent une créativité, une capacité d'apaisement et une force unique. L'égalité ne signifie pas devenir des clones de l'archétype masculin en entreprise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Autonomie Financière Indispensable -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-sage-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">2</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-espresso">Pourquoi l’autonomie financière est indispensable</h2>
+            </div>
+
+            <div class="paper-card rounded-4xl p-6 sm:p-7 shadow-cozy space-y-5 border-peach-100">
+                <p class="text-sm sm:text-base text-muted leading-relaxed font-medium">
+                    Soyons très clairs : chaque femme doit impérativement avoir la capacité de gagner sa vie.
+                </p>
+
+                <div class="space-y-3">
+                    <div class="p-4 rounded-3xl bg-peach-50 border border-peach-100 flex items-start gap-3">
+                        <div class="w-9 h-9 rounded-2xl bg-white text-peach-500 flex items-center justify-center shrink-0 shadow-sm">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-espresso">Le potentiel économique collectif</h3>
+                            <p class="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
+                                Dans de nombreux pays en développement, moins de 20 % des femmes de 20 à 60 ans participent activement à la vie active formelle, contre près de 50 % dans les pays développés. Le travail féminin est un moteur majeur de prospérité globale.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-3xl bg-sage-50 border border-sage-200 flex items-start gap-3">
+                        <div class="w-9 h-9 rounded-2xl bg-white text-sage-600 flex items-center justify-center shrink-0 shadow-sm">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-espresso">La dignité & la sécurité personnelle</h3>
+                            <p class="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
+                                Générer ses propres revenus permet de ne pas être dans la dépendance affective ou financière, d'avoir une estime de soi solide et d'assurer ses arrières face aux aléas de l'existence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-muted text-center pt-2 italic">
+                    « Cependant, il y a une différence majeure entre avoir la capacité de gagner de l'argent et s’enfermer aveuglément dans un emploi destructeur. »
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. Les 3 critères indispensables -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-peach-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">3</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-espresso">Les 3 critères indispensables pour choisir une carrière</h2>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-muted mb-4">
+                Trop de familles poussent leurs filles vers des voies sans réfléchir à la durabilité. Voici les 3 filtres à appliquer :
+            </p>
+
+            <div class="space-y-4">
+                <!-- Filtre A -->
+                <div class="paper-card p-6 rounded-4xl border-peach-100 shadow-cozy hover:shadow-glow-peach transition">
+                    <div class="flex items-start gap-3.5">
+                        <span class="px-3 py-1 rounded-full bg-peach-100 text-peach-500 font-bold text-xs">Filtre A</span>
+                        <div class="space-y-1.5">
+                            <h3 class="font-serif font-bold text-base text-espresso">La stabilité géographique (éviter le piège des mutations)</h3>
+                            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                                Décrocher un concours prestigieux qui impose des déménagements tous les 2 ou 3 ans détruit l'équilibre du couple et surcharge les grands-parents quand les enfants arrivent. Choisissez une carrière géographiquement stable et prévisible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtre B -->
+                <div class="paper-card p-6 rounded-4xl border-sage-200 shadow-cozy hover:shadow-glow-sage transition">
+                    <div class="flex items-start gap-3.5">
+                        <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-600 font-bold text-xs">Filtre B</span>
+                        <div class="space-y-1.5">
+                            <h3 class="font-serif font-bold text-base text-espresso">L’apprentissage et la valeur ajoutée (fuir les emplois pièges)</h3>
+                            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                                Fuir les postes sans perspective (saisie répétitive, centres d'appels sous-payés, réception précaire). Ne cherchez pas un simple poste pour « meubler le temps » : visez l'acquisition d'un véritable savoir-faire qui prend de la valeur avec les années.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtre C (Interactive Sukoon vs Ijjat Card) -->
+                <div class="paper-card p-6 rounded-4xl border-peach-100 shadow-cozy bg-gradient-to-br from-white via-butter/30 to-peach-50/50">
+                    <div class="flex items-start gap-3.5 mb-4">
+                        <span class="px-3 py-1 rounded-full bg-butter text-espresso font-bold text-xs border border-peach-200">Filtre C</span>
+                        <div>
+                            <h3 class="font-serif font-bold text-base text-espresso">La paix d’esprit (Sukoon) avant le prestige social (Ijjat)</h3>
+                            <p class="text-xs sm:text-sm text-muted mt-1">
+                                La société est obsédée par les titres ronflants et les concours interminables (préparer un examen jusqu'à 29 ans). Le prestige vide ne compense jamais un quotidien toxique.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mini Toggle Interactif Sukoon vs Ijjat -->
+                    <div class="bg-white p-4 rounded-3xl border border-peach-100 space-y-3">
+                        <div class="flex items-center justify-between text-xs font-semibold">
+                            <span class="text-muted">Comparez la philosophie :</span>
+                            <div class="flex rounded-full bg-canvas p-1 border border-peach-100">
+                                <button id="btn-sukoon" onclick="togglePhilosophy('sukoon')" class="px-3 py-1 rounded-full bg-sage-500 text-white font-bold transition text-xs">🌸 Sukoon (Paix)</button>
+                                <button id="btn-ijjat" onclick="togglePhilosophy('ijjat')" class="px-3 py-1 rounded-full text-muted transition text-xs">🏛️ Ijjat (Prestige)</button>
+                            </div>
+                        </div>
+                        <div id="philosophy-content" class="text-xs sm:text-sm text-sage-600 bg-sage-50 p-3.5 rounded-2xl leading-relaxed">
+                            <strong>La voie du Sukoon :</strong> Une carrière flexible qui permet de moduler son temps pendant la maternité, de préserver sa sérénité et de réaccélérer quand les enfants grandissent.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. La réalité du mariage et du calendrier de vie -->
+        <section class="mb-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-sage-500 text-white font-serif font-bold text-sm flex items-center justify-center shadow-sm">4</span>
+                <h2 class="font-serif text-xl sm:text-2xl font-bold text-espresso">La réalité du mariage et du calendrier de vie</h2>
+            </div>
+
+            <div class="paper-card rounded-4xl p-6 sm:p-7 shadow-cozy space-y-4 border-peach-100">
+                <p class="text-sm sm:text-base text-muted leading-relaxed">
+                    Il faut regarder les réalités sociologiques sans hypocrisie :
+                </p>
+
+                <ul class="space-y-3 text-xs sm:text-sm text-muted">
+                    <li class="p-3.5 rounded-2xl bg-canvas flex items-start gap-3 border border-peach-50">
+                        <span class="text-peach-500 font-bold text-base">•</span>
+                        <div>
+                            <strong class="text-espresso">L'asymétrie des attentes :</strong> Un homme avec une bonne situation épouse volontiers une femme aux revenus modestes, tandis que l'inverse reste rare dans les attentes sociales.
+                        </div>
+                    </li>
+                    <li class="p-3.5 rounded-2xl bg-canvas flex items-start gap-3 border border-peach-50">
+                        <span class="text-peach-500 font-bold text-base">•</span>
+                        <div>
+                            <strong class="text-espresso">Le facteur temps :</strong> En repoussant sans cesse le mariage vers 28–30 ans pour un statut hypothétique, de nombreuses jeunes femmes voient les meilleures opportunités de foyer stable se restreindre.
+                        </div>
+                    </li>
+                    <li class="p-3.5 rounded-2xl bg-canvas flex items-start gap-3 border border-peach-50">
+                        <span class="text-peach-500 font-bold text-base">•</span>
+                        <div>
+                            <strong class="text-espresso">L’impact sur le couple :</strong> Si un choix de carrière génère un stress destructeur qui brise le couple et épuise les familles, alors ce choix est un échec, quel que soit le salaire.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Conclusion : Synthèse Fondamentale -->
+        <section class="bg-espresso text-canvas rounded-4xl p-6 sm:p-8 shadow-cozy mb-12 relative overflow-hidden">
+            <div class="flex items-center gap-2.5 mb-3 text-peach-300">
+                <i data-lucide="sparkle" class="w-5 h-5 fill-current"></i>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold">L'important n'est pas le titre, mais l'autonomie</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-canvas/80 mb-5 leading-relaxed">
+                Ce que les parents doivent rechercher pour leur fille, ce n'est pas une étiquette de bureau rigide, mais de solides fondations d'émancipation :
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col gap-1">
+                    <span class="text-peach-300 font-bold">01. Savoir-Faire</span>
+                    <span class="text-canvas/90">Avoir des compétences monétisables et flexibles.</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col gap-1">
+                    <span class="text-peach-300 font-bold">02. Liberté</span>
+                    <span class="text-canvas/90">Ne jamais être tributaire financièrement de quiconque.</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col gap-1">
+                    <span class="text-peach-300 font-bold">03. Harmonie</span>
+                    <span class="text-canvas/90">Préserver sa santé mentale et la sérénité du foyer.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Reflection & Poll Card -->
+        <section class="paper-card rounded-4xl p-6 sm:p-8 shadow-cozy border-peach-200 text-center space-y-5">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="text-3xl">🌿</span>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso">Votre avis nous intéresse !</h3>
+                <p class="text-xs sm:text-sm text-muted">
+                    Partagez-vous ce constat sur la nécessité de privilégier la <strong>flexibilité et la paix d’esprit</strong> plutôt que le simple statut social ?
+                </p>
+            </div>
+
+            <!-- Poll Action Buttons -->
+            <div id="poll-box" class="max-w-md mx-auto space-y-2.5">
+                <button onclick="submitOpinion('accord')" class="w-full p-4 rounded-3xl bg-peach-50 hover:bg-peach-100/80 border border-peach-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group text-espresso">
+                    <span class="flex items-center gap-2">
+                        <span>✨</span> Tout à fait d'accord (Priorité au Sukoon)
+                    </span>
+                    <span class="text-peach-500 group-hover:translate-x-1 transition">→</span>
+                </button>
+                <button onclick="submitOpinion('mitige')" class="w-full p-4 rounded-3xl bg-canvas hover:bg-sage-50 border border-sage-200 flex items-center justify-between text-xs sm:text-sm font-semibold transition group text-espresso">
+                    <span class="flex items-center gap-2">
+                        <span>⚖️</span> Le statut et le prestige comptent autant
+                    </span>
+                    <span class="text-sage-600 group-hover:translate-x-1 transition">→</span>
+                </button>
+            </div>
+
+            <!-- Poll Results (Hidden until vote) -->
+            <div id="poll-result" class="hidden max-w-md mx-auto space-y-3 pt-2">
+                <div class="p-4 rounded-2xl bg-peach-50 border border-peach-200 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-espresso">
+                        <span>🌸 Priorité à la Paix & Flexibilité (Sukoon)</span>
+                        <span class="text-peach-500">89%</span>
+                    </div>
+                    <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                        <div id="bar-accord" class="bg-peach-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-canvas border border-sage-200 text-left space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-espresso">
+                        <span>🏛️ Statut & Prestige avant tout (Ijjat)</span>
+                        <span class="text-sage-600">11%</span>
+                    </div>
+                    <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                        <div id="bar-mitige" class="bg-sage-500 h-full rounded-full transition-all duration-700" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-muted">Merci d'avoir partagé votre ressenti ! 💌</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-muted border-t border-peach-100">
+        <p>Conçu avec bienveillance pour l'harmonie et l'indépendance de nos foyers 🌿</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 paper-card border-peach-200 text-espresso px-4 py-3 rounded-2xl shadow-cozy transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-2 text-xs font-medium">
+        <i data-lucide="check-circle" class="w-4 h-4 text-peach-500"></i>
+        <span id="toast-text">Action enregistrée !</span>
+    </div>
+
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // 1. Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+        });
+
+        // 2. Sukoon vs Ijjat Interactive Toggle
+        function togglePhilosophy(type) {
+            const content = document.getElementById('philosophy-content');
+            const btnSukoon = document.getElementById('btn-sukoon');
+            const btnIjjat = document.getElementById('btn-ijjat');
+
+            if(type === 'sukoon') {
+                btnSukoon.className = 'px-3 py-1 rounded-full bg-sage-500 text-white font-bold transition text-xs';
+                btnIjjat.className = 'px-3 py-1 rounded-full text-muted transition text-xs';
+                content.className = 'text-xs sm:text-sm text-sage-600 bg-sage-50 p-3.5 rounded-2xl leading-relaxed';
+                content.innerHTML = '<strong>La voie du Sukoon :</strong> Une carrière flexible qui permet de moduler son temps pendant la maternité, de préserver sa sérénité et de réaccélérer quand les enfants grandissent.';
+            } else {
+                btnIjjat.className = 'px-3 py-1 rounded-full bg-peach-500 text-white font-bold transition text-xs';
+                btnSukoon.className = 'px-3 py-1 rounded-full text-muted transition text-xs';
+                content.className = 'text-xs sm:text-sm text-peach-500 bg-peach-50 p-3.5 rounded-2xl leading-relaxed';
+                content.innerHTML = '<strong>Le mirage de l’Ijjat pur :</strong> Préparer des concours durant 6 ans, subir des mutations permanentes et un burn-out familial uniquement pour le regard du voisinage.';
+            }
+        }
+
+        // 3. Poll Interaction
+        function submitOpinion(choice) {
+            document.getElementById('poll-box').classList.add('hidden');
+            const res = document.getElementById('poll-result');
+            res.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('bar-accord').style.width = '89%';
+                document.getElementById('bar-mitige').style.width = '11%';
+            }, 100);
+        }
+
+        // 4. Toast helper & Sharing
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Comment orienter la carrière de nos filles ?',
+                    text: 'Entre indépendance financière, réalité du mariage et paix d’esprit.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showToast("Lien copié dans le presse-papier ! ✨");
+            }
+        }
+
+        function copyQuote() {
+            showToast("Article ajouté à vos favoris ! 🌿");
+        }
+    </script>
+</body>
+</html>
