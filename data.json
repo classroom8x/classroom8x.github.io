@@ -23,6 +23,398 @@
     { "title": "DMCA", "url": "../page/dmca.html" }
   ],
   "posts": [
+    {
+    "id": 1,
+    "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/ts",
+    "excerpt": "Travailler plus ne suffit plus : découvrez comment l'inflation des aspirations, le piège du statut et les mythes de l'investissement freinent silencieusement votre liberté financière.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 2,
+    "title": "Pourquoi vous vous sentez bloqué à 35 ans",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/siki.html",
+    "excerpt": "Arrivé à l'âge de 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et le respect de toutes les règles établies.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 3,
+    "title": "« Et si… ? » : 5 questions puissantes pour faire la paix avec les occasions manquées",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/sakhiyo.html",
+    "excerpt": "Apprenez à transformer les fantômes du passé et les regrets de ce qui aurait pu être en une véritable énergie d'action bienveillante pour aujourd'hui.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 4,
+    "title": "Pourquoi vous vous sentez bloqué à 35 ans · Guide Doux & Stratégique",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/rise.html",
+    "excerpt": "Comprendre le cycle en trois phases (« Étincelle », « Enthousiasme » et « Épuisement ») pour débloquer votre potentiel et sortir du mur de la trentaine.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 5,
+    "title": "Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/rimeno.html",
+    "excerpt": "Ce sentiment d'étouffement n'est pas un manque de talent, mais l'aboutissement logique d'un cycle professionnel dans lequel s'enferment les profils appliqués.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 6,
+    "title": "Pourquoi tant d'hommes se sentent-ils « bloqués » à 30-35 ans ? (Et comment en sortir)",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/riku2.html",
+    "excerpt": "Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques concrets pour bâtir sa propre liberté.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 7,
+    "title": "The Quiet Art of Watering Plants Every Morning",
+    "category": "Rituels & Bien-être",
+    "url": "https://classroom8x.github.io/post1.html",
+    "excerpt": "There is a particular kind of quiet early in the morning when the only sound is water hitting soil, teaching us the silent power of patience.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 8,
+    "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/noaia.html",
+    "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment retrouver la paix intérieure face aux doutes, à l'âge et à l'angoisse professionnelle.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 9,
+    "title": "La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/middle-class-tips.html",
+    "excerpt": "Découvrez comment les réflexes inconscients, la course au statut social et les pièges d'épargne maintiennent la classe moyenne dans une stagnation perpétuelle.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 10,
+    "title": "La Maîtrise de la Liberté Financière : Pourquoi l'école ne vous a jamais appris à gérer l'argent",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/maitrise.html",
+    "excerpt": "Comprendre les règles du jeu financier : distinction actif/passif, constitution d'un fonds d'urgence et gestion budgétaire avec la règle du 50/30/20.",
+    "date": "20-08-2026"
+  },
+  {
+    "id": 11,
+    "title": "Vous n'êtes pas votre carrière : cette angoisse invisible qui vole nos nuits",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/sinu.html",
+    "excerpt": "Quand l'obsession de la trajectoire professionnelle finit par éclipser la beauté d'exister : pourquoi votre carrière n'est qu'un chapitre et non tout le livre de votre vie.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 12,
+    "title": "La Jeunesse : Pourquoi elle n'est pas un problème, mais une possibilité infinie",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/siok.html",
+    "excerpt": "5 questions fondamentales pour naviguer dans vos doutes, faire la paix avec l'expérience des aînés et bâtir vos propres fondations avec passion.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 13,
+    "title": "Quand la peur d'échouer dans sa carrière vole notre sommeil · Guide Doux",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/cumi.html",
+    "excerpt": "Pourquoi votre métier ne définit pas votre valeur humaine et comment apaiser la panique de l'avenir pour retrouver des nuits paisibles.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 14,
+    "title": "L'Art de Dire Non : Protéger Votre Temps et Votre Énergie",
+    "category": "Rituels & Bien-être",
+    "url": "https://classroom8x.github.io/post/p1",
+    "excerpt": "Dire oui à tout, c'est renoncer à sa tranquillité d'esprit : apprenez à fixer des limites saines pour préserver votre énergie.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 15,
+    "title": "Créer un Espace de Travail Minimaliste qui Inspire la Créativité",
+    "category": "Technologie & Minimalisme",
+    "url": "https://classroom8x.github.io/post/p2",
+    "excerpt": "Un bureau en bois épuré, un carnet et zéro encombrement visuel pour libérer pleinement son esprit créatif.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 16,
+    "title": "Pourquoi je Suis Revenu aux Livres Papier à l'Ère du Tout-Numérique",
+    "category": "Technologie & Minimalisme",
+    "url": "https://classroom8x.github.io/post/p3",
+    "excerpt": "Si les écrans apportent l'information instantanée, les pages en papier offrent une véritable compréhension et un calme indispensable pour penser.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 17,
+    "title": "Systèmes d'Exploitation Légers pour les PC Portables Anciens en 2026",
+    "category": "Technologie & Minimalisme",
+    "url": "https://classroom8x.github.io/post/p4",
+    "excerpt": "Comment redonner une seconde vie à votre ancien matériel informatique grâce à des distributions optimisées et des méthodes de travail légères.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 18,
+    "title": "Marches Matinales sans Écouteurs : Se Connecter au Réveil de la Ville",
+    "category": "Rituels & Bien-être",
+    "url": "https://classroom8x.github.io/post/p5",
+    "excerpt": "Remplacer les podcasts et la musique par les bruits naturels de l'aube transforme radicalement la clarté d'esprit matinale.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 19,
+    "title": "Le Pouvoir du Bilan du Soir : Clôturer Chaque Journée avec Clarté",
+    "category": "Rituels & Bien-être",
+    "url": "https://classroom8x.github.io/post/p6",
+    "excerpt": "Une réflexion de cinq minutes chaque soir permet d'éviter l'épuisement professionnel et de préparer efficacement la journée du lendemain.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 20,
+    "title": "L'Art du Détachement Matériel : Pourquoi Posséder Moins Rend Plus Libre",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h1",
+    "excerpt": "Découvrez comment le désencombrement physique et mental permet de réduire le stress quotidien et de retrouver une clarté essentielle pour vos projets de vie.",
+    "date": "21-08-2026"
+  },
+  {
+    "id": 21,
+    "title": "Sortir de la Rat Race : Construire des Revenus Décorrélés de Votre Temps",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/post/h2",
+    "excerpt": "Échanger ses heures contre un salaire a ses limites : explorez les leviers stratégiques et l'effet de levier pour bâtir des actifs financiers pérennes.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 22,
+    "title": "La Peur de l'Échec Professionnel : Comment Transformer Vos Doutes en Moteur",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/post/h3",
+    "excerpt": "Le syndrome de l'imposteur et l'anxiété du statut paralysent l'action. Apprenez à recadrer vos appréhensions pour oser franchir les paliers décisifs de votre parcours.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 23,
+    "title": "L'Épargne Stratégique : Les Règles Indispensables Avant Tout Investissement",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/post/h4",
+    "excerpt": "Pourquoi investir sans filet de sécurité est une erreur critique : guide pratique pour structurer votre fonds d'urgence et assainir votre trésorerie personnelle.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 24,
+    "title": "Le Silence Intérieur à l'Ère Hyperconnectée : Retrouver Votre Focus Profond",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h5",
+    "excerpt": "Face aux notifications incessantes et à la surcharge cognitive, réapprenez à préserver des plages de solitude réparatrice pour régénérer votre créativité.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 25,
+    "title": "Plafonnement de Carrière : Comment Rompre l'Inertie des Années de Routine",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/post/h6",
+    "excerpt": "Quand l'expérience ne se traduit plus en opportunités stimulantes : techniques concrètes pour pivoter, développer de nouvelles compétences et redéfinir sa trajectoire.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 26,
+    "title": "Richesse Invisible vs Signes Extérieurs : La Vraie Définition de l'Indépendance",
+    "category": "Finances & Liberté",
+    "url": "https://classroom8x.github.io/post/h7",
+    "excerpt": "Vivre pour impressionner les autres détruit le patrimoine : comprenez pourquoi la liberté d'emploi du temps vaut bien plus que tous les marqueurs de statut éphémères.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 27,
+    "title": "Faire la Paix avec le Temps Qui Passe : Accepter ses Choix sans Regret",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h8",
+    "excerpt": "Une réflexion apaisante pour cesser de ressasser les bifurcations non prises et concentrer toute son énergie vitale sur ce qui dépend réellement de nous.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 28,
+    "title": "L'Épuisement Silencieux : Reconnaître le Burn-out Avant la Rupture",
+    "category": "Carrière & Psychologie",
+    "url": "https://classroom8x.github.io/post/h9",
+    "excerpt": "Les signaux d'alerte physiques et psychologiques que l'on ignore trop souvent, et comment réinstaurer des limites saines entre vie professionnelle et personnelle.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 29,
+    "title": "L'Effet Cumulé des Petites Décisions : Le Secret de la Croissance à Long Terme",
+    "category": "Philosophie & Sérénité",
+    "url": "https://classroom8x.github.io/post/h10",
+    "excerpt": "Les grands accomplissements ne naissent pas de coups d'éclat soudains, mais de la répétition patiente et invisible de micro-habitudes bien calibrées.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 30,
+    "title": "Les Sutras de l'Immobilier : Pourquoi Bâtir sa Propre Conviction",
+    "category": "Immobilier & Patrimoine",
+    "url": "https://classroom8x.github.io/post/j1",
+    "excerpt": "Acheter un bien immobilier ne doit jamais reposer sur une conviction d'emprunt : découvrez comment analyser la valeur comptable, capter la plus-value initiale et sécuriser l'avenir familial.",
+    "date": "22-08-2026"
+  },
+  {
+    "id": 31,
+    "title": "Astro-Vastu Pragmatique : 7 Sutras Gratuits pour Libérer l'Énergie de Votre Maison",
+    "category": "Bien-Être & Habitat",
+    "url": "https://classroom8x.github.io/post/j2",
+    "excerpt": "En finir avec le commerce de la peur : 7 ajustements concrets, gratuits et sans démolition pour désencombrer votre intérieur et restaurer l'harmonie vibratoire du foyer.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 32,
+    "title": "La « Kundali Moderne » : Le Test de Compatibilité Réaliste en 7 Piliers",
+    "category": "Relations & Couple",
+    "url": "https://classroom8x.github.io/post/j3",
+    "excerpt": "Oubliez les thèmes astraux abstraits : découvrez une matrice d'évaluation pragmatique sur 70 points pour mesurer la réelle solidité d'une union au-delà du simple charme éphémère.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 33,
+    "title": "7 Sutras Concrets pour Décupler la Concentration et Réussir les Concours",
+    "category": "Études & Réussite",
+    "url": "https://classroom8x.github.io/post/j4",
+    "excerpt": "Posture, ancrage au sol et orientation du bureau : éliminez le brouillard mental et les erreurs d'inattention aux examens grâce à une ergonomie de travail rigoureuse.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 34,
+    "title": "Oser Vivre Sans Permission : 5 Questions Libératrices pour Enfin S'Accomplir",
+    "category": "Développement Personnel",
+    "url": "https://classroom8x.github.io/post/j5",
+    "excerpt": "Cessez d'attendre la validation du monde entier : explorez 5 réflexions fondamentales pour dépasser la peur de la clarté et embrasser pleinement votre destinée.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 35,
+    "title": "L'Art de se Réinventer : Réveiller ses Forces et ses Atouts en Hibernation",
+    "category": "Mindset & Évolution",
+    "url": "https://classroom8x.github.io/post/j6",
+    "excerpt": "Se réinventer n'exige pas d'effacer son passé, mais de réveiller ces talents précieux et ces désirs enfouis au fil des années pour s'épanouir dans une nouvelle saison de vie.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 36,
+    "title": "Le Nid Silencieux : Quand les Enfants s'Envolent | Chronique d'un Père",
+    "category": "Famille & Parentalité",
+    "url": "https://classroom8x.github.io/post/j7",
+    "excerpt": "Le départ des enfants vers de nouveaux horizons n'est pas une fin, mais une diplomation de l'amour : apprenez à transformer le manque en une présence solide et bienveillante.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 37,
+    "title": "Rendement Locatif & Cash-Flow Positif : Nettoyer son Patrimoine des Biens Fantômes",
+    "category": "Finances & Immobilier",
+    "url": "https://classroom8x.github.io/post/j8",
+    "excerpt": "La plus-value théorique sur papier ne paie pas vos factures : apprenez à calculer votre rendement locatif réel et à arbitrer sans hésiter les investissements improductifs.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 38,
+    "title": "Le Poids du Silence : Quand les Mots n'ont Nulle Part où Aller",
+    "category": "Émotion & Introspection",
+    "url": "https://classroom8x.github.io/post/j9",
+    "excerpt": "Une réflexion nocturne et poétique sur le silence intérieur, le masque de la fausse normalité et l'importance d'accueillir avec douceur sa propre vulnérabilité.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 39,
+    "title": "« Et si… ? » : 5 Questions Puissantes pour Faire la Paix avec les Occasions Manquées",
+    "category": "Sagesse & Résilience",
+    "url": "https://classroom8x.github.io/post/j10",
+    "excerpt": "Arrêtez de rejouer des scénarios imaginaires du passé : découvrez comment transformer la nostalgie et les regrets en tremplins d'action lucide pour vos choix futurs.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 40,
+    "title": "Builder Floor ou Appartement en Tour Résidentielle : Où Placer Votre Capital ?",
+    "category": "Investissement Immobilier",
+    "url": "https://classroom8x.github.io/post/a1",
+    "excerpt": "Découvrez une analyse comparative en 10 points entre les petits immeubles indépendants (Builder Floors) et les tours résidentielles de standing pour sécuriser votre capital et votre confort de vie.",
+    "date": "23-08-2026"
+  },
+  {
+    "id": 41,
+    "title": "Comment orienter la carrière de nos filles ? (Partie 1)",
+    "category": "Carrière & Famille",
+    "url": "https://classroom8x.github.io/post/a2",
+    "excerpt": "Entre indépendance financière, réalité du mariage et paix d’esprit : découvrez comment guider les jeunes femmes vers une carrière durable sans sacrifier l'équilibre familial.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 42,
+    "title": "Carrière Féminine (Partie 2) : Construire une indépendance durable plutôt qu'un « emploi vitrine »",
+    "category": "Carrière & Émancipation",
+    "url": "https://classroom8x.github.io/post/a3",
+    "excerpt": "Évitez le piège des emplois précaires sans montée en compétences : apprenez à miser sur le travail intellectuel, les compétences à haute valeur ajoutée et un soutien parental pérenne.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 43,
+    "title": "Destin ou Libre Arbitre : Sommes-nous réellement maîtres de notre vie ?",
+    "category": "Philosophie & Clarté",
+    "url": "https://classroom8x.github.io/post/a4",
+    "excerpt": "À travers les métaphores de la toile, du jeu de cartes et de la météo, dépassez les croyances dogmatiques pour comprendre l'harmonie entre vos actions et les circonstances de la vie.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 44,
+    "title": "Pourquoi vous ne devriez PAS rembourser totalement votre prêt immobilier",
+    "category": "Finances & Patrimoine",
+    "url": "https://classroom8x.github.io/post/a5",
+    "excerpt": "Découvrez les 5 avantages stratégiques méconnus de conserver un micro-reliquat de crédit immobilier pour sécuriser vos actes de propriété et préserver votre flexibilité financière.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 45,
+    "title": "Au-delà de l'Immobilier : Les 4 Piliers Fondamentaux pour Réussir sa Vie",
+    "category": "Clarté & Épanouissement",
+    "url": "https://classroom8x.github.io/post/a6",
+    "excerpt": "Une méthode concrète pour structurer votre existence autour du foyer matériel, de l'harmonie relationnelle, de la maîtrise financière et d'une spiritualité pratique sans faux-semblants.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 46,
+    "title": "Investissement Immobilier : Les 3 indicateurs clés que 90 % des acheteurs ignorent",
+    "category": "Investissement Immobilier",
+    "url": "https://classroom8x.github.io/post/a7",
+    "excerpt": "Ne vous laissez plus éblouir par le marketing : maîtrisez le taux de Loading, la densité par acre et le délai d'absorption des stocks pour évaluer la rentabilité réelle d'un bien.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 47,
+    "title": "Investissement Immobilier : Décrypter le Marché, Éviter les Pièges & 7 Réponses Clés",
+    "category": "Investissement Immobilier",
+    "url": "https://classroom8x.github.io/post/a8",
+    "excerpt": "Arbitrage VEFA vs ancien, stratégie 2BHK vs 3BHK et démystification des stocks invendus : 7 grilles de lecture concrètes pour réussir son investissement immobilier.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 48,
+    "title": "Technologie Mivan vs Maçonnerie traditionnelle : Pourquoi vos vieux appartements risquent de perdre leur valeur",
+    "category": "Immobilier & Technologie",
+    "url": "https://classroom8x.github.io/post/a9",
+    "excerpt": "Face à la révolution du coffrage aluminium monolithique, découvrez pourquoi les anciens bâtiments en briques subissent une décote et comment arbitrer votre patrimoine à temps.",
+    "date": "24-08-2026"
+  },
+  {
+    "id": 49,
+    "title": "Pourquoi Se Comparer N'est Pas Une Erreur (Mais pourquoi nous le faisons tous de travers)",
+    "category": "Psychologie & Clarté",
+    "url": "https://classroom8x.github.io/post/a10",
+    "excerpt": "Sortez du piège de la comparaison asymétrique grâce à la règle du « Package Global » et apprenez à assumer pleinement vos choix de vie sans jalousie ni amertume.",
+    "date": "24-08-2026"
+  },
   {
     "id": 50,
     "title": "Comment Choisir sa Carrière avec Clarté : Le Piège du « Système Mansabdari » et la Transmission Générationnelle",
