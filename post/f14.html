@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Et si la peur était une boussole ? | Ashish Vidyarthi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Fraunces"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        sun: {
+                            50: '#FFFDF9',
+                            100: '#FEF8EE',
+                            200: '#FDECD2',
+                            300: '#FCD7A1',
+                            400: '#F9B257',
+                            500: '#EA580C', /* Terracotta */
+                            600: '#C2410C',
+                            dark: '#211812',
+                            moss: '#2E3D32',
+                            mossLight: '#F0F5F1',
+                            border: '#EFE5D6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dégradé atmosphérique aube/soleil */
+        .sun-canvas {
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(253, 236, 210, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 90% 25%, rgba(240, 245, 241, 0.8) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(254, 248, 238, 0.9) 0%, transparent 60%),
+                #FFFDF9;
+        }
+
+        /* Rotation de la boussole */
+        .compass-dial {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+</head>
+<body class="sun-canvas text-sun-dark font-sans antialiased selection:bg-sun-500 selection:text-white min-h-screen relative pb-20">
+
+    <!-- Canvas pour les confettis du courage -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <!-- Barre de Progression Solaire -->
+    <div id="solarBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-amber-400 via-sun-500 to-emerald-600 z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- Navigation Explorateur -->
+    <nav class="sticky top-4 z-40 max-w-3xl mx-auto px-4">
+        <div class="bg-white/90 backdrop-blur-md border border-sun-border rounded-full px-5 py-2.5 shadow-[0_8px_30px_rgba(33,24,18,0.04)] flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-sun-200 flex items-center justify-center text-sm shadow-inner">
+                    <span id="navCompass" class="compass-dial inline-block">🧭</span>
+                </div>
+                <span class="font-display font-bold text-sm sm:text-base text-sun-dark tracking-tight">Cap Courage</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <span class="hidden sm:inline text-xs font-semibold px-3 py-1 bg-sun-mossLight text-sun-moss rounded-full border border-emerald-200">
+                    🌿 Guide d'expansion
+                </span>
+                <button onclick="shareLink()" class="px-4 py-1.5 bg-sun-500 hover:bg-sun-600 text-white rounded-full text-xs font-bold transition shadow-sm flex items-center gap-1.5">
+                    <span>Transmettre</span> ↗
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteneur Principal -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 space-y-12">
+
+        <!-- En-tête Principal (Hero) -->
+        <header class="text-center space-y-5 pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sun-200/70 border border-sun-300/60 text-sun-600 text-xs font-bold uppercase tracking-wider">
+                <span>🧭</span> Nouvelle Perspective
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-sun-dark leading-tight tracking-tight max-w-2xl mx-auto">
+                Et si la peur n’était pas un ennemi, <br>
+                <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-sun-500 via-amber-500 to-emerald-700">
+                    mais une boussole ?
+                </span>
+            </h1>
+
+            <div class="flex items-center justify-center gap-3 pt-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sun-500 to-amber-300 p-0.5 shadow-sm">
+                    <div class="w-full h-full bg-white rounded-full flex items-center justify-center font-display font-bold text-xs text-sun-500">
+                        AV
+                    </div>
+                </div>
+                <div class="text-left">
+                    <p class="text-sm font-bold text-sun-dark">Ashish Vidyarthi</p>
+                    <p class="text-xs text-sun-dark/60">Acteur & Explorateur de vie</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Carte d'Introduction -->
+        <section class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-[0_10px_35px_-10px_rgba(234,88,12,0.06)] space-y-5 relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-sun-200/50 rounded-full blur-3xl pointer-events-none"></div>
+
+            <p class="text-base sm:text-lg leading-relaxed text-sun-dark/80">
+                Nous avons l'habitude de considérer la peur comme un ennemi juré, n'est-ce pas ? Pourtant, au fil de mon parcours, j'ai compris une vérité fondamentale : 
+            </p>
+
+            <div class="p-5 rounded-2xl bg-gradient-to-r from-sun-100 to-amber-50 border-l-4 border-sun-500 my-2">
+                <p class="font-display font-bold text-base sm:text-lg text-sun-600">
+                    « La peur n'est pas toujours un signal d'alarme pour fuir ; c'est très souvent une direction à suivre. Elle nous bouscule, mais elle nous apprend aussi à grandir. »
+                </p>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                Aujourd'hui, explorons ensemble <strong class="text-sun-500 font-semibold">5 questions essentielles</strong> pour transformer cette peur qui nous paralyse en un guide vers notre prochaine étape.
+            </p>
+        </section>
+
+        <!-- Navigation Visuelle des 5 Paliers -->
+        <div class="flex items-center justify-between text-xs font-bold text-sun-dark/70 border-b border-sun-border pb-3 px-2 overflow-x-auto gap-4">
+            <a href="#q1" class="hover:text-sun-500 whitespace-nowrap">1. Pourquoi maintenant ?</a>
+            <a href="#q2" class="hover:text-sun-500 whitespace-nowrap">2. Suis-je prêt(e) ?</a>
+            <a href="#q3" class="hover:text-sun-500 whitespace-nowrap">3. Repartir de zéro</a>
+            <a href="#q4" class="hover:text-sun-500 whitespace-nowrap">4. Dialoguer</a>
+            <a href="#q5" class="hover:text-sun-500 whitespace-nowrap">5. Vrai courage</a>
+        </div>
+
+        <!-- ================= QUESTION 1 ================= -->
+        <article id="q1" class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-sm space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-amber-100 text-amber-800 font-display font-extrabold flex items-center justify-center text-sm">01</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-sun-dark">
+                    Pourquoi la peur surgit-elle au moment précis où l’on s’apprête à grandir ?
+                </h2>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-sun-50 border border-sun-200">
+                <p class="font-display font-bold text-sm sm:text-base text-sun-600">
+                    🌱 Parce que la croissance détruit votre ancienne identité.
+                </p>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                La peur s'affole et vous murmure :
+            </p>
+
+            <blockquote class="pl-4 border-l-2 border-sun-300 font-hand text-xl sm:text-2xl text-sun-600">
+                « Ne casse rien ! Reste là où les gens te connaissent et reconnaissent ton talent. C’est confortable ici ! »
+            </blockquote>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                Notre cerveau adore le familier, même lorsque cette routine devient étouffante ou ennuyeuse. Le rôle instinctif de la peur est de vous ramener dans ce cocon. Mais le chemin de l'évolution n'est jamais familier.
+            </p>
+
+            <!-- Astuce Ashish -->
+            <div class="p-5 rounded-2xl bg-sun-mossLight border border-emerald-200 space-y-1.5">
+                <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">
+                    <span>💡</span> L'astuce personnelle d'Ashish
+                </div>
+                <p class="text-xs sm:text-sm text-emerald-950 font-medium leading-relaxed">
+                    « Quand je me sens trop à l’aise dans une situation, je sais que je fais du surplace. Dès qu’un projet me fait un peu peur, je marche vers lui, car c’est là que se trouve mon expansion. »
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= QUESTION 2 ================= -->
+        <article id="q2" class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-sm space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-orange-100 text-orange-800 font-display font-extrabold flex items-center justify-center text-sm">02</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-sun-dark">
+                    La peur est-elle le signe que je ne suis pas prêt(e) ?
+                </h2>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-rose-50 border border-rose-100">
+                <p class="font-bold text-rose-950 text-sm sm:text-base">
+                    🚫 Pas du tout. Vous ressentirez la peur même lorsque vous serez parfaitement préparé(e).
+                </p>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                Je suis acteur depuis des décennies, et pourtant, j’ai encore le trac avant de monter sur scène, avant qu'une caméra ne tourne, ou avant de donner une conférence devant des milliers de personnes.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-4 rounded-2xl bg-sun-50 border border-sun-border space-y-1">
+                    <span class="text-xs font-bold uppercase text-sun-500">Ce que prouve la peur</span>
+                    <p class="text-xs sm:text-sm text-sun-dark font-medium">Vous respectez l'opportunité. Vous ne prenez rien pour acquis.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-sun-50 border border-sun-border space-y-1">
+                    <span class="text-xs font-bold uppercase text-sun-500">L'illusion de l'invincibilité</span>
+                    <p class="text-xs sm:text-sm text-sun-dark font-medium">Les gens qui prétendent n'avoir jamais peur agissent souvent sans réfléchir.</p>
+                </div>
+            </div>
+
+            <p class="text-sm sm:text-base font-semibold text-sun-dark pt-1">
+                Être « prêt » ne signifie pas être sans peur (fearless). Tant que nous serons vivants, la peur sera là. Être prêt signifie simplement : <span class="text-sun-500">« J'ai peur, mais j'avance avec elle. »</span>
+            </p>
+        </article>
+
+        <!-- ================= QUESTION 3 ================= -->
+        <article id="q3" class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-sm space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-amber-100 text-amber-800 font-display font-extrabold flex items-center justify-center text-sm">03</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-sun-dark">
+                    Pourquoi ai-je si peur de perdre ce que j'ai et de « repartir de zéro » ?
+                </h2>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                Parce que nous attachons notre ego et notre temps à ce que nous avons déjà bâti. Nous craignons de redevenir un « inconnu ».
+            </p>
+
+            <!-- Case Study Débutant Sud de l'Inde -->
+            <div class="p-5 rounded-2xl bg-amber-50/60 border border-amber-200 space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-900">L'Expérience Vécue</span>
+                    <span class="text-xs px-2.5 py-0.5 rounded-full bg-white border border-amber-200 font-bold text-amber-800">Bollywood → Cinéma du Sud 🎬</span>
+                </div>
+                <p class="text-xs sm:text-sm text-sun-dark leading-relaxed">
+                    « Quand j'ai commencé à tourner dans le cinéma du sud de l'Inde après avoir fait plus de vingt films à succès à Bollywood, personne ne me connaissait là-bas. J'étais traité comme un parfait débutant. »
+                </p>
+                <p class="text-xs sm:text-sm font-semibold text-sun-600">
+                    « Mais j'ai compris une chose précieuse : la vie ne m'avait pas remis à zéro, elle m'offrait un nouveau format d'exploration. »
+                </p>
+            </div>
+
+            <div class="text-center p-4 bg-sun-dark text-white rounded-2xl shadow-md">
+                <p class="font-display italic text-sm sm:text-base text-sun-300">
+                    « Repartir de zéro est une illusion de l’esprit. Chaque nouvelle expérience est une addition, jamais une soustraction. »
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= QUESTION 4 ================= -->
+        <article id="q4" class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-sm space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-emerald-100 text-emerald-800 font-display font-extrabold flex items-center justify-center text-sm">04</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-sun-dark">
+                    Comment empêcher la peur de prendre les décisions à ma place ?
+                </h2>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                L'erreur classique est de vouloir faire taire sa peur par la force. Mais lorsque vous ignorez ou refoulez votre peur, elle s'installe aux commandes et devient votre patron.
+            </p>
+
+            <!-- Widget Dialogue Interactif avec la Peur -->
+            <div class="p-5 rounded-2xl bg-sun-100/70 border border-sun-300/60 space-y-4">
+                <h3 class="font-display font-bold text-sm text-sun-dark flex items-center gap-2">
+                    <span>💬</span> Faites l’inverse : dialoguez avec elle
+                </h3>
+
+                <div class="space-y-2">
+                    <button onclick="toggleFearDialogue('msg1')" class="w-full text-left p-3 bg-white rounded-xl border border-sun-border text-xs font-semibold hover:border-sun-500 transition flex justify-between items-center">
+                        <span>« Que cherches-tu à me dire ? »</span>
+                        <span class="text-sun-500 font-bold">Voir ▾</span>
+                    </button>
+                    <div id="msg1" class="hidden p-3 bg-white/70 rounded-xl text-xs text-sun-dark/80 border-l-2 border-sun-500 pl-3">
+                        → Elle vous répondra souvent : <em>« Je veux juste m'assurer que tu as pris en compte les risques réels. »</em>
+                    </div>
+
+                    <button onclick="toggleFearDialogue('msg2')" class="w-full text-left p-3 bg-white rounded-xl border border-sun-border text-xs font-semibold hover:border-sun-500 transition flex justify-between items-center">
+                        <span>« De quoi veux-tu me protéger ? »</span>
+                        <span class="text-sun-500 font-bold">Voir ▾</span>
+                    </button>
+                    <div id="msg2" class="hidden p-3 bg-white/70 rounded-xl text-xs text-sun-dark/80 border-l-2 border-sun-500 pl-3">
+                        → Elle vous signalera le point de vigilance, pas l'interdiction d'agir !
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-sun-600 font-medium pt-1">
+                    ✨ Quand vous écoutez votre peur avec bienveillance, elle cesse d'être un tyran pour devenir une précieuse conseillère.
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= QUESTION 5 ================= -->
+        <article id="q5" class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-sm space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-amber-100 text-amber-800 font-display font-extrabold flex items-center justify-center text-sm">05</span>
+                <h2 class="font-display text-xl sm:text-2xl font-bold text-sun-dark">
+                    À quoi ressemble le véritable courage ?
+                </h2>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                Le courage n'est ni théâtral, ni bruyant. Il n'a pas besoin de muscles ni d'armure de super-héros.
+            </p>
+
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 border border-sun-300 text-center space-y-2">
+                <span class="text-2xl">🌱</span>
+                <p class="font-display text-base sm:text-xl font-bold text-sun-dark">
+                    « Je ne sais pas comment cela va se passer, personne ne m'applaudira peut-être, j'ai peur… mais je vais le faire quand même. »
+                </p>
+                <p class="text-xs text-sun-500 font-semibold tracking-wide">
+                    Le murmure intérieur, calme et déterminé.
+                </p>
+            </div>
+
+            <p class="text-sm sm:text-base text-sun-dark/80 leading-relaxed">
+                Le courage ne crie pas. Il avance discrètement, un pas après l'autre, chaque jour.
+            </p>
+        </article>
+
+        <!-- Ce qu'il faut retenir -->
+        <section class="bg-gradient-to-tr from-sun-moss to-[#18231C] text-white rounded-3xl p-6 sm:p-10 shadow-xl space-y-4 text-center">
+            <span class="text-3xl">🧭</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-amber-200">Ce qu'il faut retenir</h3>
+            <p class="text-emerald-100 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                La peur ne disparaîtra jamais complètement de votre vie. Mais dès l'instant où vous apprenez à la reconnaître et à la comprendre, elle cesse de vous bloquer pour devenir votre meilleure alliée.
+            </p>
+            <p class="font-display italic text-amber-300 text-base sm:text-lg pt-2">
+                « Faites ce premier pas, marchez aux côtés de votre peur, et continuez de grandir. »
+            </p>
+        </section>
+
+        <!-- Section Interactive : Passeport de Courage ("À votre tour") -->
+        <section class="bg-white border border-sun-border rounded-3xl p-6 sm:p-9 shadow-sm space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-3xl">🪂</span>
+                <h3 class="font-display text-2xl font-bold text-sun-dark">À votre tour :</h3>
+                <p class="text-xs sm:text-sm text-sun-dark/70 max-w-md mx-auto">
+                    Quel projet ou quelle décision vous effraie en ce moment ? Que se passerait-il si vous décidiez d'avancer malgré tout ?
+                </p>
+            </div>
+
+            <!-- Formulaire pour sceller son pas de courage -->
+            <div id="stepForm" class="space-y-3">
+                <input type="text" id="fearTarget" placeholder="Ex: Lancer mon projet, avoir cette conversation franche..." 
+                       class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-sun-border bg-sun-50 focus:outline-none focus:ring-2 focus:ring-sun-500/40">
+                <button onclick="commitCourageStep()" class="w-full py-3 bg-sun-500 hover:bg-sun-600 text-white font-bold rounded-xl text-xs sm:text-sm transition shadow-md flex items-center justify-center gap-2">
+                    <span>Je franchis le pas avec ma boussole</span> ✨
+                </button>
+            </div>
+
+            <!-- Badge généré -->
+            <div id="courageBadge" class="hidden p-5 rounded-2xl bg-amber-50 border border-amber-300 text-center space-y-2">
+                <span class="text-xs font-bold text-amber-800 uppercase tracking-widest">Passeport de Courage Délivré 🎖️</span>
+                <p id="badgeContent" class="font-display font-bold text-sun-dark text-base"></p>
+                <p class="text-xs text-sun-600 font-medium">« J'ai peur, mais j'avance avec elle. »</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-sun-dark/60 space-y-2 pt-4">
+            <p>Inspiré des enseignements d'<strong>Ashish Vidyarthi</strong></p>
+            <p>Votre peur est votre cap. Bon voyage 🌱</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Ultra-Fluide -->
+    <script>
+        // 1. Aiguille de Boussole et Barre Solaire au scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            document.getElementById('solarBar').style.width = scrolled + '%';
+            
+            // Rotation de la boussole selon le scroll (0 à 360 deg)
+            const compass = document.getElementById('navCompass');
+            if (compass) {
+                compass.style.transform = `rotate(${scrolled * 3.6}deg)`;
+            }
+        });
+
+        // 2. Dialogue avec la peur (accordéon)
+        function toggleFearDialogue(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+
+        // 3. Générateur de Passeport de Courage + Confettis Solaires
+        function commitCourageStep() {
+            const input = document.getElementById('fearTarget');
+            const val = input.value.trim();
+
+            if (val !== '') {
+                document.getElementById('stepForm').classList.add('hidden');
+                const badge = document.getElementById('courageBadge');
+                document.getElementById('badgeContent').innerText = `« ${val} »`;
+                badge.classList.remove('hidden');
+                
+                triggerSolarConfetti();
+            }
+        }
+
+        // 4. Confettis Canvas légers (pur vanilla JS sans librairie)
+        function triggerSolarConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#EA580C', '#FBBF24', '#FCD34D', '#10B981', '#F97316'];
+
+            for (let i = 0; i < 70; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    r: Math.random() * 6 + 3,
+                    d: Math.random() * 40,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.5) * 12 - 3,
+                    alpha: 1
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let active = false;
+
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.2; // gravité
+                    p.alpha -= 0.015;
+
+                    if (p.alpha > 0) {
+                        active = true;
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                });
+
+                if (active) requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // 5. Partage natif
+        function shareLink() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Et si la peur était une boussole ? - Ashish Vidyarthi',
+                    text: 'La peur n\'est pas un signal pour fuir, c\'est très souvent une direction à suivre.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("✨ Lien copié dans le presse-papiers pour être partagé avec un ami !");
+            }
+        }
+    </script>
+</body>
+</html>

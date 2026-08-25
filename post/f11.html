@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ce jour d'enfance dont on se souvient tous | Ashish Vidyarthi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        cozy: {
+                            bg: '#FAF6F0',
+                            card: '#FFFDF9',
+                            accent: '#E78B64',
+                            accentLight: '#FBECE3',
+                            sage: '#8DA399',
+                            sageLight: '#EDF2EF',
+                            text: '#2C2623',
+                            muted: '#7A6E65',
+                            border: '#EFE7DC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Grain de papier vintage */
+        .paper-grain {
+            background-image: radial-gradient(#2c2623 0.45px, transparent 0.45px), radial-gradient(#2c2623 0.45px, #FAF6F0 0.45px);
+            background-size: 18px 18px;
+            background-position: 0 0, 9px 9px;
+            opacity: 0.98;
+        }
+        
+        /* Dropcap mignon pour le début */
+        .first-letter-drop::first-letter {
+            font-family: 'Playfair Display', serif;
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.85;
+            padding-top: 4px;
+            padding-right: 12px;
+            padding-bottom: 2px;
+            color: #E78B64;
+            font-weight: 700;
+        }
+
+        /* Animation pulsation radio */
+        @keyframes pulse-wave {
+            0%, 100% { height: 6px; }
+            50% { height: 24px; }
+        }
+        .wave-bar {
+            animation: pulse-wave 1.2s ease-in-out infinite;
+        }
+        .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="bg-cozy-bg text-cozy-text font-sans antialiased selection:bg-cozy-accent selection:text-white relative min-h-screen">
+
+    <!-- Barre de progression de lecture -->
+    <div id="readingProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-cozy-accent via-amber-400 to-cozy-sage z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- En-tête / Navigation Minimaliste -->
+    <header class="max-w-4xl mx-auto px-6 pt-8 pb-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="text-xl">📻</span>
+            <span class="font-serif font-bold text-lg text-cozy-text tracking-wide">Souvenirs Doux</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="hidden sm:inline-flex text-xs font-medium px-3 py-1.5 bg-cozy-accentLight text-cozy-accent rounded-full border border-cozy-accent/20">
+                ☕ 3 min de lecture
+            </span>
+            <button id="likeBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-cozy-border rounded-full shadow-sm hover:scale-105 transition-all text-xs font-semibold text-cozy-text">
+                <span id="heartIcon" class="text-rose-500">❤️</span>
+                <span id="likeCount">42</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-3xl mx-auto px-6 py-8">
+        
+        <!-- En-tête de l'article (Hero) -->
+        <div class="text-center mb-12 space-y-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cozy-sageLight text-cozy-sage text-xs font-medium uppercase tracking-wider mb-2">
+                <span>✨</span> Chronique & Réflexion
+            </div>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight text-cozy-text max-w-2xl mx-auto">
+                Ce jour d'enfance dont on se souvient tous
+            </h1>
+            <p class="font-serif italic text-lg sm:text-xl text-cozy-muted">
+                (et la leçon qu'il nous donne aujourd'hui)
+            </p>
+            
+            <!-- Auteur Badge -->
+            <div class="pt-4 flex items-center justify-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-cozy-accent to-amber-300 p-0.5 shadow-sm">
+                    <div class="w-full h-full bg-cozy-card rounded-full flex items-center justify-center text-sm font-bold text-cozy-accent font-serif">
+                        AV
+                    </div>
+                </div>
+                <div class="text-left">
+                    <p class="text-sm font-bold text-cozy-text">Ashish Vidyarthi</p>
+                    <p class="text-xs text-cozy-muted">Pensées & tranches de vie</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corps de l'article dans une carte effet carnet -->
+        <article class="bg-cozy-card border border-cozy-border rounded-3xl p-6 sm:p-12 shadow-[0_10px_30px_-15px_rgba(44,38,35,0.05)] space-y-8 relative overflow-hidden">
+            
+            <!-- Décoration d'angle douce -->
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-cozy-accentLight/60 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- Intro -->
+            <div class="space-y-4 text-base sm:text-lg leading-relaxed text-cozy-text/90">
+                <p class="first-letter-drop">
+                    Personne parmi nous ne se souvient de toute son enfance. Les années défilent, les souvenirs s’estompent… et pourtant, il y a toujours un jour précis qui reste gravé dans notre mémoire avec une clarté absolue.
+                </p>
+                <p>
+                    Aujourd’hui, j’aimerais dédier ces quelques lignes à ce jour-là. Bonjour à tous, c'est <strong class="text-cozy-accent font-semibold">Ashish Vidyarthi</strong>, et je viens partager avec vous une petite tranche de vie et quelques réflexions.
+                </p>
+            </div>
+
+            <!-- Section 1 : Radio à 8h (Interactive Card) -->
+            <div class="my-8 p-6 bg-cozy-bg rounded-2xl border border-cozy-border/80 relative">
+                <div class="flex items-center justify-between border-b border-cozy-border/60 pb-3 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">📻</span>
+                        <h2 class="font-serif font-bold text-lg text-cozy-text">Une radio à 8 h du matin et des souvenirs simples</h2>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="wave-bar w-1 bg-cozy-accent rounded-full inline-block"></span>
+                        <span class="wave-bar w-1 bg-cozy-accent rounded-full inline-block"></span>
+                        <span class="wave-bar w-1 bg-cozy-accent rounded-full inline-block"></span>
+                        <span class="wave-bar w-1 bg-cozy-accent rounded-full inline-block"></span>
+                        <span class="wave-bar w-1 bg-cozy-accent rounded-full inline-block"></span>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 text-sm sm:text-base leading-relaxed text-cozy-text/90">
+                    <p>
+                        De mon enfance, il y a une routine que je n’oublierai jamais. J’adorais faire la grasse matinée. Mais mon père venait allumer la radio juste à côté de mon lit. Le son me réveillait en sursaut et, agacé, je lui lançais :
+                    </p>
+                    
+                    <!-- Dialogue Box -->
+                    <div class="space-y-2.5 my-3 pl-4 border-l-2 border-cozy-accent">
+                        <p class="font-hand text-xl text-cozy-accent">« Papa, s'il te plaît, ça suffit ! »</p>
+                        <p class="text-xs sm:text-sm text-cozy-muted">Et lui me répondait simplement : <em>« Allez, debout, il est déjà 8 heures ! »</em></p>
+                    </div>
+
+                    <p>
+                        À cette époque, il n'y avait pas d'alarmes incessantes, pas d’écrans, pas de rappels de calendrier… Aucun souci, si ce n’est l’école. Puis venait la voix douce de ma mère : <em>« Réveille-toi, étire-toi, prépare-toi, la journée commence ! »</em> Ensuite, elle nous servait un bon repas réconfortant. C’était une époque formidable, n'est-ce pas ?
+                    </p>
+                    <p>
+                        En réalité, il n’y avait aucune pression… à une seule exception près : les devoirs scolaires. Ah, cette angoisse des devoirs ! Pour être honnête, cela me terrifiait. Mais c’était tout.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 2 : Pourquoi ce jour était si spécial ? -->
+            <div class="space-y-4 text-base sm:text-lg leading-relaxed text-cozy-text/90">
+                <h2 class="font-serif font-bold text-xl sm:text-2xl text-cozy-text flex items-center gap-2">
+                    <span>🌱</span> Pourquoi ce jour était-il si spécial ?
+                </h2>
+                <p>
+                    Si l'on y regarde de plus près, ce jour ordinaire d'enfance n'avait rien d'extraordinaire. Et c’est sans doute pour cela qu’il était si précieux.
+                </p>
+                <p>
+                    Nous n’avons aucune photo de ce moment précis, aucune vidéo pour le prouver. Pourtant, la sensation est intacte. Pourquoi ce souvenir reste-t-il si vivace ?
+                </p>
+
+                <!-- Citation Mise en Valeur -->
+                <div class="my-6 p-6 rounded-2xl bg-cozy-accentLight/50 border border-cozy-accent/30 text-center relative">
+                    <span class="text-3xl text-cozy-accent font-serif absolute -top-4 left-6 bg-cozy-card px-2 rounded">“</span>
+                    <p class="font-serif text-lg sm:text-xl font-bold text-cozy-text leading-relaxed">
+                        Parce que ce jour-là, nous étions pleinement là où nous étions.
+                    </p>
+                    <p class="text-xs sm:text-sm text-cozy-muted mt-2">
+                        Sans comparaison, sans filtre, ancrés dans le présent.
+                    </p>
+                </div>
+
+                <p>
+                    Nous ne regardions pas la vie des autres. Nous ne comparions pas notre réussite à celle du voisin pour nous sentir plus petits. Nous étions entiers, connectés à l’instant présent.
+                </p>
+            </div>
+
+            <!-- Section 3 : Et si vous alliez déjà bien ? -->
+            <div class="space-y-4 text-base sm:text-lg leading-relaxed text-cozy-text/90 pt-4 border-t border-cozy-border/60">
+                <h2 class="font-serif font-bold text-xl sm:text-2xl text-cozy-text flex items-center gap-2">
+                    <span>🕊️</span> Et si vous alliez déjà bien ?
+                </h2>
+                <p>
+                    Si aujourd’hui le poids du quotidien vous semble un peu lourd, je vous invite à faire une chose toute simple : repensez à ce jour d’enfance.
+                </p>
+                <p>
+                    Rappelez-vous la manière dont vous vous leviez, dont vous traversiez la journée. À cette époque, vous ne possédiez pas le quart de ce que vous avez aujourd'hui, et pourtant, vous alliez bien.
+                </p>
+                <p class="bg-cozy-sageLight/60 p-4 rounded-xl text-cozy-text border-l-4 border-cozy-sage text-sm sm:text-base">
+                    En vérité, vous allez sans doute toujours bien aujourd'hui. La seule différence, c'est que vous avez cessé de le croire.
+                </p>
+                <p>
+                    Et si vous acceptiez l'idée que tout est déjà là ? Que vous pouvez vivre votre journée d’aujourd’hui avec la même légèreté et la même authenticité qu'à l'époque ? Après tout, cette vie vous appartient.
+                </p>
+            </div>
+
+            <!-- Conclusion & Signature -->
+            <div class="space-y-3 pt-6 border-t border-cozy-border/60 text-center sm:text-left">
+                <h3 class="font-serif font-bold text-lg text-cozy-text">Un mot pour finir…</h3>
+                <p class="text-sm sm:text-base text-cozy-muted leading-relaxed">
+                    Si la lecture de ces quelques lignes a allégé un peu votre esprit, c'est que le souvenir de votre enfance a fait son œuvre.
+                </p>
+                <p class="font-hand text-2xl text-cozy-accent font-bold pt-2">
+                    Passez une excellente soirée et douce nuit à tous.
+                </p>
+            </div>
+
+        </article>
+
+        <!-- Section Interactive : Boîte à Souvenirs ("À votre tour") -->
+        <section class="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-cozy-border shadow-sm">
+            <div class="text-center max-w-md mx-auto mb-6">
+                <span class="text-2xl mb-1 inline-block">💌</span>
+                <h3 class="font-serif font-bold text-2xl text-cozy-text">À votre tour :</h3>
+                <p class="text-xs sm:text-sm text-cozy-muted mt-1">
+                    Quel est le souvenir le plus simple et le plus cher de votre enfance ? Déposez-le ici comme un petit mot doux.
+                </p>
+            </div>
+
+            <!-- Formulaire de partage rapide -->
+            <form id="memoryForm" class="space-y-3">
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="text" id="memoryAuthor" placeholder="Votre prénom..." required 
+                           class="px-4 py-2.5 rounded-xl border border-cozy-border bg-cozy-bg/50 focus:outline-none focus:ring-2 focus:ring-cozy-accent/40 text-sm">
+                    <input type="text" id="memoryText" placeholder="Ex: L'odeur du pain grillé chez mamie le dimanche..." required 
+                           class="flex-1 px-4 py-2.5 rounded-xl border border-cozy-border bg-cozy-bg/50 focus:outline-none focus:ring-2 focus:ring-cozy-accent/40 text-sm">
+                    <button type="submit" class="px-5 py-2.5 bg-cozy-accent hover:bg-cozy-accent/90 text-white font-medium rounded-xl text-sm transition-all shadow-sm flex items-center justify-center gap-1">
+                        <span>Épingler</span> 📌
+                    </button>
+                </div>
+            </form>
+
+            <!-- Mur de Souvenirs Déposés -->
+            <div id="memoriesGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Souvenirs préexistants mignons -->
+                <div class="p-3.5 bg-cozy-accentLight/40 rounded-xl border border-cozy-accent/20 rotate-[-1deg] transition hover:rotate-0">
+                    <p class="text-xs text-cozy-muted font-medium">✨ Souvenir partagé</p>
+                    <p class="font-hand text-lg text-cozy-text mt-1">« Le son des gouttes de pluie sur le toit en tôle pendant la sieste. »</p>
+                </div>
+                <div class="p-3.5 bg-cozy-sageLight/50 rounded-xl border border-cozy-sage/20 rotate-[1deg] transition hover:rotate-0">
+                    <p class="text-xs text-cozy-muted font-medium">✨ Souvenir partagé</p>
+                    <p class="font-hand text-lg text-cozy-text mt-1">« Courir pieds nus dans l'herbe fraîche avant que le soleil ne chauffe trop. »</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Doux -->
+        <footer class="text-center py-12 text-xs text-cozy-muted space-y-2">
+            <p>Inspiré des pensées bienveillantes d'<strong>Ashish Vidyarthi</strong></p>
+            <p class="opacity-70">Prenez soin de votre enfant intérieur 🌱</p>
+        </footer>
+
+    </main>
+
+    <!-- Script Interactif -->
+    <script>
+        // 1. Barre de progression au défilement
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('readingProgress').style.width = scrolled + '%';
+        });
+
+        // 2. Bouton "J'aime" avec animation
+        let liked = false;
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCount = document.getElementById('likeCount');
+        const heartIcon = document.getElementById('heartIcon');
+
+        likeBtn.addEventListener('click', () => {
+            let count = parseInt(likeCount.innerText);
+            if (!liked) {
+                likeCount.innerText = count + 1;
+                heartIcon.classList.add('scale-125');
+                setTimeout(() => heartIcon.classList.remove('scale-125'), 200);
+                liked = true;
+            } else {
+                likeCount.innerText = count - 1;
+                liked = false;
+            }
+        });
+
+        // 3. Mur interactif pour ajouter un souvenir
+        const memoryForm = document.getElementById('memoryForm');
+        const memoriesGrid = document.getElementById('memoriesGrid');
+
+        memoryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const author = document.getElementById('memoryAuthor').value.trim();
+            const text = document.getElementById('memoryText').value.trim();
+
+            if (author && text) {
+                const card = document.createElement('div');
+                card.className = "p-3.5 bg-amber-50 rounded-xl border border-amber-200 transition duration-300 hover:scale-[1.02] shadow-sm animate-fade-in";
+                card.innerHTML = `
+                    <p class="text-xs text-cozy-muted font-medium">✨ Souvenir de ${escapeHtml(author)}</p>
+                    <p class="font-hand text-lg text-cozy-text mt-1">« ${escapeHtml(text)} »</p>
+                `;
+                memoriesGrid.prepend(card);
+                memoryForm.reset();
+            }
+        });
+
+        // Sécurité basique anti-XSS pour le texte dynamique
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perdu dans votre carrière ? 5 questions essentielles | Ashish Vidyarthi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['"Outfit"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        note: ['"Reenie Beanie"', 'cursive'],
+                    },
+                    colors: {
+                        clarity: {
+                            bg: '#FAF9F6',
+                            card: '#FFFFFF',
+                            lavender: '#8B5CF6',
+                            lavenderLight: '#F3EEFF',
+                            lavenderSoft: '#E9D5FF',
+                            mint: '#10B981',
+                            mintLight: '#ECFDF5',
+                            peach: '#F97316',
+                            peachLight: '#FFF7ED',
+                            dark: '#1E1B2E',
+                            subtle: '#64748B',
+                            border: '#EBE7DF'
+                        }
+                    },
+                    boxShadow: {
+                        'soft-bento': '0 8px 30px rgba(139, 92, 246, 0.06)',
+                        'pill': '0 4px 20px rgba(0, 0, 0, 0.04)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Halo lumineux en arrière-plan */
+        .ambient-glow {
+            background: radial-gradient(circle at 15% 15%, rgba(243, 238, 255, 0.9) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 65%, rgba(236, 253, 245, 0.9) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 90%, rgba(255, 247, 237, 0.8) 0%, transparent 50%);
+        }
+
+        /* Effet de transition douce */
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-clarity-bg text-clarity-dark font-sans antialiased ambient-glow min-h-screen relative pb-20 selection:bg-clarity-lavender selection:text-white">
+
+    <!-- Barre de lecture supérieure -->
+    <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-clarity-lavender via-pink-400 to-clarity-mint z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- Navigation Mignonne & Flottante -->
+    <nav class="sticky top-4 z-40 max-w-3xl mx-auto px-4">
+        <div class="glass-pill border border-clarity-border rounded-full px-5 py-3 shadow-pill flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-full bg-clarity-lavenderLight flex items-center justify-center text-sm">🧭</span>
+                <span class="font-heading font-bold text-sm sm:text-base tracking-tight text-clarity-dark">Boussole Pro</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs">
+                <span class="hidden sm:inline px-3 py-1 bg-clarity-mintLight text-emerald-700 font-semibold rounded-full border border-emerald-200">
+                    🌱 5 Clés de Clarté
+                </span>
+                <button onclick="shareArticle()" class="px-3.5 py-1.5 bg-clarity-lavender text-white rounded-full font-medium hover:bg-clarity-lavender/90 transition shadow-sm flex items-center gap-1.5">
+                    <span>Partager</span> ↗
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 space-y-10">
+
+        <!-- Hero Section -->
+        <header class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-clarity-lavenderLight text-clarity-lavender text-xs font-bold uppercase tracking-wider">
+                <span>✨</span> Trouver sa direction
+            </div>
+            
+            <h1 class="font-heading text-3xl sm:text-5xl font-extrabold text-clarity-dark leading-tight tracking-tight max-w-2xl mx-auto">
+                Perdu dans votre carrière ? <br>
+                <span class="bg-gradient-to-r from-clarity-lavender via-purple-600 to-clarity-peach bg-clip-text text-transparent">
+                    5 questions essentielles
+                </span> pour trouver clarté, direction et confiance
+            </h1>
+
+            <div class="flex items-center justify-center gap-3 pt-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-clarity-lavender to-clarity-peach p-0.5 shadow-sm">
+                    <div class="w-full h-full bg-white rounded-full flex items-center justify-center font-heading font-bold text-xs text-clarity-lavender">
+                        AV
+                    </div>
+                </div>
+                <div class="text-left">
+                    <p class="text-sm font-bold text-clarity-dark">Ashish Vidyarthi</p>
+                    <p class="text-xs text-clarity-subtle">Guide & Réflexions de carrière</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Petite voix intérieure (Intro Card) -->
+        <section class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-clarity-lavenderLight/80 rounded-full blur-2xl pointer-events-none"></div>
+
+            <p class="text-base sm:text-lg text-clarity-subtle leading-relaxed mb-6">
+                Cela vous est-il déjà arrivé ? Votre carrière suit son cours, vous travaillez d’arrache-pied, et pourtant… chaque matin, une petite voix intérieure murmure :
+            </p>
+
+            <!-- Bulle de pensée introspective -->
+            <div class="bg-clarity-lavenderLight/50 border border-clarity-lavenderSoft rounded-2xl p-5 relative my-4">
+                <span class="text-2xl absolute -top-3 left-4">💭</span>
+                <p class="italic font-medium text-clarity-lavender sm:text-lg pl-3">
+                    « Est-ce que je suis vraiment au bon endroit ? Est-ce qu’il est trop tard pour moi ? Je donne toute mon énergie, mais où est la bonne direction ? »
+                </p>
+            </div>
+
+            <p class="text-base sm:text-lg text-clarity-subtle leading-relaxed mt-4">
+                Si vous ressentez ce flou, rassurez-vous : <strong class="text-clarity-dark font-semibold">vous n’êtes pas seul.</strong> Aujourd’hui, nous allons répondre ensemble aux <strong class="text-clarity-lavender">5 questions fondamentales</strong> que se posent tous ceux qui travaillent dur, mais qui ont besoin de retrouver du sens et de la clarté.
+            </p>
+        </header>
+
+        <!-- Sommaire Rapide / Mini Navigation -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs font-semibold">
+            <a href="#q1" class="p-2.5 bg-white border border-clarity-border rounded-xl text-center hover:border-clarity-lavender transition shadow-sm">1. Bonne voie ?</a>
+            <a href="#q2" class="p-2.5 bg-white border border-clarity-border rounded-xl text-center hover:border-clarity-lavender transition shadow-sm">2. Peur d'échouer</a>
+            <a href="#q3" class="p-2.5 bg-white border border-clarity-border rounded-xl text-center hover:border-clarity-lavender transition shadow-sm">3. Passion vs Sécurité</a>
+            <a href="#q4" class="p-2.5 bg-white border border-clarity-border rounded-xl text-center hover:border-clarity-lavender transition shadow-sm">4. Progresser</a>
+            <a href="#q5" class="p-2.5 bg-white border border-clarity-border rounded-xl text-center hover:border-clarity-lavender transition shadow-sm col-span-2 sm:col-span-1">5. Confiance</a>
+        </div>
+
+        <!-- ================= QUESTION 1 ================= -->
+        <article id="q1" class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-purple-100 text-purple-700 font-heading font-extrabold flex items-center justify-center text-sm">01</span>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-clarity-dark">
+                    Comment savoir si je suis dans la bonne carrière ?
+                </h2>
+            </div>
+
+            <p class="text-clarity-subtle leading-relaxed">
+                Être dans la bonne voie ne signifie pas que vous vous réveillerez surexcité chaque matin. La réalité est plus subtile.
+            </p>
+
+            <!-- Test Interactif / Comparatif mignon -->
+            <div class="bg-clarity-bg rounded-2xl p-5 border border-clarity-border/80">
+                <h3 class="font-heading font-bold text-xs uppercase tracking-wider text-clarity-subtle mb-3 flex items-center gap-1.5">
+                    <span>🧪</span> Le test ultime de fin de journée :
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="p-4 rounded-xl bg-red-50/70 border border-red-100 space-y-1">
+                        <span class="text-lg">❌ Signal d'alerte</span>
+                        <p class="text-xs sm:text-sm text-red-900 font-medium">Vous sentez-vous complètement brisé, vidé et sans espoir ?</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-100 space-y-1">
+                        <span class="text-lg">✅ Bon alignement</span>
+                        <p class="text-xs sm:text-sm text-emerald-900 font-medium">Fatigué physiquement, mais avec le sentiment gratifiant d'avoir grandi et d'y voir un futur ?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-amber-50/60 border-l-4 border-amber-400 text-sm sm:text-base text-amber-950 space-y-2">
+                <p>
+                    Si votre travail ne se résume qu'à un chèque à la fin du mois sans vous apporter de valeur personnelle, il y a un problème.
+                </p>
+                <p class="font-medium">
+                    💡 <em>« Parfois, l'entreprise est la bonne, mais le rôle est le mauvais. Vous êtes dans le bon train, mais pas sur le bon siège. »</em>
+                </p>
+            </div>
+
+            <p class="text-sm text-clarity-subtle">
+                La bonne carrière n’est pas parfaite au quotidien, mais elle vous fait grandir pas à pas.
+            </p>
+        </article>
+
+        <!-- ================= QUESTION 2 ================= -->
+        <article id="q2" class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-rose-100 text-rose-700 font-heading font-extrabold flex items-center justify-center text-sm">02</span>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-clarity-dark">
+                    « Et si je changeais de voie… et que j'échouais ? »
+                </h2>
+            </div>
+
+            <p class="text-clarity-subtle leading-relaxed">
+                La peur de l’échec est universelle. Mais posons-nous la vraie question : <strong>de quel échec avez-vous peur ?</strong>
+            </p>
+
+            <!-- Cartes des 3 Peurs -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs sm:text-sm">
+                <div class="p-3.5 bg-clarity-bg rounded-xl border border-clarity-border font-medium text-clarity-dark">
+                    👀 Peur du regard des autres ?
+                </div>
+                <div class="p-3.5 bg-clarity-bg rounded-xl border border-clarity-border font-medium text-clarity-dark">
+                    📉 Peur de gagner temporairement moins ?
+                </div>
+                <div class="p-3.5 bg-clarity-bg rounded-xl border border-clarity-border font-medium text-clarity-dark">
+                    👑 Peur de perdre son statut / ego ?
+                </div>
+            </div>
+
+            <!-- Focus Smart Shift -->
+            <div class="bg-gradient-to-br from-clarity-lavenderLight to-white p-5 rounded-2xl border border-clarity-lavenderSoft space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-clarity-lavender">Le Concept Clé</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-white text-xs font-bold text-clarity-lavender border border-clarity-lavenderSoft">Smart Shift 🌉</span>
+                </div>
+                <h4 class="font-heading font-bold text-base text-clarity-dark">Construisez un pont avant de sauter</h4>
+                <p class="text-xs sm:text-sm text-clarity-subtle leading-relaxed">
+                    Un changement de carrière ne veut pas dire tout brûler du jour au lendemain. Commencez par apprendre le soir, lancez des projets le week-end. 
+                </p>
+                <div class="p-3 bg-white/90 rounded-xl text-xs text-clarity-dark font-medium border border-clarity-border">
+                    🎬 <strong>L'exemple d'Ashish :</strong> <em>« C’est exactement ce que j’ai fait quand j’ai commencé à créer du contenu en ligne : je tournais et montais mes vidéos sur mon téléphone entre deux tournages d'acteur. J’ai accumulé des petites preuves avant de faire le grand saut. »</em>
+                </div>
+            </div>
+
+            <p class="text-sm sm:text-base font-semibold text-clarity-lavender">
+                ✨ Le moment héroïque d’une transition n’est pas le jour où vous posez votre démission ; c’est toute la préparation discrète et constante en amont. Le vrai risque dans la vie n'est pas d'agir, c'est de repousser indéfiniment votre avenir.
+            </p>
+        </article>
+
+        <!-- ================= QUESTION 3 ================= -->
+        <article id="q3" class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-amber-100 text-amber-700 font-heading font-extrabold flex items-center justify-center text-sm">03</span>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-clarity-dark">
+                    Faut-il suivre sa passion ou choisir la sécurité d’un emploi stable ?
+                </h2>
+            </div>
+
+            <p class="text-clarity-subtle leading-relaxed">
+                C'est le grand dilemme de la classe moyenne ! Mais pourquoi les opposer ?
+            </p>
+
+            <!-- Dualité / Alliance -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-4 rounded-2xl bg-clarity-bg border border-clarity-border">
+                    <p class="text-xs font-bold text-clarity-subtle uppercase">Passion Seule</p>
+                    <p class="text-sm font-semibold text-clarity-dark mt-1">« Sans compétences, ce n’est qu’une excitation passagère. »</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-clarity-bg border border-clarity-border">
+                    <p class="text-xs font-bold text-clarity-subtle uppercase">Stabilité Seule</p>
+                    <p class="text-sm font-semibold text-clarity-dark mt-1">« Sans sens, c’est un simple mode de survie financière. »</p>
+                </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-clarity-mintLight/60 border border-emerald-200 text-clarity-dark space-y-2">
+                <h4 class="font-heading font-bold text-sm text-emerald-800">🌱 L'Alliance Gagnante :</h4>
+                <p class="text-xs sm:text-sm text-emerald-950 leading-relaxed">
+                    Faites de votre emploi stable une <strong>plateforme</strong>. Pendant que vous gagnez votre vie, développez votre projet de passion en parallèle. Au fur et à mesure que vos compétences grandissent, votre projet secondaire finira par devenir suffisamment solide pour devenir votre profession principale.
+                </p>
+                <p class="pt-2 font-heading font-bold text-emerald-700 text-sm">
+                    « L'action attire l'abondance. La passion ne se nourrit pas d'illusions, elle se nourrit d'actions concrètes. »
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= QUESTION 4 ================= -->
+        <article id="q4" class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-blue-100 text-blue-700 font-heading font-extrabold flex items-center justify-center text-sm">04</span>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-clarity-dark">
+                    « Je travaille très dur, alors pourquoi est-ce que je ne progresse pas ? »
+                </h2>
+            </div>
+
+            <p class="text-clarity-subtle leading-relaxed">
+                Voici une vérité qui fait parfois mal : <strong>le travail acharné n'est qu'un ingrédient parmi d'autres.</strong> Le monde professionnel récompense 3 choses essentielles :
+            </p>
+
+            <!-- 3 Bento Pillars -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="p-4 rounded-2xl bg-clarity-bg border border-clarity-border flex flex-col justify-between">
+                    <div>
+                        <span class="text-2xl">🎯</span>
+                        <h4 class="font-heading font-bold text-sm text-clarity-dark mt-2">1. Les Résultats</h4>
+                        <p class="text-xs text-clarity-subtle mt-1">Quel problème concret et mesurable résolvez-vous pour votre équipe ou entreprise ?</p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-clarity-bg border border-clarity-border flex flex-col justify-between">
+                    <div>
+                        <span class="text-2xl">📊</span>
+                        <h4 class="font-heading font-bold text-sm text-clarity-dark mt-2">2. La Preuve</h4>
+                        <p class="text-xs text-clarity-subtle mt-1">Votre travail a-t-il un impact tangible et constatable ?</p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-clarity-bg border border-clarity-border flex flex-col justify-between">
+                    <div>
+                        <span class="text-2xl">📢</span>
+                        <h4 class="font-heading font-bold text-sm text-clarity-dark mt-2">3. La Visibilité</h4>
+                        <p class="text-xs text-clarity-subtle mt-1">Les décideurs savent-ils ce dont vous êtes capable et connaissent-ils vos compétences ?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center p-4 bg-purple-50 rounded-2xl border border-purple-100">
+                <p class="text-sm font-semibold text-purple-900">
+                    « Un excellent travail qui reste silencieux dans un coin ralentit inévitablement une carrière. Ne cachez pas votre valeur. Permettez à votre travail d'être vu. »
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= QUESTION 5 ================= -->
+        <article id="q5" class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-2xl bg-emerald-100 text-emerald-700 font-heading font-extrabold flex items-center justify-center text-sm">05</span>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-clarity-dark">
+                    Comment développer une vraie confiance en soi ?
+                </h2>
+            </div>
+
+            <p class="text-clarity-subtle leading-relaxed">
+                Il n’y a pas de baguette magique ni de formule secrète. La confiance en soi est une habitude, dont la graine est l’action et le carburant la préparation.
+            </p>
+
+            <!-- Mini Flow Interactive Diagram -->
+            <div class="p-5 bg-clarity-bg rounded-2xl border border-clarity-border space-y-3">
+                <p class="text-xs font-bold text-clarity-subtle uppercase tracking-wider text-center">La boucle vertueuse quotidienne</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+                    <div class="px-4 py-3 bg-white rounded-xl border border-clarity-border shadow-sm text-xs font-bold text-clarity-dark w-full sm:w-auto">
+                        🌱 Une petite action quotidienne
+                    </div>
+                    <span class="text-clarity-lavender font-bold">→</span>
+                    <div class="px-4 py-3 bg-white rounded-xl border border-clarity-border shadow-sm text-xs font-bold text-clarity-dark w-full sm:w-auto">
+                        🔍 Une preuve de faisabilité
+                    </div>
+                    <span class="text-clarity-lavender font-bold">→</span>
+                    <div class="px-4 py-3 bg-emerald-50 border border-emerald-200 rounded-xl shadow-sm text-xs font-bold text-emerald-800 w-full sm:w-auto">
+                        🏆 Une petite victoire
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-clarity-subtle leading-relaxed text-sm sm:text-base">
+                La confiance ne vient pas avant l'action en restant assis à réfléchir. Elle se construit par la répétition. Quand vous commencez à agir sérieusement et à vous relever après chaque chute, vous commencez à vous respecter… et c’est à cet instant précis que le monde se met à vous prendre au sérieux.
+            </p>
+        </article>
+
+        <!-- Le mot de la fin -->
+        <section class="bg-gradient-to-tr from-clarity-dark to-purple-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl space-y-4 text-center">
+            <span class="text-3xl">🕊️</span>
+            <h3 class="font-heading text-2xl sm:text-3xl font-extrabold">Le mot de la fin</h3>
+            <p class="text-purple-200 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                La pression du monde professionnel est assourdissante, mais votre clarté intérieure se construit dans le calme, un jour après l'autre.
+            </p>
+            <p class="font-heading font-bold text-base sm:text-lg text-emerald-300 pt-2">
+                Continuez d'augmenter votre valeur, apprenez constamment et, surtout, ne vous diminuez jamais.
+            </p>
+        </section>
+
+        <!-- Section Interactive : À vous la parole (Sondage & Réflexion) -->
+        <section class="bg-white border border-clarity-border rounded-3xl p-6 sm:p-8 shadow-soft-bento space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-3xl">💬</span>
+                <h3 class="font-heading text-2xl font-bold text-clarity-dark">À vous la parole :</h3>
+                <p class="text-xs sm:text-sm text-clarity-subtle">
+                    Laquelle de ces 5 questions résonne le plus avec votre situation actuelle ? Votez pour voir ce que pensent les autres lecteurs !
+                </p>
+            </div>
+
+            <!-- Mini Sondage Interactif -->
+            <div id="pollOptions" class="space-y-2.5">
+                <button onclick="vote(1)" class="w-full p-3.5 rounded-xl border border-clarity-border hover:border-clarity-lavender bg-clarity-bg text-left text-xs sm:text-sm font-medium flex justify-between items-center transition group">
+                    <span>1. Suis-je dans la bonne carrière ?</span>
+                    <span id="vote1" class="text-clarity-lavender font-bold opacity-0 group-hover:opacity-100 transition">34%</span>
+                </button>
+                <button onclick="vote(2)" class="w-full p-3.5 rounded-xl border border-clarity-border hover:border-clarity-lavender bg-clarity-bg text-left text-xs sm:text-sm font-medium flex justify-between items-center transition group">
+                    <span>2. Et si je changeais et que j'échouais ? (Smart Shift)</span>
+                    <span id="vote2" class="text-clarity-lavender font-bold opacity-0 group-hover:opacity-100 transition">28%</span>
+                </button>
+                <button onclick="vote(3)" class="w-full p-3.5 rounded-xl border border-clarity-border hover:border-clarity-lavender bg-clarity-bg text-left text-xs sm:text-sm font-medium flex justify-between items-center transition group">
+                    <span>3. Passion vs Stabilité financière</span>
+                    <span id="vote3" class="text-clarity-lavender font-bold opacity-0 group-hover:opacity-100 transition">18%</span>
+                </button>
+                <button onclick="vote(4)" class="w-full p-3.5 rounded-xl border border-clarity-border hover:border-clarity-lavender bg-clarity-bg text-left text-xs sm:text-sm font-medium flex justify-between items-center transition group">
+                    <span>4. Pourquoi je ne progresse pas malgré mes efforts ?</span>
+                    <span id="vote4" class="text-clarity-lavender font-bold opacity-0 group-hover:opacity-100 transition">12%</span>
+                </button>
+                <button onclick="vote(5)" class="w-full p-3.5 rounded-xl border border-clarity-border hover:border-clarity-lavender bg-clarity-bg text-left text-xs sm:text-sm font-medium flex justify-between items-center transition group">
+                    <span>5. Comment développer une vraie confiance ?</span>
+                    <span id="vote5" class="text-clarity-lavender font-bold opacity-0 group-hover:opacity-100 transition">8%</span>
+                </button>
+            </div>
+
+            <!-- Espace Commentaire / Note Douce -->
+            <form id="commentForm" class="pt-4 border-t border-clarity-border space-y-3">
+                <label class="block text-xs font-bold text-clarity-dark uppercase tracking-wider">Laissez une réflexion ou une question :</label>
+                <div class="flex gap-2">
+                    <input type="text" id="userInput" placeholder="Partagez votre ressenti ici..." required
+                           class="flex-1 px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-clarity-border bg-clarity-bg focus:outline-none focus:ring-2 focus:ring-clarity-lavender/40">
+                    <button type="submit" class="px-5 py-2.5 bg-clarity-dark text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-clarity-lavender transition shadow-sm">
+                        Envoyer
+                    </button>
+                </div>
+            </form>
+
+            <div id="commentToast" class="hidden p-3 bg-clarity-mintLight text-emerald-800 rounded-xl text-xs text-center font-medium">
+                ✨ Merci pour votre partage ! Votre réflexion a été enregistrée.
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-clarity-subtle space-y-2 pt-6">
+            <p>D'après les conseils et réflexions d'<strong>Ashish Vidyarthi</strong></p>
+            <p>Fait avec clarté, bienveillance et courage 🌱</p>
+        </footer>
+
+    </main>
+
+    <!-- JS Micro-Interactions -->
+    <script>
+        // 1. Barre de progression de lecture au scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('readProgress').style.width = scrolled + '%';
+        });
+
+        // 2. Sondage interactif
+        function vote(optionIndex) {
+            for (let i = 1; i <= 5; i++) {
+                const label = document.getElementById('vote' + i);
+                label.classList.remove('opacity-0');
+            }
+            alert("✨ Merci d'avoir voté ! Vous venez de faire un premier pas vers votre clarté.");
+        }
+
+        // 3. Soumission de réflexion
+        document.getElementById('commentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const toast = document.getElementById('commentToast');
+            toast.classList.remove('hidden');
+            document.getElementById('userInput').value = '';
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        });
+
+        // 4. Fonction de partage
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Perdu dans votre carrière ? 5 questions par Ashish Vidyarthi',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("🔗 Lien de l'article copié dans votre presse-papiers !");
+            }
+        }
+    </script>
+</body>
+</html>

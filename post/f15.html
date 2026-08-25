@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ce qui aurait pu être | Ashish Vidyarthi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poem: ['"Italiana"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                    },
+                    colors: {
+                        blossom: {
+                            porcelain: '#FAF7F2',
+                            card: '#FFFFFF',
+                            rose: '#F472B6',
+                            roseLight: '#FDF2F8',
+                            roseBorder: '#FBCFE8',
+                            gold: '#D97706',
+                            goldLight: '#FEF3C7',
+                            matcha: '#4ADE80',
+                            matchaLight: '#F0FDF4',
+                            text: '#2D222F',
+                            muted: '#7E6E80',
+                            border: '#F0E7DE'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dégradé poudré et lumière Kintsugi */
+        .kintsugi-bg {
+            background: 
+                radial-gradient(circle at 85% 15%, rgba(253, 242, 248, 0.9) 0%, transparent 45%),
+                radial-gradient(circle at 15% 50%, rgba(254, 243, 199, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(240, 253, 244, 0.8) 0%, transparent 50%),
+                #FAF7F2;
+        }
+
+        /* Ligne de dorure Kintsugi */
+        .kintsugi-line {
+            background: linear-gradient(90deg, transparent, #F59E0B, #FCD34D, transparent);
+            height: 1px;
+        }
+
+        /* Effet d'apparition douce */
+        @keyframes bloomIn {
+            0% { transform: scale(0.95); opacity: 0; filter: blur(2px); }
+            100% { transform: scale(1); opacity: 1; filter: blur(0); }
+        }
+        .bloom-card {
+            animation: bloomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="kintsugi-bg text-blossom-text font-sans antialiased selection:bg-pink-300 selection:text-blossom-text min-h-screen pb-24 relative">
+
+    <!-- Barre de Progression Pétale -->
+    <div id="petalProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-pink-300 via-amber-300 to-emerald-300 z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- Navigation Délicate -->
+    <nav class="sticky top-4 z-40 max-w-2xl mx-auto px-4">
+        <div class="bg-white/85 backdrop-blur-md border border-blossom-roseBorder/60 rounded-full px-5 py-2.5 shadow-[0_8px_30px_rgba(244,114,182,0.08)] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-lg">🌸</span>
+                <span class="font-poem font-bold text-base sm:text-lg text-blossom-text tracking-wide">Kintsugi de l'Âme</span>
+            </div>
+            
+            <div class="flex items-center gap-2 text-xs">
+                <span class="hidden sm:inline px-3 py-1 bg-blossom-roseLight text-pink-700 font-semibold rounded-full border border-blossom-roseBorder">
+                    🕊️ Apaiser ses regrets
+                </span>
+                <button onclick="sharePeaceText()" class="px-3.5 py-1.5 bg-gradient-to-r from-pink-400 to-rose-400 text-white rounded-full font-medium shadow-sm hover:scale-105 transition flex items-center gap-1">
+                    <span>Offrir ce texte</span> 💌
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteneur Principal -->
+    <main class="max-w-2xl mx-auto px-4 pt-8 space-y-10">
+
+        <!-- En-tête Poétique (Hero) -->
+        <header class="text-center space-y-4 pt-4">
+            <div class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-blossom-goldLight/70 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-widest">
+                <span>✨</span> Réconciliation Intérieure
+            </div>
+
+            <h1 class="font-poem text-3xl sm:text-5xl font-bold text-blossom-text leading-tight tracking-tight">
+                Ce qui aurait pu être
+            </h1>
+            
+            <p class="font-poem italic text-lg sm:text-2xl text-pink-600">
+                5 réflexions pour faire la paix avec ses regrets
+            </p>
+
+            <div class="pt-2 flex items-center justify-center gap-2.5">
+                <div class="w-9 h-9 rounded-full bg-pink-100 border border-pink-200 flex items-center justify-center font-poem font-bold text-sm text-pink-700">
+                    AV
+                </div>
+                <div class="text-left">
+                    <p class="text-xs sm:text-sm font-bold text-blossom-text">Ashish Vidyarthi</p>
+                    <p class="text-[11px] text-blossom-muted">Chroniqueur de résilience</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- L'insomnie du regret (Intro Card) -->
+        <section class="bg-white border border-blossom-border rounded-3xl p-6 sm:p-9 shadow-[0_10px_35px_-10px_rgba(45,34,47,0.04)] space-y-4 relative overflow-hidden">
+            <div class="absolute -top-8 -right-8 w-28 h-28 bg-pink-100/60 rounded-full blur-2xl pointer-events-none"></div>
+
+            <p class="text-sm sm:text-base leading-relaxed text-blossom-text/90">
+                Dans la vie, la douleur ne vient pas toujours de ce qui s'est réellement passé. Parfois, la souffrance la plus tenace naît de ce qui aurait pu être, mais qui n'a jamais eu lieu.
+            </p>
+
+            <!-- Bulle de l'Insomnie -->
+            <div class="p-5 rounded-2xl bg-blossom-porcelain border border-amber-200/80 space-y-1.5">
+                <div class="flex items-center gap-2 text-xs font-bold uppercase text-amber-800">
+                    <span>🌙</span> Ces pensées qui nous réveillent la nuit :
+                </div>
+                <p class="font-hand text-xl sm:text-2xl text-pink-600 pl-2">
+                    « Et si j’avais dit oui ce jour-là ? Et si je n’avais pas hésité ? »
+                </p>
+            </div>
+
+            <p class="text-xs sm:text-sm text-blossom-muted leading-relaxed">
+                Aujourd'hui, prenons le temps de répondre ensemble à <strong class="text-blossom-text">5 questions essentielles</strong> sur les occasions manquées, le regret et la manière de tourner enfin la page pour réécrire la suite.
+            </p>
+        </section>
+
+        <!-- Sommaire Mignon -->
+        <div class="grid grid-cols-5 gap-2 text-center text-[11px] font-semibold">
+            <a href="#r1" class="p-2 bg-white/80 rounded-xl border border-blossom-border hover:border-pink-300 transition">1. Échec vs Oubli</a>
+            <a href="#r2" class="p-2 bg-white/80 rounded-xl border border-blossom-border hover:border-pink-300 transition">2. Mauvais choix ?</a>
+            <a href="#r3" class="p-2 bg-white/80 rounded-xl border border-blossom-border hover:border-pink-300 transition">3. Bilan tardif</a>
+            <a href="#r4" class="p-2 bg-white/80 rounded-xl border border-blossom-border hover:border-pink-300 transition">4. Revenir ?</a>
+            <a href="#r5" class="p-2 bg-white/80 rounded-xl border border-blossom-border hover:border-pink-300 transition">5. Faire la paix</a>
+        </div>
+
+        <!-- ================= RÉFLEXION 1 ================= -->
+        <article id="r1" class="bg-white border border-blossom-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-pink-100 text-pink-700 font-poem font-bold flex items-center justify-center text-sm">I</span>
+                <h2 class="font-poem text-xl sm:text-2xl font-bold text-blossom-text">
+                    Pourquoi les occasions manquées font-elles plus mal que les échecs ?
+                </h2>
+            </div>
+
+            <!-- Comparatif Visuel -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div class="p-4 rounded-2xl bg-blossom-matchaLight border border-emerald-200 space-y-1">
+                    <span class="text-xs font-bold text-emerald-800 uppercase">💥 Quand on tente & échoue</span>
+                    <p class="text-xs text-blossom-text leading-relaxed">
+                        L'histoire a une fin. C'est douloureux mais concret : <strong>on tire la leçon et on avance.</strong>
+                    </p>
+                </div>
+                
+                <div class="p-4 rounded-2xl bg-blossom-roseLight border border-pink-200 space-y-1">
+                    <span class="text-xs font-bold text-pink-800 uppercase">🌫️ Face à l'occasion manquée</span>
+                    <p class="text-xs text-blossom-text leading-relaxed">
+                        L'histoire n'a même pas pu commencer. Notre esprit invente un scénario parfait et idéalisé.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-blossom-porcelain border-l-4 border-blossom-gold space-y-2">
+                <p class="text-xs font-bold uppercase text-amber-800">🌱 Ce qu'il faut faire :</p>
+                <p class="text-xs sm:text-sm text-blossom-text/90 leading-relaxed">
+                    Ne laissez pas votre imagination embellir ce que vous n'avez pas vécu. Si un regret vous hante, ne restez pas passif : <strong>transformez ce regret en action concrète dès aujourd'hui.</strong> Que cette frustration devienne l'énergie qui vous pousse à ne plus jamais hésiter la prochaine fois.
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= RÉFLEXION 2 ================= -->
+        <article id="r2" class="bg-white border border-blossom-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-poem font-bold flex items-center justify-center text-sm">II</span>
+                <h2 class="font-poem text-xl sm:text-2xl font-bold text-blossom-text">
+                    Le regret est-il la preuve que j’ai fait le mauvais choix ?
+                </h2>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-rose-50 border border-rose-100 text-xs sm:text-sm font-semibold text-rose-900">
+                🤍 Absolument pas. Le regret signifie simplement qu'avec les informations et l'état d'esprit que vous aviez à cette époque, vous avez pris une décision différente.
+            </div>
+
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-pink-50/70 via-white to-amber-50/50 border border-pink-200 text-center space-y-3">
+                <span class="text-2xl">📜</span>
+                <h4 class="font-poem text-lg sm:text-xl font-bold text-blossom-text">Le Pacte de Bienveillance</h4>
+                <p class="text-xs sm:text-sm text-blossom-text leading-relaxed max-w-lg mx-auto">
+                    « S'il vous plaît, ne jugez pas votre “ancien vous” avec la sagesse que vous avez acquise aujourd'hui. Ce serait profondément injuste. À ce moment précis, vous avez agi avec les cartes que vous aviez en main. »
+                </p>
+                <p class="text-xs font-semibold text-pink-600">
+                    Accordez-vous la tendresse que vous offririez à votre meilleur(e) ami(e).
+                </p>
+            </div>
+        </article>
+
+        <!-- ================= RÉFLEXION 3 ================= -->
+        <article id="r3" class="bg-white border border-blossom-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-poem font-bold flex items-center justify-center text-sm">III</span>
+                <h2 class="font-poem text-xl sm:text-2xl font-bold text-blossom-text">
+                    Pourquoi les regrets se manifestent-ils souvent plus tard dans la vie ?
+                </h2>
+            </div>
+
+            <p class="text-xs sm:text-sm text-blossom-text/90 leading-relaxed">
+                Ce n'est pas que le regret arrive tard ; c'est que <strong>nous courions trop vite pour l'entendre.</strong>
+            </p>
+
+            <div class="p-4 rounded-2xl bg-blossom-porcelain border border-blossom-border space-y-2">
+                <div class="flex items-center gap-2 text-xs font-bold text-blossom-muted uppercase">
+                    <span>⏳</span> Les Deux Saisons :
+                </div>
+                <div class="space-y-1.5 text-xs text-blossom-text/90">
+                    <p><strong>1ère partie de vie :</strong> Occupés à bâtir (carrière, famille, responsabilités). Pas le temps de se poser.</p>
+                    <p><strong>Puis le rythme ralentit :</strong> Le silence s’installe, et la vie nous demande avec douceur : <em>« Que veux-tu faire du temps qu'il te reste ? »</em></p>
+                </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-emerald-800 bg-emerald-50/70 p-3.5 rounded-xl font-medium border border-emerald-100">
+                🌿 Voyez ces prises de conscience comme une <strong>réunion de bilan bienveillante</strong>. Le regret n'est qu'une pause qui vous montre ce à quoi vous tenez vraiment, pour que vous puissiez enfin le vivre au présent.
+            </p>
+        </article>
+
+        <!-- ================= RÉFLEXION 4 ================= -->
+        <article id="r4" class="bg-white border border-blossom-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-800 font-poem font-bold flex items-center justify-center text-sm">IV</span>
+                <h2 class="font-poem text-xl sm:text-2xl font-bold text-blossom-text">
+                    Une opportunité manquée peut-elle revenir ?
+                </h2>
+            </div>
+
+            <p class="text-xs sm:text-sm text-blossom-text/90 leading-relaxed">
+                Sous sa forme exacte — avec les mêmes personnes, au même endroit et au même âge —, la réponse est non.
+            </p>
+
+            <div class="p-5 rounded-2xl bg-gradient-to-r from-amber-50 to-pink-50 border border-amber-200 text-center space-y-1.5">
+                <p class="font-poem text-lg sm:text-xl font-bold text-amber-900">
+                    « La vie ne répète pas les mêmes scènes, mais elle aime faire rimer les opportunités. »
+                </p>
+                <p class="text-xs text-blossom-muted">
+                    L'essence revient toujours sous un nouveau visage, un nouveau projet ou une nouvelle rencontre.
+                </p>
+            </div>
+
+            <p class="text-xs sm:text-sm font-semibold text-pink-600 text-center">
+                ✨ La seule question qui compte : cette fois-ci, saurez-vous reconnaître le signal et ouvrir la porte ?
+            </p>
+        </article>
+
+        <!-- ================= RÉFLEXION 5 ================= -->
+        <article id="r5" class="bg-white border border-blossom-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 font-poem font-bold flex items-center justify-center text-sm">V</span>
+                <h2 class="font-poem text-xl sm:text-2xl font-bold text-blossom-text">
+                    Comment faire la paix avec ce qui n’a jamais existé ?
+                </h2>
+            </div>
+
+            <p class="text-xs sm:text-sm text-blossom-text/90 leading-relaxed">
+                Pour trouver la paix, il faut d'abord accepter une vérité libératrice : <strong>toutes les histoires de notre vie n'ont pas besoin d'une fin parfaite.</strong>
+            </p>
+
+            <div class="p-5 rounded-2xl bg-blossom-porcelain border border-blossom-border space-y-3">
+                <p class="text-xs text-blossom-muted">Reconnaissez tout ce que vous avez accompli :</p>
+                <p class="font-hand text-2xl text-pink-600 font-bold">
+                    « Oui, j'ai manqué certaines choses, mais j'en ai réussi tant d'autres. »
+                </p>
+                <p class="text-xs text-blossom-text/80 leading-relaxed">
+                    Certains chapitres n'étaient là que pour vous apporter de l'expérience, de la profondeur et de la maturité. Embrassez vos réussites comme vos rendez-vous manqués : tous deux font partie intégrante de votre histoire.
+                </p>
+            </div>
+        </article>
+
+        <!-- Tourner la Page (Callout Poétique) -->
+        <section class="bg-gradient-to-tr from-[#2D222F] to-[#452B47] text-white rounded-3xl p-6 sm:p-10 shadow-xl space-y-4 text-center relative overflow-hidden">
+            <div class="absolute inset-x-0 top-0 kintsugi-line"></div>
+            
+            <span class="text-3xl">📖</span>
+            <h3 class="font-poem text-2xl sm:text-3xl font-bold text-amber-200">Tourner la page pour écrire la suite</h3>
+            
+            <p class="text-pink-100/90 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+                Considérez vos occasions manquées comme des pages restées blanches dans le livre de votre vie. Vous n'avez pas besoin de les déchirer : contentez-vous de tourner la page.
+            </p>
+            
+            <p class="font-poem text-base sm:text-lg text-emerald-300 font-bold pt-2">
+                Les chapitres à venir attendent encore d'être écrits par vous, ici et maintenant.
+            </p>
+        </section>
+
+        <!-- Section Interactive : Transformer son "Et Si..." en Fleur de Paix -->
+        <section class="bg-white border border-blossom-roseBorder rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="text-center space-y-1">
+                <span class="text-2xl">🪷</span>
+                <h3 class="font-poem text-2xl font-bold text-blossom-text">Et vous ?</h3>
+                <p class="text-xs text-blossom-muted max-w-md mx-auto">
+                    Y a-t-il un « et si… » auquel vous êtes enfin prêt(e) à dire adieu aujourd’hui ? Déposez-le ici pour faire germer votre paix.
+                </p>
+            </div>
+
+            <!-- Formulaire Interactif -->
+            <div id="peaceBox" class="space-y-3">
+                <input type="text" id="regretInput" placeholder="Ex: Et si j'avais choisi ces études... Et si j'avais dit ce que je ressentais..." 
+                       class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-blossom-border bg-blossom-porcelain focus:outline-none focus:ring-2 focus:ring-pink-300">
+                <button onclick="bloomPeace()" class="w-full py-3 bg-gradient-to-r from-pink-400 via-rose-400 to-amber-400 hover:opacity-95 text-white font-bold rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center justify-center gap-2">
+                    <span>Faire la paix avec cette page</span> 🌸
+                </button>
+            </div>
+
+            <!-- Carte de Fleur de Paix Générée -->
+            <div id="peaceBloom" class="hidden p-5 rounded-2xl bg-blossom-roseLight border border-pink-200 text-center space-y-2 bloom-card">
+                <span class="text-xs font-bold text-pink-700 uppercase tracking-widest">🌸 Page Tournée avec Tendresse</span>
+                <p id="bloomText" class="font-poem italic font-bold text-blossom-text text-base sm:text-lg"></p>
+                <p class="text-xs text-blossom-muted">« Je te pardonne, je t'embrasse, et j'écris la suite aujourd'hui. »</p>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-blossom-muted space-y-2 pt-4">
+            <p>Pensées et réconfort guidés par <strong>Ashish Vidyarthi</strong></p>
+            <p class="opacity-70">Vos pages blanches font la beauté de votre livre 🤍</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Léger -->
+    <script>
+        // 1. Barre de Progression Pétale
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('petalProgress').style.width = scrolled + '%';
+        });
+
+        // 2. Transformation du "Et Si..." en Fleur de Paix
+        function bloomPeace() {
+            const input = document.getElementById('regretInput');
+            const val = input.value.trim();
+
+            if (val !== '') {
+                document.getElementById('peaceBox').classList.add('hidden');
+                const bloom = document.getElementById('peaceBloom');
+                document.getElementById('bloomText').innerText = `« ${val} »`;
+                bloom.classList.remove('hidden');
+            }
+        }
+
+        // 3. Partage réconfortant
+        function sharePeaceText() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Ce qui aurait pu être - Ashish Vidyarthi',
+                    text: 'Ne jugez pas votre ancien vous avec la sagesse d\'aujourd\'hui. Tournez la page avec bienveillance.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("🌸 Le lien réconfortant a été copié dans votre presse-papiers !");
+            }
+        }
+    </script>
+</body>
+</html>
