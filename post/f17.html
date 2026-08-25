@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La voix de la nuit — Et si nous apprenions à nous pardonner ?</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        midnight: {
+                            900: '#070913',
+                            800: '#0d1224',
+                            700: '#141c38',
+                        },
+                        dream: {
+                            purple: '#a78bfa',
+                            pink: '#f472b6',
+                            rose: '#fda4af',
+                            gold: '#fef08a',
+                            lavender: '#e9d5ff'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 7s ease-in-out infinite',
+                        'float-slow': 'float 11s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                        'aurora': 'aurora 15s ease infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', filter: 'blur(40px)' },
+                            '50%': { opacity: '0.8', filter: 'blur(55px)' },
+                        },
+                        aurora: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070913;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3356;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(18, 24, 48, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Breathing Circle */
+        .breathing-orb {
+            animation: breathe 10s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(167, 139, 250, 0.3); }
+            40% { transform: scale(1.35); box-shadow: 0 0 60px rgba(244, 114, 182, 0.6); }
+            60% { transform: scale(1.35); box-shadow: 0 0 60px rgba(244, 114, 182, 0.6); }
+        }
+
+        /* Dissolve animation for thoughts */
+        .dissolve-out {
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0 !important;
+            transform: scale(0.8) translateY(-15px) !important;
+            filter: blur(10px) !important;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-midnight-900 text-slate-200 font-sans antialiased relative selection:bg-dream-purple/30 selection:text-dream-lavender overflow-x-hidden min-h-screen">
+
+    <!-- Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-dream-purple via-dream-pink to-dream-gold z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Starry Canvas Background -->
+    <canvas id="star-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Dreamy Aurora Glow Orbs -->
+    <div class="fixed -top-40 -left-40 w-96 h-96 bg-purple-600/20 rounded-full animate-pulse-glow pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -right-40 w-[30rem] h-[30rem] bg-pink-600/15 rounded-full animate-pulse-glow pointer-events-none z-0" style="animation-delay: 2s;"></div>
+    <div class="fixed bottom-10 left-1/4 w-96 h-96 bg-indigo-600/15 rounded-full animate-pulse-glow pointer-events-none z-0" style="animation-delay: 4s;"></div>
+
+    <!-- Top Floating Sanctuary Controls -->
+    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-2xl">
+        <div class="glass-pill px-5 py-3 rounded-full flex items-center justify-between shadow-2xl">
+            <div class="flex items-center space-x-2 text-dream-lavender text-xs uppercase tracking-widest font-semibold">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="flex items-center gap-1.5"><i data-lucide="moon" class="w-3.5 h-3.5 text-dream-gold"></i> Sanctuaire Nocturne</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button id="sound-btn" onclick="toggleAmbientSound()" class="text-xs px-3 py-1.5 rounded-full glass-pill hover:bg-white/10 text-slate-300 transition-all flex items-center gap-1.5" title="Sons d'ambiance de nuit">
+                    <i data-lucide="volume-2" class="w-3.5 h-3.5 text-dream-pink" id="sound-icon"></i>
+                    <span id="sound-text">Sérénité</span>
+                </button>
+                <a href="#promesse" class="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-purple-500/30 to-pink-500/30 hover:from-purple-500/40 hover:to-pink-500/40 text-purple-200 border border-purple-400/30 transition-all font-medium">
+                    Se pardonner ✨
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-28">
+
+        <!-- Header / Hero Section -->
+        <header class="text-center mb-20 relative">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-xs text-dream-lavender mb-6 animate-float">
+                <span>🕯️ Une lettre pour votre cœur fatigué</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.15] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-purple-200 mb-6">
+                La voix de la nuit
+            </h1>
+
+            <p class="font-serif italic text-2xl sm:text-3xl text-dream-lavender/90 font-light max-w-xl mx-auto mb-8">
+                « Et si nous apprenions enfin à nous pardonner ? »
+            </p>
+
+            <div class="flex items-center justify-center gap-6 text-xs text-slate-400">
+                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-dream-purple"></i> 3 min de réconfort</span>
+                <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                <span class="flex items-center gap-1.5"><i data-lucide="heart" class="w-3.5 h-3.5 text-dream-pink"></i> Auto-compassion</span>
+            </div>
+        </header>
+
+        <!-- Intro Section Card -->
+        <article class="space-y-12">
+            
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border-l-4 border-l-dream-purple relative overflow-hidden group">
+                <div class="absolute -right-16 -top-16 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
+                <p class="text-lg sm:text-xl leading-relaxed text-slate-200 font-light mb-6">
+                    Parfois, nous ne sommes en guerre contre personne d'autre que <strong class="text-dream-lavender font-semibold underline decoration-dream-pink/40 underline-offset-4">nous-mêmes</strong>. Nous essayons simplement de nous comprendre, mais nous le faisons avec une sévérité impitoyable.
+                </p>
+                <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-sm sm:text-base text-slate-300 italic flex items-start gap-3">
+                    <span class="text-2xl">🌙</span>
+                    <span>Cet article est dédié à cette voix intérieure — celle qui récolte discrètement des preuves contre vous tout au long de la journée, pour mieux vous juger une fois la nuit tombée.</span>
+                </div>
+            </div>
+
+            <!-- Chapter 1: Le professeur impitoyable -->
+            <section class="glass-card rounded-3xl p-8 sm:p-12 space-y-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-9 h-9 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-300">
+                        <i data-lucide="scale" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-dream-purple">Constat</span>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-white font-normal">
+                    Le professeur impitoyable qui vit en nous
+                </h2>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light">
+                    Avez-vous remarqué à quel point notre mémoire est précise lorsqu’il s’agit de nos erreurs ? Nous nous souvenons de chaque détail : <span class="text-dream-rose">qui a dit quoi, où nous avons échoué, qui nous avons déçu</span>. Mais qu'en est-il de nos efforts ? Nous les balayons d'un revers de main.
+                </p>
+
+                <!-- Visual contrast box -->
+                <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                    <div class="p-5 rounded-2xl bg-red-500/[0.04] border border-red-500/15">
+                        <div class="text-xs font-semibold text-red-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Ce qu'on retient
+                        </div>
+                        <p class="text-sm text-slate-300">Chaque maladresse, chaque mot de trop, chaque seconde où l'on s'est senti insuffisant.</p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-emerald-500/[0.04] border border-emerald-500/15">
+                        <div class="text-xs font-semibold text-emerald-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Ce qu'on efface
+                        </div>
+                        <p class="text-sm text-slate-300">L'épuisement accumulé, nos combats silencieux, et le courage qu'il a fallu pour tenir debout.</p>
+                    </div>
+                </div>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light">
+                    Nous oublions complètement combien nous étions épuisés ce jour-là. Nous oublions ce que nous avons dû encaisser en silence, le poids que nous portions sur nos épaules. Nous nous comportons envers nous-mêmes comme un professeur tyrannique, incapable de la moindre clémence.
+                </p>
+            </section>
+
+            <!-- Chapter 2: Le piège silencieux de la honte (Interactive) -->
+            <section class="glass-card rounded-3xl p-8 sm:p-12 space-y-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-9 h-9 rounded-2xl bg-pink-500/20 flex items-center justify-center text-pink-300">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-dream-pink">Libération Interactive</span>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-white font-normal">
+                    Le piège silencieux de la honte
+                </h2>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light">
+                    La honte n’arrive pas toujours en criant. Elle s’infiltre doucement, fait son nid dans notre cœur, et après chaque faux pas, elle nous murmure toujours la même rengaine :
+                </p>
+
+                <!-- Interactive Thought Dissolver Box -->
+                <div class="space-y-3 pt-2">
+                    <p class="text-xs text-purple-300/80 italic text-center mb-2">💡 Touchez ou cliquez sur une pensée pour la dissoudre dans la nuit :</p>
+                    
+                    <div class="thought-item cursor-pointer p-4 rounded-2xl bg-white/[0.04] hover:bg-red-500/10 border border-white/10 hover:border-red-400/30 transition-all flex items-center justify-between group" onclick="dissolveThought(this)">
+                        <span class="font-serif italic text-lg sm:text-xl text-rose-200">« Tu aurais pu faire mieux. »</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-white/5 group-hover:bg-red-400/20 text-slate-400 group-hover:text-red-200 transition-colors">Faire taire ✨</span>
+                    </div>
+
+                    <div class="thought-item cursor-pointer p-4 rounded-2xl bg-white/[0.04] hover:bg-red-500/10 border border-white/10 hover:border-red-400/30 transition-all flex items-center justify-between group" onclick="dissolveThought(this)">
+                        <span class="font-serif italic text-lg sm:text-xl text-rose-200">« Tu as encore déçu tout le monde. »</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-white/5 group-hover:bg-red-400/20 text-slate-400 group-hover:text-red-200 transition-colors">Faire taire ✨</span>
+                    </div>
+
+                    <div class="thought-item cursor-pointer p-4 rounded-2xl bg-white/[0.04] hover:bg-red-500/10 border border-white/10 hover:border-red-400/30 transition-all flex items-center justify-between group" onclick="dissolveThought(this)">
+                        <span class="font-serif italic text-lg sm:text-xl text-rose-200">« C’est toi, le problème. »</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-white/5 group-hover:bg-red-400/20 text-slate-400 group-hover:text-red-200 transition-colors">Faire taire ✨</span>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-gradient-to-r from-purple-900/30 via-pink-900/20 to-purple-900/30 border border-purple-500/20 text-center space-y-2">
+                    <p class="font-serif text-xl sm:text-2xl text-dream-gold">
+                        Mais laissez-moi vous dire une chose :
+                    </p>
+                    <p class="text-sm sm:text-base text-slate-200 font-light leading-relaxed">
+                        Cette voix qui résonne en vous n’est pas la vérité. Elle vous est familière, vous avez l'impression qu'elle fait partie de vous, <strong class="text-pink-300">mais elle vous ment.</strong>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Chapter 3: Deux poids, deux mesures -->
+            <section class="glass-card rounded-3xl p-8 sm:p-12 space-y-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-9 h-9 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-300">
+                        <i data-lucide="repeat" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-indigo-300">Le Miroir</span>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-white font-normal">
+                    Deux poids, deux mesures
+                </h2>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light">
+                    Regardez comment nous traitons les autres : lorsqu’un proche fait une erreur, nous prenons en compte le contexte. Nous nous disons avec douceur :
+                </p>
+
+                <blockquote class="pl-5 border-l-2 border-emerald-400/50 italic text-emerald-200/90 font-serif text-xl">
+                    « Il a eu une mauvaise journée, il subit beaucoup de pression… »
+                </blockquote>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light">
+                    Mais quand il s’agit de nous, tout le contexte disparaît. Nous effaçons les circonstances pour ne rendre qu'un verdict brutal : <span class="italic text-rose-300">« Je suis comme ça, je rate toujours tout. »</span>
+                </p>
+            </section>
+
+            <!-- Chapter 4: Une question essentielle & Breathing widget -->
+            <section class="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-purple-950/40 via-midnight-800/80 to-midnight-900/90 border border-purple-400/20 text-center overflow-hidden">
+                <div class="w-2 h-2 rounded-full bg-dream-gold mx-auto mb-4 animate-ping"></div>
+                <h3 class="text-xs font-semibold uppercase tracking-widest text-dream-gold mb-3">La question salvatrice</h3>
+                
+                <h2 class="font-serif text-3xl sm:text-4xl text-white mb-6">
+                    Une erreur d'action, pas une tare de l'âme
+                </h2>
+
+                <p class="text-slate-300 text-base sm:text-lg font-light max-w-xl mx-auto mb-8">
+                    Ce soir, si vous vous surprenez à vous autoflageller, arrêtez-vous un instant. Respirez, et posez-vous simplement cette question :
+                </p>
+
+                <!-- Big Golden Question Box -->
+                <div class="glass-pill p-6 sm:p-8 rounded-3xl border border-dream-gold/30 shadow-2xl max-w-xl mx-auto mb-8 relative group hover:border-dream-gold/60 transition-all">
+                    <p class="font-serif italic text-2xl sm:text-3xl text-dream-gold leading-relaxed">
+                        👉 « Suis-je réellement une mauvaise personne, ou ai-je simplement commis une erreur ? »
+                    </p>
+                </div>
+
+                <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto mb-10">
+                    Une erreur ne définit pas votre valeur ni votre caractère ; elle reflète souvent un moment de faiblesse ou une situation difficile. Se défendre contre ses propres jugements n’est pas de l'ego : <strong class="text-dream-lavender">c'est un acte de survie pour préserver sa dignité.</strong>
+                </p>
+
+                <!-- Interactive Breathing Sanctuary -->
+                <div class="py-8 border-t border-white/10 flex flex-col items-center">
+                    <span class="text-xs uppercase tracking-widest text-slate-400 mb-6">Faites une pause ici : Respirez avec la sphère</span>
+                    
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-purple-600/40 to-pink-500/40 border border-white/20 flex items-center justify-center breathing-orb relative">
+                        <span id="breath-text" class="text-xs uppercase tracking-widest font-semibold text-white drop-shadow">Inspirez</span>
+                    </div>
+
+                    <span class="text-xs text-purple-300/60 mt-6">Inspirez la compassion • Expirez la sévérité</span>
+                </div>
+            </section>
+
+            <!-- Chapter 5: Vous êtes suffisant(e) & The Pledge -->
+            <section id="promesse" class="glass-card rounded-3xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden">
+                <div class="inline-flex p-3 rounded-full bg-pink-500/10 text-pink-300 mb-2">
+                    <i data-lucide="feather" class="w-6 h-6"></i>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-5xl text-white font-normal">
+                    Vous êtes suffisant(e)
+                </h2>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light max-w-xl mx-auto">
+                    Dès l'instant où nous commençons à faire preuve d'un peu de douceur envers nous-mêmes, le chemin de la guérison commence. C’est là que naissent le respect de soi et le pardon.
+                </p>
+
+                <p class="text-slate-300 leading-relaxed text-base sm:text-lg font-light max-w-xl mx-auto">
+                    Vous n’êtes pas la perfection incarnée. Vous êtes un être humain, avec ses forces et ses failles. <strong class="text-white font-semibold">Et tel que vous êtes, vous êtes suffisant.</strong>
+                </p>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 max-w-xl mx-auto">
+                    <p class="text-sm sm:text-base text-purple-200/90 font-serif italic">
+                        Si ces quelques lignes vous permettent de vous sentir un tout petit peu plus léger ce soir, dites-vous que vous venez de vous accorder la plus précieuse des permissions : celle d'être imparfait, d'apprendre de vos erreurs et de continuer à avancer.
+                    </p>
+                </div>
+
+                <!-- Interactive Pledge Button -->
+                <div class="pt-6">
+                    <button id="pledge-btn" onclick="makePledge()" class="relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-[length:200%_auto] hover:bg-right transition-all duration-500 text-white font-medium shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105 active:scale-95 group">
+                        <i data-lucide="sparkle" class="w-5 h-5 text-dream-gold group-hover:rotate-45 transition-transform"></i>
+                        <span>Je me promets de me pardonner ce soir</span>
+                    </button>
+                    <p id="pledge-status" class="text-xs text-pink-300 mt-4 transition-all opacity-0">✨ Promesse enregistrée dans les étoiles. Reposez-vous maintenant.</p>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Final Warm Sign-off -->
+        <footer class="mt-20 text-center space-y-6">
+            <div class="w-12 h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto"></div>
+            
+            <p class="font-serif italic text-2xl sm:text-3xl text-dream-lavender font-light">
+                « Prenez grand soin de vous.<br>Et si jamais vous trébuchez à nouveau... promettez-vous simplement de vous pardonner. »
+            </p>
+
+            <p class="text-sm font-semibold tracking-widest text-dream-gold uppercase pt-4 flex items-center justify-center gap-2">
+                <span>🌙</span> Douce et paisible nuit à vous. <span>✨</span>
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // 1. Dynamic Reading Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        // 2. Starry Sky Canvas Background Generator
+        const canvas = document.getElementById('star-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            const numStars = Math.floor((canvas.width * canvas.height) / 5000);
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.2 + 0.3,
+                    alpha: Math.random() * 0.8 + 0.2,
+                    speed: Math.random() * 0.02 + 0.005,
+                    direction: Math.random() > 0.5 ? 1 : -1
+                });
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.alpha += star.speed * star.direction;
+                if (star.alpha > 0.9 || star.alpha < 0.2) {
+                    star.direction *= -1;
+                }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(226, 232, 240, ${star.alpha})`;
+                ctx.shadowBlur = star.radius > 1 ? 6 : 0;
+                ctx.shadowColor = '#c084fc';
+                ctx.fill();
+            });
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animateStars();
+
+        // 3. Breathing Rhythm Text Synchronizer
+        const breathText = document.getElementById('breath-text');
+        setInterval(() => {
+            if (breathText.innerText === 'Inspirez') {
+                breathText.innerText = 'Retenez';
+                setTimeout(() => {
+                    breathText.innerText = 'Expirez';
+                }, 2000);
+            } else if (breathText.innerText === 'Expirez') {
+                breathText.innerText = 'Inspirez';
+            }
+        }, 5000);
+
+        // 4. Interactive "Dissolve Thought" Feature
+        function dissolveThought(element) {
+            element.classList.add('dissolve-out');
+            playChime(520, 'sine', 0.15); // gentle high soothing chime
+            setTimeout(() => {
+                element.innerHTML = '<div class="w-full text-center py-1 text-xs text-purple-300 italic">✨ Pensée libérée avec bienveillance...</div>';
+                element.classList.remove('dissolve-out');
+                element.style.opacity = '0.7';
+                element.style.pointerEvents = 'none';
+            }, 700);
+        }
+
+        // 5. Ambient Web Audio Synthesizer (No external files needed)
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let ambientOscillator = null;
+        let gainNode = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playChime(freq, type = 'sine', duration = 0.5) {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e){}
+        }
+
+        function toggleAmbientSound() {
+            initAudio();
+            const soundIcon = document.getElementById('sound-icon');
+            const soundText = document.getElementById('sound-text');
+
+            if (!isAudioPlaying) {
+                // Start soft atmospheric drone (432Hz harmonic soothing vibe)
+                ambientOscillator = audioCtx.createOscillator();
+                gainNode = audioCtx.createGain();
+                ambientOscillator.type = 'sine';
+                ambientOscillator.frequency.setValueAtTime(108, audioCtx.currentTime); // 108Hz deep calm
+                gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 2);
+                ambientOscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                ambientOscillator.start();
+
+                isAudioPlaying = true;
+                soundText.innerText = "Apaisant 🎵";
+                soundIcon.classList.add("text-emerald-400");
+                playChime(432, 'sine', 1.2);
+            } else {
+                if (gainNode) {
+                    gainNode.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 1);
+                    setTimeout(() => {
+                        ambientOscillator.stop();
+                    }, 1000);
+                }
+                isAudioPlaying = false;
+                soundText.innerText = "Sérénité";
+                soundIcon.classList.remove("text-emerald-400");
+            }
+        }
+
+        // 6. Pledge Promise Star Particle Burst
+        function makePledge() {
+            const status = document.getElementById('pledge-status');
+            status.style.opacity = '1';
+            playChime(528, 'sine', 1.8); // 528 Hz transformation frequency tone
+            createFloatingStars();
+        }
+
+        function createFloatingStars() {
+            for (let i = 0; i < 24; i++) {
+                const particle = document.createElement('div');
+                particle.innerText = Math.random() > 0.5 ? '✨' : '💖';
+                particle.style.position = 'fixed';
+                particle.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 200) + 'px';
+                particle.style.top = (window.innerHeight * 0.75 + (Math.random() - 0.5) * 100) + 'px';
+                particle.style.fontSize = (Math.random() * 16 + 14) + 'px';
+                particle.style.zIndex = '9999';
+                particle.style.pointerEvents = 'none';
+                particle.style.transition = 'all 1.8s cubic-bezier(0.1, 0.8, 0.3, 1)';
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.style.transform = `translate(${(Math.random() - 0.5) * 350}px, -${Math.random() * 250 + 80}px) scale(0)`;
+                    particle.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

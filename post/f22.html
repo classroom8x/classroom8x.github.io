@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrêtez d'expliquer vos rêves : vivez-les !</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Space Grotesk & Syne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        syne: ['"Syne"', 'sans-serif'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        neo: {
+                            mint: '#10B981',
+                            mintLight: '#D1FAE5',
+                            mintUltra: '#ECFDF5',
+                            orange: '#FF5722',
+                            orangeLight: '#FFEDD5',
+                            lemon: '#FACC15',
+                            dark: '#0F172A',
+                            card: '#FFFFFF',
+                            slate: '#334155'
+                        }
+                    },
+                    boxShadow: {
+                        'neo': '5px 5px 0px 0px #0F172A',
+                        'neo-sm': '3px 3px 0px 0px #0F172A',
+                        'neo-hover': '8px 8px 0px 0px #0F172A',
+                        'neo-orange': '5px 5px 0px 0px #FF5722',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            background-image: radial-gradient(#CBD5E1 1.2px, transparent 1.2px);
+            background-size: 24px 24px;
+        }
+
+        .neo-border {
+            border: 2.5px solid #0F172A;
+        }
+
+        .neo-pill {
+            border: 2px solid #0F172A;
+            box-shadow: 2.5px 2.5px 0px #0F172A;
+        }
+
+        /* Tape effect */
+        .tape-badge {
+            background: #FEF08A;
+            border-left: 2px dashed #0F172A;
+            border-right: 2px dashed #0F172A;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0F172A;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="text-neo-dark font-sans selection:bg-neo-orange selection:text-white antialiased min-h-screen overflow-x-hidden">
+
+    <!-- Top Reading Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-neo-orange via-neo-lemon to-neo-mint z-50 transition-all duration-100 w-0"></div>
+
+    <!-- Floating Top Nav -->
+    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-2xl">
+        <div class="bg-white neo-border shadow-neo rounded-2xl px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2 font-syne font-bold text-xs uppercase tracking-wider">
+                <span class="inline-block w-3 h-3 bg-neo-mint neo-border rounded-full animate-bounce"></span>
+                <span>Manifeste d'Action</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="playPowerTone()" class="text-xs px-3 py-1.5 rounded-xl neo-pill bg-neo-mintLight hover:bg-neo-mint hover:text-white transition-all font-semibold flex items-center gap-1.5">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-neo-dark"></i>
+                    <span>Boost Énergie</span>
+                </button>
+                <a href="#action-finale" class="text-xs px-3.5 py-1.5 rounded-xl neo-pill bg-neo-orange text-white hover:bg-orange-600 transition-all font-bold">
+                    Foncez ! 🚀
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-6 pt-32 pb-32">
+
+        <!-- Hero Section -->
+        <header class="text-center mb-16 relative">
+            
+            <!-- Category Sticker -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-neo-lemon neo-pill font-syne font-bold text-xs uppercase mb-8 rotate-[-1deg]">
+                <span>⚡ Arrêtez de demander la permission</span>
+            </div>
+
+            <!-- Main Punchy Title -->
+            <h1 class="font-syne text-4xl sm:text-6xl md:text-7xl font-extrabold leading-[1.08] tracking-tight mb-8">
+                Trop jeune ? <br>
+                <span class="text-neo-orange underline decoration-neo-lemon decoration-8 underline-offset-4">Trop vieux ?</span><br>
+                Vivez vos rêves !
+            </h1>
+
+            <p class="text-lg sm:text-xl text-neo-slate font-medium max-w-xl mx-auto mb-10 leading-relaxed">
+                « Cessez d'expliquer ce que vous voulez faire de votre vie : <strong class="text-neo-dark">bâtissez-le</strong>. »
+            </p>
+
+            <!-- 3 Recurring Doubts Box -->
+            <div class="bg-neo-mintUltra neo-border rounded-3xl p-6 sm:p-8 shadow-neo text-left relative overflow-hidden">
+                <div class="tape-badge px-3 py-1 text-xs font-bold uppercase inline-block mb-4 text-neo-dark">
+                    Les 3 doutes universels qu'on me pose :
+                </div>
+
+                <div class="space-y-3 font-medium text-sm sm:text-base">
+                    <div class="p-3.5 rounded-xl bg-white neo-pill flex items-center gap-3">
+                        <span class="text-neo-orange font-bold font-syne">01.</span>
+                        <span>« Comment dire aux autres ce que je veux vraiment faire de ma vie ? »</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-white neo-pill flex items-center gap-3">
+                        <span class="text-neo-orange font-bold font-syne">02.</span>
+                        <span>« Je suis trop jeune, personne ne me prend au sérieux. »</span>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-white neo-pill flex items-center gap-3">
+                        <span class="text-neo-orange font-bold font-syne">03.</span>
+                        <span>« Je suis trop vieux, comment recommencer à zéro ? »</span>
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-neo-slate mt-5 font-semibold italic text-center">
+                    Si vous vous êtes déjà posé l'une de ces questions, voici quelques vérités franches, nées de mon propre parcours.
+                </p>
+            </div>
+        </header>
+
+        <!-- Main Content Chapters -->
+        <article class="space-y-12">
+
+            <!-- Pillar 1: L'approbation -->
+            <section class="bg-white neo-border rounded-3xl p-8 sm:p-12 shadow-neo space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-xl bg-neo-orange text-white neo-pill flex items-center justify-center font-syne font-bold">1</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-neo-slate">Pilier Fondamental</span>
+                    </div>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-neo-mintLight text-emerald-800 font-bold">Action > Paroles</span>
+                </div>
+
+                <h2 class="font-syne text-2xl sm:text-4xl font-extrabold leading-tight">
+                    Cessez de chercher l'approbation : n'expliquez plus vos rêves, construisez-les
+                </h2>
+
+                <p class="text-neo-slate text-base sm:text-lg leading-relaxed font-normal">
+                    La plupart des gens ont une peur bleue de dire ce qu'ils veulent réellement faire dans la vie. Pourquoi ? Parce que depuis l'enfance, nous sommes conditionnés à chercher l'approbation : les applaudissements des parents, les bons points des professeurs, la validation de la société.
+                </p>
+
+                <!-- Personal Anecdote Block -->
+                <div class="p-6 rounded-2xl bg-amber-50 neo-border relative">
+                    <div class="text-xs font-syne font-bold uppercase text-amber-800 mb-2">Anecdote vécue :</div>
+                    <p class="font-medium text-neo-dark text-base sm:text-lg italic">
+                        Quand j’ai dit plus jeune : « Je veux devenir acteur », la réaction immédiate a été : <br>
+                        <span class="text-neo-orange font-bold">« D'accord, mais quel est ton vrai travail ? »</span>
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-neo-mintUltra border-l-4 border-l-neo-mint font-semibold text-emerald-950">
+                    💡 Ce qu'il faut comprendre : Les gens ne peuvent interpréter vos ambitions qu'à travers le prisme de leurs propres peurs et de leurs limites.
+                </div>
+
+                <!-- Action Steps Trio -->
+                <div class="pt-4 space-y-4">
+                    <h3 class="font-syne text-xl font-bold">Mon conseil en 3 étapes :</h3>
+                    
+                    <div class="grid gap-3">
+                        <div class="p-4 rounded-xl bg-slate-50 neo-pill">
+                            <strong class="text-neo-orange font-syne block text-base mb-1">1. Arrêtez d'annoncer chaque idée</strong>
+                            <p class="text-sm text-neo-slate">Un rêve est personnel. Il vous donne une énergie brute que personne d'autre ne ressent. En l'expliquant à tout le monde, vous laissez les autres y plaquer leurs doutes.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 neo-pill">
+                            <strong class="text-neo-orange font-syne block text-base mb-1">2. Travaillez en silence</strong>
+                            <p class="text-sm text-neo-slate">N'essayez pas de convaincre votre entourage avec des paroles. Formez-vous, cherchez des mentors qui ont déjà réussi ce que vous visez, développez de nouvelles compétences.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 neo-pill">
+                            <strong class="text-neo-orange font-syne block text-base mb-1">3. Laissez vos actions parler</strong>
+                            <p class="text-sm text-neo-slate">Le monde ne comprend pas votre vision quand vous en parlez ; il la comprend quand il vous voit avancer.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERACTIVE AGES SWITCHER CARD (DUEL DES PERSPECTIVES) -->
+            <section class="bg-white neo-border rounded-3xl p-8 sm:p-12 shadow-neo space-y-8">
+                <div class="text-center space-y-3">
+                    <span class="text-xs uppercase font-syne font-bold px-3 py-1 rounded-full bg-neo-lemon neo-pill inline-block">Miroir Interactif</span>
+                    <h2 class="font-syne text-3xl sm:text-4xl font-extrabold">Où vous situez-vous aujourd'hui ?</h2>
+                    <p class="text-sm text-neo-slate font-medium">Cliquez pour détruire le faux mythe de votre âge :</p>
+                    
+                    <!-- Toggle Buttons -->
+                    <div class="inline-flex p-1.5 rounded-2xl bg-slate-100 neo-border gap-2 mt-2">
+                        <button id="tab-young" onclick="switchAgeView('young')" class="px-5 py-2.5 rounded-xl font-syne font-bold text-xs sm:text-sm neo-pill bg-neo-mint text-white transition-all">
+                            🌱 « Je suis trop jeune »
+                        </button>
+                        <button id="tab-old" onclick="switchAgeView('old')" class="px-5 py-2.5 rounded-xl font-syne font-bold text-xs sm:text-sm bg-transparent text-neo-dark hover:bg-slate-200 transition-all">
+                            🌳 « Je suis trop vieux »
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Content 1: Trop Jeune -->
+                <div id="content-young" class="space-y-6">
+                    <div class="p-6 rounded-2xl bg-neo-mintUltra neo-border space-y-3">
+                        <div class="flex items-center gap-2 text-emerald-800 font-syne font-bold text-xs uppercase">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i> Le grand paradoxe de la société
+                        </div>
+                        <p class="font-medium text-neo-dark text-base sm:text-lg">
+                            Quand on est jeune, le refrain est classique : <span class="italic text-neo-orange font-bold">« Tu manques d'expérience, tu es encore un gamin. »</span> On finit presque par se sentir coupable d'être jeune !
+                        </p>
+                        <div class="p-3 bg-white rounded-xl neo-pill text-xs sm:text-sm font-semibold text-emerald-950">
+                            👉 La société vit dans un paradoxe permanent : Elle veut l'énergie de la jeunesse, mais n'accorde sa confiance qu'à l'âge mûr.
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="font-syne text-xl font-bold text-neo-dark">Comment transformer cela en force ?</h3>
+                        <p class="text-neo-slate leading-relaxed">
+                            Si vous manquez d'expérience, vous avez quelque chose de bien plus précieux : <strong class="text-neo-dark font-bold">des idées neuves et de l'audace</strong>. Tout dans ce monde commence par une idée.
+                        </p>
+                        <blockquote class="p-4 rounded-xl bg-slate-50 neo-pill border-l-4 border-l-neo-mint font-syne font-bold text-base sm:text-lg text-neo-dark">
+                            « La jeunesse n'est pas faite pour convaincre, elle est faite pour expérimenter. »
+                        </blockquote>
+                        <p class="text-neo-slate leading-relaxed">
+                            Jouez, tentez, tombez et relevez-vous. Vos échecs ne figureront peut-être pas sur votre CV, mais ce sont eux qui forgeront votre caractère. Ne perdez pas votre temps à attendre qu'on vous prenne au sérieux : <strong class="text-neo-orange">produisez des résultats</strong>. Les mêmes personnes qui doutaient de vous hier viendront vous demander comment vous avez fait demain.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dynamic Content 2: Trop Vieux -->
+                <div id="content-old" class="space-y-6 hidden">
+                    <div class="p-6 rounded-2xl bg-neo-orangeLight neo-border space-y-3">
+                        <div class="flex items-center gap-2 text-neo-orange font-syne font-bold text-xs uppercase">
+                            <i data-lucide="shield" class="w-4 h-4"></i> Le mensonge du retard
+                        </div>
+                        <p class="font-medium text-neo-dark text-base sm:text-lg">
+                            À l'autre bout du spectre, il y a cette croyance toxique selon laquelle <span class="italic text-red-600 font-bold">« il est trop tard »</span>. Dès que l'on passe un certain cap, la société tente de nous convaincre que notre temps est révolu.
+                        </p>
+                        <div class="p-3 bg-white rounded-xl neo-pill text-xs sm:text-sm font-bold text-red-950 uppercase tracking-wide">
+                            ❌ C'est faux. Vous n'êtes pas en retard.
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="font-syne text-xl font-bold text-neo-dark">Votre arsenal invisible :</h3>
+                        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+                            <div class="p-4 bg-slate-50 rounded-xl neo-pill">
+                                🌊 <strong>Les tempêtes traversées :</strong> Vous savez déjà concrètement ce qui fonctionne et ce qui échoue.
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl neo-pill">
+                                ⏳ <strong>La denrée la plus rare :</strong> Vous possédez enfin la vraie patience.
+                            </div>
+                        </div>
+                        <p class="text-neo-slate leading-relaxed">
+                            Votre rythme est peut-être plus posé, mais votre direction est <strong class="text-neo-dark font-bold">infiniment plus claire</strong>. Votre prochaine étape ne sera pas moins bonne que la précédente ; elle sera simplement plus intelligente et plus ciblée.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pillar 3: La règle d'or -->
+            <section class="bg-neo-dark text-white rounded-3xl p-8 sm:p-12 neo-border shadow-neo space-y-6 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-neo-orange/20 rounded-full blur-3xl"></div>
+
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 neo-border text-xs font-syne font-bold uppercase text-neo-lemon">
+                    👑 La Règle d'Or
+                </div>
+
+                <h2 class="font-syne text-3xl sm:text-5xl font-extrabold leading-tight text-white">
+                    La vie n'est pas un débat
+                </h2>
+
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+                    Qu’on ait 20 ans, 45 ans ou 70 ans, le piège reste le même : <strong class="text-neo-lemon">attendre la permission des autres pour commencer à exister.</strong>
+                </p>
+
+                <!-- Dual Creed Box -->
+                <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                    <div class="p-5 rounded-2xl bg-white/5 neo-border border-white/20">
+                        <div class="text-xs font-syne font-bold text-neo-mint uppercase mb-1">Le rôle de la jeunesse :</div>
+                        <p class="text-sm text-slate-200">Ce n'est pas de convaincre : c’est d'apprendre, tomber, se relever et marcher.</p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-white/5 neo-border border-white/20">
+                        <div class="text-xs font-syne font-bold text-neo-orange uppercase mb-1">Le rôle de la maturité :</div>
+                        <p class="text-sm text-slate-200">Ce n'est pas de convaincre : c’est continuer d'apprendre, tomber parfois, se relever toujours et tracer sa route.</p>
+                    </div>
+                </div>
+
+                <!-- Punchline Banner -->
+                <div class="p-6 rounded-2xl bg-neo-orange neo-border shadow-neo-sm text-center">
+                    <p class="font-syne font-extrabold text-xl sm:text-2xl text-white">
+                        « L'âge n'est qu'un chiffre sur un papier. <br class="hidden sm:inline">La vie, elle, est un mouvement perpétuel. »
+                    </p>
+                </div>
+            </section>
+
+            <!-- Final Call To Action & Interactive Spark -->
+            <section id="action-finale" class="bg-white neo-border rounded-3xl p-8 sm:p-12 shadow-neo text-center space-y-6">
+                <div class="w-14 h-14 rounded-2xl bg-neo-lemon neo-pill flex items-center justify-center mx-auto text-2xl">
+                    🎯
+                </div>
+
+                <h2 class="font-syne text-3xl sm:text-4xl font-extrabold">
+                    Prêt à arrêter de vous justifier ?
+                </h2>
+
+                <p class="text-neo-slate text-base sm:text-lg max-w-xl mx-auto">
+                    Peu importe l'âge que vous avez aujourd'hui : arrêtez de demander la permission, arrêtez de vous justifier. <strong class="text-neo-dark">Continuez simplement d'avancer.</strong>
+                </p>
+
+                <div class="pt-4">
+                    <button onclick="launchEnergySpark()" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-neo-orange text-white font-syne font-extrabold text-lg neo-pill hover:bg-orange-600 hover:scale-105 active:scale-95 transition-all shadow-neo-orange">
+                        <i data-lucide="rocket" class="w-5 h-5"></i>
+                        <span>Prenez soin de vous et foncez !</span>
+                    </button>
+                    <p id="action-confirm" class="text-xs text-neo-mint font-bold uppercase tracking-wider mt-4 opacity-0 transition-opacity">
+                        🔥 Décision scellée ! Rendez-vous au sommet.
+                    </p>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Footer -->
+        <footer class="mt-20 text-center space-y-4">
+            <div class="w-12 h-1 bg-neo-dark mx-auto rounded-full"></div>
+            <p class="font-syne font-bold text-base text-neo-dark">
+                Moins de mots. Plus d'actes.
+            </p>
+            <p class="text-xs text-neo-slate uppercase tracking-widest font-semibold">
+                © 2026 Manifeste d'Audace • Tous vos rêves sont légitimes
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // 1. Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // 2. Age Switcher Toggle Logic
+        function switchAgeView(view) {
+            const youngBtn = document.getElementById('tab-young');
+            const oldBtn = document.getElementById('tab-old');
+            const youngContent = document.getElementById('content-young');
+            const oldContent = document.getElementById('content-old');
+
+            playPopTone(view === 'young' ? 600 : 400);
+
+            if (view === 'young') {
+                youngBtn.className = "px-5 py-2.5 rounded-xl font-syne font-bold text-xs sm:text-sm neo-pill bg-neo-mint text-white transition-all";
+                oldBtn.className = "px-5 py-2.5 rounded-xl font-syne font-bold text-xs sm:text-sm bg-transparent text-neo-dark hover:bg-slate-200 transition-all";
+                youngContent.classList.remove('hidden');
+                oldContent.classList.add('hidden');
+            } else {
+                oldBtn.className = "px-5 py-2.5 rounded-xl font-syne font-bold text-xs sm:text-sm neo-pill bg-neo-orange text-white transition-all";
+                youngBtn.className = "px-5 py-2.5 rounded-xl font-syne font-bold text-xs sm:text-sm bg-transparent text-neo-dark hover:bg-slate-200 transition-all";
+                oldContent.classList.remove('hidden');
+                youngContent.classList.add('hidden');
+            }
+        }
+
+        // 3. Web Audio API for Energetic Feedback
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        function playPowerTone() {
+            initAudio();
+            const freqs = [330, 440, 550, 660];
+            freqs.forEach((f, i) => {
+                setTimeout(() => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                }, i * 70);
+            });
+        }
+
+        function playPopTone(freq) {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.07, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.2);
+            } catch(e) {}
+        }
+
+        // 4. Kinetic Spark Particles Burst
+        function launchEnergySpark() {
+            playPowerTone();
+            const msg = document.getElementById('action-confirm');
+            msg.style.opacity = '1';
+
+            const symbols = ['⚡', '💥', '🚀', '🎯', '🔥', '✨'];
+            for (let i = 0; i < 28; i++) {
+                const particle = document.createElement('div');
+                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.position = 'fixed';
+                particle.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 160) + 'px';
+                particle.style.top = (window.innerHeight * 0.7 + (Math.random() - 0.5) * 80) + 'px';
+                particle.style.fontSize = (Math.random() * 20 + 16) + 'px';
+                particle.style.zIndex = '9999';
+                particle.style.pointerEvents = 'none';
+                particle.style.transition = 'all 1.4s cubic-bezier(0.12, 0.8, 0.32, 1)';
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.style.transform = `translate(${(Math.random() - 0.5) * 380}px, -${Math.random() * 260 + 80}px) scale(0) rotate(${Math.random() * 360}deg)`;
+                    particle.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

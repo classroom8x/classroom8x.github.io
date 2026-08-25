@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La tyrannie des délais — Trouver son propre rythme</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Fraunces (Serif chaleureux & organique) + Outfit (Sans-serif doux) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Fraunces"', 'serif'],
+            sans: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            botanical: {
+              paper: '#FAF8F5',
+              matcha: '#E6EFE6',
+              mint: '#CFDFD2',
+              leaf: '#2A4436',
+              clay: '#EAD8CD',
+              terracotta: '#BF7258',
+              butter: '#FFF4D6',
+              darkBg: '#131B17',
+              darkCard: '#1C2722',
+              darkBorder: '#2C3A33',
+            }
+          },
+          animation: {
+            'spin-slow': 'spin 30s linear infinite',
+            'float-subtle': 'floating 5s ease-in-out infinite',
+            'sway': 'sway 4s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            floating: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            sway: {
+              '0%': { transform: 'rotate(-3deg)' },
+              '100%': { transform: 'rotate(3deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Paper Texture & Custom Elements */
+    .paper-card {
+      background: #FFFFFF;
+      box-shadow: 0 10px 30px -10px rgba(42, 68, 54, 0.08), 0 4px 6px -2px rgba(42, 68, 54, 0.02);
+      border: 1px solid #ECE7DE;
+    }
+    .dark .paper-card {
+      background: #1C2722;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      border: 1px solid #2C3A33;
+    }
+
+    ::selection {
+      background-color: #CFDFD2;
+      color: #2A4436;
+    }
+  </style>
+</head>
+
+<body class="bg-botanical-paper dark:bg-botanical-darkBg text-botanical-leaf dark:text-botanical-matcha font-sans transition-colors duration-500 min-h-screen relative overflow-x-hidden antialiased">
+
+  <!-- Top Decorative Reading Progress -->
+  <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-botanical-mint via-botanical-terracotta to-botanical-butter z-50 transition-all duration-150" style="width: 0%;"></div>
+
+  <!-- Subtle Botanical Background Blur Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-20 -left-20 w-96 h-96 bg-botanical-matcha/60 dark:bg-emerald-950/20 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 -right-20 w-80 h-80 bg-botanical-butter/70 dark:bg-amber-950/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-1/4 w-96 h-96 bg-botanical-clay/50 dark:bg-stone-900/30 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Header Floating Bar -->
+  <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-3xl">
+    <div class="paper-card rounded-full px-5 py-2.5 flex items-center justify-between backdrop-blur-md bg-white/80 dark:bg-botanical-darkCard/80">
+      
+      <!-- Brand / Identity -->
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-full bg-botanical-mint flex items-center justify-center text-sm shadow-inner">
+          🍃
+        </div>
+        <span class="font-display font-bold text-sm tracking-tight text-botanical-leaf dark:text-white">Tempo Vivant</span>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Relaxing Wind Chime Sound -->
+        <button id="chimeBtn" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-botanical-matcha dark:bg-botanical-darkBorder hover:scale-105 transition-transform text-botanical-leaf dark:text-white">
+          <span id="chimeIcon">🎐</span>
+          <span id="chimeText" class="hidden sm:inline">Carillon zen</span>
+        </button>
+
+        <!-- Theme Mode Toggle -->
+        <button id="themeToggle" class="w-8 h-8 rounded-full bg-botanical-butter dark:bg-botanical-darkBorder flex items-center justify-center text-xs hover:rotate-12 transition-transform shadow-sm" title="Mode Nuit / Jour">
+          <span class="dark:hidden">☀️</span>
+          <span class="hidden dark:inline">🌙</span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="relative z-10 pt-32 pb-12 px-6 max-w-4xl mx-auto text-center">
+    
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-botanical-butter dark:bg-botanical-darkBorder text-botanical-terracotta dark:text-botanical-butter mb-6 shadow-sm animate-float-subtle">
+      <span>⏳</span> Déconstruire la pression du calendrier social
+    </div>
+
+    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.15] mb-6 text-botanical-leaf dark:text-white">
+      La tyrannie des délais : <br>
+      <span class="italic font-normal text-botanical-terracotta">Pourquoi vous n’êtes pas en retard</span> dans votre vie
+    </h1>
+
+    <p class="text-base sm:text-lg text-botanical-leaf/80 dark:text-botanical-matcha/80 max-w-2xl mx-auto leading-relaxed">
+      Nous ressentons tous, à un moment ou un autre, cette sensation lancinante que la vie est une course effrénée. Voici 5 questions essentielles pour réapprendre à respirer.
+    </p>
+
+    <!-- Cute Timeless Clock Widget -->
+    <div class="mt-10 inline-flex items-center gap-4 px-6 py-3 rounded-2xl paper-card bg-white/70 dark:bg-botanical-darkCard/70">
+      <div class="relative w-8 h-8 flex items-center justify-center">
+        <div class="absolute inset-0 rounded-full border-2 border-dashed border-botanical-terracotta animate-spin-slow"></div>
+        <span class="text-xs">🌱</span>
+      </div>
+      <div class="text-left">
+        <p class="text-[10px] uppercase font-bold tracking-widest opacity-60">Votre horloge personnelle</p>
+        <p class="text-xs font-semibold text-botanical-leaf dark:text-white">Heure exacte : <span class="italic text-botanical-terracotta">Le bon moment pour vous</span></p>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- Main Article Content -->
+  <main class="relative z-10 max-w-3xl mx-auto px-6 pb-28 space-y-12">
+
+    <!-- Intro Card -->
+    <section class="paper-card rounded-3xl p-7 sm:p-9 relative overflow-hidden bg-gradient-to-br from-white to-botanical-matcha/30 dark:from-botanical-darkCard dark:to-botanical-darkBorder/40">
+      <p class="font-display text-xl sm:text-2xl leading-snug italic text-botanical-leaf dark:text-white mb-4">
+        « En regardant autour de nous, nous voyons des collègues promus, des amis propriétaires, des familles établies… Et inévitablement, cette question toxique surgit : <span class="text-botanical-terracotta not-italic font-bold">“Pourquoi tout prend-il autant de temps pour moi ?”</span> »
+      </p>
+      <div class="flex items-center gap-3 pt-3 border-t border-black/5 dark:border-white/5 text-xs opacity-75">
+        <span>🧭 5 étapes de décompression</span>
+        <span>•</span>
+        <span>Temps estimé : Votre propre rythme</span>
+      </div>
+    </section>
+
+    <!-- 5 Questions List (Bento-Inspired Organic Cards) -->
+    <div class="space-y-8">
+
+      <!-- Question 1 -->
+      <article class="paper-card rounded-3xl p-7 sm:p-8 space-y-4 hover:border-botanical-mint transition-all">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-botanical-matcha dark:bg-emerald-950 text-botanical-leaf dark:text-white font-display font-bold flex items-center justify-center text-sm shadow-sm">
+            1
+          </span>
+          <h2 class="font-display text-2xl font-bold text-botanical-leaf dark:text-white">
+            À quel âge la vie est-elle censée être enfin « réglée » ?
+          </h2>
+        </div>
+
+        <p class="font-semibold text-botanical-terracotta text-sm">
+          Soyons honnêtes : la vie n'est jamais totalement réglée.
+        </p>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Ceux qui affirment que leur vie est parfaitement « sous contrôle » ont simplement appris deux choses : <strong>ce qu'ils maîtrisent</strong> et <strong>ce qu'il est préférable d'ignorer</strong> pour le moment. À chaque étape de l'existence, de nouveaux chapitres s'ouvrent, accompagnés de nouveaux défis et de nouvelles erreurs à explorer.
+        </p>
+
+        <div class="bg-botanical-paper dark:bg-botanical-darkBg p-4 rounded-2xl text-xs sm:text-sm italic border-l-4 border-botanical-mint">
+          Si les choses ne sont pas encore claires pour vous, ne paniquez pas. Vous n'êtes pas en retard ; <strong>vous êtes en train d'apprendre</strong>. Être présent dans sa propre vie vaut bien mieux que de courir après une illusion de perfection.
+        </div>
+      </article>
+
+      <!-- Question 2 -->
+      <article class="paper-card rounded-3xl p-7 sm:p-8 space-y-4 hover:border-botanical-mint transition-all">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-botanical-butter dark:bg-amber-950 text-botanical-leaf dark:text-white font-display font-bold flex items-center justify-center text-sm shadow-sm">
+            2
+          </span>
+          <h2 class="font-display text-2xl font-bold text-botanical-leaf dark:text-white">
+            Qui a fixé ces fameuses dates limites ?
+          </h2>
+        </div>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Se marier entre 25 et 30 ans, atteindre le sommet de sa carrière à 35 ans, préparer sa retraite à 60 ans… <strong>Qui a écrit ce calendrier universel ? Personne.</strong>
+        </p>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Nous avons simplement hérité de modèles passés sans les remettre en question. Pourtant, chaque individu avance avec une histoire, un bagage et un contexte uniques. Comment un calendrier unique pourrait-il convenir à tout le monde ?
+        </p>
+
+        <!-- Aesthetic Pull Quote Box -->
+        <div class="p-6 rounded-2xl bg-botanical-mint/40 dark:bg-emerald-950/40 text-center font-display italic text-lg sm:text-xl text-botanical-leaf dark:text-white">
+          « L'horloge de la comparaison ne vous montrera toujours que ce qui vous manque. Regardez plutôt votre propre agenda et remplissez-le de ce qui a du sens pour vous. »
+        </div>
+      </article>
+
+      <!-- Interactive Pace Selector Widget (Unique feature) -->
+      <section class="paper-card rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-botanical-matcha/40 to-botanical-butter/40 dark:from-botanical-darkCard dark:to-botanical-darkBorder space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-[11px] font-bold uppercase tracking-widest text-botanical-terracotta">Expérience interactive</span>
+          <h3 class="font-display text-xl font-bold">Où en êtes-vous sur votre chemin aujourd'hui ?</h3>
+          <p class="text-xs opacity-75">Cliquez sur votre posture actuelle pour recevoir votre mantra</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+          <button onclick="selectPace('explore')" class="pace-btn px-3 py-2.5 rounded-xl bg-white dark:bg-botanical-darkBg text-xs font-semibold shadow-sm hover:scale-105 transition-all text-center border border-black/5">
+            🌱 J'explore
+          </button>
+          <button onclick="selectPace('pause')" class="pace-btn px-3 py-2.5 rounded-xl bg-white dark:bg-botanical-darkBg text-xs font-semibold shadow-sm hover:scale-105 transition-all text-center border border-black/5">
+            ☕ Je fais une pause
+          </button>
+          <button onclick="selectPace('pivot')" class="pace-btn px-3 py-2.5 rounded-xl bg-white dark:bg-botanical-darkBg text-xs font-semibold shadow-sm hover:scale-105 transition-all text-center border border-black/5">
+            🔄 Je change de cap
+          </button>
+          <button onclick="selectPace('slow')" class="pace-btn px-3 py-2.5 rounded-xl bg-white dark:bg-botanical-darkBg text-xs font-semibold shadow-sm hover:scale-105 transition-all text-center border border-black/5">
+            🐢 Je prends mon temps
+          </button>
+        </div>
+
+        <div id="paceMessage" class="mt-4 p-4 rounded-xl bg-white/80 dark:bg-botanical-darkBg/90 text-xs sm:text-sm text-center font-medium italic text-botanical-leaf dark:text-botanical-matcha transition-all duration-300">
+          « Vous avancez exactement à la vitesse nécessaire pour bâtir des fondations solides. »
+        </div>
+      </section>
+
+      <!-- Question 3 -->
+      <article class="paper-card rounded-3xl p-7 sm:p-8 space-y-4 hover:border-botanical-mint transition-all">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-botanical-clay dark:bg-rose-950 text-botanical-leaf dark:text-white font-display font-bold flex items-center justify-center text-sm shadow-sm">
+            3
+          </span>
+          <h2 class="font-display text-2xl font-bold text-botanical-leaf dark:text-white">
+            Mariage, enfants, carrière : pourquoi une telle précipitation ?
+          </h2>
+        </div>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Nous courons souvent par peur de rater le coche, persuadés qu'un retard équivaut à un échec. Mais posez-vous cette question en toute franchise : 
+          <em class="font-bold text-botanical-terracotta not-italic">Qu’est-ce qui fait le plus mal ? Prendre une décision un peu tard, ou prendre la mauvaise décision trop vite ?</em>
+        </p>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Le mariage, la parentalité ou le succès matériel ne sont pas des médailles décernées à l'arrivée d'un marathon : ce sont de simples étapes au fil du voyage. Si certains projets tardent à se concrétiser, dites-vous que vous êtes simplement en train de vous préparer.
+        </p>
+      </article>
+
+      <!-- Question 4 -->
+      <article class="paper-card rounded-3xl p-7 sm:p-8 space-y-4 hover:border-botanical-mint transition-all">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-botanical-matcha dark:bg-emerald-950 text-botanical-leaf dark:text-white font-display font-bold flex items-center justify-center text-sm shadow-sm">
+            4
+          </span>
+          <h2 class="font-display text-2xl font-bold text-botanical-leaf dark:text-white">
+            Et si j’avais totalement dévié de ma trajectoire ?
+          </h2>
+        </div>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Si vous vous demandez si vous avez dévié, <strong>c'est une excellente nouvelle</strong> : cela prouve que vous êtes conscient, lucide et vivant.
+        </p>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Il n'existe pas d'autoroute unique tracée pour l'humanité. Certaines trajectoires sont linéaires, d'autres zigzaguent, connaissent des montées abruptes ou des détours imprévus.
+        </p>
+
+        <div class="p-4 rounded-2xl bg-botanical-butter/50 dark:bg-amber-950/30 text-xs sm:text-sm font-medium">
+          🌿 Les détours ne sont pas des pertes de temps ; ce sont des terrains de découverte où vous apprenez qui vous êtes vraiment.
+        </div>
+      </article>
+
+      <!-- Question 5 -->
+      <article class="paper-card rounded-3xl p-7 sm:p-8 space-y-4 hover:border-botanical-mint transition-all">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-botanical-mint dark:bg-teal-950 text-botanical-leaf dark:text-white font-display font-bold flex items-center justify-center text-sm shadow-sm">
+            5
+          </span>
+          <h2 class="font-display text-2xl font-bold text-botanical-leaf dark:text-white">
+            Peut-on réécrire sa propre chronologie ?
+          </h2>
+        </div>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          <strong>Absolument, et c’est même le propre de l’existence.</strong>
+        </p>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90">
+          Certains subissent les changements par contrainte, d’autres les embrassent par choix délibéré. Changer de métier à 40 ans, reprendre des études, se réinventer, changer de cap : la vie ressemble souvent à une partie d'échecs. Parfois, il faut faire un pas de côté ou reculer d’une case pour mieux avancer.
+        </p>
+
+        <p class="leading-relaxed text-sm sm:text-base opacity-90 font-medium text-botanical-terracotta">
+          Ne voyez plus vos changements de direction comme des accidents, mais comme des décisions conscientes dont vous pouvez être fier.
+        </p>
+      </article>
+
+    </div>
+
+    <!-- Final Conclusion Card -->
+    <section class="paper-card rounded-3xl p-8 sm:p-12 text-center bg-gradient-to-b from-white via-botanical-matcha/40 to-botanical-butter/50 dark:from-botanical-darkCard dark:to-botanical-darkBorder space-y-6 shadow-xl">
+      
+      <div class="inline-block p-3 rounded-full bg-white dark:bg-botanical-darkBg shadow-sm text-2xl">
+        🎓
+      </div>
+
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-botanical-leaf dark:text-white">
+        En conclusion : La vie n’est pas un examen
+      </h2>
+
+      <p class="text-base sm:text-lg leading-relaxed max-w-xl mx-auto opacity-90">
+        Être en décalage avec les attentes des autres ne signifie pas avoir échoué. La vie n’est pas une épreuve scolaire avec un barème strict et un temps limité.
+      </p>
+
+      <!-- Key takeaway highlight -->
+      <div class="py-4 px-6 rounded-2xl bg-white/90 dark:bg-botanical-darkBg/90 shadow-sm max-w-lg mx-auto">
+        <p class="font-display text-lg sm:text-xl italic text-botanical-terracotta font-semibold">
+          « Dès l'instant où vous écoutez votre propre horloge interne, vous cessez d'être en retard. Vous arrivez toujours pile à l'heure : au moment où vous êtes enfin prêt. »
+        </p>
+      </div>
+
+      <p class="text-sm opacity-80 pt-2">
+        Prenez soin de vous, respectez votre rythme et avancez avec bienveillance. À très bientôt pour d'autres réflexions partagées. 🍃✨
+      </p>
+
+      <!-- Interactive Pledge Button -->
+      <div class="pt-4">
+        <button id="pledgeBtn" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-botanical-leaf dark:bg-botanical-matcha text-white dark:text-botanical-leaf font-semibold text-sm shadow-lg hover:scale-105 active:scale-95 transition-all">
+          <span>🌿</span>
+          <span id="pledgeBtnText">Je m'accorde le droit à mon propre rythme</span>
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 py-8 border-t border-black/5 dark:border-white/5 text-center text-xs opacity-60">
+    <p>Sanctuaire de lecture sereine • Vivre sans la tyrannie des horloges</p>
+  </footer>
+
+  <!-- Script Interactions & Procedural Sound -->
+  <script>
+    // 1. Reading Progress
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('readProgress').style.width = scrolled + '%';
+    });
+
+    // 2. Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // 3. Interactive Pace Selector
+    const messages = {
+      explore: "🌱 « Explorer n'est pas errer : chaque curiosité fertilise votre futur. »",
+      pause: "☕ « La pause n'est pas une perte de temps, c'est l'instant où votre énergie se renouvelle. »",
+      pivot: "🔄 « Pivoter exige du courage. Soyez fier d'ajuster vos voiles quand le vent change. »",
+      slow: "🐢 « La lenteur choisie est une élégance. Rien ne presse ce qui doit mûrir. »"
+    };
+
+    function selectPace(type) {
+      const msgBox = document.getElementById('paceMessage');
+      msgBox.style.opacity = '0';
+      setTimeout(() => {
+        msgBox.textContent = messages[type];
+        msgBox.style.opacity = '1';
+      }, 150);
+    }
+
+    // 4. Pledge Button & Floating Leaf Particle Effect
+    const pledgeBtn = document.getElementById('pledgeBtn');
+    const pledgeText = document.getElementById('pledgeBtnText');
+
+    pledgeBtn.addEventListener('click', () => {
+      pledgeText.textContent = "Promesse scellée avec bienveillance ✨";
+      createFallingLeaf();
+      createFallingLeaf();
+      createFallingLeaf();
+    });
+
+    function createFallingLeaf() {
+      const leaf = document.createElement('div');
+      const symbols = ['🍃', '🍂', '✨', '🌱'];
+      leaf.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+      leaf.style.position = 'fixed';
+      leaf.style.left = (Math.random() * 80 + 10) + 'vw';
+      leaf.style.top = '100px';
+      leaf.style.fontSize = (Math.random() * 12 + 18) + 'px';
+      leaf.style.zIndex = '999';
+      leaf.style.pointerEvents = 'none';
+      leaf.style.transition = 'all 2.5s cubic-bezier(0.25, 1, 0.5, 1)';
+      document.body.appendChild(leaf);
+
+      setTimeout(() => {
+        leaf.style.transform = `translate(${Math.random() * 100 - 50}px, 400px) rotate(${Math.random() * 360}deg)`;
+        leaf.style.opacity = '0';
+      }, 50);
+
+      setTimeout(() => leaf.remove(), 2600);
+    }
+
+    // 5. Procedural Wind Chimes (Zen Garden Tones via Web Audio API)
+    let audioCtx = null;
+    let isChiming = false;
+    let chimeInterval = null;
+
+    const chimeBtn = document.getElementById('chimeBtn');
+    const chimeIcon = document.getElementById('chimeIcon');
+    const chimeText = document.getElementById('chimeText');
+
+    const pentatonicNotes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50]; // C5 Pentatonic
+
+    function toggleChimes() {
+      if (!isChiming) {
+        startChimes();
+        isChiming = true;
+        chimeIcon.textContent = '⏸️';
+        chimeText.textContent = 'Pause carillon';
+        chimeBtn.classList.add('ring-2', 'ring-botanical-terracotta');
+      } else {
+        stopChimes();
+        isChiming = false;
+        chimeIcon.textContent = '🎐';
+        chimeText.textContent = 'Carillon zen';
+        chimeBtn.classList.remove('ring-2', 'ring-botanical-terracotta');
+      }
+    }
+
+    function playSingleChime() {
+      if (!audioCtx) return;
+      const freq = pentatonicNotes[Math.floor(Math.random() * pentatonicNotes.length)];
+      
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      // Delicate bell attack and long decay
+      gain.gain.setValueAtTime(0, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.5);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 3.6);
+    }
+
+    function startChimes() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+      playSingleChime();
+      chimeInterval = setInterval(() => {
+        if (Math.random() > 0.3) {
+          playSingleChime();
+        }
+      }, 1400);
+    }
+
+    function stopChimes() {
+      if (chimeInterval) clearInterval(chimeInterval);
+      if (audioCtx) {
+        audioCtx.close();
+        audioCtx = null;
+      }
+    }
+
+    chimeBtn.addEventListener('click', toggleChimes);
+  </script>
+</body>
+</html>

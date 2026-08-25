@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le poids du silence — Sanctuaire Nocturne</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Upright & Urbanist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@400;600;700&family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            nocturne: ['"Cormorant Upright"', 'serif'],
+            sans: ['"Urbanist"', 'sans-serif'],
+          },
+          colors: {
+            night: {
+              abyss: '#0B0C16',
+              surface: '#131424',
+              card: '#1C1E36',
+              lilac: '#C8B6FF',
+              moonlight: '#FFF0D4',
+              stardust: '#B8C0EC',
+              rosewater: '#FFD6E0',
+              accent: '#7F5AF0'
+            }
+          },
+          animation: {
+            'glow-pulse': 'glow 6s ease-in-out infinite',
+            'float-slow': 'floatSlow 7s ease-in-out infinite',
+            'twinkle': 'twinkle 3s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            glow: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.8', transform: 'scale(1.15)' },
+            },
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            twinkle: {
+              '0%': { opacity: '0.3', transform: 'scale(0.8)' },
+              '100%': { opacity: '1', transform: 'scale(1.2)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Midnight Glow Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0C16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2D3156;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7F5AF0;
+    }
+
+    .glass-night {
+      background: rgba(28, 30, 54, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(200, 182, 255, 0.12);
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .quote-border {
+      border-image: linear-gradient(to bottom, #C8B6FF, transparent) 1 100%;
+    }
+
+    ::selection {
+      background-color: #7F5AF0;
+      color: #FFF0D4;
+    }
+  </style>
+</head>
+
+<body class="bg-night-abyss text-night-stardust font-sans antialiased relative min-h-screen selection:bg-night-accent selection:text-white overflow-x-hidden">
+
+  <!-- Interactive Canvas Night Sky (Stars & Fireflies) -->
+  <canvas id="starCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Ambient Moon Glow Backgrounds -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-indigo-900/20 via-night-lilac/10 to-transparent rounded-full blur-3xl animate-glow-pulse"></div>
+    <div class="absolute top-1/3 -left-32 w-80 h-80 bg-night-rosewater/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-night-accent/15 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Top Floating Navigation -->
+  <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-3xl">
+    <div class="glass-night rounded-full px-5 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-8 h-8 rounded-full bg-night-surface flex items-center justify-center text-sm shadow-inner border border-night-lilac/20">
+          🌙
+        </span>
+        <span class="font-nocturne font-bold text-lg text-night-moonlight tracking-wide">Journal de Nuit</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Procedural Soft Night Rain / Whisper Sound Toggle -->
+        <button id="nightSoundBtn" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-night-surface border border-night-lilac/20 hover:border-night-lilac/60 transition-all text-night-moonlight" title="Bruit de pluie nocturne apaisante">
+          <span id="nightSoundIcon">🌧️</span>
+          <span id="nightSoundText" class="hidden sm:inline">Pluie nocturne</span>
+        </button>
+
+        <span class="text-xs px-3 py-1.5 rounded-full bg-night-accent/20 text-night-lilac border border-night-accent/30 font-medium">
+          Chuchotement
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="relative z-10 pt-32 pb-14 px-6 max-w-3xl mx-auto text-center">
+    
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase bg-night-card border border-night-lilac/20 text-night-lilac mb-6">
+      <span class="animate-twinkle">✨</span> Écouter ce que l'on tait
+    </div>
+
+    <h1 class="font-nocturne text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.15] text-night-moonlight mb-6 tracking-wide">
+      Le poids du silence : <br />
+      <span class="italic font-normal text-night-lilac">Quand « Je vais bien »</span> n’est qu’une demi-vérité
+    </h1>
+
+    <p class="text-base sm:text-lg text-night-stardust/90 max-w-xl mx-auto leading-relaxed">
+      Dédié à ce silence particulier : celui qui paraît si paisible vu de l'extérieur, mais qui pèse si lourd à l'intérieur.
+    </p>
+
+    <!-- Moon Phase Indicator -->
+    <div class="flex items-center justify-center gap-3 mt-8 text-xs font-medium text-night-stardust/60">
+      <span>🌑</span>
+      <span>🌒</span>
+      <span class="text-night-moonlight text-sm font-bold">🌔 Sanctuaire sans jugement</span>
+      <span>🌘</span>
+      <span>🌑</span>
+    </div>
+
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="relative z-10 max-w-2xl mx-auto px-6 pb-28 space-y-12">
+
+    <!-- Intro Card -->
+    <section class="glass-night rounded-3xl p-7 sm:p-9 relative overflow-hidden border border-night-lilac/20">
+      <div class="absolute -top-6 -right-6 text-7xl opacity-5 font-nocturne select-none">🌙</div>
+      <p class="font-nocturne text-2xl sm:text-3xl italic leading-relaxed text-night-moonlight mb-4">
+        « Parfois, nous ne gardons pas le silence par manque de mots. Nous nous taisons simplement parce que nous avons compris qu’autour de nous, <span class="text-night-lilac underline decoration-night-accent/60 underline-offset-4">personne n’est réellement prêt à écouter</span> ce que nous avons à dire. »
+      </p>
+    </section>
+
+    <!-- Section 1: Le réflexe du "Tout va bien" -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-night-accent/30 text-night-lilac border border-night-accent/40">01</span>
+        <h2 class="font-nocturne text-2xl sm:text-3xl font-bold text-night-moonlight">Le réflexe du « Tout va bien »</h2>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-night-stardust/90">
+        Avec le temps, nous apprenons tous à masquer notre souffrance avec une maîtrise déconcertante :
+      </p>
+
+      <!-- Mask checklist -->
+      <div class="space-y-3 my-4">
+        <div class="glass-night p-4 rounded-2xl flex items-center gap-3.5 border-l-4 border-l-night-lilac">
+          <span class="text-lg">🎭</span>
+          <span class="text-sm sm:text-base">Notre visage reste impassible,</span>
+        </div>
+        <div class="glass-night p-4 rounded-2xl flex items-center gap-3.5 border-l-4 border-l-night-rosewater">
+          <span class="text-lg">🎙️</span>
+          <span class="text-sm sm:text-base">Notre voix reste posée,</span>
+        </div>
+        <div class="glass-night p-4 rounded-2xl flex items-center gap-3.5 border-l-4 border-l-night-moonlight">
+          <span class="text-lg">💬</span>
+          <span class="text-sm sm:text-base">Et face à la question rituelle « Comment ça va ? », la réponse fuse automatiquement : <strong class="text-night-moonlight">« Ça va, tout est sous contrôle. »</strong></span>
+        </div>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-night-stardust/90">
+        Mais au fond de nous, nous savons que ce n'est pas tout à fait vrai. Ce n’est pas un mensonge absolu, c'est une <strong>demi-vérité</strong>. La réalité complète, c'est que nous n'avons tout simplement plus l'énergie ni la force d'expliquer ce que nous traversons.
+      </p>
+      <p class="leading-relaxed text-base sm:text-lg text-night-stardust/90 italic text-night-lilac/80">
+        Et à force de renoncer à s'exprimer, le silence finit par devenir une seconde nature.
+      </p>
+    </section>
+
+    <!-- Section 2: Le silence comme mécanisme de survie (Interactive Folded Letter) -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-night-accent/30 text-night-lilac border border-night-accent/40">02</span>
+        <h2 class="font-nocturne text-2xl sm:text-3xl font-bold text-night-moonlight">Le silence comme mécanisme de survie</h2>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-night-stardust/90">
+        Choisir de se taire n’est pas une preuve de faiblesse ; c’est souvent un <strong>bouclier de protection</strong>. Nous nous taisons parce que nous savons d'expérience ce qui se passe lorsque nous ouvrons notre cœur :
+      </p>
+
+      <ul class="space-y-2 text-sm sm:text-base pl-4 border-l-2 quote-border text-night-stardust/80">
+        <li>• Quelqu’un va tenter de nous faire la morale,</li>
+        <li>• Un autre voudra immédiatement « réparer » notre problème avec des conseils simplistes,</li>
+        <li>• Ou pire, nos émotions seront minimisées par un banal <em>« Ce n’est rien, passe à autre chose »</em>.</li>
+      </ul>
+
+      <!-- The Metaphor Card: Origami / Folded Letter -->
+      <div class="glass-night p-6 sm:p-8 rounded-3xl border border-night-lilac/30 bg-gradient-to-b from-night-card to-night-surface relative group">
+        <div class="flex items-start gap-4">
+          <span class="text-3xl animate-float-slow">💌</span>
+          <div class="space-y-2">
+            <h3 class="font-nocturne text-xl font-bold text-night-moonlight">La lettre jamais postée</h3>
+            <p class="text-sm leading-relaxed text-night-stardust/90 italic">
+              « Alors, par réflexe de survie, nous préférons plier soigneusement notre douleur et la ranger au plus profond de nous — exactement comme une lettre que l'on aurait écrite avec le cœur, mais que l'on ne posterait jamais. »
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlight quote -->
+      <div class="text-center py-4 px-6 rounded-2xl bg-night-accent/10 border border-night-accent/30">
+        <p class="font-nocturne text-lg sm:text-xl italic text-night-moonlight">
+          « Les personnes les plus silencieuses sont souvent celles qui comprennent le plus de choses. Elles savent que toute douleur ne trouve pas forcément d'écho chez les autres. »
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: Quand la nuit fait résonner... -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-night-accent/30 text-night-lilac border border-night-accent/40">03</span>
+        <h2 class="font-nocturne text-2xl sm:text-3xl font-bold text-night-moonlight">Quand la nuit fait résonner ce que le jour a étouffé</h2>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-night-stardust/90">
+        Pendant la journée, le bruit du quotidien, le travail et les obligations nous occupent l'esprit. La douleur reste en veilleuse.
+      </p>
+
+      <p class="leading-relaxed text-base sm:text-lg text-night-stardust/90">
+        Mais dès que la nuit tombe et que le monde s’éteint, ce silence accumulé commence à parler. Il devient bruyant, presque épuisant, parce qu’il ne trouve personne pour le porter à part vous-même.
+      </p>
+
+      <div class="glass-night p-6 rounded-2xl border-l-4 border-l-night-accent space-y-3">
+        <p class="font-semibold text-night-moonlight text-sm sm:text-base">
+          Si ce soir vous êtes assis dans ce silence avec l’impression désagréable d'être devenu invisible ou ignoré par le monde :
+        </p>
+        <p class="text-sm text-night-lilac font-medium leading-relaxed">
+          Rappelez-vous une chose essentielle : <strong>vous n’êtes pas invisible, vous êtes simplement discret.</strong>
+        </p>
+        <p class="text-xs sm:text-sm text-night-stardust/80 leading-relaxed">
+          Ne pas crier, ne pas faire de vacarme et ne pas chercher l'attention ne fait pas de vous quelqu'un de faible. Pour commencer à guérir, la douleur n'a pas besoin de faire du bruit ; elle a simplement besoin de <strong>votre propre permission</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Sanctuary: Confier un non-dit aux étoiles -->
+    <section class="glass-night p-6 sm:p-8 rounded-3xl border border-night-lilac/30 text-center space-y-4">
+      <div class="inline-block p-2 rounded-full bg-night-surface text-xl">✨</div>
+      <h3 class="font-nocturne text-2xl font-bold text-night-moonlight">L'Écrin des Non-Dits</h3>
+      <p class="text-xs sm:text-sm text-night-stardust/80 max-w-md mx-auto">
+        Déposez ici ce que vous n'avez pas eu la force d'expliquer aujourd'hui. Ces mots ne seront enregistrés nulle part : ils s'envoleront simplement parmi les étoiles.
+      </p>
+
+      <div class="max-w-md mx-auto space-y-3 pt-2">
+        <textarea id="secretInput" rows="2" placeholder="Ce soir, j'aurais voulu dire que..." class="w-full px-4 py-3 rounded-2xl bg-night-surface/90 border border-night-lilac/20 text-xs sm:text-sm text-night-moonlight placeholder-night-stardust/40 focus:outline-none focus:border-night-lilac resize-none"></textarea>
+        <button id="releaseBtn" class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-gradient-to-r from-night-accent to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium text-xs tracking-wide shadow-lg shadow-night-accent/20 transition-all active:scale-95">
+          Confier ce poids à la nuit ✨
+        </button>
+      </div>
+
+      <div id="releaseConfirmation" class="hidden text-xs text-night-rosewater font-medium italic pt-2 transition-all">
+        « Vos mots ont été entendus par la nuit. Vous pouvez relâcher votre souffle maintenant. »
+      </div>
+    </section>
+
+    <!-- Section 4: Accordez-vous le droit de ressentir (3 Action Cards) -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-night-accent/30 text-night-lilac border border-night-accent/40">04</span>
+        <h2 class="font-nocturne text-2xl sm:text-3xl font-bold text-night-moonlight">Accordez-vous le droit de ressentir</h2>
+      </div>
+
+      <p class="leading-relaxed text-sm sm:text-base text-night-stardust/90">
+        Si personne autour de vous n'est capable d'entendre ce que vous taisez, commencez par vous écouter vous-même :
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-4 pt-2">
+        <div class="glass-night p-5 rounded-2xl space-y-2 hover:-translate-y-1 transition-transform">
+          <div class="text-xl">🏷️</div>
+          <h4 class="font-bold text-sm text-night-moonlight">Nommez ce qui vous pèse</h4>
+          <p class="text-xs text-night-stardust/80 leading-relaxed">
+            Mettre des mots intimes sur votre fatigue ou votre tristesse est le premier pas vers l'apaisement.
+          </p>
+        </div>
+
+        <div class="glass-night p-5 rounded-2xl space-y-2 hover:-translate-y-1 transition-transform">
+          <div class="text-xl">🕊️</div>
+          <h4 class="font-bold text-sm text-night-moonlight">Ne vous jugez pas</h4>
+          <p class="text-xs text-night-stardust/80 leading-relaxed">
+            Ne vous reprochez pas de ne pas être « assez fort » ou de vous être tu trop longtemps.
+          </p>
+        </div>
+
+        <div class="glass-night p-5 rounded-2xl space-y-2 hover:-translate-y-1 transition-transform">
+          <div class="text-xl">🌸</div>
+          <h4 class="font-bold text-sm text-night-moonlight">Offrez-vous de la douceur</h4>
+          <p class="text-xs text-night-stardust/80 leading-relaxed">
+            Vous avez le droit d'être fatigué, vous avez le droit de guérir à votre propre rythme.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Epilogue & Gentle Wishes -->
+    <section class="glass-night rounded-3xl p-8 sm:p-10 text-center space-y-6 border border-night-lilac/30 bg-gradient-to-b from-night-card to-night-abyss">
+      
+      <span class="text-xs uppercase tracking-widest text-night-lilac font-semibold">Le mot de la fin</span>
+
+      <p class="text-base sm:text-lg leading-relaxed text-night-stardust/90 max-w-lg mx-auto">
+        Si ce soir votre silence vous paraît ne serait-ce qu'un tout petit peu plus léger, c’est le signe que vous venez de cesser de vous critiquer. Vous avez simplement accepté d'être humain, avec vos blessures et vos non-dits.
+      </p>
+
+      <div class="w-12 h-0.5 bg-night-lilac/30 mx-auto rounded-full"></div>
+
+      <p class="font-nocturne italic text-2xl sm:text-3xl text-night-moonlight">
+        « Prenez soin de vous ce soir, offrez-vous un dialogue intérieur doux et réconfortant.<br />
+        Douce et paisible nuit à vous. » 🌙🕊️
+      </p>
+
+      <div class="pt-4">
+        <button id="peaceBtn" class="px-6 py-2.5 rounded-full bg-night-surface border border-night-lilac/30 text-night-moonlight text-xs font-medium hover:bg-night-lilac/10 transition-all">
+          S'accorder une nuit de repos 🌌
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 py-8 border-t border-white/5 text-center text-xs text-night-stardust/50">
+    <p>Sanctuaire Nocturne • Votre silence est en sécurité ici</p>
+  </footer>
+
+  <!-- Script: Interactive Star Canvas & Procedural Rain Synthesizer -->
+  <script>
+    // 1. Starfield Background Animation
+    const canvas = document.getElementById('starCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initStars();
+    }
+
+    function initStars() {
+      stars = [];
+      const count = Math.floor((canvas.width * canvas.height) / 8000);
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          alpha: Math.random() * 0.8 + 0.2,
+          speed: Math.random() * 0.02 + 0.005
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        star.alpha += star.speed;
+        if (star.alpha > 1 || star.alpha < 0.2) star.speed = -star.speed;
+        
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 182, 255, ${Math.abs(star.alpha)})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    drawStars();
+
+    // 2. Secret Release Animation (Stars Flying Upwards)
+    const releaseBtn = document.getElementById('releaseBtn');
+    const secretInput = document.getElementById('secretInput');
+    const confirmation = document.getElementById('releaseConfirmation');
+
+    releaseBtn.addEventListener('click', () => {
+      if (secretInput.value.trim() !== "") {
+        for (let i = 0; i < 7; i++) {
+          createAscendingStar();
+        }
+        secretInput.value = "";
+        confirmation.classList.remove('hidden');
+        setTimeout(() => {
+          confirmation.classList.add('hidden');
+        }, 5000);
+      }
+    });
+
+    function createAscendingStar() {
+      const star = document.createElement('div');
+      star.innerHTML = '✨';
+      star.style.position = 'fixed';
+      star.style.left = (window.innerWidth / 2 + (Math.random() * 160 - 80)) + 'px';
+      star.style.bottom = '200px';
+      star.style.fontSize = (Math.random() * 14 + 14) + 'px';
+      star.style.zIndex = '999';
+      star.style.pointerEvents = 'none';
+      star.style.transition = 'all 2s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      document.body.appendChild(star);
+
+      setTimeout(() => {
+        star.style.transform = `translate(${(Math.random() * 200 - 100)}px, -350px) scale(0)`;
+        star.style.opacity = '0';
+      }, 50);
+
+      setTimeout(() => star.remove(), 2100);
+    }
+
+    // 3. Procedural Soothing Night Rain / Soft White Noise Generator (Web Audio API)
+    let audioCtx = null;
+    let rainSource = null;
+    let rainGain = null;
+    let isRaining = false;
+
+    const nightSoundBtn = document.getElementById('nightSoundBtn');
+    const nightSoundIcon = document.getElementById('nightSoundIcon');
+    const nightSoundText = document.getElementById('nightSoundText');
+
+    function toggleRain() {
+      if (!isRaining) {
+        startRainSound();
+        isRaining = true;
+        nightSoundIcon.textContent = '⏸️';
+        nightSoundText.textContent = 'Pause pluie';
+        nightSoundBtn.classList.add('border-night-accent', 'bg-night-accent/20');
+      } else {
+        stopRainSound();
+        isRaining = false;
+        nightSoundIcon.textContent = '🌧️';
+        nightSoundText.textContent = 'Pluie nocturne';
+        nightSoundBtn.classList.remove('border-night-accent', 'bg-night-accent/20');
+      }
+    }
+
+    function startRainSound() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+
+      // Create pink/brown noise for gentle rainfall
+      const bufferSize = audioCtx.sampleRate * 2;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let lastOut = 0.0;
+      
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        output[i] = (lastOut + (0.02 * white)) / 1.02; // Brown noise algorithm
+        lastOut = output[i];
+        output[i] *= 3.5;
+      }
+
+      rainSource = audioCtx.createBufferSource();
+      rainSource.buffer = noiseBuffer;
+      rainSource.loop = true;
+
+      // Filter to soften the rain sound
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(800, audioCtx.currentTime);
+
+      rainGain = audioCtx.createGain();
+      rainGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+
+      rainSource.connect(filter);
+      filter.connect(rainGain);
+      rainGain.connect(audioCtx.destination);
+
+      rainSource.start();
+    }
+
+    function stopRainSound() {
+      if (rainSource) {
+        rainSource.stop();
+        rainSource.disconnect();
+      }
+      if (audioCtx) {
+        audioCtx.close();
+        audioCtx = null;
+      }
+    }
+
+    nightSoundBtn.addEventListener('click', toggleRain);
+
+    // 4. Goodnight Peace Button
+    document.getElementById('peaceBtn').addEventListener('click', () => {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createAscendingStar, i * 200);
+      }
+    });
+  </script>
+</body>
+</html>

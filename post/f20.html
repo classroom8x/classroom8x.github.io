@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quand les enfants quittent le nid — Le Diplôme de Parent</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Fraunces (Warm Editorial Serif) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Fraunces"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        warm: {
+                            50: '#FDFBF7',
+                            100: '#F7F2EA',
+                            200: '#EFE7DA',
+                            300: '#E2D5C3',
+                            400: '#C9B59B',
+                            800: '#4A3E34',
+                            900: '#2C241E',
+                        },
+                        terracotta: {
+                            100: '#FBECE8',
+                            400: '#E78972',
+                            500: '#D96B4F',
+                            600: '#BC4F35',
+                        },
+                        honey: {
+                            300: '#FDE68A',
+                            400: '#FACC15',
+                            500: '#EAB308',
+                        },
+                        sage: {
+                            100: '#EBF3EE',
+                            400: '#94BBA4',
+                            600: '#5C8A70',
+                        }
+                    },
+                    animation: {
+                        'sun-pulse': 'sunPulse 8s ease-in-out infinite alternate',
+                        'glide': 'glide 18s linear infinite',
+                        'float-gentle': 'floatGentle 5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        sunPulse: {
+                            '0%': { transform: 'scale(1)', opacity: '0.45' },
+                            '100%': { transform: 'scale(1.2)', opacity: '0.75' },
+                        },
+                        glide: {
+                            '0%': { transform: 'translateX(-120px) translateY(0px)' },
+                            '50%': { transform: 'translateX(50vw) translateY(-15px)' },
+                            '100%': { transform: 'translateX(105vw) translateY(10px)' },
+                        },
+                        floatGentle: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Textured Warm Paper Style */
+        body {
+            background-color: #FBF8F3;
+            background-image: radial-gradient(#E8DCCF 0.75px, transparent 0.75px), radial-gradient(#E8DCCF 0.75px, #FBF8F3 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        .paper-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 213, 195, 0.65);
+            box-shadow: 0 15px 35px -5px rgba(115, 85, 60, 0.06), 0 5px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .paper-seal {
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(188, 79, 53, 0.25);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4EDE2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D9C2A7;
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C2A482;
+        }
+    </style>
+</head>
+
+<body class="text-warm-900 font-sans selection:bg-terracotta-100 selection:text-terracotta-600 antialiased overflow-x-hidden min-h-screen">
+
+    <!-- Glowing Sunbeam Backdrop -->
+    <div class="fixed -top-40 right-0 w-[35rem] h-[35rem] bg-gradient-to-br from-amber-200/40 via-orange-200/30 to-transparent rounded-full blur-3xl pointer-events-none animate-sun-pulse z-0"></div>
+    <div class="fixed top-1/2 -left-40 w-[30rem] h-[30rem] bg-rose-200/30 rounded-full blur-3xl pointer-events-none z-0"></div>
+
+    <!-- Floating birds in the sky -->
+    <div class="fixed top-20 left-0 pointer-events-none z-0 animate-glide opacity-40 text-warm-800">
+        <svg width="45" height="20" viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+            <path d="M5,35 Q30,5 50,25 Q70,5 95,35" />
+        </svg>
+    </div>
+
+    <!-- Reading Progress Top Bar -->
+    <div id="read-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-terracotta-400 via-amber-400 to-terracotta-500 z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Header Navigation Capsule -->
+    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-xl">
+        <div class="paper-card px-5 py-3 rounded-full flex items-center justify-between shadow-md">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-warm-800">
+                <span class="text-terracotta-500">🕊️</span>
+                <span>L'Envol du Nid</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="playAcousticChime()" class="text-xs px-3.5 py-1.5 rounded-full bg-warm-100 hover:bg-warm-200 text-warm-800 transition-all flex items-center gap-1.5" title="Ambiance réconfortante">
+                    <i data-lucide="music" class="w-3.5 h-3.5 text-terracotta-500"></i>
+                    <span>Douceur</span>
+                </button>
+                <a href="#diplome" class="text-xs px-3.5 py-1.5 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium shadow-sm transition-all flex items-center gap-1">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> Mon Diplôme
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-32">
+
+        <!-- Hero Header -->
+        <header class="text-center mb-16 relative">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-terracotta-100 text-terracotta-600 text-xs font-medium mb-6 animate-float-gentle">
+                <span>🌱 Pour chaque parent dont le salon s'est soudain tu</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl font-normal leading-[1.18] text-warm-900 mb-6">
+                Quand les enfants <br><span class="italic font-normal text-terracotta-500">quittent le nid</span>
+            </h1>
+
+            <p class="font-serif text-xl sm:text-2xl text-warm-800/90 font-normal max-w-lg mx-auto italic mb-8">
+                « Ce n’est pas une perte, c’est votre “diplôme” de parent. »
+            </p>
+
+            <div class="flex items-center justify-center gap-5 text-xs text-warm-800/60">
+                <span class="flex items-center gap-1.5"><i data-lucide="sun" class="w-3.5 h-3.5 text-amber-500"></i> Rayon d'espérance</span>
+                <span class="w-1 h-1 rounded-full bg-warm-300"></span>
+                <span class="flex items-center gap-1.5"><i data-lucide="feather" class="w-3.5 h-3.5 text-sage-600"></i> Lâcher-prise</span>
+            </div>
+        </header>
+
+        <!-- Article Flow -->
+        <article class="space-y-12">
+
+            <!-- Intro Card: Le choc du silence -->
+            <section class="paper-card rounded-3xl p-8 sm:p-12 space-y-6 relative overflow-hidden">
+                <div class="absolute -right-8 -top-8 w-24 h-24 bg-amber-100 rounded-full blur-xl"></div>
+                
+                <p class="font-serif text-2xl text-warm-900 leading-snug">
+                    Peu importe à quel point vous pensez y être préparé : <span class="italic text-terracotta-500">on ne l’est jamais vraiment.</span>
+                </p>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Un jour, votre enfant fait ses valises, franchit la porte, et cette maison qui résonnait de rires et de bruits s’éteint d’un coup. Le silence s’installe. Une routine construite sur deux décennies s'effondre. Vous rentrez chez vous et il n'y a plus personne à attendre.
+                </p>
+
+                <!-- Emotional thought box -->
+                <div class="p-6 rounded-2xl bg-warm-100/70 border border-warm-200 text-center space-y-2">
+                    <p class="text-xs uppercase tracking-widest text-warm-800/60 font-semibold">Le vertige intérieur</p>
+                    <p class="font-serif italic text-xl text-terracotta-600">
+                        « Mes responsabilités sont terminées… Est-ce que mon rôle est fini ? »
+                    </p>
+                </div>
+
+                <div class="pt-2 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-sage-100 text-sage-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                    </div>
+                    <p class="text-base sm:text-lg font-medium text-warm-900">
+                        Laissez-moi vous rassurer : <strong class="text-terracotta-500 underline decoration-amber-300 underline-offset-4">votre rôle n’est pas terminé</strong>. Il a simplement changé.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Chapter 1: Du contrôle à la confiance -->
+            <section class="paper-card rounded-3xl p-8 sm:p-12 space-y-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-8 h-8 rounded-2xl bg-terracotta-100 text-terracotta-600 flex items-center justify-center font-serif font-bold text-sm">I</span>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-warm-800/70">La Métamorphose</span>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-warm-900">
+                    Du contrôle à la confiance
+                </h2>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Auparavant, notre rôle consistait à veiller sur eux à chaque seconde, à anticiper les dangers, à s'inquiéter en permanence. Aujourd'hui, ils sont assez grands pour faire face à leurs propres erreurs.
+                </p>
+
+                <!-- Comparison Cards -->
+                <div class="grid sm:grid-cols-2 gap-4 my-6">
+                    <div class="p-6 rounded-2xl bg-warm-50 border border-warm-200 space-y-2">
+                        <div class="text-xs font-semibold text-warm-800/70 uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="shield-alert" class="w-4 h-4 text-amber-600"></i> Hier : Le Bouclier
+                        </div>
+                        <p class="text-sm text-warm-800 font-light">Contrôler, intervenir immédiatement, porter tout le poids sur ses épaules.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-sage-100/50 border border-sage-400/30 space-y-2">
+                        <div class="text-xs font-semibold text-sage-600 uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="anchor" class="w-4 h-4 text-sage-600"></i> Aujourd'hui : Le Phare
+                        </div>
+                        <p class="text-sm text-warm-800 font-light">Être le roc invisible. Le port d'attache sécurisant où il sait qu'il peut toujours revenir.</p>
+                    </div>
+                </div>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    À des milliers de kilomètres, vous ne pouvez plus intervenir directement, et c'est déstabilisant. Mais c'est là que réside votre nouvelle mission : <strong class="font-medium text-warm-900">ne plus être celui qui contrôle, mais le roc invisible qui soutient</strong>. Même à distance, faites-lui sentir que vous êtes là. Lorsqu'un enfant sait qu'il a un port d'attache solide, il ose déployer ses ailes, et vous vous sentez beaucoup moins seul.
+                </p>
+            </section>
+
+            <!-- Chapter 2: Anecdote Mowgli & Les donneurs de leçons -->
+            <section class="paper-card rounded-3xl p-8 sm:p-12 space-y-6 relative">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-8 h-8 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-serif font-bold text-sm">II</span>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-warm-800/70">Histoire Vécue</span>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-warm-900">
+                    Ne laissez personne minimiser votre peine
+                </h2>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Lorsque mon fils <span class="font-medium text-terracotta-600">Mowgli</span> est parti vivre aux États-Unis, j'étais profondément bouleversé, même si je m'efforçais de faire bonne figure. Un jour, un ami m'a demandé :
+                </p>
+
+                <!-- Dialogue Visual Box -->
+                <div class="space-y-3 py-2">
+                    <div class="p-4 rounded-2xl bg-warm-100/60 border border-warm-200 flex items-start gap-3">
+                        <span class="text-sm font-semibold text-warm-800">Ami :</span>
+                        <p class="text-sm text-warm-800 font-light italic">« Alors, ton fils est parti, ça te fait mal ? »</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-terracotta-100/50 border border-terracotta-200/50 flex items-start gap-3 ml-4">
+                        <span class="text-sm font-semibold text-terracotta-600">Moi :</span>
+                        <p class="text-sm text-warm-900 font-light italic">« Non, ça va… c’est sa vie, c’est son évolution ! »</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-warm-100/60 border border-warm-200 flex items-start gap-3">
+                        <span class="text-sm font-semibold text-warm-800">Ami :</span>
+                        <p class="text-sm text-warm-800 font-light italic">« Allez, avoue, ça te fait mal au fond ! »</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-terracotta-100/50 border border-terracotta-200/50 flex items-start gap-3 ml-4">
+                        <span class="text-sm font-semibold text-terracotta-600">Moi :</span>
+                        <p class="text-sm text-warm-900 font-light italic">« Oui, c'est vrai, ça me fait mal. »</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-amber-100/60 border border-amber-200 flex items-start gap-3">
+                        <span class="text-sm font-semibold text-amber-800">Ami :</span>
+                        <p class="text-sm text-warm-900 font-light italic">« Mais pourquoi tu as mal ? Laisse-le voler enfin ! »</p>
+                    </div>
+                </div>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Parfois, les gens cherchent à sonder votre douleur pour vous donner des leçons de lâcher-prise. Mais n'oubliez jamais ceci : <strong class="text-warm-900">le départ d'un enfant n'est pas un échec ou une perte, c'est votre remise de diplôme en tant que parent.</strong>
+                </p>
+
+                <!-- Golden Callout Quote -->
+                <div class="p-8 rounded-3xl bg-gradient-to-r from-amber-50 via-terracotta-50 to-warm-50 border-2 border-dashed border-terracotta-300 text-center my-6">
+                    <p class="font-serif italic text-2xl sm:text-3xl text-terracotta-600 leading-snug">
+                        « Une maison vide est parfois la plus belle preuve d'un cœur débordant d'amour. »
+                    </p>
+                </div>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Si votre maison est vide aujourd'hui, c'est parce que vous avez parfaitement rempli votre mission : lui donner la force de s'envoler.
+                </p>
+            </section>
+
+            <!-- Chapter 3: L'écran noir & Les 25 ans -->
+            <section class="paper-card rounded-3xl p-8 sm:p-12 space-y-6">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-8 h-8 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center font-serif font-bold text-sm">III</span>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-warm-800/70">Le Quotidien</span>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-warm-900">
+                    La nostalgie après l'écran noir
+                </h2>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Je ne vais pas vous mentir : mon fils me manque terriblement. Bien sûr, nous nous appelons en vidéo une ou deux fois par semaine. Sur l'écran, on rit, il me dit : <span class="italic text-terracotta-600">« Papa, j'ai grandi maintenant ! »</span> et tout a l'air parfait.
+                </p>
+
+                <div class="p-5 rounded-2xl bg-warm-100/50 border-l-4 border-terracotta-400 text-warm-800 italic">
+                    « Mais dès que l'appel se coupe… ce silence qui retombe pèse lourd. »
+                </div>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Il me dit souvent : « Pourquoi tu ne viens pas me voir aux États-Unis ? Viens ! » Et moi, pris dans le tourbillon de mes projets, je réponds : « Je viendrai, c'est promis… » Entre la nostalgie, le manque et un soupçon de culpabilité, être parent d'un jeune adulte est tout sauf un long fleuve tranquille.
+                </p>
+
+                <h3 class="font-serif text-2xl text-warm-900 pt-4">
+                    Moins de contrôle, mais une présence intacte
+                </h3>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Récemment, mon fils a quitté son emploi pour en prendre un autre. Quand j'ai voulu lui donner mon avis, il m'a souri :
+                </p>
+
+                <div class="p-6 rounded-2xl bg-amber-50/70 border border-amber-200 text-center">
+                    <p class="font-serif italic text-xl sm:text-2xl text-amber-900">
+                        « Papa, je ne te demande pas conseil, je t’informe ! »
+                    </p>
+                </div>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Sur le moment, ça surprend. On a l'impression de perdre le fil, de ne plus être consulté. Pourtant, depuis ses 18 ans, il prend ses propres décisions, et aujourd'hui à 25 ans, il trace sa route.
+                </p>
+
+                <div class="p-4 rounded-xl bg-warm-100 text-center font-medium text-warm-900">
+                    ✨ Perdre le contrôle ne veut pas dire perdre la connexion.
+                </div>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light">
+                    Il me demande peut-être moins de conseils, mais je ressens profondément sa présence dans ma vie, tout comme il porte la mienne dans la sienne. La distance géographique ne peut rien contre des années d'amour et de valeurs partagées.
+                </p>
+            </section>
+
+            <!-- Chapter 4: Interactive Keepsake: Le Diplôme du Parent -->
+            <section id="diplome" class="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-warm-100 via-warm-50 to-amber-50/40 border-2 border-amber-300 shadow-xl overflow-hidden text-center space-y-6">
+                <!-- Ribbon & Seal -->
+                <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-terracotta-600 to-amber-500 text-white flex items-center justify-center mx-auto paper-seal font-serif text-2xl font-bold shadow-md">
+                    🎓
+                </div>
+
+                <div class="space-y-1">
+                    <span class="text-xs uppercase tracking-widest text-terracotta-600 font-semibold">Certificat d'Honneur & d'Amour</span>
+                    <h3 class="font-serif text-3xl sm:text-4xl text-warm-900">
+                        Diplôme de Parent Accompli
+                    </h3>
+                </div>
+
+                <p class="text-sm sm:text-base text-warm-800 font-light max-w-lg mx-auto">
+                    Décerné à vous, pour avoir nourri, protégé, consolé, et surtout… pour avoir eu le sublime courage d'ouvrir la cage pour laisser s'envoler votre plus bel oiseau.
+                </p>
+
+                <!-- Interactive Name input for the diploma -->
+                <div class="max-w-md mx-auto pt-2 flex flex-col sm:flex-row gap-2 justify-center items-center">
+                    <input type="text" id="parent-name" placeholder="Entrez votre prénom / Papa / Maman" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-warm-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-400 text-center" oninput="updateDiplomaName(this.value)">
+                    <button onclick="stampDiploma()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white text-sm font-medium shadow transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="check" class="w-4 h-4"></i> Valider mon diplôme
+                    </button>
+                </div>
+
+                <div id="diploma-named-box" class="pt-4 font-serif text-xl text-warm-900 italic font-semibold">
+                    Mention : « Amour Inconditionnel & Ailes Déployées »
+                </div>
+            </section>
+
+            <!-- Chapter 5: Un mot pour la route & Interactive Paper Plane -->
+            <section class="paper-card rounded-3xl p-8 sm:p-12 space-y-6 text-center">
+                <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 mx-auto flex items-center justify-center">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl text-warm-900">
+                    Un mot pour la route
+                </h2>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light max-w-xl mx-auto">
+                    Si votre enfant est loin aujourd'hui et que le silence de votre salon vous pèse : <strong>respirez</strong>. Souriez à ce vide, car il est le témoin de votre réussite.
+                </p>
+
+                <p class="text-warm-800 text-base sm:text-lg leading-relaxed font-light max-w-xl mx-auto">
+                    Ils sont peut-être loin des yeux, mais leur éducation et l'amour que vous leur avez donné les garderont toujours près de votre cœur.
+                </p>
+
+                <div class="pt-4 space-y-4">
+                    <p class="text-sm font-medium text-terracotta-600">
+                        Prenez grand soin de vous, et envoyez-leur un simple message pour leur dire que vous croyez en eux.
+                    </p>
+
+                    <!-- Interactive Flight Button -->
+                    <button onclick="launchPaperPlane()" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-terracotta-500 via-amber-500 to-terracotta-500 bg-[length:200%_auto] hover:bg-right text-white font-medium shadow-lg shadow-terracotta-500/20 hover:scale-105 active:scale-95 transition-all duration-300">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Lancer une pensée ailée vers lui / elle ✉️</span>
+                    </button>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Footer Sign-off -->
+        <footer class="mt-20 text-center space-y-6">
+            <div class="w-12 h-0.5 bg-warm-300 mx-auto"></div>
+            
+            <p class="font-serif italic text-2xl sm:text-3xl text-warm-800 font-normal">
+                « Avec toute mon affection. »
+            </p>
+
+            <div class="flex items-center justify-center gap-2 text-xs text-warm-800/60 uppercase tracking-widest font-semibold pt-2">
+                <span>🌾</span> Le nid est vide, mais le ciel est à eux <span>🕊️</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // 1. Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('read-progress').style.width = scrolled + '%';
+        });
+
+        // 2. Interactive Diploma Name Update
+        function updateDiplomaName(val) {
+            const box = document.getElementById('diploma-named-box');
+            if (val.trim() !== '') {
+                box.innerHTML = `Félicitations <span class="text-terracotta-600 underline">${val}</span> — Mention : « Amour Inconditionnel »`;
+            } else {
+                box.innerHTML = `Mention : « Amour Inconditionnel & Ailes Déployées »`;
+            }
+        }
+
+        function stampDiploma() {
+            playAcousticChime();
+            launchConfetti();
+        }
+
+        // 3. Web Audio API Warm Chime
+        let audioCtx = null;
+        function playAcousticChime() {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                const notes = [261.63, 329.63, 392.00, 523.25]; // Warm C Major Chord
+                notes.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle'; // warmer than sine
+                        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 1.2);
+                    }, idx * 120);
+                });
+            } catch(e){}
+        }
+
+        // 4. Paper Plane Flight Animation
+        function launchPaperPlane() {
+            playAcousticChime();
+
+            for (let i = 0; i < 7; i++) {
+                setTimeout(() => {
+                    const plane = document.createElement('div');
+                    plane.innerHTML = i % 2 === 0 ? '✈️' : '🕊️';
+                    plane.style.position = 'fixed';
+                    plane.style.left = '10%';
+                    plane.style.bottom = '15%';
+                    plane.style.fontSize = (Math.random() * 12 + 20) + 'px';
+                    plane.style.zIndex = '9999';
+                    plane.style.pointerEvents = 'none';
+                    plane.style.transition = 'all 2.4s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    document.body.appendChild(plane);
+
+                    setTimeout(() => {
+                        plane.style.transform = `translate(${window.innerWidth * 0.8}px, -${window.innerHeight * 0.6 + Math.random() * 150}px) scale(0.6)`;
+                        plane.style.opacity = '0';
+                    }, 30);
+
+                    setTimeout(() => {
+                        plane.remove();
+                    }, 2500);
+                }, i * 160);
+            }
+        }
+
+        // 5. Gentle Heart & Petal Burst for Diploma
+        function launchConfetti() {
+            for (let i = 0; i < 20; i++) {
+                const petal = document.createElement('div');
+                petal.innerText = ['🍂', '💛', '🌸', '✨'][Math.floor(Math.random() * 4)];
+                petal.style.position = 'fixed';
+                petal.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 180) + 'px';
+                petal.style.top = (window.innerHeight * 0.6 + (Math.random() - 0.5) * 80) + 'px';
+                petal.style.fontSize = '18px';
+                petal.style.zIndex = '9999';
+                petal.style.pointerEvents = 'none';
+                petal.style.transition = 'all 1.6s ease-out';
+                document.body.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.style.transform = `translate(${(Math.random() - 0.5) * 260}px, -${Math.random() * 200 + 50}px) scale(0)`;
+                    petal.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, 1700);
+            }
+        }
+    </script>
+</body>
+</html>

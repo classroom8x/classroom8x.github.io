@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quand le courage arrive en retard — Douceur & Bienveillance</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            aesthetic: {
+              cream: '#FAF7F2',
+              peach: '#FFE7DB',
+              rose: '#F9D8D6',
+              lavender: '#E8E4F3',
+              sage: '#E3EBDD',
+              mocha: '#4A3E3D',
+              gold: '#D4A373',
+              darkbg: '#18151D',
+              darkcard: '#231E2A',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 7s ease-in-out 2s infinite',
+            'pulse-soft': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'breathe': 'breathe 8s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(2deg)' },
+            },
+            breathe: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '0.6' },
+              '50%': { transform: 'scale(1.4)', opacity: '0.9' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(250, 247, 242, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E8CFC5;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D8B7AA;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+    .dark .glass-card {
+      background: rgba(35, 30, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .selection-cute::selection {
+      background-color: #F9D8D6;
+      color: #4A3E3D;
+    }
+  </style>
+</head>
+
+<body class="selection-cute bg-aesthetic-cream dark:bg-aesthetic-darkbg text-aesthetic-mocha dark:text-aesthetic-cream/90 font-sans antialiased transition-colors duration-500 min-h-screen relative overflow-x-hidden">
+
+  <!-- Progress Bar -->
+  <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-aesthetic-rose via-aesthetic-gold to-aesthetic-lavender z-50 transition-all duration-150" style="width: 0%;"></div>
+
+  <!-- Ambient Floating Glows -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute top-10 left-10 w-96 h-96 bg-aesthetic-peach/50 dark:bg-purple-900/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute top-1/2 right-5 w-80 h-80 bg-aesthetic-lavender/60 dark:bg-rose-950/20 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute bottom-10 left-1/3 w-88 h-88 bg-aesthetic-sage/40 dark:bg-indigo-950/20 rounded-full blur-3xl animate-float"></div>
+  </div>
+
+  <!-- Top Floating Navigation -->
+  <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-4xl">
+    <div class="glass-card rounded-full px-5 py-3 shadow-lg shadow-black/5 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-8 h-8 rounded-full bg-aesthetic-peach dark:bg-aesthetic-darkcard flex items-center justify-center text-sm shadow-inner">
+          🌸
+        </span>
+        <span class="font-serif italic font-semibold text-lg tracking-wide">Douce Pensée</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Audio Ambiance Toggle -->
+        <button id="soundBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-aesthetic-lavender/60 dark:bg-white/10 hover:scale-105 transition-all text-aesthetic-mocha dark:text-white" title="Ambiance méditative">
+          <span id="soundIcon">🎵</span>
+          <span id="soundText" class="hidden sm:inline">Musique douce</span>
+        </button>
+
+        <!-- Dark/Light Mode -->
+        <button id="themeToggle" class="w-9 h-9 rounded-full bg-aesthetic-rose/50 dark:bg-white/10 flex items-center justify-center text-sm hover:rotate-12 transition-transform" title="Changer de thème">
+          <span class="dark:hidden">🌙</span>
+          <span class="hidden dark:inline">☀️</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header Section -->
+  <header class="relative z-10 pt-32 pb-16 px-6 max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-aesthetic-rose/60 dark:bg-rose-950/50 text-aesthetic-mocha dark:text-aesthetic-rose mb-6 shadow-sm">
+      <span>✨</span> Journal du soir • Réflexion & Pardon
+    </div>
+
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-tight md:leading-none tracking-tight text-aesthetic-mocha dark:text-white mb-6">
+      Quand le courage arrive <br class="hidden sm:inline" />
+      <span class="italic font-normal text-aesthetic-gold underline decoration-aesthetic-rose/60 decoration-wavy decoration-2">en retard</span>
+    </h1>
+
+    <p class="font-serif italic text-lg sm:text-xl text-aesthetic-mocha/80 dark:text-white/70 max-w-xl mx-auto leading-relaxed">
+      Apprendre à se pardonner les occasions manquées et honorer la personne que l'on devient.
+    </p>
+
+    <!-- Reading info pills -->
+    <div class="flex items-center justify-center gap-4 mt-8 text-xs font-medium opacity-70">
+      <span>☕ ~3 min de lecture</span>
+      <span>•</span>
+      <span>🌿 Bienveillance envers soi</span>
+    </div>
+  </header>
+
+  <!-- Main Article Content -->
+  <main class="relative z-10 max-w-2xl mx-auto px-6 pb-24 space-y-12">
+    
+    <!-- Intro Quote Card -->
+    <section class="glass-card rounded-3xl p-8 sm:p-10 shadow-xl shadow-aesthetic-peach/20 relative overflow-hidden group">
+      <div class="absolute -right-6 -bottom-6 text-7xl text-aesthetic-peach/40 dark:text-white/5 select-none font-serif">”</div>
+      <p class="font-serif text-xl sm:text-2xl italic leading-relaxed text-aesthetic-mocha/90 dark:text-aesthetic-cream/90 mb-4">
+        « Parfois, les questions les plus lourdes de la vie ne sont pas : <span class="font-semibold text-aesthetic-gold">“Que dois-je faire maintenant ?”</span>, mais plutôt : <span class="underline decoration-aesthetic-rose">“Pourquoi ne l'ai-je pas fait à l'époque ?”</span> »
+      </p>
+      <p class="text-sm font-medium opacity-75 mt-4 text-right">
+        — Cet article est dédié à toutes ces opportunités qui nous ont glissé entre les doigts, et à ce courage… qui a fini par arriver, mais avec un train de retard.
+      </p>
+    </section>
+
+    <!-- Section 1: Le Piège du "Et si... ?" -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-aesthetic-peach flex items-center justify-center text-xs font-bold text-aesthetic-mocha shadow-sm">01</div>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-wide">Le piège du « Et si… ? »</h2>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-aesthetic-mocha/90 dark:text-aesthetic-cream/80">
+        Nous gardons tous en mémoire ces moments précis où nous avons hésité. Ces instants figés où le chemin semblait s'ouvrir mais où nos pas sont restés cloués au sol :
+      </p>
+
+      <!-- Cute Cards Grid -->
+      <div class="grid sm:grid-cols-3 gap-4 my-6">
+        <div class="glass-card p-5 rounded-2xl border-l-4 border-l-aesthetic-rose hover:-translate-y-1 transition-all">
+          <div class="text-2xl mb-2">💼</div>
+          <h3 class="font-semibold text-sm mb-1">L'opportunité pro</h3>
+          <p class="text-xs opacity-75 leading-normal">Cet entretien d’embauche que nous n'avons pas osé passer.</p>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl border-l-4 border-l-aesthetic-lavender hover:-translate-y-1 transition-all">
+          <div class="text-2xl mb-2">✈️</div>
+          <h3 class="font-semibold text-sm mb-1">L'envol manqué</h3>
+          <p class="text-xs opacity-75 leading-normal">Ce voyage ou cette ville où nous aurions pu poser nos valises.</p>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl border-l-4 border-l-aesthetic-sage hover:-translate-y-1 transition-all">
+          <div class="text-2xl mb-2">💌</div>
+          <h3 class="font-semibold text-sm mb-1">Le silence du cœur</h3>
+          <p class="text-xs opacity-75 leading-normal">Cette relation où nous sommes restés en retrait, figés par le doute.</p>
+        </div>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-aesthetic-mocha/90 dark:text-aesthetic-cream/80">
+        Et avec le recul, nous nous torturons souvent : <em class="italic text-aesthetic-gold font-serif text-xl">« Si seulement j'avais eu un peu plus de cran ce jour-là, ma carrière et ma vie seraient à un tout autre niveau aujourd’hui. »</em>
+      </p>
+
+      <!-- Insight Callout -->
+      <div class="p-6 rounded-2xl bg-gradient-to-r from-aesthetic-peach/40 via-aesthetic-rose/30 to-aesthetic-lavender/40 dark:from-purple-950/30 dark:to-rose-950/30 border border-white/50 dark:border-white/5 space-y-3">
+        <div class="flex items-center gap-2 font-semibold text-sm text-aesthetic-gold">
+          <span>💡</span> Mais posez-vous une vraie question :
+        </div>
+        <p class="text-sm sm:text-base leading-relaxed italic">
+          Vous rappelez-vous dans quel état d'esprit vous étiez ce jour-là ? À cet instant précis, vous étiez peut-être simplement <strong>épuisé, confus, ou écrasé par le poids de vos responsabilités</strong>.
+        </p>
+        <p class="text-xs sm:text-sm opacity-80">
+          Le courage n'est pas un interrupteur que l'on allume à volonté ; parfois, il s’éteint temporairement parce que votre esprit et votre corps cherchaient juste à <strong>vous préserver</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Breathing Mini-Sanctuary -->
+    <section class="glass-card p-8 rounded-3xl text-center space-y-4 shadow-md">
+      <span class="text-xs font-semibold uppercase tracking-widest text-aesthetic-gold">Pause Douceur</span>
+      <h3 class="font-serif text-xl font-bold">Prenez une respiration avec vous-même</h3>
+      
+      <div class="py-6 flex justify-center items-center">
+        <div class="relative flex items-center justify-center">
+          <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-aesthetic-peach to-aesthetic-rose dark:from-purple-800 dark:to-rose-700 animate-breathe blur-sm"></div>
+          <div class="absolute w-20 h-20 rounded-full bg-white/80 dark:bg-aesthetic-darkcard flex items-center justify-center shadow-inner">
+            <span class="text-xs font-semibold opacity-70">Inspirez...</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs opacity-60">Relâchez la pression de vos épaules avant de poursuivre.</p>
+    </section>
+
+    <!-- Section 2: L'injustice du jugement passé -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-aesthetic-lavender flex items-center justify-center text-xs font-bold text-aesthetic-mocha shadow-sm">02</div>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-wide">L’injustice de juger son passé avec la force d’aujourd’hui</h2>
+      </div>
+
+      <div class="border-l-2 border-aesthetic-gold pl-4 py-1 italic font-serif text-lg text-aesthetic-mocha/80 dark:text-aesthetic-cream/80">
+        « Avec le recul, la vue est toujours parfaite. »
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-aesthetic-mocha/90 dark:text-aesthetic-cream/80">
+        Nous avons la fâcheuse tendance de transformer le courage en un certificat de moralité. Nous nous disons : <em>« Si je n’ai pas agi, c’est que je suis un lâche. »</em> <strong>C’est totalement faux.</strong>
+      </p>
+
+      <p class="leading-relaxed text-base sm:text-lg text-aesthetic-mocha/90 dark:text-aesthetic-cream/80">
+        Le courage n'est pas un trait de caractère figé. Il naît des circonstances — non seulement de ce qui se passe sous les projecteurs, mais surtout de ce qui se trame en coulisses, dans l'intimité de votre esprit.
+      </p>
+
+      <p class="leading-relaxed text-base sm:text-lg text-aesthetic-mocha/90 dark:text-aesthetic-cream/80">
+        Aujourd'hui, vous regardez vos erreurs passées avec votre confiance actuelle. Mais d’où vient cette confiance ? <strong>Elle est précisément le fruit de vos échecs passés, de vos chutes et de la manière dont vous vous êtes relevé.</strong> Vous n'êtes plus la même personne qu'hier.
+      </p>
+    </section>
+
+    <!-- Section 3: Les retards délibérés -->
+    <section class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-aesthetic-sage flex items-center justify-center text-xs font-bold text-aesthetic-mocha shadow-sm">03</div>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-wide">Les retards délibérés de la vie</h2>
+      </div>
+
+      <p class="leading-relaxed text-base sm:text-lg text-aesthetic-mocha/90 dark:text-aesthetic-cream/80">
+        Parfois, la vie nous fait intentionnellement prendre du retard. Elle le fait pour que, le jour où nous atteignons enfin notre destination, nous soyons plus posés, plus conscients, et capables de respecter pleinement l'opportunité qui s'offre à nous.
+      </p>
+
+      <div class="glass-card p-6 rounded-2xl text-center font-serif text-xl italic text-aesthetic-gold">
+        « Toutes les portes qui se sont fermées n’étaient peut-être pas les vôtres. Ce “pas encore” était là pour vous forger. »
+      </div>
+    </section>
+
+    <!-- Golden Affirmation Card (Copyable) -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-aesthetic-peach via-aesthetic-rose to-aesthetic-lavender dark:from-purple-900/60 dark:via-rose-900/50 dark:to-indigo-900/60 p-8 sm:p-10 shadow-2xl">
+      <div class="relative z-10 space-y-6 text-center">
+        <span class="text-xs uppercase tracking-widest font-semibold text-aesthetic-mocha/70 dark:text-white/80">
+          🌙 Ce que vous devez vous dire ce soir
+        </span>
+
+        <h3 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
+          « Ce jour-là, mon courage est arrivé en retard, mais il n'était pas faux. »
+        </h3>
+
+        <p class="text-sm sm:text-base opacity-90 max-w-lg mx-auto leading-relaxed">
+          Un courage tardif reste un courage authentique. Il ne vous bloquera plus ; il vous rappelle que vous êtes désormais prêt à reconnaître la prochaine opportunité dès qu’elle se présentera.
+        </p>
+
+        <button id="copyAffirmationBtn" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white dark:bg-aesthetic-darkcard text-aesthetic-mocha dark:text-white font-medium text-sm shadow-md hover:scale-105 active:scale-95 transition-all">
+          <span>✨</span>
+          <span id="copyBtnText">Garder cette pensée précieusement</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Epilogue & Sweet Wishes -->
+    <section class="text-center pt-6 space-y-6">
+      <p class="text-base sm:text-lg leading-relaxed opacity-90">
+        Si la douleur d'un regret passé commence à s'alléger un peu en vous, c'est le signe que vous avez grandi. Vous êtes prêt à jouer le prochain round avec toute la force qui vous habite.
+      </p>
+
+      <div class="w-16 h-0.5 bg-aesthetic-gold/40 mx-auto my-6 rounded-full"></div>
+
+      <p class="font-serif italic text-2xl text-aesthetic-mocha dark:text-aesthetic-rose">
+        « Prenez bien soin de vous, soyez tendre dans la façon dont vous vous parlez, et très belle nuit à vous. » 🌙✨
+      </p>
+
+      <!-- Like / Heart Reaction Button -->
+      <div class="pt-4">
+        <button id="heartBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-card hover:bg-aesthetic-rose/30 transition-all text-sm font-medium group">
+          <span class="group-hover:scale-125 transition-transform text-rose-500" id="heartIcon">❤️</span>
+          <span id="heartCount">Prendre soin de soi (248)</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Subtle Footer -->
+  <footer class="relative z-10 py-10 border-t border-black/5 dark:border-white/5 text-center text-xs opacity-60">
+    <p>Conçu comme un cocon de réconfort • Typographie & Sérénité</p>
+  </footer>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // 2. Dark / Light Mode Switcher
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // 3. Heart Reaction Button Animation
+    const heartBtn = document.getElementById('heartBtn');
+    const heartCount = document.getElementById('heartCount');
+    let count = 248;
+    let liked = false;
+
+    heartBtn.addEventListener('click', () => {
+      if (!liked) {
+        count++;
+        heartCount.textContent = `Prendre soin de soi (${count})`;
+        heartBtn.classList.add('ring-2', 'ring-aesthetic-rose');
+        createFloatingHeart();
+        liked = true;
+      }
+    });
+
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.innerHTML = '🌸';
+      heart.style.position = 'fixed';
+      heart.style.left = '50%';
+      heart.style.bottom = '120px';
+      heart.style.fontSize = '24px';
+      heart.style.zIndex = '999';
+      heart.style.transform = 'translate(-50%, 0)';
+      heart.style.transition = 'all 1.2s ease-out';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.style.transform = 'translate(-50%, -100px) scale(1.6)';
+        heart.style.opacity = '0';
+      }, 50);
+
+      setTimeout(() => heart.remove(), 1300);
+    }
+
+    // 4. Copy Affirmation to Clipboard
+    const copyBtn = document.getElementById('copyAffirmationBtn');
+    const copyText = document.getElementById('copyBtnText');
+
+    copyBtn.addEventListener('click', () => {
+      const quote = "« Ce jour-là, mon courage est arrivé en retard, mais il n'était pas faux. »";
+      navigator.clipboard.writeText(quote).then(() => {
+        copyText.textContent = 'Pensée enregistrée dans le cœur ✨';
+        setTimeout(() => {
+          copyText.textContent = 'Garder cette pensée précieusement';
+        }, 3000);
+      });
+    });
+
+    // 5. Procedural Relaxing Ambient Sound (Web Audio API - No external audio file needed!)
+    let audioCtx = null;
+    let isPlaying = false;
+    let oscillators = [];
+    let masterGain = null;
+
+    const soundBtn = document.getElementById('soundBtn');
+    const soundIcon = document.getElementById('soundIcon');
+    const soundText = document.getElementById('soundText');
+
+    function toggleAudio() {
+      if (!isPlaying) {
+        startAmbientSound();
+        isPlaying = true;
+        soundIcon.textContent = '⏸️';
+        soundText.textContent = 'Pause son';
+        soundBtn.classList.add('ring-2', 'ring-aesthetic-gold');
+      } else {
+        stopAmbientSound();
+        isPlaying = false;
+        soundIcon.textContent = '🎵';
+        soundText.textContent = 'Musique douce';
+        soundBtn.classList.remove('ring-2', 'ring-aesthetic-gold');
+      }
+    }
+
+    function startAmbientSound() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      masterGain.connect(audioCtx.destination);
+
+      // Chords for peaceful atmosphere (F maj9 / gentle zen notes)
+      const freqs = [174.61, 220.00, 261.63, 329.63, 392.00];
+
+      freqs.forEach((freq) => {
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        // Gentle lfo modulation
+        const lfo = audioCtx.createOscillator();
+        lfo.frequency.value = 0.15 + Math.random() * 0.1;
+        const lfoGain = audioCtx.createGain();
+        lfoGain.gain.value = 0.015;
+        lfo.connect(lfoGain);
+        lfoGain.connect(gainNode.gain);
+        lfo.start();
+
+        gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        osc.connect(gainNode);
+        gainNode.connect(masterGain);
+        osc.start();
+
+        oscillators.push(osc, lfo);
+      });
+    }
+
+    function stopAmbientSound() {
+      if (audioCtx) {
+        oscillators.forEach(osc => osc.stop());
+        oscillators = [];
+        audioCtx.close();
+        audioCtx = null;
+      }
+    }
+
+    soundBtn.addEventListener('click', toggleAudio);
+  </script>
+</body>
+</html>
