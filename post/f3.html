@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Évaluer un Bien Immobilier : La Méthode Mathématique</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti Canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            glacier: {
+              50: '#F2F8FA',
+              100: '#E1F0F5',
+              200: '#C2E1EB',
+              400: '#4DA5C0',
+              600: '#1D6782',
+              900: '#0E3342',
+            },
+            apricot: {
+              50: '#FFF7F2',
+              100: '#FFEADF',
+              300: '#FFB899',
+              500: '#FF7D45',
+            },
+            mint: '#DCFCE7',
+            cream: '#FAFBF8',
+            surface: '#FFFFFF',
+          },
+          boxShadow: {
+            'card': '0 12px 30px -5px rgba(29, 103, 130, 0.06), 0 4px 10px -2px rgba(0,0,0,0.02)',
+            'float': '0 20px 40px -10px rgba(255, 125, 69, 0.18)',
+            'pill': '0 4px 15px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom grid pattern background */
+    .bg-blueprint {
+      background-image: radial-gradient(#C2E1EB 0.75px, transparent 0.75px);
+      background-size: 20px 20px;
+    }
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #FAFBF8; }
+    ::-webkit-scrollbar-thumb { background: #C2E1EB; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4DA5C0; }
+  </style>
+</head>
+
+<body class="bg-cream bg-blueprint text-slate-800 font-sans antialiased selection:bg-apricot-300 selection:text-slate-900">
+
+  <!-- Top Dynamic Reading Indicator -->
+  <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-glacier-400 via-apricot-500 to-amber-400 z-50 transition-all duration-150 w-0"></div>
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-20 -left-20 w-80 h-80 bg-glacier-100/70 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-20 w-96 h-96 bg-apricot-100/60 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+    <div class="bg-surface/90 backdrop-blur-md border border-glacier-200/80 rounded-full px-5 py-3 flex items-center justify-between shadow-card">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-glacier-400 to-glacier-600 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+          📐
+        </div>
+        <div>
+          <p class="text-xs font-bold text-glacier-900 font-display">Finance & Décote Immo</p>
+          <p class="text-[10px] text-slate-400 font-medium">Guide Stratégique de Valorisation</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="#simulator" class="hidden sm:inline-flex text-xs font-bold px-3 py-1.5 rounded-full bg-glacier-50 text-glacier-600 hover:bg-glacier-100 transition-colors">
+          🧮 Simulateur Live
+        </a>
+        <button onclick="shareLink()" class="text-xs font-bold px-4 py-1.5 rounded-full bg-apricot-500 text-white hover:bg-apricot-500/90 transition-all shadow-sm flex items-center gap-1">
+          <span>📤 Partager</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="relative z-10 max-w-3xl mx-auto px-5 pt-10 pb-28">
+
+    <!-- Hero Header -->
+    <section class="text-center space-y-4 mb-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-glacier-100 text-glacier-600 rounded-full text-xs font-extrabold tracking-wide uppercase">
+        <span>🏛️ Intelligence Immobilière</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+        Comment Évaluer un Bien Immobilier : 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-glacier-600 to-apricot-500 block sm:inline">
+          La Méthode Mathématique
+        </span>
+        pour Ne Plus Jamais Acheter Trop Cher
+      </h1>
+
+      <!-- Quote Card Hero -->
+      <div class="bg-surface/90 border border-slate-200/80 rounded-3xl p-5 shadow-card max-w-xl mx-auto mt-6">
+        <p class="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Maxime de Warren Buffett</p>
+        <p class="font-display font-bold text-base sm:text-lg text-glacier-900 italic">
+          « Le prix est ce que vous payez. La valeur est ce que vous obtenez. »
+        </p>
+      </div>
+
+      <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed pt-2">
+        Pourquoi une Bentley coûte-t-elle des millions ? L'ingénierie et le prestige le justifient. Mais dans la pierre, il n'y a <strong>aucun hasard</strong> : chaque mètre carré repose sur un coût réel et mesurable.
+      </p>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="space-y-10">
+
+      <!-- Section 1 : Méthode 1 - Coût Réel au Mètre Carré -->
+      <section class="bg-surface rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-card space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-glacier-100 text-glacier-600 font-display font-bold flex items-center justify-center text-sm">1</span>
+          <div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">
+              Méthode 1 : L'Approche Technique (Book Value au m²)
+            </h2>
+            <p class="text-xs text-slate-500">Décomposez les coûts du promoteur comme on valorise une action en bourse.</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Grâce aux registres publics et aux autorités de régulation (ex. la RERA en Inde), l'intégralité des coûts d'un projet est accessible. Voici la structure analytique d'un grand projet résidentiel :
+        </p>
+
+        <!-- 4 Cost Pillars Breakdown -->
+        <div class="grid sm:grid-cols-2 gap-3.5 text-xs sm:text-sm">
+          <div class="p-4 bg-glacier-50/60 rounded-2xl border border-glacier-100">
+            <span class="font-bold text-glacier-900 block mb-0.5">1. Le Coût du Foncier (Terrain)</span>
+            <p class="text-slate-600 text-xs leading-relaxed">100 M€ pour 3 ha divisés par la surface vendable :</p>
+            <span class="text-glacier-600 font-extrabold text-sm block mt-1">≈ 1 500 € / m²</span>
+          </div>
+
+          <div class="p-4 bg-glacier-50/60 rounded-2xl border border-glacier-100">
+            <span class="font-bold text-glacier-900 block mb-0.5">2. Coût de Construction Direct</span>
+            <p class="text-slate-600 text-xs leading-relaxed">Matériaux, gros œuvre et finitions haut de gamme :</p>
+            <span class="text-glacier-600 font-extrabold text-sm block mt-1">≈ 2 500 € / m²</span>
+          </div>
+
+          <div class="p-4 bg-glacier-50/60 rounded-2xl border border-glacier-100">
+            <span class="font-bold text-glacier-900 block mb-0.5">3. Infrastructures & Aménagement</span>
+            <p class="text-slate-600 text-xs leading-relaxed">Raccordement urbain, voiries et équipements communs :</p>
+            <span class="text-glacier-600 font-extrabold text-sm block mt-1">≈ 1 500 € / m²</span>
+          </div>
+
+          <div class="p-4 bg-apricot-50/70 rounded-2xl border border-apricot-100">
+            <span class="font-bold text-apricot-900 block mb-0.5">4. Fiscalité & Commercialisation</span>
+            <p class="text-slate-600 text-xs leading-relaxed">TVA, taxes, marketing et gestion commerciale :</p>
+            <span class="text-apricot-500 font-extrabold text-sm block mt-1">≈ 1 000 € / m²</span>
+          </div>
+        </div>
+
+        <!-- Formula Callout -->
+        <div class="p-4 bg-slate-900 text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm">
+          <div>
+            <span class="text-slate-400 block text-[11px] font-mono">PRIX DE REVIENT TOTAL DU PROMOTEUR</span>
+            <span class="font-display font-bold text-base text-apricot-300">1 500 + 2 500 + 1 500 + 1 000 = 6 500 € / m²</span>
+          </div>
+          <div class="text-right sm:border-l sm:border-slate-700 sm:pl-4">
+            <span class="text-slate-400 block text-[11px]">Si vendu à 6 800 € / m² :</span>
+            <span class="text-emerald-400 font-bold">Marge promoteur ~4 à 5 % (Opportunité d'Or ✨)</span>
+          </div>
+        </div>
+
+        <!-- Densité Info -->
+        <div class="p-3.5 bg-amber-50/70 border border-amber-200/60 rounded-2xl text-xs text-amber-900 flex items-start gap-2.5">
+          <span class="text-base">💡</span>
+          <div>
+            <strong>Le facteur densité :</strong> Vérifiez toujours le nombre de logements par hectare. Un projet à faible densité attribue une plus grande part indivise de terrain à chaque propriétaire, augmentant sa valeur patrimoniale future.
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE CALCULATOR 1 : SIMULATEUR DE COÛT AU M² -->
+      <section id="simulator" class="bg-gradient-to-br from-glacier-900 via-slate-900 to-glacier-900 text-white rounded-3xl p-6 sm:p-8 shadow-float space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-apricot-300">Outil Interactif</span>
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-white">Calculateur de Marge Promoteur</h3>
+          </div>
+          <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-slate-300">Modifiez les valeurs ⚙️</span>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-xs">
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Coût Foncier (€/m²)</label>
+            <input type="number" id="calcLand" value="1500" oninput="runSim()" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white font-bold focus:outline-none focus:border-apricot-300">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Coût Construction (€/m²)</label>
+            <input type="number" id="calcBuild" value="2500" oninput="runSim()" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white font-bold focus:outline-none focus:border-apricot-300">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Infrastructures & Raccordements (€/m²)</label>
+            <input type="number" id="calcInfra" value="1500" oninput="runSim()" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white font-bold focus:outline-none focus:border-apricot-300">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1 font-medium">Taxes, Marketing & Gestion (€/m²)</label>
+            <input type="number" id="calcTax" value="1000" oninput="runSim()" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white font-bold focus:outline-none focus:border-apricot-300">
+          </div>
+        </div>
+
+        <!-- Selling Price & Result -->
+        <div class="pt-2 border-t border-white/15">
+          <label class="block text-slate-300 mb-1 font-medium text-xs">Prix de Vente Demandé par le Promoteur (€/m²)</label>
+          <input type="number" id="calcSell" value="6800" oninput="runSim()" class="w-full bg-apricot-500/20 border border-apricot-500/50 rounded-xl px-3 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-apricot-300">
+        </div>
+
+        <!-- Result Box -->
+        <div class="bg-white/10 rounded-2xl p-4 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div>
+            <span class="text-[11px] text-slate-300 block">Prix de revient réel calculé :</span>
+            <span id="resCost" class="font-display text-xl font-bold text-white">6 500 € / m²</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-slate-300 block">Marge estimée du promoteur :</span>
+            <span id="resMargin" class="font-display text-xl font-bold text-emerald-300">+4.4 %</span>
+          </div>
+          <div id="resBadge" class="px-3.5 py-1.5 bg-emerald-500/20 border border-emerald-400 text-emerald-200 text-xs font-bold rounded-full">
+            ✨ Excellente Affaire
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 : La Règle des 10 - 20 - 30 % -->
+      <section class="bg-surface rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-card space-y-5">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-apricot-100 text-apricot-500 font-display font-bold flex items-center justify-center text-sm">2</span>
+          <div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">
+              Méthode 2 : L'Approche Comparative (Règle des 10 - 20 - 30 %)
+            </h2>
+            <p class="text-xs text-slate-500">Comparez le neuf avec un immeuble standard indépendant situé à &lt; 1 km.</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Prenez le prix au m² d'un immeuble classique sans commodités ni sécurité comme prix de base (<strong>X</strong>), puis évaluez la prime demandée pour le standing neuf :
+        </p>
+
+        <!-- Benchmark Matrix Table -->
+        <div class="overflow-hidden rounded-2xl border border-slate-200 text-xs">
+          <div class="grid grid-cols-12 bg-slate-50 p-3 font-bold text-slate-600 border-b border-slate-200">
+            <div class="col-span-5 sm:col-span-4">Écart de Prix avec le Standard</div>
+            <div class="col-span-7 sm:col-span-8">Diagnostic d'Achat</div>
+          </div>
+          <div class="grid grid-cols-12 p-3 items-center border-b border-slate-100 bg-emerald-50/40">
+            <div class="col-span-5 sm:col-span-4 font-bold text-emerald-800">&lt; 10 % plus cher</div>
+            <div class="col-span-7 sm:col-span-8 text-emerald-900"><strong>Achat les yeux fermés</strong> (Prestations supérieures et plan de paiement avantageux).</div>
+          </div>
+          <div class="grid grid-cols-12 p-3 items-center border-b border-slate-100 bg-glacier-50/40">
+            <div class="col-span-5 sm:col-span-4 font-bold text-glacier-800">10 % à 20 % plus cher</div>
+            <div class="col-span-7 sm:col-span-8 text-slate-700"><strong>Très bonne affaire</strong> (Sécurité, équipements et marque justifient l'écart).</div>
+          </div>
+          <div class="grid grid-cols-12 p-3 items-center border-b border-slate-100 bg-amber-50/40">
+            <div class="col-span-5 sm:col-span-4 font-bold text-amber-800">20 % à 30 % plus cher</div>
+            <div class="col-span-7 sm:col-span-8 text-slate-700"><strong>Achat correct / Raisonnable</strong>.</div>
+          </div>
+          <div class="grid grid-cols-12 p-3 items-center bg-rose-50/40">
+            <div class="col-span-5 sm:col-span-4 font-bold text-rose-800">&gt; 30 % plus cher</div>
+            <div class="col-span-7 sm:col-span-8 text-rose-900"><strong>Prudence</strong> (Le rapport bénéfice/risque se neutralise).</div>
+          </div>
+        </div>
+
+        <!-- Trésorerie Callout -->
+        <div class="p-4 bg-glacier-50 rounded-2xl border border-glacier-100 text-xs text-glacier-900">
+          💰 <strong>L'avantage trésorerie du neuf :</strong> Au lieu de décaisser 100 % immédiatement, vous échelonnez l'effort financier selon l'avancement des travaux (ex. : 20 % réservation, 40 % gros œuvre, 40 % livraison).
+        </div>
+      </section>
+
+      <!-- Section 3 : La Règle d'Or des 20 Ans -->
+      <section class="bg-surface rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-card space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 font-display font-bold flex items-center justify-center text-sm">3</span>
+          <div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">
+              La Règle d'Or pour l'Ancien : Faut-il Vendre après 20 Ans ?
+            </h2>
+            <p class="text-xs text-slate-500">Quand arbitrer un bien ancien pour protéger son capital.</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-rose-50 border border-rose-100 rounded-2xl text-xs sm:text-sm text-rose-950 leading-relaxed">
+          🚨 <strong>La règle des 35 à 40 années de loyer :</strong><br />
+          Si un acquéreur est prêt à vous offrir l'équivalent de <strong>35 à 40 années de loyer brut</strong> en un seul chèque sur un bien de plus de 20 ans : <strong>VENDEZ SANS HÉSITER</strong>.
+        </div>
+
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Passé 20 ans, la vétusté technique s'installe (plomberie, canalisations, ravalements thermiques) et l'attractivité locative s'effondre. Récupérer 40 ans de rente d'un coup vous permet de redéployer ce capital sur des actifs neufs à fort potentiel.
+        </p>
+
+        <!-- MINI CALCULATEUR DE REVENTE (35-40X) -->
+        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 space-y-3">
+          <label class="block text-xs font-bold text-slate-700">Testez votre bien ancien : Entrez le loyer mensuel perçu (€)</label>
+          <div class="flex gap-2">
+            <input type="number" id="monthlyRent" value="1000" oninput="calcSellThreshold()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-glacier-600">
+          </div>
+          <div class="grid grid-cols-2 gap-3 pt-2 text-center text-xs">
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <span class="text-slate-400 block text-[10px]">Seuil de vente 35 ans</span>
+              <span id="rent35" class="font-display font-bold text-sm sm:text-base text-slate-900">420 000 €</span>
+            </div>
+            <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+              <span class="text-emerald-700 block text-[10px]">Seuil de vente 40 ans (Idéal)</span>
+              <span id="rent40" class="font-display font-bold text-sm sm:text-base text-emerald-800">480 000 €</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transmission Familiale -->
+      <section class="bg-gradient-to-br from-apricot-50 via-white to-glacier-50 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-card space-y-3">
+        <h3 class="font-display font-bold text-xl text-slate-900">👨‍👩‍👧 Transmettez cette Culture Financière</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          L'intelligence immobilière ne s'improvise pas. Apprenez à vos enfants à rédiger des fiches de synthèse analytiques pour chaque acquisition. Développez chez eux ce réflexe d'évaluation mathématique avant d'engager le capital familial.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Feedback & Clap Actions -->
+    <div class="mt-12 flex items-center justify-center gap-3">
+      <button id="clapBtn" onclick="triggerClap()" class="px-5 py-2.5 bg-surface border border-slate-200 rounded-full shadow-card text-xs font-bold text-slate-700 hover:border-apricot-500 transition-all flex items-center gap-2">
+        <span>👏 Utile & Instructif</span>
+        <span id="clapVal" class="bg-apricot-50 text-apricot-500 px-2 py-0.5 rounded-full text-[11px] font-extrabold">64</span>
+      </button>
+
+      <button onclick="bookmark()" class="px-4 py-2.5 bg-surface border border-slate-200 rounded-full shadow-card text-xs font-semibold text-slate-600 hover:border-glacier-400 transition-all flex items-center gap-1.5">
+        <span>🔖 Sauvegarder</span>
+      </button>
+    </div>
+
+    <!-- Interactive Comments Section -->
+    <section class="mt-14 space-y-6">
+      <h3 class="font-display text-xl font-bold text-slate-900">
+        Vos Avis & Retours d'Expérience (<span id="comCount">2</span>)
+      </h3>
+
+      <!-- New Comment Box -->
+      <div class="bg-surface rounded-3xl p-4 sm:p-5 border border-slate-200/80 shadow-card space-y-3">
+        <div class="grid sm:grid-cols-2 gap-2">
+          <input id="authorField" type="text" placeholder="Votre nom ou profession..." class="px-3.5 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-glacier-400">
+          <select id="tagField" class="px-3.5 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-glacier-400 text-slate-600">
+            <option value="Investisseur">Profil : Investisseur</option>
+            <option value="Premier Achat">Profil : Premier Achat</option>
+            <option value="Propriétaire">Profil : Propriétaire</option>
+          </select>
+        </div>
+        <textarea id="commentField" rows="2" placeholder="Avez-vous déjà calculé le coût de revient d'un promoteur ? Partagez vos réflexions..." class="w-full px-3.5 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-glacier-400 resize-none"></textarea>
+        <div class="flex justify-end">
+          <button onclick="postComment()" class="px-5 py-2 bg-glacier-600 hover:bg-glacier-900 text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+            Publier mon commentaire
+          </button>
+        </div>
+      </div>
+
+      <!-- Comments Stream -->
+      <div id="commentStream" class="space-y-3">
+        <div class="bg-surface p-4 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-glacier-100 text-glacier-600 flex items-center justify-center font-bold text-xs shrink-0">T</div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-800">Thibault M.</span>
+              <span class="text-[10px] bg-glacier-50 text-glacier-600 px-2 py-0.5 rounded-full font-bold">Investisseur</span>
+              <span class="text-[10px] text-slate-400">Il y a 1h</span>
+            </div>
+            <p class="text-xs text-slate-600">La règle des 35-40 ans de loyer pour un bien de plus de 20 ans est redoutablement efficace. Cela évite le piège affectif de conserver des passoires thermiques.</p>
+          </div>
+        </div>
+
+        <div class="bg-surface p-4 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-apricot-100 text-apricot-500 flex items-center justify-center font-bold text-xs shrink-0">K</div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-800">Karim B.</span>
+              <span class="text-[10px] bg-apricot-50 text-apricot-500 px-2 py-0.5 rounded-full font-bold">Premier Achat</span>
+              <span class="text-[10px] text-slate-400">Il y a 3h</span>
+            </div>
+            <p class="text-xs text-slate-600">Le calcul de la marge promoteur remet vraiment les pendules à l'heure lors des visites en bureau de vente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Cute Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-float text-xs font-semibold translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+    <span>✨</span>
+    <span id="toastMsg">Notification</span>
+  </div>
+
+  <!-- JavaScript Logics -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // 2. Real Estate Cost Simulator Engine
+    function runSim() {
+      const land = parseFloat(document.getElementById('calcLand').value) || 0;
+      const build = parseFloat(document.getElementById('calcBuild').value) || 0;
+      const infra = parseFloat(document.getElementById('calcInfra').value) || 0;
+      const tax = parseFloat(document.getElementById('calcTax').value) || 0;
+      const sell = parseFloat(document.getElementById('calcSell').value) || 0;
+
+      const totalCost = land + build + infra + tax;
+      document.getElementById('resCost').innerText = totalCost.toLocaleString('fr-FR') + ' € / m²';
+
+      if (sell > 0) {
+        const marginPct = (((sell - totalCost) / sell) * 100).toFixed(1);
+        const marginSpan = document.getElementById('resMargin');
+        const badge = document.getElementById('resBadge');
+
+        marginSpan.innerText = (marginPct >= 0 ? '+' : '') + marginPct + ' %';
+
+        if (marginPct < 8) {
+          marginSpan.className = "font-display text-xl font-bold text-emerald-300";
+          badge.className = "px-3.5 py-1.5 bg-emerald-500/20 border border-emerald-400 text-emerald-200 text-xs font-bold rounded-full";
+          badge.innerText = "✨ Opportunité Exceptionnelle (<8% marge)";
+        } else if (marginPct <= 20) {
+          marginSpan.className = "font-display text-xl font-bold text-amber-300";
+          badge.className = "px-3.5 py-1.5 bg-amber-500/20 border border-amber-400 text-amber-200 text-xs font-bold rounded-full";
+          badge.innerText = "⚖️ Prix Cohérent / Marché Standard";
+        } else {
+          marginSpan.className = "font-display text-xl font-bold text-rose-300";
+          badge.className = "px-3.5 py-1.5 bg-rose-500/20 border border-rose-400 text-rose-200 text-xs font-bold rounded-full";
+          badge.innerText = "⚠️ Trop Cher (Marge promoteur élevée)";
+        }
+      }
+    }
+
+    // 3. Rent 35-40x Golden Rule Calculator
+    function calcSellThreshold() {
+      const rent = parseFloat(document.getElementById('monthlyRent').value) || 0;
+      const annualRent = rent * 12;
+      const val35 = annualRent * 35;
+      const val40 = annualRent * 40;
+
+      document.getElementById('rent35').innerText = val35.toLocaleString('fr-FR') + ' €';
+      document.getElementById('rent40').innerText = val40.toLocaleString('fr-FR') + ' €';
+    }
+
+    // 4. Claps & Confetti
+    let claps = 64;
+    function triggerClap() {
+      claps++;
+      document.getElementById('clapVal').innerText = claps;
+      confetti({
+        particleCount: 20,
+        spread: 40,
+        origin: { y: 0.85 },
+        colors: ['#4DA5C0', '#FF7D45', '#FFEADF']
+      });
+    }
+
+    function bookmark() {
+      showToast("Article et calculs enregistrés dans vos favoris ! 📌");
+    }
+
+    function shareLink() {
+      navigator.clipboard.writeText(window.location.href);
+      showToast("Lien de l'outil copié dans le presse-papier !");
+    }
+
+    function showToast(text) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = text;
+      t.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        t.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // 5. Add Comment
+    let count = 2;
+    function postComment() {
+      const name = document.getElementById('authorField').value.trim();
+      const tag = document.getElementById('tagField').value;
+      const msg = document.getElementById('commentField').value.trim();
+
+      if (!name || !msg) {
+        showToast("Veuillez renseigner votre nom et votre avis ✍️");
+        return;
+      }
+
+      const stream = document.getElementById('commentStream');
+      const letter = name.charAt(0).toUpperCase();
+
+      const item = document.createElement('div');
+      item.className = "bg-surface p-4 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3";
+      item.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-glacier-100 text-glacier-600 flex items-center justify-center font-bold text-xs shrink-0">${letter}</div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-slate-800">${name}</span>
+            <span class="text-[10px] bg-glacier-50 text-glacier-600 px-2 py-0.5 rounded-full font-bold">${tag}</span>
+            <span class="text-[10px] text-slate-400">À l'instant</span>
+          </div>
+          <p class="text-xs text-slate-600">${msg}</p>
+        </div>
+      `;
+
+      stream.prepend(item);
+      document.getElementById('authorField').value = '';
+      document.getElementById('commentField').value = '';
+
+      count++;
+      document.getElementById('comCount').innerText = count;
+      showToast("Commentaire publié avec succès !");
+    }
+  </script>
+</body>
+</html>

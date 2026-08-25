@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Crise de la Quarantaine chez l’Homme | Guide & Sérénité</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Plus Jakarta Sans & Playfair Display pour un look éditorial moderne) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        aesthetic: {
+                            base: '#FDFBF7',
+                            card: '#FFFFFF',
+                            sage: '#8FA89B',
+                            sand: '#EFECE6',
+                            terracotta: '#D97757',
+                            slate: '#2C3E3A',
+                            subtle: '#6B7A75',
+                            accent: '#F3E8DF'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(44, 62, 58, 0.05)',
+                        'floating': '0 20px 40px -15px rgba(217, 119, 87, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Décorations d'arrière-plan organiques */
+        .bg-mesh {
+            background-color: #FDFBF7;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(143, 168, 155, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 20%, rgba(217, 119, 87, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(239, 236, 230, 0.6) 0px, transparent 50%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(239, 236, 230, 0.8);
+        }
+        /* Barre de progression de lecture */
+        #progress-bar {
+            transform-origin: 0%;
+        }
+    </style>
+</head>
+<body class="bg-mesh text-aesthetic-slate font-sans antialiased selection:bg-aesthetic-sage/20 selection:text-aesthetic-slate">
+
+    <!-- Indicateur de lecture -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-aesthetic-terracotta z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Navigation minimaliste -->
+    <nav class="sticky top-0 z-40 glass-card border-b border-aesthetic-sand/60 px-6 py-4">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-aesthetic-terracotta inline-block animate-pulse"></span>
+                <span class="font-serif italic font-bold tracking-wide text-lg text-aesthetic-slate">Équilibre & Vie</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="like-btn-nav" class="flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full bg-aesthetic-accent text-aesthetic-terracotta hover:scale-105 transition-all">
+                    <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+                    <span id="nav-like-count">142</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteneur Principal -->
+    <main class="max-w-3xl mx-auto px-5 py-12 md:py-20 space-y-16">
+
+        <!-- En-tête de l'article -->
+        <header class="text-center space-y-6">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-aesthetic-sage/10 text-aesthetic-sage text-xs font-semibold uppercase tracking-wider">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Psychologie & Milieu de Vie</span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight text-aesthetic-slate">
+                La Crise de la Quarantaine chez l’Homme
+            </h1>
+            <p class="text-lg md:text-xl text-aesthetic-terracotta font-medium italic">
+                Les 5 Symptômes et le Guide de Survie <br class="hidden sm:inline">(Sans Acheter de Harley !)
+            </p>
+            <div class="flex items-center justify-center space-x-4 text-xs text-aesthetic-subtle pt-2">
+                <span>Temps de lecture : 4 min</span>
+                <span>•</span>
+                <span>Pour les 40–55 ans & leurs proches</span>
+            </div>
+        </header>
+
+        <!-- Introduction -->
+        <section class="glass-card rounded-3xl p-6 md:p-8 shadow-soft border-l-4 border-aesthetic-sage leading-relaxed space-y-4 text-base md:text-lg">
+            <p class="font-medium text-aesthetic-slate">
+                <strong class="text-aesthetic-terracotta">Bonjour à toutes et à tous,</strong>
+            </p>
+            <p class="text-aesthetic-subtle leading-relaxed">
+                Parlons aujourd’hui d’un sujet universel mais souvent tabou : <em class="text-aesthetic-slate font-medium">la crise du milieu de vie</em>. 
+            </p>
+            <p class="text-aesthetic-subtle leading-relaxed">
+                Bien que les femmes traversent leurs propres défis avec un dévouement admirable, cet article s'adresse tout particulièrement aux hommes entre <strong>40 et 55 ans</strong>. C'est cette période charnière où l'on réalise soudainement qu'il y a plus d'années derrière nous que devant, accompagnée d'un cocktail de panique sourde, de fatigue et de désorientation pouvant durer de 3 à 10 ans.
+            </p>
+        </section>
+
+        <!-- Section 1 : Les 5 Symptômes Majeurs -->
+        <section class="space-y-8">
+            <div class="flex items-center space-x-3">
+                <span class="p-2 rounded-xl bg-aesthetic-accent text-aesthetic-terracotta">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </span>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-aesthetic-slate">
+                    Les 5 Symptômes Majeurs
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Symptôme 1 -->
+                <div class="glass-card p-6 rounded-2xl shadow-soft hover:shadow-floating transition duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-aesthetic-sand text-aesthetic-slate font-bold flex items-center justify-center shrink-0">1</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-aesthetic-slate mb-1">La sensation de perte totale de contrôle</h3>
+                            <p class="text-aesthetic-subtle text-sm md:text-base leading-relaxed">
+                                Votre épouse suit sa propre trajectoire, vos ados n’écoutent plus vos conseils, et vos plans de vie parfaits commencent à se fissurer. Ce n’est pas un simple coup de blues : c'est un sentiment diffus que les commandes du navire ne répondent plus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symptôme 2 + Scène au bureau interactive -->
+                <div class="glass-card p-6 rounded-2xl shadow-soft hover:shadow-floating transition duration-300 space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-aesthetic-sand text-aesthetic-slate font-bold flex items-center justify-center shrink-0">2</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-aesthetic-slate mb-1">Le fardeau des attentes et le « syndrome du distributeur automatique »</h3>
+                            <ul class="text-aesthetic-subtle text-sm md:text-base space-y-2 mt-2 list-none">
+                                <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-aesthetic-sage shrink-0"></i> <span><strong>Parents :</strong> soucis de santé et démarches administratives.</span></li>
+                                <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-aesthetic-sage shrink-0"></i> <span><strong>Enfants :</strong> besoin d'orientation, de présence et de financement.</span></li>
+                                <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-aesthetic-sage shrink-0"></i> <span><strong>Conjointe :</strong> sous pression, en attente de soutien fiable.</span></li>
+                            </ul>
+                            <p class="text-xs text-aesthetic-terracotta mt-2 italic font-medium">Et au milieu de tout cela... personne ne semble applaudir vos efforts silencieux.</p>
+                        </div>
+                    </div>
+
+                    <!-- Citation Scène du bureau -->
+                    <div class="mt-4 p-4 rounded-xl bg-aesthetic-accent/50 border border-aesthetic-sand relative">
+                        <span class="text-xs font-bold text-aesthetic-terracotta uppercase tracking-wide block mb-1">Scène classique au bureau</span>
+                        <p class="text-sm text-aesthetic-slate italic">
+                            « Votre patron : <em>"Je ne suis pas satisfait de tes résultats."</em><br>
+                            Vous intérieurement : <em>"Monsieur, ma femme n'est pas satisfaite, mes enfants non plus, mes parents non plus, et je ne suis pas satisfait de moi-même. Alors croyez-moi, votre avis est le cadet de mes soucis !"</em> »
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Symptôme 3 -->
+                <div class="glass-card p-6 rounded-2xl shadow-soft hover:shadow-floating transition duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-aesthetic-sand text-aesthetic-slate font-bold flex items-center justify-center shrink-0">3</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-aesthetic-slate mb-1">La stagnation professionnelle : Quand le bouclier se brise</h3>
+                            <p class="text-aesthetic-subtle text-sm md:text-base leading-relaxed">
+                                Tant que vous enchaîniez les promotions, vous pouviez vous abriter derrière le statut. Quand la carrière atteint un plateau naturel, ce bouclier s'efface et vous fait affronter vos doutes face aux attentes familiales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symptôme 4 -->
+                <div class="glass-card p-6 rounded-2xl shadow-soft hover:shadow-floating transition duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-aesthetic-sand text-aesthetic-slate font-bold flex items-center justify-center shrink-0">4</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-aesthetic-slate mb-1">Un climat de peur et d'anxiété diffuse</h3>
+                            <p class="text-aesthetic-subtle text-sm md:text-base leading-relaxed">
+                                Où vont atterrir les enfants ? Aurons-nous assez pour la retraite ? Combien de temps les parents resteront-ils autonomes ? Se projeter sans cesse dans un futur incertain épuise l'énergie mentale.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symptôme 5 -->
+                <div class="glass-card p-6 rounded-2xl shadow-soft hover:shadow-floating transition duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-aesthetic-sand text-aesthetic-slate font-bold flex items-center justify-center shrink-0">5</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-aesthetic-slate mb-1">Le déclin physique et le carcan du « Sois un homme »</h3>
+                            <p class="text-aesthetic-subtle text-sm md:text-base leading-relaxed">
+                                Articulations qui craquent, fatigue matinale, tension... Éduqués pour ne pas se plaindre, beaucoup d'hommes intériorisent tout : leur corps encaisse en silence tout le stress accumulé.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Clichés / Fausses Solutions -->
+        <section class="bg-aesthetic-sand/40 border border-aesthetic-sand rounded-3xl p-6 md:p-8 space-y-6">
+            <div class="flex items-center space-x-3">
+                <span class="p-2 rounded-xl bg-aesthetic-terracotta text-white">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                </span>
+                <h2 class="font-serif text-2xl font-bold text-aesthetic-slate">
+                    Les Fausses Solutions : Les Clichés
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-aesthetic-sand/60 space-y-2">
+                    <div class="text-2xl">🏍️</div>
+                    <h4 class="font-bold text-sm text-aesthetic-slate">La Moto & le Cuir</h4>
+                    <p class="text-xs text-aesthetic-subtle leading-relaxed">
+                        Évasion garantie 3 mois... jusqu'au jour où vous devez utiliser votre bolide à 20 000 € sous l'averse pour faire les courses de la semaine.
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-aesthetic-sand/60 space-y-2">
+                    <div class="text-2xl">🏃‍♂️</div>
+                    <h4 class="font-bold text-sm text-aesthetic-slate">Le Marathonien Soudain</h4>
+                    <p class="text-xs text-aesthetic-subtle leading-relaxed">
+                        Dispensé de sport au lycée, vous voilà inscrit à un semi-marathon, cheveux teints et 2h de muscu par jour. Bouger est sain, mais fuir dans l'artifice ne règle rien.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide de Survie -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3">
+                <span class="p-2 rounded-xl bg-aesthetic-sage text-white">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                </span>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-aesthetic-slate">
+                    Le Guide de Survie : Traverser la Tempête
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4">
+                <!-- 1 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-aesthetic-terracotta space-y-2">
+                    <h3 class="font-bold text-base md:text-lg text-aesthetic-slate">1. Adoptez une stratégie offensive avec vos finances</h3>
+                    <p class="text-sm text-aesthetic-subtle leading-relaxed">
+                        Ne bloquez pas chaque centime pour vos 80 ans. <strong>Investissez dans le bonheur présent :</strong> rénovez la maison, partez en week-end, bâtissez des souvenirs. Les enfants et les parents sont encore là, c'est maintenant qu'il faut adoucir le quotidien.
+                    </p>
+                </div>
+
+                <!-- 2 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-aesthetic-sage space-y-2">
+                    <h3 class="font-bold text-base md:text-lg text-aesthetic-slate">2. Assumez votre rôle de pilier bienveillant</h3>
+                    <p class="text-sm text-aesthetic-subtle leading-relaxed">
+                        Si votre famille vous voit comme un « distributeur de ressources », soyez le meilleur distributeur possible, sans rancune ni aigreur. C'est votre moment pour tenir bon la barre.
+                    </p>
+                </div>
+
+                <!-- 3 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-aesthetic-terracotta space-y-2">
+                    <h3 class="font-bold text-base md:text-lg text-aesthetic-slate">3. Rassurez votre conjointe pour apaiser le foyer</h3>
+                    <p class="text-sm text-aesthetic-subtle leading-relaxed">
+                        L'inquiétude maternelle nourrit la tension du foyer. Dites avec calme : <em>« Ne t'inquiète pas, je m'en occupe, nous trouverons une solution ensemble. »</em> Dès qu'une femme se sent épaulée, 90 % des tensions s'estompent.
+                    </p>
+                </div>
+
+                <!-- 4 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-aesthetic-sage space-y-2">
+                    <h3 class="font-bold text-base md:text-lg text-aesthetic-slate">4. Accordez du temps simple et direct à vos parents</h3>
+                    <p class="text-sm text-aesthetic-subtle leading-relaxed">
+                        Pas de débats lourds : savourez un repas, écoutez leurs histoires, soyez juste présent. Ce temps ne reviendra pas.
+                    </p>
+                </div>
+
+                <!-- 5 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-aesthetic-slate space-y-2">
+                    <h3 class="font-bold text-base md:text-lg text-aesthetic-slate">5. Tenez bon, le sourire aux lèvres</h3>
+                    <blockquote class="italic text-xs md:text-sm text-aesthetic-slate/80 bg-aesthetic-sand/40 p-3 rounded-lg border-l-2 border-aesthetic-slate my-2">
+                        « Si tu peux garder ton calme quand tous autour de toi perdent la tête... tu seras un Homme. » — Rudyard Kipling
+                    </blockquote>
+                    <p class="text-sm text-aesthetic-subtle leading-relaxed">
+                        Assumez vos cheveux gris avec élégance. La négociation de vos 40–50 ans forge la sérénité et le respect dont vous profiterez entre 50 et 70 ans.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Card -->
+        <div class="glass-card rounded-3xl p-8 text-center bg-gradient-to-b from-white to-aesthetic-accent/30 border border-aesthetic-sand space-y-4">
+            <span class="text-3xl">🌿</span>
+            <h3 class="font-serif text-2xl font-bold text-aesthetic-slate">En Résumé</h3>
+            <p class="text-aesthetic-subtle max-w-lg mx-auto text-sm md:text-base">
+                La crise du milieu de vie n'est pas une fin en soi : c'est un <strong class="text-aesthetic-slate">examen de passage</strong>. Vous n'avez pas besoin d'être parfait ni multimilliardaire ; vous devez simplement être un homme présent, généreux et ancré.
+            </p>
+        </div>
+
+        <!-- Section Commentaires & Interactions Sociales -->
+        <section class="space-y-6 pt-4 border-t border-aesthetic-sand">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-aesthetic-slate">💬 Qu'en pensez-vous ?</h3>
+                    <p class="text-xs text-aesthetic-subtle">Partagez votre expérience avec la communauté.</p>
+                </div>
+
+                <!-- Bouton Like Interactif -->
+                <button id="main-like-btn" class="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-aesthetic-terracotta text-white font-medium text-sm shadow-floating hover:brightness-110 active:scale-95 transition-all">
+                    <i data-lucide="heart" class="w-4 h-4 fill-white/20"></i>
+                    <span>J'aime cet article</span>
+                    <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs font-bold" id="main-like-count">142</span>
+                </button>
+            </div>
+
+            <!-- Formulaire de commentaire -->
+            <form id="comment-form" class="space-y-3">
+                <div class="flex gap-3">
+                    <input type="text" id="comment-author" placeholder="Votre prénom" required
+                           class="w-1/3 px-4 py-2.5 rounded-xl text-sm bg-white border border-aesthetic-sand focus:outline-none focus:border-aesthetic-sage focus:ring-1 focus:ring-aesthetic-sage transition">
+                    <input type="text" id="comment-input" placeholder="Ajoutez une réflexion bienveillante..." required
+                           class="w-2/3 px-4 py-2.5 rounded-xl text-sm bg-white border border-aesthetic-sand focus:outline-none focus:border-aesthetic-sage focus:ring-1 focus:ring-aesthetic-sage transition">
+                </div>
+                <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-aesthetic-slate text-white text-xs font-semibold rounded-xl hover:bg-opacity-90 transition">
+                    Publier le commentaire
+                </button>
+            </form>
+
+            <!-- Liste dynamique de commentaires -->
+            <div id="comments-list" class="space-y-3 pt-2">
+                <div class="p-4 rounded-xl bg-white/70 border border-aesthetic-sand/60 text-xs md:text-sm space-y-1">
+                    <div class="flex justify-between font-semibold text-aesthetic-slate">
+                        <span>Marc D. (47 ans)</span>
+                        <span class="text-aesthetic-subtle font-normal text-[11px]">Il y a 2 heures</span>
+                    </div>
+                    <p class="text-aesthetic-subtle">Tellement vrai pour le sentiment de responsabilité totale. Prendre du recul et rassurer mes proches a changé l'ambiance à la maison.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pied de page minimaliste -->
+        <footer class="text-center text-xs text-aesthetic-subtle pt-8 pb-12 space-y-2">
+            <p>© 2026 Équilibre & Vie — Guide de réflexion & sérénité masculine.</p>
+        </footer>
+    </main>
+
+    <!-- Script JavaScript pour les micro-interactions -->
+    <script>
+        // Initialisation des icônes Lucide
+        lucide.createIcons();
+
+        // 1. Barre de progression au scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // 2. Gestion des Likes
+        let likes = 142;
+        let isLiked = false;
+        const mainLikeBtn = document.getElementById('main-like-btn');
+        const mainLikeCount = document.getElementById('main-like-count');
+        const navLikeCount = document.getElementById('nav-like-count');
+
+        function toggleLike() {
+            if (!isLiked) {
+                likes++;
+                isLiked = true;
+                mainLikeBtn.classList.add('bg-aesthetic-sage');
+                mainLikeBtn.classList.remove('bg-aesthetic-terracotta');
+            } else {
+                likes--;
+                isLiked = false;
+                mainLikeBtn.classList.add('bg-aesthetic-terracotta');
+                mainLikeBtn.classList.remove('bg-aesthetic-sage');
+            }
+            mainLikeCount.textContent = likes;
+            navLikeCount.textContent = likes;
+        }
+
+        mainLikeBtn.addEventListener('click', toggleLike);
+        document.getElementById('like-btn-nav').addEventListener('click', toggleLike);
+
+        // 3. Gestion dynamique des commentaires
+        const commentForm = document.getElementById('comment-form');
+        const commentList = document.getElementById('comments-list');
+        const commentAuthor = document.getElementById('comment-author');
+        const commentInput = document.getElementById('comment-input');
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const author = commentAuthor.value.trim();
+            const text = commentInput.value.trim();
+
+            if (author && text) {
+                const newComment = document.createElement('div');
+                newComment.className = 'p-4 rounded-xl bg-white border border-aesthetic-sand text-xs md:text-sm space-y-1 transform transition duration-300 opacity-0 translate-y-2';
+                newComment.innerHTML = `
+                    <div class="flex justify-between font-semibold text-aesthetic-slate">
+                        <span>${escapeHtml(author)}</span>
+                        <span class="text-aesthetic-subtle font-normal text-[11px]">À l'instant</span>
+                    </div>
+                    <p class="text-aesthetic-subtle">${escapeHtml(text)}</p>
+                `;
+                
+                commentList.prepend(newComment);
+                setTimeout(() => {
+                    newComment.classList.remove('opacity-0', 'translate-y-2');
+                }, 10);
+
+                commentAuthor.value = '';
+                commentInput.value = '';
+            }
+        });
+
+        // Sécurité anti injection HTML
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, function(m) {
+                return ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                })[m];
+            });
+        }
+    </script>
+</body>
+</html>

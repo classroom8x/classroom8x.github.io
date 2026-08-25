@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clarté de Carrière & Effet Mansabdari</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti for interactions -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#FDF8F6',
+              100: '#F2E8E5',
+              200: '#EADDD7',
+              300: '#E07A5F',
+              400: '#D6684A',
+              500: '#C45131',
+            },
+            pastel: {
+              cream: '#FAF7F2',
+              rose: '#FCE7E7',
+              lavender: '#EFEAFF',
+              mint: '#E6F4EA',
+              sand: '#F6EEDB',
+              peach: '#FFE8D6',
+            }
+          },
+          boxShadow: {
+            'soft': '0 12px 35px -10px rgba(224, 122, 95, 0.08)',
+            'card': '0 10px 30px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02)',
+            'float': '0 20px 40px -15px rgba(196, 81, 49, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Animations */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FAF7F2; }
+    ::-webkit-scrollbar-thumb { background: #EADDD7; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #E07A5F; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+
+    .cute-badge {
+      backdrop-filter: blur(8px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cute-badge:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+  </style>
+</head>
+
+<body class="bg-pastel-cream text-stone-800 font-sans antialiased selection:bg-brand-300 selection:text-white relative min-h-screen">
+
+  <!-- Top Progress Bar -->
+  <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-brand-300 via-rose-400 to-amber-400 z-50 transition-all duration-150 w-0"></div>
+
+  <!-- Cute Ambient Background Blobs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-pastel-rose/70 rounded-full blur-3xl opacity-60 animate-pulse"></div>
+    <div class="absolute top-1/3 -right-20 w-[30rem] h-[30rem] bg-pastel-lavender/60 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-pastel-sand/70 rounded-full blur-3xl opacity-60"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+    <div class="bg-white/80 backdrop-blur-md border border-stone-200/60 rounded-full px-5 py-3 flex items-center justify-between shadow-card">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-300 to-amber-300 flex items-center justify-center text-white text-sm font-bold shadow-sm">
+          ✨
+        </div>
+        <span class="font-display font-bold text-stone-800 text-sm md:text-base tracking-tight">Vision Carrière</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-flex items-center text-xs font-medium text-stone-500 bg-stone-100/80 px-3 py-1.5 rounded-full">
+          ⏱️ 5 min de lecture
+        </span>
+        <button onclick="shareArticle()" class="text-xs font-semibold text-brand-500 bg-brand-50 hover:bg-brand-100/80 px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+          Partager
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="relative z-10 max-w-3xl mx-auto px-5 pt-10 pb-28">
+
+    <!-- Hero / Title Section -->
+    <header class="text-center space-y-5 mb-14">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-100 text-brand-500 rounded-full text-xs font-bold tracking-wide uppercase">
+        <span>🌱 Transmission & Stratégie</span>
+      </div>
+      
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-stone-900 leading-[1.18] tracking-tight">
+        Comment Choisir sa Carrière avec Clarté : 
+        <span class="relative inline-block text-brand-300">
+          Le Piège du « Système Mansabdari »
+          <svg class="absolute -bottom-1 left-0 w-full text-brand-300/30" height="6" viewBox="0 0 100 8" preserveAspectRatio="none">
+            <path d="M0,5 Q50,0 100,5" stroke="currentColor" stroke-width="4" fill="none"/>
+          </svg>
+        </span>
+        et la Transmission Générationnelle
+      </h1>
+
+      <p class="text-stone-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        Une carrière dure en moyenne <strong>40 ans</strong>. Pourtant, nous passons souvent moins de <strong>40 minutes</strong> à réfléchir stratégiquement à l'héritage que nous bâtissons.
+      </p>
+
+      <div class="flex items-center justify-center gap-3 pt-2">
+        <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-stone-200/70 shadow-sm">
+          <div class="w-6 h-6 rounded-full bg-brand-300 text-white flex items-center justify-center font-bold text-xs">A</div>
+          <span class="text-xs font-medium text-stone-700">Guide de Réflexion</span>
+          <span class="text-stone-300">•</span>
+          <span class="text-xs text-stone-400">Édition Carrière</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Key Takeaway Bento Callout -->
+    <div class="bg-gradient-to-br from-amber-50/80 via-white to-rose-50/50 border border-stone-200/80 rounded-3xl p-6 sm:p-8 shadow-card mb-12 relative overflow-hidden">
+      <div class="absolute -right-6 -bottom-6 text-7xl opacity-10 pointer-events-none font-display font-black">40 ANS</div>
+      <div class="flex items-start gap-4">
+        <span class="text-3xl p-2 bg-white rounded-2xl shadow-sm border border-amber-100">⏳</span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-stone-900 mb-1">La perspective 40/40</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Pour comprendre les dynamiques du travail moderne et éviter les pièges de l’éternel recommencement, faisons un détour historique fascinant par l’Inde du XVIe siècle.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="space-y-12 text-stone-700 leading-relaxed text-base md:text-lg">
+
+      <!-- Section 1 : Akbar & Mansabdari -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-100 shadow-card transition-all hover:shadow-soft space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-pastel-peach text-brand-400 font-bold flex items-center justify-center text-sm">1</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-stone-900">
+            La leçon d'histoire : Le système « Mansabdari » d’Akbar
+          </h2>
+        </div>
+
+        <p>
+          En <strong>1571</strong>, l'empereur moghol Akbar a instauré le système des Mansabdars, une structure combinant charges militaires et administratives.
+        </p>
+
+        <!-- Two small highlight cards -->
+        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+          <div class="bg-stone-50 p-4 rounded-2xl border border-stone-100">
+            <span class="text-xs uppercase font-bold text-stone-400 tracking-wider">Le principe</span>
+            <p class="text-sm text-stone-700 mt-1">
+              Un officier recevait un salaire important (par ex. 3 000 roupies de l'époque) pour entretenir une troupe de plusieurs milliers de soldats et de chevaux.
+            </p>
+          </div>
+          <div class="bg-rose-50/70 p-4 rounded-2xl border border-rose-100">
+            <span class="text-xs uppercase font-bold text-rose-500 tracking-wider">Le piège structurel ⚠️</span>
+            <p class="text-sm text-rose-950 mt-1">
+              À sa mort ou à sa retraite, <strong>rien n'était transmissible</strong>. Tout retournait à l'Empire. Ses enfants devaient repartir du niveau zéro.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 : Mansabdari Moderne -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-100 shadow-card space-y-5">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-pastel-lavender text-purple-600 font-bold flex items-center justify-center text-sm">2</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-stone-900">
+            Le Mansabdari moderne : Pas d'héritage institutionnel
+          </h2>
+        </div>
+
+        <p>
+          Aujourd'hui, de nombreux emplois de haut niveau — haute fonction publique, corps d'armée, forces de sécurité ou bureaucratie — fonctionnent exactement sur ce modèle :
+        </p>
+
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-stone-50 border border-stone-100">
+            <div class="mt-0.5 text-stone-400">🏛️</div>
+            <div>
+              <strong class="text-stone-900 block text-sm font-semibold">Un prestige personnel non transmissible :</strong>
+              <span class="text-xs sm:text-sm text-stone-600">Vous pouvez atteindre le sommet après 40 ans de service, mais votre enfant devra repasser les mêmes concours et repartir du premier échelon.</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-stone-50 border border-stone-100">
+            <div class="mt-0.5 text-stone-400">💼</div>
+            <div>
+              <strong class="text-stone-900 block text-sm font-semibold">Capital financier vs Capital de compétences :</strong>
+              <span class="text-xs sm:text-sm text-stone-600">Vous financerez de bonnes écoles, mais votre réseau institutionnel et votre position s'éteignent le jour exact de votre pot de départ.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Tab Showcase: Section 3 & 4 Comparison -->
+      <section class="bg-gradient-to-b from-white to-stone-50/50 rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-soft space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Comparateur Stratégique</span>
+            <h3 class="font-display text-xl font-bold text-stone-900">Professions Libérales vs Fonction Publique</h3>
+          </div>
+          <!-- Tabs -->
+          <div class="inline-flex p-1 bg-stone-100 rounded-2xl self-start">
+            <button id="tabLibBtn" onclick="switchTab('liberal')" class="px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-white text-stone-900 shadow-sm">
+              Professions Libérales 🌱
+            </button>
+            <button id="tabManBtn" onclick="switchTab('mansabdari')" class="px-4 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-800 transition-all">
+              Système Mansabdari 🏛️
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: Professions Libérales Content -->
+        <div id="contentLiberal" class="space-y-4 transition-all duration-300">
+          <div class="p-5 rounded-2xl bg-pastel-mint/50 border border-emerald-200/60">
+            <h4 class="font-display font-bold text-emerald-900 text-base mb-1">
+              ✨ L'effet de levier : Commencer à l'Étape 10
+            </h4>
+            <p class="text-sm text-emerald-800 leading-relaxed">
+              Médecins, avocats, architectes, experts-comptables ou entrepreneurs : un parent qui bâtit une clinique, un cabinet ou une clientèle fidèle offre un <strong>tremplin immédiat</strong>. L'enfant n'a pas besoin de passer 15 ans à se créer une réputation ; il capitalise sur l'infrastructure existante.
+            </p>
+          </div>
+          <div class="bg-white p-4 rounded-2xl border border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
+            <span>🚀 Point de départ enfant : <strong>Échelon Avancé</strong></span>
+            <span class="text-emerald-600 font-bold">Transmission Ouverte ✅</span>
+          </div>
+        </div>
+
+        <!-- Tab 2: Mansabdari Content (Hidden by default) -->
+        <div id="contentMansabdari" class="space-y-4 hidden transition-all duration-300">
+          <div class="p-5 rounded-2xl bg-rose-50/70 border border-rose-200/60">
+            <h4 class="font-display font-bold text-rose-950 text-base mb-1">
+              🔄 L'éternel recommencement : Retour à l'Étape 0
+            </h4>
+            <p class="text-sm text-rose-900 leading-relaxed">
+              Grand-père muté de ville en ville toute sa vie. Père répliquant le même parcours. Enfants obligés de tout rebâtir sans ancrage local ni capital d'affaires. Le patrimoine d'influence s'effrite au lieu de croître.
+            </p>
+          </div>
+          <div class="bg-white p-4 rounded-2xl border border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
+            <span>🛑 Point de départ enfant : <strong>Échelon Zéro</strong></span>
+            <span class="text-rose-600 font-bold">Non Transmissible ❌</span>
+          </div>
+        </div>
+
+        <!-- Quote Block -->
+        <blockquote class="border-l-4 border-brand-300 pl-4 py-1 text-sm md:text-base italic text-stone-700 bg-brand-50/40 rounded-r-2xl">
+          « Si vous avez réussi à vous élever socialement, la question n'est plus seulement de savoir comment travailler dur, mais <strong>quelle plateforme de départ vous léguez</strong> à la génération suivante. »
+        </blockquote>
+      </section>
+
+      <!-- Section 5 : The Myth of Blind Passion -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-100 shadow-card space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-pastel-rose text-rose-500 font-bold flex items-center justify-center text-sm">3</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-stone-900">
+            Le mythe de la « Passion » aveugle
+          </h2>
+        </div>
+
+        <p>
+          On entend souvent le conseil simpliste : <em>« Laisse ton enfant suivre sa passion. »</em>
+        </p>
+
+        <div class="p-4 bg-stone-50 rounded-2xl border border-stone-150 text-sm space-y-2">
+          <p class="text-stone-700">
+            ⚡ <strong>La passion est une émotion, et les émotions changent.</strong>
+          </p>
+          <p class="text-stone-600 text-xs sm:text-sm">
+            Commencer la biotechnologie, perdre sa motivation en 3e année, puis passer un concours par dépit... Ce manque d'orientation place beaucoup de jeunes de 22 à 25 ans dans une <strong>salle d'attente psychologique</strong>, attendant que le marché vienne frapper à leur porte.
+          </p>
+        </div>
+
+        <p class="text-stone-600 text-sm">
+          Le marché du travail exige aujourd’hui du réalisme économique, du mentorat et une vraie vision stratégique à long terme.
+        </p>
+      </section>
+
+      <!-- Section 6: Conclusion -->
+      <section class="bg-brand-50/70 border border-brand-200/60 rounded-3xl p-6 sm:p-8 text-stone-800 space-y-4">
+        <h2 class="font-display text-2xl font-extrabold text-stone-900">
+          En conclusion : Quelle est votre stratégie ?
+        </h2>
+        <p class="text-sm sm:text-base">
+          Il n’y a pas de « bon » ou de « mauvais » métier dans l'absolu. Mais il y a des choix de carrière qui construisent des <strong>fondations familiales durables</strong>, et d'autres qui vous obligent à reconstruire la maison à chaque génération.
+        </p>
+        <div class="inline-block bg-white px-4 py-2 rounded-2xl font-bold text-xs text-brand-500 shadow-sm border border-brand-100">
+          🎯 Pensez non pas aux 5 prochaines années, mais aux 40 prochaines.
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Interactive Interactive Poll Section -->
+    <section class="mt-14 bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-soft">
+      <div class="text-center max-w-lg mx-auto mb-6">
+        <span class="text-2xl">💬</span>
+        <h3 class="font-display text-xl font-bold text-stone-900 mt-2">Votre avis compte</h3>
+        <p class="text-xs sm:text-sm text-stone-500">
+          Pensez-vous que la sécurité statutaire vaut le sacrifice de la transmission générationnelle ?
+        </p>
+      </div>
+
+      <div id="pollContainer" class="space-y-3 max-w-md mx-auto">
+        <button onclick="votePoll(1)" class="w-full text-left p-3.5 rounded-2xl border border-stone-200 hover:border-brand-300 hover:bg-brand-50/30 transition-all flex items-center justify-between text-xs sm:text-sm font-semibold group">
+          <span>Oui, la sécurité d'abord 🏛️</span>
+          <span class="text-stone-400 group-hover:text-brand-400">Voter →</span>
+        </button>
+
+        <button onclick="votePoll(2)" class="w-full text-left p-3.5 rounded-2xl border border-stone-200 hover:border-brand-300 hover:bg-brand-50/30 transition-all flex items-center justify-between text-xs sm:text-sm font-semibold group">
+          <span>Non, bâtir un patrimoine transmissible 🌱</span>
+          <span class="text-stone-400 group-hover:text-brand-400">Voter →</span>
+        </button>
+
+        <button onclick="votePoll(3)" class="w-full text-left p-3.5 rounded-2xl border border-stone-200 hover:border-brand-300 hover:bg-brand-50/30 transition-all flex items-center justify-between text-xs sm:text-sm font-semibold group">
+          <span>Un équilibre hybride selon les phases ⚖️</span>
+          <span class="text-stone-400 group-hover:text-brand-400">Voter →</span>
+        </button>
+      </div>
+
+      <!-- Live Poll Results (Hidden initially) -->
+      <div id="pollResults" class="hidden space-y-3 max-w-md mx-auto text-xs font-semibold">
+        <div>
+          <div class="flex justify-between mb-1 text-stone-600"><span>Sécurité Statutaire</span><span>24%</span></div>
+          <div class="w-full bg-stone-100 rounded-full h-2.5 overflow-hidden"><div class="bg-stone-400 h-2.5 rounded-full" style="width: 24%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1 text-brand-500"><span>Patrimoine Transmissible</span><span>58%</span></div>
+          <div class="w-full bg-stone-100 rounded-full h-2.5 overflow-hidden"><div class="bg-brand-300 h-2.5 rounded-full" style="width: 58%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1 text-stone-600"><span>Équilibre Hybride</span><span>18%</span></div>
+          <div class="w-full bg-stone-100 rounded-full h-2.5 overflow-hidden"><div class="bg-amber-400 h-2.5 rounded-full" style="width: 18%"></div></div>
+        </div>
+        <p class="text-center text-xs text-stone-400 pt-2">Merci pour votre participation ! 🎉</p>
+      </div>
+    </section>
+
+    <!-- Floating Cute Claps & Reactions Bar -->
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <button id="clapBtn" onclick="sendClap()" class="cute-badge flex items-center gap-2 bg-white border border-stone-200/80 px-5 py-2.5 rounded-full shadow-card text-stone-700 font-bold text-sm hover:border-brand-300">
+        <span class="text-base">👏</span>
+        <span>Applaudir</span>
+        <span id="clapCount" class="bg-brand-50 text-brand-500 text-xs px-2 py-0.5 rounded-full ml-1 font-bold">42</span>
+      </button>
+
+      <button onclick="bookmarkStory(this)" class="cute-badge flex items-center gap-1.5 bg-white border border-stone-200/80 px-4 py-2.5 rounded-full shadow-card text-stone-600 text-xs font-semibold hover:border-stone-300">
+        <span>🔖</span>
+        <span>Sauvegarder</span>
+      </button>
+    </div>
+
+    <!-- Interactive Comments Section -->
+    <section class="mt-14 space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display text-xl font-bold text-stone-900">Espace Commentaires (<span id="commentCounter">2</span>)</h3>
+      </div>
+
+      <!-- Add Comment Box -->
+      <div class="bg-white rounded-3xl p-4 sm:p-5 border border-stone-200/70 shadow-sm space-y-3">
+        <input id="authorInput" type="text" placeholder="Votre prénom ou pseudo..." class="w-full px-4 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-300/30 focus:border-brand-300" />
+        <textarea id="commentInput" rows="2" placeholder="Partagez vos réflexions sur la transmission de carrière..." class="w-full px-4 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-300/30 focus:border-brand-300 resize-none"></textarea>
+        <div class="flex justify-end">
+          <button onclick="submitComment()" class="cute-badge px-4 py-2 bg-brand-300 hover:bg-brand-400 text-white rounded-xl text-xs font-bold shadow-sm transition-all">
+            Publier mon avis
+          </button>
+        </div>
+      </div>
+
+      <!-- Comment List Feed -->
+      <div id="commentsFeed" class="space-y-3.5">
+        
+        <!-- Pre-loaded comment 1 -->
+        <div class="bg-white/80 p-4 rounded-2xl border border-stone-100 shadow-sm flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-pastel-lavender text-purple-600 flex items-center justify-center font-bold text-xs shrink-0">M</div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-stone-800">Marc V.</span>
+              <span class="text-[10px] text-stone-400">Il y a 2h</span>
+            </div>
+            <p class="text-xs sm:text-sm text-stone-600">L'analogie avec les Mansabdars d'Akbar est lumineuse. On oublie souvent que le statut sans actif est un bail précaire.</p>
+          </div>
+        </div>
+
+        <!-- Pre-loaded comment 2 -->
+        <div class="bg-white/80 p-4 rounded-2xl border border-stone-100 shadow-sm flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-pastel-peach text-brand-400 flex items-center justify-center font-bold text-xs shrink-0">S</div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-stone-800">Sophie L.</span>
+              <span class="text-[10px] text-stone-400">Il y a 4h</span>
+            </div>
+            <p class="text-xs sm:text-sm text-stone-600">Très bon point sur la passion aveugle. Trouver une compétence avec une forte valeur marchande avant tout !</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Cute Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-stone-900 text-white px-4 py-2.5 rounded-2xl shadow-float text-xs font-medium translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+    <span>✨</span>
+    <span id="toastMessage">Lien copié dans le presse-papier !</span>
+  </div>
+
+  <!-- JavaScript Functions -->
+  <script>
+    // 1. Reading Progress Bar
+    window.onscroll = function () {
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolled = (winScroll / height) * 100;
+      document.getElementById("progressBar").style.width = scrolled + "%";
+    };
+
+    // 2. Interactive Comparison Tabs
+    function switchTab(type) {
+      const tabLib = document.getElementById('contentLiberal');
+      const tabMan = document.getElementById('contentMansabdari');
+      const btnLib = document.getElementById('tabLibBtn');
+      const btnMan = document.getElementById('tabManBtn');
+
+      if (type === 'liberal') {
+        tabLib.classList.remove('hidden');
+        tabMan.classList.add('hidden');
+        btnLib.className = "px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-white text-stone-900 shadow-sm";
+        btnMan.className = "px-4 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-800 transition-all";
+      } else {
+        tabMan.classList.remove('hidden');
+        tabLib.classList.add('hidden');
+        btnMan.className = "px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-white text-stone-900 shadow-sm";
+        btnLib.className = "px-4 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-800 transition-all";
+      }
+    }
+
+    // 3. Poll Interaction
+    function votePoll(choice) {
+      document.getElementById('pollContainer').classList.add('hidden');
+      document.getElementById('pollResults').classList.remove('hidden');
+      confetti({
+        particleCount: 40,
+        spread: 60,
+        origin: { y: 0.8 }
+      });
+    }
+
+    // 4. Clap Reactions
+    let claps = 42;
+    function sendClap() {
+      claps++;
+      document.getElementById('clapCount').innerText = claps;
+      confetti({
+        particleCount: 15,
+        spread: 30,
+        origin: { y: 0.9 },
+        colors: ['#E07A5F', '#FCE7E7', '#FFE8D6']
+      });
+    }
+
+    // 5. Bookmark
+    function bookmarkStory(btn) {
+      btn.classList.toggle('text-brand-500');
+      showToast("Article sauvegardé dans vos favoris !");
+    }
+
+    // 6. Share Function
+    function shareArticle() {
+      navigator.clipboard.writeText(window.location.href);
+      showToast("Lien de l'article copié !");
+    }
+
+    // 7. Toast Notifier
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').innerText = text;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // 8. Comment Submission
+    let commentTotal = 2;
+    function submitComment() {
+      const author = document.getElementById('authorInput').value.trim();
+      const content = document.getElementById('commentInput').value.trim();
+
+      if (!author || !content) {
+        showToast("Veuillez renseigner votre pseudo et message ✍️");
+        return;
+      }
+
+      const feed = document.getElementById('commentsFeed');
+      const firstLetter = author.charAt(0).toUpperCase();
+
+      const newComment = document.createElement('div');
+      newComment.className = "bg-white/90 p-4 rounded-2xl border border-stone-100 shadow-sm flex items-start gap-3 animate-fade-in";
+      newComment.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-500 flex items-center justify-center font-bold text-xs shrink-0">${firstLetter}</div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-stone-800">${author}</span>
+            <span class="text-[10px] text-stone-400">À l'instant</span>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600">${content}</p>
+        </div>
+      `;
+
+      feed.prepend(newComment);
+      document.getElementById('authorInput').value = '';
+      document.getElementById('commentInput').value = '';
+
+      commentTotal++;
+      document.getElementById('commentCounter').innerText = commentTotal;
+      showToast("Votre commentaire a été publié !");
+    }
+  </script>
+</body>
+</html>

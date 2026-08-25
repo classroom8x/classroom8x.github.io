@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Achat Immobilier en Couple | Les 5 Erreurs & Solutions</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts : Cabinet Grotesk & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        candy: {
+                            bg: '#FFFDF9',
+                            card: '#FFFFFF',
+                            peach: '#FFE7DE',
+                            peachDark: '#E87258',
+                            sky: '#E4F1FA',
+                            skyDark: '#4A88B7',
+                            mint: '#E2F7ED',
+                            mintDark: '#2E855C',
+                            sun: '#FFF4D4',
+                            sunDark: '#C99318',
+                            lavender: '#EFEAFF',
+                            lavenderDark: '#7757D9',
+                            dark: '#1C1E23',
+                            muted: '#626875'
+                        }
+                    },
+                    boxShadow: {
+                        'neo': '4px 4px 0px 0px #1C1E23',
+                        'neo-lg': '6px 6px 0px 0px #1C1E23',
+                        'neo-peach': '5px 5px 0px 0px #E87258',
+                        'neo-mint': '5px 5px 0px 0px #2E855C',
+                        'neo-sky': '5px 5px 0px 0px #4A88B7',
+                        'neo-subtle': '3px 3px 0px 0px #1C1E23'
+                    },
+                    borderRadius: {
+                        'fun': '24px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Fond avec micro-pois pastel subtil */
+        .bg-dots {
+            background-color: #FFFDF9;
+            background-image: radial-gradient(#1C1E23 0.6px, transparent 0.6px);
+            background-size: 18px 18px;
+        }
+        
+        .sticker-rotate-1 { transform: rotate(-1.5deg); }
+        .sticker-rotate-2 { transform: rotate(1.5deg); }
+        .sticker-rotate-3 { transform: rotate(-2deg); }
+
+        /* Animation pulsation douce pour les badges */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-gentle {
+            animation: gentlePulse 3.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-dots text-candy-dark font-sans selection:bg-candy-peachDark selection:text-white antialiased min-h-screen">
+
+    <!-- Indicateur de lecture -->
+    <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-candy-peachDark z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Navigation Neo-Cute -->
+    <header class="sticky top-0 z-40 bg-candy-bg/90 backdrop-blur-md border-b-2 border-candy-dark px-4 py-3">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-xl bg-candy-peach border-2 border-candy-dark flex items-center justify-center font-display font-extrabold text-sm shadow-neo-subtle">
+                    🏡
+                </span>
+                <span class="font-display font-extrabold text-sm tracking-tight">DuoImmo / Conseils</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#checklist" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-candy-mint border-2 border-candy-dark shadow-neo-subtle hover:translate-x-0.5 hover:translate-y-0.5 transition">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-candy-mintDark"></i> Checklist Couple
+                </a>
+                <button id="quickLike" class="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-candy-peach border-2 border-candy-dark shadow-neo-subtle hover:bg-candy-peachDark hover:text-white transition">
+                    <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+                    <span id="quickLikeNum">218</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteneur Principal -->
+    <main class="max-w-3xl mx-auto px-4 py-10 md:py-16 space-y-12">
+
+        <!-- En-tête Titre -->
+        <section class="text-center space-y-5">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-candy-sun border-2 border-candy-dark shadow-neo-subtle text-xs font-display font-bold uppercase tracking-wider">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-candy-sunDark"></i>
+                Psychologie & Achat Immobilier
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-candy-dark">
+                L'Achat Immobilier en Couple
+            </h1>
+
+            <p class="text-lg md:text-xl font-medium text-candy-peachDark max-w-xl mx-auto">
+                Les 5 Erreurs qui Bloquent la Décision <br class="hidden sm:inline">(et Comment les Éviter Sereinement)
+            </p>
+
+            <div class="flex items-center justify-center gap-3 text-xs text-candy-muted font-semibold pt-1">
+                <span>Lecture : 4 min</span>
+                <span>•</span>
+                <span>Idéal à lire à deux 👫</span>
+            </div>
+        </section>
+
+        <!-- Intro Box -->
+        <section class="bg-candy-peach rounded-fun p-6 md:p-8 border-2 border-candy-dark shadow-neo-peach space-y-4 sticker-rotate-1">
+            <div class="flex items-center gap-2 font-display font-bold text-candy-dark text-sm uppercase">
+                <span class="text-xl">💌</span> Chers futurs propriétaires,
+            </div>
+            <p class="text-sm md:text-base leading-relaxed text-candy-dark/90">
+                Acheter un bien immobilier sans l'adhésion totale de son/sa partenaire est non seulement difficile, mais souvent impossible : les banques exigent la co-signature des conjoints, et acheter contre l'avis de son partenaire transforme vite un nid douillet en <strong>source permanente de tensions</strong>.
+            </p>
+            <div class="bg-white/80 border-2 border-candy-dark rounded-2xl p-4 text-xs md:text-sm text-candy-dark space-y-1 shadow-sm">
+                <p><strong>Messieurs :</strong> partagez cet article avec votre conjointe.</p>
+                <p><strong>Mesdames :</strong> découvrez ces 5 biais avec un regard lucide pour débloquer votre projet !</p>
+            </div>
+        </section>
+
+        <!-- Section 1 : Les 5 Biais qui Bloquent la Décision -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="p-2 rounded-xl bg-candy-sky border-2 border-candy-dark shadow-neo-subtle text-candy-skyDark">
+                    <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                </span>
+                <h2 class="font-display text-2xl md:text-3xl font-extrabold text-candy-dark">
+                    Les 5 Biais qui Bloquent l'Achat
+                </h2>
+            </div>
+
+            <!-- Carte Erreur 1 -->
+            <article class="bg-white rounded-fun p-6 md:p-7 border-2 border-candy-dark shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 transition duration-200 space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="px-3 py-1 bg-candy-sun border-2 border-candy-dark rounded-full text-xs font-display font-bold">Erreur #1</span>
+                    <span class="text-xs font-semibold text-candy-peachDark flex items-center gap-1"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Esquive</span>
+                </div>
+                <h3 class="font-display text-lg md:text-xl font-bold text-candy-dark">
+                    L’esquive : « Fais comme tu veux, mais fais attention »
+                </h3>
+                <p class="text-sm text-candy-muted leading-relaxed">
+                    Cette phrase ressemble à un accord, mais elle <strong>décharge 100% de la responsabilité</strong> sur l'autre. Si tout se passe bien, tant mieux ; au moindre imprévu, le reproche fuse : <em>« Je t'avais pourtant dit de faire attention ! »</em>
+                </p>
+                <div class="p-3 bg-candy-mint/60 border border-candy-mintDark/30 rounded-xl text-xs text-candy-mintDark font-medium flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 shrink-0"></i>
+                    <span><strong>La solution :</strong> Un achat de foyer se valide ou se refuse à 50/50, avec des arguments clairs.</span>
+                </div>
+            </article>
+
+            <!-- Carte Erreur 2 -->
+            <article class="bg-white rounded-fun p-6 md:p-7 border-2 border-candy-dark shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 transition duration-200 space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="px-3 py-1 bg-candy-sun border-2 border-candy-dark rounded-full text-xs font-display font-bold">Erreur #2</span>
+                    <span class="text-xs font-semibold text-candy-skyDark flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5"></i> L'expert autoproclamé</span>
+                </div>
+                <h3 class="font-display text-lg md:text-xl font-bold text-candy-dark">
+                    Le syndrome du « Beau-Frère Expert »
+                </h3>
+                <p class="text-sm text-candy-muted leading-relaxed">
+                    Ce proche (oncle ou beau-frère) a réalisé une superbe plus-value immobilière il y a 15 ans et son avis est devenu une vérité absolue. Ce qui marchait sur un marché d'antan ne s'applique plus aux taux, règles d'urbanisme et prix d'aujourd'hui !
+                </p>
+            </article>
+
+            <!-- Carte Erreur 3 + Petit Calculateur Éducatif -->
+            <article class="bg-white rounded-fun p-6 md:p-7 border-2 border-candy-dark shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 transition duration-200 space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="px-3 py-1 bg-candy-sun border-2 border-candy-dark rounded-full text-xs font-display font-bold">Erreur #3</span>
+                    <span class="text-xs font-semibold text-candy-lavenderDark flex items-center gap-1"><i data-lucide="calculator" class="w-3.5 h-3.5"></i> Illusion Monétaire</span>
+                </div>
+                <h3 class="font-display text-lg md:text-xl font-bold text-candy-dark">
+                    L'illusion du prix brut vs le multiple de salaire
+                </h3>
+                <p class="text-sm text-candy-muted leading-relaxed">
+                    S'affoler devant un prix brut sans le rapporter à l'évolution des salaires et des mensualités bloque inutilement :
+                </p>
+
+                <!-- Comparatif Visuel Cute -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    <div class="p-3.5 rounded-2xl bg-candy-lavender/40 border border-candy-lavenderDark/20 text-xs space-y-1">
+                        <span class="font-display font-bold text-candy-lavenderDark block">Il y a 20 ans</span>
+                        <p class="text-candy-dark">Appartement : <strong>50 000 €</strong></p>
+                        <p class="text-candy-dark">Salaire mensuel : <strong>1 000 €</strong></p>
+                        <span class="inline-block mt-1 px-2 py-0.5 bg-white rounded-full font-bold text-candy-dark text-[11px]">= 50 mois de salaire</span>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-candy-peach/40 border border-candy-peachDark/20 text-xs space-y-1">
+                        <span class="font-display font-bold text-candy-peachDark block">Aujourd'hui</span>
+                        <p class="text-candy-dark">Même bien moderne : <strong>200 000 €</strong></p>
+                        <p class="text-candy-dark">Salaire mensuel : <strong>4 000 €</strong></p>
+                        <span class="inline-block mt-1 px-2 py-0.5 bg-white rounded-full font-bold text-candy-dark text-[11px]">= Toujours 50 mois !</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Carte Erreur 4 -->
+            <article class="bg-white rounded-fun p-6 md:p-7 border-2 border-candy-dark shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 transition duration-200 space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="px-3 py-1 bg-candy-sun border-2 border-candy-dark rounded-full text-xs font-display font-bold">Erreur #4</span>
+                    <span class="text-xs font-semibold text-candy-peachDark flex items-center gap-1"><i data-lucide="package" class="w-3.5 h-3.5"></i> Encombrement</span>
+                </div>
+                <h3 class="font-display text-lg md:text-xl font-bold text-candy-dark">
+                    Vouloir caser 20 ans d'encombrement dans du neuf
+                </h3>
+                <p class="text-sm text-candy-muted leading-relaxed">
+                    Rejeter un appartement lumineux sous prétexte qu'on ne peut pas y mettre la vieille commode rapportée d'un voyage ou 10 cartons gardés « au cas où » est une erreur classique. Un nouveau logement invite au désencombrement épuré !
+                </p>
+            </article>
+
+            <!-- Carte Erreur 5 -->
+            <article class="bg-white rounded-fun p-6 md:p-7 border-2 border-candy-dark shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 transition duration-200 space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="px-3 py-1 bg-candy-sun border-2 border-candy-dark rounded-full text-xs font-display font-bold">Erreur #5</span>
+                    <span class="text-xs font-semibold text-candy-mintDark flex items-center gap-1"><i data-lucide="compass" class="w-3.5 h-3.5"></i> Dogmatisme</span>
+                </div>
+                <h3 class="font-display text-lg md:text-xl font-bold text-candy-dark">
+                    L'obsession des règles dogmatiques (Pseudo-Vastu / Feng Shui)
+                </h3>
+                <p class="text-sm text-candy-muted leading-relaxed">
+                    Appliquer des règles rigides de maisons individuelles à un 15e étage en copropriété fait rater d'excellents biens. L'essentiel d'un logement sain réside dans <strong>la lumière du jour, la ventilation et la fluidité des volumes</strong>.
+                </p>
+            </article>
+        </section>
+
+        <!-- Section 2 : Le Guide Pratique en 3 Piliers -->
+        <section class="bg-candy-sky/50 rounded-fun p-6 md:p-8 border-2 border-candy-dark shadow-neo-sky space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="p-2 rounded-xl bg-candy-skyDark text-white">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </span>
+                <h2 class="font-display text-2xl font-extrabold text-candy-dark">
+                    Le Guide Pratique : Comment Décider ?
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- A. Train Metaphor -->
+                <div class="bg-white p-5 rounded-2xl border-2 border-candy-dark shadow-sm space-y-2">
+                    <div class="flex items-center gap-2 font-display font-bold text-sm text-candy-peachDark">
+                        <span>🚆</span> A. La métaphore du billet de train
+                    </div>
+                    <p class="text-xs md:text-sm text-candy-dark/80 leading-relaxed">
+                        Avec un billet de 2nde classe, vous ne pouvez pas exiger les services d'une 1re classe. Clarifiez votre cahier des charges : <strong>emplacement, sécurité et lumière</strong> priment sur les détails superflus.
+                    </p>
+                </div>
+
+                <!-- B. Shrinkflation -->
+                <div class="bg-white p-5 rounded-2xl border-2 border-candy-dark shadow-sm space-y-2">
+                    <div class="flex items-center gap-2 font-display font-bold text-sm text-candy-sunDark">
+                        <span>📉</span> B. Comprenez la « Shrinkflation » immobilière
+                    </div>
+                    <p class="text-xs md:text-sm text-candy-dark/80 leading-relaxed">
+                        Attendre 3 ans dans l'espoir de trouver le bien « 100% parfait » se solde souvent par acheter une surface plus petite pour le même montant.
+                    </p>
+                </div>
+
+                <!-- C. Critères Objectifs -->
+                <div class="bg-white p-5 rounded-2xl border-2 border-candy-dark shadow-sm space-y-2">
+                    <div class="flex items-center gap-2 font-display font-bold text-sm text-candy-mintDark">
+                        <span>🎯</span> C. Remplacez le « Je n'aime pas » par du concret
+                    </div>
+                    <p class="text-xs md:text-sm text-candy-dark/80">
+                        Posez-vous les 4 vraies questions : Transports/écoles ? Luminosité & agencement ? Prix au m² du quartier ? Calendrier de paiement réaliste ?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WIDGET INTERACTIF EXCLUSIF : Checklist d'Accord de Couple -->
+        <section id="checklist" class="bg-candy-sun/40 border-2 border-candy-dark rounded-fun p-6 md:p-8 shadow-neo space-y-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-display font-bold uppercase tracking-wider text-candy-sunDark">Outil Pratique</span>
+                    <h3 class="font-display text-xl font-extrabold text-candy-dark">Checklist de Visite en Duo</h3>
+                </div>
+                <span id="checkScore" class="px-3 py-1 rounded-full bg-candy-dark text-white font-display font-bold text-xs">
+                    0/4 Validé
+                </span>
+            </div>
+
+            <p class="text-xs text-candy-muted">Cochez les 4 points indispensables pour transformer la visite en décision sereine :</p>
+
+            <div class="space-y-2.5">
+                <label class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-candy-dark/20 hover:border-candy-dark cursor-pointer transition">
+                    <input type="checkbox" class="couple-check w-4 h-4 rounded text-candy-peachDark focus:ring-candy-peachDark">
+                    <span class="text-xs md:text-sm font-medium">1. Le quartier répond à nos impératifs quotidiens (transports, écoles, commerces).</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-candy-dark/20 hover:border-candy-dark cursor-pointer transition">
+                    <input type="checkbox" class="couple-check w-4 h-4 rounded text-candy-peachDark focus:ring-candy-peachDark">
+                    <span class="text-xs md:text-sm font-medium">2. Le plan et la luminosité conviennent à notre rythme de vie.</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-candy-dark/20 hover:border-candy-dark cursor-pointer transition">
+                    <input type="checkbox" class="couple-check w-4 h-4 rounded text-candy-peachDark focus:ring-candy-peachDark">
+                    <span class="text-xs md:text-sm font-medium">3. Le prix au m² est cohérent avec le marché local réel.</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-candy-dark/20 hover:border-candy-dark cursor-pointer transition">
+                    <input type="checkbox" class="couple-check w-4 h-4 rounded text-candy-peachDark focus:ring-candy-peachDark">
+                    <span class="text-xs md:text-sm font-medium">4. Le plan de financement et l'effort d'épargne sont validés à deux (50/50).</span>
+                </label>
+            </div>
+
+            <div id="checkFeedback" class="hidden p-3 rounded-xl bg-candy-mint border-2 border-candy-mintDark text-xs text-candy-mintDark font-bold text-center">
+                🎉 Félicitations ! Votre feu est vert pour faire une offre en toute sérénité !
+            </div>
+        </section>
+
+        <!-- Conclusion Note -->
+        <section class="bg-white rounded-fun p-6 md:p-8 border-2 border-candy-dark shadow-neo text-center space-y-3">
+            <span class="text-3xl">🔑</span>
+            <h3 class="font-display text-xl font-bold text-candy-dark">En Conclusion</h3>
+            <p class="text-xs md:text-sm text-candy-muted max-w-lg mx-auto leading-relaxed">
+                L'immobilier est le projet patrimonial le plus important de votre vie de couple. Prenez le temps d'analyser les chiffres réels et avancez main dans la main, sans peurs superflues.
+            </p>
+        </section>
+
+        <!-- Commentaires & Réflexions -->
+        <section class="space-y-6 pt-4 border-t-2 border-candy-dark/10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h3 class="font-display text-xl font-bold text-candy-dark">💬 Votre Avis de Couple</h3>
+                    <p class="text-xs text-candy-muted">Avez-vous déjà vécu un désaccord lors d'une visite ? Quel a été le déclic ?</p>
+                </div>
+
+                <button id="likePostBtn" class="flex items-center gap-2 px-4 py-2 rounded-full bg-candy-peachDark text-white font-display font-bold text-xs shadow-neo-subtle hover:scale-105 active:scale-95 transition">
+                    <i data-lucide="heart" class="w-4 h-4"></i>
+                    <span>J'adore cet article</span>
+                    <span id="likeCount" class="bg-white/20 px-2 py-0.5 rounded-full text-[10px]">218</span>
+                </button>
+            </div>
+
+            <!-- Formulaire -->
+            <form id="commentForm" class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input type="text" id="commentName" placeholder="Prénom (ou Duo)" required
+                           class="px-4 py-2.5 rounded-xl text-xs md:text-sm bg-white border-2 border-candy-dark focus:outline-none focus:bg-candy-sun/30">
+                    <input type="text" id="commentText" placeholder="Partagez votre expérience immobilière..." required
+                           class="sm:col-span-2 px-4 py-2.5 rounded-xl text-xs md:text-sm bg-white border-2 border-candy-dark focus:outline-none focus:bg-candy-sun/30">
+                </div>
+                <button type="submit" class="px-5 py-2.5 bg-candy-dark text-white font-display font-bold text-xs rounded-xl shadow-neo-subtle hover:bg-candy-peachDark transition">
+                    Publier notre réflexion
+                </button>
+            </form>
+
+            <!-- Liste des avis -->
+            <div id="commentList" class="space-y-3">
+                <div class="p-4 rounded-2xl bg-white border-2 border-candy-dark text-xs space-y-1 shadow-sm">
+                    <div class="flex justify-between font-display font-bold text-candy-dark">
+                        <span>Claire & Julien (Nantes)</span>
+                        <span class="text-candy-muted text-[10px] font-normal">Il y a 3 heures</span>
+                    </div>
+                    <p class="text-candy-muted font-sans">
+                        Le coup de la commode de 20 ans... on s'est tellement reconnus ! On a fini par vendre nos vieux meubles et l'appartement paraît deux fois plus grand.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-candy-muted pb-8 pt-4 font-display space-y-1">
+            <p>© 2026 DuoImmo — Éducation patrimoniale & harmonie du couple.</p>
+        </footer>
+    </main>
+
+    <!-- JavaScript & Micro-Interactions -->
+    <script>
+        // 1. Initialiser les icônes Lucide
+        lucide.createIcons();
+
+        // 2. Barre de progression Scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('readProgress').style.width = scrolled + '%';
+        });
+
+        // 3. Like System synchronisé
+        let likes = 218;
+        let isLiked = false;
+        const quickLikeNum = document.getElementById('quickLikeNum');
+        const likeCount = document.getElementById('likeCount');
+        const likePostBtn = document.getElementById('likePostBtn');
+        const quickLike = document.getElementById('quickLike');
+
+        function triggerLike() {
+            if (!isLiked) {
+                likes++;
+                isLiked = true;
+                likePostBtn.classList.add('bg-candy-mintDark');
+                likePostBtn.classList.remove('bg-candy-peachDark');
+            } else {
+                likes--;
+                isLiked = false;
+                likePostBtn.classList.add('bg-candy-peachDark');
+                likePostBtn.classList.remove('bg-candy-mintDark');
+            }
+            quickLikeNum.textContent = likes;
+            likeCount.textContent = likes;
+        }
+
+        likePostBtn.addEventListener('click', triggerLike);
+        quickLike.addEventListener('click', triggerLike);
+
+        // 4. Checklist Interactive
+        const checkboxes = document.querySelectorAll('.couple-check');
+        const checkScore = document.getElementById('checkScore');
+        const checkFeedback = document.getElementById('checkFeedback');
+
+        checkboxes.forEach(chk => {
+            chk.addEventListener('change', () => {
+                const total = checkboxes.length;
+                const checked = document.querySelectorAll('.couple-check:checked').length;
+                checkScore.textContent = `${checked}/${total} Validé`;
+
+                if (checked === total) {
+                    checkFeedback.classList.remove('hidden');
+                    checkScore.classList.add('bg-candy-mintDark');
+                    checkScore.classList.remove('bg-candy-dark');
+                } else {
+                    checkFeedback.classList.add('hidden');
+                    checkScore.classList.remove('bg-candy-mintDark');
+                    checkScore.classList.add('bg-candy-dark');
+                }
+            });
+        });
+
+        // 5. Commentaires Dynamiques
+        const commentForm = document.getElementById('commentForm');
+        const commentName = document.getElementById('commentName');
+        const commentText = document.getElementById('commentText');
+        const commentList = document.getElementById('commentList');
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = commentName.value.trim();
+            const text = commentText.value.trim();
+
+            if (name && text) {
+                const commentCard = document.createElement('div');
+                commentCard.className = 'p-4 rounded-2xl bg-white border-2 border-candy-dark text-xs space-y-1 shadow-sm transition duration-300 transform translate-y-2 opacity-0';
+                commentCard.innerHTML = `
+                    <div class="flex justify-between font-display font-bold text-candy-dark">
+                        <span>${escapeHtml(name)}</span>
+                        <span class="text-candy-muted text-[10px] font-normal">À l'instant</span>
+                    </div>
+                    <p class="text-candy-muted font-sans">${escapeHtml(text)}</p>
+                `;
+                commentList.prepend(commentCard);
+
+                setTimeout(() => {
+                    commentCard.classList.remove('translate-y-2', 'opacity-0');
+                }, 10);
+
+                commentName.value = '';
+                commentText.value = '';
+            }
+        });
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, m => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+            })[m]);
+        }
+    </script>
+</body>
+</html>

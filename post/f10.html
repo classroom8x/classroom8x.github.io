@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Où Investir en 2026 ? • Les 5 Piliers Hors des Sentiers Battus</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Fraunces"', 'serif'],
+                    },
+                    colors: {
+                        cream: '#FCF9F2',
+                        creamy: '#F6F0E6',
+                        pastelRose: '#FDECEF',
+                        pastelSage: '#EBF4EC',
+                        pastelPeach: '#FEF0E6',
+                        pastelLilac: '#F3EDF9',
+                        pastelLemon: '#FEF9E3',
+                        ink: '#2B2A27',
+                        inkMuted: '#6E6B64',
+                        accentCoral: '#E06D53',
+                        accentSage: '#4A7C59',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(43, 42, 39, 0.05)',
+                        'cute': '0 15px 35px -8px rgba(224, 109, 83, 0.12)',
+                        'float': '0 20px 40px -15px rgba(0, 0, 0, 0.07)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FCF9F2;
+            background-image: radial-gradient(#E8E0D2 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+        }
+        .blob {
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="text-ink font-sans antialiased selection:bg-accentCoral selection:text-white pb-16">
+
+    <!-- Decorative Soft Blobs -->
+    <div class="fixed top-10 left-1/4 w-80 h-80 bg-pastelRose rounded-full blob pointer-events-none"></div>
+    <div class="fixed top-1/3 right-10 w-96 h-96 bg-pastelSage rounded-full blob pointer-events-none"></div>
+    <div class="fixed bottom-20 left-10 w-72 h-72 bg-pastelPeach rounded-full blob pointer-events-none"></div>
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-4 z-50 max-w-4xl mx-auto px-4">
+        <nav class="glass-card rounded-full px-5 py-3 shadow-soft flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-full bg-accentCoral text-white flex items-center justify-center font-serif text-lg font-bold shadow-sm">🌿</span>
+                <span class="font-semibold tracking-tight text-ink text-sm md:text-base">Sérénité & Richesse • 2026</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="scrollToSection('calculator')" class="text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-full bg-creamy hover:bg-pastelPeach text-ink transition">
+                    ⚡ Calculateur
+                </button>
+                <button onclick="likeArticle()" id="headerLikeBtn" class="flex items-center gap-1.5 text-xs md:text-sm font-medium px-3.5 py-1.5 rounded-full bg-accentCoral/10 text-accentCoral hover:bg-accentCoral hover:text-white transition">
+                    <span id="heartIcon">🤍</span> <span id="likeCount">142</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-10">
+
+        <!-- Hero Header -->
+        <section class="text-center pt-8 pb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pastelPeach border border-accentCoral/20 text-accentCoral text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse">
+                ✨ Manifeste Financier & Humain • 2026
+            </div>
+            
+            <h1 class="font-serif text-4xl md:text-6xl font-normal leading-[1.15] text-ink max-w-3xl mx-auto mb-6">
+                Où Investir en 2026 ? <br>
+                <span class="italic font-light text-accentCoral">Les 5 Piliers Hors des Sentiers Battus</span>
+            </h1>
+
+            <p class="text-inkMuted text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                Bonjour à toutes et à tous, et très belle année 2026 ! Et si nous arrêtions de réduire l'investissement à une simple ligne de compte en banque ?
+            </p>
+
+            <!-- Philosophy Quote Card -->
+            <div class="mt-8 glass-card rounded-3xl p-6 md:p-8 max-w-2xl mx-auto shadow-cute relative overflow-hidden border-l-4 border-l-accentCoral">
+                <span class="text-4xl text-accentCoral/20 font-serif absolute top-2 right-4 select-none">“</span>
+                <p class="text-ink font-medium italic text-base md:text-lg leading-snug">
+                    « Si vous placez de l'argent sur les marchés tout en ayant une vie personnelle sous tension et un esprit épuisé, aucun rendement à 10 % ne vous apportera la sérénité. »
+                </p>
+                <div class="mt-3 flex items-center justify-center gap-2 text-xs font-semibold text-accentCoral uppercase tracking-wider">
+                    <span>Le véritable investissement : Temps • Énergie • Équilibre</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Grid: The 5 Pillars -->
+        <section class="space-y-6">
+
+            <!-- Pillar 1 -->
+            <div class="glass-card rounded-3xl p-7 md:p-9 shadow-soft border border-white hover:shadow-float transition duration-300">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <span class="px-3.5 py-1 rounded-full bg-pastelSage text-accentSage text-xs font-bold uppercase tracking-wider">Pilier 01</span>
+                    <span class="text-xs text-inkMuted flex items-center gap-1 font-medium">🪴 Fondations & Paix</span>
+                </div>
+                
+                <h2 class="font-serif text-2xl md:text-3xl text-ink mb-4">
+                    Investissez en Vous-Même et dans la Paix du Foyer
+                </h2>
+                
+                <p class="text-inkMuted mb-6 text-sm md:text-base leading-relaxed">
+                    Avant de chercher à doubler votre capital, assurez-vous que la « machine » est en parfait état de marche :
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-pastelSage/40 rounded-2xl p-5 border border-pastelSage">
+                        <div class="text-2xl mb-2">🏃‍♂️</div>
+                        <h3 class="font-semibold text-ink text-sm mb-1">Corps & Esprit</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">Vous êtes un coureur de fond. Sans santé, clarté mentale et sommeil réparateur, tout s'effondre.</p>
+                    </div>
+
+                    <div class="bg-pastelRose/40 rounded-2xl p-5 border border-pastelRose">
+                        <div class="text-2xl mb-2">🕊️</div>
+                        <h3 class="font-semibold text-ink text-sm mb-1">Sérénité Conjugale</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">Un foyer apaisé est un bouclier. Si le couple est en guerre, toute votre énergie mentale y est brûlée.</p>
+                    </div>
+
+                    <div class="bg-pastelLemon/50 rounded-2xl p-5 border border-pastelLemon">
+                        <div class="text-2xl mb-2">📚</div>
+                        <h3 class="font-semibold text-ink text-sm mb-1">Lecture Structurée</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">Dites stop aux miettes sur les réseaux. Nourrissez-vous de livres de fond transformateurs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 2 + Interactive Freedom Calculator -->
+            <div id="calculator" class="glass-card rounded-3xl p-7 md:p-9 shadow-soft border border-white hover:shadow-float transition duration-300">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <span class="px-3.5 py-1 rounded-full bg-pastelPeach text-accentCoral text-xs font-bold uppercase tracking-wider">Pilier 02 • Outil Pratique</span>
+                    <span class="text-xs text-inkMuted font-medium">📊 Clarté Financière</span>
+                </div>
+
+                <h2 class="font-serif text-2xl md:text-3xl text-ink mb-3">
+                    L'Audit Patrimonial Réel : <span class="italic text-accentCoral">Le Ratio de Liberté</span>
+                </h2>
+                
+                <p class="text-inkMuted text-sm md:text-base leading-relaxed mb-6">
+                    Faites vos comptes en toute transparence en ce mois de janvier : <em>(Actifs Réels - Dettes) / Salaire Mensuel</em>.
+                </p>
+
+                <!-- Mini Cute Calculator Box -->
+                <div class="bg-gradient-to-br from-pastelPeach/40 to-creamy rounded-2xl p-6 border border-[#eedfd0]">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl">✨</span>
+                        <h3 class="font-bold text-sm text-ink uppercase tracking-wider">Simulez vos Mois de Liberté</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                        <div>
+                            <label class="block text-xs font-semibold text-inkMuted mb-1">Patrimoine Net Total (€)</label>
+                            <div class="relative">
+                                <input type="number" id="netWorth" value="60000" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-white font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accentCoral" oninput="calculateRatio()">
+                                <span class="absolute right-3 top-2.5 text-xs text-stone-400 font-bold">EUR</span>
+                            </div>
+                            <span class="text-[11px] text-stone-400 mt-1 block">Épargne + Immo réel - Crédits</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-inkMuted mb-1">Dépenses / Salaire Mensuel Net (€)</label>
+                            <div class="relative">
+                                <input type="number" id="monthlyBurn" value="2500" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-white font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accentCoral" oninput="calculateRatio()">
+                                <span class="absolute right-3 top-2.5 text-xs text-stone-400 font-bold">EUR/mois</span>
+                            </div>
+                            <span class="text-[11px] text-stone-400 mt-1 block">Votre train de vie disponible</span>
+                        </div>
+                    </div>
+
+                    <!-- Result Pill -->
+                    <div class="bg-white rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 border border-stone-100 shadow-sm">
+                        <div>
+                            <span class="text-xs text-inkMuted block">Votre Solidité Réelle :</span>
+                            <span class="text-sm font-semibold text-ink">« Combien de mois de vie mon capital représente-t-il ? »</span>
+                        </div>
+                        <div class="text-center sm:text-right">
+                            <span id="resultMonths" class="text-3xl font-serif font-bold text-accentCoral">24.0</span>
+                            <span class="text-xs font-bold text-accentCoral block">Mois d'Autonomie Pure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 3 & Pillar 4 (2 Column Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Pillar 3 -->
+                <div class="glass-card rounded-3xl p-7 shadow-soft border border-white hover:shadow-float transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-pastelRose text-rose-600 text-xs font-bold uppercase tracking-wider">Pilier 03</span>
+                            <span class="text-lg">🧹</span>
+                        </div>
+                        
+                        <h2 class="font-serif text-xl md:text-2xl text-ink mb-3">
+                            Purgez les Mauvais Actifs : <span class="italic text-rose-500">La Décote Libératrice</span>
+                        </h2>
+                        
+                        <p class="text-inkMuted text-xs md:text-sm leading-relaxed mb-4">
+                            Nettoyez le fardeau émotionnel et financier de votre portefeuille :
+                        </p>
+                        
+                        <ul class="space-y-2.5 text-xs md:text-sm text-ink leading-relaxed">
+                            <li class="flex items-start gap-2 bg-pastelRose/30 p-3 rounded-xl">
+                                <span class="text-rose-500 font-bold">✕</span>
+                                <span><strong>Biens locatifs vieillissants :</strong> Rendement &lt; 3% ? Vendez et repositionnez sur des actifs plus dynamiques.</span>
+                            </li>
+                            <li class="flex items-start gap-2 bg-pastelRose/30 p-3 rounded-xl">
+                                <span class="text-rose-500 font-bold">✕</span>
+                                <span><strong>Erreurs du passé :</strong> Un placement stagne depuis 10 ans ? Acceptez la perte comme des « frais de scolarité de la vie ».</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="glass-card rounded-3xl p-7 shadow-soft border border-white hover:shadow-float transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-pastelLilac text-indigo-700 text-xs font-bold uppercase tracking-wider">Pilier 04</span>
+                            <span class="text-lg">🌱</span>
+                        </div>
+                        
+                        <h2 class="font-serif text-xl md:text-2xl text-ink mb-3">
+                            Le « Capital d'Initiative » pour Votre Conjoint(e)
+                        </h2>
+                        
+                        <div class="bg-pastelLilac/40 p-3.5 rounded-xl border border-pastelLilac mb-4 text-xs md:text-sm">
+                            <span class="font-semibold text-indigo-900 block mb-1">🎁 Le geste dès janvier :</span>
+                            Allouez une enveloppe de départ (ex. <strong>2 000 € à 3 000 €</strong>) pour tester une idée entrepreneuriale ou développer un talent.
+                        </div>
+
+                        <div class="space-y-2 text-xs md:text-sm text-inkMuted leading-relaxed">
+                            <p class="flex items-center gap-1.5 text-ink font-medium">
+                                <span>✨</span> Double bénéfice immédiat :
+                            </p>
+                            <p>1. Une passion épanouissante ou une activité rentable.</p>
+                            <p>2. Vos discussions du soir se transforment : fini les plaintes du quotidien, place aux projets stimulants.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pillar 5 -->
+            <div class="glass-card rounded-3xl p-7 md:p-9 shadow-soft border border-white hover:shadow-float transition">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <span class="px-3.5 py-1 rounded-full bg-pastelLemon text-amber-800 text-xs font-bold uppercase tracking-wider">Pilier 05</span>
+                    <span class="text-xs text-inkMuted font-medium">🧠 Charge Mentale</span>
+                </div>
+
+                <h2 class="font-serif text-2xl md:text-3xl text-ink mb-4">
+                    Calculez le <span class="italic text-amber-700">« Rendement par Unité de Stress »</span>
+                </h2>
+
+                <p class="text-inkMuted text-sm md:text-base leading-relaxed mb-6">
+                    En 2026, ne mesurez plus un investissement uniquement en pourcentage de gain. Calculez son coût psychologique réel :
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-100/80 text-center">
+                        <span class="text-2xl block mb-1.5">💤</span>
+                        <p class="text-xs text-ink font-medium">Ce placement rapporte-t-il 2% de plus au prix d'insomnies ?</p>
+                    </div>
+                    <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-100/80 text-center">
+                        <span class="text-2xl block mb-1.5">⏰</span>
+                        <p class="text-xs text-ink font-medium">Cette promotion vaut-elle 15h de réunions toxiques en plus ?</p>
+                    </div>
+                    <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-100/80 text-center">
+                        <span class="text-2xl block mb-1.5">🛡️</span>
+                        <p class="text-xs text-ink font-medium">Pourquoi garder des relations qui siphonnent votre énergie ?</p>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center bg-white/70 py-2.5 px-4 rounded-full max-w-md mx-auto border border-stone-200/60">
+                    <span class="text-xs font-semibold text-ink">💡 Le véritable luxe : minimiser son anxiété avant tout.</span>
+                </div>
+            </div>
+
+            <!-- Bonus: Golden Rule (Circle of 5 & ROTI) -->
+            <div class="relative rounded-3xl p-7 md:p-10 bg-gradient-to-r from-accentSage/90 to-accentSage text-white shadow-cute overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    <span class="px-3.5 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+                        ⭐ La Règle d'Or Bonus
+                    </span>
+
+                    <h2 class="font-serif text-2xl md:text-3xl mt-4 mb-4">
+                        Auditez Votre « Cercle des 5 » & Maximisez Votre ROTI
+                    </h2>
+
+                    <p class="text-white/80 text-sm md:text-base leading-relaxed mb-6">
+                        Vous êtes la moyenne des 5 personnes avec lesquelles vous passez le plus de temps.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+                            <h3 class="font-bold text-sm mb-1 text-pastelLemon">🔄 Shift de Vocabulaire</h3>
+                            <p class="text-xs text-white/90 leading-relaxed">
+                                Bannissez le <em>« Pourquoi acheter ça ? »</em> et adoptez le <strong>« Comment pouvons-nous nous l'offrir ? »</strong> pour stimuler l'ingénierie financière familiale.
+                            </p>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+                            <h3 class="font-bold text-sm mb-1 text-pastelLemon">⏳ Le ROTI (Return On Time Invested)</h3>
+                            <p class="text-xs text-white/90 leading-relaxed">
+                                Le temps est votre seul actif non renouvelable. Accordez-le en priorité à votre premier cercle et à ceux qui vous tirent vers le haut.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Summary Manifesto Box -->
+        <section class="mt-10 text-center glass-card rounded-3xl p-8 shadow-soft border border-white">
+            <h3 class="font-serif text-xl md:text-2xl text-ink mb-3">En Résumé pour 2026</h3>
+            <p class="text-inkMuted text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                La réussite d'une année ne se résume pas aux fluctuations des graphiques boursiers. Elle se construit en alignant votre <strong>santé</strong>, la <strong>paix du foyer</strong>, la <strong>clarté des comptes</strong> et la sélection rigoureuse de votre <strong>temps</strong>.
+            </p>
+            <div class="mt-5 inline-block px-5 py-2 rounded-full bg-pastelPeach text-accentCoral text-xs font-bold uppercase tracking-wider">
+                ✨ 2026 : L'Année de la Lucidité & de l'Allègement Stratégique
+            </div>
+        </section>
+
+        <!-- Interactive Community / Poll & Comment Area -->
+        <section class="mt-12 glass-card rounded-3xl p-7 md:p-9 shadow-soft border border-white">
+            <h3 class="font-serif text-2xl text-ink mb-2 text-center">
+                💬 Et vous, quelle est votre priorité absolue pour 2026 ?
+            </h3>
+            <p class="text-center text-xs md:text-sm text-inkMuted mb-6">
+                Votez instantanément pour découvrir la tendance de la communauté :
+            </p>
+
+            <!-- Cute Interactive Poll -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8" id="pollSection">
+                <button onclick="votePoll('finance')" class="poll-btn p-4 rounded-2xl bg-creamy hover:bg-pastelPeach border border-stone-200/80 transition text-left group">
+                    <span class="text-xl block mb-1">📈</span>
+                    <span class="text-xs font-bold text-ink block">Projet Financier / Immo</span>
+                    <span class="text-[11px] text-inkMuted group-hover:text-accentCoral font-semibold mt-1 block" id="vote1">45% de votes</span>
+                </button>
+
+                <button onclick="votePoll('sanity')" class="poll-btn p-4 rounded-2xl bg-creamy hover:bg-pastelPeach border border-stone-200/80 transition text-left group">
+                    <span class="text-xl block mb-1">🧹</span>
+                    <span class="text-xs font-bold text-ink block">Assainir mon Patrimoine</span>
+                    <span class="text-[11px] text-inkMuted group-hover:text-accentCoral font-semibold mt-1 block" id="vote2">28% de votes</span>
+                </button>
+
+                <button onclick="votePoll('time')" class="poll-btn p-4 rounded-2xl bg-creamy hover:bg-pastelPeach border border-stone-200/80 transition text-left group">
+                    <span class="text-xl block mb-1">🕊️</span>
+                    <span class="text-xs font-bold text-ink block">Rééquilibrer mon Temps (ROTI)</span>
+                    <span class="text-[11px] text-inkMuted group-hover:text-accentCoral font-semibold mt-1 block" id="vote3">27% de votes</span>
+                </button>
+            </div>
+
+            <!-- Comment Box -->
+            <div class="pt-6 border-t border-stone-200/60">
+                <h4 class="font-semibold text-sm text-ink mb-3 flex items-center gap-2">
+                    <span>✍️</span> Partagez vos réflexions & résolutions 2026
+                </h4>
+                
+                <form id="commentForm" onsubmit="handleComment(event)" class="space-y-3">
+                    <div class="flex gap-3">
+                        <input type="text" id="commentAuthor" placeholder="Votre prénom..." required class="w-1/3 px-4 py-2 text-xs rounded-xl bg-white border border-stone-200 focus:outline-none focus:ring-2 focus:ring-accentCoral">
+                        <input type="text" id="commentText" placeholder="Votre intention pour cette année..." required class="w-2/3 px-4 py-2 text-xs rounded-xl bg-white border border-stone-200 focus:outline-none focus:ring-2 focus:ring-accentCoral">
+                    </div>
+                    <div class="flex justify-between items-center pt-1">
+                        <span class="text-[11px] text-inkMuted">Ateliers d'éducation financière • Saison 2026</span>
+                        <button type="submit" class="px-5 py-2 rounded-xl bg-accentCoral text-white text-xs font-bold shadow-cute hover:opacity-90 transition">
+                            Publier ma résolution ✨
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Live Comments List -->
+                <div id="commentsList" class="mt-6 space-y-3">
+                    <div class="bg-white/80 p-3.5 rounded-2xl border border-stone-100 text-xs">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-ink">Sophie L.</span>
+                            <span class="text-[10px] text-stone-400">Il y a 10 min</span>
+                        </div>
+                        <p class="text-inkMuted">« Le ratio de liberté et l'enveloppe pour le micro-projet du conjoint sont deux pépites. Merci pour cette bouffée d'oxygène ! »</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-14 text-center text-xs text-inkMuted">
+        <p>✨ Conçu pour une année 2026 sereine, équilibrée et libre.</p>
+        <p class="mt-1 text-[11px] text-stone-400">Éducation Financière • Développement Personnel & Patrimoine</p>
+    </footer>
+
+    <!-- Vanilla Javascript Logic -->
+    <script>
+        // Smooth scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Freedom Ratio Calculator Logic
+        function calculateRatio() {
+            const netWorth = parseFloat(document.getElementById('netWorth').value) || 0;
+            const monthlyBurn = parseFloat(document.getElementById('monthlyBurn').value) || 1;
+            
+            const months = (netWorth / monthlyBurn).toFixed(1);
+            document.getElementById('resultMonths').textContent = months > 0 ? months : '0.0';
+        }
+
+        // Interactive Like Button with Confetti
+        let likes = 142;
+        let hasLiked = false;
+
+        function likeArticle() {
+            if (!hasLiked) {
+                likes++;
+                hasLiked = true;
+                document.getElementById('heartIcon').textContent = '❤️';
+                document.getElementById('likeCount').textContent = likes;
+                
+                // Cute mini confetti burst
+                confetti({
+                    particleCount: 40,
+                    spread: 60,
+                    origin: { y: 0.1, x: 0.85 },
+                    colors: ['#E06D53', '#FDECEF', '#4A7C59']
+                });
+            } else {
+                likes--;
+                hasLiked = false;
+                document.getElementById('heartIcon').textContent = '🤍';
+                document.getElementById('likeCount').textContent = likes;
+            }
+        }
+
+        // Poll voting logic
+        function votePoll(option) {
+            confetti({
+                particleCount: 30,
+                spread: 45,
+                origin: { y: 0.8 }
+            });
+            alert('Merci pour votre vote ! Que 2026 soit votre plus belle réussite.');
+        }
+
+        // Comment Submission Logic
+        function handleComment(e) {
+            e.preventDefault();
+            const author = document.getElementById('commentAuthor').value;
+            const text = document.getElementById('commentText').value;
+
+            if (author && text) {
+                const commentsContainer = document.getElementById('commentsList');
+                
+                const newComment = document.createElement('div');
+                newComment.className = "bg-pastelSage/40 p-3.5 rounded-2xl border border-pastelSage text-xs transform transition duration-300 translate-y-2";
+                newComment.innerHTML = `
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-ink">${escapeHtml(author)} <span class="text-[10px] text-accentSage font-normal ml-1">✨ À l'instant</span></span>
+                    </div>
+                    <p class="text-ink">${escapeHtml(text)}</p>
+                `;
+
+                commentsContainer.prepend(newComment);
+
+                // Reset form
+                document.getElementById('commentAuthor').value = '';
+                document.getElementById('commentText').value = '';
+
+                // Little celebration
+                confetti({
+                    particleCount: 25,
+                    spread: 50,
+                    origin: { y: 0.85 }
+                });
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Init calculations on load
+        calculateRatio();
+    </script>
+</body>
+</html>

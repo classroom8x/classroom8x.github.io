@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Retraite : Les 4 Règles d'Or pour Vivre Sereinement</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts : Syne (moderne & audacieux) + Newsreader (éditorial raffiné) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&family=Syne:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['"Syne"', 'sans-serif'],
+                        editorial: ['"Newsreader"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        linen: '#F9F6F0',
+                        charcoal: '#1E2421',
+                        olive: '#4A5B4E',
+                        'olive-light': '#E9EFEA',
+                        terracotta: '#C86843',
+                        'terracotta-soft': '#FDF2EC',
+                        butter: '#F4E9C8',
+                        lavender: '#E5E1EE',
+                        sand: '#ECE6DA'
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        'blob': '40px 16px 40px 16px'
+                    },
+                    boxShadow: {
+                        'editorial': '6px 6px 0px 0px #1E2421',
+                        'editorial-soft': '4px 4px 0px 0px rgba(30, 36, 33, 0.1)',
+                        'floating': '0 20px 35px -10px rgba(200, 104, 67, 0.12)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Grille subtile en fond pour une texture papier premium */
+        .paper-grid {
+            background-color: #F9F6F0;
+            background-image: radial-gradient(#1E2421 0.65px, transparent 0.65px);
+            background-size: 24px 24px;
+        }
+
+        /* Effet Stamp / Badge éditorial */
+        .badge-stamp {
+            border: 1.5px dashed #1E2421;
+        }
+
+        /* Animation douce pour les pastilles */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
+        }
+        .float-item {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="paper-grid text-charcoal font-sans antialiased min-h-screen selection:bg-terracotta selection:text-white">
+
+    <!-- Top Reading Tracker -->
+    <div id="readingProgress" class="fixed top-0 left-0 h-1.5 bg-terracotta z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Header / Navbar Minimaliste Chic -->
+    <nav class="border-b border-charcoal/10 bg-linen/90 backdrop-blur-md sticky top-0 z-40 px-6 py-4">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-olive text-white flex items-center justify-center font-heading text-xs font-bold shadow-sm">
+                    4R
+                </span>
+                <span class="font-heading font-bold text-sm tracking-tight text-charcoal uppercase">
+                    Chroniques Patrimoniales
+                </span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button id="zenModeToggle" title="Mode Lecture Zen" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-sand/60 hover:bg-sand border border-charcoal/10 flex items-center gap-1.5 transition">
+                    <i data-lucide="eye" class="w-3.5 h-3.5 text-charcoal"></i>
+                    <span class="hidden sm:inline">Mode Zen</span>
+                </button>
+                <a href="#simulateur" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-terracotta text-white hover:bg-terracotta/90 transition shadow-sm">
+                    Calculateur 80/20
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="contentContainer" class="max-w-3xl mx-auto px-5 py-12 md:py-20 space-y-16">
+
+        <!-- Header Article -->
+        <header class="space-y-6 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-terracotta-soft border border-terracotta/30 text-terracotta text-xs font-heading font-bold uppercase tracking-wider">
+                <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+                Guide Pratique & Sérénité
+            </div>
+
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-charcoal tracking-tight leading-[1.15]">
+                Que Faire de son Capital de Retraite ?
+            </h1>
+
+            <p class="font-editorial italic text-xl md:text-2xl text-olive max-w-xl mx-auto leading-relaxed">
+                Les 4 Règles d'Or pour Éviter les Pièges et Vivre Sereinement
+            </p>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-semibold text-charcoal/60 pt-2 border-t border-charcoal/10 max-w-md mx-auto">
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 5 min de lecture</span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> 0% jargon financier</span>
+            </div>
+        </header>
+
+        <!-- Intro Note éditoriale -->
+        <section class="bg-white rounded-3xl p-7 md:p-9 border-2 border-charcoal shadow-editorial relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-butter/60 rounded-full blur-xl pointer-events-none"></div>
+            
+            <p class="font-heading text-sm font-bold text-terracotta uppercase tracking-wide mb-2">
+                Bonjour à toutes et à tous,
+            </p>
+            <div class="font-editorial text-lg md:text-xl text-charcoal/90 leading-relaxed space-y-4">
+                <p>
+                    Que vous partiez à la retraite à taux plein, par anticipation ou après 35 ans de carrière dans le public ou le privé, le jour J finit toujours par arriver.
+                </p>
+                <p>
+                    Et ce jour-là, vous touchez votre <strong>capital de fin de carrière</strong> (indemnités de départ, rachat de congés, capital retraite). Pour beaucoup, cela devient une angoisse immédiate : <em>« Où placer cet argent au plus vite ? »</em>
+                </p>
+                <p class="text-base font-sans text-charcoal/70 bg-linen p-4 rounded-2xl border border-charcoal/10">
+                    💡 <strong>Le piège :</strong> Une industrie entière d'intermédiaires cherche à capter ces fonds avec des produits complexes. Voici 4 principes directeurs simples pour aborder ce virage avec un esprit libre.
+                </p>
+            </div>
+        </section>
+
+        <!-- Les 4 Règles d'Or -->
+        <section class="space-y-8">
+            <div class="flex items-center justify-between border-b-2 border-charcoal pb-3">
+                <h2 class="font-heading text-2xl md:text-3xl font-extrabold tracking-tight text-charcoal">
+                    Les 4 Règles d'Or
+                </h2>
+                <span class="text-xs font-heading font-bold text-olive uppercase px-2 py-1 bg-olive-light rounded-md">
+                    Méthode Sereine
+                </span>
+            </div>
+
+            <!-- Règle 1 -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 border border-charcoal/15 shadow-sm hover:border-charcoal transition-all">
+                <div class="flex items-start gap-4">
+                    <span class="w-10 h-10 rounded-2xl bg-terracotta text-white font-heading font-extrabold text-lg flex items-center justify-center shrink-0 shadow-sm">
+                        1
+                    </span>
+                    <div class="space-y-3">
+                        <h3 class="font-heading text-lg md:text-xl font-bold text-charcoal">
+                            Gardez les pieds sur terre <span class="font-normal text-charcoal/60 font-sans text-sm block md:inline">(Ce n'est pas une fortune infinie)</span>
+                        </h3>
+                        <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+                            Recevoir une somme importante en un seul versement procure un sentiment d'euphorie trompeur.
+                        </p>
+                        <div class="bg-terracotta-soft/70 border border-terracotta/20 p-4 rounded-2xl text-xs md:text-sm text-charcoal space-y-1.5">
+                            <div class="font-bold text-terracotta flex items-center gap-1.5">
+                                <i data-lucide="building" class="w-4 h-4"></i> Réalité économique :
+                            </div>
+                            <p class="text-charcoal/80">
+                                Comparé à l'immobilier moderne des grandes métropoles, ce capital équivaut souvent à un modeste deux-pièces ou un terrain bien situé. Restez humble : vous avez de quoi vivre confortablement, mais vous n'avez pas gagné à la loterie mondiale. Évitez les projets d'investissement démesurés.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Règle 2 -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 border border-charcoal/15 shadow-sm hover:border-charcoal transition-all space-y-4">
+                <div class="flex items-start gap-4">
+                    <span class="w-10 h-10 rounded-2xl bg-olive text-white font-heading font-extrabold text-lg flex items-center justify-center shrink-0 shadow-sm">
+                        2
+                    </span>
+                    <div class="space-y-2">
+                        <h3 class="font-heading text-lg md:text-xl font-bold text-charcoal">
+                            Dépensez immédiatement 20 % pour l'harmonie familiale
+                        </h3>
+                        <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+                            Vouloir tout bloquer par réflexe de peur est une erreur psychologique majeure. L'argent doit d'abord apporter de la reconnaissance.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-olive-light/60 p-5 rounded-2xl border border-olive/20 space-y-2">
+                        <span class="text-xs font-heading font-extrabold text-olive uppercase tracking-wide flex items-center gap-1">
+                            <i data-lucide="heart" class="w-3.5 h-3.5 text-olive"></i> 10% pour le/la conjoint(e)
+                        </span>
+                        <p class="text-xs md:text-sm text-charcoal/80">
+                            Confiez-lui cette part <strong>sans condition</strong> (décoration, nouveau mobilier, plaisirs personnels). C'est le plus bel investissement pour remercier des décennies de concessions professionnelles partagées.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-butter/50 p-5 rounded-2xl border border-charcoal/10 space-y-2">
+                        <span class="text-xs font-heading font-extrabold text-charcoal uppercase tracking-wide flex items-center gap-1">
+                            <i data-lucide="car" class="w-3.5 h-3.5 text-charcoal"></i> 10% pour vous & vos proches
+                        </span>
+                        <p class="text-xs md:text-sm text-charcoal/80">
+                            Remplacez un vieux véhicule par une voiture sécurisée, partez pour un voyage mémorable ou gâtez enfants et petits-enfants avec des cadeaux symboliques durables.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Règle 3 -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 border border-charcoal/15 shadow-sm hover:border-charcoal transition-all">
+                <div class="flex items-start gap-4">
+                    <span class="w-10 h-10 rounded-2xl bg-charcoal text-white font-heading font-extrabold text-lg flex items-center justify-center shrink-0 shadow-sm">
+                        3
+                    </span>
+                    <div class="space-y-3">
+                        <h3 class="font-heading text-lg md:text-xl font-bold text-charcoal">
+                            Placez les 80 % restants à l'abri et « Achetez du Temps »
+                        </h3>
+                        <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+                            Ne vous ruez pas sur la bourse, la crypto ou le trading à la mode. 
+                        </p>
+                        <div class="space-y-2 text-xs md:text-sm text-charcoal/80">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="hourglass" class="w-4 h-4 text-terracotta shrink-0 mt-0.5"></i>
+                                <span><strong>Faites une pause de 6 à 12 mois :</strong> Choisissez des supports garantis sans risque (livrets, comptes à terme, obligations d'État).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="coffee" class="w-4 h-4 text-olive shrink-0 mt-0.5"></i>
+                                <span><strong>Intégrez la transition :</strong> Apprenez à vivre sans le salaire mensuel régulier et laissez retomber l'euphorie.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="volume-x" class="w-4 h-4 text-charcoal shrink-0 mt-0.5"></i>
+                                <span><strong>Gardez le silence :</strong> Ne communiquez jamais le montant exact à votre entourage élargi pour éviter les sollicitations maladroites.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Règle 4 -->
+            <article class="bg-white rounded-3xl p-6 md:p-8 border border-charcoal/15 shadow-sm hover:border-charcoal transition-all">
+                <div class="flex items-start gap-4">
+                    <span class="w-10 h-10 rounded-2xl bg-lavender text-charcoal font-heading font-extrabold text-lg flex items-center justify-center shrink-0 shadow-sm">
+                        4
+                    </span>
+                    <div class="space-y-3">
+                        <h3 class="font-heading text-lg md:text-xl font-bold text-charcoal">
+                            Fuyez les vendeurs de commissions, formez-vous
+                        </h3>
+                        <p class="text-charcoal/80 text-sm md:text-base leading-relaxed">
+                            Parents âgés à charge, résidence principale payée ou non, enfants autonomes : votre équilibre est unique. Un conseiller commercial ne peut pas comprendre votre vie en un rendez-vous d'une demi-heure.
+                        </p>
+                        <p class="font-medium text-xs md:text-sm text-olive bg-olive-light/50 p-3 rounded-xl">
+                            ✨ <strong>Prenez le pouvoir :</strong> Lisez, apprenez les règles de la fiscalité et de l'inflation, et prenez vos décisions sans intermédiaire précipité.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- WIDGET INTERACTIF : CALCULATEUR D'HARMONIE 80/20 -->
+        <section id="simulateur" class="bg-charcoal text-white rounded-4xl p-7 md:p-10 shadow-editorial space-y-6">
+            <div class="space-y-2">
+                <div class="inline-flex items-center gap-2 text-butter text-xs font-heading font-bold uppercase tracking-wider">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Simulateur Interactif
+                </div>
+                <h3 class="font-heading text-2xl font-bold">Visualisez votre Répartition Idéale (80 / 20)</h3>
+                <p class="text-xs md:text-sm text-white/70">
+                    Entrez une estimation de votre capital de fin de carrière pour voir la ventilation recommandée :
+                </p>
+            </div>
+
+            <!-- Input Slider -->
+            <div class="space-y-3 bg-white/5 p-5 rounded-2xl border border-white/10">
+                <div class="flex justify-between items-center text-sm font-heading font-bold">
+                    <span>Montant estimé du capital :</span>
+                    <span id="amountDisplay" class="text-xl text-butter font-extrabold">100 000 €</span>
+                </div>
+                <input type="range" id="capitalSlider" min="20000" max="500000" step="5000" value="100000" 
+                       class="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-terracotta">
+            </div>
+
+            <!-- Breakdown Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div class="bg-white/10 p-4 rounded-2xl border border-white/5">
+                    <span class="text-[11px] font-heading uppercase text-butter font-bold block">10% Conjoint(e)</span>
+                    <span id="partnerShare" class="text-lg font-bold font-heading">10 000 €</span>
+                    <p class="text-[11px] text-white/60 mt-1">Harmonie & liberté du foyer</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-2xl border border-white/5">
+                    <span class="text-[11px] font-heading uppercase text-butter font-bold block">10% Vous & Famille</span>
+                    <span id="selfShare" class="text-lg font-bold font-heading">10 000 €</span>
+                    <p class="text-[11px] text-white/60 mt-1">Voyage, auto sûre, cadeaux</p>
+                </div>
+                <div class="bg-terracotta/40 p-4 rounded-2xl border border-terracotta/50">
+                    <span class="text-[11px] font-heading uppercase text-white font-bold block">80% Protection (Temps)</span>
+                    <span id="safeShare" class="text-lg font-bold font-heading text-white">80 000 €</span>
+                    <p class="text-[11px] text-white/80 mt-1">Placements garantis 6-12 mois</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section : Que Faire de ses Journées ? -->
+        <section class="space-y-6">
+            <div class="border-b-2 border-charcoal pb-3 flex items-center justify-between">
+                <h2 class="font-heading text-2xl font-bold text-charcoal">
+                    Que Faire de ses Journées ?
+                </h2>
+                <span class="text-xs font-heading font-bold text-terracotta uppercase">
+                    Les 2 Pièges à Éviter
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-white p-6 rounded-3xl border border-charcoal/15 shadow-sm space-y-3">
+                    <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">
+                        ✕
+                    </div>
+                    <h4 class="font-heading font-bold text-base text-charcoal">Le petit boulot par ennui</h4>
+                    <p class="text-xs md:text-sm text-charcoal/70 leading-relaxed">
+                        Prendre un travail subalterne sous les ordres d'un supérieur ayant l'âge de vos enfants pour un salaire dérisoire brise votre qualité de vie. Ne travaillez que si votre expertise rare est valorisée à son juste prix.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl border border-charcoal/15 shadow-sm space-y-3">
+                    <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">
+                        ✕
+                    </div>
+                    <h4 class="font-heading font-bold text-base text-charcoal">L'intermédiaire de couloir</h4>
+                    <p class="text-xs md:text-sm text-charcoal/70 leading-relaxed">
+                        Graviter autour de son ancienne entreprise pour chercher du relationnel informel ou du lobbying est indigne de votre beau parcours. Sachez refermer ce livre avec élégance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophie Finale -->
+        <section class="bg-olive text-white rounded-3xl p-8 md:p-10 space-y-4 shadow-editorial relative overflow-hidden">
+            <div class="font-heading text-xs uppercase tracking-widest text-butter font-bold">
+                Philosophie de Vie
+            </div>
+            <h3 class="font-heading text-2xl md:text-3xl font-extrabold">
+                Créer de la Valeur plutôt que Courir après l'Argent
+            </h3>
+            <p class="font-editorial italic text-base md:text-lg text-white/90 leading-relaxed">
+                « La prospérité fuit celui qui la poursuit aveuglément, mais elle s'installe durablement chez ceux qui apportent une utilité réelle et chaleureuse à leur entourage. »
+            </p>
+            <p class="text-xs md:text-sm text-white/80 leading-relaxed pt-2 border-t border-white/10">
+                Utilisez votre temps pour transmettre votre savoir, soutenir vos enfants dans leurs projets, prendre soin de votre santé et respirer profondément chaque jour.
+            </p>
+        </section>
+
+        <!-- Section Commentaires Interactive -->
+        <section class="bg-white rounded-3xl p-7 md:p-9 border-2 border-charcoal shadow-editorial space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-charcoal/10 pb-4">
+                <div>
+                    <h3 class="font-heading text-xl font-bold text-charcoal">💬 Et vous, comment abordez-vous ce cap ?</h3>
+                    <p class="text-xs text-charcoal/60">Avez-vous déjà votre plan de transition ou préférez-vous temporiser ?</p>
+                </div>
+                
+                <!-- Bouton Clap / Like -->
+                <button id="clapButton" class="flex items-center gap-2 px-4 py-2 rounded-full bg-sand hover:bg-butter font-heading text-xs font-bold text-charcoal transition border border-charcoal/20">
+                    <span>👏 Inspirant</span>
+                    <span id="clapCount" class="bg-white px-2 py-0.5 rounded-full text-[11px] border border-charcoal/10">86</span>
+                </button>
+            </div>
+
+            <!-- Formulaire -->
+            <form id="commentForm" class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input type="text" id="userName" placeholder="Votre nom / prénom" required
+                           class="px-4 py-2.5 rounded-xl text-xs md:text-sm bg-linen border border-charcoal/20 focus:outline-none focus:border-terracotta">
+                    <input type="text" id="userComment" placeholder="Votre réflexion ou retour d'expérience..." required
+                           class="sm:col-span-2 px-4 py-2.5 rounded-xl text-xs md:text-sm bg-linen border border-charcoal/20 focus:outline-none focus:border-terracotta">
+                </div>
+                <button type="submit" class="w-full sm:w-auto px-5 py-2.5 bg-charcoal text-white font-heading text-xs font-bold rounded-xl hover:bg-olive transition shadow-sm">
+                    Partager mon avis
+                </button>
+            </form>
+
+            <!-- Liste des retours -->
+            <div id="commentStream" class="space-y-3 pt-2">
+                <div class="p-4 rounded-2xl bg-linen text-xs space-y-1 border border-charcoal/5">
+                    <div class="flex justify-between font-heading font-bold text-charcoal">
+                        <span>Alain B. (Retraité depuis 8 mois)</span>
+                        <span class="text-charcoal/40 font-normal text-[10px]">Hier</span>
+                    </div>
+                    <p class="text-charcoal/80 font-sans">
+                        La règle d'attendre 6 mois sans rien toucher est le meilleur conseil. Cela m'a évité d'investir dans une franchise douteuse proposée par une vieille connaissance !
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-charcoal/50 pb-12 font-heading space-y-2">
+            <p>© 2026 Chroniques Patrimoniales — Sagesse & Gestion de Transition.</p>
+        </footer>
+    </main>
+
+    <!-- JavaScript & Micro-interactions -->
+    <script>
+        // 1. Initialisation des icônes
+        lucide.createIcons();
+
+        // 2. Barre de lecture Scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('readingProgress').style.width = scrolled + '%';
+        });
+
+        // 3. Calculateur Interactif d'Allocation 80/20
+        const slider = document.getElementById('capitalSlider');
+        const amountDisplay = document.getElementById('amountDisplay');
+        const partnerShare = document.getElementById('partnerShare');
+        const selfShare = document.getElementById('selfShare');
+        const safeShare = document.getElementById('safeShare');
+
+        function updateCalculator(val) {
+            const num = parseInt(val, 10);
+            amountDisplay.textContent = num.toLocaleString('fr-FR') + ' €';
+            
+            const share10 = Math.round(num * 0.10);
+            const share80 = Math.round(num * 0.80);
+
+            partnerShare.textContent = share10.toLocaleString('fr-FR') + ' €';
+            selfShare.textContent = share10.toLocaleString('fr-FR') + ' €';
+            safeShare.textContent = share80.toLocaleString('fr-FR') + ' €';
+        }
+
+        slider.addEventListener('input', (e) => updateCalculator(e.target.value));
+
+        // 4. Système de Clap / Like
+        let claps = 86;
+        const clapBtn = document.getElementById('clapButton');
+        const clapCount = document.getElementById('clapCount');
+        
+        clapBtn.addEventListener('click', () => {
+            claps++;
+            clapCount.textContent = claps;
+            clapBtn.classList.add('scale-105', 'bg-butter');
+            setTimeout(() => clapBtn.classList.remove('scale-105'), 150);
+        });
+
+        // 5. Mode Lecture Zen
+        const zenBtn = document.getElementById('zenModeToggle');
+        let zenMode = false;
+        zenBtn.addEventListener('click', () => {
+            zenMode = !zenMode;
+            document.body.classList.toggle('bg-white');
+            document.body.classList.toggle('paper-grid');
+            zenBtn.classList.toggle('bg-terracotta');
+            zenBtn.classList.toggle('text-white');
+        });
+
+        // 6. Ajout dynamique de commentaires
+        const commentForm = document.getElementById('commentForm');
+        const userName = document.getElementById('userName');
+        const userComment = document.getElementById('userComment');
+        const commentStream = document.getElementById('commentStream');
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = userName.value.trim();
+            const msg = userComment.value.trim();
+
+            if (name && msg) {
+                const commentBox = document.createElement('div');
+                commentBox.className = "p-4 rounded-2xl bg-linen text-xs space-y-1 border border-charcoal/5 transition-all duration-300 transform scale-95 opacity-0";
+                commentBox.innerHTML = `
+                    <div class="flex justify-between font-heading font-bold text-charcoal">
+                        <span>${escapeHtml(name)}</span>
+                        <span class="text-charcoal/40 font-normal text-[10px]">À l'instant</span>
+                    </div>
+                    <p class="text-charcoal/80 font-sans">${escapeHtml(msg)}</p>
+                `;
+                commentStream.prepend(commentBox);
+
+                setTimeout(() => {
+                    commentBox.classList.remove('scale-95', 'opacity-0');
+                }, 10);
+
+                userName.value = '';
+                userComment.value = '';
+            }
+        });
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, m => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+            })[m]);
+        }
+    </script>
+</body>
+</html>

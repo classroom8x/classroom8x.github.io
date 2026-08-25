@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quitter la Fonction Publique : La Matrice des 5 « P »</title>
+    
+    <!-- Google Fonts: Fraunces (Editorial Cute) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Fraunces"', 'serif'],
+                    },
+                    colors: {
+                        cream: '#FDFBF7',
+                        cotton: '#FFF7F2',
+                        blush: '#FFB5A7',
+                        peach: '#FCD5CE',
+                        sage: '#98B4A6',
+                        sagedark: '#4A6B5D',
+                        lavender: '#E8E1EF',
+                        midnight: '#1E293B',
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.5rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(255, 181, 167, 0.25)',
+                        'cute': '0 20px 40px -15px rgba(152, 180, 166, 0.2)',
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom cute glow & smooth scroll */
+        .glass-cute {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #1E293B 0%, #4A6B5D 50%, #E76F51 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .heart-float {
+            animation: floatUp 0.8s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-40px) scale(1.4); }
+        }
+    </style>
+</head>
+
+<body class="bg-cream text-slate-800 font-sans antialiased selection:bg-blush selection:text-white relative min-h-screen overflow-x-hidden">
+
+    <!-- Top Reading Progress Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-peach via-blush to-sage z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- Soft Decorative Background Blobs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-peach/30 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+    <div class="fixed top-[40%] right-[-10%] w-[600px] h-[600px] bg-sage/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-[-10%] left-[20%] w-[450px] h-[450px] bg-lavender/40 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="glass-cute px-6 py-3.5 rounded-full shadow-card flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-peach to-blush flex items-center justify-center text-white shadow-sm text-sm font-bold">✨</span>
+                <span class="font-serif font-bold text-slate-800 text-lg tracking-tight">Cap & Carrière</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#test-section" class="text-xs font-semibold text-slate-600 hover:text-slate-900 bg-cotton hover:bg-peach/30 px-3.5 py-1.5 rounded-full transition-all">Test 6 Mois</a>
+                <a href="#matrice-section" class="text-xs font-bold text-sagedark bg-sage/20 hover:bg-sage/30 px-4 py-1.5 rounded-full transition-all">Matrice des 5 « P »</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 pt-10 pb-20 space-y-14">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-peach/40 text-slate-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+                <span>🌱</span> Guide Stratégique de Transition
+            </div>
+            
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight gradient-text">
+                Quitter la Fonction Publique :<br>
+                <span class="italic font-normal">Coup de Tête</span> ou <span class="underline decoration-blush decoration-wavy decoration-2">Vraie Décision ?</span>
+            </h1>
+            
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Avant de claquer la porte ou de demander une retraite anticipée, découvrez le test psychologique et la matrice stratégique des <strong>5 « P »</strong>.
+            </p>
+
+            <!-- Metadata Pill -->
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 pt-2 font-medium">
+                <span class="flex items-center gap-1.5 bg-white/70 px-3 py-1.5 rounded-full shadow-sm"><i data-lucide="clock" class="w-3.5 h-3.5 text-blush"></i> 6 min de lecture</span>
+                <span class="flex items-center gap-1.5 bg-white/70 px-3 py-1.5 rounded-full shadow-sm"><i data-lucide="compass" class="w-3.5 h-3.5 text-sage"></i> Cadres & Hauts Fonctionnaires</span>
+            </div>
+        </section>
+
+        <!-- The Reality Check Section -->
+        <section class="glass-cute p-6 sm:p-10 rounded-4xl shadow-card space-y-6">
+            <div class="flex items-start gap-4">
+                <div class="p-3 bg-blush/20 text-blush rounded-2xl shrink-0">
+                    <i data-lucide="sparkles" class="w-6 h-6 text-rose-500"></i>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="font-serif text-xl sm:text-2xl font-bold text-slate-800">Bonjour à toutes et à tous 👋</h2>
+                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                        C'est une situation que rencontrent un jour ou l'autre de nombreux cadres supérieurs, hauts fonctionnaires ou directeurs d'entreprises publiques :
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pain point pills -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+                <div class="flex items-center gap-3 p-3.5 bg-cotton rounded-2xl border border-peach/30 transition-all hover:bg-white hover:shadow-sm">
+                    <span class="w-8 h-8 rounded-xl bg-peach/40 flex items-center justify-center text-sm">⛔</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-700">Une promotion qui vous échappe</span>
+                </div>
+                <div class="flex items-center gap-3 p-3.5 bg-cotton rounded-2xl border border-peach/30 transition-all hover:bg-white hover:shadow-sm">
+                    <span class="w-8 h-8 rounded-xl bg-peach/40 flex items-center justify-center text-sm">⏳</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-700">Sentiment de stagnation & lassitude</span>
+                </div>
+                <div class="flex items-center gap-3 p-3.5 bg-cotton rounded-2xl border border-peach/30 transition-all hover:bg-white hover:shadow-sm">
+                    <span class="w-8 h-8 rounded-xl bg-peach/40 flex items-center justify-center text-sm">👤</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-700">Un supérieur plus jeune qui prend les commandes</span>
+                </div>
+                <div class="flex items-center gap-3 p-3.5 bg-cotton rounded-2xl border border-peach/30 transition-all hover:bg-white hover:shadow-sm">
+                    <span class="w-8 h-8 rounded-xl bg-peach/40 flex items-center justify-center text-sm">🚂</span>
+                    <span class="text-xs sm:text-sm font-medium text-slate-700">Épuisement des mutations & éloignement</span>
+                </div>
+            </div>
+
+            <div class="p-4 bg-amber-50/70 border-l-4 border-amber-400 rounded-r-2xl text-xs sm:text-sm text-amber-900 leading-relaxed">
+                <strong>Attention règle d'or :</strong> Ne prenez jamais une décision de vie définitive sur la base d'une émotion temporaire.
+            </div>
+        </section>
+
+        <!-- Test des 6 Mois -->
+        <section id="test-section" class="bg-gradient-to-br from-white via-cotton to-peach/20 p-6 sm:p-10 rounded-5xl border border-peach/40 shadow-soft space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-peach/30 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-rose-500 uppercase tracking-widest">Test Psychologique Révélateur</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-800 mt-1">Le Test des 6 Mois 🌿</h2>
+                </div>
+                <span class="self-start sm:self-auto px-3 py-1 bg-blush/20 text-rose-700 text-xs font-bold rounded-full">Égo blessé vs Vrai besoin</span>
+            </div>
+
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Si votre envie de départ est née d'un refus de promotion ou d'un orgueil froissé, <strong>faites cette simulation concrète</strong> pendant les 6 prochains mois en augmentant délibérément votre confort de vie personnel :
+            </p>
+
+            <!-- 4 Comfort Steps Checklist -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-4 bg-white/90 rounded-3xl border border-slate-100 shadow-sm flex items-start gap-3.5">
+                    <span class="p-2.5 bg-sage/10 text-sagedark rounded-2xl">🚗</span>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Chauffeur Privé</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">En tenue impeccable pour vos déplacements quotidiens.</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white/90 rounded-3xl border border-slate-100 shadow-sm flex items-start gap-3.5">
+                    <span class="p-2.5 bg-peach/30 text-rose-700 rounded-2xl">🍳</span>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Cuisinier à Domicile</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Soignez la qualité et la présentation de chaque repas.</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white/90 rounded-3xl border border-slate-100 shadow-sm flex items-start gap-3.5">
+                    <span class="p-2.5 bg-lavender text-purple-700 rounded-2xl">👔</span>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Rénovation Garde-Robe</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Des pièces d'exception pour vous et votre conjoint(e).</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white/90 rounded-3xl border border-slate-100 shadow-sm flex items-start gap-3.5">
+                    <span class="p-2.5 bg-amber-100 text-amber-800 rounded-2xl">🏡</span>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Embellissement du Foyer</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Transformez votre maison et soignez votre jardin.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnosis Card -->
+            <div class="p-5 sm:p-6 bg-sagedark text-white rounded-3xl space-y-2 shadow-cute">
+                <div class="flex items-center gap-2 text-peach font-bold text-xs uppercase tracking-wider">
+                    <i data-lucide="stethoscope" class="w-4 h-4"></i> Le Diagnostic Après 6 Mois
+                </div>
+                <p class="text-xs sm:text-sm leading-relaxed text-slate-100">
+                    💡 <strong>Votre amertume s'est dissipée ?</strong> Votre malaise n'était qu'une crise d'estime personnelle et un besoin de reconnaissance. Conservez votre poste et savourez ce confort.<br>
+                    ⚡ <strong>Le dégoût persiste ?</strong> Alors seulement, engagez sereinement un plan de départ.
+                </p>
+            </div>
+        </section>
+
+        <!-- Matrice des 5 P (Core Section) -->
+        <section id="matrice-section" class="space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-sagedark uppercase tracking-widest bg-sage/20 px-3.5 py-1 rounded-full">Le Cadre Décisionnel</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-800">La Matrice des 5 « P » 🎯</h2>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto">
+                    Cochez chaque voyant validé pour calculer en direct votre indice de sérénité avant de démissionner.
+                </p>
+            </div>
+
+            <!-- Live Score Card -->
+            <div class="glass-cute p-5 rounded-3xl shadow-card flex flex-col sm:flex-row items-center justify-between gap-4 border border-sage/40">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-sagedark text-white flex items-center justify-center font-bold text-lg" id="score-display">0/5</div>
+                    <div>
+                        <div class="text-sm font-bold text-slate-800">Indice de Sécurité de Départ</div>
+                        <div class="text-xs text-slate-500" id="score-text">Cochez vos piliers ci-dessous</div>
+                    </div>
+                </div>
+                <div class="w-full sm:w-48 bg-slate-100 h-3 rounded-full overflow-hidden p-0.5 border border-slate-200">
+                    <div id="score-bar" class="bg-gradient-to-r from-peach to-sagedark h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- The 5 Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <!-- P1: Le Partenaire -->
+                <div class="p-6 bg-white rounded-4xl border border-slate-100 shadow-card hover:shadow-soft transition-all space-y-4 relative">
+                    <div class="flex justify-between items-start">
+                        <span class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center font-serif font-bold text-lg">1</span>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="p-checkbox w-5 h-5 rounded-lg accent-sagedark cursor-pointer" onchange="updateScore()">
+                            <span class="text-xs font-bold text-slate-400 select-none">Validé ?</span>
+                        </label>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-lg font-bold text-slate-800">1. Le Partenaire (Conjoint/Épouse)</h3>
+                        <p class="text-xs text-rose-500 font-semibold mt-0.5">Le pilier central de l'équation</p>
+                    </div>
+                    <ul class="text-xs sm:text-sm text-slate-600 space-y-2 leading-relaxed list-disc list-inside">
+                        <li>Est-elle/il <strong>100 % aligné(e)</strong> ou partez-vous en solitaire par amertume ?</li>
+                        <li>Dispose-t-elle/il d'un revenu stable et indépendant ?</li>
+                        <li>Accepte-t-elle/il un déménagement éventuel sans fracture familiale ?</li>
+                    </ul>
+                    <div class="text-[11px] bg-rose-50 text-rose-700 p-2.5 rounded-xl">
+                        ⚠️ Sans soutien inconditionnel, le départ devient un enfer domestique.
+                    </div>
+                </div>
+
+                <!-- P2: Le Patrimoine -->
+                <div class="p-6 bg-white rounded-4xl border border-slate-100 shadow-card hover:shadow-soft transition-all space-y-4">
+                    <div class="flex justify-between items-start">
+                        <span class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-serif font-bold text-lg">2</span>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="p-checkbox w-5 h-5 rounded-lg accent-sagedark cursor-pointer" onchange="updateScore()">
+                            <span class="text-xs font-bold text-slate-400 select-none">Validé ?</span>
+                        </label>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-lg font-bold text-slate-800">2. Le Patrimoine Familial</h3>
+                        <p class="text-xs text-amber-600 font-semibold mt-0.5">Le filet de sécurité</p>
+                    </div>
+                    <ul class="text-xs sm:text-sm text-slate-600 space-y-2 leading-relaxed list-disc list-inside">
+                        <li>Vos parents dépendent-ils entièrement de votre salaire ?</li>
+                        <li>Avez-vous des études supérieures à financer dans les 3 ans ?</li>
+                    </ul>
+                    <div class="text-[11px] bg-amber-50 text-amber-800 p-2.5 rounded-xl">
+                        💡 Si vos charges familiales sont à leur pic, ne coupez pas vos rentrées principales.
+                    </div>
+                </div>
+
+                <!-- P3: La Propriété -->
+                <div class="p-6 bg-white rounded-4xl border border-slate-100 shadow-card hover:shadow-soft transition-all space-y-4">
+                    <div class="flex justify-between items-start">
+                        <span class="w-10 h-10 rounded-2xl bg-emerald-100 text-sagedark flex items-center justify-center font-serif font-bold text-lg">3</span>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="p-checkbox w-5 h-5 rounded-lg accent-sagedark cursor-pointer" onchange="updateScore()">
+                            <span class="text-xs font-bold text-slate-400 select-none">Validé ?</span>
+                        </label>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-lg font-bold text-slate-800">3. La Propriété Immobilière</h3>
+                        <p class="text-xs text-sagedark font-semibold mt-0.5">Un toit sans loyer</p>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <strong>Règle d'or :</strong> Avoir sa résidence principale entièrement payée. Restituer un logement de fonction pour payer 1 500 € à 2 000 € de loyer fera fondre votre capital à une vitesse alarmante.
+                    </p>
+                </div>
+
+                <!-- P4: La Pension -->
+                <div class="p-6 bg-white rounded-4xl border border-slate-100 shadow-card hover:shadow-soft transition-all space-y-4">
+                    <div class="flex justify-between items-start">
+                        <span class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-serif font-bold text-lg">4</span>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="p-checkbox w-5 h-5 rounded-lg accent-sagedark cursor-pointer" onchange="updateScore()">
+                            <span class="text-xs font-bold text-slate-400 select-none">Validé ?</span>
+                        </label>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-lg font-bold text-slate-800">4. La Pension & Droits Acquis</h3>
+                        <p class="text-xs text-blue-600 font-semibold mt-0.5">Calculs au centime près</p>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Quel sera le <strong>montant net réel après impôts</strong> ? Déduisez vos crédits en cours. Basez-vous uniquement sur les chiffres garantis, sans projection optimiste.
+                    </p>
+                </div>
+
+                <!-- P5: Le Projet Pro (Full Width) -->
+                <div class="p-6 bg-white rounded-4xl border border-slate-100 shadow-card hover:shadow-soft transition-all space-y-4 md:col-span-2">
+                    <div class="flex justify-between items-start">
+                        <span class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center font-serif font-bold text-lg">5</span>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="p-checkbox w-5 h-5 rounded-lg accent-sagedark cursor-pointer" onchange="updateScore()">
+                            <span class="text-xs font-bold text-slate-400 select-none">Validé ?</span>
+                        </label>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-bold text-slate-800">5. Le Projet Professionnel (Le choc du privé)</h3>
+                        <p class="text-xs text-purple-600 font-semibold mt-0.5">L'illusion vs La réalité du terrain</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 bg-slate-50 rounded-2xl border-l-4 border-slate-300">
+                            <span class="font-bold text-xs text-slate-700 uppercase tracking-wider">L'Illusion</span>
+                            <p class="text-xs text-slate-600 mt-1">Penser qu'une formation de 6 mois suffit pour décrocher un poste de direction prestigieux après 20 ans d'administration.</p>
+                        </div>
+                        <div class="p-4 bg-rose-50/60 rounded-2xl border-l-4 border-blush">
+                            <span class="font-bold text-xs text-rose-800 uppercase tracking-wider">La Réalité</span>
+                            <p class="text-xs text-slate-600 mt-1">Se retrouver sous les ordres d'un manager de 32 ans exigeant des tableaux Excel quotidiens, sans égards hiérarchiques.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bonus 6e P -->
+            <div class="p-6 sm:p-8 bg-gradient-to-r from-sage/20 via-cotton to-peach/30 rounded-4xl border border-sage/30 space-y-3">
+                <div class="flex items-center gap-2 text-sagedark font-bold text-sm">
+                    <span class="px-2.5 py-1 bg-white rounded-lg shadow-sm text-xs font-black">6ᵉ « P » BONUS</span>
+                    <span>Les Passifs & Le Plan de 3 à 4 Ans ⏳</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Soldez tous vos passifs en priorité. Préparez votre transition sur <strong>3 à 4 ans minimum</strong> : développez votre réseau, monétisez une compétence réelle et constituez <strong>2 ans d'épargne de sécurité</strong> avant de signer votre départ.
+                </p>
+            </div>
+        </section>
+
+        <!-- Le Paradoxe de la Piscine -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-rose-500 uppercase tracking-widest bg-rose-100/60 px-3.5 py-1 rounded-full">Synthèse Finale</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-800">Le Paradoxe de la Piscine 🏊‍♂️</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Sous l'eau -->
+                <div class="p-6 sm:p-8 bg-rose-50/80 rounded-4xl border border-rose-200/60 space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center text-xl shadow-sm">🌊</div>
+                    <h3 class="font-serif text-xl font-bold text-rose-900">Ceux qui sont sous l'eau et étouffent</h3>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Quelqu'un qui se noie ne demande pas de plan d'action : il donne tout ce qu'il a pour remonter à la surface et respirer.
+                    </p>
+                    <div class="p-3 bg-white/80 rounded-2xl text-xs font-bold text-rose-700">
+                        ➡️ Si votre poste détruit votre santé physique ou mentale : partez sans hésiter.
+                    </div>
+                </div>
+
+                <!-- Hésitants -->
+                <div class="p-6 sm:p-8 bg-emerald-50/80 rounded-4xl border border-emerald-200/60 space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sagedark text-white flex items-center justify-center text-xl shadow-sm">⚖️</div>
+                    <h3 class="font-serif text-xl font-bold text-sagedark">Ceux qui hésitent et analysent</h3>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        Si vous pesez le pour et le contre, votre situation reste supportable. Ne partez pas sur un coup d'orgueil mal placé.
+                    </p>
+                    <div class="p-3 bg-white/80 rounded-2xl text-xs font-bold text-sagedark">
+                        ➡️ Structurez vos 5 « P », blindez vos arrières et négociez en position de force.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Engagement & Comments Section -->
+        <section class="glass-cute p-6 sm:p-10 rounded-5xl shadow-card space-y-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-100 pb-6 text-center sm:text-left">
+                <div class="space-y-1">
+                    <h3 class="font-serif text-2xl font-bold text-slate-800">Donnez votre point de vue 💬</h3>
+                    <p class="text-xs sm:text-sm text-slate-500">Avez-vous déjà franchi le pas ? Partagez vos défis ci-dessous.</p>
+                </div>
+                
+                <!-- Cute Like Button -->
+                <button id="like-btn" onclick="handleLike(event)" class="relative inline-flex items-center gap-2 bg-gradient-to-r from-peach to-blush hover:opacity-90 text-slate-800 font-bold px-6 py-3 rounded-full shadow-soft transition-all transform active:scale-95">
+                    <span id="heart-icon">❤️</span>
+                    <span id="like-count">142</span>
+                    <span class="text-xs font-semibold">J'aime</span>
+                </button>
+            </div>
+
+            <!-- Comment Input Box -->
+            <form id="comment-form" onsubmit="addComment(event)" class="space-y-3">
+                <div class="flex gap-3">
+                    <input type="text" id="author-name" placeholder="Votre nom ou pseudo..." required class="w-1/3 text-xs sm:text-sm bg-cotton border border-peach/40 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blush">
+                    <input type="text" id="comment-text" placeholder="Partagez votre expérience ou posez une question..." required class="w-2/3 text-xs sm:text-sm bg-cotton border border-peach/40 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blush">
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-sagedark hover:bg-slate-800 text-white font-bold text-xs px-6 py-3 rounded-full transition-all flex items-center gap-2 shadow-sm">
+                        <span>Publier mon avis</span>
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Comments Stream -->
+            <div id="comments-list" class="space-y-3.5 pt-2">
+                <!-- Static Sample Comment -->
+                <div class="p-4 bg-white rounded-3xl border border-slate-100 flex items-start gap-3.5 shadow-sm">
+                    <div class="w-9 h-9 rounded-2xl bg-peach/40 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">JD</div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-800">Jean-Daniel M.</span>
+                            <span class="text-[10px] text-slate-400">Il y a 2 heures</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Le point n°5 sur le "choc de réalité du privé" est criant de vérité. J'ai vu trop d'anciens sous-préfets ou directeurs déchanter en cabinet de conseil. Préparez vos arrières !
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-slate-400 text-xs border-t border-slate-200/60 max-w-4xl mx-auto">
+        <p>✨ Cap & Carrière — Analyse décisionnelle & transition des cadres publics.</p>
+    </footer>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Reading Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // 2. Interactive 5P Matrix Score Calculator
+        function updateScore() {
+            const checkboxes = document.querySelectorAll('.p-checkbox');
+            let count = 0;
+            checkboxes.forEach(cb => { if(cb.checked) count++; });
+
+            const scoreDisplay = document.getElementById('score-display');
+            const scoreText = document.getElementById('score-text');
+            const scoreBar = document.getElementById('score-bar');
+
+            scoreDisplay.innerText = `${count}/5`;
+            scoreBar.style.width = `${(count / 5) * 100}%`;
+
+            if(count === 0) {
+                scoreText.innerText = "Cochez vos piliers ci-dessous";
+            } else if(count <= 2) {
+                scoreText.innerText = "🚨 Zone Rouge : Départ très risqué";
+            } else if(count <= 4) {
+                scoreText.innerText = "⚠️ Zone Orange : Consolidez vos points faibles";
+            } else {
+                scoreText.innerText = "🟢 Zone Verte : Feux au vert pour négocier !";
+            }
+        }
+
+        // 3. Cute Like Button Animation
+        let likes = 142;
+        let liked = false;
+        function handleLike(e) {
+            if(!liked) {
+                likes++;
+                liked = true;
+                document.getElementById('like-count').innerText = likes;
+                
+                // Floating heart effect
+                const heart = document.createElement('span');
+                heart.innerHTML = '💖';
+                heart.className = 'absolute heart-float pointer-events-none text-xl';
+                heart.style.left = '50%';
+                heart.style.top = '0';
+                e.currentTarget.appendChild(heart);
+                setTimeout(() => heart.remove(), 800);
+            }
+        }
+
+        // 4. Dynamic Comment Submission
+        function addComment(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('author-name');
+            const textInput = document.getElementById('comment-text');
+            const list = document.getElementById('comments-list');
+
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+            if(!name || !text) return;
+
+            // Generate initials
+            const initials = name.slice(0, 2).toUpperCase();
+
+            const commentCard = document.createElement('div');
+            commentCard.className = 'p-4 bg-white rounded-3xl border border-slate-100 flex items-start gap-3.5 shadow-sm transition-all animate-fadeIn';
+            commentCard.innerHTML = `
+                <div class="w-9 h-9 rounded-2xl bg-sagedark text-white flex items-center justify-center font-bold text-xs shrink-0">${initials}</div>
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-800">${name}</span>
+                        <span class="text-[10px] text-slate-400">À l'instant</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">${text}</p>
+                </div>
+            `;
+
+            list.prepend(commentCard);
+            nameInput.value = '';
+            textInput.value = '';
+        }
+    </script>
+</body>
+</html>

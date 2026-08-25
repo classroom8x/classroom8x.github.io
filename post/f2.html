@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fonction Publique : Les 7 Vérités qui Dérangent (2021-2055)</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Syne & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Confetti library for interaction -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+          },
+          colors: {
+            matcha: {
+              50: '#F4F8F4',
+              100: '#E4EFE5',
+              200: '#C7DEC9',
+              500: '#2D6A4F',
+              700: '#1B4332',
+              800: '#081C15',
+            },
+            papaya: {
+              50: '#FFF5F0',
+              100: '#FFE6DC',
+              300: '#FF9E80',
+              500: '#FF6B4A',
+            },
+            butter: '#FAF6ED',
+            cardBg: '#FFFFFF',
+          },
+          boxShadow: {
+            'cute': '0 12px 30px -8px rgba(45, 106, 79, 0.08)',
+            'cute-hover': '0 18px 40px -10px rgba(255, 107, 74, 0.15)',
+            'pill': '0 4px 14px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #FAF6ED; }
+    ::-webkit-scrollbar-thumb { background: #C7DEC9; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2D6A4F; }
+
+    .glow-tag {
+      box-shadow: 0 0 15px rgba(255, 107, 74, 0.15);
+    }
+  </style>
+</head>
+
+<body class="bg-butter text-slate-800 font-sans antialiased selection:bg-papaya-300 selection:text-white">
+
+  <!-- Reading Progress Bar -->
+  <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-matcha-500 via-papaya-500 to-amber-400 z-50 transition-all duration-150 w-0"></div>
+
+  <!-- Decorative Floating Blobs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-24 right-10 w-96 h-96 bg-matcha-100/60 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -left-20 w-80 h-80 bg-papaya-100/70 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-5 w-72 h-72 bg-amber-100/50 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Top Floating Navbar -->
+  <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+    <div class="bg-white/85 backdrop-blur-md border border-matcha-200/60 rounded-full px-5 py-3 flex items-center justify-between shadow-cute">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-full bg-matcha-500 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+          02
+        </span>
+        <div class="leading-tight">
+          <p class="text-xs font-bold text-slate-900 font-display">Série Carrière & Héritage</p>
+          <p class="text-[10px] text-slate-400 font-medium">Édition 2021 — 2055</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="#duelSection" class="hidden sm:inline-flex text-xs font-semibold px-3 py-1.5 rounded-full bg-matcha-50 text-matcha-700 hover:bg-matcha-100 transition-colors">
+          🦁 Le Duel Métaphorique
+        </a>
+        <button onclick="copyArticleLink()" class="text-xs font-bold px-4 py-1.5 rounded-full bg-papaya-500 text-white hover:bg-papaya-500/90 transition-all glow-tag flex items-center gap-1.5 shadow-sm">
+          <span>🔗 Partager</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Wrapper -->
+  <main class="relative z-10 max-w-3xl mx-auto px-5 pt-10 pb-28">
+
+    <!-- Hero Header -->
+    <section class="text-center space-y-5 mb-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-papaya-100 text-papaya-500 rounded-full text-xs font-extrabold tracking-wide uppercase">
+        <span>🔥 Débat Sans Filtre</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] tracking-tight">
+        Emplois Publics : Faut-il Encore Pousser Vos Enfants vers la Fonction Publique ?
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Les <strong>7 vérités qui dérangent</strong> pour la classe moyenne et supérieure dans le cycle économique 2021–2055.
+      </p>
+
+      <div class="flex items-center justify-center gap-2 text-xs text-slate-500 pt-1">
+        <span class="bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">⏱️ 6 min de lecture</span>
+        <span class="bg-white border border-slate-200 px-3 py-1 rounded-full shadow-sm">👨‍👩‍👧‍👦 Spécial Parents & Étudiants</span>
+      </div>
+    </section>
+
+    <!-- Exception Callout (Forces Armées / Uniformes) -->
+    <div class="bg-gradient-to-r from-matcha-50 to-white border-2 border-dashed border-matcha-200 rounded-3xl p-6 sm:p-7 shadow-cute mb-12">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-2xl bg-matcha-500 text-white flex items-center justify-center text-lg shrink-0 shadow-sm">
+          🎖️
+        </div>
+        <div class="space-y-1.5 text-xs sm:text-sm">
+          <strong class="font-display font-bold text-matcha-800 text-sm sm:text-base block">
+            Une exception sacrée : Armée & Métiers en uniforme
+          </strong>
+          <p class="text-slate-600 leading-relaxed">
+            Clarifions d'emblée : servir sous les drapeaux pour défendre la nation est une <strong>vocation et un devoir</strong>, non un simple calcul de carrière. Cet article s'adresse à tout le reste de l'appareil administratif : de l'employé de bureau aux directeurs de ministères.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The 7 Truths Grid / List -->
+    <div class="space-y-8">
+
+      <!-- Vérité 1 -->
+      <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-cute hover:shadow-cute-hover transition-all">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-matcha-100 text-matcha-700 font-display font-bold flex items-center justify-center text-sm">01</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">La réalité statistique : La fin de votre avantage</h2>
+        </div>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
+          Il y a 25 ans, le milieu aisé garantissait un avantage : manuels rares, cours particuliers exclusifs. Aujourd'hui, <strong>Internet et YouTube ont tout démocratisé</strong>. Le nombre de places stagne ou baisse, tandis que le nombre de prétendants a explosé.
+        </p>
+        <div class="bg-matcha-50/70 border border-matcha-100 rounded-2xl p-4 text-xs sm:text-sm space-y-2">
+          <p class="text-matcha-800 font-semibold">⚡ La rage au ventre vs Le confort :</p>
+          <p class="text-slate-600">
+            Un jeune sans filet de sécurité étudie 16 à 18h par jour car il joue sa survie familiale. Votre enfant, élevé dans un cocon stable, n'a pas cette faim destructrice — <em>et c'est une excellente chose pour sa santé mentale !</em> Le forcer à ce combat d'usure est une erreur stratégique.
+          </p>
+        </div>
+      </article>
+
+      <!-- Vérité 2 -->
+      <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-cute hover:shadow-cute-hover transition-all">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-papaya-100 text-papaya-500 font-display font-bold flex items-center justify-center text-sm">02</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">Le sacrifice des meilleures années (Le piège des 22-28 ans)</h2>
+        </div>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
+          Échec aux écrits, admission l'année d'après, recalé à l'oral, retour à la case départ... Des milliers de jeunes passent leurs plus belles années isolés dans une chambre à tenter 4 à 6 fois le même concours sans acquérir d'expérience de marché.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-100 text-xs">
+            <span class="font-bold text-slate-700 block mb-1">Pour une famille modeste :</span>
+            Une réussite héroïque qui modifie le statut de toute une lignée.
+          </div>
+          <div class="p-3.5 bg-rose-50 rounded-2xl border border-rose-100 text-xs">
+            <span class="font-bold text-rose-800 block mb-1">Pour l'enfant d'un cadre :</span>
+            Une simple stagnation statutaire qui aura coûté le quart de sa jeunesse.
+          </div>
+        </div>
+      </article>
+
+      <!-- Vérité 3 -->
+      <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-cute hover:shadow-cute-hover transition-all">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 font-display font-bold flex items-center justify-center text-sm">03</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">La fin du « Prestige » et du pouvoir discrétionnaire</h2>
+        </div>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-3">
+          Le mythe du haut fonctionnaire omnipotent s'est effondré avec le passage au XXIe siècle :
+        </p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+          <li class="flex items-center gap-2">
+            <span class="text-papaya-500">❌</span>
+            <span><strong>Retraites et régimes spéciaux rabotés :</strong> Moins de garanties exorbitantes.</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-papaya-500">❌</span>
+            <span><strong>Numérisation & transparence :</strong> Les autorisations et démarches jadis délivrées au bon vouloir d'un bureaucrate sont désormais automatisées.</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Vérité 4 & 5 Bento Row -->
+      <div class="grid sm:grid-cols-2 gap-6">
+        <!-- Vérité 4 -->
+        <article class="bg-white rounded-3xl p-6 border border-slate-200/70 shadow-cute flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-display font-bold flex items-center justify-center text-xs">04</span>
+              <h3 class="font-display font-bold text-lg text-slate-900">Sacrifice familial</h3>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+              Mutations géographiques forcées, conjoints contraints de démissionner, stress des dossiers de rapprochement d'époux... L'ascension administrative fragilise la stabilité du foyer.
+            </p>
+          </div>
+          <span class="text-[11px] font-bold text-papaya-500 bg-papaya-50 px-3 py-1 rounded-full self-start">Vie personnelle bridée 💔</span>
+        </article>
+
+        <!-- Vérité 5 -->
+        <article class="bg-white rounded-3xl p-6 border border-slate-200/70 shadow-cute flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-display font-bold flex items-center justify-center text-xs">05</span>
+              <h3 class="font-display font-bold text-lg text-slate-900">Coût d'opportunité</h3>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+              Pendant que votre enfant est coincé par des grilles indiciaires figées, un profil agile et compétent dans la nouvelle économie peut démultiplier ses revenus et bâtir des actifs dès 22 ans.
+            </p>
+          </div>
+          <span class="text-[11px] font-bold text-matcha-700 bg-matcha-50 px-3 py-1 rounded-full self-start">Grille indiciaire fermée 🔒</span>
+        </article>
+      </div>
+
+      <!-- Vérité 6 -->
+      <article class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-cute hover:shadow-cute-hover transition-all">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-display font-bold flex items-center justify-center text-sm">06</span>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">Une qualité de vie matérielle paradoxale</h2>
+        </div>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Logements de fonction souvent vétustes, mal isolés et onéreux à réaménager à titre personnel... Sur le papier, le statut paraît prestigieux ; dans les faits, le confort matériel quotidien est souvent bien en deçà des standards du secteur privé moderne.
+        </p>
+      </article>
+
+      <!-- Vérité 7 : INTERACTIVE DUEL SECTION -->
+      <article id="duelSection" class="bg-gradient-to-br from-slate-900 via-matcha-800 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl overflow-hidden relative">
+        <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-papaya-500 text-white font-display font-bold flex items-center justify-center text-sm">07</span>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-white">Le Duel des Lions : Cirque vs Savane</h2>
+          </div>
+          <span class="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/15">Cliquez pour comparer 👇</span>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <!-- Lion de Cirque Card -->
+          <div onclick="selectLion('circus')" id="cardCircus" class="cursor-pointer bg-white/10 hover:bg-white/15 border-2 border-white/20 p-5 rounded-2xl transition-all">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">🎪</span>
+              <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-rose-500/30 text-rose-200">Fonction Publique</span>
+            </div>
+            <h3 class="font-display font-bold text-base mb-1">Le Lion de Cirque</h3>
+            <ul class="text-xs text-slate-300 space-y-1.5 pt-2">
+              <li>🍖 <strong>Repas garantis :</strong> Mange à heure fixe chaque jour.</li>
+              <li>⛓️ <strong>Contraintes :</strong> Doit obéir au dompteur, subit les mutations et la hiérarchie sans issue.</li>
+              <li>🛑 <strong>Dépendance totale</strong> au système.</li>
+            </ul>
+          </div>
+
+          <!-- Lion de Savane Card -->
+          <div onclick="selectLion('savannah')" id="cardSavannah" class="cursor-pointer bg-white/10 hover:bg-white/15 border-2 border-transparent p-5 rounded-2xl transition-all">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">🦁</span>
+              <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-200">Économie Libre</span>
+            </div>
+            <h3 class="font-display font-bold text-base mb-1">Le Lion de la Jungle</h3>
+            <ul class="text-xs text-slate-300 space-y-1.5 pt-2">
+              <li>🎯 <strong>Doit chasser :</strong> Risque assumé, mais récompense proportionnelle à l'effort.</li>
+              <li>🌿 <strong>Liberté absolue :</strong> Si un territoire s'assèche, il migre en 1 mois.</li>
+              <li>🚀 <strong>Agilité et souveraineté</strong> personnelle.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="lionFeedback" class="mt-4 p-3 bg-white/5 border border-white/10 rounded-xl text-center text-xs text-slate-200">
+          👉 <em>Question : Voulez-vous élever un lion nourri mais captif, ou un félin agile et autonome ?</em>
+        </div>
+      </article>
+
+      <!-- Conclusion & Passer le Relais -->
+      <section class="bg-gradient-to-br from-papaya-50 via-white to-matcha-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-cute space-y-4">
+        <h2 class="font-display text-2xl font-extrabold text-slate-900">
+          En conclusion : Laissez la place à ceux qui en ont besoin
+        </h2>
+        <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+          Si votre famille a déjà sécurisé son capital économique et social, laissez ces concours aux jeunes pour qui l'emploi public représente l'unique tremplin d'émancipation. Pour eux, c’est une bénédiction vitale ; pour votre enfant, c’est une <strong>cage dorée</strong>.
+        </p>
+        
+        <!-- Next Episode Sneak Peek -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 flex items-start gap-3 mt-4">
+          <span class="text-xl">🔜</span>
+          <div>
+            <strong class="text-xs font-bold text-slate-900 uppercase tracking-wide block">Prochain Épisode :</strong>
+            <p class="text-xs text-slate-600 mt-0.5">
+              La nouvelle économie (Freelancing, Gig Economy, compétences à fort levier) : Comment générer des revenus solides dès 18-20 ans sans attendre 28 ans.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Interactive Parent Check: Mini Diagnostic -->
+    <section class="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-cute">
+      <div class="text-center max-w-md mx-auto mb-6">
+        <span class="text-2xl">🧭</span>
+        <h3 class="font-display text-xl font-bold text-slate-900 mt-1">Mini-Test : Cage Dorée ou Tremplin ?</h3>
+        <p class="text-xs text-slate-500">Cochez votre situation pour un conseil stratégique instantané.</p>
+      </div>
+
+      <div class="space-y-2.5 max-w-md mx-auto">
+        <label class="flex items-center gap-3 p-3 bg-slate-50 hover:bg-matcha-50 rounded-xl cursor-pointer text-xs font-semibold text-slate-700 border border-slate-200/60 transition-colors">
+          <input type="checkbox" id="check1" onchange="calcAdvice()" class="w-4 h-4 rounded text-matcha-500 focus:ring-0">
+          <span>Ma famille a déjà un patrimoine / logement sécurisé</span>
+        </label>
+        <label class="flex items-center gap-3 p-3 bg-slate-50 hover:bg-matcha-50 rounded-xl cursor-pointer text-xs font-semibold text-slate-700 border border-slate-200/60 transition-colors">
+          <input type="checkbox" id="check2" onchange="calcAdvice()" class="w-4 h-4 rounded text-matcha-500 focus:ring-0">
+          <span>Mon enfant est à l'aise avec le digital et l'apprentissage rapide</span>
+        </label>
+        <label class="flex items-center gap-3 p-3 bg-slate-50 hover:bg-matcha-50 rounded-xl cursor-pointer text-xs font-semibold text-slate-700 border border-slate-200/60 transition-colors">
+          <input type="checkbox" id="check3" onchange="calcAdvice()" class="w-4 h-4 rounded text-matcha-500 focus:ring-0">
+          <span>Nous recherchons l'agilité et l'indépendance géographique</span>
+        </label>
+      </div>
+
+      <div id="adviceResult" class="mt-5 p-3.5 bg-matcha-100/70 border border-matcha-200 text-matcha-800 rounded-2xl text-center text-xs font-bold hidden">
+        🎯 Recommandation : Foncez vers l'entrepreneuriat & les compétences de marché. Évitez les concours administratifs !
+      </div>
+    </section>
+
+    <!-- Interactive Community & Comments Section -->
+    <section class="mt-14 space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display text-xl font-bold text-slate-900">
+          Débat & Avis (<span id="countComments">2</span>)
+        </h3>
+        <button onclick="triggerDebateConfetti()" class="text-xs font-bold px-3 py-1.5 bg-white border border-slate-200 rounded-full shadow-sm hover:border-papaya-500 transition-all">
+          🔥 Soutenir le débat
+        </button>
+      </div>
+
+      <!-- Quick Poll -->
+      <div class="bg-slate-900 text-white p-5 rounded-3xl space-y-3">
+        <p class="text-xs font-semibold text-slate-300">Votre verdict rapide :</p>
+        <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+          <button onclick="vote('state')" class="p-3 bg-white/10 hover:bg-white/20 rounded-xl border border-white/10 text-center transition-all">
+            🏛️ La Stabilité d'abord
+          </button>
+          <button onclick="vote('lion')" class="p-3 bg-papaya-500 hover:bg-papaya-500/90 rounded-xl text-center text-white transition-all shadow-sm">
+            🦁 Liberté & Marché
+          </button>
+        </div>
+        <div id="voteStats" class="hidden text-center text-[11px] text-slate-400 pt-1 font-medium">
+          Merci pour votre vote ! 🎉 78% des lecteurs ont voté « Liberté & Marché ».
+        </div>
+      </div>
+
+      <!-- Add Comment Form -->
+      <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200/80 shadow-sm space-y-3">
+        <input id="userName" type="text" placeholder="Votre nom ou profession..." class="w-full px-4 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-matcha-500">
+        <textarea id="userMsg" rows="2" placeholder="Partagez votre point de vue sur la fonction publique..." class="w-full px-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-matcha-500 resize-none"></textarea>
+        <div class="flex justify-end">
+          <button onclick="addComment()" class="px-5 py-2 bg-matcha-500 hover:bg-matcha-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all">
+            Publier ma réaction
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed -->
+      <div id="commentsList" class="space-y-3">
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-matcha-100 text-matcha-700 flex items-center justify-center font-bold text-xs shrink-0">P</div>
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-800">Pierre D. (Ex-Attaché d'administration)</span>
+              <span class="text-[10px] text-slate-400">Il y a 1h</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600">Le point sur les 22-28 ans est cruellement vrai. J'ai vu trop d'amis brillants perdre leur flamme dans les chambres d'internat.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-papaya-100 text-papaya-500 flex items-center justify-center font-bold text-xs shrink-0">E</div>
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-800">Elena R.</span>
+              <span class="text-[10px] text-slate-400">Il y a 3h</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600">La métaphore du Lion de cirque vs Jungle résume tout. Vivement l'article sur la Gig Economy et les compétences modernes !</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-xl text-xs font-semibold translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+    <span>✨</span>
+    <span id="toastText">Lien de l'article copié !</span>
+  </div>
+
+  <!-- JavaScript Functions -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('readProgress').style.width = scrolled + '%';
+    });
+
+    // 2. Interactive Lion Switcher
+    function selectLion(type) {
+      const cardCircus = document.getElementById('cardCircus');
+      const cardSavannah = document.getElementById('cardSavannah');
+      const feedback = document.getElementById('lionFeedback');
+
+      if (type === 'circus') {
+        cardCircus.className = "cursor-pointer bg-white/20 border-2 border-rose-400 p-5 rounded-2xl transition-all scale-[1.02]";
+        cardSavannah.className = "cursor-pointer bg-white/5 border-2 border-transparent p-5 rounded-2xl transition-all opacity-60";
+        feedback.innerHTML = "🎪 <strong>Lion de Cirque sélectionné :</strong> Sécurité maximale, mais dépendance et liberté compromises.";
+      } else {
+        cardSavannah.className = "cursor-pointer bg-white/20 border-2 border-emerald-400 p-5 rounded-2xl transition-all scale-[1.02]";
+        cardCircus.className = "cursor-pointer bg-white/5 border-2 border-transparent p-5 rounded-2xl transition-all opacity-60";
+        feedback.innerHTML = "🦁 <strong>Lion de Savane sélectionné :</strong> Souveraineté totale, autonomie et récompense liée au talent réel.";
+      }
+    }
+
+    // 3. Parent Quick Diagnosis Tool
+    function calcAdvice() {
+      const c1 = document.getElementById('check1').checked;
+      const c2 = document.getElementById('check2').checked;
+      const c3 = document.getElementById('check3').checked;
+      const result = document.getElementById('adviceResult');
+
+      if (c1 || c2 || c3) {
+        result.classList.remove('hidden');
+        if (c1 && c2 && c3) {
+          result.innerHTML = "🚀 <strong>Clarté 100% :</strong> Votre foyer possède déjà les bases. Encourager votre enfant vers un concours administratif serait une régression d'opportunité.";
+        } else {
+          result.innerHTML = "🎯 <strong>Conseil Stratégique :</strong> Privilégiez l'acquisition de compétences négociables sur le marché international plutôt que des concours fermés.";
+        }
+      } else {
+        result.classList.add('hidden');
+      }
+    }
+
+    // 4. Quick Poll Vote
+    function vote(type) {
+      document.getElementById('voteStats').classList.remove('hidden');
+      confetti({ particleCount: 25, spread: 50, origin: { y: 0.85 } });
+    }
+
+    function triggerDebateConfetti() {
+      confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
+      showToast("Merci pour votre soutien au débat !");
+    }
+
+    // 5. Toast System & Share
+    function copyArticleLink() {
+      navigator.clipboard.writeText(window.location.href);
+      showToast("Lien copié dans le presse-papier !");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastText').innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // 6. Comment Submission
+    let commentsCount = 2;
+    function addComment() {
+      const name = document.getElementById('userName').value.trim();
+      const msg = document.getElementById('userMsg').value.trim();
+
+      if (!name || !msg) {
+        showToast("Veuillez renseigner votre nom et votre avis ✍️");
+        return;
+      }
+
+      const list = document.getElementById('commentsList');
+      const letter = name.charAt(0).toUpperCase();
+
+      const item = document.createElement('div');
+      item.className = "bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3";
+      item.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-papaya-100 text-papaya-500 flex items-center justify-center font-bold text-xs shrink-0">${letter}</div>
+        <div class="space-y-0.5">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-slate-800">${name}</span>
+            <span class="text-[10px] text-slate-400">À l'instant</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600">${msg}</p>
+        </div>
+      `;
+
+      list.prepend(item);
+      document.getElementById('userName').value = '';
+      document.getElementById('userMsg').value = '';
+
+      commentsCount++;
+      document.getElementById('countComments').innerText = commentsCount;
+      showToast("Votre avis a bien été publié !");
+    }
+  </script>
+</body>
+</html>

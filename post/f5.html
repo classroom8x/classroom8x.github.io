@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dépenses des Ménages (1940–2040) • La Règle des 10x</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            cream: '#fdfbf7',
+            blush: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              400: '#fb7185',
+              500: '#f43f5e',
+            },
+            coral: {
+              400: '#ff8577',
+              500: '#ff6352',
+            },
+            sage: {
+              50: '#f2f8f5',
+              100: '#e1f0ea',
+              600: '#2d6a4f',
+              700: '#1b4332',
+            },
+            lavender: {
+              50: '#f7f4fe',
+              100: '#ede9fe',
+              600: '#7c3aed',
+            }
+          },
+          boxShadow: {
+            'cute': '0 20px 40px -15px rgba(244, 63, 94, 0.08), 0 0 1px 1px rgba(0,0,0,0.04)',
+            'cute-hover': '0 25px 50px -12px rgba(255, 99, 82, 0.2), 0 0 1px 1px rgba(255, 99, 82, 0.1)',
+            'soft': '0 10px 30px -5px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Cute Background Gradients */
+    body {
+      background-color: #fbf9f5;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(254, 205, 211, 0.35) 0px, transparent 50%),
+        radial-gradient(at 100% 20%, rgba(237, 233, 254, 0.4) 0px, transparent 50%),
+        radial-gradient(at 50% 70%, rgba(225, 240, 234, 0.45) 0px, transparent 60%),
+        radial-gradient(at 100% 100%, rgba(255, 228, 230, 0.3) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+    }
+
+    /* Floating animation */
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+    }
+    .animate-float {
+      animation: float-slow 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased font-sans selection:bg-rose-200 selection:text-rose-900 min-h-screen">
+
+  <!-- Reading Progress Bar -->
+  <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-rose-400 via-coral-400 to-lavender-600 z-50 transition-all duration-150 w-0 rounded-r-full shadow-sm"></div>
+
+  <!-- Cute Floating Navigation -->
+  <header class="sticky top-4 z-40 max-w-5xl mx-auto px-4">
+    <div class="glass-card rounded-3xl py-3.5 px-6 shadow-soft flex items-center justify-between transition-all">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-rose-400 to-coral-500 flex items-center justify-center text-white shadow-md shadow-rose-200">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span class="text-xs uppercase tracking-widest font-extrabold text-rose-500 block">Consultation Privée</span>
+          <span class="font-serif font-bold text-slate-800 text-base sm:text-lg">Stratégie Patrimoniale</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="#simulator" class="hidden sm:flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-600 transition">
+          <i data-lucide="calculator" class="w-4 h-4"></i> Simulateur 10x
+        </a>
+        <a href="#comments" class="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-2xl bg-slate-900 text-white hover:bg-slate-800 shadow-md transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> Participer
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="max-w-4xl mx-auto px-4 pt-12 pb-24 space-y-14">
+    
+    <section class="text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/70 border border-rose-200/80 text-rose-700 text-xs font-bold tracking-wide uppercase shadow-sm">
+        <span>✨ Analyse Prospective 1940 — 2040</span>
+      </div>
+
+      <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15]">
+        Dépenses des Ménages : <br class="hidden sm:inline"/>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-coral-500 to-amber-500">
+          La Règle des « 10x »
+        </span>
+        <span class="italic font-normal block sm:inline">& le Piège des Aspirations</span>
+      </h1>
+
+      <p class="text-base sm:text-xl text-slate-600 font-normal max-w-2xl mx-auto leading-relaxed">
+        Comment l'inflation du standing transforme silencieusement notre niveau de vie, et les clés pour préserver le statut social de vos enfants en 2040.
+      </p>
+
+      <!-- Profile & Read Time Badge -->
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500 pt-2">
+        <div class="flex items-center gap-2 bg-white/60 px-3 py-1.5 rounded-full border border-slate-200/60 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Author" class="w-6 h-6 rounded-full object-cover border border-rose-300">
+          <span class="font-medium text-slate-700">Analyste Financier Senior</span>
+        </div>
+        <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-rose-400"></i> 6 min de lecture</span>
+        <span class="flex items-center gap-1"><i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-500"></i> Modèle Prédictif 100 ans</span>
+      </div>
+    </section>
+
+    <!-- Context Card (Standard Model) -->
+    <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-cute relative overflow-hidden border-rose-100">
+      <div class="absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br from-rose-200 to-amber-200 rounded-full blur-2xl opacity-50 pointer-events-none"></div>
+      
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="p-3.5 bg-rose-50 text-rose-500 rounded-2xl shrink-0">
+          <i data-lucide="compass" class="w-7 h-7"></i>
+        </div>
+        <div class="space-y-3">
+          <h2 class="text-xs font-extrabold uppercase tracking-widest text-rose-500">Cadre Méthodologique</h2>
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-slate-900">Le Modèle Standardisé d'Analyse</h3>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Pour mesurer cette trajectoire sans biais statistique, nous utilisons un profil repère invariable : un <strong>cadre supérieur</strong> (20 ans d'ancienneté, 2 enfants scolarisés). 
+            Nous mesurons ses dépenses de consommation courante : alimentation, énergie, scolarité, mobilité et valeur locative du logement (hors impôt sur le revenu et dettes financières).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1 : The 10x Rule & Interactive Time-Traveler -->
+    <section id="simulator" class="space-y-6">
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-coral-500 bg-coral-50 px-3 py-1 rounded-full">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i> Section 01
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900">1. La Règle Implacable des « 10x »</h2>
+        <p class="text-sm text-slate-500">De 10 unités en 1940 jusqu'à 1 Million projeté en 2040.</p>
+      </div>
+
+      <!-- Interactive Timeline Component -->
+      <div class="glass-card rounded-3xl p-6 sm:p-9 shadow-cute space-y-8">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Année observée</span>
+            <div id="displayYear" class="font-serif text-4xl sm:text-5xl font-black text-rose-500">1980</div>
+          </div>
+          <div class="sm:text-right">
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Budget Mensuel Moyen</span>
+            <div id="displayExpense" class="font-sans text-3xl sm:text-4xl font-black text-slate-800">1 000 <span class="text-base font-medium text-slate-500">unités</span></div>
+          </div>
+        </div>
+
+        <!-- Custom Slider -->
+        <div class="space-y-3">
+          <label for="yearSlider" class="text-xs font-bold text-slate-600 uppercase flex items-center justify-between">
+            <span>Faites glisser la timeline temporelle</span>
+            <span class="text-rose-500 flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Facteur x10 tous les 20 ans</span>
+          </label>
+          <input 
+            type="range" 
+            id="yearSlider" 
+            min="0" 
+            max="5" 
+            step="1" 
+            value="2" 
+            class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-500 transition-all"
+          >
+          <div class="flex justify-between text-[11px] font-bold text-slate-400 px-1">
+            <span>1940</span>
+            <span>1960</span>
+            <span>1980</span>
+            <span>2000</span>
+            <span>2020</span>
+            <span class="text-rose-500 font-extrabold">2040 (Proj.)</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Snapshot Card based on slider -->
+        <div id="lifestyleCard" class="p-5 rounded-2xl bg-gradient-to-br from-slate-50 to-rose-50/40 border border-slate-200/70 flex items-center gap-4 transition-all duration-300">
+          <div id="lifestyleIcon" class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl shrink-0">
+            🛵
+          </div>
+          <div>
+            <div id="lifestyleTitle" class="font-bold text-slate-800 text-base">1980 — L'ère du confort mécanique</div>
+            <div id="lifestyleDesc" class="text-xs sm:text-sm text-slate-600 mt-0.5">Le deux-roues/scooter représentait le sommet du confort familial accessible.</div>
+          </div>
+        </div>
+
+        <!-- Static Summary Table (Cute Minimalist) -->
+        <div class="overflow-x-auto pt-2">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead>
+              <tr class="text-slate-400 font-semibold border-b border-slate-100">
+                <th class="pb-3">Année</th>
+                <th class="pb-3">Dépense Mensuelle</th>
+                <th class="pb-3 text-right">Facteur de Croissance</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium">
+              <tr class="hover:bg-rose-50/50 transition"><td class="py-2.5 font-bold">1940</td><td>10 unités</td><td class="text-right text-slate-400 font-normal">Point de départ</td></tr>
+              <tr class="hover:bg-rose-50/50 transition"><td class="py-2.5 font-bold">1960</td><td>100</td><td class="text-right text-rose-500 font-bold">× 10</td></tr>
+              <tr class="hover:bg-rose-50/50 transition"><td class="py-2.5 font-bold">1980</td><td>1 000</td><td class="text-right text-rose-500 font-bold">× 10</td></tr>
+              <tr class="hover:bg-rose-50/50 transition"><td class="py-2.5 font-bold">2000</td><td>10 000</td><td class="text-right text-rose-500 font-bold">× 10</td></tr>
+              <tr class="hover:bg-rose-50/50 transition"><td class="py-2.5 font-bold">2020</td><td>100 000</td><td class="text-right text-rose-500 font-bold">× 10</td></tr>
+              <tr class="bg-rose-50/60 font-bold text-rose-900"><td class="py-3 pl-2 rounded-l-xl">2040 (Projection)</td><td>1 000 000</td><td class="text-right text-rose-600 font-extrabold pr-2 rounded-r-xl">× 10 (Prévision)</td></tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-slate-400 mt-2 italic">*Les montants de 2020 intègrent ~30 % de valeur locative/logement dans les grandes métropoles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 : The Aspiration Engine & Hospitality Index -->
+    <section class="space-y-6">
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-lavender-600 bg-lavender-50 px-3 py-1 rounded-full">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i> Section 02
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900">2. Ce n'est pas seulement de l'Inflation</h2>
+        <p class="text-sm text-slate-500 max-w-xl mx-auto">
+          Multiplier ses dépenses par 10 en 20 ans équivaut à un TCAC de <strong>12% / an</strong>. Le vrai moteur ? <span class="text-rose-500 font-semibold">L'inflation du niveau d'exigence (Lifestyle Inflation)</span>.
+        </p>
+      </div>
+
+      <!-- Feature Visual: The Hospitality Drink Metric -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-cute space-y-6 border-lavender-100">
+        <div class="flex items-center gap-3">
+          <div class="p-3 bg-amber-100 text-amber-600 rounded-2xl">
+            <i data-lucide="coffee" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg sm:text-xl font-bold text-slate-900">L’Exemple Parlant de l'Hospitalité</h3>
+            <p class="text-xs sm:text-sm text-slate-500">Ce que l'on sert aux invités lorsqu'ils passent chez vous :</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <!-- Step 1 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-cute transition group">
+            <div class="space-y-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Il y a 25 ans</span>
+              <div class="text-3xl">🥤</div>
+              <h4 class="font-bold text-slate-800 text-sm">Boisson Gazeuse</h4>
+              <p class="text-xs text-slate-500">Un simple soda industriel (Coca/Pepsi).</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-50 text-[11px] text-slate-400 font-medium">Standard Simple</div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-cute transition group">
+            <div class="space-y-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Il y a 15 ans</span>
+              <div class="text-3xl">🧃</div>
+              <h4 class="font-bold text-slate-800 text-sm">Jus en Brique</h4>
+              <p class="text-xs text-slate-500">Jus de fruits industriels pasteurisés.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-50 text-[11px] text-slate-400 font-medium">+150% coût unitaire</div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-cute transition group">
+            <div class="space-y-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-rose-500">Il y a 5 ans</span>
+              <div class="text-3xl">🍊</div>
+              <h4 class="font-bold text-slate-800 text-sm">100% Pur Jus</h4>
+              <p class="text-xs text-slate-500">Sans sucres ajoutés, bouteille verre.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-50 text-[11px] text-slate-400 font-medium">+300% coût unitaire</div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-rose-500 to-coral-500 text-white shadow-lg shadow-rose-200 flex flex-col justify-between transform -translate-y-1">
+            <div class="space-y-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-rose-200">Aujourd'hui</span>
+              <div class="text-3xl">🌿</div>
+              <h4 class="font-bold text-white text-sm">Cold-Pressed Bio</h4>
+              <p class="text-xs text-rose-100">Pressé à froid, graines de chia & matcha.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-rose-400/50 text-[11px] font-bold text-white flex items-center justify-between">
+              <span>Nouveau Standard</span>
+              <span>⭐ Top Tier</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-100 flex items-start gap-3">
+          <i data-lucide="alert-circle" class="w-5 h-5 text-rose-500 shrink-0 mt-0.5"></i>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong>Le constat :</strong> Le coût n'augmente pas uniquement par la dépréciation monétaire, mais parce que notre définition minimale de « l'acceptable » s'élève en continu.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 : Social Class Convergence -->
+    <section class="space-y-6">
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-sage-600 bg-sage-100 px-3 py-1 rounded-full">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i> Section 03
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900">3. Le Grand Rapprochement des Classes</h2>
+        <p class="text-sm text-slate-500 max-w-xl mx-auto">
+          Pourquoi la classe moyenne supérieure s'érode pendant que la classe moyenne inférieure progresse grâce aux synergies modernes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Card Left: The Single Earner Trap -->
+        <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-cute space-y-4 border-slate-200">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">Profil A : Cadre Isolé</span>
+            <i data-lucide="user-x" class="w-5 h-5 text-rose-400"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-slate-900">Le Cadre Unique sous Pression</h3>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">•</span>
+              <span><strong>Revenu :</strong> 2 000 €/mois unique soumis à une tranche fiscale haute.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">•</span>
+              <span><strong>Piège du statut :</strong> Obligation sociale d'acheter un SUV premium à crédit pour maintenir le rang.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">•</span>
+              <span><strong>Fragilité :</strong> Pas de diversification ni d'économies d'échelle familiales.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card Right: The Dual Income Power -->
+        <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-cute space-y-4 border-sage-100 bg-sage-50/40">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Profil B : Couple Synergique</span>
+            <i data-lucide="users-round" class="w-5 h-5 text-emerald-600"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-slate-900">Le Couple à Double Revenu</h3>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">•</span>
+              <span><strong>Revenu :</strong> Couple d'enseignants (1 200 € x 2 = <strong>2 400 €/mois</strong>).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">•</span>
+              <span><strong>Revenus complémentaires :</strong> Cours particuliers, micro-commerce et fiscalité optimisée.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">•</span>
+              <span><strong>Résultat :</strong> Patrimoine net en croissance plus rapide sans dépenses d'apparat stériles.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 : The 2 Old Money Strategic Decisions -->
+    <section class="space-y-6">
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-500 bg-rose-50 px-3 py-1 rounded-full">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Section 04
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900">4. Les 2 Décisions Stratégiques pour 2040</h2>
+        <p class="text-sm text-slate-500 max-w-lg mx-auto">
+          Comment préserver durablement l'avenir financier et le standing de votre lignée.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Strategy 1 -->
+        <div class="glass-card rounded-3xl p-7 sm:p-8 shadow-cute flex flex-col justify-between space-y-6 hover:shadow-cute-hover transition-all duration-300 border-rose-100">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-rose-400 text-white flex items-center justify-center shadow-md shadow-rose-200">
+              <i data-lucide="gem" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-rose-500 block">Recommandation N° 1</span>
+            <h3 class="font-serif text-2xl font-bold text-slate-900">Actifs Rares & Inimitables</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Adoptez la mentalité de la <strong>« Vieille Richesse » (Old Money)</strong> : cessez de vous fier exclusivement à des produits financiers d'épargne liquide grand public.
+            </p>
+            <div class="p-4 rounded-2xl bg-white border border-slate-100 text-xs text-slate-600 space-y-2">
+              <div class="font-semibold text-slate-800 flex items-center gap-1.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Vos priorités :
+              </div>
+              <p>• Terrains stratégiques et foncier irremplaçable.</p>
+              <p>• Biens immobiliers premium « emplacement n°1 ».</p>
+              <p>• Actifs physiques protégés contre la dévaluation monétaire.</p>
+            </div>
+          </div>
+          <div class="text-[11px] font-bold text-rose-500 uppercase tracking-wider flex items-center gap-1">
+            Barrière à l'entrée infranchissable →
+          </div>
+        </div>
+
+        <!-- Strategy 2 -->
+        <div class="glass-card rounded-3xl p-7 sm:p-8 shadow-cute flex flex-col justify-between space-y-6 hover:shadow-cute-hover transition-all duration-300 border-sage-100">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-400 to-teal-500 text-white flex items-center justify-center shadow-md shadow-teal-200">
+              <i data-lucide="map-pin" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-600 block">Recommandation N° 2</span>
+            <h3 class="font-serif text-2xl font-bold text-slate-900">Le Cluster Familial (« Stay Near »)</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              La dispersion géographique (1 enfant à Paris, 1 à Lyon, les parents au sud) détruit la valeur par la multiplication de 3 cuisines, 3 loyers et 0 logistique commune.
+            </p>
+            <div class="p-4 rounded-2xl bg-white border border-slate-100 text-xs text-slate-600 space-y-2">
+              <div class="font-semibold text-slate-800 flex items-center gap-1.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> La puissance du rayon de 3 km :
+              </div>
+              <p>• <strong>Garde d'enfants multigénérationnelle :</strong> Permet à la mère d'atteindre 40 ans de carrière pleine sans décrochage.</p>
+              <p>• <strong>Mutualisation :</strong> Économies colossales sur l'énergie, les transports et les charges du foyer.</p>
+            </div>
+          </div>
+          <div class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider flex items-center gap-1">
+            Concentration = Multiplicateur de capital →
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive Summary Quote -->
+    <section class="glass-card rounded-3xl p-8 sm:p-10 shadow-cute text-center space-y-4 border-rose-200/80 bg-gradient-to-b from-white/90 to-rose-50/40">
+      <div class="inline-block p-3 rounded-full bg-rose-100 text-rose-500 mb-2">
+        <i data-lucide="quote" class="w-6 h-6"></i>
+      </div>
+      <blockquote class="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 leading-snug max-w-2xl mx-auto">
+        « En 2040, le défi ne sera pas résolu en travaillant plus d'heures de manière isolée, mais en sanctuarisant des actifs réels et en mutualisant la puissance familiale. »
+      </blockquote>
+    </section>
+
+    <!-- Interactive Community Section (Likes, Shares & Comments) -->
+    <section id="comments" class="glass-card rounded-3xl p-6 sm:p-9 shadow-cute space-y-8">
+      
+      <!-- Engagement Action Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div>
+          <h3 class="font-serif text-2xl font-bold text-slate-900">Rejoignez la Discussion</h3>
+          <p class="text-xs sm:text-sm text-slate-500">Avez-vous observé cette règle des 10x dans votre famille ?</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Cute Like Button -->
+          <button id="likeBtn" class="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs transition active:scale-95 shadow-sm">
+            <i data-lucide="heart" id="heartIcon" class="w-4 h-4 transition-transform"></i>
+            <span id="likeCount">142</span> J'aime
+          </button>
+          <!-- Share button -->
+          <button onclick="navigator.clipboard.writeText(window.location.href); alert('Lien copié dans le presse-papier ! ✨');" class="p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+            <i data-lucide="share-2" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Add Comment Form -->
+      <form id="commentForm" class="space-y-3">
+        <div class="flex gap-3">
+          <input 
+            type="text" 
+            id="commentAuthor" 
+            placeholder="Votre prénom ou pseudo..." 
+            required 
+            class="w-1/3 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 shadow-sm"
+          >
+          <input 
+            type="text" 
+            id="commentText" 
+            placeholder="Votre avis sur la projection 2040..." 
+            required 
+            class="w-2/3 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 shadow-sm"
+          >
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="px-6 py-2.5 rounded-2xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> Publier mon retour
+          </button>
+        </div>
+      </form>
+
+      <!-- Comments Stream List -->
+      <div id="commentsList" class="space-y-3 pt-2">
+        
+        <!-- Pre-loaded cute comment 1 -->
+        <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-300 to-amber-300 flex items-center justify-center font-bold text-xs text-white shrink-0">
+            EL
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-xs text-slate-800">Éléonore L.</span>
+              <span class="text-[10px] text-slate-400">Il y a 2h</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              L'exemple du cluster familial est tellement vrai. Vivre à 5 minutes de mes parents m'a permis de reprendre mon poste sans dépenser 1200€/mois en nounou !
+            </p>
+          </div>
+        </div>
+
+        <!-- Pre-loaded cute comment 2 -->
+        <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-300 to-teal-300 flex items-center justify-center font-bold text-xs text-white shrink-0">
+            MA
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-xs text-slate-800">Marc-Antoine</span>
+              <span class="text-[10px] text-slate-400">Il y a 5h</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Le concept de « Lifestyle Inflation » illustré avec les boissons d'accueil est magistral. On oublie à quel point nos standards sont devenus luxueux par défaut.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Cute Minimalist Footer -->
+  <footer class="border-t border-slate-200/60 bg-white/40 py-10 text-center text-xs text-slate-400 space-y-3">
+    <div class="flex items-center justify-center gap-1 text-slate-600 font-bold">
+      <span>Stratégie Familiale & Patrimoniale</span>
+      <span class="text-rose-500">♥</span>
+      <span>1940 — 2040</span>
+    </div>
+    <p>© 2026 Édition Privée. Tous droits réservés.</p>
+  </footer>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // 2. Interactive 10x Timeline Data & Logic
+    const timelineData = [
+      { year: '1940', expense: '10', icon: '📻', title: '1940 — Point de départ', desc: 'Dépenses minimales de subsistance de base.' },
+      { year: '1960', expense: '100', icon: '🌀', title: '1960 — Le luxe du ventilateur', desc: 'Un ventilateur électrique dans la maison constituait un privilège rare.' },
+      { year: '1980', expense: '1 000', icon: '🛵', title: '1980 — Le scooter familial', desc: 'Le deux-roues représentait le sommet du confort et de la mobilité.' },
+      { year: '2000', expense: '10 000', icon: '🚗', title: '2000 — La berline citadine', desc: 'La petite voiture familiale était devenue la norme standard.' },
+      { year: '2020', expense: '100 000', icon: '❄️', title: '2020 — Climatisation & SUV', desc: 'Climatisation multi-pièces et SUV obligatoires (30% coût logement).' },
+      { year: '2040', expense: '1 000 000', icon: '🏰', title: '2040 — Hyper-Standard & Actifs', desc: 'Projection 10x : Exige la détention d’actifs rares et la mutualisation.' }
+    ];
+
+    const slider = document.getElementById('yearSlider');
+    const displayYear = document.getElementById('displayYear');
+    const displayExpense = document.getElementById('displayExpense');
+    const lifestyleIcon = document.getElementById('lifestyleIcon');
+    const lifestyleTitle = document.getElementById('lifestyleTitle');
+    const lifestyleDesc = document.getElementById('lifestyleDesc');
+
+    slider.addEventListener('input', (e) => {
+      const idx = e.target.value;
+      const data = timelineData[idx];
+
+      displayYear.textContent = data.year;
+      displayExpense.innerHTML = `${data.expense} <span class="text-base font-medium text-slate-500">unités</span>`;
+      lifestyleIcon.textContent = data.icon;
+      lifestyleTitle.textContent = data.title;
+      lifestyleDesc.textContent = data.desc;
+    });
+
+    // 3. Cute Like Button Animation
+    let liked = false;
+    const likeBtn = document.getElementById('likeBtn');
+    const likeCount = document.getElementById('likeCount');
+    const heartIcon = document.getElementById('heartIcon');
+
+    likeBtn.addEventListener('click', () => {
+      let current = parseInt(likeCount.textContent);
+      if(!liked) {
+        likeCount.textContent = current + 1;
+        likeBtn.classList.add('bg-rose-500', 'text-white');
+        likeBtn.classList.remove('bg-rose-50', 'text-rose-600');
+        heartIcon.classList.add('fill-current', 'scale-125');
+        liked = true;
+      } else {
+        likeCount.textContent = current - 1;
+        likeBtn.classList.remove('bg-rose-500', 'text-white');
+        likeBtn.classList.add('bg-rose-50', 'text-rose-600');
+        heartIcon.classList.remove('fill-current', 'scale-125');
+        liked = false;
+      }
+    });
+
+    // 4. Live Comments Addition
+    const commentForm = document.getElementById('commentForm');
+    const commentAuthor = document.getElementById('commentAuthor');
+    const commentText = document.getElementById('commentText');
+    const commentsList = document.getElementById('commentsList');
+
+    commentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const author = commentAuthor.value.trim();
+      const text = commentText.value.trim();
+
+      if(author && text) {
+        const initials = author.substring(0, 2).toUpperCase();
+        const newComment = document.createElement('div');
+        newComment.className = "p-4 rounded-2xl bg-white border border-rose-100 shadow-sm flex items-start gap-3 transition-all animate-pulse";
+        newComment.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-400 to-coral-400 flex items-center justify-center font-bold text-xs text-white shrink-0">
+            ${initials}
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-xs text-slate-800">${author}</span>
+              <span class="text-[10px] text-rose-500 font-bold">À l'instant</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">${text}</p>
+          </div>
+        `;
+        commentsList.prepend(newComment);
+        setTimeout(() => newComment.classList.remove('animate-pulse'), 800);
+
+        // Reset inputs
+        commentAuthor.value = '';
+        commentText.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
