@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarté de Carrière • Tremplin ou Recommencement ?</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Fraunces for Cute Editorial Vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#FAF7F2',
+                        matcha: {
+                            50: '#F4F7F4',
+                            100: '#E5EDE5',
+                            500: '#7E9F83',
+                            800: '#384E3C',
+                        },
+                        apricot: {
+                            100: '#FFEAD9',
+                            200: '#FED2B5',
+                            500: '#E87D56',
+                        },
+                        mocha: {
+                            900: '#2A2521',
+                            700: '#524B44',
+                            400: '#9C9187',
+                            100: '#EFECE6',
+                        }
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(42, 37, 33, 0.05)',
+                        'cute': '0 12px 0px 0px rgba(42, 37, 33, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection {
+            background-color: #FFEAD9;
+            color: #2A2521;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E5EDE5;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7E9F83;
+        }
+    </style>
+</head>
+<body class="bg-cream text-mocha-900 font-sans antialiased relative overflow-x-hidden selection:bg-apricot-200 selection:text-mocha-900">
+
+    <!-- Reading Progress Bar -->
+    <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-apricot-500 via-matcha-500 to-apricot-500 z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Ambient Cute Blobs -->
+    <div class="blob top-10 left-[-5%] w-80 h-80 rounded-full bg-apricot-100"></div>
+    <div class="blob top-96 right-[-5%] w-96 h-96 rounded-full bg-matcha-100"></div>
+
+    <!-- Sticky Aesthetic Header -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <nav class="bg-white/80 backdrop-blur-md border border-mocha-100/80 px-6 py-3.5 rounded-full shadow-soft flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-apricot-500 animate-pulse"></span>
+                <span class="font-serif font-bold tracking-tight text-lg text-mocha-900">L'Écho Stratégique 🪴</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold px-3 py-1 bg-matcha-50 text-matcha-800 rounded-full border border-matcha-100">
+                    ⏱️ 5 min de lecture
+                </span>
+                <button onclick="copyArticleLink()" id="shareBtn" class="p-2 hover:bg-cream rounded-full transition text-mocha-700 hover:text-mocha-900" title="Partager">
+                    🔗
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 pt-12 pb-24 space-y-14">
+
+        <!-- HERO SECTION -->
+        <section class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-apricot-100 text-mocha-900 text-xs font-bold uppercase tracking-wider rounded-full border border-apricot-200">
+                ✨ Orientation Professionnelle & Héritage
+            </div>
+            
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight tracking-tight text-mocha-900">
+                Clarté de Carrière : <br/>
+                <span class="italic text-apricot-500 font-normal underline decoration-wavy decoration-matcha-500/40 underline-offset-8">Construisez-vous un tremplin</span> 
+                ou recommencez-vous à zéro à chaque génération ?
+            </h1>
+
+            <p class="text-mocha-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+                Choisir une carrière n'est pas une décision sur ce que vous ferez demain matin : c'est un engagement sur <span class="bg-matcha-100 px-1.5 py-0.5 rounded font-bold text-matcha-800">30 à 40 ans</span>. Pourtant, beaucoup consacrent moins de 40 minutes à y réfléchir.
+            </p>
+
+            <!-- Mini pill tag bar -->
+            <div class="flex flex-wrap justify-center gap-2 pt-2 text-xs text-mocha-700">
+                <span class="px-3 py-1 bg-white rounded-full border border-mocha-100 shadow-sm">🏛️ Leçon de 1571</span>
+                <span class="px-3 py-1 bg-white rounded-full border border-mocha-100 shadow-sm">📈 Effet de levier</span>
+                <span class="px-3 py-1 bg-white rounded-full border border-mocha-100 shadow-sm">🎯 Passion vs Réalité</span>
+            </div>
+        </section>
+
+        <!-- SECTION 1: L'HISTOIRE D'AKBAR & LE PIÈGE MANSABDARI -->
+        <section class="bg-white rounded-4xl p-6 sm:p-10 border border-mocha-100 shadow-soft relative overflow-hidden space-y-6">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-apricot-100 rounded-bl-full -z-0 opacity-50"></div>
+
+            <div class="relative z-10 space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">📜</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-mocha-900">
+                        1. Le piège du système « Mansabdari » : Réussir sans pouvoir transmettre
+                    </h2>
+                </div>
+
+                <p class="text-mocha-700 leading-relaxed">
+                    En <strong class="text-mocha-900 font-bold">1571</strong>, l'empereur moghol Akbar a instauré le système <em>Mansabdari</em>, qui combinait fonctions militaires et civiles. Un mansabdar touchait un salaire élevé, commandait des troupes, percevait des impôts et menait un train de vie prestigieux.
+                </p>
+
+                <!-- Cute Callout Rule -->
+                <div class="bg-apricot-100/60 border-l-4 border-apricot-500 p-4 rounded-r-2xl">
+                    <p class="text-mocha-900 font-semibold text-sm sm:text-base italic">
+                        « La règle fondamentale : rien n'était transmissible. À sa mort, tous ses privilèges, terres et statuts revenaient à l'empereur. Ses enfants devaient repartir de zéro. »
+                    </p>
+                </div>
+
+                <div class="pt-4 space-y-3">
+                    <h3 class="font-bold text-mocha-900 text-lg flex items-center gap-2">
+                        <span>🏛️</span> L'équivalent moderne : Les postes hiérarchiques
+                    </h3>
+                    <p class="text-mocha-700 text-sm sm:text-base leading-relaxed">
+                        Aujourd'hui, de nombreux métiers d'élite fonctionnent exactement de la même manière :
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <div class="bg-cream/80 p-3.5 rounded-2xl border border-mocha-100 flex items-center gap-3">
+                            <span class="text-xl">👔</span>
+                            <span class="text-sm font-medium text-mocha-900">Hauts fonctionnaires d'État</span>
+                        </div>
+                        <div class="bg-cream/80 p-3.5 rounded-2xl border border-mocha-100 flex items-center gap-3">
+                            <span class="text-xl">🛡️</span>
+                            <span class="text-sm font-medium text-mocha-900">Officiers & cadres de police</span>
+                        </div>
+                        <div class="bg-cream/80 p-3.5 rounded-2xl border border-mocha-100 flex items-center gap-3">
+                            <span class="text-xl">🎖️</span>
+                            <span class="text-sm font-medium text-mocha-900">Officiers militaires supérieurs</span>
+                        </div>
+                        <div class="bg-cream/80 p-3.5 rounded-2xl border border-mocha-100 flex items-center gap-3">
+                            <span class="text-xl">🏢</span>
+                            <span class="text-sm font-medium text-mocha-900">Cadres de multinationales</span>
+                        </div>
+                    </div>
+
+                    <p class="text-mocha-700 text-sm sm:text-base pt-2 leading-relaxed">
+                        Le jour de votre retraite, que reste-t-il ? Un titre honorifique et une pension. Votre enfant doit repasser tous les concours : <strong class="text-mocha-900">vos 40 ans de réseau ne lui servent pratiquement à rien sur le plan professionnel.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: LES CARRIÈRES À EFFET DE LEVIER -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-2xl">🌱</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-mocha-900">
+                    2. Les carrières à « effet de levier »
+                </h2>
+                <p class="text-mocha-700 text-sm max-w-lg mx-auto">
+                    Où l'effort d'une génération sert de tremplin propulseur à la génération suivante.
+                </p>
+            </div>
+
+            <!-- Aesthetic 4 Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <!-- Card 1: Droit -->
+                <div class="bg-white p-6 rounded-3xl border border-mocha-100 shadow-soft hover:shadow-md transition group">
+                    <div class="w-10 h-10 rounded-2xl bg-matcha-100 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        ⚖️
+                    </div>
+                    <h3 class="font-bold text-lg text-mocha-900 mb-1">Le Droit</h3>
+                    <p class="text-xs sm:text-sm text-mocha-700 leading-relaxed">
+                        30 ans de réputation, un cabinet et un portefeuille clients transmissible. L'enfant hérite du savoir-faire et d'une clientèle déjà établie.
+                    </p>
+                </div>
+
+                <!-- Card 2: Médecine -->
+                <div class="bg-white p-6 rounded-3xl border border-mocha-100 shadow-soft hover:shadow-md transition group">
+                    <div class="w-10 h-10 rounded-2xl bg-apricot-100 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        🩺
+                    </div>
+                    <h3 class="font-bold text-lg text-mocha-900 mb-1">La Médecine & Cliniques</h3>
+                    <p class="text-xs sm:text-sm text-mocha-700 leading-relaxed">
+                        Créer une clinique ou un centre de santé offre à la génération suivante un outil de travail prêt à l'emploi et une renommée locale immédiate.
+                    </p>
+                </div>
+
+                <!-- Card 3: Archi -->
+                <div class="bg-white p-6 rounded-3xl border border-mocha-100 shadow-soft hover:shadow-md transition group">
+                    <div class="w-10 h-10 rounded-2xl bg-apricot-100 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        📐
+                    </div>
+                    <h3 class="font-bold text-lg text-mocha-900 mb-1">Architecture & Design</h3>
+                    <p class="text-xs sm:text-sm text-mocha-700 leading-relaxed">
+                        Un architecte établi intègre facilement un enfant formé en design intérieur, créant une synergie directe sans démarrer à froid.
+                    </p>
+                </div>
+
+                <!-- Card 4: Entreprise -->
+                <div class="bg-white p-6 rounded-3xl border border-mocha-100 shadow-soft hover:shadow-md transition group">
+                    <div class="w-10 h-10 rounded-2xl bg-matcha-100 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition">
+                        💼
+                    </div>
+                    <h3 class="font-bold text-lg text-mocha-900 mb-1">Expertise-Comptable & Entreprise</h3>
+                    <p class="text-xs sm:text-sm text-mocha-700 leading-relaxed">
+                        Des actifs concrets, une marque, un réseau financier : l'enfant ne part pas de la ligne de départ, il prend le relais en pleine vitesse.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MOBILITÉ VS ENRACINEMENT -->
+        <section class="bg-gradient-to-br from-matcha-50 to-cream rounded-4xl p-6 sm:p-10 border border-matcha-100 space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">🌍</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-mocha-900">
+                    3. Mobilité permanente vs Enracinement patrimonial
+                </h2>
+            </div>
+
+            <!-- Comparison visual -->
+            <div class="bg-white/90 p-5 rounded-3xl border border-matcha-100 shadow-sm space-y-3">
+                <div class="flex items-center gap-2 text-apricot-500 font-bold text-sm">
+                    <span>🔁 Le cycle perpétuel des mutations :</span>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs sm:text-sm text-mocha-700 gap-2 border-y border-mocha-100 py-3">
+                    <span class="bg-cream px-3 py-1 rounded-full border border-mocha-100">👴 Grand-père muté partout</span>
+                    <span class="text-matcha-500 font-bold hidden sm:inline">➜</span>
+                    <span class="bg-cream px-3 py-1 rounded-full border border-mocha-100">👨 Père déraciné de ville en ville</span>
+                    <span class="text-matcha-500 font-bold hidden sm:inline">➜</span>
+                    <span class="bg-cream px-3 py-1 rounded-full border border-mocha-100">🧒 Enfant qui refait pareil</span>
+                </div>
+                <p class="text-xs text-mocha-400 italic">
+                    À force d'être partout, on ne s'implante nulle part. Les biens et réseaux locaux finissent délaissés.
+                </p>
+            </div>
+
+            <p class="text-mocha-700 text-sm sm:text-base leading-relaxed">
+                Pour les classes moyennes établies et supérieures, il est temps de se poser la question : <strong class="text-mocha-900">est-il toujours sage d'envoyer nos enfants courir le monde pour un simple salaire alors qu'une base solide existe déjà chez eux ?</strong>
+            </p>
+        </section>
+
+        <!-- SECTION 4: LE MYTHE DE LA PASSION -->
+        <section class="bg-white rounded-4xl p-6 sm:p-10 border border-mocha-100 shadow-soft space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">🧭</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-mocha-900">
+                    4. Le mythe de la « Passion » comme boussole unique
+                </h2>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-apricot-100/50 border border-apricot-200 text-mocha-900 text-sm sm:text-base font-medium">
+                « Laisse-le faire ce qui le passionne » : attention, la passion est une émotion fugitive, et les émotions changent.
+            </div>
+
+            <div class="space-y-3 text-mocha-700 text-sm sm:text-base leading-relaxed">
+                <p>
+                    Combien d'étudiants débutent en <em>biotechnologie</em>, découvrent en 3e année que cela les ennuie, finissent par défaut, bifurquent vers <em>l'animation</em>, pour finalement préparer des <em>concours administratifs</em> à 27 ans ?
+                </p>
+                <p class="font-semibold text-mocha-900">
+                    La passion doit être soutenue par la réalité économique, des compétences durables et un mentorat de qualité.
+                </p>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE DIAGNOSTIC WIDGET (Fresh Unique Element) -->
+        <section class="bg-mocha-900 text-white rounded-4xl p-6 sm:p-10 shadow-xl space-y-6 relative overflow-hidden">
+            <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-matcha-500/20 rounded-full blur-2xl"></div>
+            
+            <div class="space-y-2">
+                <div class="inline-block px-3 py-1 bg-matcha-500/30 text-matcha-100 text-xs font-bold rounded-full">
+                    🧪 Auto-Diagnostic Stratégique
+                </div>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold">
+                    Où se situe votre carrière ?
+                </h2>
+                <p class="text-mocha-400 text-xs sm:text-sm">
+                    Cochez les critères qui correspondent à votre situation pour évaluer votre score de transmissibilité :
+                </p>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="space-y-3 text-sm">
+                <label class="flex items-start gap-3 p-3 bg-white/5 hover:bg-white/10 rounded-2xl cursor-pointer border border-white/10 transition">
+                    <input type="checkbox" class="quiz-check w-5 h-5 mt-0.5 accent-apricot-500 rounded cursor-pointer" onchange="calculateScore()">
+                    <span>Mon activité me permet de bâtir un actif/clientèle transmissible (pas seulement un salaire).</span>
+                </label>
+                <label class="flex items-start gap-3 p-3 bg-white/5 hover:bg-white/10 rounded-2xl cursor-pointer border border-white/10 transition">
+                    <input type="checkbox" class="quiz-check w-5 h-5 mt-0.5 accent-apricot-500 rounded cursor-pointer" onchange="calculateScore()">
+                    <span>Mes choix professionnels capitalisent sur un socle ou un réseau familial déjà existant.</span>
+                </label>
+                <label class="flex items-start gap-3 p-3 bg-white/5 hover:bg-white/10 rounded-2xl cursor-pointer border border-white/10 transition">
+                    <input type="checkbox" class="quiz-check w-5 h-5 mt-0.5 accent-apricot-500 rounded cursor-pointer" onchange="calculateScore()">
+                    <span>Je suis entouré de mentors qui ont une vision claire des marchés sur 10-20 ans.</span>
+                </label>
+            </div>
+
+            <!-- Live Score Result Display -->
+            <div class="p-4 bg-white/10 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs uppercase tracking-wider text-mocha-400 font-bold">Diagnostic Actuel</span>
+                    <p id="scoreVerdict" class="font-serif text-lg text-apricot-200 font-bold">Modèle Mansabdari (À Risque de Démarrage à Zéro)</p>
+                </div>
+                <div class="w-full sm:w-36 bg-white/20 h-3 rounded-full overflow-hidden">
+                    <div id="scoreBar" class="bg-apricot-500 h-full w-1/3 transition-all duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCLUSION & CALL TO ACTION -->
+        <section class="text-center space-y-6 pt-4">
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-mocha-900">
+                Réveillez-vous et ajustez votre stratégie 🎯
+            </h2>
+            <p class="text-mocha-700 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+                Si vous avez 20, 23 ou 25 ans, ne restez pas passifs en attendant le « job parfait ». Le marché change vite avec l'économie des missions et la reconfiguration des réseaux.
+            </p>
+
+            <!-- Cute Reaction Buttons -->
+            <div class="flex justify-center items-center gap-3 pt-2">
+                <button onclick="addReaction('mindblown')" class="px-4 py-2 bg-white rounded-full border border-mocha-100 shadow-sm hover:scale-105 transition active:scale-95 text-xs font-semibold flex items-center gap-2">
+                    🤯 <span id="count-mindblown">142</span>
+                </button>
+                <button onclick="addReaction('fire')" class="px-4 py-2 bg-white rounded-full border border-mocha-100 shadow-sm hover:scale-105 transition active:scale-95 text-xs font-semibold flex items-center gap-2">
+                    🔥 <span id="count-fire">98</span>
+                </button>
+                <button onclick="addReaction('light')" class="px-4 py-2 bg-white rounded-full border border-mocha-100 shadow-sm hover:scale-105 transition active:scale-95 text-xs font-semibold flex items-center gap-2">
+                    💡 <span id="count-light">312</span>
+                </button>
+            </div>
+
+            <!-- Discussion & Newsletter Box -->
+            <div class="bg-white p-6 sm:p-8 rounded-4xl border border-mocha-100 shadow-soft max-w-xl mx-auto space-y-4 text-left">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">💬</span>
+                    <h3 class="font-bold text-mocha-900">Votre avis compte</h3>
+                </div>
+                <p class="text-xs sm:text-sm text-mocha-700">
+                    Que pensez-vous de cette distinction entre métiers « Mansabdari » et métiers transmissibles ? Laissez vos réflexions pour le prochain épisode de cette série.
+                </p>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Votre email pour la suite de la série..." class="w-full text-xs sm:text-sm px-4 py-3 bg-cream rounded-2xl border border-mocha-100 focus:outline-none focus:border-matcha-500 transition">
+                    <button onclick="showToast('Merci ! Vous recevrez la suite par email. 💌')" class="px-5 py-3 bg-matcha-800 text-white rounded-2xl text-xs sm:text-sm font-semibold hover:bg-matcha-500 transition flex-shrink-0">
+                        S'abonner
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Aesthetic Footer -->
+    <footer class="border-t border-mocha-100 bg-white/50 text-center py-8 text-xs text-mocha-400 space-y-2">
+        <p>© 2026 • L'Écho Stratégique — Pensé pour les bâtisseurs de demain.</p>
+        <p class="text-[10px]">HTML5 • Tailwind CSS • Vanilla JS • Fresh & Unique Layout</p>
+    </footer>
+
+    <!-- Interactive Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-mocha-900 text-white px-5 py-3 rounded-2xl shadow-xl text-xs font-medium translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 z-50">
+        <span id="toastMsg">Lien copié dans le presse-papier ! ✨</span>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Reading Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Quiz / Score Calculator
+        function calculateScore() {
+            const checks = document.querySelectorAll('.quiz-check:checked').length;
+            const verdict = document.getElementById('scoreVerdict');
+            const bar = document.getElementById('scoreBar');
+
+            if(checks === 0) {
+                verdict.innerText = "Modèle Mansabdari (Risque élevé de recommencer à zéro 🛑)";
+                verdict.className = "font-serif text-lg text-apricot-200 font-bold";
+                bar.style.width = "10%";
+                bar.className = "bg-apricot-500 h-full transition-all duration-300";
+            } else if(checks === 1) {
+                verdict.innerText = "En transition (Prémices d'un actif ⏳)";
+                verdict.className = "font-serif text-lg text-apricot-200 font-bold";
+                bar.style.width = "40%";
+                bar.className = "bg-apricot-500 h-full transition-all duration-300";
+            } else if(checks === 2) {
+                verdict.innerText = "Tremplin en construction (Bonne dynamique 🚀)";
+                verdict.className = "font-serif text-lg text-matcha-100 font-bold";
+                bar.style.width = "75%";
+                bar.className = "bg-matcha-500 h-full transition-all duration-300";
+            } else {
+                verdict.innerText = "Empire Intergénérationnel (Tremplin Optimal 🏰)";
+                verdict.className = "font-serif text-lg text-matcha-100 font-bold";
+                bar.style.width = "100%";
+                bar.className = "bg-matcha-500 h-full transition-all duration-300";
+            }
+        }
+
+        // Reaction Counter
+        function addReaction(type) {
+            const el = document.getElementById(`count-${type}`);
+            let count = parseInt(el.innerText);
+            el.innerText = count + 1;
+            showToast("Réaction enregistrée ! Merci ✨");
+        }
+
+        // Toast Notification Trigger
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toastMsg");
+            toastMsg.innerText = message;
+            toast.classList.remove("translate-y-20", "opacity-0");
+            setTimeout(() => {
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 3000);
+        }
+
+        // Copy Link
+        function copyArticleLink() {
+            navigator.clipboard.writeText(window.location.href);
+            showToast("Lien de l'article copié avec succès ! 📋");
+        }
+    </script>
+</body>
+</html>

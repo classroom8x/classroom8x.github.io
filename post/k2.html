@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pourquoi la classe moyenne supérieure devrait abandonner les concours administratifs</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        cute: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        pastel: {
+                            pink: '#FFE5EC',
+                            rose: '#F8B4D9',
+                            coral: '#FF9EAA',
+                            lavender: '#E8EAFF',
+                            mint: '#E2F6EA',
+                            amber: '#FFF3D6',
+                            peach: '#FFE7D9',
+                            dark: '#1E1B2E',
+                            subtle: '#645F7A'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(235, 130, 160, 0.15)',
+                        'cute': '0 10px 25px -5px rgba(139, 92, 246, 0.12), 0 8px 10px -6px rgba(139, 92, 246, 0.08)',
+                        'floating': '0 30px 60px -12px rgba(50, 50, 93, 0.15), 0 18px 36px -18px rgba(0, 0, 0, 0.1)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Cute Aesthetic Styles */
+        body {
+            background-color: #FAF8F5;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(255, 229, 236, 0.8) 0px, transparent 50%),
+                radial-gradient(at 90% 20%, rgba(232, 234, 255, 0.7) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(226, 246, 234, 0.6) 0px, transparent 50%),
+                radial-gradient(at 80% 90%, rgba(255, 243, 214, 0.7) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+        }
+
+        .glass-badge {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .badge-glow {
+            box-shadow: 0 0 20px rgba(255, 158, 170, 0.35);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F8B4D9;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF9EAA;
+        }
+
+        /* Floating blob animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .float-anim {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-pastel-dark font-sans antialiased selection:bg-pastel-rose selection:text-pastel-dark">
+
+    <!-- Reading Progress Bar -->
+    <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-pastel-coral via-pastel-rose to-purple-400 z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-4 z-40 max-w-5xl mx-auto px-4 sm:px-6">
+        <nav class="glass-card rounded-full px-6 py-3.5 flex items-center justify-between shadow-cute">
+            <a href="#" class="flex items-center gap-2 text-pastel-dark font-bold font-cute tracking-tight text-lg group">
+                <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-pastel-coral to-pastel-rose flex items-center justify-center text-white shadow-md group-hover:rotate-12 transition-transform">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </span>
+                <span>Clarté<span class="text-pink-500 font-serif italic font-normal">Avenir</span></span>
+            </a>
+            
+            <div class="flex items-center gap-3">
+                <span id="readTimeBadge" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-pastel-lavender/80 text-indigo-700">
+                    <i data-lucide="clock" class="w-3.5 h-3.5"></i> 6 min de lecture
+                </span>
+                <a href="#lion-interactive" class="text-xs sm:text-sm font-semibold bg-pastel-dark text-white px-4 py-2 rounded-full hover:bg-slate-800 transition-all hover:shadow-lg flex items-center gap-1.5">
+                    <span>L'Analogie</span>
+                    <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-12 pb-24 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pastel-pink text-pink-700 text-xs sm:text-sm font-bold tracking-wide uppercase badge-glow">
+                <i data-lucide="flame" class="w-4 h-4 text-pink-500"></i>
+                Perspective Lucide & Prospective 2025–2060
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] text-slate-900">
+                Pourquoi la classe moyenne supérieure devrait abandonner la course aux <span class="bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent italic">concours administratifs</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 font-cute max-w-2xl mx-auto leading-relaxed">
+                7 vérités dérangeantes pour réorienter les talents vers la véritable création de valeur, l'épanouissement et la liberté.
+            </p>
+
+            <div class="flex flex-wrap justify-center items-center gap-4 text-xs sm:text-sm text-slate-500 pt-2">
+                <div class="flex items-center gap-1.5">
+                    <i data-lucide="calendar" class="w-4 h-4 text-pink-400"></i>
+                    <span>Analyses & Carrière</span>
+                </div>
+                <span>•</span>
+                <div class="flex items-center gap-1.5">
+                    <i data-lucide="target" class="w-4 h-4 text-purple-400"></i>
+                    <span>Mobilité & Économie réelle</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Distinction Patriotique / Préambule -->
+        <section class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-pastel-pink via-pastel-lavender to-pastel-mint rounded-3xl blur-md opacity-70 group-hover:opacity-100 transition duration-500"></div>
+            <div class="relative glass-card p-6 sm:p-8 rounded-3xl shadow-soft">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-pastel-mint flex-shrink-0 flex items-center justify-center text-emerald-700 shadow-inner">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-cute font-bold text-lg text-slate-900">Distinction essentielle d’abord :</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Les métiers en uniforme (forces armées, défense du pays) relèvent d'une <strong class="text-emerald-800 font-semibold">vocation patriotique</strong> sacrée et d'un devoir noble auquel on ne peut appliquer une simple grille de calcul financier.
+                        </p>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed pt-1">
+                            En revanche, pour tous les autres postes administratifs — du greffier au secrétaire d'État —, il est temps d’avoir une discussion franche et décomplexée.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Card -->
+        <section class="glass-card rounded-3xl p-8 border-l-8 border-l-pink-400 relative overflow-hidden">
+            <i data-lucide="quote" class="w-20 h-20 text-pastel-pink/60 absolute -bottom-4 -right-2 pointer-events-none"></i>
+            <p class="font-serif italic text-lg sm:text-2xl text-slate-800 leading-relaxed">
+                « Trop souvent, le culte de l'emploi public repose sur une émotion négative : un poste garanti, aucun risque d’être renvoyé, un salaire fixe même sans effort. En pensant à la génération qui travaillera entre 2025 et 2060, cette mentalité est un piège. »
+            </p>
+        </section>
+
+        <!-- The 7 Truths (Interactive Cards) -->
+        <section class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Les 7 Vérités qui Dérangent</h2>
+                    <p class="text-slate-500 font-cute text-sm">Explorez les réalités structurelles</p>
+                </div>
+                <span class="px-3.5 py-1.5 rounded-full bg-pastel-amber text-amber-900 font-bold text-xs">
+                    Lecture Critique
+                </span>
+            </div>
+
+            <!-- Card 1 -->
+            <article class="glass-card p-6 sm:p-8 rounded-3xl shadow-soft hover:shadow-floating transition-all duration-300 border border-white">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-400 to-rose-500 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        01
+                    </div>
+                    <div class="space-y-3 flex-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-xl font-bold text-slate-900 font-cute">L’équation mathématique est contre eux (et c’est normal)</h3>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-red-100 text-red-700 font-medium">Statistiques 0.01%</span>
+                        </div>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Les postes de cadres administratifs supérieurs (comme l'UPSC/IAS) stagnent depuis 20 ans (autour de 800 à 1 000 postes par an) tandis que le nombre de candidats a été multiplié par dix. Avec les quotas de réservation sociale (50 à 60 %), les probabilités sont infinitésimales.
+                        </p>
+                        <div class="bg-pastel-peach/60 rounded-2xl p-4 text-xs sm:text-sm text-slate-700 space-y-1">
+                            <p class="font-bold flex items-center gap-1.5 text-pink-950">
+                                <i data-lucide="zap" class="w-4 h-4 text-pink-600"></i> La fin du monopole du savoir :
+                            </p>
+                            <p>
+                                Grâce à Internet, un étudiant sans filet de sécurité étudie 16 à 18h par jour avec une faim vitale. Votre enfant, né dans un foyer aisé et stable, ne peut (et ne devrait) pas simuler une telle urgence destructrice.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="glass-card p-6 sm:p-8 rounded-3xl shadow-soft hover:shadow-floating transition-all duration-300 border border-white">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-400 to-indigo-500 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        02
+                    </div>
+                    <div class="space-y-3 flex-1">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-xl font-bold text-slate-900 font-cute">Le piège destructeur des années perdues (22 à 28 ans)</h3>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-purple-100 text-purple-700 font-medium">Coût temporel</span>
+                        </div>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Le schéma classique est alarmant : début des révisions à 22 ans, échecs successifs aux oraux ou écrits, et à 28 ans : <strong>6 ans de vide sur le CV</strong>, aucune compétence pratique et une anxiété chronique.
+                        </p>
+                        <div class="p-3 bg-white/70 rounded-xl border border-purple-100 flex items-center gap-3 text-xs sm:text-sm text-slate-600">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-indigo-500 flex-shrink-0"></i>
+                            <span>Pendant ce temps, leurs pairs dans l’économie réelle ont accumulé 5 ans d’expérience concrète, du réseau et de la valeur marchande.</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="glass-card p-6 sm:p-8 rounded-3xl shadow-soft hover:shadow-floating transition-all duration-300 border border-white">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        03
+                    </div>
+                    <div class="space-y-3 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 font-cute">La fin des privilèges et du « prestige » administratif</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Le fantasme du bureaucrate tout-puissant s'effondre face à la réalité moderne :
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            <div class="bg-pastel-amber/40 p-3 rounded-xl border border-amber-100 text-xs sm:text-sm text-slate-700">
+                                <span class="font-bold block text-amber-900 mb-1">⚡ Fin des passe-droits</span>
+                                Les gyrophares, retraites royales garanties et passe-droits d'antan disparaissent progressivement partout.
+                            </div>
+                            <div class="bg-pastel-lavender/40 p-3 rounded-xl border border-indigo-100 text-xs sm:text-sm text-slate-700">
+                                <span class="font-bold block text-indigo-900 mb-1">💻 Digitalisation totale</span>
+                                Le pouvoir d'un agent reposait sur sa "capacité de blocage". Avec le numérique, ce levier arbitraire tend vers zéro.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="glass-card p-6 sm:p-8 rounded-3xl shadow-soft hover:shadow-floating transition-all duration-300 border border-white">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-400 to-pink-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        04
+                    </div>
+                    <div class="space-y-3 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 font-cute">Le sacrifice de la vie de couple et la double peine fiscale</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Les mutations géographiques arbitraires forcent souvent le conjoint à sacrifier sa carrière professionnelle.
+                        </p>
+                        <div class="glass-badge p-4 rounded-2xl border border-pink-200 text-xs sm:text-sm space-y-2">
+                            <div class="flex items-center justify-between text-slate-700">
+                                <span>Un célibataire ou 1 seul salaire (200k€) :</span>
+                                <span class="font-bold text-red-600">Pression fiscale maximale</span>
+                            </div>
+                            <div class="flex items-center justify-between text-slate-700">
+                                <span>Un couple actif (2 x 100k€) :</span>
+                                <span class="font-bold text-emerald-600">Double abattement, 2 patrimoines & liberté</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="glass-card p-6 sm:p-8 rounded-3xl shadow-soft hover:shadow-floating transition-all duration-300 border border-white">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        05
+                    </div>
+                    <div class="space-y-3 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 font-cute">Un coût d'opportunité économique colossal</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Les règles déontologiques interdisent toute autre forme de création de richesse : pas d'entreprise, pas de conseil, interdiction de monétiser son expertise. C’est se bander les yeux face à l’explosion de l’économie numérique et du capital moderne.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="glass-card p-6 sm:p-8 rounded-3xl shadow-soft hover:shadow-floating transition-all duration-300 border border-white">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-600 to-slate-800 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        06
+                    </div>
+                    <div class="space-y-3 flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 font-cute">La réalité matérielle : Un déclassement du cadre de vie</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Le tabou absolu : les logements de fonction délabrés, les plomberies défaillantes, les parties communes vieillissantes. Avoir un titre ronflant mais vivre pendant 35 ans en dessous du standard de confort que le secteur privé vous offrirait sans difficulté.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 7 (Special Interactive Feature) -->
+            <article id="lion-interactive" class="glass-card p-6 sm:p-8 rounded-3xl shadow-floating border-2 border-pastel-rose overflow-hidden relative">
+                <div class="flex flex-col sm:flex-row items-start gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 via-rose-500 to-indigo-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md flex-shrink-0">
+                        07
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-pink-600 font-bold">Analogie Révélatrice</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 font-cute">Lion de Cirque vs Lion de la Savane</h3>
+                    </div>
+                </div>
+
+                <!-- Interactive Switcher -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-rose-50 to-pink-100/70 border border-pink-200 relative group transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">🎪</span>
+                            <h4 class="font-bold text-slate-800 font-cute text-lg">Le Lion de Cirque</h4>
+                        </div>
+                        <p class="text-xs font-semibold text-rose-600 mb-2">(La fonction publique administrative)</p>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            3 repas garantis par jour, mais enfermé dans une cage. Il doit subir les ordres, les coups de fouet du dompteur hiérarchique, et ne peut jamais démissionner en 1 mois de préavis même si l'environnement devient toxique.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-emerald-50 to-teal-100/70 border border-emerald-200 relative group transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">🌾</span>
+                            <h4 class="font-bold text-slate-800 font-cute text-lg">Le Lion de la Savane</h4>
+                        </div>
+                        <p class="text-xs font-semibold text-emerald-600 mb-2">(L'économie libre & le privé)</p>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Il doit chasser pour vivre, mais il est libre de ses mouvements, maître de son territoire, bâtisseur de compétences adaptatives et capable de changer de trajectoire quand il le décide.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Moral Conclusion -->
+        <section class="glass-card p-8 sm:p-10 rounded-3xl border border-white text-center space-y-6 shadow-floating">
+            <div class="w-16 h-16 rounded-full bg-pastel-pink text-pink-600 mx-auto flex items-center justify-center shadow-soft">
+                <i data-lucide="heart-handshake" class="w-8 h-8"></i>
+            </div>
+            
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 max-w-xl mx-auto">
+                Laissez la place à ceux pour qui c'est un véritable ascenseur social
+            </h2>
+            
+            <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                Lorsqu'un enfant issu d'une famille défavorisée réussit un grand concours, c'est toute sa lignée qui sort de la précarité. C'est un formidable moteur de justice sociale.
+            </p>
+
+            <div class="p-5 rounded-2xl bg-pastel-lavender/50 max-w-2xl mx-auto text-left text-xs sm:text-sm text-indigo-950 font-medium leading-relaxed">
+                💡 <span class="font-bold">Pour les familles éduquées et aisées :</span> Pousser vos enfants vers ces concours par pur conformisme bride leur potentiel créatif et bloque une opportunité vitale pour quelqu'un d'autre. Dès 18 ou 20 ans, apprenez-leur à bâtir de vraies compétences, à comprendre l’économie moderne et à innover.
+            </div>
+
+            <!-- Share and feedback interactive box -->
+            <div class="pt-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-slate-500 font-cute">Pensez-vous qu'il est temps de désacraliser les concours ?</p>
+                <div class="flex items-center gap-2">
+                    <button onclick="handleVote('oui')" class="px-4 py-2 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                        <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> Tout à fait d'accord (<span id="voteYes">142</span>)
+                    </button>
+                    <button onclick="handleVote('non')" class="px-4 py-2 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                        <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Mitigé (<span id="voteNo">18</span>)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Share Footer Banner -->
+        <footer class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center gap-3">
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Lien copié dans le presse-papiers !');" class="px-5 py-2.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold shadow-soft border border-slate-100 flex items-center gap-2 transition hover:scale-105 active:scale-95">
+                    <i data-lucide="share-2" class="w-4 h-4 text-pink-500"></i> Partager avec des parents & étudiants
+                </button>
+            </div>
+            <p class="text-xs text-slate-400 font-cute">
+                © 2026 Clarté Avenir • Réflexion sur les carrières et l'économie moderne
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Interactive Script -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + "%";
+        });
+
+        // Simple interactive reaction state
+        let voted = false;
+        function handleVote(type) {
+            if (voted) {
+                alert("Vous avez déjà partagé votre avis !");
+                return;
+            }
+            if (type === 'oui') {
+                const el = document.getElementById('voteYes');
+                el.innerText = parseInt(el.innerText) + 1;
+            } else {
+                const el = document.getElementById('voteNo');
+                el.innerText = parseInt(el.innerText) + 1;
+            }
+            voted = true;
+            alert("Merci pour votre vote et contribution à la discussion !");
+        }
+    </script>
+</body>
+</html>

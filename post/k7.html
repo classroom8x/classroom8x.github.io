@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dépenses des Ménages (1940 - 2040) | La Règle des ×10</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Newsreader (Editorial) & Outfit (Fresh Geometric) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        editorial: ['Newsreader', 'serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        oatmeal: '#F8F5F0',
+                        paper: '#FFFDF9',
+                        terracotta: '#D96B43',
+                        terrasoft: '#FBECE6',
+                        sage: '#6B9080',
+                        sagesoft: '#EAF2EF',
+                        butter: '#F6ECC9',
+                        ink: '#2B3338',
+                        inklight: '#5D6B74',
+                        warmborder: '#E8E1D5'
+                    },
+                    boxShadow: {
+                        'stamp': '3px 3px 0px 0px rgba(43, 51, 56, 0.9)',
+                        'softcard': '0 8px 30px -4px rgba(107, 144, 128, 0.08)',
+                        'float': '0 16px 36px -8px rgba(217, 107, 67, 0.12)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8F5F0;
+            color: #2B3338;
+            background-image: radial-gradient(#E8E1D5 0.75px, transparent 0.75px);
+            background-size: 20px 20px;
+        }
+        .stamp-border {
+            border: 2px dashed #D96B43;
+        }
+        .retro-tag {
+            box-shadow: 2px 2px 0px #2B3338;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-terrasoft selection:text-terracotta relative">
+
+    <!-- Top Reading Gauge -->
+    <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-sage via-terracotta to-butter z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- Header Navigation -->
+    <header class="max-w-4xl mx-auto px-6 pt-8 pb-4">
+        <div class="bg-paper/90 backdrop-blur-md rounded-2xl p-4 px-6 border border-warmborder flex items-center justify-between shadow-sm">
+            <div class="flex items-center space-x-3">
+                <span class="w-9 h-9 rounded-xl bg-terrasoft text-terracotta flex items-center justify-center font-bold text-base shadow-sm">
+                    📜
+                </span>
+                <div>
+                    <span class="font-editorial text-xl font-bold tracking-tight text-ink block leading-none">Chronique Patrimoniale</span>
+                    <span class="text-[11px] text-inklight font-medium">Temps Long • Analyse Économique</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="hidden sm:inline-block px-3 py-1 bg-sagesoft text-sage text-xs font-semibold rounded-full border border-sage/20">
+                    Étude 1940 – 2040
+                </span>
+                <button onclick="sharePage()" class="p-2 rounded-xl bg-ink text-white hover:bg-terracotta transition retro-tag">
+                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-6 py-8 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-butter/60 border border-amber-300 text-xs font-semibold text-amber-900">
+                <span>🌱 Analyse Fondamentale des Dépenses</span>
+            </div>
+
+            <h1 class="font-editorial text-4xl sm:text-5xl md:text-6xl text-ink font-bold leading-[1.12]">
+                Dépenses des Ménages (1940-2040) : <br>
+                <span class="italic font-normal text-terracotta underline decoration-sage/40 decoration-wavy">La Règle des « ×10 tous les 20 ans »</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-inklight max-w-2xl mx-auto leading-relaxed">
+                Pourquoi l'inflation n'est pas la seule responsable et comment préparer votre famille au choc financier des 20 prochaines années.
+            </p>
+
+            <!-- Benchmark Badge / Note de cadrage -->
+            <div class="bg-paper p-5 rounded-2xl border border-warmborder max-w-2xl mx-auto text-left shadow-softcard flex items-start space-x-4">
+                <div class="p-2.5 rounded-xl bg-sagesoft text-sage shrink-0">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </div>
+                <div class="text-xs space-y-1">
+                    <p class="font-bold text-ink text-sm">L'Étalon de Référence Constant :</p>
+                    <p class="text-inklight leading-relaxed">
+                        Foyer d'un <strong>cadre supérieur / haut fonctionnaire (Groupe A)</strong> en grande métropole (ex. Delhi), 20 ans d'ancienneté, 2 enfants scolarisés (5-15 ans). 
+                        <em class="text-stone-400 block mt-0.5">(Exclut les crédits & impôts pour mesurer la consommation réelle).</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1 : The Interactive Time Machine (1940 to 2040) -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-warmborder pb-3">
+                <div class="flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-lg bg-terracotta text-white flex items-center justify-center font-bold text-sm font-editorial">1</span>
+                    <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-ink">La Règle Mathématique : ×10 tous les 20 ans</h2>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1 bg-terrasoft text-terracotta rounded-full">
+                    Croissance moyenne : ~12% / an
+                </span>
+            </div>
+
+            <p class="text-inklight text-sm md:text-base leading-relaxed">
+                En observant le coût mensuel incompressible de notre foyer témoin sur 8 décennies, la régularité statistique est implacable. Cliquez sur chaque époque pour explorer le train de vie correspondant :
+            </p>
+
+            <!-- Interactive Timeline Stepper -->
+            <div class="bg-paper rounded-3xl p-6 md:p-8 border border-warmborder shadow-softcard space-y-6">
+                <!-- Year Selector Buttons -->
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="yearButtons">
+                    <button onclick="selectYear(1940)" class="year-btn py-2.5 px-3 rounded-xl border border-warmborder font-bold text-sm text-ink hover:border-terracotta transition" data-year="1940">1940</button>
+                    <button onclick="selectYear(1960)" class="year-btn py-2.5 px-3 rounded-xl border border-warmborder font-bold text-sm text-ink hover:border-terracotta transition" data-year="1960">1960</button>
+                    <button onclick="selectYear(1980)" class="year-btn py-2.5 px-3 rounded-xl border border-warmborder font-bold text-sm text-ink hover:border-terracotta transition" data-year="1980">1980</button>
+                    <button onclick="selectYear(2000)" class="year-btn py-2.5 px-3 rounded-xl border border-warmborder font-bold text-sm text-ink hover:border-terracotta transition" data-year="2000">2000</button>
+                    <button onclick="selectYear(2020)" class="year-btn py-2.5 px-3 rounded-xl border border-warmborder font-bold text-sm text-ink hover:border-terracotta transition active-year bg-terracotta text-white" data-year="2020">2020</button>
+                    <button onclick="selectYear(2040)" class="year-btn py-2.5 px-3 rounded-xl border border-dashed border-terracotta font-bold text-sm text-terracotta bg-terrasoft hover:bg-terracotta hover:text-white transition" data-year="2040">2040 🔮</button>
+                </div>
+
+                <!-- Active Era Display Card -->
+                <div class="bg-oatmeal rounded-2xl p-6 border border-warmborder grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                    <div class="space-y-1 md:border-r md:border-warmborder md:pr-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-inklight" id="eraLabel">Année 2020</span>
+                        <div class="font-editorial text-3xl sm:text-4xl font-bold text-terracotta" id="eraCost">100 000 ₹ <span class="text-xs font-sans text-inklight font-normal">/ mois</span></div>
+                        <p class="text-xs text-sage font-semibold" id="eraMultiplier">Facteur ×10 000 depuis 1940</p>
+                    </div>
+
+                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="bg-paper p-3 rounded-xl border border-warmborder">
+                            <span class="text-inklight block font-semibold mb-0.5">🚗 Transport Typique :</span>
+                            <span class="font-bold text-ink" id="eraTransport">Berline / Mid-SUV</span>
+                        </div>
+                        <div class="bg-paper p-3 rounded-xl border border-warmborder">
+                            <span class="text-inklight block font-semibold mb-0.5">❄️ Confort Domestique :</span>
+                            <span class="font-bold text-ink" id="eraCooling">Climatisation multi-split réversible</span>
+                        </div>
+                        <div class="bg-paper p-3 rounded-xl border border-warmborder">
+                            <span class="text-inklight block font-semibold mb-0.5">🍹 Boisson de Réception :</span>
+                            <span class="font-bold text-ink" id="eraDrink">Jus pressé à froid bio</span>
+                        </div>
+                        <div class="bg-paper p-3 rounded-xl border border-warmborder">
+                            <span class="text-inklight block font-semibold mb-0.5">💡 Réalité Sociétale :</span>
+                            <span class="font-bold text-ink" id="eraNote">Loyer élevé et scolarité privée d'élite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 : The True Engine (Aspiration Inflation) -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-warmborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-sage text-white flex items-center justify-center font-bold text-sm font-editorial">2</span>
+                <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-ink">Le Vrai Moteur : L'Inflation des Aspirations</h2>
+            </div>
+
+            <p class="text-inklight text-sm md:text-base leading-relaxed">
+                Une inflation monétaire pure n'explique pas un bond de 12 % par an pendant 80 ans. La véritable explosion provient du <strong>« Lifestyle Creep »</strong> : notre définition du minimum acceptable qui ne cesse d'enfler.
+            </p>
+
+            <!-- 3 Cute Aesthetic Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-paper p-5 rounded-3xl border border-warmborder space-y-3 shadow-softcard">
+                    <span class="text-2xl">🧊</span>
+                    <h3 class="font-editorial text-lg font-bold text-ink">Le Rafraîchissement</h3>
+                    <ul class="text-xs space-y-2 text-inklight">
+                        <li><strong class="text-ink">1960 :</strong> Le rafraîchisseur d'air est un luxe.</li>
+                        <li><strong class="text-ink">1980 :</strong> Le climatiseur individuel arrive.</li>
+                        <li><strong class="text-ink">2020 :</strong> La clim réversible centralisée est devenue la norme.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-paper p-5 rounded-3xl border border-warmborder space-y-3 shadow-softcard">
+                    <span class="text-2xl">🛵</span>
+                    <h3 class="font-editorial text-lg font-bold text-ink">La Mobilité</h3>
+                    <ul class="text-xs space-y-2 text-inklight">
+                        <li><strong class="text-ink">1980 :</strong> Le scooter (Bajaj Chetak) consacre l'effort familial.</li>
+                        <li><strong class="text-ink">2000 :</strong> La citadine Maruti 800 s'impose.</li>
+                        <li><strong class="text-ink">2020 :</strong> Le SUV familial spacieux est incontournable.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-paper p-5 rounded-3xl border border-warmborder space-y-3 shadow-softcard">
+                    <span class="text-2xl">🥤</span>
+                    <h3 class="font-editorial text-lg font-bold text-ink">Le Statut des Boissons</h3>
+                    <ul class="text-xs space-y-2 text-inklight">
+                        <li><strong class="text-ink">Il y a 30 ans :</strong> Offrir un soda (Coca) = standing absolu.</li>
+                        <li><strong class="text-ink">Puis :</strong> Les jus en brique, puis nectars premium.</li>
+                        <li><strong class="text-ink">Aujourd'hui :</strong> Jus pressés à froid bio & boissons végétales.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 : The Great Middle-Class Leveling -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-warmborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-butter text-amber-950 flex items-center justify-center font-bold text-sm font-editorial border border-amber-300">3</span>
+                <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-ink">Le Grand Nivellement de la Classe Moyenne</h2>
+            </div>
+
+            <p class="text-inklight text-sm md:text-base leading-relaxed">
+                Pendant que le cadre unique s'enferme dans son prestige hiérarchique, les couches émergentes rattrapent leur pouvoir d'achat grâce à la souplesse et au cumul d'activités.
+            </p>
+
+            <!-- Comparison Box -->
+            <div class="bg-paper rounded-3xl p-6 md:p-8 border border-warmborder shadow-softcard">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    
+                    <!-- Single Earner -->
+                    <div class="p-5 rounded-2xl bg-terrasoft/50 border border-terracotta/20 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold uppercase tracking-wider text-terracotta">Cadre Unique (Prestige)</span>
+                            <span class="text-xl">👔</span>
+                        </div>
+                        <div class="font-editorial text-2xl font-bold text-ink">200 000 ₹ <span class="text-xs font-sans text-inklight">brut/mois</span></div>
+                        <ul class="text-xs space-y-1.5 text-inklight">
+                            <li>⚠️ Tranche d'imposition maximale.</li>
+                            <li>⚠️ Posture statutaire obligeant à des dépenses de standing (SUV haut de gamme).</li>
+                            <li>⚠️ Aucune activité annexe par rigidité professionnelle.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Dual Earner -->
+                    <div class="p-5 rounded-2xl bg-sagesoft/60 border border-sage/30 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold uppercase tracking-wider text-sage">Couple Enseignants (Pragmatique)</span>
+                            <span class="text-xl">🤝</span>
+                        </div>
+                        <div class="font-editorial text-2xl font-bold text-ink">130 000 ₹ + Cours <span class="text-xs font-sans text-inklight">/mois</span></div>
+                        <ul class="text-xs space-y-1.5 text-inklight">
+                            <li>✨ Deux abattements fiscaux distincts = impôt net réduit.</li>
+                            <li>✨ Cours particuliers & revenus d'appoint non plafonnés.</li>
+                            <li>✨ Pouvoir d'achat disponible et épargne réelle quasi identiques !</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 : The Two Strategic Recommendations for 2040 -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-warmborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-ink text-white flex items-center justify-center font-bold text-sm font-editorial">4</span>
+                <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-ink">Deux Décisions Stratégiques pour Traverser 2040</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Recommandation 1 -->
+                <div class="bg-paper rounded-3xl p-6 border border-warmborder shadow-softcard space-y-4 relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-terrasoft text-terracotta flex items-center justify-center font-bold text-lg">
+                        🏰
+                    </div>
+                    <h3 class="font-editorial text-xl font-bold text-ink">
+                        1. Miser sur les « Hard Assets » (Actifs Rares)
+                    </h3>
+                    <p class="text-xs md:text-sm text-inklight leading-relaxed">
+                        Ne vous contentez pas de micro-placements financiers standardisés qui ne font que répliquer l'inflation. Adoptez la vision <strong>« Old Money »</strong> :
+                    </p>
+                    <div class="p-3.5 bg-oatmeal rounded-xl text-xs text-ink space-y-1 border border-warmborder">
+                        <p class="font-bold text-terracotta">🎯 La Clé Patrimoniale :</p>
+                        <p>Acquérir des biens fonciers et immobiliers stratégiques, impossibles à répliquer, qui créent une forteresse contre l'érosion monétaire sur 3 générations.</p>
+                    </div>
+                </div>
+
+                <!-- Recommandation 2 -->
+                <div class="bg-paper rounded-3xl p-6 border border-warmborder shadow-softcard space-y-4 relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-sagesoft text-sage flex items-center justify-center font-bold text-lg">
+                        🏡
+                    </div>
+                    <h3 class="font-editorial text-xl font-bold text-ink">
+                        2. Proximité Géographique & Synergie Familiale
+                    </h3>
+                    <p class="text-xs md:text-sm text-inklight leading-relaxed">
+                        Cessez d'éparpiller la famille aux 4 coins du pays en payant des loyers multiples. <strong>Vivez à 2-4 km les uns des autres :</strong>
+                    </p>
+                    <div class="p-3.5 bg-oatmeal rounded-xl text-xs text-ink space-y-1 border border-warmborder">
+                        <p class="font-bold text-sage">🌸 Le Sauvetage de Carrière :</p>
+                        <p>Le soutien des parents/beaux-parents pendant les 5 premières années des petits-enfants permet à une jeune femme de maintenir 40 ans de carrière active sans décrochage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE BUDGET 2040 STRESS TESTER -->
+        <section class="bg-gradient-to-br from-paper via-terrasoft/40 to-sagesoft/30 rounded-3xl p-8 border border-warmborder shadow-float text-center space-y-6">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="px-3 py-1 rounded-full bg-terracotta text-white text-xs font-bold uppercase tracking-wider">
+                    Simulateur 2040
+                </span>
+                <h3 class="font-editorial text-2xl md:text-3xl font-bold text-ink">Projetez votre Budget Personnel</h3>
+                <p class="text-xs text-inklight">Entrez votre dépense mensuelle actuelle pour estimer son équivalent en 2040 selon la règle des ×10 :</p>
+            </div>
+
+            <div class="max-w-sm mx-auto space-y-4">
+                <div class="relative">
+                    <input type="number" id="currentSpendInput" value="3000" min="500" step="500" class="w-full py-3 px-4 rounded-2xl bg-white border border-warmborder text-center font-editorial text-2xl font-bold text-ink focus:outline-none focus:border-terracotta shadow-inner">
+                    <span class="absolute right-4 top-4 text-xs font-bold text-inklight">€ ou ₹</span>
+                </div>
+
+                <div class="p-4 bg-white/80 backdrop-blur rounded-2xl border border-warmborder space-y-1">
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-terracotta">Budget Mensuel Projeté en 2040</span>
+                    <div class="font-editorial text-3xl font-bold text-ink" id="projectedSpendResult">30 000 €</div>
+                    <p class="text-[11px] text-sage font-medium">Pour maintenir exactement le même standard relatif d'aspiration.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion & Actionable Banner -->
+        <section class="bg-ink text-white rounded-3xl p-8 md:p-10 space-y-6 shadow-2xl relative overflow-hidden">
+            <div class="space-y-3 max-w-xl">
+                <span class="text-xs font-bold text-butter uppercase tracking-widest">Synthèse Stratégique</span>
+                <h3 class="font-editorial text-2xl sm:text-3xl font-bold">L'Avenir ne Pardonne pas l'Improvisation</h3>
+                <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                    1. Fuyez la course stérile aux dépenses de paraître.<br>
+                    2. Consolidez des actifs tangibles et durables.<br>
+                    3. Regroupez vos forces familiales au lieu d'éparpiller vos ressources.
+                </p>
+            </div>
+
+            <!-- Poll / Engagement -->
+            <div class="pt-4 border-t border-stone-700/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-stone-300 font-medium">Constatez-vous cette règle des ×10 dans votre propre lignée ?</p>
+                <div class="flex space-x-2 w-full sm:w-auto">
+                    <button onclick="vote('Oui, totalement !')" class="flex-1 sm:flex-none px-4 py-2 bg-terracotta hover:bg-opacity-90 text-white rounded-xl text-xs font-bold transition">
+                        Oui, tout à fait !
+                    </button>
+                    <button onclick="vote('En partie')" class="flex-1 sm:flex-none px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-xl text-xs font-bold transition">
+                        En partie
+                    </button>
+                </div>
+            </div>
+            <p id="voteMsg" class="text-xs text-butter font-medium hidden text-right"></p>
+        </section>
+
+    </main>
+
+    <!-- Aesthetic Footer -->
+    <footer class="max-w-4xl mx-auto px-6 py-10 text-center text-xs text-inklight border-t border-warmborder mt-12 space-y-2">
+        <p class="font-editorial text-sm font-semibold text-ink">Chronique de Réflexion Patrimoniale • 1940 - 2040</p>
+        <p>© Bon sens, prévoyance et cohésion familiale.</p>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Reading Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("readProgress").style.width = scrolled + "%";
+        };
+
+        // Timeline Data Object
+        const timelineData = {
+            1940: {
+                cost: "10 ₹",
+                multiplier: "Point de départ (Base 1)",
+                transport: "Marche à pied / Bicyclette",
+                cooling: "Éventail à main / Courants d'air",
+                drink: "Eau fraîche en jarre / Sharbat maison",
+                note: "Économie frugale pré-indépendance"
+            },
+            1960: {
+                cost: "100 ₹",
+                multiplier: "Facteur ×10 en 20 ans",
+                transport: "Transports publics / Vélo de fonction",
+                cooling: "Rafraîchisseur d'air (Cooler)",
+                drink: "Thé noir épicé préparé maison",
+                note: "Émergence des cadres urbains d'État"
+            },
+            1980: {
+                cost: "1 000 ₹",
+                multiplier: "Facteur ×100 en 40 ans",
+                transport: "Scooter familial (Bajaj Chetak)",
+                cooling: "Climatiseur monobloc de fenêtre",
+                drink: "Bouteille de Coca-Cola pour les invités",
+                note: "Le confort matériel moderne devient la norme"
+            },
+            2000: {
+                cost: "10 000 ₹",
+                multiplier: "Facteur ×1 000 en 60 ans",
+                transport: "Citadine (Maruti 800)",
+                cooling: "Climatiseur Split individuel",
+                drink: "Jus de fruits pasteurisés en brique",
+                note: "Consommation libéralisée et nouveaux standards"
+            },
+            2020: {
+                cost: "100 000 ₹",
+                multiplier: "Facteur ×10 000 en 80 ans",
+                transport: "Berline / Mid-SUV familial",
+                cooling: "Climatisation multi-split réversible",
+                drink: "Jus pressé à froid bio & laits végétaux",
+                note: "Loyer métropolitain et scolarité privée d'élite"
+            },
+            2040: {
+                cost: "1 000 000 ₹",
+                multiplier: "Projection : Facteur ×100 000",
+                transport: "Véhicule électrique connecté / Autonome",
+                cooling: "Habitat passif et filtrage d'air total",
+                drink: "Élixirs de longévité personnalisés",
+                note: "Choc financier majeur pour les ménages non préparés"
+            }
+        };
+
+        function selectYear(year) {
+            const data = timelineData[year];
+            
+            // Update Text
+            document.getElementById('eraLabel').innerText = "Année " + year;
+            document.getElementById('eraCost').innerHTML = data.cost + ' <span class="text-xs font-sans text-inklight font-normal">/ mois</span>';
+            document.getElementById('eraMultiplier').innerText = data.multiplier;
+            document.getElementById('eraTransport').innerText = data.transport;
+            document.getElementById('eraCooling').innerText = data.cooling;
+            document.getElementById('eraDrink').innerText = data.drink;
+            document.getElementById('eraNote').innerText = data.note;
+
+            // Update Active Button Style
+            document.querySelectorAll('.year-btn').forEach(btn => {
+                if(btn.getAttribute('data-year') == year) {
+                    btn.className = "year-btn py-2.5 px-3 rounded-xl font-bold text-sm bg-terracotta text-white shadow-sm";
+                } else {
+                    btn.className = "year-btn py-2.5 px-3 rounded-xl border border-warmborder font-bold text-sm text-ink hover:border-terracotta transition";
+                }
+            });
+        }
+
+        // Stress Tester Calculation
+        const spendInput = document.getElementById('currentSpendInput');
+        const spendResult = document.getElementById('projectedSpendResult');
+
+        spendInput.addEventListener('input', function() {
+            let val = parseFloat(spendInput.value) || 0;
+            let projected = val * 10;
+            spendResult.innerText = projected.toLocaleString('fr-FR') + ' € ou ₹';
+        });
+
+        // Vote / Interaction
+        function vote(choice) {
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: { y: 0.85 },
+                colors: ['#D96B43', '#6B9080', '#F6ECC9']
+            });
+            const msg = document.getElementById('voteMsg');
+            msg.innerText = `Merci pour votre retour (${choice}) !`;
+            msg.classList.remove('hidden');
+        }
+
+        // Share functionality
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Dépenses des Ménages : La Règle des ×10 tous les 20 ans',
+                    text: 'Une analyse fascinante sur le coût de la vie de 1940 à 2040.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Lien copié dans le presse-papier ! 📜✨');
+            }
+        }
+    </script>
+</body>
+</html>

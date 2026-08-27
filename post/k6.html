@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Crise du Milieu de Vie chez l'Homme ✨</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              peach: '#FFE7D6',
+              coral: '#FF6F61',
+              lavender: '#EDE9FE',
+              softblue: '#E0F2FE',
+              mint: '#DCFCE7',
+              cream: '#FAFAF7',
+              dark: '#1E293B',
+              amber: '#FEF3C7'
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.02)',
+            'hover': '0 20px 40px -10px rgba(255, 111, 97, 0.15)',
+            'bubble': '0 8px 25px rgba(255, 111, 97, 0.12)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAFAF7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-cream text-brand-dark font-sans selection:bg-brand-coral selection:text-white relative overflow-x-hidden antialiased">
+
+  <!-- Progress Bar Top -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-orange-400 via-rose-400 to-indigo-400 z-50 transition-all duration-150 w-0"></div>
+
+  <!-- Background Cute Blobs -->
+  <div class="fixed top-[-10%] right-[-5%] w-[450px] h-[450px] bg-brand-peach rounded-full blur-3xl opacity-40 pointer-events-none -z-10"></div>
+  <div class="fixed bottom-[15%] left-[-8%] w-[400px] h-[400px] bg-brand-lavender rounded-full blur-3xl opacity-50 pointer-events-none -z-10"></div>
+  <div class="fixed top-[40%] right-[10%] w-[350px] h-[350px] bg-brand-softblue rounded-full blur-3xl opacity-40 pointer-events-none -z-10"></div>
+
+  <!-- Header Nav -->
+  <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+    <nav class="glassmorphism border border-white/70 shadow-soft rounded-full px-5 py-3 flex items-center justify-between transition-all">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-coral to-orange-400 text-white flex items-center justify-center font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">✨</span>
+        <span class="font-bold text-sm tracking-tight text-slate-800">L'Art de Vivre <span class="text-brand-coral">.</span></span>
+      </a>
+      
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-flex items-center gap-1 text-xs font-medium bg-white/90 border border-slate-200/80 px-3 py-1.5 rounded-full text-slate-600 shadow-sm">
+          ☕ 5 min de lecture
+        </span>
+        <button onclick="copyArticleLink()" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-brand-dark text-white hover:bg-brand-coral px-4 py-2 rounded-full transition-all duration-300 shadow-sm active:scale-95">
+          <span>Partager</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="max-w-3xl mx-auto px-5 pt-12 pb-24">
+    
+    <!-- Hero Badges & Title -->
+    <div class="text-center space-y-5">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-peach/80 text-amber-900 border border-amber-200/60 text-xs font-semibold">
+        <span>🧘 Psychologie & Équilibre</span>
+        <span class="w-1 h-1 rounded-full bg-amber-600"></span>
+        <span>40 — 55 Ans</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.2] font-serif">
+        La Crise du Milieu de Vie chez l'Homme
+      </h1>
+      
+      <p class="text-lg md:text-xl text-slate-600 font-medium max-w-xl mx-auto">
+        Les 5 symptômes & comment y survivre avec brio <br class="hidden sm:inline">
+        <span class="inline-block mt-1 font-semibold text-brand-coral bg-brand-peach/30 px-3 py-0.5 rounded-lg">
+          (Sans acheter de Harley-Davidson 🛵)
+        </span>
+      </p>
+
+      <!-- Key Quote Highlight Box -->
+      <div class="mt-8 p-6 md:p-8 rounded-3xl bg-white border border-slate-100 shadow-soft relative overflow-hidden text-left">
+        <div class="absolute -right-5 -bottom-5 w-24 h-24 bg-brand-peach rounded-full opacity-30"></div>
+        <div class="flex items-start gap-4">
+          <div class="text-3xl select-none">⏳</div>
+          <div class="space-y-2">
+            <p class="text-xs uppercase tracking-wider font-bold text-slate-400">Le grand tournant</p>
+            <p class="text-base sm:text-lg font-serif italic text-slate-800 leading-relaxed">
+              « C'est ce moment précis où vous réalisez brutalement : <strong class="text-brand-coral font-sans font-semibold not-italic">"Il y a plus de vie derrière moi que devant."</strong> »
+            </p>
+            <p class="text-xs text-slate-500 leading-normal">
+              Une vague d'anxiété s'installe, accompagnée d'un sentiment de flottement. Parlons-en avec franchise, tendresse et légèreté.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Intro Context -->
+    <div class="mt-14 space-y-4 text-slate-700 leading-relaxed text-base">
+      <div class="p-5 rounded-2xl bg-brand-lavender/50 border border-purple-200/50 flex gap-3.5 items-start">
+        <span class="text-xl">💡</span>
+        <p class="text-sm text-purple-950">
+          <strong>Pourquoi chez l'homme particulièrement ?</strong> Dans nos contextes familiaux, nos mères et épouses vivent souvent de multiples « mini-crises » permanentes par leur dévouement quotidien. Pour l'homme, le choc arrive souvent d'un coup vers 40 ans et peut s'étaler sur <strong>3 à 10 ans</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section: 5 Symptoms Cards -->
+    <section class="mt-16">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-8 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">01</div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900 font-serif">
+          Les 5 Symptômes Incontournables
+        </h2>
+      </div>
+
+      <div class="space-y-5">
+        
+        <!-- Symptom 1 -->
+        <article class="p-6 bg-white rounded-3xl border border-slate-100 shadow-soft hover:shadow-hover transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="text-2xl p-2.5 rounded-2xl bg-brand-peach/50 shrink-0 group-hover:scale-110 transition-transform">🎛️</span>
+            <div class="space-y-1.5">
+              <h3 class="text-lg font-bold text-slate-800">1. Le sentiment de perte de contrôle totale</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Votre conjointe a ses priorités bien ancrées. Vos enfants grandissent, s'affirment et n'écoutent plus vos conseils au doigt et à l'œil. Les finances deviennent plus complexes. Vous avez l'impression que le volant de votre propre vie vous échappe des mains.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Symptom 2 (With Interactive Ticket Card) -->
+        <article class="p-6 bg-gradient-to-br from-white to-amber-50/40 rounded-3xl border border-amber-200/50 shadow-soft space-y-4">
+          <div class="flex items-start gap-4">
+            <span class="text-2xl p-2.5 rounded-2xl bg-brand-amber shrink-0">🎟️</span>
+            <div class="space-y-1.5">
+              <h3 class="text-lg font-bold text-slate-800">2. Trop d'attentes sur vos épaules… & zéro applaudissement</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Pris en étau entre les études des enfants, la stabilité du couple, les parents vieillissants et un patron qui lance : <em>« Je ne suis pas satisfait de vos performances. »</em>
+              </p>
+            </div>
+          </div>
+
+          <!-- Funny Interactive Quote Box -->
+          <div class="ml-0 sm:ml-12 p-4 rounded-2xl bg-white border border-amber-200 shadow-sm relative space-y-3">
+            <div class="flex items-center justify-between text-xs text-amber-800 font-semibold border-b border-amber-100 pb-2">
+              <span>💬 La réplique intérieure qu'on rêve de dire :</span>
+              <button onclick="generateTicket()" class="text-xs bg-amber-500 text-white px-2.5 py-1 rounded-full hover:bg-amber-600 transition-colors">
+                Prendre un ticket 🎟️
+              </button>
+            </div>
+            <p class="text-sm font-serif italic text-slate-700 leading-relaxed">
+              « Monsieur, ma femme n'est pas satisfaite de moi, mes enfants non plus, mes parents non plus, et moi-même je ne suis pas satisfait de moi… <strong class="text-amber-900 font-sans not-italic">Alors vous pouvez prendre un ticket et faire la queue !</strong> »
+            </p>
+            <div id="ticket-feedback" class="hidden text-xs text-amber-700 bg-amber-50 p-2 rounded-xl text-center font-medium animate-pulse">
+              🎉 Numéro de ticket généré : #42 dans la file d'attente !
+            </div>
+          </div>
+        </article>
+
+        <!-- Symptom 3 -->
+        <article class="p-6 bg-white rounded-3xl border border-slate-100 shadow-soft hover:shadow-hover transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="text-2xl p-2.5 rounded-2xl bg-brand-softblue shrink-0 group-hover:scale-110 transition-transform">📉</span>
+            <div class="space-y-1.5">
+              <h3 class="text-lg font-bold text-slate-800">3. La stagnation professionnelle</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Tant que la carrière décolle, le sentiment d'ivresse masque la crise. Dès que le premier plateau survient, le masque du « cadre surbooké qui réussit tout » tombe, et le vide se fait brutalement ressentir.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Symptom 4 -->
+        <article class="p-6 bg-white rounded-3xl border border-slate-100 shadow-soft hover:shadow-hover transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="text-2xl p-2.5 rounded-2xl bg-brand-lavender shrink-0 group-hover:scale-110 transition-transform">🌧️</span>
+            <div class="space-y-1.5">
+              <h3 class="text-lg font-bold text-slate-800">4. Un climat de peur sourde et permanente</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                <em>Où vont étudier les enfants ? Comment financer leur avenir ? Que deviendrons-nous à la retraite ? Si mes parents tombent malades ?</em> Cette peur devient une musique de fond qui tourne en boucle dans la tête.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Symptom 5 -->
+        <article class="p-6 bg-white rounded-3xl border border-slate-100 shadow-soft hover:shadow-hover transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="text-2xl p-2.5 rounded-2xl bg-brand-mint shrink-0 group-hover:scale-110 transition-transform">🩺</span>
+            <div class="space-y-1.5">
+              <h3 class="text-lg font-bold text-slate-800">5. Le corps qui commence à lâcher</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Finie l'illusion de la jeunesse éternelle. Courbatures matinales, fatigue tenace, tension en hausse. Et comme on apprend souvent aux hommes à « rester forts » sans parler, tout est somatisé à l'intérieur.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- False Solutions (Trap Section) -->
+    <section class="mt-16 bg-gradient-to-tr from-rose-50 to-orange-50/60 p-6 md:p-8 rounded-3xl border border-rose-200/60">
+      <div class="text-center max-w-md mx-auto space-y-2 mb-6">
+        <span class="text-xs uppercase font-bold tracking-wider text-rose-500">Attention aux mirages</span>
+        <h2 class="text-2xl font-bold font-serif text-slate-900">Les Fausses Solutions Classiques</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <!-- Trap 1 -->
+        <div class="p-5 rounded-2xl bg-white border border-rose-100 shadow-sm space-y-2">
+          <div class="text-3xl">🏍️</div>
+          <h4 class="font-bold text-slate-800 text-sm">Le syndrome du « Biker tardif »</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Acheter un blouson en cuir et une grosse moto pour rouler la nuit. Résultat après 3 mois : elle sert juste à aller acheter le pain sous le regard dubitatif de votre épouse.
+          </p>
+        </div>
+
+        <!-- Trap 2 -->
+        <div class="p-5 rounded-2xl bg-white border border-rose-100 shadow-sm space-y-2">
+          <div class="text-3xl">🏃‍♂️</div>
+          <h4 class="font-bold text-slate-800 text-sm">Le marathonien improvisé</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Se mettre subitement à courir des 15 km, fréquenter la salle de musculation 7j/7 et teindre ses cheveux pour défier l'évidence du temps. Fuir n'est jamais la solution !
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategy Section (The Real Solution) -->
+    <section class="mt-16">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">02</div>
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900 font-serif">
+          La Feuille de Route Pratique
+        </h2>
+      </div>
+
+      <!-- Rudyard Kipling quote -->
+      <div class="p-5 rounded-2xl bg-white border-l-4 border-emerald-500 shadow-soft mb-8">
+        <p class="text-sm font-serif italic text-slate-700">
+          « Si tu peux garder ton calme quand tous autour de toi perdent la tête... Tu seras un homme, mon fils. »
+        </p>
+        <span class="block text-xs font-semibold text-slate-400 mt-1">— Rudyard Kipling</span>
+      </div>
+
+      <!-- 5 Action Steps -->
+      <div class="space-y-4">
+        
+        <!-- Step 1 -->
+        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-brand-mint text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+          <div class="space-y-1">
+            <h3 class="font-bold text-slate-800 text-base">Passez en mode offensif avec votre argent 💳</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              C'est la dernière fenêtre où vos parents sont là, vos enfants sous votre toit et votre couple actif. Utilisez votre épargne pour injecter du bonheur présent : voyages, rénovation, moments précieux. L'argent sert à acheter de la sérénité aujourd'hui.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-brand-mint text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+          <div class="space-y-1">
+            <h3 class="font-bold text-slate-800 text-base">Acceptez le rôle de « distributeur » avec le sourire 🏧</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Vous avez l'impression d'être un pourvoyeur sans applaudissements ? Assumez-le avec fierté et grandeur d'âme. Votre valeur réside dans votre capacité à tenir le cap sans amertume.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-brand-mint text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+          <div class="space-y-1">
+            <h3 class="font-bold text-slate-800 text-base">Rassurez votre conjointe pour pacifier le foyer 🕊️</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Dites-lui avec calme : <em>« Ne t'inquiète pas pour l'avenir des enfants, je m'en occupe personnellement. »</em> Quand elle se sent en sécurité, toute la maison s'apaise instantanément.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-brand-mint text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+          <div class="space-y-1">
+            <h3 class="font-bold text-slate-800 text-base">Dé-dramatisez psychologiquement 🧘</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Même si vos enfants ne deviennent pas des génies d'élite, vous serez là pour les guider pas à pas. En acceptant cette simplicité, toute la charge mentale retombe d'un coup.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-brand-mint text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">5</span>
+          <div class="space-y-1">
+            <h3 class="font-bold text-slate-800 text-base">Donnez du temps simple à vos parents ☕</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Ils n'attendent pas la lune : juste votre présence, écouter leurs anecdotes, partager un repas fait maison et leur exprimer votre gratitude.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Conclusion Box -->
+    <section class="mt-14 p-8 rounded-3xl bg-gradient-to-r from-slate-900 to-indigo-950 text-white shadow-xl space-y-4">
+      <span class="text-xs uppercase font-bold tracking-widest text-brand-coral">En résumé</span>
+      <h3 class="text-2xl font-bold font-serif leading-snug">
+        Tenez bon, gardez le sourire. C'est votre test de solidité intérieure.
+      </h3>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        La quarantaine n'est pas le début de la fin. Restez debout au milieu du terrain, prenez les décisions avec clarté, dépensez pour la joie de vos proches et offrez la stabilité. 
+        <strong class="text-white">La façon dont vous gérez vos 40-50 ans déterminera la paix de vos 60-80 ans.</strong>
+      </p>
+    </section>
+
+    <!-- Interactive Cute Reactions & Comment Box -->
+    <section class="mt-12 text-center space-y-6">
+      <p class="text-sm font-semibold text-slate-600">Vous vous reconnaissez dans ces lignes ?</p>
+      
+      <!-- Reaction Buttons -->
+      <div class="flex items-center justify-center gap-3 flex-wrap">
+        <button onclick="sendReaction('❤️')" class="px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm hover:scale-105 active:scale-95 transition-all text-sm font-medium flex items-center gap-1.5">
+          <span>❤️</span> <span id="count-heart" class="text-xs text-slate-500">142</span>
+        </button>
+        <button onclick="sendReaction('😂')" class="px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm hover:scale-105 active:scale-95 transition-all text-sm font-medium flex items-center gap-1.5">
+          <span>😂</span> <span id="count-laugh" class="text-xs text-slate-500">89</span>
+        </button>
+        <button onclick="sendReaction('💡')" class="px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm hover:scale-105 active:scale-95 transition-all text-sm font-medium flex items-center gap-1.5">
+          <span>💡</span> <span id="count-bulb" class="text-xs text-slate-500">204</span>
+        </button>
+      </div>
+
+      <!-- Toast Notification Container -->
+      <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+        Lien copié dans le presse-papier ! ✨
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Aesthetic Footer -->
+  <footer class="border-t border-slate-200/70 bg-white/50 backdrop-blur-md py-8 text-center text-xs text-slate-400">
+    <p>© 2026 L'Art de Vivre • Rédigé avec franchise & sérénité.</p>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + "%";
+    });
+
+    // 2. Ticket Generator Interaction
+    let ticketNumber = 42;
+    function generateTicket() {
+      ticketNumber++;
+      const feedback = document.getElementById('ticket-feedback');
+      feedback.innerHTML = `🎟️ <strong>Ticket #${ticketNumber}</strong> généré ! Merci de patienter avec le sourire.`;
+      feedback.classList.remove('hidden');
+    }
+
+    // 3. Reactions Counter
+    const reactions = { '❤️': 142, '😂': 89, '💡': 204 };
+    function sendReaction(emoji) {
+      if (emoji === '❤️') document.getElementById('count-heart').textContent = ++reactions['❤️'];
+      if (emoji === '😂') document.getElementById('count-laugh').textContent = ++reactions['😂'];
+      if (emoji === '💡') document.getElementById('count-bulb').textContent = ++reactions['💡'];
+      showToast(`Merci pour votre réaction ${emoji} !`);
+    }
+
+    // 4. Share / Copy Toast Notification
+    function copyArticleLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast("Lien de l'article copié ! ✨");
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

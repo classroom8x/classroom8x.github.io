@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retraite de la Fonction Publique : Les 4 Règles d'Or ✨💼</title>
+
+  <!-- Google Fonts: Fraunces (Cute Editorial Serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Fraunces"', 'serif'],
+          },
+          colors: {
+            sage: {
+              50: '#F4F7F4',
+              100: '#E5EDE5',
+              200: '#CBDBCB',
+              500: '#5F8D64',
+              800: '#2D4A30',
+              900: '#1C311E',
+            },
+            honey: {
+              50: '#FFFDF5',
+              100: '#FEF9E7',
+              200: '#FDEEC4',
+              400: '#F6C343',
+              600: '#D99814',
+            },
+            blush: {
+              50: '#FDF6F6',
+              100: '#FCECEC',
+              200: '#F7D4D4',
+              500: '#E07A7A',
+            },
+            cream: '#FAF8F5'
+          },
+          boxShadow: {
+            'zen': '0 12px 35px -8px rgba(95, 141, 100, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03)',
+            'card': '0 18px 40px -12px rgba(45, 74, 48, 0.07)',
+            'float': '0 20px 45px -10px rgba(217, 152, 20, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF8F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBDBCB;
+      border-radius: 20px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5F8D64;
+    }
+
+    /* Soft Blur Glassmorphism */
+    .glass-zen {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* Input Range Customization */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #5F8D64;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(95, 141, 100, 0.4);
+      margin-top: -6px;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 8px;
+      background: #E5EDE5;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-slate-800 font-sans selection:bg-sage-200 selection:text-sage-900 antialiased overflow-x-hidden relative">
+
+  <!-- Top Progress Scroll Indicator -->
+  <div id="zen-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sage-500 via-honey-400 to-blush-500 z-50 transition-all duration-150 w-0"></div>
+
+  <!-- Cute Ambient Background Blobs -->
+  <div class="fixed -top-24 -left-20 w-96 h-96 bg-sage-100/70 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+  <div class="fixed top-1/3 -right-24 w-96 h-96 bg-honey-100/80 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+  <div class="fixed bottom-10 left-10 w-80 h-80 bg-blush-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-5 z-40 max-w-3xl mx-auto px-4">
+    <nav class="glass-zen border border-white/80 shadow-zen rounded-full px-5 py-2.5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center text-sm shadow-sm group-hover:rotate-12 transition-transform">🕊️</span>
+        <span class="font-serif font-bold text-base text-sage-900 tracking-tight">Le Sage Retraité</span>
+      </a>
+      
+      <div class="flex items-center gap-2.5">
+        <span class="text-xs font-semibold text-sage-800 bg-sage-100/80 px-3 py-1 rounded-full hidden sm:inline-block">
+          🍵 Guide Sérénité
+        </span>
+        <button onclick="copyCurrentLink()" class="text-xs font-semibold bg-sage-800 text-white hover:bg-sage-500 px-4 py-2 rounded-full transition-all duration-300 shadow-sm active:scale-95 flex items-center gap-1.5">
+          <span>Partager</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Article Content Container -->
+  <main class="max-w-2xl mx-auto px-5 pt-12 pb-24">
+
+    <!-- Hero Header -->
+    <header class="text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-honey-100 text-honey-600 text-xs font-bold border border-honey-200/70">
+        <span>✨ Fonction Publique & Transition de Vie</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-slate-900 leading-[1.2]">
+        Retraite : Les 4 Règles d'Or pour Gérer son Pécule
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+        Comment traverser ce tournant financier avec sagesse, calme et dignité <br class="hidden sm:inline">
+        <span class="text-sage-800 font-semibold italic">(Sans céder à la panique du magot à placer)</span>
+      </p>
+
+      <div class="pt-2 flex items-center justify-center gap-3 text-xs text-slate-400 font-medium">
+        <span>🗓️ Guide Pratique</span>
+        <span>•</span>
+        <span>⏱️ 5 min de lecture apaisante</span>
+      </div>
+    </header>
+
+    <!-- Context Story Box -->
+    <section class="mt-10 p-6 sm:p-7 rounded-3xl bg-white/90 border border-slate-100 shadow-zen relative overflow-hidden space-y-3">
+      <div class="flex items-center gap-3 text-sage-800 font-semibold text-sm">
+        <span class="text-xl">💼</span>
+        <span>Le grand saut après 30 à 35 ans de service</span>
+      </div>
+      <p class="text-sm text-slate-600 leading-relaxed">
+        Que vous partiez à l'âge limite ou via un départ anticipé, vous voyez atterrir sur votre compte une somme inhabituelle (indemnité de départ, congés capitalisés, rachat de pension).
+      </p>
+      <p class="text-sm text-slate-600 leading-relaxed">
+        Un piège psychologique se referme souvent : on traite ce capital comme un « corps étranger » qu'il faut se dépêcher de placer à tout prix, entouré par une meute de conseillers bancaires et de proches aux idées miraculeuses.
+      </p>
+    </section>
+
+    <!-- Rule 1 -->
+    <section class="mt-14 space-y-4">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-xl bg-blush-100 text-blush-500 font-serif font-bold text-sm flex items-center justify-center">01</span>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">
+          La Vérité Nue : Vous n'êtes pas devenu Crésus 🛑
+        </h2>
+      </div>
+
+      <div class="p-6 bg-white rounded-3xl border border-slate-100 shadow-zen space-y-4">
+        <div class="p-4 rounded-2xl bg-blush-50/70 border border-blush-200/50 text-slate-700 text-sm font-serif italic leading-relaxed">
+          « Avec 100 000 €, 150 000 € ou 1,5 crore, vous ne pouvez même pas acheter un modeste deux-pièces dans une grande métropole. L'illusion d'être riche est trompeuse. »
+        </div>
+
+        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+          <li class="flex items-start gap-2.5">
+            <span class="text-blush-500 font-bold mt-0.5">•</span>
+            <span><strong>Gardez l'humilité :</strong> Ne tombez pas dans l'arrogance financière.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-blush-500 font-bold mt-0.5">•</span>
+            <span><strong>Discrétion absolue :</strong> Moins vos cousins éloignés et voisins connaissent vos comptes, mieux vous dormirez.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-blush-500 font-bold mt-0.5">•</span>
+            <span><strong>Vision long terme :</strong> Ce capital doit encaisser 20 à 30 ans d'inflation. Pas d'excitation hâtive.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Rule 2 & Interactive 20/80 Calculator -->
+    <section class="mt-14 space-y-4">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-xl bg-honey-100 text-honey-600 font-serif font-bold text-sm flex items-center justify-center">02</span>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">
+          La Règle des 20 % : Injectez de la Joie Immédiate 🎁
+        </h2>
+      </div>
+
+      <p class="text-sm text-slate-600 leading-relaxed">
+        Ne basculez pas dans la peur de manquer. Prélevez immédiatement 20 % pour briser la mentalité d'anxiété et célébrer ce jalon.
+      </p>
+
+      <!-- Interactive Budget Simulator -->
+      <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-honey-50/60 to-white border border-honey-200/80 shadow-zen space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🧮</span>
+            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Simulateur de Sérénité 20 / 80</h3>
+          </div>
+          <span class="text-xs bg-honey-200/70 text-amber-900 font-bold px-2.5 py-1 rounded-full">Interactif</span>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center text-xs font-semibold text-slate-500 mb-2">
+            <span>Montant de votre pécule reçu :</span>
+            <span id="corpus-display" class="text-sm font-bold text-sage-800">120 000 €</span>
+          </div>
+          <input id="corpus-slider" type="range" min="30000" max="300000" step="5000" value="120000" class="w-full accent-sage-500">
+        </div>
+
+        <!-- Real-Time Split Output Cards -->
+        <div class="grid sm:grid-cols-3 gap-3">
+          <!-- 10% Wife -->
+          <div class="p-4 rounded-2xl bg-white border border-honey-200 shadow-sm space-y-1 text-center sm:text-left">
+            <span class="text-xs font-bold text-rose-500 block">🌸 10% Conjoint(e)</span>
+            <div id="wife-amount" class="text-base font-extrabold text-slate-800">12 000 €</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Pour le foyer, refaire le salon, bijoux, gratitude.</p>
+          </div>
+
+          <!-- 10% Self/Family -->
+          <div class="p-4 rounded-2xl bg-white border border-honey-200 shadow-sm space-y-1 text-center sm:text-left">
+            <span class="text-xs font-bold text-amber-600 block">🚗 10% Soi & Famille</span>
+            <div id="self-amount" class="text-base font-extrabold text-slate-800">12 000 €</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Voiture confortable, voyage, cadeaux aux enfants.</p>
+          </div>
+
+          <!-- 80% Safety -->
+          <div class="p-4 rounded-2xl bg-sage-50 border border-sage-200 shadow-sm space-y-1 text-center sm:text-left">
+            <span class="text-xs font-bold text-sage-800 block">⏳ 80% Sécurité</span>
+            <div id="safe-amount" class="text-base font-extrabold text-sage-900">96 000 €</div>
+            <p class="text-[11px] text-sage-700 leading-tight">Dépôts sûrs, acheter du temps pour 1 an.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rule 3 -->
+    <section class="mt-14 space-y-4">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-xl bg-sage-100 text-sage-800 font-serif font-bold text-sm flex items-center justify-center">03</span>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">
+          Les 80 % Restants : Achetez du TEMPS ⏳
+        </h2>
+      </div>
+
+      <div class="p-6 bg-white rounded-3xl border border-slate-100 shadow-zen space-y-3">
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Placez cette part dans des <strong>dépôts à terme sécurisés et garantis</strong> (banques solides, épargne postale sûre). Bloquez tout et ne touchez à rien pendant <strong>6 à 12 mois</strong>.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-3 pt-2">
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+            <span class="text-xs font-bold text-slate-700">🛡️ Digérer le choc</span>
+            <p class="text-xs text-slate-500">L'arrêt du virement de paie mensuel demande plusieurs mois pour être assimilé sereinement.</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+            <span class="text-xs font-bold text-slate-700">🚫 Zéro Trading impulsif</span>
+            <p class="text-xs text-slate-500">Ne jouez pas aux apprentis traders d'actions ou cryptos. Perdre 50% exige 100% de gain juste pour revenir à zéro !</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rule 4 -->
+    <section class="mt-14 space-y-4">
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 font-serif font-bold text-sm flex items-center justify-center">04</span>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">
+          Fuyez les Vendeurs, Cherchez des Éducateurs 📚
+        </h2>
+      </div>
+
+      <div class="p-6 bg-white rounded-3xl border border-slate-100 shadow-zen space-y-3">
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Chaque foyer a une situation unique (enfants autonomes ou études en cours, état de santé, cadre de vie). Aucun webinaire commercial ne possède votre vérité.
+        </p>
+        <div class="p-4 rounded-2xl bg-purple-50/60 border border-purple-100 text-xs text-purple-900 leading-relaxed font-medium">
+          💡 Vous avez géré des responsabilités complexes pendant 35 ans. Prenez le temps de vous informer auprès de sources neutres, apprenez les bases et décidez <strong>toujours par vous-même</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning / Traps Section -->
+    <section class="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-tr from-rose-50 to-orange-50/40 border border-rose-100 shadow-card space-y-5">
+      <div class="flex items-center gap-2.5">
+        <span class="text-2xl">⚠️</span>
+        <h3 class="text-lg font-serif font-bold text-slate-900">Les 2 Pièges Post-Retraite à Éviter</h3>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Trap 1 -->
+        <div class="p-4 rounded-2xl bg-white/90 border border-rose-100 shadow-sm flex items-start gap-3">
+          <span class="text-rose-500 font-bold text-sm shrink-0 mt-0.5">❌ 1.</span>
+          <div>
+            <h4 class="text-xs font-bold text-slate-800">Ne prenez pas un petit job subalterne juste pour « tuer le temps »</h4>
+            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+              Ne gâchez pas 35 ans de prestige pour obéir à des managers ayant l'âge de vos enfants. Préservez votre dignité et votre statut.
+            </p>
+          </div>
+        </div>
+
+        <!-- Trap 2 -->
+        <div class="p-4 rounded-2xl bg-white/90 border border-rose-100 shadow-sm flex items-start gap-3">
+          <span class="text-rose-500 font-bold text-sm shrink-0 mt-0.5">❌ 2.</span>
+          <div>
+            <h4 class="text-xs font-bold text-slate-800">Ne devenez pas « l'intermédiaire de couloir » de votre ancien ministère</h4>
+            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+              Faire du lobbying devant vos anciens subordonnés crée malaise et conflits d'intérêts. Tournez la page avec élégance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophical Conclusion -->
+    <section class="mt-14 p-7 sm:p-9 rounded-3xl bg-sage-900 text-white shadow-card space-y-4 relative overflow-hidden">
+      <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-sage-500/20 rounded-full blur-2xl"></div>
+      
+      <span class="text-xs uppercase font-bold tracking-widest text-honey-400">Sagesse Éternelle</span>
+      <h3 class="text-2xl font-serif font-bold leading-snug">
+        L'Allégorie de la Prospérité 🕊️
+      </h3>
+      <p class="text-sage-100/90 text-sm leading-relaxed font-light">
+        Dans les textes anciens, quand la déesse de la fortune (Lakshmi) est apparue, tous les dieux lui ont couru après. Mais elle a choisi de s'installer auprès de celui qui apportait de la stabilité et de la valeur au monde (Vishnu).
+      </p>
+      <div class="pt-2 border-t border-sage-700 text-xs text-sage-200 font-medium">
+        ✨ <strong>Morale :</strong> Ne courez pas avec anxiété après chaque centime. Apportez du calme, de la générosité à vos proches et de la sérénité. L'abondance restera naturellement à vos côtés.
+      </div>
+    </section>
+
+    <!-- Cute Interactive Reactions Bar -->
+    <section class="mt-12 text-center space-y-4">
+      <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Qu'avez-vous pensé de ces conseils ?</p>
+      
+      <div class="flex items-center justify-center gap-3 flex-wrap">
+        <button onclick="addZenReaction('🌿')" class="px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm hover:scale-105 active:scale-95 transition-all text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+          <span>🌿 Zen</span> <span id="count-zen" class="text-slate-400">188</span>
+        </button>
+        <button onclick="addZenReaction('💡')" class="px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm hover:scale-105 active:scale-95 transition-all text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+          <span>💡 Inspirant</span> <span id="count-inspire" class="text-slate-400">245</span>
+        </button>
+        <button onclick="addZenReaction('☕')" class="px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm hover:scale-105 active:scale-95 transition-all text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+          <span>☕ Apaisant</span> <span id="count-coffee" class="text-slate-400">132</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Box -->
+  <div id="zen-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+    Lien copié dans le presse-papier ! ✨
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200/60 py-8 text-center text-xs text-slate-400 bg-white/40">
+    <p>☕ Le Sage Retraité • Vivre sa retraite avec élégance & sérénité.</p>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // 1. Progress Bar on Scroll
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('zen-progress').style.width = scrolled + "%";
+    });
+
+    // 2. Interactive 20/80 Corpus Simulator
+    const slider = document.getElementById('corpus-slider');
+    const corpusDisplay = document.getElementById('corpus-display');
+    const wifeAmount = document.getElementById('wife-amount');
+    const selfAmount = document.getElementById('self-amount');
+    const safeAmount = document.getElementById('safe-amount');
+
+    function updateSimulation() {
+      const val = parseInt(slider.value, 10);
+      corpusDisplay.textContent = val.toLocaleString('fr-FR') + ' €';
+      
+      const tenPercent = Math.round(val * 0.10);
+      const eightyPercent = Math.round(val * 0.80);
+
+      wifeAmount.textContent = tenPercent.toLocaleString('fr-FR') + ' €';
+      selfAmount.textContent = tenPercent.toLocaleString('fr-FR') + ' €';
+      safeAmount.textContent = eightyPercent.toLocaleString('fr-FR') + ' €';
+    }
+
+    slider.addEventListener('input', updateSimulation);
+
+    // 3. Reaction Buttons
+    const reactions = { '🌿': 188, '💡': 245, '☕': 132 };
+    function addZenReaction(type) {
+      if (type === '🌿') document.getElementById('count-zen').textContent = ++reactions['🌿'];
+      if (type === '💡') document.getElementById('count-inspire').textContent = ++reactions['💡'];
+      if (type === '☕') document.getElementById('count-coffee').textContent = ++reactions['☕'];
+      triggerToast(`Merci pour votre ressenti ${type} !`);
+    }
+
+    // 4. Toast helper & Share
+    function copyCurrentLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        triggerToast("Lien du guide copié ! ✨");
+      });
+    }
+
+    function triggerToast(msg) {
+      const toast = document.getElementById('zen-toast');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

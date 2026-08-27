@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immobilier Commercial : Opportunité en Or ou Piège ?</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Syne (Architectural / High-End) & Space Grotesk (Tech Editorial) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        icemint: '#F2F8F6',
+                        paperwhite: '#FFFFFF',
+                        deepforest: '#142C26',
+                        forestmuted: '#45625B',
+                        mintpop: '#2F8575',
+                        mintsoft: '#E3F2EE',
+                        coralpop: '#E66A5E',
+                        coralsoft: '#FDEEEB',
+                        buttercream: '#FFF9E6',
+                        slateborder: '#D7E5E1'
+                    },
+                    boxShadow: {
+                        'fresh': '0 12px 32px -6px rgba(20, 44, 38, 0.06)',
+                        'hard': '3px 3px 0px 0px #142C26',
+                        'hard-coral': '3px 3px 0px 0px #E66A5E'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F2F8F6;
+            color: #142C26;
+            background-image: linear-gradient(#E5EFEA 1px, transparent 1px), linear-gradient(90deg, #E5EFEA 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .blueprint-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid #D7E5E1;
+        }
+        .cutout-tag {
+            border: 1px solid #142C26;
+            box-shadow: 2px 2px 0px #142C26;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-mintsoft selection:text-mintpop relative overflow-x-hidden">
+
+    <!-- Top Reading Gauge -->
+    <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-mintpop via-coralpop to-buttercream z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- Floating Aesthetic Header -->
+    <header class="max-w-4xl mx-auto px-6 pt-8 pb-4">
+        <nav class="blueprint-card rounded-2xl p-4 px-6 flex items-center justify-between shadow-fresh">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-deepforest text-buttercream flex items-center justify-center font-bold text-sm shadow-sm">
+                    🏢
+                </div>
+                <div>
+                    <span class="font-syne text-lg font-bold tracking-tight text-deepforest block leading-tight">Studio Patrimonial</span>
+                    <span class="text-[11px] text-forestmuted font-medium">Décryptage • Immobilier Commercial</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 text-xs">
+                <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full bg-coralsoft text-coralpop font-semibold border border-coralpop/20">
+                    ⚠️ Alerte Risque Élevé
+                </span>
+                <button onclick="shareArticle()" class="px-4 py-2 rounded-xl bg-deepforest text-white font-semibold hover:bg-mintpop transition cutout-tag">
+                    <span class="flex items-center space-x-1.5">
+                        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                        <span>Partager</span>
+                    </span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-6 py-8 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-mintsoft border border-mintpop/30 text-xs font-bold text-mintpop">
+                <span>🔍 Analyse Sans Filtre pour Particuliers</span>
+            </div>
+
+            <h1 class="font-syne text-4xl sm:text-5xl md:text-6xl text-deepforest font-extrabold leading-[1.12]">
+                Investir dans l'Immobilier Commercial : <br>
+                <span class="text-coralpop underline decoration-mintpop/40 decoration-wavy">Opportunité en Or</span> ou Piège ?
+            </h1>
+
+            <p class="text-lg md:text-xl text-forestmuted max-w-2xl mx-auto leading-relaxed">
+                Dans le monde de l'investissement, le mythe d'une rentabilité sans effort à <strong>8-10%</strong> fait des ravages. Voici ce que les promoteurs ne vous avoueront jamais.
+            </p>
+
+            <!-- Analogy Pill Box -->
+            <div class="bg-paperwhite p-6 rounded-3xl border border-slateborder max-w-2xl mx-auto text-left shadow-fresh space-y-3">
+                <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-coralpop">
+                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                    <span>La Comparaison Réelle</span>
+                </div>
+                <p class="text-sm text-forestmuted leading-relaxed">
+                    Pour un particulier de la classe moyenne, acheter un local commercial revient à <strong>trader des contrats à terme et des options sans formation</strong> : le niveau de risque opérationnel est disproportionné par rapport aux connaissances de l'acheteur.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 1 : The 1-in-5 Rule Interactive Visualizer -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-slateborder pb-3">
+                <div class="flex items-center space-x-3">
+                    <span class="w-8 h-8 rounded-lg bg-deepforest text-buttercream flex items-center justify-center font-bold text-sm font-syne">1</span>
+                    <h2 class="font-syne text-2xl sm:text-3xl font-bold text-deepforest">La Loi du « 1 sur 5 » et la Machine Marketing</h2>
+                </div>
+                <span class="text-xs font-bold px-3 py-1 bg-mintsoft text-mintpop rounded-full">Explorez les 5 projets</span>
+            </div>
+
+            <p class="text-forestmuted text-sm md:text-base leading-relaxed">
+                Les promoteurs utilisent toujours leur <strong>unique projet superstar</strong> comme vitrine pour vendre les quatre autres. Cliquez sur chaque bâtiment pour découvrir la statistique réelle :
+            </p>
+
+            <!-- 5 Interactive Buildings Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3" id="projectGrid">
+                <button onclick="inspectProject(1)" class="proj-btn p-4 rounded-2xl bg-paperwhite border-2 border-mintpop text-center space-y-2 shadow-hard transition hover:scale-105" data-idx="1">
+                    <span class="text-2xl block">🌟</span>
+                    <span class="text-xs font-bold block text-deepforest">Projet A</span>
+                    <span class="text-[10px] font-semibold text-mintpop px-2 py-0.5 bg-mintsoft rounded-full">Succès (1/5)</span>
+                </button>
+                <button onclick="inspectProject(2)" class="proj-btn p-4 rounded-2xl bg-paperwhite border border-slateborder text-center space-y-2 transition hover:scale-105" data-idx="2">
+                    <span class="text-2xl block">👻</span>
+                    <span class="text-xs font-bold block text-deepforest">Projet B</span>
+                    <span class="text-[10px] font-semibold text-coralpop px-2 py-0.5 bg-coralsoft rounded-full">Désastre</span>
+                </button>
+                <button onclick="inspectProject(3)" class="proj-btn p-4 rounded-2xl bg-paperwhite border border-slateborder text-center space-y-2 transition hover:scale-105" data-idx="3">
+                    <span class="text-2xl block">👻</span>
+                    <span class="text-xs font-bold block text-deepforest">Projet C</span>
+                    <span class="text-[10px] font-semibold text-coralpop px-2 py-0.5 bg-coralsoft rounded-full">Désastre</span>
+                </button>
+                <button onclick="inspectProject(4)" class="proj-btn p-4 rounded-2xl bg-paperwhite border border-slateborder text-center space-y-2 transition hover:scale-105" data-idx="4">
+                    <span class="text-2xl block">😐</span>
+                    <span class="text-xs font-bold block text-deepforest">Projet D</span>
+                    <span class="text-[10px] font-semibold text-amber-700 px-2 py-0.5 bg-buttercream rounded-full">Médiocre</span>
+                </button>
+                <button onclick="inspectProject(5)" class="proj-btn p-4 rounded-2xl bg-paperwhite border border-slateborder text-center space-y-2 transition hover:scale-105" data-idx="5">
+                    <span class="text-2xl block">😐</span>
+                    <span class="text-xs font-bold block text-deepforest">Projet E</span>
+                    <span class="text-[10px] font-semibold text-amber-700 px-2 py-0.5 bg-buttercream rounded-full">Médiocre</span>
+                </button>
+            </div>
+
+            <!-- Dynamic Project Inspector Card -->
+            <div class="blueprint-card rounded-3xl p-6 border border-slateborder space-y-3" id="projectDetails">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-syne text-lg font-bold text-deepforest" id="projTitle">Projet A : Le Blockbuster Vitrine (20%)</h3>
+                    <span class="text-xs font-bold px-3 py-1 bg-mintsoft text-mintpop rounded-full" id="projTag">Le piège de la vitrine</span>
+                </div>
+                <p class="text-xs sm:text-sm text-forestmuted leading-relaxed" id="projDesc">
+                    Emplacement exceptionnel, affluence record et marques prestigieuses. <strong>Le problème ?</strong> Le promoteur a déjà vendu 90% des lots à des institutionnels et utilise ce projet pour vous vendre des lots secondaires dans des zones mortes.
+                </p>
+            </div>
+
+            <!-- Assured Return Warning Box -->
+            <div class="p-6 rounded-3xl bg-coralsoft border border-coralpop/30 space-y-3">
+                <div class="flex items-center space-x-2 text-coralpop font-bold text-sm">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                    <span>Le Mirage du « Rendement Garanti à 10% »</span>
+                </div>
+                <p class="text-xs sm:text-sm text-forestmuted leading-relaxed">
+                    Fuyez les projets en cours de construction qui vous promettent contractuellement 10 à 12 % garantis. <strong>La seule chose garantie dans cette vie est que nous finirons tous par la quitter.</strong> Les banques refusent de financer ces projets à plus de 40% : ce marché draine les liquidités d'héritages de personnes qui se retrouvent piégées avec des actifs illiquides.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 2 : The 5 Societal Mutations -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-slateborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-mintpop text-white flex items-center justify-center font-bold text-sm font-syne">2</span>
+                <h2 class="font-syne text-2xl sm:text-3xl font-bold text-deepforest">Les 5 Mutations Condamnant le Commerce Physique</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-paperwhite p-6 rounded-3xl border border-slateborder space-y-2 shadow-fresh hover:border-mintpop transition">
+                    <span class="text-2xl">👥</span>
+                    <h3 class="font-syne text-base font-bold text-deepforest">1. Évolution des Codes Sociaux</h3>
+                    <p class="text-xs text-forestmuted leading-relaxed">
+                        Le centre commercial n'est plus le lieu de rendez-vous privilégié des jeunes. Les modes de socialisation ont muté vers des espaces privés et numériques.
+                    </p>
+                </div>
+
+                <div class="bg-paperwhite p-6 rounded-3xl border border-slateborder space-y-2 shadow-fresh hover:border-mintpop transition">
+                    <span class="text-2xl">⚡</span>
+                    <h3 class="font-syne text-base font-bold text-deepforest">2. Hégémonie du Quick-Commerce</h3>
+                    <p class="text-xs text-forestmuted leading-relaxed">
+                        En métropole, un clic suffit pour recevoir courses, électronique et vêtements en 10 minutes ou 24 heures à domicile.
+                    </p>
+                </div>
+
+                <div class="bg-paperwhite p-6 rounded-3xl border border-slateborder space-y-2 shadow-fresh hover:border-mintpop transition">
+                    <span class="text-2xl">👩‍💼</span>
+                    <h3 class="font-syne text-base font-bold text-deepforest">3. Le Temps des Femmes Actives</h3>
+                    <p class="text-xs text-forestmuted leading-relaxed">
+                        Les femmes actives n'ont plus le temps de passer leur samedi dans les bouchons et les parkings de centres commerciaux. Les commandes s'effectuent le soir en ligne.
+                    </p>
+                </div>
+
+                <div class="bg-paperwhite p-6 rounded-3xl border border-slateborder space-y-2 shadow-fresh hover:border-mintpop transition">
+                    <span class="text-2xl">📱</span>
+                    <h3 class="font-syne text-base font-bold text-deepforest">4. Digitalisation Bancaire & Seniors</h3>
+                    <p class="text-xs text-forestmuted leading-relaxed">
+                        Même les seniors utilisent la banque mobile. Les agences bancaires physiques ferment massivement et réduisent leurs surfaces d'accueil.
+                    </p>
+                </div>
+
+                <div class="bg-paperwhite p-6 rounded-3xl border border-slateborder space-y-2 shadow-fresh md:col-span-2 hover:border-mintpop transition">
+                    <span class="text-2xl">📦</span>
+                    <h3 class="font-syne text-base font-bold text-deepforest">5. Géants Corporatifs & Hubs Logistiques</h3>
+                    <p class="text-xs text-forestmuted leading-relaxed">
+                        Les méga-conglomérats centralisent tout dans des entrepôts logistiques géants (*warehouses*), asphyxiant les petits commerces de détail indépendants.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 : The Society Shop & Fake Tenant Scam (Interactive Reveal) -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-slateborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-coralpop text-white flex items-center justify-center font-bold text-sm font-syne">3</span>
+                <h2 class="font-syne text-2xl sm:text-3xl font-bold text-deepforest">L'Arnaque du « Faux Locataire Complice »</h2>
+            </div>
+
+            <p class="text-forestmuted text-sm md:text-base leading-relaxed">
+                Les boutiques en pied d'immeuble (*society shops*) semblent rassurantes. Pourtant, une supercherie bien rodée piège régulièrement les acheteurs naïfs. Utilisez le bouton ci-dessous pour voir la réalité :
+            </p>
+
+            <!-- Interactive Scam Toggle -->
+            <div class="blueprint-card rounded-3xl p-6 md:p-8 border border-slateborder shadow-fresh space-y-6">
+                <div class="flex justify-center">
+                    <div class="inline-flex p-1 bg-icemint rounded-2xl border border-slateborder">
+                        <button id="btnBefore" onclick="setScamState(false)" class="px-4 py-2 rounded-xl text-xs font-bold bg-deepforest text-white transition">
+                            👁️ Jour de la Vente (Le Mirage)
+                        </button>
+                        <button id="btnAfter" onclick="setScamState(true)" class="px-4 py-2 rounded-xl text-xs font-bold text-forestmuted transition hover:text-deepforest">
+                            💀 6 Mois Plus Tard (La Réalité)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="scamContent" class="p-6 rounded-2xl bg-mintsoft border border-mintpop/30 transition-all space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase text-mintpop" id="scamPhase">Scénario de Présentation</span>
+                        <span class="text-xs font-bold px-2 py-0.5 bg-white rounded-md text-deepforest" id="scamYield">Loyer affiché : 500 € / mois</span>
+                    </div>
+                    <h3 class="font-syne text-lg font-bold text-deepforest" id="scamHeadline">Le Commerçant Modèle en Place</h3>
+                    <p class="text-xs sm:text-sm text-forestmuted leading-relaxed" id="scamText">
+                        Le vendeur vous présente une boutique en activité avec un locataire souriant qui paie 500 €/mois pour justifier un prix de vente de 100 000 €. Tout semble parfait sur le papier.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 : Residential vs Commercial Tactile Table -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-slateborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-buttercream text-deepforest flex items-center justify-center font-bold text-sm font-syne border border-amber-300">4</span>
+                <h2 class="font-syne text-2xl sm:text-3xl font-bold text-deepforest">Résidentiel vs Commercial : La Sécurité du Toit</h2>
+            </div>
+
+            <p class="text-forestmuted text-sm leading-relaxed">
+                La règle d'or d'un patrimoine pérenne est de répondre à un besoin physiologique vital : <strong>se nourrir, se vêtir, se loger</strong>.
+            </p>
+
+            <!-- Comparison Grid Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Residential Card -->
+                <div class="blueprint-card rounded-3xl p-6 border-2 border-mintpop space-y-4 shadow-fresh">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-mintsoft text-mintpop rounded-full text-xs font-bold">Immobilier Résidentiel</span>
+                        <span class="text-2xl">🏡</span>
+                    </div>
+                    <ul class="text-xs space-y-2.5 text-forestmuted">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-mintpop font-bold">✓</span>
+                            <span><strong>Besoin fondamental :</strong> Indispensable (chacun a besoin d'un lit pour dormir).</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-mintpop font-bold">✓</span>
+                            <span><strong>En cas de vacance :</strong> On baisse légèrement le loyer, on y loge un proche ou on l'occupe soi-même.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-mintpop font-bold">✓</span>
+                            <span><strong>Financement :</strong> Facile (80 à 85% d'emprunt bancaire standard).</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-mintpop font-bold">✓</span>
+                            <span><strong>Liquidité :</strong> Marché de masse fluide et prévisible.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Commercial Card -->
+                <div class="bg-paperwhite rounded-3xl p-6 border border-slateborder space-y-4 shadow-fresh opacity-90">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-coralsoft text-coralpop rounded-full text-xs font-bold">Local Commercial Standard</span>
+                        <span class="text-2xl">🏪</span>
+                    </div>
+                    <ul class="text-xs space-y-2.5 text-forestmuted">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-coralpop font-bold">✕</span>
+                            <span><strong>Besoin optionnel :</strong> Dépend à 100% de la solvabilité d'un business tiers.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-coralpop font-bold">✕</span>
+                            <span><strong>En cas de vacance :</strong> Gouffre financier total à 0 € de revenu pendant des mois.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-coralpop font-bold">✕</span>
+                            <span><strong>Financement :</strong> Restrictif avec apport cash massif obligatoire.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-coralpop font-bold">✕</span>
+                            <span><strong>Liquidité :</strong> Faible (négociations complexes entre initiés).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 : Strategic Recommendation (Student Micro-Housing) -->
+        <section class="space-y-6">
+            <div class="flex items-center space-x-3 border-b border-slateborder pb-3">
+                <span class="w-8 h-8 rounded-lg bg-deepforest text-white flex items-center justify-center font-bold text-sm font-syne">5</span>
+                <h2 class="font-syne text-2xl sm:text-3xl font-bold text-deepforest">L'Alternative : Micro-Logements & Coliving Étudiant</h2>
+            </div>
+
+            <div class="blueprint-card rounded-3xl p-6 md:p-8 border border-slateborder space-y-4 shadow-fresh">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-mintsoft text-mintpop flex items-center justify-center font-bold text-lg">
+                        🎓
+                    </div>
+                    <div>
+                        <h3 class="font-syne text-lg font-bold text-deepforest">Le Modèle des Micro-Studios Près des Campus</h3>
+                        <p class="text-xs text-forestmuted">Rentabilité de 6 à 8% net avec la sécurité du résidentiel</p>
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-forestmuted leading-relaxed">
+                    Plutôt que d'acheter une boutique incertaine à 100 000 €, les investisseurs avisés achètent une petite surface près de facultés (Droit, Médecine, Ingénierie) et aménagent <strong>10 à 15 micro-chambres équipées</strong> :
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+                    <div class="p-3.5 bg-icemint rounded-2xl border border-slateborder space-y-1">
+                        <span class="font-bold text-mintpop block">📈 Demande Structurelle</span>
+                        <span>Renouvellement automatique chaque année à la rentrée universitaire.</span>
+                    </div>
+                    <div class="p-3.5 bg-icemint rounded-2xl border border-slateborder space-y-1">
+                        <span class="font-bold text-mintpop block">🛡️ Risque Dilué</span>
+                        <span>Si 1 chambre est vide, les 9 autres continuent de payer les charges.</span>
+                    </div>
+                    <div class="p-3.5 bg-icemint rounded-2xl border border-slateborder space-y-1">
+                        <span class="font-bold text-mintpop block">💎 Rendement Élevé</span>
+                        <span>Rivalise avec le commercial tout en conservant la liquidité du résidentiel.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CALCULATOR : Détecteur de Rendement Mirage -->
+        <section class="bg-gradient-to-br from-paperwhite to-mintsoft rounded-3xl p-8 border border-slateborder shadow-fresh text-center space-y-6">
+            <div class="max-w-md mx-auto space-y-2">
+                <span class="px-3 py-1 rounded-full bg-deepforest text-white text-xs font-bold uppercase tracking-wider">
+                    Simulateur de Vérité
+                </span>
+                <h3 class="font-syne text-2xl md:text-3xl font-bold text-deepforest">Calculez le Rendement Réel</h3>
+                <p class="text-xs text-forestmuted">Ajustez la vacance locative pour voir l'impact sur le rendement promis :</p>
+            </div>
+
+            <div class="max-w-md mx-auto space-y-4 text-left">
+                <div class="bg-white p-4 rounded-2xl border border-slateborder space-y-2">
+                    <div class="flex justify-between text-xs font-bold text-deepforest">
+                        <span>Rendement Promis sur Brochure :</span>
+                        <span id="promYieldVal" class="text-mintpop font-syne text-sm">10 %</span>
+                    </div>
+                    <input type="range" id="promYieldInput" min="5" max="15" step="0.5" value="10" class="w-full accent-mintpop cursor-pointer">
+                </div>
+
+                <div class="bg-white p-4 rounded-2xl border border-slateborder space-y-2">
+                    <div class="flex justify-between text-xs font-bold text-deepforest">
+                        <span>Mois de Vacance Locative / An :</span>
+                        <span id="vacancyVal" class="text-coralpop font-syne text-sm">4 mois (33%)</span>
+                    </div>
+                    <input type="range" id="vacancyInput" min="0" max="8" step="1" value="4" class="w-full accent-coralpop cursor-pointer">
+                </div>
+
+                <div class="p-5 bg-deepforest text-white rounded-2xl space-y-1 text-center shadow-md">
+                    <span class="text-[11px] uppercase tracking-widest text-mintsoft font-bold">Rendement Net Réel Constaté</span>
+                    <div class="font-syne text-4xl font-extrabold text-buttercream" id="realYieldResult">5.2 %</div>
+                    <p class="text-[11px] text-slate-300">Après charges, vacance et frais d'entretien non récupérables.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary & Engagement Banner -->
+        <section class="bg-deepforest text-white rounded-3xl p-8 md:p-10 space-y-6 shadow-2xl relative overflow-hidden">
+            <div class="space-y-3 max-w-xl">
+                <span class="text-xs font-bold text-buttercream uppercase tracking-widest">En Résumé</span>
+                <h3 class="font-syne text-2xl sm:text-3xl font-bold">Protégez Votre Capital</h3>
+                <ul class="text-xs sm:text-sm text-slate-200 space-y-2 leading-relaxed">
+                    <li>• Ne vous laissez pas aveugler par des taux bruts sans tenir compte du risque de vacance.</li>
+                    <li>• Ne brûlez pas un héritage familial dans des locaux commerciaux mal situés.</li>
+                    <li>• <strong>Misez sur l'indispensable :</strong> Personne ne peut télécharger un toit au-dessus de sa tête.</li>
+                </ul>
+            </div>
+
+            <!-- Poll Action -->
+            <div class="pt-4 border-t border-forestmuted/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-slate-200 font-medium">Avez-vous déjà envisagé l'immobilier commercial ?</p>
+                <div class="flex space-x-2 w-full sm:w-auto">
+                    <button onclick="vote('Séduit par le passé')" class="flex-1 sm:flex-none px-4 py-2 bg-coralpop hover:bg-opacity-90 text-white rounded-xl text-xs font-bold transition cutout-tag">
+                        J'ai failli craquer !
+                    </button>
+                    <button onclick="vote('Résidentiel d\'abord')" class="flex-1 sm:flex-none px-4 py-2 bg-mintpop hover:bg-opacity-90 text-white rounded-xl text-xs font-bold transition cutout-tag">
+                        Team Résidentiel 🏡
+                    </button>
+                </div>
+            </div>
+            <p id="pollFeedback" class="text-xs text-buttercream font-medium hidden text-right"></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto px-6 py-10 text-center text-xs text-forestmuted border-t border-slateborder mt-12 space-y-2">
+        <p class="font-syne text-sm font-bold text-deepforest">Studio de Conseil Patrimonial • Décryptage Immobilier</p>
+        <p>© Analyse indépendante pour investisseurs particuliers avisés.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Reading Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("readProgress").style.width = scrolled + "%";
+        };
+
+        // Project Inspector Data
+        const projects = {
+            1: {
+                title: "Projet A : Le Blockbuster Vitrine (20%)",
+                tag: "La Vitrine Marketing",
+                desc: "Emplacement exceptionnel, flux continu de piétons et grandes enseignes installées. Ce projet superstar sert d'argument de vente pour écouler tous les autres programmes défaillants."
+            },
+            2: {
+                title: "Projet B : Le Centre Fantôme (40%)",
+                tag: "Zone Morte",
+                desc: "Construit sur une promesse de flux futur qui ne s'est jamais matérialisée. 50% des rideaux restent baissés, charges d'entretien astronomiques et zéro locataire solvable."
+            },
+            3: {
+                title: "Projet C : L'Impasse Commerciale (40%)",
+                tag: "Désastre Financier",
+                desc: "Mauvaise desserte, concurrence féroce du e-commerce local. Le propriétaire subit une vacance locative de plus de 18 mois consécutifs."
+            },
+            4: {
+                title: "Projet D : Survie Médiocre (40%)",
+                tag: "Rentabilité Ras-les-Pâquerettes",
+                desc: "Quelques commerces de dépannage survivent difficilement. Les locataires demandent constamment des renégociations de loyer à la baisse."
+            },
+            5: {
+                title: "Projet E : Flottement Constant (40%)",
+                tag: "Turnover Permanent",
+                desc: "Rotation incessante des commerçants tous les 9 mois. Chaque départ entraîne 4 mois de vacance et des frais d'agence répétés."
+            }
+        };
+
+        function inspectProject(idx) {
+            const data = projects[idx];
+            document.getElementById('projTitle').innerText = data.title;
+            document.getElementById('projTag').innerText = data.tag;
+            document.getElementById('projDesc').innerText = data.desc;
+
+            document.querySelectorAll('.proj-btn').forEach(btn => {
+                if(btn.getAttribute('data-idx') == idx) {
+                    btn.className = "proj-btn p-4 rounded-2xl bg-paperwhite border-2 border-mintpop text-center space-y-2 shadow-hard transition scale-105";
+                } else {
+                    btn.className = "proj-btn p-4 rounded-2xl bg-paperwhite border border-slateborder text-center space-y-2 transition hover:scale-105";
+                }
+            });
+        }
+
+        // Scam Revealer Toggle
+        function setScamState(isAfter) {
+            const content = document.getElementById('scamContent');
+            const phase = document.getElementById('scamPhase');
+            const yieldBadge = document.getElementById('scamYield');
+            const headline = document.getElementById('scamHeadline');
+            const text = document.getElementById('scamText');
+            const btnBefore = document.getElementById('btnBefore');
+            const btnAfter = document.getElementById('btnAfter');
+
+            if(isAfter) {
+                btnAfter.className = "px-4 py-2 rounded-xl text-xs font-bold bg-coralpop text-white transition";
+                btnBefore.className = "px-4 py-2 rounded-xl text-xs font-bold text-forestmuted transition hover:text-deepforest";
+                content.className = "p-6 rounded-2xl bg-coralsoft border border-coralpop/40 transition-all space-y-2";
+                phase.innerText = "6 Mois Après la Signature";
+                phase.className = "text-xs font-bold uppercase text-coralpop";
+                yieldBadge.innerText = "Loyer Réel : 0 € / mois";
+                headline.innerText = "Le Locataire a Disparu du Jour au Lendemain";
+                text.innerText = "Dès les actes notariés signés, le prétendu commerçant déménage en toute discrétion. Il s'agissait d'un comparse rémunéré par le vendeur pour gonfler artificiellement le prix de vente. Le local reste vide pendant 3 ans.";
+            } else {
+                btnBefore.className = "px-4 py-2 rounded-xl text-xs font-bold bg-deepforest text-white transition";
+                btnAfter.className = "px-4 py-2 rounded-xl text-xs font-bold text-forestmuted transition hover:text-deepforest";
+                content.className = "p-6 rounded-2xl bg-mintsoft border border-mintpop/30 transition-all space-y-2";
+                phase.innerText = "Scénario de Présentation";
+                phase.className = "text-xs font-bold uppercase text-mintpop";
+                yieldBadge.innerText = "Loyer affiché : 500 € / mois";
+                headline.innerText = "Le Commerçant Modèle en Place";
+                text.innerText = "Le vendeur vous présente une boutique en activité avec un locataire souriant qui paie 500 €/mois pour justifier un prix de vente de 100 000 €. Tout semble parfait sur le papier.";
+            }
+        }
+
+        // Real Yield Calculator Logic
+        const promInput = document.getElementById('promYieldInput');
+        const vacInput = document.getElementById('vacancyInput');
+        const promVal = document.getElementById('promYieldVal');
+        const vacVal = document.getElementById('vacancyVal');
+        const realYield = document.getElementById('realYieldResult');
+
+        function updateYield() {
+            let prom = parseFloat(promInput.value);
+            let vacMonths = parseInt(vacInput.value);
+            
+            promVal.innerText = prom + " %";
+            vacVal.innerText = vacMonths + " mois (" + Math.round((vacMonths/12)*100) + "%)";
+
+            // Calculation: Real Yield = Promised Yield * (Occupancy Rate) - 1.5% (unrecoverable commercial maintenance & taxes)
+            let occupancy = (12 - vacMonths) / 12;
+            let net = (prom * occupancy) - 1.5;
+            if(net < 0) net = 0;
+
+            realYield.innerText = net.toFixed(1) + " %";
+        }
+
+        promInput.addEventListener('input', updateYield);
+        vacInput.addEventListener('input', updateYield);
+
+        // Confetti Poll
+        function vote(opinion) {
+            confetti({
+                particleCount: 50,
+                spread: 65,
+                origin: { y: 0.85 },
+                colors: ['#2F8575', '#E66A5E', '#FFF9E6']
+            });
+            const fb = document.getElementById('pollFeedback');
+            fb.innerText = `Merci pour votre participation (${opinion}) ! ✨`;
+            fb.classList.remove('hidden');
+        }
+
+        // Share Link
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Immobilier Commercial : Opportunité ou Piège ?',
+                    text: 'Une analyse sans filtre sur les risques réels de l\'immobilier commercial.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Lien copié dans le presse-papier ! 🏢✨');
+            }
+        }
+    </script>
+</body>
+</html>

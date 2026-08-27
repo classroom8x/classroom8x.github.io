@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Expert : Évaluer la Vraie Valeur d'un Bien Immobilier 🏡</title>
+    <!-- Fonts Google: Fraunces (Editorial Chic) & Plus Jakarta Sans (Clean Modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        paper: '#FAF8F5',
+                        butter: '#FFF5E4',
+                        amberSoft: '#E88B5D',
+                        sage: {
+                            50: '#F3F7F4',
+                            100: '#DFECE2',
+                            500: '#6C9A76',
+                            800: '#2D4B34',
+                        },
+                        sand: {
+                            100: '#F2ECE4',
+                            200: '#E5DCD1',
+                            300: '#D5C7B8',
+                        },
+                        ink: {
+                            900: '#22201E',
+                            700: '#4E4944',
+                            500: '#7E766D',
+                        }
+                    },
+                    boxShadow: {
+                        'bento': '0 8px 30px -4px rgba(34, 32, 30, 0.04)',
+                        'card-hover': '0 16px 32px -6px rgba(34, 32, 30, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pattern d'ambiance quadrillage architectural subtil */
+        .blueprint-pattern {
+            background-size: 28px 28px;
+            background-image: 
+                linear-gradient(to right, rgba(229, 220, 209, 0.35) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(229, 220, 209, 0.35) 1px, transparent 1px);
+        }
+        input[type="range"] {
+            accent-color: #E88B5D;
+        }
+    </style>
+</head>
+<body class="bg-paper text-ink-900 font-sans antialiased blueprint-pattern selection:bg-amberSoft selection:text-white">
+
+    <!-- Top Reading Progress Indicator -->
+    <div id="readProgress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-amberSoft via-sage-500 to-amberSoft z-50 transition-all duration-150 w-0"></div>
+
+    <!-- Floating Top Bar -->
+    <header class="sticky top-4 z-40 max-w-4xl mx-auto px-4">
+        <div class="bg-white/90 backdrop-blur-md border border-sand-200 px-6 py-3 rounded-full shadow-bento flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-sage-500 ring-4 ring-sage-100"></span>
+                <span class="font-serif font-bold text-sm sm:text-base text-ink-900">Atelier Valeur Immobilière 📐</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold px-3 py-1 bg-butter text-ink-900 rounded-full border border-sand-200">
+                    ☕ Guide Pratique
+                </span>
+                <button onclick="copyCurrentLink()" class="p-2 hover:bg-sand-100 rounded-full transition text-xs" title="Copier le lien">
+                    🔗
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 pt-10 pb-24 space-y-16">
+
+        <!-- HERO SECTION -->
+        <section class="text-center space-y-5 pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-sage-50 text-sage-800 text-xs font-bold uppercase tracking-wider rounded-full border border-sage-100">
+                💎 Principes Fondamentaux de Valorisation
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight text-ink-900">
+                Comment évaluer la <br/>
+                <span class="italic text-amberSoft font-normal underline decoration-sage-500/40 decoration-wavy underline-offset-8">vraie valeur</span> d’un bien immobilier ?
+            </h1>
+
+            <!-- Rolls Royce & Warren Buffett Quote Box -->
+            <div class="bg-white p-6 sm:p-7 rounded-[2rem] border border-sand-200 shadow-bento max-w-2xl mx-auto text-left relative overflow-hidden">
+                <div class="text-3xl absolute top-3 right-4 opacity-20">🏎️</div>
+                <p class="text-xs uppercase tracking-widest text-ink-500 font-bold mb-2">L'analogie de l'expert :</p>
+                <p class="text-ink-700 text-sm sm:text-base leading-relaxed italic mb-3">
+                    « Pour une Rolls-Royce, une Bentley ou une BMW, le prix oscille selon une part de prestige. Dans l’immobilier, la règle d'or est simple : 
+                    <strong class="text-ink-900 not-italic bg-amberSoft/15 px-1.5 py-0.5 rounded">Le prix est ce que vous payez, la valeur est ce que vous obtenez.</strong> »
+                </p>
+                <p class="text-xs text-ink-500">
+                    Ne demandez plus seulement <em>« Combien ça coûte ? »</em> mais <em>« Quelle est sa valeur intrinsèque ? »</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- PARTIE 1 : VEFA / NEUF (INTRINSIC COST BREAKDOWN) -->
+        <section class="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-sand-200 shadow-bento space-y-8">
+            <div class="space-y-2 border-b border-sand-100 pb-5">
+                <div class="flex items-center gap-2.5">
+                    <span class="px-2.5 py-1 bg-amberSoft text-white text-xs font-bold rounded-lg">Partie 1</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ink-900">L'évaluation technique sur plan (VEFA)</h2>
+                </div>
+                <p class="text-sm text-ink-700">
+                    Grâce aux régulations modernes (RERA, registres publics d'urbanisme), décomposez la <em>Book Value</em> au pied ou mètre carré :
+                </p>
+            </div>
+
+            <!-- The 4 Pillars Bento Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <!-- Pillar 1 -->
+                <div class="bg-paper p-5 rounded-2xl border border-sand-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl">🏞️</span>
+                        <span class="text-xs font-bold text-sage-800 bg-sage-100 px-2 py-0.5 rounded-md">Élément 1</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-ink-900">Coût du terrain par unité</h3>
+                    <p class="text-xs text-ink-700 leading-relaxed">
+                        Coût total divisé par la surface constructible. Ex : 7,5 acres à 100 Cr = <strong>~1 500 ₹ / sq. ft.</strong> (Plus la densité est forte, plus ce coût unitaire doit baisser).
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-paper p-5 rounded-2xl border border-sand-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl">🏗️</span>
+                        <span class="text-xs font-bold text-sage-800 bg-sage-100 px-2 py-0.5 rounded-md">Élément 2</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-ink-900">Coût de la construction</h3>
+                    <p class="text-xs text-ink-700 leading-relaxed">
+                        Selon les finitions haut de gamme, oscille entre 2 500 ₹ et 2 700 ₹. Moyenne prudente de <strong>~2 500 ₹ / sq. ft.</strong>
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-paper p-5 rounded-2xl border border-sand-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl">⚡</span>
+                        <span class="text-xs font-bold text-sage-800 bg-sage-100 px-2 py-0.5 rounded-md">Élément 3</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-ink-900">Infrastructures & EDC/IDC</h3>
+                    <p class="text-xs text-ink-700 leading-relaxed">
+                        Taxes de développement externe et interne imposées par les autorités. Environ <strong>~1 500 ₹ / sq. ft.</strong>
+                    </p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="bg-paper p-5 rounded-2xl border border-sand-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl">📑</span>
+                        <span class="text-xs font-bold text-sage-800 bg-sage-100 px-2 py-0.5 rounded-md">Élément 4</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-ink-900">Taxes, Marketing & Marge</h3>
+                    <p class="text-xs text-ink-700 leading-relaxed">
+                        Ajout des taxes (GST) et frais opérationnels : le coût réel de revient s'établit autour de <strong>6 200 ₹ - 6 300 ₹ / sq. ft.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE VEFA MARGIN SIMULATOR -->
+            <div class="bg-gradient-to-br from-butter to-paper p-6 rounded-3xl border border-sand-200 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-sm text-ink-900 flex items-center gap-2">
+                        <span>🧮</span> Simulateur de marge promoteur
+                    </h4>
+                    <span class="text-[11px] bg-white px-2.5 py-1 rounded-full border border-sand-200 font-semibold text-ink-700">Interactif</span>
+                </div>
+                
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs font-medium text-ink-700">
+                        <span>Prix de vente proposé :</span>
+                        <span id="priceDisplay" class="font-bold text-ink-900">6 500 ₹ / sq. ft.</span>
+                    </div>
+                    <input type="range" id="priceSlider" min="5800" max="9000" step="100" value="6500" class="w-full cursor-pointer" oninput="calculateVEFAMargin(this.value)">
+                    <div class="flex justify-between text-[10px] text-ink-500">
+                        <span>5 800 ₹ (Sous-évalué)</span>
+                        <span>6 300 ₹ (Coût de revient)</span>
+                        <span>9 000 ₹ (Forte marge)</span>
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div id="vefaResultCard" class="p-3.5 bg-white rounded-2xl border border-sand-200 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="text-ink-500 block text-[11px]">Marge estimée du promoteur :</span>
+                        <span id="marginPercent" class="font-bold text-sage-800 text-sm">+4.8 %</span>
+                    </div>
+                    <span id="marginVerdict" class="font-bold px-3 py-1 bg-sage-50 text-sage-800 rounded-full border border-sage-100">
+                        ✨ Opportunité Exceptionnelle
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTIE 2 : METHODE COMPARATIVE -->
+        <section class="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-sand-200 shadow-bento space-y-8">
+            <div class="space-y-2 border-b border-sand-100 pb-5">
+                <div class="flex items-center gap-2.5">
+                    <span class="px-2.5 py-1 bg-sage-500 text-white text-xs font-bold rounded-lg">Partie 2</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ink-900">La méthode comparative (Le Benchmark local)</h2>
+                </div>
+                <p class="text-sm text-ink-700 leading-relaxed">
+                    Comparez le projet neuf avec des logements indépendants ou standing classique (Builder Floors) dans un rayon de <strong>500 m à 1 km</strong> :
+                </p>
+            </div>
+
+            <!-- 4 Benchmark Tiers -->
+            <div class="space-y-3">
+                <div class="p-4 rounded-2xl bg-sage-50 border border-sage-100 flex items-start gap-3.5">
+                    <span class="text-xl">🟢</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-sage-800">Écart de 0 à 10 % plus cher — Achat les yeux fermés</h4>
+                        <p class="text-xs text-ink-700 mt-0.5 leading-relaxed">
+                            Le projet neuf vous offre commodités (club-house, sécurité, espaces verts) et étalement de paiement sur 3-4 ans, contrairement à l'achat comptant d'un logement indépendant.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-butter border border-amberSoft/20 flex items-start gap-3.5">
+                    <span class="text-xl">🟡</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-ink-900">Écart de 10 à 20 % plus cher — Très bon investissement</h4>
+                        <p class="text-xs text-ink-700 mt-0.5 leading-relaxed">
+                            Le surcoût reste largement compensé et justifié par la qualité de vie, la modernité des prestations et la liquidité future.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-sand-100/60 border border-sand-200 flex items-start gap-3.5">
+                    <span class="text-xl">🟠</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-ink-900">Écart de 20 à 30 % plus cher — Achat acceptable</h4>
+                        <p class="text-xs text-ink-700 mt-0.5 leading-relaxed">
+                            Achat possible pour un coup de cœur résidentiel, mais le potentiel de plus-value immédiat est plus modéré.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-red-50 border border-red-100 flex items-start gap-3.5">
+                    <span class="text-xl">🛑</span>
+                    <div>
+                        <h4 class="text-xs sm:text-sm font-bold text-red-700">Au-delà de 30 % plus cher — Prudence requise</h4>
+                        <p class="text-xs text-ink-700 mt-0.5 leading-relaxed">
+                            Le bien commence à être surévalué par rapport à la réalité économique de sa zone géographique.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTIE 3 : BIENS ANCIENS & MULTIPLE LOCATIF -->
+        <section class="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-sand-200 shadow-bento space-y-8">
+            <div class="space-y-2 border-b border-sand-100 pb-5">
+                <div class="flex items-center gap-2.5">
+                    <span class="px-2.5 py-1 bg-ink-900 text-white text-xs font-bold rounded-lg">Partie 3</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ink-900">Comment évaluer un bien ancien (+ de 20 ans) ?</h2>
+                </div>
+                <p class="text-sm text-ink-700 leading-relaxed">
+                    Pour un bien de plus de deux décennies, la vétusté et les charges d'entretien inversent la courbe. Appliquez <strong>la règle du multiple locatif</strong> :
+                </p>
+            </div>
+
+            <!-- The Golden Exit Rule Box -->
+            <div class="p-5 rounded-3xl bg-sage-50 border-2 border-dashed border-sage-500/50 space-y-3">
+                <div class="flex items-center gap-2 text-sage-800 font-bold text-sm">
+                    <span>🏷️</span> La Règle des 35x à 40x le loyer annuel :
+                </div>
+                <p class="text-xs sm:text-sm text-ink-700 leading-relaxed">
+                    Si un acquéreur vous propose un prix équivalent à <strong class="text-ink-900 bg-white px-2 py-0.5 rounded border border-sand-200">35 à 40 fois le revenu locatif annuel</strong> : <strong>VENDEZ IMMÉDIATEMENT</strong>.
+                </p>
+                <p class="text-xs text-ink-500 italic">
+                    Pourquoi ? Obtenir 35 à 40 années de loyer net en une seule transaction liquide est une sortie de capital parfaite avant la dégradation structurelle.
+                </p>
+            </div>
+
+            <!-- INTERACTIVE RENTAL MULTIPLE CALCULATOR -->
+            <div class="bg-sand-100/50 p-5 rounded-3xl border border-sand-200 space-y-4">
+                <h4 class="font-bold text-xs sm:text-sm text-ink-900 flex items-center gap-2">
+                    <span>💡</span> Calculateur instantané de sortie pour bien ancien
+                </h4>
+                
+                <div class="space-y-1">
+                    <label class="text-xs text-ink-700 font-medium">Revenu locatif annuel généré :</label>
+                    <div class="relative">
+                        <input type="number" id="annualRentInput" value="300000" step="10000" class="w-full px-4 py-2.5 rounded-2xl bg-white border border-sand-200 text-sm font-bold text-ink-900 focus:outline-none focus:border-amberSoft" oninput="calculateExitMultiple(this.value)">
+                        <span class="absolute right-4 top-2.5 text-xs text-ink-500 font-medium">₹ ou € / an</span>
+                    </div>
+                </div>
+
+                <!-- Threshold Output -->
+                <div class="grid grid-cols-2 gap-3 pt-1">
+                    <div class="bg-white p-3.5 rounded-2xl border border-sand-200 text-center">
+                        <span class="text-[10px] uppercase font-bold text-ink-500 block">Seuil 35x Loyer</span>
+                        <span id="threshold35" class="font-serif font-bold text-base sm:text-lg text-ink-900">10 500 000 ₹</span>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-sand-200 text-center">
+                        <span class="text-[10px] uppercase font-bold text-sage-800 block">Seuil 40x (Vente Express)</span>
+                        <span id="threshold40" class="font-serif font-bold text-base sm:text-lg text-amberSoft">12 000 000 ₹</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMMARY & SYNTHESIS -->
+        <section class="bg-ink-900 text-white rounded-[2.5rem] p-6 sm:p-10 shadow-xl space-y-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-sage-500/10 rounded-full blur-3xl"></div>
+
+            <div class="space-y-2">
+                <span class="text-xs font-bold text-amberSoft uppercase tracking-wider">Mémento Stratégique</span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold">Investir n'est pas un pari émotionnel</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-sand-200">
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/10 space-y-1.5">
+                    <span class="font-bold text-white block">📐 Sur plan (VEFA)</span>
+                    <p class="leading-relaxed">Vérifiez les coûts réels déclarés (Terrain + Bâti + Taxes) ou comparez au marché local (règle des 10-20%).</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/10 space-y-1.5">
+                    <span class="font-bold text-white block">🏚️ Dans l'ancien (+20 ans)</span>
+                    <p class="leading-relaxed">Capitalisez sur vos loyers et arbitrez/vendez dès qu'une offre atteint 35 à 40 fois le rendement annuel.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-sand-300">
+                <p>🌱 <em>Transmettez cette éducation financière pour bâtir un patrimoine pérenne.</em></p>
+                <div class="flex gap-2">
+                    <button onclick="addPulseReaction('clap')" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full transition flex items-center gap-1.5">
+                        👏 <span id="clapCount">84</span>
+                    </button>
+                    <button onclick="addPulseReaction('save')" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full transition flex items-center gap-1.5">
+                        ⭐ <span id="saveCount">112</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="border-t border-sand-200 bg-white/60 text-center py-8 text-xs text-ink-500 space-y-1">
+        <p>© 2026 • L'Atelier d'Évaluation Immobilière — Guide d'Expertise Financière</p>
+        <p class="text-[10px] text-ink-500/70">Interface HTML5 • Tailwind CSS • Vanilla JavaScript</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toastAlert" class="fixed bottom-6 right-6 bg-ink-900 text-white px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+        <span id="toastText">Lien copié avec succès ! ✨</span>
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Reading Progress
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("readProgress").style.width = scrolled + "%";
+        };
+
+        // VEFA Margin Simulator
+        const baseCost = 6200; // Base intrinsic cost
+        function calculateVEFAMargin(price) {
+            document.getElementById('priceDisplay').innerText = Number(price).toLocaleString('fr-FR') + " ₹ / sq. ft.";
+            const margin = ((price - baseCost) / baseCost) * 100;
+            const marginEl = document.getElementById('marginPercent');
+            const verdictEl = document.getElementById('marginVerdict');
+
+            marginEl.innerText = (margin >= 0 ? "+" : "") + margin.toFixed(1) + " %";
+
+            if (margin <= 5) {
+                verdictEl.innerText = "✨ Opportunité Exceptionnelle";
+                verdictEl.className = "font-bold px-3 py-1 bg-sage-50 text-sage-800 rounded-full border border-sage-100";
+            } else if (margin <= 15) {
+                verdictEl.innerText = "👍 Prix Juste & Raisonnable";
+                verdictEl.className = "font-bold px-3 py-1 bg-butter text-ink-900 rounded-full border border-sand-200";
+            } else {
+                verdictEl.innerText = "⚠️ Marge Promoteur Élevée";
+                verdictEl.className = "font-bold px-3 py-1 bg-amberSoft/20 text-amberSoft rounded-full border border-amberSoft/30";
+            }
+        }
+
+        // Rental Multiple Calculator
+        function calculateExitMultiple(annualRent) {
+            const rent = parseFloat(annualRent) || 0;
+            const t35 = rent * 35;
+            const t40 = rent * 40;
+
+            document.getElementById('threshold35').innerText = t35.toLocaleString('fr-FR') + " ₹";
+            document.getElementById('threshold40').innerText = t40.toLocaleString('fr-FR') + " ₹";
+        }
+
+        // Pulse Reaction
+        function addPulseReaction(type) {
+            const el = document.getElementById(type + 'Count');
+            el.innerText = parseInt(el.innerText) + 1;
+            showToast("Réaction enregistrée ! 💡");
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toastAlert');
+            document.getElementById('toastText').innerText = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 2500);
+        }
+
+        // Copy link
+        function copyCurrentLink() {
+            navigator.clipboard.writeText(window.location.href);
+            showToast("Lien copié dans le presse-papier ! 📋");
+        }
+    </script>
+</body>
+</html>

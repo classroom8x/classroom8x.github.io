@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Au-delà de l'argent : 5 investissements essentiels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#FAF7F2',
+                        latte: '#F3EDE2',
+                        terracotta: '#E07A5F',
+                        sage: '#81B29A',
+                        peach: '#F4A261',
+                        dustyrose: '#E8A598',
+                        charcoal: '#2D3142',
+                        muted: '#6C757D'
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(224, 122, 95, 0.08)',
+                        'float': '0 20px 40px -10px rgba(45, 49, 66, 0.07)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom aesthetics & animations */
+        ::selection {
+            background-color: #F8D7DA;
+            color: #2D3142;
+        }
+        .grain-bg {
+            background-color: #FAF7F2;
+            background-image: radial-gradient(#e5dfd5 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(243, 237, 226, 0.9);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(1deg); }
+        }
+        .floating-badge {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="grain-bg text-charcoal font-sans antialiased selection:bg-rose-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Reading Progress Bar -->
+    <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-dustyrose via-peach to-sage z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-40 glass-card border-b border-latte/60 px-6 py-4">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">🌱</span>
+                <span class="font-serif font-bold text-lg tracking-wide text-charcoal">Sagesse & Capital</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-semibold">
+                <span class="px-3 py-1.5 rounded-full bg-latte/80 text-charcoal">⏳ 5 min de lecture</span>
+                <button id="likeBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-terracotta transition border border-rose-200">
+                    <span id="heartIcon">🤍</span> <span id="likeCount">128</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-5 sm:px-8 py-12 md:py-16">
+
+        <!-- Hero Header -->
+        <header class="text-center space-y-6 mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-dustyrose/40 text-terracotta text-xs font-semibold tracking-wider uppercase shadow-sm">
+                <span>✨</span> Art de vivre & Finances holistiques
+            </div>
+            <h1 class="font-serif text-3xl sm:text-5xl md:text-[3.2rem] font-bold text-charcoal leading-[1.2] tracking-tight">
+                Au-delà de l'argent : <br>
+                <span class="italic text-terracotta font-normal">5 investissements essentiels</span> pour transformer votre vie
+            </h1>
+            <div class="flex items-center justify-center gap-3 pt-2 text-sm text-muted">
+                <span>Écrit avec intention</span>
+                <span>•</span>
+                <span>Nouvelle Perspective</span>
+                <span>•</span>
+                <span class="text-sage font-medium">🎁 1 Bonus inclus</span>
+            </div>
+        </header>
+
+        <!-- Intro Highlight Quote -->
+        <section class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft mb-12 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-peach/10 rounded-full blur-2xl pointer-events-none"></div>
+            <p class="text-lg sm:text-xl font-serif italic text-charcoal/90 leading-relaxed mb-4">
+                « Lorsqu'on parle d'investissement, on oublie souvent une vérité fondamentale : le véritable capital n'est pas seulement financier. Il est fait de temps, d'attention et d'énergie émotionnelle. »
+            </p>
+            <p class="text-sm text-charcoal/70 leading-relaxed">
+                À l'approche de chaque nouvelle saison, la question revient : <em>« Où investir ? »</em>. Voici une feuille de route singulière et apaisante pour bâtir une vie riche sous tous ses angles.
+            </p>
+        </section>
+
+        <!-- Article Sections -->
+        <div class="space-y-10">
+
+            <!-- 1. Investir en soi -->
+            <article class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft border border-latte/80 hover:shadow-float transition duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold tracking-widest text-sage uppercase">Pilier 01</span>
+                    <span class="text-2xl floating-badge">🌿</span>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-charcoal mb-4">1. Investir en soi-même (Corps, esprit et sérénité conjugale)</h2>
+                <p class="text-charcoal/80 leading-relaxed mb-5">
+                    Avant de chercher à maximiser un taux de rendement annuel, investissez dans votre tout premier véhicule : votre santé physique et votre clarté d'esprit.
+                </p>
+                <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white/80 p-4 rounded-2xl border border-latte">
+                        <div class="font-semibold text-charcoal flex items-center gap-2 mb-1.5">
+                            <span>🧘‍♀️</span> La paix dans le couple
+                        </div>
+                        <p class="text-charcoal/70 text-xs leading-relaxed">Si votre foyer est agité par les tensions, toute votre énergie mentale s'y épuise. L'harmonie relationnelle est le premier socle de votre réussite.</p>
+                    </div>
+                    <div class="bg-white/80 p-4 rounded-2xl border border-latte">
+                        <div class="font-semibold text-charcoal flex items-center gap-2 mb-1.5">
+                            <span>📖</span> La lecture structurée
+                        </div>
+                        <p class="text-charcoal/70 text-xs leading-relaxed">Dépassez la lecture passive. Choisissez des livres profonds qui bâtissent une réelle philosophie de vie et affûtent vos choix.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. Audit du patrimoine + Mini Widget -->
+            <article class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft border border-latte/80 hover:shadow-float transition duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold tracking-widest text-terracotta uppercase">Pilier 02</span>
+                    <span class="text-2xl floating-badge">📊</span>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-charcoal mb-4">2. Faire l'audit lucide de votre patrimoine existant</h2>
+                <p class="text-charcoal/80 leading-relaxed mb-6">
+                    Avant de courir vers de nouveaux placements, listez vos actifs réels (fonds, épargne, immobilier au prix du marché) et soustrayez l'ensemble de vos passifs.
+                </p>
+                
+                <!-- Mini Calculateur Interactif de Valeur Nette -->
+                <div class="bg-latte/50 p-5 rounded-2xl border border-dustyrose/30 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-charcoal uppercase tracking-wider">🧮 Mini-Calculateur de Clarté</span>
+                        <span class="text-[11px] text-muted">Test interactif</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <label class="block text-charcoal/70 mb-1 font-medium">Actifs Totaux (€)</label>
+                            <input type="number" id="calcAssets" placeholder="Ex: 85000" class="w-full bg-white px-3 py-2 rounded-xl border border-latte focus:outline-none focus:ring-2 focus:ring-dustyrose">
+                        </div>
+                        <div>
+                            <label class="block text-charcoal/70 mb-1 font-medium">Dettes & Crédits (€)</label>
+                            <input type="number" id="calcDebts" placeholder="Ex: 25000" class="w-full bg-white px-3 py-2 rounded-xl border border-latte focus:outline-none focus:ring-2 focus:ring-dustyrose">
+                        </div>
+                    </div>
+                    <div class="pt-2 flex items-center justify-between border-t border-latte/80">
+                        <span class="text-xs font-medium text-charcoal/70">Valeur Nette estimée :</span>
+                        <span id="calcResult" class="font-serif font-bold text-base text-terracotta">0 €</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3. Nettoyer les actifs dormants -->
+            <article class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft border border-latte/80 hover:shadow-float transition duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold tracking-widest text-peach uppercase">Pilier 03</span>
+                    <span class="text-2xl floating-badge">🧹</span>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-charcoal mb-4">3. Nettoyer les actifs dormants ou non rentables</h2>
+                <p class="text-charcoal/80 leading-relaxed mb-4">
+                    Tout comme on libère de l'espace dans sa maison pour laisser circuler l'air, il faut savoir purger son portefeuille financier :
+                </p>
+                <ul class="space-y-3 text-sm text-charcoal/80">
+                    <li class="flex items-start gap-3 bg-white/60 p-3.5 rounded-xl border border-latte">
+                        <span class="text-peach text-base">🍂</span>
+                        <span><strong>Le rendement sous les 3% :</strong> Un bien immobilier vieillissant avec un rendement dérisoire immobilise inutilement votre énergie et vos capitaux.</span>
+                    </li>
+                    <li class="flex items-start gap-3 bg-white/60 p-3.5 rounded-xl border border-latte">
+                        <span class="text-peach text-base">✂️</span>
+                        <span><strong>Prendre sa perte (*Take a haircut*) :</strong> Une erreur passée ? Acceptez-la comme des frais de scolarité payés à l'école de la vie, vendez, et réallouez vos ressources.</span>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- 4. Capital d'autonomie pour son/sa partenaire -->
+            <article class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft border border-latte/80 hover:shadow-float transition duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold tracking-widest text-dustyrose uppercase">Pilier 04</span>
+                    <span class="text-2xl floating-badge">💌</span>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-charcoal mb-4">4. Offrir un capital de départ à son/sa partenaire</h2>
+                <p class="text-charcoal/80 leading-relaxed mb-4">
+                    Voici un geste d'une puissance insoupçonnée : allouez une somme (par exemple 2 000 € à 2 500 €) à votre conjoint(e) pour tester un micro-projet sans obligation de rendement immédiat.
+                </p>
+                <div class="p-4 bg-rose-50/60 rounded-2xl border border-rose-100/80 text-xs text-charcoal/80 leading-relaxed space-y-2">
+                    <p>💡 <strong>Pourquoi ce geste transforme la vie de couple :</strong></p>
+                    <p>• Les discussions du soir ne portent plus sur les futilités ou les rancœurs, mais sur des idées, des projets et de la création de valeur.</p>
+                    <p>• Cela génère un respect mutuel profond sur la difficulté et la beauté d'entreprendre.</p>
+                </div>
+            </article>
+
+            <!-- 5. Le Rendement par unité de stress + Jauge -->
+            <article class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft border border-latte/80 hover:shadow-float transition duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold tracking-widest text-sage uppercase">Pilier 05</span>
+                    <span class="text-2xl floating-badge">⚖️</span>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-charcoal mb-4">5. Mesurer le « Rendement par Unité de Stress »</h2>
+                <p class="text-charcoal/80 leading-relaxed mb-4">
+                    Gagner 15 % par an en perdant le sommeil et sa paix intérieure est une opération perdante. Calculez toujours le coût psychique de chaque euro généré.
+                </p>
+                
+                <!-- Interactive Stress vs Peace Slider -->
+                <div class="bg-white/90 p-5 rounded-2xl border border-latte space-y-3">
+                    <div class="flex justify-between items-center text-xs font-semibold">
+                        <span>Évaluez votre projet actuel :</span>
+                        <span id="stressLabel" class="text-sage font-bold">✨ Sérénité Optimal</span>
+                    </div>
+                    <input type="range" id="stressSlider" min="1" max="10" value="2" class="w-full accent-terracotta cursor-pointer">
+                    <div class="flex justify-between text-[11px] text-muted">
+                        <span>0% Angoisse / Zen</span>
+                        <span>Sommeil agité</span>
+                        <span>Burnout garanti</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BONUS SECTION -->
+            <article class="glass-card rounded-3xl p-7 sm:p-9 shadow-soft border-2 border-sage/40 bg-gradient-to-br from-white/90 to-sage/10 relative overflow-hidden">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="px-3 py-1 rounded-full bg-sage/20 text-sage text-xs font-bold uppercase tracking-wider">🎁 Bonus Précieux</span>
+                    <span class="text-3xl">🌟</span>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-charcoal mb-3">La règle des 5 personnes & le ROTI</h2>
+                <p class="text-xs font-bold text-sage uppercase tracking-wider mb-4">Return on Time Invested (Retour sur Temps Investi)</p>
+                
+                <p class="text-charcoal/80 leading-relaxed mb-4 text-sm">
+                    Vous êtes la moyenne directe des 5 personnes avec qui vous interagissez le plus au quotidien. Leurs habitudes financières, leurs plaintes et leurs ambitions deviennent insensiblement les vôtres.
+                </p>
+
+                <div class="p-4 bg-white/80 rounded-2xl border border-sage/30 text-xs text-charcoal/80 space-y-2">
+                    <p class="font-semibold text-charcoal">🗝️ Le basculement mental : Passer du « Pourquoi » au « Comment »</p>
+                    <p>Quand votre partenaire vous parle d'un souhait, cessez de demander <em>« Pourquoi dépenser pour ça ? »</em>. Demandez plutôt : <strong>« Comment pouvons-nous nous organiser intelligemment pour y parvenir ? »</strong> Ce simple réflexe débloque la créativité et renforce l'alliance.</p>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Interactive Reflection Box -->
+        <section class="mt-14 glass-card rounded-3xl p-8 text-center space-y-5 border border-latte shadow-soft">
+            <h3 class="font-serif text-2xl font-bold text-charcoal">À vous de jouer ✨</h3>
+            <p class="text-sm text-charcoal/70 max-w-md mx-auto">
+                Quel est l'investissement non financier que vous choisissez de privilégier cette année ?
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 pt-2">
+                <button onclick="selectGoal(this)" class="goal-pill px-4 py-2 rounded-full text-xs font-medium bg-white border border-latte hover:border-dustyrose transition">🌸 Paix dans mon couple</button>
+                <button onclick="selectGoal(this)" class="goal-pill px-4 py-2 rounded-full text-xs font-medium bg-white border border-latte hover:border-dustyrose transition">📚 Lectures structurées</button>
+                <button onclick="selectGoal(this)" class="goal-pill px-4 py-2 rounded-full text-xs font-medium bg-white border border-latte hover:border-dustyrose transition">🧹 Purge des mauvais actifs</button>
+                <button onclick="selectGoal(this)" class="goal-pill px-4 py-2 rounded-full text-xs font-medium bg-white border border-latte hover:border-dustyrose transition">🕊️ Zéro stress inutile</button>
+            </div>
+            <p id="selectionNotice" class="text-xs text-sage font-semibold h-4 transition-all"></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-latte py-8 text-center text-xs text-muted">
+        <p>Inspiré par une vision holistique de l'abondance et du bien-être.</p>
+        <p class="mt-1 font-serif italic text-charcoal/60">« Optimisez votre temps, le reste suivra. »</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Like Counter Interaction
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCount = document.getElementById('likeCount');
+        const heartIcon = document.getElementById('heartIcon');
+        let isLiked = false;
+
+        likeBtn.addEventListener('click', () => {
+            let current = parseInt(likeCount.innerText);
+            if (!isLiked) {
+                likeCount.innerText = current + 1;
+                heartIcon.innerText = '❤️';
+                isLiked = true;
+                likeBtn.classList.add('bg-rose-100', 'scale-105');
+            } else {
+                likeCount.innerText = current - 1;
+                heartIcon.innerText = '🤍';
+                isLiked = false;
+                likeBtn.classList.remove('bg-rose-100', 'scale-105');
+            }
+        });
+
+        // Net Worth Calculator
+        const assetsInput = document.getElementById('calcAssets');
+        const debtsInput = document.getElementById('calcDebts');
+        const resultDisplay = document.getElementById('calcResult');
+
+        function updateNetWorth() {
+            const assets = parseFloat(assetsInput.value) || 0;
+            const debts = parseFloat(debtsInput.value) || 0;
+            const netWorth = assets - debts;
+            resultDisplay.innerText = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(netWorth);
+        }
+
+        assetsInput.addEventListener('input', updateNetWorth);
+        debtsInput.addEventListener('input', updateNetWorth);
+
+        // Stress vs Peace Slider
+        const slider = document.getElementById('stressSlider');
+        const label = document.getElementById('stressLabel');
+
+        slider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            if (val <= 3) {
+                label.innerText = '✨ Sérénité Optimale (Rendement sain)';
+                label.className = 'text-sage font-bold';
+            } else if (val <= 7) {
+                label.innerText = '⚠️ Friction modérée (Restez vigilant)';
+                label.className = 'text-peach font-bold';
+            } else {
+                label.innerText = '🔥 Alerte Rouge (Ce profit vous coûte votre paix)';
+                label.className = 'text-terracotta font-bold';
+            }
+        });
+
+        // Goal Selection Pills
+        function selectGoal(element) {
+            document.querySelectorAll('.goal-pill').forEach(btn => {
+                btn.classList.remove('bg-terracotta', 'text-white', 'border-terracotta');
+                btn.classList.add('bg-white', 'text-charcoal');
+            });
+            element.classList.remove('bg-white', 'text-charcoal');
+            element.classList.add('bg-terracotta', 'text-white', 'border-terracotta');
+            
+            const notice = document.getElementById('selectionNotice');
+            notice.innerText = `Objectif ancré : « ${element.innerText} » 🌿`;
+        }
+    </script>
+</body>
+</html>

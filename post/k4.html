@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment économiser une fortune en 15 minutes | Guide Essentiel</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        editorial: ['Fraunces', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#FDFBF7',
+                        softpink: '#FDECEF',
+                        lavender: '#EFEAFF',
+                        softmint: '#E6F7F2',
+                        apricot: '#FFF0E5',
+                        branddark: '#24202B',
+                        primary: '#E06D83',
+                        mintaccent: '#38A88B',
+                        purpleaccent: '#7A67EE'
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(224, 109, 131, 0.08)',
+                        'card': '0 4px 20px 0 rgba(0, 0, 0, 0.04)',
+                        'cute': '0 8px 0 0 rgba(36, 32, 43, 0.9)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF7F2;
+            color: #2D2833;
+        }
+        .blob-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(253, 236, 239, 0.8) 0%, rgba(239, 234, 255, 0.6) 50%, rgba(230, 247, 242, 0.7) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+        .sticker-badge {
+            transform: rotate(-2deg);
+            transition: all 0.2s ease;
+        }
+        .sticker-badge:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-softpink selection:text-primary relative overflow-x-hidden">
+
+    <!-- Progress Bar -->
+    <div id="progressBar" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-primary via-purpleaccent to-mintaccent z-50 transition-all duration-150" style="width: 0%"></div>
+
+    <!-- Background Glow Blobs -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-70">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-softpink rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-20 w-80 h-80 bg-lavender rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 left-1/4 w-96 h-96 bg-softmint rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="relative z-20 max-w-4xl mx-auto px-6 pt-6">
+        <nav class="glass-card rounded-full px-6 py-3.5 flex items-center justify-between shadow-card border border-white/60">
+            <div class="flex items-center space-x-2">
+                <span class="w-8 h-8 rounded-full bg-softpink flex items-center justify-center text-primary font-bold text-sm shadow-inner">
+                    💡
+                </span>
+                <span class="font-editorial text-lg font-bold tracking-tight text-branddark">Éveil & Bon Sens</span>
+            </div>
+            <div class="flex items-center space-x-3 text-xs md:text-sm font-medium">
+                <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full bg-apricot text-amber-900 border border-orange-200/50">
+                    ⏱️ Lecture : 6 min
+                </span>
+                <button onclick="shareArticle()" class="flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-branddark text-white hover:bg-opacity-90 transition shadow-sm">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                    <span>Partager</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-4xl mx-auto px-6 py-12 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white shadow-sm border border-rose-100 text-xs font-semibold text-primary uppercase tracking-wider sticker-badge">
+                <span>✨ Révolution Financière Familiale</span>
+            </div>
+            
+            <h1 class="font-editorial text-4xl sm:text-5xl md:text-6xl text-branddark leading-[1.15] font-bold">
+                Comment économiser <span class="italic font-normal underline decoration-primary/40 decoration-wavy">une fortune</span> en 15 minutes ?
+            </h1>
+            
+            <p class="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed">
+                Le guide sans filtre pour libérer la classe moyenne du piège des <strong>diplômes privés surévalués</strong> et des <strong>mariages pharaoniques</strong>.
+            </p>
+
+            <!-- Author Pill -->
+            <div class="flex items-center justify-center space-x-3 pt-2">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-softpink to-lavender p-0.5 shadow-sm">
+                    <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=counselor&backgroundColor=ffd5dc" alt="Avatar" class="w-full h-full rounded-full bg-white">
+                </div>
+                <div class="text-left text-xs">
+                    <p class="font-bold text-branddark">Conseiller Conjugal & Coach d'Orientation</p>
+                    <p class="text-stone-500">Pragmatisme • Bon sens • Zéro dette</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intro Keynote Card -->
+        <section class="glass-card rounded-3xl p-8 md:p-10 shadow-soft relative overflow-hidden border border-rose-100">
+            <div class="absolute -right-8 -bottom-8 opacity-10 font-editorial text-9xl select-none">1Cr</div>
+            
+            <div class="space-y-4 relative z-10">
+                <div class="inline-flex items-center space-x-2 text-primary font-semibold text-sm">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Le constat qui fait mal</span>
+                </div>
+                
+                <p class="text-lg md:text-xl font-editorial italic text-stone-700">
+                    « Un sou épargné est un sou gagné. »
+                </p>
+                
+                <p class="text-stone-600 leading-relaxed">
+                    Pourtant, la classe moyenne continue de jeter des sommes astronomiques par les fenêtres en suivant deux diktats sociaux : <strong>les diplômes privés hors de prix</strong> et <strong>les mariages pharaoniques</strong>.
+                </p>
+                
+                <div class="p-4 rounded-2xl bg-softpink/70 border border-rose-200/60 flex items-center justify-between flex-wrap gap-3">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">💸</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-rose-800">Facture moyenne (2 enfants)</p>
+                            <p class="font-editorial text-2xl font-bold text-branddark">80 000 € à 120 000 € <span class="text-xs font-normal text-stone-600">(~1 Crore)</span></p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-white text-rose-600 shadow-sm">
+                        Broyés en quelques années
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOLET 1 : L'Arnaque des Diplômes -->
+        <section class="space-y-8">
+            <div class="flex items-center space-x-3">
+                <span class="w-10 h-10 rounded-2xl bg-lavender flex items-center justify-center font-editorial font-bold text-purpleaccent text-lg shadow-sm">1</span>
+                <div>
+                    <span class="text-xs font-bold text-purpleaccent uppercase tracking-widest">Volet 1</span>
+                    <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-branddark">L'Arnaque des Diplômes Coûteux</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 text-base leading-relaxed">
+                Nombreux sont les parents qui s'endettent pour payer des frais de scolarité de <strong>20 000 à 30 000 € par enfant</strong> dans des écoles privées de management, d'hôtellerie ou de droit. Mais regardons la réalité en face :
+            </p>
+
+            <!-- Bento Grid of Realities -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-stone-100 hover:border-purple-200 transition space-y-2">
+                    <div class="text-2xl">📉</div>
+                    <h3 class="font-bold text-branddark text-base">Un ROI (Retour sur Investissement) dérisoire</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Le jeune diplômé se voit souvent offrir un salaire de départ de 200 à 350 €/mois qu'il aurait pu décrocher avec une licence universitaire publique standard.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-stone-100 hover:border-purple-200 transition space-y-2">
+                    <div class="text-2xl">🎭</div>
+                    <h3 class="font-bold text-branddark text-base">Le piège des recrutements de façade</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Beaucoup d'instituts privés orchestrent des recrutements sur campus pour afficher des photos de réussite, alors que les recrues sont souvent remerciées 6 mois plus tard.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-stone-100 hover:border-purple-200 transition space-y-2">
+                    <div class="text-2xl">🤖</div>
+                    <h3 class="font-bold text-branddark text-base">L'ère de l'IA & l'obsolescence rapide</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Les métiers de 2040 ne ressembleront à rien de ce qu'on enseigne aujourd'hui. Bloquer des dizaines de milliers d'euros à 20 ans pour un savoir éphémère est un contre-sens.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-stone-100 hover:border-purple-200 transition space-y-2">
+                    <div class="text-2xl">📚</div>
+                    <h3 class="font-bold text-branddark text-base">Les mêmes livres pour tout le monde</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Le droit et le commerce s'apprennent dans les mêmes ouvrages. Un jeune issu d'une fac publique, confronté au monde réel, développe bien plus de débrouillardise.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution Card 1 -->
+            <div class="bg-gradient-to-br from-purple-50 to-indigo-50/50 rounded-3xl p-6 md:p-8 border border-purple-100 space-y-4">
+                <div class="flex items-center space-x-2 text-purpleaccent font-bold text-sm">
+                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    <span>La Stratégie Gagnante : Le tremplin matériel</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-white/90 p-4 rounded-2xl border border-purple-100">
+                        <p class="font-bold text-xs text-purpleaccent uppercase mb-1">Étape 1</p>
+                        <p class="text-sm text-stone-700">Université publique abordable + immersion rapide sur le terrain (stages, missions, économie numérique).</p>
+                    </div>
+                    <div class="bg-white/90 p-4 rounded-2xl border border-purple-100">
+                        <p class="font-bold text-xs text-purpleaccent uppercase mb-1">Étape 2</p>
+                        <p class="text-sm text-stone-700">Investir les 50 000 € économisés dans un **appartement fonctionnel** et une **voiture sécurisée**.</p>
+                    </div>
+                </div>
+                <div class="p-3 bg-purpleaccent/10 rounded-xl text-center">
+                    <p class="text-xs font-semibold text-purpleaccent">
+                        🎉 Résultat : 20 ans d'intérêts et de crédits bancaires économisés pour votre enfant !
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CALCULATOR (Simulateur Frais) -->
+        <section class="glass-card rounded-3xl p-8 shadow-soft border border-emerald-100 space-y-6">
+            <div class="text-center space-y-2">
+                <span class="px-3 py-1 rounded-full bg-softmint text-mintaccent text-xs font-bold uppercase tracking-wider">
+                    Interactive Simulator
+                </span>
+                <h3 class="font-editorial text-2xl md:text-3xl font-bold text-branddark">
+                    Calculez le Capital d'Avenir de votre Famille
+                </h3>
+                <p class="text-stone-500 text-xs md:text-sm">Déplacez les curseurs pour voir l'impact d'un arbitrage intelligent :</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <div class="space-y-4 bg-white/70 p-5 rounded-2xl border border-stone-100">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-stone-700 mb-1">
+                            <span>Budget Études Privées (par enfant)</span>
+                            <span id="eduVal" class="text-primary font-editorial text-base">25 000 €</span>
+                        </div>
+                        <input type="range" id="eduRange" min="5000" max="60000" step="5000" value="25000" class="w-full accent-primary cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-stone-700 mb-1">
+                            <span>Budget Mariage Fastueux</span>
+                            <span id="wedVal" class="text-primary font-editorial text-base">30 000 €</span>
+                        </div>
+                        <input type="range" id="wedRange" min="5000" max="70000" step="5000" value="30000" class="w-full accent-primary cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-stone-700 mb-1">
+                            <span>Nombre d'enfants</span>
+                            <span id="childVal" class="text-primary font-editorial text-base">2</span>
+                        </div>
+                        <input type="range" id="childRange" min="1" max="4" step="1" value="2" class="w-full accent-primary cursor-pointer">
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-softmint to-emerald-50 p-6 rounded-2xl border border-emerald-200/60 flex flex-col justify-between space-y-4">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-wider text-emerald-800">Somme Totale Récupérable</p>
+                        <p id="totalSaved" class="font-editorial text-4xl md:text-5xl font-bold text-emerald-950 mt-1">110 000 €</p>
+                        <p class="text-xs text-emerald-700 mt-2">
+                            Soit un capital suffisant pour un bien immobilier sans crédit + 10 ans de sécurité pour le couple.
+                        </p>
+                    </div>
+
+                    <button onclick="triggerConfetti()" class="w-full py-2.5 px-4 rounded-xl bg-mintaccent hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center space-x-2">
+                        <span>✨ Réclamer ce Futur</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOLET 2 : Les Mariages Fastueux -->
+        <section class="space-y-8">
+            <div class="flex items-center space-x-3">
+                <span class="w-10 h-10 rounded-2xl bg-softpink flex items-center justify-center font-editorial font-bold text-primary text-lg shadow-sm">2</span>
+                <div>
+                    <span class="text-xs font-bold text-primary uppercase tracking-widest">Volet 2</span>
+                    <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-branddark">Les Mariages Fastueux : 40 000 € pour une nuit</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 leading-relaxed">
+                Dépenser des sommes colossales pour des effets de scène, des fleurs éphémères et des buffets où les convives trouveront toujours une critique à formuler est une pure aberration.
+            </p>
+
+            <!-- The Appliance Warranty Analogy (Receipt Style) -->
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-card border border-stone-200 relative overflow-hidden">
+                <div class="absolute top-4 right-4 bg-apricot text-amber-900 text-xs px-3 py-1 rounded-full font-bold">
+                    ⚖️ L'Absurdité Quotidienne
+                </div>
+                
+                <h3 class="font-editorial text-xl font-bold text-branddark mb-4">Le Paradoxe de la Garantie</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/70 space-y-2">
+                        <span class="text-xs font-bold text-stone-500 uppercase">Achat Électroménager (400 €)</span>
+                        <p class="text-sm text-stone-800 font-semibold">« Nous exigeons 5 à 10 ans de garantie constructeur sur le compresseur. »</p>
+                        <span class="inline-block text-xs text-emerald-600 font-bold">✓ Exigence Maximale</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-rose-50/60 border border-rose-200/70 space-y-2">
+                        <span class="text-xs font-bold text-rose-500 uppercase">Cérémonie de Mariage (40 000 €)</span>
+                        <p class="text-sm text-stone-800 font-semibold">« Dépensé en 24h sans la moindre garantie que l'union durera plus de 50 jours. »</p>
+                        <span class="inline-block text-xs text-rose-600 font-bold">✗ 0% Garantie</span>
+                    </div>
+                </div>
+
+                <p class="text-xs text-stone-500 mt-4 italic text-center">
+                    « En tant que conseiller conjugal, je vois des couples ayant dépensé une fortune venir divorcer au bout de 2 mois. La valeur d'un mariage n'a aucun lien avec le prix de la fête. »
+                </p>
+            </div>
+        </section>
+
+        <!-- VOLET 3 : La Formule Incitative -->
+        <section class="space-y-8">
+            <div class="flex items-center space-x-3">
+                <span class="w-10 h-10 rounded-2xl bg-softmint flex items-center justify-center font-editorial font-bold text-mintaccent text-lg shadow-sm">3</span>
+                <div>
+                    <span class="text-xs font-bold text-mintaccent uppercase tracking-widest">Volet 3</span>
+                    <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-branddark">« La Formule Incitative » qui change la vie</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 leading-relaxed">
+                Voici le protocole simple pour transformer des dépenses éphémères en **8 à 10 ans de sérénité absolue** pour le nouveau couple :
+            </p>
+
+            <!-- 3-Step Roadmap -->
+            <div class="space-y-4">
+                <div class="glass-card p-6 rounded-3xl border border-emerald-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-softmint flex items-center justify-center text-xl shrink-0">💍</div>
+                        <div>
+                            <h3 class="font-bold text-branddark text-base">1. Une Cérémonie Sobre & Sublime (2 000 - 3 000 €)</h3>
+                            <p class="text-xs text-stone-500">Belles tenues, rituels sacrés, superbes photos et repas chaleureux avec les très proches.</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 bg-white text-xs font-bold text-stone-700 rounded-full border border-stone-200">Essentiel préservé</span>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl border border-emerald-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-lavender flex items-center justify-center text-xl shrink-0">🏦</div>
+                        <div>
+                            <h3 class="font-bold text-branddark text-base">2. Le Pactole Placé sur un Compte Rémunéré</h3>
+                            <p class="text-xs text-stone-500">Les deux familles réunissent 40 000 € (au lieu de les brûler) et les placent aux noms des mariés.</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 bg-white text-xs font-bold text-purpleaccent rounded-full border border-purple-200">Actif Générateur</span>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl border border-emerald-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-softpink flex items-center justify-center text-xl shrink-0">🎁</div>
+                        <div>
+                            <h3 class="font-bold text-branddark text-base">3. Le Bonus Annuel d'Harmonie (8 000 €/an)</h3>
+                            <p class="text-xs text-stone-500">1 an passé sans dispute stérile ni ingérence ? Chaque famille verse un bonus de 4 000 € au couple !</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 bg-white text-xs font-bold text-primary rounded-full border border-rose-200">Paix incitative</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Table (Redesigned as Modern Visual Cards) -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-primary">En Résumé</span>
+                <h2 class="font-editorial text-2xl md:text-3xl font-bold text-branddark">Comparatif des Deux Mondes</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <!-- Old Way -->
+                <div class="bg-white rounded-3xl p-6 border border-stone-200 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-3 py-1 bg-stone-100 text-stone-600 rounded-full">Modèle Conventionnel</span>
+                        <span class="text-xl">🛑</span>
+                    </div>
+                    <ul class="space-y-3 text-xs md:text-sm text-stone-600">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span><strong>30 000 €</strong> dans un diplôme privé sans débouché certifié.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span><strong>30 000 €</strong> brûlés en 24h pour impressionner la galerie.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span>Le jeune démarre sa vie avec du stress, des dettes et zéro logement.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- New Way -->
+                <div class="bg-gradient-to-br from-softmint/60 to-emerald-50/70 rounded-3xl p-6 border border-emerald-200 space-y-4 shadow-soft">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-3 py-1 bg-mintaccent text-white rounded-full">Stratégie Pragmatique</span>
+                        <span class="text-xl">🌟</span>
+                    </div>
+                    <ul class="space-y-3 text-xs md:text-sm text-stone-700">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-600 font-bold">✓</span>
+                            <span><strong>Fac publique + Travail précoce</strong> + Achat d'un bien immobilier.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-600 font-bold">✓</span>
+                            <span><strong>Cérémonie simple (3k €)</strong> + Fonds de 40k € placé pour le couple.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-600 font-bold">✓</span>
+                            <span>Le couple commence <strong>sans dette, logé et soutenu</strong> par un coussin financier.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Poll Section -->
+        <section class="glass-card rounded-3xl p-8 text-center space-y-6 border border-rose-100">
+            <div class="space-y-2">
+                <span class="text-2xl">🗳️</span>
+                <h3 class="font-editorial text-2xl font-bold text-branddark">Votre Avis Compte</h3>
+                <p class="text-stone-600 text-xs md:text-sm max-w-md mx-auto">
+                    Seriez-vous prêt à troquer une grande fête de mariage contre un capital d'avenir de 40 000 € pour vos enfants ?
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2" id="pollButtons">
+                <button onclick="votePoll('Oui, à 100% !')" class="w-full py-3 px-4 rounded-2xl bg-white hover:bg-softmint border border-stone-200 hover:border-mintaccent text-xs font-bold text-stone-800 transition shadow-sm">
+                    💚 Oui, sans hésiter
+                </button>
+                <button onclick="votePoll('Partagé')" class="w-full py-3 px-4 rounded-2xl bg-white hover:bg-apricot border border-stone-200 hover:border-amber-300 text-xs font-bold text-stone-800 transition shadow-sm">
+                    🤔 C'est tentant mais dur
+                </button>
+                <button onclick="votePoll('Non')" class="w-full py-3 px-4 rounded-2xl bg-white hover:bg-softpink border border-stone-200 hover:border-primary text-xs font-bold text-stone-800 transition shadow-sm">
+                    🌸 Tradition d'abord
+                </button>
+            </div>
+            
+            <p id="pollFeedback" class="text-xs text-mintaccent font-bold hidden"></p>
+        </section>
+
+        <!-- Final Call To Action Banner -->
+        <section class="bg-gradient-to-br from-branddark to-stone-900 text-white rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden shadow-2xl">
+            <div class="relative z-10 space-y-4 max-w-lg mx-auto">
+                <span class="text-3xl">🌱</span>
+                <h3 class="font-editorial text-2xl md:text-4xl font-bold">À vous de jouer</h3>
+                <p class="text-stone-300 text-sm leading-relaxed">
+                    Cette vision bouscule l'orgueil social. Mais pour libérer la prochaine génération du poids de la dette, il est temps de remplacer le paraître par le bon sens.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-3">
+                    <button onclick="shareArticle()" class="w-full sm:w-auto px-6 py-3 rounded-full bg-primary hover:bg-rose-500 text-white font-bold text-xs shadow-lg transition">
+                        Transmettre ce guide à 10 proches 🚀
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Cute Aesthetic Footer -->
+    <footer class="relative z-10 border-t border-stone-200/60 mt-16 py-8 text-center text-xs text-stone-500">
+        <p>© Éveil & Bon Sens • Fait avec soin pour une classe moyenne libre et sereine.</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Lucide Icons Initialization
+        lucide.createIcons();
+
+        // Reading Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Savings Simulator Logic
+        const eduRange = document.getElementById('eduRange');
+        const wedRange = document.getElementById('wedRange');
+        const childRange = document.getElementById('childRange');
+        
+        const eduVal = document.getElementById('eduVal');
+        const wedVal = document.getElementById('wedVal');
+        const childVal = document.getElementById('childVal');
+        const totalSaved = document.getElementById('totalSaved');
+
+        function updateCalculator() {
+            const edu = parseInt(eduRange.value);
+            const wed = parseInt(wedRange.value);
+            const children = parseInt(childRange.value);
+
+            eduVal.innerText = edu.toLocaleString('fr-FR') + ' €';
+            wedVal.innerText = wed.toLocaleString('fr-FR') + ' €';
+            childVal.innerText = children;
+
+            // Calculation: (Edu cost per child + Wedding cost per child - Basic modest wedding 3k) * children
+            const savedPerChild = (edu - 1000) + (wed - 3000);
+            const total = savedPerChild * children;
+
+            totalSaved.innerText = total.toLocaleString('fr-FR') + ' €';
+        }
+
+        eduRange.addEventListener('input', updateCalculator);
+        wedRange.addEventListener('input', updateCalculator);
+        childRange.addEventListener('input', updateCalculator);
+
+        // Confetti effect
+        function triggerConfetti() {
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#E06D83', '#7A67EE', '#38A88B', '#F6AD55']
+            });
+        }
+
+        // Web Share API
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Comment économiser une fortune en 15 minutes',
+                    text: 'Un guide révolutionnaire pour repenser les études et les mariages de nos enfants.',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Lien copié dans le presse-papier ! ✨');
+            }
+        }
+
+        // Quick Poll Logic
+        function votePoll(choice) {
+            triggerConfetti();
+            const feedback = document.getElementById('pollFeedback');
+            feedback.innerText = `Merci pour votre vote (${choice}) ! Vous participez à éveiller les esprits. ✨`;
+            feedback.classList.remove('hidden');
+            document.getElementById('pollButtons').classList.add('opacity-50', 'pointer-events-none');
+        }
+    </script>
+</body>
+</html>
