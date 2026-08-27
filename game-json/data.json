@@ -1,0 +1,86 @@
+[
+  {
+    "id": "slope",
+    "title": "Slope Unblocked",
+    "category": "3D Arcade / Runner",
+    "icon": "🟢",
+    "url": "https://slopeunblocked.bitbucket.io/file/"
+  },
+  {
+    "id": "motox3m",
+    "title": "Moto X3M",
+    "category": "Racing & Stunts",
+    "icon": "🏍️",
+    "url": "https://motox3m.co/"
+  },
+  {
+    "id": "paperio",
+    "title": "Paper.io 2",
+    "category": "Multiplayer IO",
+    "icon": "📄",
+    "url": "https://paper-io.com/"
+  },
+  {
+    "id": "retrobowl",
+    "title": "Retro Bowl",
+    "category": "Sports Classic",
+    "icon": "🏈",
+    "url": "https://game316009.hostingerapp.com/"
+  },
+  {
+    "id": "1v1lol",
+    "title": "1v1.LOL",
+    "category": "Shooter / Action",
+    "icon": "🎯",
+    "url": "https://1v1.lol/"
+  },
+  {
+    "id": "subwaysurfers",
+    "title": "Subway Surfers",
+    "category": "Endless Runner",
+    "icon": "🏃",
+    "url": "https://poki.com/en/g/subway-surfers"
+  },
+  {
+    "id": "run3",
+    "title": "Run 3",
+    "category": "Space Tunnel",
+    "icon": "🌌",
+    "url": "https://run3.app/"
+  },
+  {
+    "id": "tunnelrush",
+    "title": "Tunnel Rush",
+    "category": "3D Speed",
+    "icon": "⚡",
+    "url": "https://tunnelrush.app/"
+  },
+  {
+    "id": "cookieclicker",
+    "title": "Cookie Clicker",
+    "category": "Idle / Clicker",
+    "icon": "🍪",
+    "url": "https://orteil.dashnet.org/cookieclicker/"
+  },
+  {
+    "id": "flappybird",
+    "title": "Flappy Bird",
+    "category": "Retro Arcade",
+    "icon": "🐤",
+    "url": "https://flappybird.ee/"
+  },
+  {
+    "id": "smashkarts",
+    "title": "Smash Karts",
+    "category": "3D Kart Battle",
+    "icon": "🏎️",
+    "url": "https://smashkarts.io/"
+  },
+  {
+    "id": "2048",
+    "title": "2048",
+    "category": "Brain Puzzle",
+    "icon": "🔢",
+    "url": "https://play2048.co/"
+  }
+]
