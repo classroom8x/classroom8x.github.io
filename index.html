@@ -8,565 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#f5f8f2;
-    --surface:#eaf1e3;
-    --card:#ffffff;
-    --green-deep:#1f3d2b;
-    --green:#3f7d4f;
-    --green-soft:#8fb996;
-    --green-pale:#dfead8;
-    --text:#28312a;
-    --text-muted:#66715f;
-    --border:#dbe6d3;
-    --highlight-bg:#ffe58f;
-    --highlight-text:#1f3d2b;
-    --shadow-sm: 0 2px 6px rgba(31,61,43,0.04);
-    --shadow-md: 0 4px 16px rgba(31,61,43,0.08);
-    --radius: 12px;
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none;}
-  ul{list-style:none;margin:0;padding:0;}
-  img{max-width:100%;display:block;}
-  button{font:inherit;}
-
-  .site-name{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-  }
-
-  /* ---------- Topbar ---------- */
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:40;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:10px 16px;
-    background:rgba(245,248,242,0.95);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
-  }
-  .topbar-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    min-width:0;
-  }
-  .menu-btn{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:4px;
-    width:38px;
-    height:38px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    background:var(--card);
-    cursor:pointer;
-    flex:none;
-    padding:0;
-  }
-  .menu-btn span{
-    display:block;
-    width:16px;
-    height:2px;
-    margin:0 auto;
-    background:var(--green-deep);
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.active span:nth-child(2){opacity:0;}
-  .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    min-width:0;
-  }
-  .brand-icon{
-    width:28px;
-    height:28px;
-    flex:none;
-    color:var(--green);
-  }
-  .brand-text{
-    display:flex;
-    flex-direction:column;
-    line-height:1.15;
-    min-width:0;
-  }
-  .brand-text .site-name{
-    font-size:1.15rem;
-    color:var(--green-deep);
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  .brand-text .tagline{
-    font-size:0.7rem;
-    color:var(--text-muted);
-    letter-spacing:.02em;
-    white-space:nowrap;
-  }
-
-  .search-wrap{
-    position:relative;
-    width:min(240px, 42vw);
-    flex:none;
-  }
-  .search-wrap .search-icon{
-    position:absolute;
-    left:10px;
-    top:50%;
-    transform:translateY(-50%);
-    width:15px;height:15px;
-    color:var(--text-muted);
-    pointer-events:none;
-  }
-  .search-clear{
-    position:absolute;
-    right:6px;
-    top:50%;
-    transform:translateY(-50%);
-    background:none;
-    border:none;
-    color:var(--text-muted);
-    cursor:pointer;
-    padding:6px;
-    display:none;
-    border-radius:50%;
-    align-items:center;
-    justify-content:center;
-  }
-  .search-clear:hover{color:var(--green-deep);}
-  #searchInput{
-    width:100%;
-    padding:8px 30px 8px 32px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    font-size:0.86rem;
-    outline:none;
-    transition:var(--transition);
-  }
-  #searchInput:focus{
-    border-color:var(--green-soft);
-    box-shadow:0 0 0 3px var(--green-pale);
-  }
-
-  /* ---------- Sidebar Navigation ---------- */
-  .overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(20,32,22,0.4);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .25s ease;
-    z-index:45;
-  }
-  .overlay.show{opacity:1;pointer-events:auto;}
-
-  .sidebar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:100%;
-    width:min(280px, 85vw);
-    background:var(--surface);
-    border-right:1px solid var(--border);
-    transform:translateX(-100%);
-    transition:transform .25s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-  }
-  .sidebar.open{transform:translateX(0);}
-  .sidebar-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px;
-    border-bottom:1px solid var(--border);
-  }
-  .sidebar-close{
-    width:34px;height:34px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:var(--card);
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--green-deep);
-  }
-  .sidebar-nav{
-    padding:14px 10px;
-    overflow-y:auto;
-    flex:1;
-  }
-  .sidebar-nav .section-label, .sidebar-footer .section-label{
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--text-muted);
-    padding:8px 10px 4px;
-    font-weight:600;
-  }
-  .sidebar-nav a{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 12px;
-    border-radius:8px;
-    font-size:0.92rem;
-    color:var(--green-deep);
-    font-weight:500;
-    transition:var(--transition);
-  }
-  .sidebar-nav a:hover, .sidebar-nav a.active{background:var(--green-pale);}
-  .sidebar-footer{
-    border-top:1px solid var(--border);
-    padding:12px 10px 16px;
-  }
-  .sidebar-footer a{
-    display:block;
-    padding:8px 12px;
-    font-size:0.84rem;
-    color:var(--text-muted);
-    border-radius:6px;
-  }
-  .sidebar-footer a:hover{background:var(--green-pale); color:var(--green-deep);}
-
-  /* ---------- Layout ---------- */
-  .layout{
-    max-width:1120px;
-    margin:0 auto;
-    padding:28px 16px 60px;
-    display:grid;
-    grid-template-columns:minmax(0, 1fr) 280px;
-    gap:40px;
-  }
-
-  .feed-controls{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:16px;
-  }
-  .chips-scroll-wrap{
-    overflow-x:auto;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-    flex:1;
-    min-width:0;
-  }
-  .chips-scroll-wrap::-webkit-scrollbar{display:none;}
-  .chips-list{
-    display:inline-flex;
-    gap:6px;
-    padding:2px 0;
-  }
-  .chip{
-    padding:6px 13px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    font-size:0.8rem;
-    color:var(--text-muted);
-    font-weight:500;
-    cursor:pointer;
-    transition:var(--transition);
-    white-space:nowrap;
-    display:inline-flex;
-    align-items:center;
-    gap:4px;
-    min-height:32px;
-  }
-  .chip:hover, .chip.active{
-    background:var(--green-deep);
-    color:#ffffff;
-    border-color:var(--green-deep);
-  }
-
-  .sort-select{
-    background:var(--card);
-    border:1px solid var(--border);
-    color:var(--text);
-    padding:6px 10px;
-    border-radius:10px;
-    font-size:0.8rem;
-    outline:none;
-    cursor:pointer;
-    flex:none;
-    height:32px;
-  }
-
-  /* ---------- Post Cards ---------- */
-  .post-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:clamp(16px, 3.5vw, 22px);
-    margin-bottom:14px;
-    box-shadow:var(--shadow-sm);
-    transition:var(--transition);
-  }
-  .post-card:hover{
-    transform:translateY(-2px);
-    box-shadow:var(--shadow-md);
-    border-color:var(--green-soft);
-  }
-  .card-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    margin-bottom:8px;
-  }
-  .post-meta{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:6px;
-    font-size:0.76rem;
-    color:var(--text-muted);
-  }
-  .cat-pill{
-    background:var(--green-pale);
-    color:var(--green-deep);
-    padding:2px 8px;
-    border-radius:10px;
-    font-weight:600;
-    font-size:0.72rem;
-    cursor:pointer;
-    transition:var(--transition);
-  }
-  .cat-pill:hover{background:var(--green); color:#fff;}
-  
-  .post-actions{
-    display:flex;
-    align-items:center;
-    gap:4px;
-    flex:none;
-  }
-  .action-btn{
-    background:transparent;
-    border:none;
-    color:var(--text-muted);
-    width:32px;
-    height:32px;
-    border-radius:6px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:var(--transition);
-    padding:0;
-  }
-  .action-btn:hover{background:var(--green-pale); color:var(--green-deep);}
-  .action-btn.saved{color:#d97706;}
-  .action-btn.saved svg{fill:currentColor;}
-  .action-btn svg{width:16px;height:16px;}
-
-  .post-card h2{
-    margin:0 0 6px;
-    font-family:'Fraunces', serif;
-    font-size:clamp(1.18rem, 3.5vw, 1.35rem);
-    line-height:1.35;
-  }
-  .post-card h2 a{color:var(--green-deep); transition:color .2s;}
-  .post-card h2 a:hover{color:var(--green);}
-  .post-card p{
-    margin:0;
-    color:var(--text-muted);
-    font-size:0.92rem;
-    line-height:1.55;
-  }
-
-  /* Load More Button Container */
-  .load-more-wrap{
-    text-align:center;
-    margin:28px 0 10px;
-    display:none;
-  }
-  .load-more-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    padding:11px 28px;
-    background:var(--card);
-    border:1.5px solid var(--border);
-    border-radius:25px;
-    color:var(--green-deep);
-    font-weight:600;
-    font-size:0.9rem;
-    cursor:pointer;
-    box-shadow:var(--shadow-sm);
-    transition:var(--transition);
-  }
-  .load-more-btn:hover{
-    background:var(--green-pale);
-    border-color:var(--green-soft);
-    transform:translateY(-2px);
-    box-shadow:var(--shadow-md);
-  }
-
-  /* Aside Widgets */
-  .aside{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-  .author-card, .categories-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px;
-    box-shadow:var(--shadow-sm);
-  }
-  .author-card{text-align:center;}
-  .author-card img{
-    width:72px;height:72px;
-    border-radius:50%;
-    margin:0 auto 10px;
-    object-fit:cover;
-    border:3px solid var(--green-pale);
-  }
-  .author-card h3{font-family:'Fraunces', serif; font-size:1.1rem; margin:0 0 4px; color:var(--green-deep);}
-  .author-card p{font-size:0.84rem; color:var(--text-muted); margin:0 0 14px;}
-  .socials{display:flex; justify-content:center; gap:8px;}
-  .socials a{
-    width:34px;height:34px;border-radius:50%;
-    background:var(--green-pale);color:var(--green-deep);
-    display:flex;align-items:center;justify-content:center;
-    transition:var(--transition);
-  }
-  .socials a:hover{background:var(--green);color:#fff;}
-  .socials svg{width:15px;height:15px;}
-
-  .categories-card h4{font-size:0.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin:0 0 10px;}
-  .categories-card ul li{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dashed var(--border); font-size:0.86rem;}
-  .categories-card ul li:last-child{border-bottom:none;}
-  .categories-card .count{background:var(--surface); color:var(--text-muted); font-size:0.75rem; font-weight:600; padding:1px 7px; border-radius:8px;}
-
-  /* Toast Notification */
-  .toast{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%) translateY(100px);
-    background:var(--green-deep);
-    color:#ffffff;
-    padding:10px 18px;
-    border-radius:24px;
-    font-size:0.84rem;
-    font-weight:500;
-    box-shadow:var(--shadow-md);
-    opacity:0;
-    pointer-events:none;
-    transition:all 0.25s ease;
-    z-index:90;
-    white-space:nowrap;
-  }
-  .toast.show{transform:translateX(-50%) translateY(0); opacity:1;}
-
-  /* Back to Top */
-  .back-to-top{
-    position:fixed;
-    bottom:20px;
-    right:16px;
-    width:40px;height:40px;
-    background:var(--green-deep);
-    color:#ffffff;
-    border-radius:50%;
-    border:none;
-    box-shadow:var(--shadow-md);
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    opacity:0;
-    pointer-events:none;
-    transform:translateY(10px);
-    transition:var(--transition);
-    z-index:35;
-  }
-  .back-to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
-  .back-to-top:hover{background:var(--green);}
-
-  .empty-state{
-    text-align:center;
-    padding:40px 16px;
-    background:var(--card);
-    border:1px dashed var(--border);
-    border-radius:var(--radius);
-    color:var(--text-muted);
-    font-size:0.9rem;
-  }
-  .reset-btn{
-    margin-top:10px;
-    padding:7px 16px;
-    background:var(--green-pale);
-    color:var(--green-deep);
-    border:1px solid var(--border);
-    border-radius:16px;
-    font-weight:600;
-    font-size:0.84rem;
-    cursor:pointer;
-  }
-  .reset-btn:hover{background:var(--green); color:#fff;}
-
-  footer.site-footer{text-align:center; padding:28px 16px 36px; color:var(--text-muted); font-size:0.82rem; border-top:1px solid var(--border);}
-
-  /* ---------- Responsive Breakpoints ---------- */
-  @media (max-width:880px){
-    .layout{
-      grid-template-columns:100%;
-      gap:32px;
-      padding:18px 14px 40px;
-    }
-    .aside{
-      display:flex;
-      margin-top:10px;
-    }
-  }
-
-  @media (max-width:540px){
-    .topbar{padding:10px 12px;}
-    .brand-text .tagline{display:none;}
-    .search-wrap{width:min(160px, 42vw);}
-    #searchInput{padding:7px 24px 7px 28px; font-size:0.82rem;}
-    .search-wrap .search-icon{width:13px; height:13px; left:8px;}
-    .feed-controls{flex-direction:column; align-items:stretch; gap:8px;}
-    .sort-select{align-self:flex-start;}
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="overlay" id="overlay"></div>
 <div class="toast" id="toast">Message</div>
 
-<!-- ================= SIDEBAR MENU ================= -->
+<!-- SIDEBAR DRAWER -->
 <aside class="sidebar" id="sidebar" aria-label="Site menu">
   <div class="sidebar-head">
     <span class="site-name" style="color:var(--green-deep); font-size:1.05rem;">Menu</span>
@@ -580,19 +29,63 @@
     <a href="#" id="sidebarSavedLink">Saved Notes <span class="count" id="sidebarSavedCount">0</span></a>
     
     <div class="section-label">Categories</div>
-    <a href="#" data-cat="Kitchen">Kitchen</a>
-    <a href="#" data-cat="Living">Living</a>
-    <a href="#" data-cat="Plants">Plants</a>
+    <div id="sidebarCategories">
+      <a href="#" data-cat="Bien-Être & Habitat"><span>Bien-Être & Habitat</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Avenir"><span>Carrière & Avenir</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Famille"><span>Carrière & Famille</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Psychologie"><span>Carrière & Psychologie</span> <span>7</span></a>
+      <a href="#" data-cat="Carrière & Transmission"><span>Carrière & Transmission</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Vision"><span>Carrière & Vision</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Émancipation"><span>Carrière & Émancipation</span> <span>1</span></a>
+      <a href="#" data-cat="Clarté & Épanouissement"><span>Clarté & Épanouissement</span> <span>1</span></a>
+      <a href="#" data-cat="Couple & Patrimoine"><span>Couple & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Développement Personnel"><span>Développement Personnel</span> <span>2</span></a>
+      <a href="#" data-cat="Famille & Parentalité"><span>Famille & Parentalité</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Équilibre"><span>Finances & Équilibre</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Immobilier"><span>Finances & Immobilier</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Liberté"><span>Finances & Liberté</span> <span>6</span></a>
+      <a href="#" data-cat="Finances & Patrimoine"><span>Finances & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Stratégie"><span>Finances & Stratégie</span> <span>1</span></a>
+      <a href="#" data-cat="Harmonie & Foyer"><span>Harmonie & Foyer</span> <span>1</span></a>
+      <a href="#" data-cat="Immobilier & Couple"><span>Immobilier & Couple</span> <span>1</span></a>
+      <a href="#" data-cat="Immobilier & Patrimoine"><span>Immobilier & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Immobilier & Technologie"><span>Immobilier & Technologie</span> <span>1</span></a>
+      <a href="#" data-cat="Investissement & Patrimoine"><span>Investissement & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Investissement Commercial"><span>Investissement Commercial</span> <span>1</span></a>
+      <a href="#" data-cat="Investissement Immobilier"><span>Investissement Immobilier</span> <span>4</span></a>
+      <a href="#" data-cat="Mindset & Éducation Financière"><span>Mindset & Éducation Financière</span> <span>1</span></a>
+      <a href="#" data-cat="Mindset & Évolution"><span>Mindset & Évolution</span> <span>1</span></a>
+      <a href="#" data-cat="Mindset & Sérénité"><span>Mindset & Sérénité</span> <span>1</span></a>
+      <a href="#" data-cat="Motivation & Audace"><span>Motivation & Audace</span> <span>1</span></a>
+      <a href="#" data-cat="Philosophie & Clarté"><span>Philosophie & Clarté</span> <span>1</span></a>
+      <a href="#" data-cat="Philosophie & Nostalgie"><span>Philosophie & Nostalgie</span> <span>1</span></a>
+      <a href="#" data-cat="Philosophie & Sérénité"><span>Philosophie & Sérénité</span> <span>9</span></a>
+      <a href="#" data-cat="Psychologie & Clarté"><span>Psychologie & Clarté</span> <span>1</span></a>
+      <a href="#" data-cat="Psychologie & Sérénité"><span>Psychologie & Sérénité</span> <span>1</span></a>
+      <a href="#" data-cat="Relations & Couple"><span>Relations & Couple</span> <span>1</span></a>
+      <a href="#" data-cat="Relations & Famille"><span>Relations & Famille</span> <span>1</span></a>
+      <a href="#" data-cat="Retraite & Patrimoine"><span>Retraite & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Rituels & Bien-être"><span>Rituels & Bien-être</span> <span>4</span></a>
+      <a href="#" data-cat="Résilience & Pardon"><span>Résilience & Pardon</span> <span>1</span></a>
+      <a href="#" data-cat="Sagesse & Résilience"><span>Sagesse & Résilience</span> <span>1</span></a>
+      <a href="#" data-cat="Technologie & Minimalisme"><span>Technologie & Minimalisme</span> <span>3</span></a>
+      <a href="#" data-cat="Émotion & Introspection"><span>Émotion & Introspection</span> <span>1</span></a>
+      <a href="#" data-cat="Études & Réussite"><span>Études & Réussite</span> <span>1</span></a>
+    </div>
   </nav>
-  <div class="sidebar-footer">
+  
+  <div class="sidebar-footer" id="sidebarFooter">
     <div class="section-label">Important Pages</div>
-    <a href="about.html">About</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="contact.html">Contact</a>
+    <a href="../page/about.html">About</a>
+    <a href="../page/contact.html">Contact</a>
+    <a href="../page/privacy-policy.html">Privacy Policy</a>
+    <a href="../page/term.html">Terms & Conditions</a>
+    <a href="../page/disclaimer.html">Disclaimer</a>
+    <a href="../page/dmca.html">DMCA</a>
   </div>
 </aside>
 
-<!-- ================= TOPBAR ================= -->
+<!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left">
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
@@ -620,16 +113,19 @@
   </div>
 </header>
 
+<!-- MAIN LAYOUT -->
 <main class="layout">
   <section>
-    <!-- Filter Chips & Sorting -->
     <div class="feed-controls">
       <div class="chips-scroll-wrap">
         <div class="chips-list" id="chipsList">
           <button class="chip active" data-cat="all">All Notes</button>
-          <button class="chip" data-cat="Kitchen">Kitchen</button>
-          <button class="chip" data-cat="Living">Living</button>
-          <button class="chip" data-cat="Plants">Plants</button>
+          <button class="chip" data-cat="Philosophie & Sérénité">Philosophie & Sérénité (9)</button>
+          <button class="chip" data-cat="Carrière & Psychologie">Carrière & Psychologie (7)</button>
+          <button class="chip" data-cat="Finances & Liberté">Finances & Liberté (6)</button>
+          <button class="chip" data-cat="Investissement Immobilier">Investissement Immobilier (4)</button>
+          <button class="chip" data-cat="Rituels & Bien-être">Rituels & Bien-être (4)</button>
+          <button class="chip" data-cat="Technologie & Minimalisme">Technologie & Minimalisme (3)</button>
           <button class="chip" id="savedChip">🔖 Saved (<span id="savedChipCount">0</span>)</button>
         </div>
       </div>
@@ -640,7 +136,7 @@
       </select>
     </div>
 
-    <!-- ================= PURE HTML POST LIST ================= -->
+    <!-- POSTS LIST IN PURE HTML (All 70 Posts) -->
     <ul id="postList">
       
       <li class="post-card" data-id="70" data-category="Philosophie & Sérénité" data-date="2026-08-26">
@@ -1974,45 +1470,45 @@
       </li>
 
     </ul>
-    <!-- Empty State -->
+
     <div class="empty-state" id="emptyState" style="display:none;">
       <div>No notes found for your search.</div>
       <button class="reset-btn" id="resetBtn">Clear Filters</button>
     </div>
-
-    <!-- Load More Button -->
-    <div class="load-more-wrap" id="loadMoreWrap">
-      <button class="load-more-btn" id="loadMoreBtn">
-        <span class="btn-text">Load More Notes</span>
-      </button>
-    </div>
   </section>
 
-  <!-- ================= ASIDE / AUTHOR CARD ================= -->
+  <!-- ASIDE WIDGETS -->
   <aside class="aside">
     <div class="author-card">
-      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" alt="Elena Vance">
-      <h3>Elena Vance</h3>
-      <p>Writer, botanist and enthusiast of slow mornings, tea rituals, and mindful living.</p>
+      <img src="https://classroom8x.github.io/author/author.jpeg" alt="Anuj Patel">
+      <h3>Anuj Patel</h3>
+      <p>Writer, developer, and minimal living enthusiast. Exploring tech, mindfulness, and the beauty of slowing down in a fast-paced world.</p>
       <div class="socials">
-        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="twitter">
+        <a href="https://x.com/byanujpatel" target="_blank" rel="noopener" aria-label="Twitter">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4a4.1 4.1 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2Z"/></svg>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="instagram">
+        <a href="https://instagram.com/anuj_patel__97" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
         </a>
-        <a href="mailto:hello@example.com" aria-label="mail">
+        <a href="https://www.youtube.com/@anuj_patel_32" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.8 2.8 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.8 2.8 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.8 2.8 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.8 2.8 0 0 0 2-2C22 15.2 22 12 22 12Z"/><path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="var(--card)"/></svg>
+        </a>
+        <a href="mailto:nk521760@gmail.com" aria-label="Email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
         </a>
       </div>
     </div>
 
-    <div class="categories-card">
+    <div class="categories-card" id="categoriesCard">
       <h4>Categories</h4>
-      <ul>
-        <li><a href="#" data-cat="Kitchen">Kitchen</a> <span class="count">2</span></li>
-        <li><a href="#" data-cat="Living">Living</a> <span class="count">2</span></li>
-        <li><a href="#" data-cat="Plants">Plants</a> <span class="count">2</span></li>
+      <ul id="categoriesList">
+        <li><a href="#" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</a><span class="count">9</span></li>
+        <li><a href="#" data-cat="Carrière & Psychologie">Carrière & Psychologie</a><span class="count">7</span></li>
+        <li><a href="#" data-cat="Finances & Liberté">Finances & Liberté</a><span class="count">6</span></li>
+        <li><a href="#" data-cat="Investissement Immobilier">Investissement Immobilier</a><span class="count">4</span></li>
+        <li><a href="#" data-cat="Rituels & Bien-être">Rituels & Bien-être</a><span class="count">4</span></li>
+        <li><a href="#" data-cat="Technologie & Minimalisme">Technologie & Minimalisme</a><span class="count">3</span></li>
+        <li><a href="#" data-cat="Développement Personnel">Développement Personnel</a><span class="count">2</span></li>
       </ul>
     </div>
   </aside>
@@ -2026,208 +1522,213 @@
   © <span id="year">2026</span> Verdant Notes. All rights reserved.
 </footer>
 
-<!-- ================= DOM INTERACTIVITY (NO JSON / NO DATA ARRAYS) ================= -->
+<!-- LIGHTWEIGHT DOM CONTROLLER SCRIPT (SEARCH / FILTER / SORT / BOOKMARKS) -->
 <script>
 (function(){
   "use strict";
 
-  const PAGE_SIZE = 15;
-  let visibleLimit = PAGE_SIZE;
-  let savedIds = new Set(JSON.parse(localStorage.getItem('verdant_saved') || '[]'));
-  let activeCat = 'all';
-  let activeQuery = '';
-  let activeSort = 'latest';
-  let showSaved = false;
+  const cards = Array.from(document.querySelectorAll('.post-card'));
+  
+  const postElements = cards.map(el => ({
+    el: el,
+    id: el.dataset.id,
+    cat: el.dataset.category || '',
+    date: el.dataset.date || '',
+    title: el.querySelector('h2 a').textContent,
+    excerpt: el.querySelector('p').textContent,
+    titleEl: el.querySelector('h2 a'),
+    excerptEl: el.querySelector('p')
+  }));
 
-  const postCards = Array.from(document.querySelectorAll('.post-card'));
-  const postList = document.getElementById('postList');
-  const emptyState = document.getElementById('emptyState');
-  const loadMoreWrap = document.getElementById('loadMoreWrap');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  const searchInput = document.getElementById('searchInput');
-  const searchClear = document.getElementById('searchClear');
-  const sortSelect = document.getElementById('sortSelect');
-  const toast = document.getElementById('toast');
+  const state = {
+    filtered: [...postElements],
+    query: "",
+    selectedCat: "all",
+    sortBy: "latest",
+    showSavedOnly: false,
+    savedIds: new Set(JSON.parse(localStorage.getItem('verdant_saved') || '[]'))
+  };
 
   function showToast(msg){
+    const toast = document.getElementById('toast');
     toast.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
-  function updateSavedState(){
-    document.getElementById('savedChipCount').textContent = savedIds.size;
-    document.getElementById('sidebarSavedCount').textContent = savedIds.size;
-
-    postCards.forEach(card => {
-      const id = card.dataset.id;
-      const bookmarkBtn = card.querySelector('.bookmark-btn');
-      if (savedIds.has(id)) {
-        bookmarkBtn.classList.add('saved');
-      } else {
-        bookmarkBtn.classList.remove('saved');
-      }
-    });
+  function escapeRegex(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
-  function applyFilters(){
-    // Sort DOM elements directly
-    postCards.sort((a, b) => {
-      const dateA = new Date(a.dataset.date);
-      const dateB = new Date(b.dataset.date);
-      return activeSort === 'latest' ? dateB - dateA : dateA - dateB;
-    });
-
-    // Re-append in sorted order
-    postCards.forEach(card => postList.appendChild(card));
-
-    let matchedCards = [];
-
-    postCards.forEach(card => {
-      const id = card.dataset.id;
-      const cat = card.dataset.category || '';
-      const text = (card.innerText || '').toLowerCase();
-      const isSaved = savedIds.has(id);
-
-      const matchesQuery = !activeQuery || text.includes(activeQuery.toLowerCase());
-      const matchesCat = showSaved || activeCat === 'all' || cat === activeCat;
-      const matchesSaved = !showSaved || isSaved;
-
-      if (matchesQuery && matchesCat && matchesSaved) {
-        matchedCards.push(card);
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    if (matchedCards.length === 0) {
-      emptyState.style.display = 'block';
-      loadMoreWrap.style.display = 'none';
-    } else {
-      emptyState.style.display = 'none';
-      matchedCards.forEach((card, index) => {
-        card.style.display = index < visibleLimit ? 'block' : 'none';
-      });
-
-      loadMoreWrap.style.display = matchedCards.length > visibleLimit ? 'block' : 'none';
-    }
-
-    // Active Tab/Chip styling
-    document.querySelectorAll('[data-cat]').forEach(el => {
-      el.classList.toggle('active', !showSaved && el.dataset.cat === activeCat);
-    });
-    document.getElementById('savedChip').classList.toggle('active', showSaved);
+  function highlightText(rawText, query){
+    if(!query) return rawText;
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return rawText.replace(regex, '<mark class="highlight">$1</mark>');
   }
 
-  // Bookmark Toggle Directly via DOM
-  document.addEventListener('click', (e) => {
-    const bookmarkBtn = e.target.closest('.bookmark-btn');
-    if (bookmarkBtn) {
-      e.preventDefault();
-      const card = bookmarkBtn.closest('.post-card');
-      const id = card.dataset.id;
-
-      if (savedIds.has(id)) {
-        savedIds.delete(id);
-        showToast("Note removed");
-      } else {
-        savedIds.add(id);
-        showToast("Note saved ✨");
-      }
-      localStorage.setItem('verdant_saved', JSON.stringify([...savedIds]));
-      updateSavedState();
-      applyFilters();
-      return;
-    }
-
-    // Share Button
-    const shareBtn = e.target.closest('.share-btn');
-    if (shareBtn) {
-      e.preventDefault();
-      const card = shareBtn.closest('.post-card');
-      const link = card.querySelector('h2 a');
-      const title = link.textContent;
-      const url = link.href;
-
-      if (navigator.share) {
-        navigator.share({ title, url }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(url).then(() => showToast("Link copied! 📋"));
-      }
-      return;
-    }
-
-    // Category Filter Links & Chips
-    const catLink = e.target.closest('[data-cat]');
-    if (catLink) {
-      e.preventDefault();
-      showSaved = false;
-      activeCat = catLink.dataset.cat;
-      visibleLimit = PAGE_SIZE;
-      closeSidebar();
-      applyFilters();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const btt = document.getElementById('backToTop');
+    if(winScroll > 350){ btt.classList.add('show'); } else { btt.classList.remove('show'); }
   });
-
-  // Saved notes filter
-  document.getElementById('savedChip').addEventListener('click', () => {
-    showSaved = !showSaved;
-    visibleLimit = PAGE_SIZE;
-    applyFilters();
-  });
-
-  document.getElementById('sidebarSavedLink').addEventListener('click', (e) => {
-    e.preventDefault();
-    showSaved = true;
-    visibleLimit = PAGE_SIZE;
-    closeSidebar();
-    applyFilters();
+  document.getElementById('backToTop').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Search
+  function updateSavedCount(){
+    const count = state.savedIds.size;
+    document.getElementById('savedChipCount').textContent = count;
+    document.getElementById('sidebarSavedCount').textContent = count;
+
+    postElements.forEach(item => {
+      const btn = item.el.querySelector('.action-btn');
+      const isSaved = state.savedIds.has(item.id);
+      btn.classList.toggle('saved', isSaved);
+      btn.querySelector('svg').setAttribute('fill', isSaved ? 'currentColor' : 'none');
+    });
+  }
+
+  window.toggleSavePost = function(id, e){
+    if(e) e.stopPropagation();
+    const strId = String(id);
+    if(state.savedIds.has(strId)){
+      state.savedIds.delete(strId);
+      showToast("Note removed");
+    } else {
+      state.savedIds.add(strId);
+      showToast("Note saved ✨");
+    }
+    localStorage.setItem('verdant_saved', JSON.stringify([...state.savedIds]));
+    updateSavedCount();
+    if(state.showSavedOnly) applyFilters();
+  };
+
+  window.sharePost = function(title, url, e){
+    if(e) e.stopPropagation();
+    if(navigator.share){
+      navigator.share({ title: title, url: url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast("Link copied! 📋");
+      }).catch(() => {
+        showToast("Failed to copy link");
+      });
+    }
+  };
+
+  function updateView(){
+    const list = document.getElementById('postList');
+    const empty = document.getElementById('emptyState');
+
+    postElements.forEach(item => item.el.classList.add('hidden-post'));
+
+    if(state.filtered.length === 0){
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+
+    state.filtered.forEach(item => {
+      item.titleEl.innerHTML = highlightText(item.title, state.query);
+      item.excerptEl.innerHTML = highlightText(item.excerpt, state.query);
+      item.el.classList.remove('hidden-post');
+      list.appendChild(item.el);
+    });
+
+    document.querySelectorAll('[data-cat]').forEach(el => {
+      el.classList.toggle('active', !state.showSavedOnly && el.dataset.cat === state.selectedCat);
+    });
+    document.getElementById('savedChip').classList.toggle('active', state.showSavedOnly);
+  }
+
+  function applyFilters(){
+    const q = state.query.toLowerCase();
+
+    state.filtered = postElements.filter(item => {
+      const isSaved = state.savedIds.has(item.id);
+      if(state.showSavedOnly && !isSaved) return false;
+
+      const titleMatches = item.title.toLowerCase().includes(q);
+      const excerptMatches = item.excerpt.toLowerCase().includes(q);
+      const matchesQuery = !q || titleMatches || excerptMatches;
+      const matchesCat = state.showSavedOnly || !state.selectedCat || state.selectedCat === 'all' || item.cat === state.selectedCat;
+
+      return matchesQuery && matchesCat;
+    });
+
+    if(state.sortBy === 'latest'){
+      state.filtered.sort((a,b) => Number(b.id) - Number(a.id));
+    } else if(state.sortBy === 'oldest'){
+      state.filtered.sort((a,b) => Number(a.id) - Number(b.id));
+    }
+
+    updateView();
+  }
+
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+  let debounceTimer;
+
   searchInput.addEventListener('input', (e) => {
-    activeQuery = e.target.value.trim();
-    searchClear.style.display = activeQuery ? 'flex' : 'none';
-    visibleLimit = PAGE_SIZE;
-    applyFilters();
+    const val = e.target.value;
+    searchClear.style.display = val ? 'flex' : 'none';
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      state.query = val.trim();
+      applyFilters();
+    }, 150);
   });
 
   searchClear.addEventListener('click', () => {
-    searchInput.value = '';
-    activeQuery = '';
+    searchInput.value = "";
+    state.query = "";
     searchClear.style.display = 'none';
     applyFilters();
     searchInput.focus();
   });
 
-  // Sort
-  sortSelect.addEventListener('change', (e) => {
-    activeSort = e.target.value;
+  document.getElementById('sortSelect').addEventListener('change', (e) => {
+    state.sortBy = e.target.value;
     applyFilters();
   });
 
-  // Reset Filters
+  document.getElementById('savedChip').addEventListener('click', () => {
+    state.showSavedOnly = !state.showSavedOnly;
+    applyFilters();
+  });
+
+  document.getElementById('sidebarSavedLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    state.showSavedOnly = true;
+    closeSidebar();
+    applyFilters();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  document.addEventListener('click', (e) => {
+    const catLink = e.target.closest('[data-cat]');
+    if(catLink){
+      e.preventDefault();
+      state.showSavedOnly = false;
+      state.selectedCat = catLink.dataset.cat;
+      closeSidebar();
+      applyFilters();
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+  });
+
   document.getElementById('resetBtn').addEventListener('click', () => {
-    searchInput.value = '';
-    activeQuery = '';
-    activeCat = 'all';
-    showSaved = false;
-    activeSort = 'latest';
-    sortSelect.value = 'latest';
+    searchInput.value = "";
+    state.query = "";
+    state.selectedCat = "all";
+    state.showSavedOnly = false;
+    state.sortBy = "latest";
+    document.getElementById('sortSelect').value = "latest";
     searchClear.style.display = 'none';
-    visibleLimit = PAGE_SIZE;
     applyFilters();
   });
 
-  // Load More Button
-  loadMoreBtn.addEventListener('click', () => {
-    visibleLimit += PAGE_SIZE;
-    applyFilters();
-  });
-
-  // Sidebar Drawer
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
   const menuBtn = document.getElementById('menuBtn');
@@ -2236,36 +1737,23 @@
     sidebar.classList.add('open');
     overlay.classList.add('show');
     menuBtn.classList.add('active');
+    menuBtn.setAttribute('aria-expanded', 'true');
   }
   function closeSidebar(){
     sidebar.classList.remove('open');
     overlay.classList.remove('show');
     menuBtn.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded', 'false');
   }
-
   menuBtn.addEventListener('click', () => {
     sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
   });
   overlay.addEventListener('click', closeSidebar);
   document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
 
-  // Back to Top
-  window.addEventListener('scroll', () => {
-    const btt = document.getElementById('backToTop');
-    if (document.documentElement.scrollTop > 350) {
-      btt.classList.add('show');
-    } else {
-      btt.classList.remove('show');
-    }
-  });
-
-  document.getElementById('backToTop').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Initial Run
-  updateSavedState();
+  updateSavedCount();
   applyFilters();
+
 })();
 </script>
 </body>
