@@ -8,592 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#f5f8f2;
-    --surface:#eaf1e3;
-    --card:#ffffff;
-    --green-deep:#1f3d2b;
-    --green:#3f7d4f;
-    --green-soft:#8fb996;
-    --green-pale:#dfead8;
-    --text:#28312a;
-    --text-muted:#66715f;
-    --border:#dbe6d3;
-    --highlight-bg:#ffe58f;
-    --highlight-text:#1f3d2b;
-    --shadow-sm: 0 2px 6px rgba(31,61,43,0.04);
-    --shadow-md: 0 4px 16px rgba(31,61,43,0.08);
-    --radius: 12px;
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none;}
-  ul{list-style:none;margin:0;padding:0;}
-  img{max-width:100%;display:block;}
-  button{font:inherit;}
-
-  .site-name{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-  }
-
-  /* ---------- Topbar ---------- */
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:40;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:10px 16px;
-    background:rgba(245,248,242,0.95);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
-  }
-  .topbar-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    min-width:0;
-  }
-  .menu-btn{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:4px;
-    width:38px;
-    height:38px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    background:var(--card);
-    cursor:pointer;
-    flex:none;
-    padding:0;
-  }
-  .menu-btn span{
-    display:block;
-    width:16px;
-    height:2px;
-    margin:0 auto;
-    background:var(--green-deep);
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.active span:nth-child(2){opacity:0;}
-  .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    min-width:0;
-  }
-  .brand-icon{
-    width:28px;
-    height:28px;
-    flex:none;
-    color:var(--green);
-  }
-  .brand-text{
-    display:flex;
-    flex-direction:column;
-    line-height:1.15;
-    min-width:0;
-  }
-  .brand-text .site-name{
-    font-size:1.15rem;
-    color:var(--green-deep);
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  .brand-text .tagline{
-    font-size:0.7rem;
-    color:var(--text-muted);
-    letter-spacing:.02em;
-    white-space:nowrap;
-  }
-
-  .search-wrap{
-    position:relative;
-    width:min(240px, 42vw);
-    flex:none;
-  }
-  .search-wrap .search-icon{
-    position:absolute;
-    left:10px;
-    top:50%;
-    transform:translateY(-50%);
-    width:15px;height:15px;
-    color:var(--text-muted);
-    pointer-events:none;
-  }
-  .search-clear{
-    position:absolute;
-    right:6px;
-    top:50%;
-    transform:translateY(-50%);
-    background:none;
-    border:none;
-    color:var(--text-muted);
-    cursor:pointer;
-    padding:6px;
-    display:none;
-    border-radius:50%;
-    align-items:center;
-    justify-content:center;
-  }
-  .search-clear:hover{color:var(--green-deep);}
-  #searchInput{
-    width:100%;
-    padding:8px 30px 8px 32px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    font-size:0.86rem;
-    outline:none;
-    transition:var(--transition);
-  }
-  #searchInput:focus{
-    border-color:var(--green-soft);
-    box-shadow:0 0 0 3px var(--green-pale);
-  }
-
-  /* ---------- Sidebar Navigation ---------- */
-  .overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(20,32,22,0.4);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .25s ease;
-    z-index:45;
-  }
-  .overlay.show{opacity:1;pointer-events:auto;}
-
-  .sidebar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:100%;
-    width:min(280px, 85vw);
-    background:var(--surface);
-    border-right:1px solid var(--border);
-    transform:translateX(-100%);
-    transition:transform .25s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-  }
-  .sidebar.open{transform:translateX(0);}
-  .sidebar-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px;
-    border-bottom:1px solid var(--border);
-  }
-  .sidebar-close{
-    width:34px;height:34px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:var(--card);
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--green-deep);
-  }
-  .sidebar-nav{
-    padding:14px 10px;
-    overflow-y:auto;
-    flex:1;
-  }
-  .sidebar-nav .section-label, .sidebar-footer .section-label{
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--text-muted);
-    padding:8px 10px 4px;
-    font-weight:600;
-  }
-  .sidebar-nav a{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 12px;
-    border-radius:8px;
-    font-size:0.92rem;
-    color:var(--green-deep);
-    font-weight:500;
-    transition:var(--transition);
-  }
-  .sidebar-nav a:hover, .sidebar-nav a.active{background:var(--green-pale);}
-  .sidebar-footer{
-    border-top:1px solid var(--border);
-    padding:12px 10px 16px;
-  }
-  .sidebar-footer a{
-    display:block;
-    padding:8px 12px;
-    font-size:0.84rem;
-    color:var(--text-muted);
-    border-radius:6px;
-  }
-  .sidebar-footer a:hover{background:var(--green-pale); color:var(--green-deep);}
-
-  /* ---------- Layout ---------- */
-  .layout{
-    max-width:1120px;
-    margin:0 auto;
-    padding:28px 16px 60px;
-    display:grid;
-    grid-template-columns:minmax(0, 1fr) 280px;
-    gap:40px;
-  }
-
-  .feed-controls{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:16px;
-  }
-  .chips-scroll-wrap{
-    overflow-x:auto;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-    flex:1;
-    min-width:0;
-  }
-  .chips-scroll-wrap::-webkit-scrollbar{display:none;}
-  .chips-list{
-    display:inline-flex;
-    gap:6px;
-    padding:2px 0;
-  }
-  .chip{
-    padding:6px 13px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    font-size:0.8rem;
-    color:var(--text-muted);
-    font-weight:500;
-    cursor:pointer;
-    transition:var(--transition);
-    white-space:nowrap;
-    display:inline-flex;
-    align-items:center;
-    gap:4px;
-    min-height:32px;
-  }
-  .chip:hover, .chip.active{
-    background:var(--green-deep);
-    color:#ffffff;
-    border-color:var(--green-deep);
-  }
-
-  .sort-select{
-    background:var(--card);
-    border:1px solid var(--border);
-    color:var(--text);
-    padding:6px 10px;
-    border-radius:10px;
-    font-size:0.8rem;
-    outline:none;
-    cursor:pointer;
-    flex:none;
-    height:32px;
-  }
-
-  /* ---------- Post Cards ---------- */
-  .post-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:clamp(16px, 3.5vw, 22px);
-    margin-bottom:14px;
-    box-shadow:var(--shadow-sm);
-    transition:var(--transition);
-  }
-  .post-card:hover{
-    transform:translateY(-2px);
-    box-shadow:var(--shadow-md);
-    border-color:var(--green-soft);
-  }
-  .card-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    margin-bottom:8px;
-  }
-  .post-meta{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:6px;
-    font-size:0.76rem;
-    color:var(--text-muted);
-  }
-  .cat-pill{
-    background:var(--green-pale);
-    color:var(--green-deep);
-    padding:2px 8px;
-    border-radius:10px;
-    font-weight:600;
-    font-size:0.72rem;
-    cursor:pointer;
-    transition:var(--transition);
-  }
-  .cat-pill:hover{background:var(--green); color:#fff;}
-  
-  .post-actions{
-    display:flex;
-    align-items:center;
-    gap:4px;
-    flex:none;
-  }
-  .action-btn{
-    background:transparent;
-    border:none;
-    color:var(--text-muted);
-    width:32px;
-    height:32px;
-    border-radius:6px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:var(--transition);
-    padding:0;
-  }
-  .action-btn:hover{background:var(--green-pale); color:var(--green-deep);}
-  .action-btn.saved{color:#d97706;}
-  .action-btn svg{width:16px;height:16px;}
-
-  .post-card h2{
-    margin:0 0 6px;
-    font-family:'Fraunces', serif;
-    font-size:clamp(1.18rem, 3.5vw, 1.35rem);
-    line-height:1.35;
-  }
-  .post-card h2 a{color:var(--green-deep); transition:color .2s;}
-  .post-card h2 a:hover{color:var(--green);}
-  .post-card p{
-    margin:0;
-    color:var(--text-muted);
-    font-size:0.92rem;
-    line-height:1.55;
-  }
-
-  /* Search Highlight */
-  mark.highlight{
-    background:var(--highlight-bg);
-    color:var(--highlight-text);
-    padding:0 2px;
-    border-radius:2px;
-  }
-
-  /* Load More Button Container */
-  .load-more-wrap{
-    text-align:center;
-    margin:28px 0 10px;
-    display:none;
-  }
-  .load-more-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    padding:11px 28px;
-    background:var(--card);
-    border:1.5px solid var(--border);
-    border-radius:25px;
-    color:var(--green-deep);
-    font-weight:600;
-    font-size:0.9rem;
-    cursor:pointer;
-    box-shadow:var(--shadow-sm);
-    transition:var(--transition);
-  }
-  .load-more-btn:hover{
-    background:var(--green-pale);
-    border-color:var(--green-soft);
-    transform:translateY(-2px);
-    box-shadow:var(--shadow-md);
-  }
-  .load-more-btn.loading .btn-text{display:none;}
-  .load-more-btn.loading .leaf-spin{display:block;}
-  .load-more-btn .leaf-spin{display:none; width:16px; height:16px; color:var(--green); animation:spin 1s linear infinite;}
-
-  /* Skeletons */
-  .skeleton-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px;
-    margin-bottom:14px;
-  }
-  .skeleton{
-    background:linear-gradient(90deg, var(--surface) 25%, var(--bg) 50%, var(--surface) 75%);
-    background-size:200% 100%;
-    animation:shimmer 1.5s infinite;
-    border-radius:6px;
-  }
-  @keyframes shimmer{0%{background-position:200% 0;} 100%{background-position:-200% 0;}}
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  /* Aside Widgets */
-  .aside{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-  .author-card, .categories-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:20px;
-    box-shadow:var(--shadow-sm);
-  }
-  .author-card{text-align:center;}
-  .author-card img{
-    width:72px;height:72px;
-    border-radius:50%;
-    margin:0 auto 10px;
-    object-fit:cover;
-    border:3px solid var(--green-pale);
-  }
-  .author-card h3{font-family:'Fraunces', serif; font-size:1.1rem; margin:0 0 4px; color:var(--green-deep);}
-  .author-card p{font-size:0.84rem; color:var(--text-muted); margin:0 0 14px;}
-  .socials{display:flex; justify-content:center; gap:8px;}
-  .socials a{
-    width:34px;height:34px;border-radius:50%;
-    background:var(--green-pale);color:var(--green-deep);
-    display:flex;align-items:center;justify-content:center;
-    transition:var(--transition);
-  }
-  .socials a:hover{background:var(--green);color:#fff;}
-  .socials svg{width:15px;height:15px;}
-
-  .categories-card h4{font-size:0.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin:0 0 10px;}
-  .categories-card ul li{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dashed var(--border); font-size:0.86rem;}
-  .categories-card ul li:last-child{border-bottom:none;}
-  .categories-card .count{background:var(--surface); color:var(--text-muted); font-size:0.75rem; font-weight:600; padding:1px 7px; border-radius:8px;}
-
-  /* Toast Notification */
-  .toast{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%) translateY(100px);
-    background:var(--green-deep);
-    color:#ffffff;
-    padding:10px 18px;
-    border-radius:24px;
-    font-size:0.84rem;
-    font-weight:500;
-    box-shadow:var(--shadow-md);
-    opacity:0;
-    pointer-events:none;
-    transition:all 0.25s ease;
-    z-index:90;
-    white-space:nowrap;
-  }
-  .toast.show{transform:translateX(-50%) translateY(0); opacity:1;}
-
-  /* Back to Top */
-  .back-to-top{
-    position:fixed;
-    bottom:20px;
-    right:16px;
-    width:40px;height:40px;
-    background:var(--green-deep);
-    color:#ffffff;
-    border-radius:50%;
-    border:none;
-    box-shadow:var(--shadow-md);
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    opacity:0;
-    pointer-events:none;
-    transform:translateY(10px);
-    transition:var(--transition);
-    z-index:35;
-  }
-  .back-to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
-  .back-to-top:hover{background:var(--green);}
-
-  .empty-state{
-    text-align:center;
-    padding:40px 16px;
-    background:var(--card);
-    border:1px dashed var(--border);
-    border-radius:var(--radius);
-    color:var(--text-muted);
-    font-size:0.9rem;
-  }
-  .reset-btn{
-    margin-top:10px;
-    padding:7px 16px;
-    background:var(--green-pale);
-    color:var(--green-deep);
-    border:1px solid var(--border);
-    border-radius:16px;
-    font-weight:600;
-    font-size:0.84rem;
-    cursor:pointer;
-  }
-  .reset-btn:hover{background:var(--green); color:#fff;}
-
-  footer.site-footer{text-align:center; padding:28px 16px 36px; color:var(--text-muted); font-size:0.82rem; border-top:1px solid var(--border);}
-
-  /* ---------- Responsive Breakpoints ---------- */
-  @media (max-width:880px){
-    /* Mobile me 1-column layout banega aur sidebar feed ke niche dikhega */
-    .layout{
-      grid-template-columns:100%;
-      gap:32px;
-      padding:18px 14px 40px;
-    }
-    .aside{
-      display:flex;
-      margin-top:10px;
-    }
-  }
-
-  @media (max-width:540px){
-    .topbar{padding:10px 12px;}
-    .brand-text .tagline{display:none;}
-    .search-wrap{width:min(160px, 42vw);}
-    #searchInput{padding:7px 24px 7px 28px; font-size:0.82rem;}
-    .search-wrap .search-icon{width:13px; height:13px; left:8px;}
-    .feed-controls{flex-direction:column; align-items:stretch; gap:8px;}
-    .sort-select{align-self:flex-start;}
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="overlay" id="overlay"></div>
 <div class="toast" id="toast">Message</div>
 
+<!-- SIDEBAR DRAWER -->
 <aside class="sidebar" id="sidebar" aria-label="Site menu">
   <div class="sidebar-head">
     <span class="site-name" style="color:var(--green-deep); font-size:1.05rem;">Menu</span>
@@ -605,14 +27,65 @@
     <div class="section-label">Browse</div>
     <a href="#" data-cat="all" class="active">All Notes</a>
     <a href="#" id="sidebarSavedLink">Saved Notes <span class="count" id="sidebarSavedCount">0</span></a>
-    <div class="section-label" id="sidebarCategoriesLabel" style="display:none;">Categories</div>
-    <div id="sidebarCategories"></div>
+    
+    <div class="section-label">Categories</div>
+    <div id="sidebarCategories">
+      <a href="#" data-cat="Bien-Être & Habitat"><span>Bien-Être & Habitat</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Avenir"><span>Carrière & Avenir</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Famille"><span>Carrière & Famille</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Psychologie"><span>Carrière & Psychologie</span> <span>7</span></a>
+      <a href="#" data-cat="Carrière & Transmission"><span>Carrière & Transmission</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Vision"><span>Carrière & Vision</span> <span>1</span></a>
+      <a href="#" data-cat="Carrière & Émancipation"><span>Carrière & Émancipation</span> <span>1</span></a>
+      <a href="#" data-cat="Clarté & Épanouissement"><span>Clarté & Épanouissement</span> <span>1</span></a>
+      <a href="#" data-cat="Couple & Patrimoine"><span>Couple & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Développement Personnel"><span>Développement Personnel</span> <span>2</span></a>
+      <a href="#" data-cat="Famille & Parentalité"><span>Famille & Parentalité</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Équilibre"><span>Finances & Équilibre</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Immobilier"><span>Finances & Immobilier</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Liberté"><span>Finances & Liberté</span> <span>6</span></a>
+      <a href="#" data-cat="Finances & Patrimoine"><span>Finances & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Finances & Stratégie"><span>Finances & Stratégie</span> <span>1</span></a>
+      <a href="#" data-cat="Harmonie & Foyer"><span>Harmonie & Foyer</span> <span>1</span></a>
+      <a href="#" data-cat="Immobilier & Couple"><span>Immobilier & Couple</span> <span>1</span></a>
+      <a href="#" data-cat="Immobilier & Patrimoine"><span>Immobilier & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Immobilier & Technologie"><span>Immobilier & Technologie</span> <span>1</span></a>
+      <a href="#" data-cat="Investissement & Patrimoine"><span>Investissement & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Investissement Commercial"><span>Investissement Commercial</span> <span>1</span></a>
+      <a href="#" data-cat="Investissement Immobilier"><span>Investissement Immobilier</span> <span>4</span></a>
+      <a href="#" data-cat="Mindset & Éducation Financière"><span>Mindset & Éducation Financière</span> <span>1</span></a>
+      <a href="#" data-cat="Mindset & Évolution"><span>Mindset & Évolution</span> <span>1</span></a>
+      <a href="#" data-cat="Mindset & Sérénité"><span>Mindset & Sérénité</span> <span>1</span></a>
+      <a href="#" data-cat="Motivation & Audace"><span>Motivation & Audace</span> <span>1</span></a>
+      <a href="#" data-cat="Philosophie & Clarté"><span>Philosophie & Clarté</span> <span>1</span></a>
+      <a href="#" data-cat="Philosophie & Nostalgie"><span>Philosophie & Nostalgie</span> <span>1</span></a>
+      <a href="#" data-cat="Philosophie & Sérénité"><span>Philosophie & Sérénité</span> <span>9</span></a>
+      <a href="#" data-cat="Psychologie & Clarté"><span>Psychologie & Clarté</span> <span>1</span></a>
+      <a href="#" data-cat="Psychologie & Sérénité"><span>Psychologie & Sérénité</span> <span>1</span></a>
+      <a href="#" data-cat="Relations & Couple"><span>Relations & Couple</span> <span>1</span></a>
+      <a href="#" data-cat="Relations & Famille"><span>Relations & Famille</span> <span>1</span></a>
+      <a href="#" data-cat="Retraite & Patrimoine"><span>Retraite & Patrimoine</span> <span>1</span></a>
+      <a href="#" data-cat="Rituels & Bien-être"><span>Rituels & Bien-être</span> <span>4</span></a>
+      <a href="#" data-cat="Résilience & Pardon"><span>Résilience & Pardon</span> <span>1</span></a>
+      <a href="#" data-cat="Sagesse & Résilience"><span>Sagesse & Résilience</span> <span>1</span></a>
+      <a href="#" data-cat="Technologie & Minimalisme"><span>Technologie & Minimalisme</span> <span>3</span></a>
+      <a href="#" data-cat="Émotion & Introspection"><span>Émotion & Introspection</span> <span>1</span></a>
+      <a href="#" data-cat="Études & Réussite"><span>Études & Réussite</span> <span>1</span></a>
+    </div>
   </nav>
+  
   <div class="sidebar-footer" id="sidebarFooter">
     <div class="section-label">Important Pages</div>
+    <a href="../page/about.html">About</a>
+    <a href="../page/contact.html">Contact</a>
+    <a href="../page/privacy-policy.html">Privacy Policy</a>
+    <a href="../page/term.html">Terms & Conditions</a>
+    <a href="../page/disclaimer.html">Disclaimer</a>
+    <a href="../page/dmca.html">DMCA</a>
   </div>
 </aside>
 
+<!-- TOPBAR -->
 <header class="topbar">
   <div class="topbar-left">
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
@@ -625,8 +98,8 @@
         <path d="M24 40c0-11-4-17-12-22" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round"/>
       </svg>
       <span class="brand-text">
-        <span class="site-name" id="siteNameText">Verdant Notes</span>
-        <span class="tagline" id="siteTaglineText">Slow thoughts on simple living</span>
+        <span class="site-name">Verdant Notes</span>
+        <span class="tagline">Slow thoughts on simple living</span>
       </span>
     </a>
   </div>
@@ -640,12 +113,19 @@
   </div>
 </header>
 
+<!-- MAIN LAYOUT -->
 <main class="layout">
   <section>
     <div class="feed-controls">
       <div class="chips-scroll-wrap">
         <div class="chips-list" id="chipsList">
           <button class="chip active" data-cat="all">All Notes</button>
+          <button class="chip" data-cat="Philosophie & Sérénité">Philosophie & Sérénité (9)</button>
+          <button class="chip" data-cat="Carrière & Psychologie">Carrière & Psychologie (7)</button>
+          <button class="chip" data-cat="Finances & Liberté">Finances & Liberté (6)</button>
+          <button class="chip" data-cat="Investissement Immobilier">Investissement Immobilier (4)</button>
+          <button class="chip" data-cat="Rituels & Bien-être">Rituels & Bien-être (4)</button>
+          <button class="chip" data-cat="Technologie & Minimalisme">Technologie & Minimalisme (3)</button>
           <button class="chip" id="savedChip">🔖 Saved (<span id="savedChipCount">0</span>)</button>
         </div>
       </div>
@@ -656,37 +136,1380 @@
       </select>
     </div>
 
+    <!-- POSTS LIST IN PURE HTML (All 70 Posts) -->
     <ul id="postList">
-      <li class="skeleton-card"><div class="skeleton" style="width:110px;height:14px;margin-bottom:10px;"></div><div class="skeleton" style="width:75%;height:20px;margin-bottom:10px;"></div><div class="skeleton" style="width:100%;height:14px;margin-bottom:6px;"></div><div class="skeleton" style="width:45%;height:14px;"></div></li>
-      <li class="skeleton-card"><div class="skeleton" style="width:90px;height:14px;margin-bottom:10px;"></div><div class="skeleton" style="width:80%;height:20px;margin-bottom:10px;"></div><div class="skeleton" style="width:100%;height:14px;margin-bottom:6px;"></div><div class="skeleton" style="width:55%;height:14px;"></div></li>
+      
+      <li class="post-card" data-id="70" data-category="Développement Personnel" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Développement Personnel">Développement Personnel</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('70', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Art de Choisir sa Paix Intérieure : Quand le Silence Devient Souverain', 'https://classroom8x.github.io/post/k10', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k10">L'Art de Choisir sa Paix Intérieure : Quand le Silence Devient Souverain</a></h2>
+        <p>Renoncez à l'épuisante guerre des justifications quotidiennes et découvrez la puissance libératrice de ne plus vouloir gagner d'arguments superflus.</p>
+      </li>
+
+      <li class="post-card" data-id="69" data-category="Résilience & Pardon" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Résilience & Pardon">Résilience & Pardon</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('69', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Ce qui Aurait Pu Être : 5 Réflexions pour Faire la Paix avec ses Regrets', 'https://classroom8x.github.io/post/k9', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k9">Ce qui Aurait Pu Être : 5 Réflexions pour Faire la Paix avec ses Regrets</a></h2>
+        <p>Apprenez à ne plus juger votre passé avec la sagesse d'aujourd'hui et transformez les occasions manquées en énergie d'action immédiate.</p>
+      </li>
+
+      <li class="post-card" data-id="68" data-category="Relations & Famille" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Relations & Famille">Relations & Famille</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('68', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Quand les Enfants Quittent le Nid : Le Diplôme de Parent et la Métamorphose du Lien', 'https://classroom8x.github.io/post/k8', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k8">Quand les Enfants Quittent le Nid : Le Diplôme de Parent et la Métamorphose du Lien</a></h2>
+        <p>Pourquoi une maison devenue silencieuse n'est pas un vide, mais le symbole d'une mission accomplie avec amour pour laisser s'envoler ses enfants.</p>
+      </li>
+
+      <li class="post-card" data-id="67" data-category="Philosophie & Nostalgie" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Nostalgie">Philosophie & Nostalgie</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('67', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Ce Jour d\'Enfance dont on se Souvient Tous : La Douceur d\'Être Présent', 'https://classroom8x.github.io/post/k7', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k7">Ce Jour d'Enfance dont on se Souvient Tous : La Douceur d'Être Présent</a></h2>
+        <p>Un hommage touchant à ces matins simples d'enfance sans comparaison ni filtre numérique, où le seul devoir était d'être pleinement connecté à l'instant.</p>
+      </li>
+
+      <li class="post-card" data-id="66" data-category="Motivation & Audace" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Motivation & Audace">Motivation & Audace</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('66', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Arrêtez d\'Expliquer vos Rêves : Construisez-les en Silence', 'https://classroom8x.github.io/post/k6', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k6">Arrêtez d'Expliquer vos Rêves : Construisez-les en Silence</a></h2>
+        <p>Cessez d'attendre l'approbation sociale ou de vous justifier : laissez vos compétences, votre travail discret et vos résultats concrets parler pour vous.</p>
+      </li>
+
+      <li class="post-card" data-id="65" data-category="Immobilier & Couple" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Immobilier & Couple">Immobilier & Couple</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('65', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Achat Immobilier en Couple : Les 5 Biais qui Bloquent la Décision et Leurs Solutions', 'https://classroom8x.github.io/post/k5', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k5">L'Achat Immobilier en Couple : Les 5 Biais qui Bloquent la Décision et Leurs Solutions</a></h2>
+        <p>Comment dépasser les faux prétextes, le syndrome du proche expert et l'illusion du prix brut pour concrétiser un projet de foyer à deux à 50/50.</p>
+      </li>
+
+      <li class="post-card" data-id="64" data-category="Mindset & Sérénité" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Mindset & Sérénité">Mindset & Sérénité</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('64', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Le Piège de la Comparaison : 5 Questions Essentielles pour Cesser de Douter', 'https://classroom8x.github.io/post/k4', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k4">Le Piège de la Comparaison : 5 Questions Essentielles pour Cesser de Douter</a></h2>
+        <p>Ne comparez plus vos coulisses chaotiques avec la vitrine polie des autres : 5 clés bienveillantes pour honorer votre propre rythme de vie.</p>
+      </li>
+
+      <li class="post-card" data-id="63" data-category="Carrière & Vision" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Vision">Carrière & Vision</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('63', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Comment Choisir sa Carrière avec Clarté : Le Piège du « Système Mansabdari »', 'https://classroom8x.github.io/post/k3', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k3">Comment Choisir sa Carrière avec Clarté : Le Piège du « Système Mansabdari » et la Transmission Générationnelle</a></h2>
+        <p>Pourquoi les carrières prestigieuses non transmissibles obligent chaque génération à repartir de zéro, et comment bâtir un capital pérenne.</p>
+      </li>
+
+      <li class="post-card" data-id="62" data-category="Investissement & Patrimoine" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Investissement & Patrimoine">Investissement & Patrimoine</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('62', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Évaluer un Bien Immobilier : La Méthode Mathématique et le Vrai Coût au m²', 'https://classroom8x.github.io/post/k2', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k2">Évaluer un Bien Immobilier : La Méthode Mathématique et le Vrai Coût au m²</a></h2>
+        <p>Découvrez comment décomposer les coûts réels d'un promoteur (foncier, construction, marges) pour identifier les véritables opportunités sous leur Book Value.</p>
+      </li>
+
+      <li class="post-card" data-id="61" data-category="Finances & Équilibre" data-date="2026-08-26">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Équilibre">Finances & Équilibre</span>
+            <span>Aug 26, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('61', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Où Investir cette Année ? Les 5 Piliers Hors des Sentiers Battus', 'https://classroom8x.github.io/post/k1', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/k1">Où Investir cette Année ? Les 5 Piliers Hors des Sentiers Battus</a></h2>
+        <p>5 investissements non conventionnels pour aligner son capital financier, son temps et sa sérénité familiale afin d'aborder l'avenir avec clarté.</p>
+      </li>
+
+      <li class="post-card" data-id="60" data-category="Mindset & Éducation Financière" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Mindset & Éducation Financière">Mindset & Éducation Financière</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('60', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Art de Décider sans FOMO : Bâtir son Indépendance Financière Pas à Pas', 'https://classroom8x.github.io/post/f21', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f21">L'Art de Décider sans FOMO : Bâtir son Indépendance Financière Pas à Pas</a></h2>
+        <p>Résister à l'urgence artificielle du marché, distinguer valeur réelle et bruit médiatique pour déployer une stratégie patrimoniale sereine et durable.</p>
+      </li>
+
+      <li class="post-card" data-id="59" data-category="Philosophie & Sérénité" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('59', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Pression du Temps : Et si vous n\'étiez pas en retard, mais simplement en chemin ?', 'https://classroom8x.github.io/post/f20', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f20">La Pression du Temps : Et si vous n'étiez pas en retard, mais simplement en chemin ?</a></h2>
+        <p>5 réflexions bienveillantes pour se libérer du diktat des calendriers sociaux, cesser la comparaison destructrice et embrasser pleinement sa propre trajectoire de vie.</p>
+      </li>
+
+      <li class="post-card" data-id="58" data-category="Harmonie & Foyer" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Harmonie & Foyer">Harmonie & Foyer</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('58', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Boussole des 7 Piliers : Tout le Bonheur Commence sous Votre Toit', 'https://classroom8x.github.io/post/f19', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f19">La Boussole des 7 Piliers : Tout le Bonheur Commence sous Votre Toit</a></h2>
+        <p>De l'avenir des adolescents à l'autonomie financière des femmes : une feuille de route intégrale pour aligner gestion patrimoniale et équilibre émotionnel au sein du foyer.</p>
+      </li>
+
+      <li class="post-card" data-id="57" data-category="Retraite & Patrimoine" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Retraite & Patrimoine">Retraite & Patrimoine</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('57', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Capital Retraite : Les 4 Règles d\'Or pour Éviter les Pièges et Vivre Sereinement', 'https://classroom8x.github.io/post/f18', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f18">Capital Retraite : Les 4 Règles d'Or pour Éviter les Pièges et Vivre Sereinement</a></h2>
+        <p>Que faire de ses indemnités de départ ? Guide sans jargon pour protéger son pécule contre les placements toxiques et générer une trésorerie régulière et sans stress.</p>
+      </li>
+
+      <li class="post-card" data-id="56" data-category="Investissement Commercial" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Investissement Commercial">Investissement Commercial</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('56', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Investir dans l\'Immobilier Commercial : Opportunité en Or ou Piège Financier ?', 'https://classroom8x.github.io/post/f17', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f17">Investir dans l'Immobilier Commercial : Opportunité en Or ou Piège Financier ?</a></h2>
+        <p>Rendements miroirs à 12 % et promesses de loyers garantis : décryptage des réalités du commerce physique face à l'essor du e-commerce et aux friches marchandes.</p>
+      </li>
+
+      <li class="post-card" data-id="55" data-category="Couple & Patrimoine" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Couple & Patrimoine">Couple & Patrimoine</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('55', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Achat Immobilier en Couple : Les 5 Erreurs qui Bloquent la Décision', 'https://classroom8x.github.io/post/f16', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f16">L'Achat Immobilier en Couple : Les 5 Erreurs qui Bloquent la Décision</a></h2>
+        <p>L'esquive de responsabilité, le syndrome du beau-frère expert et l'illusion monétaire : comment dépasser les désaccords et réussir un achat de foyer main dans la main.</p>
+      </li>
+
+      <li class="post-card" data-id="54" data-category="Finances & Stratégie" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Stratégie">Finances & Stratégie</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('54', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Où Investir en 2026 ? Les 5 Piliers Hors des Sentiers Battus', 'https://classroom8x.github.io/post/f15', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f15">Où Investir en 2026 ? Les 5 Piliers Hors des Sentiers Battus</a></h2>
+        <p>Au-delà des graphiques boursiers : investir dans sa paix d'esprit, assainir son ratio de liberté patrimoniale et purger les actifs improductifs pour sécuriser son avenir.</p>
+      </li>
+
+      <li class="post-card" data-id="53" data-category="Carrière & Avenir" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Avenir">Carrière & Avenir</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('53', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Emplois Publics : Faut-il Encore Pousser Vos Enfants vers la Fonction Publique ?', 'https://classroom8x.github.io/post/f14', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f14">Emplois Publics : Faut-il Encore Pousser Vos Enfants vers la Fonction Publique ?</a></h2>
+        <p>Fin du prestige historique, sacrifice des meilleures années et concurrence exacerbée : les vérités à connaître avant d'engager vos enfants dans la course aux concours administratifs.</p>
+      </li>
+
+      <li class="post-card" data-id="52" data-category="Investissement Immobilier" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Investissement Immobilier">Investissement Immobilier</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('52', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Évaluer un Bien Immobilier : La Méthode Mathématique pour Démasquer la Vraie Marge Promoteur', 'https://classroom8x.github.io/post/f13', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f13">Évaluer un Bien Immobilier : La Méthode Mathématique pour Démasquer la Vraie Marge Promoteur</a></h2>
+        <p>Foncier, coût brut de construction et ratio de densité : découvrez la méthode de calcul rigoureuse pour évaluer la vraie valeur intrinsèque d'un bien avant d'acheter.</p>
+      </li>
+
+      <li class="post-card" data-id="51" data-category="Psychologie & Sérénité" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Psychologie & Sérénité">Psychologie & Sérénité</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('51', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Crise de la Quarantaine chez l\'Homme : Traverser le Cap des 40-55 Ans avec Sérénité', 'https://classroom8x.github.io/post/f12', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f12">La Crise de la Quarantaine chez l'Homme : Traverser le Cap des 40-55 Ans avec Sérénité</a></h2>
+        <p>Sensation de perte de contrôle, syndrome du distributeur et responsabilités familiales : guide pratique pour retrouver l'équilibre et assumer son rôle avec force et calme.</p>
+      </li>
+
+      <li class="post-card" data-id="50" data-category="Carrière & Transmission" data-date="2026-08-25">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Transmission">Carrière & Transmission</span>
+            <span>Aug 25, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('50', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Comment Choisir sa Carrière avec Clarté : Le Piège du « Système Mansabdari »', 'https://classroom8x.github.io/post/f11', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/f11">Comment Choisir sa Carrière avec Clarté : Le Piège du « Système Mansabdari » et la Transmission Générationnelle</a></h2>
+        <p>Comprendre les limites du statut non transmissible à travers la leçon historique du système Mansabdari et bâtir un véritable effet de levier pour les générations futures.</p>
+      </li>
+
+      <li class="post-card" data-id="49" data-category="Psychologie & Clarté" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Psychologie & Clarté">Psychologie & Clarté</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('49', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi Se Comparer N\'est Pas Une Erreur', 'https://classroom8x.github.io/post/a10', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a10">Pourquoi Se Comparer N'est Pas Une Erreur (Mais pourquoi nous le faisons tous de travers)</a></h2>
+        <p>Sortez du piège de la comparaison asymétrique grâce à la règle du « Package Global » et apprenez à assumer pleinement vos choix de vie sans jalousie ni amertume.</p>
+      </li>
+
+      <li class="post-card" data-id="48" data-category="Immobilier & Technologie" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Immobilier & Technologie">Immobilier & Technologie</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('48', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Technologie Mivan vs Maçonnerie traditionnelle', 'https://classroom8x.github.io/post/a9', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a9">Technologie Mivan vs Maçonnerie traditionnelle : Pourquoi vos vieux appartements risquent de perdre leur valeur</a></h2>
+        <p>Face à la révolution du coffrage aluminium monolithique, découvrez pourquoi les anciens bâtiments en briques subissent une décote et comment arbitrer votre patrimoine à temps.</p>
+      </li>
+
+      <li class="post-card" data-id="47" data-category="Investissement Immobilier" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Investissement Immobilier">Investissement Immobilier</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('47', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Investissement Immobilier : Décrypter le Marché, Éviter les Pièges & 7 Réponses Clés', 'https://classroom8x.github.io/post/a8', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a8">Investissement Immobilier : Décrypter le Marché, Éviter les Pièges & 7 Réponses Clés</a></h2>
+        <p>Arbitrage VEFA vs ancien, stratégie 2BHK vs 3BHK et démystification des stocks invendus : 7 grilles de lecture concrètes pour réussir son investissement immobilier.</p>
+      </li>
+
+      <li class="post-card" data-id="46" data-category="Investissement Immobilier" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Investissement Immobilier">Investissement Immobilier</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('46', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Investissement Immobilier : Les 3 indicateurs clés', 'https://classroom8x.github.io/post/a7', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a7">Investissement Immobilier : Les 3 indicateurs clés que 90 % des acheteurs ignorent</a></h2>
+        <p>Ne vous laissez plus éblouir par le marketing : maîtrisez le taux de Loading, la densité par acre et le délai d'absorption des stocks pour évaluer la rentabilité réelle d'un bien.</p>
+      </li>
+
+      <li class="post-card" data-id="45" data-category="Clarté & Épanouissement" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Clarté & Épanouissement">Clarté & Épanouissement</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('45', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Au-delà de l\'Immobilier : Les 4 Piliers Fondamentaux', 'https://classroom8x.github.io/post/a6', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a6">Au-delà de l'Immobilier : Les 4 Piliers Fondamentaux pour Réussir sa Vie</a></h2>
+        <p>Une méthode concrète pour structurer votre existence autour du foyer matériel, de l'harmonie relationnelle, de la maîtrise financière et d'une spiritualité pratique sans faux-semblants.</p>
+      </li>
+
+      <li class="post-card" data-id="44" data-category="Finances & Patrimoine" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Patrimoine">Finances & Patrimoine</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('44', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi vous ne devriez PAS rembourser totalement votre prêt immobilier', 'https://classroom8x.github.io/post/a5', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a5">Pourquoi vous ne devriez PAS rembourser totalement votre prêt immobilier</a></h2>
+        <p>Découvrez les 5 avantages stratégiques méconnus de conserver un micro-reliquat de crédit immobilier pour sécuriser vos actes de propriété et préserver votre flexibilité financière.</p>
+      </li>
+
+      <li class="post-card" data-id="43" data-category="Philosophie & Clarté" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Clarté">Philosophie & Clarté</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('43', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Destin ou Libre Arbitre : Sommes-nous réellement maîtres de notre vie ?', 'https://classroom8x.github.io/post/a4', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a4">Destin ou Libre Arbitre : Sommes-nous réellement maîtres de notre vie ?</a></h2>
+        <p>À travers les métaphores de la toile, du jeu de cartes et de la météo, dépassez les croyances dogmatiques pour comprendre l'harmonie entre vos actions et les circonstances de la vie.</p>
+      </li>
+
+      <li class="post-card" data-id="42" data-category="Carrière & Émancipation" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Émancipation">Carrière & Émancipation</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('42', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Carrière Féminine (Partie 2)', 'https://classroom8x.github.io/post/a3', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a3">Carrière Féminine (Partie 2) : Construire une indépendance durable plutôt qu'un « emploi vitrine »</a></h2>
+        <p>Évitez le piège des emplois précaires sans montée en compétences : apprenez à miser sur le travail intellectuel, les compétences à haute valeur ajoutée et un soutien parental pérenne.</p>
+      </li>
+
+      <li class="post-card" data-id="41" data-category="Carrière & Famille" data-date="2026-08-24">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Famille">Carrière & Famille</span>
+            <span>Aug 24, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('41', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Comment orienter la carrière de nos filles ? (Partie 1)', 'https://classroom8x.github.io/post/a2', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a2">Comment orienter la carrière de nos filles ? (Partie 1)</a></h2>
+        <p>Entre indépendance financière, réalité du mariage et paix d’esprit : découvrez comment guider les jeunes femmes vers une carrière durable sans sacrifier l'équilibre familial.</p>
+      </li>
+
+      <li class="post-card" data-id="40" data-category="Investissement Immobilier" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Investissement Immobilier">Investissement Immobilier</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('40', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Builder Floor ou Appartement en Tour Résidentielle', 'https://classroom8x.github.io/post/a1', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/a1">Builder Floor ou Appartement en Tour Résidentielle : Où Placer Votre Capital ?</a></h2>
+        <p>Découvrez une analyse comparative en 10 points entre les petits immeubles indépendants (Builder Floors) et les tours résidentielles de standing pour sécuriser votre capital et votre confort de vie.</p>
+      </li>
+
+      <li class="post-card" data-id="39" data-category="Sagesse & Résilience" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Sagesse & Résilience">Sagesse & Résilience</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('39', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('« Et si… ? » : 5 Questions Puissantes pour Faire la Paix avec les Occasions Manquées', 'https://classroom8x.github.io/post/j10', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j10">« Et si… ? » : 5 Questions Puissantes pour Faire la Paix avec les Occasions Manquées</a></h2>
+        <p>Arrêtez de rejouer des scénarios imaginaires du passé : découvrez comment transformer la nostalgie et les regrets en tremplins d'action lucide pour vos choix futurs.</p>
+      </li>
+
+      <li class="post-card" data-id="38" data-category="Émotion & Introspection" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Émotion & Introspection">Émotion & Introspection</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('38', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Le Poids du Silence : Quand les Mots n\'ont Nulle Part où Aller', 'https://classroom8x.github.io/post/j9', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j9">Le Poids du Silence : Quand les Mots n'ont Nulle Part où Aller</a></h2>
+        <p>Une réflexion nocturne et poétique sur le silence intérieur, le masque de la fausse normalité et l'importance d'accueillir avec douceur sa propre vulnérabilité.</p>
+      </li>
+
+      <li class="post-card" data-id="37" data-category="Finances & Immobilier" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Immobilier">Finances & Immobilier</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('37', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Rendement Locatif & Cash-Flow Positif', 'https://classroom8x.github.io/post/j8', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j8">Rendement Locatif & Cash-Flow Positif : Nettoyer son Patrimoine des Biens Fantômes</a></h2>
+        <p>La plus-value théorique sur papier ne paie pas vos factures : apprenez à calculer votre rendement locatif réel et à arbitrer sans hésiter les investissements improductifs.</p>
+      </li>
+
+      <li class="post-card" data-id="36" data-category="Famille & Parentalité" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Famille & Parentalité">Famille & Parentalité</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('36', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Le Nid Silencieux : Quand les Enfants s\'Envolent', 'https://classroom8x.github.io/post/j7', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j7">Le Nid Silencieux : Quand les Enfants s'Envolent | Chronique d'un Père</a></h2>
+        <p>Le départ des enfants vers de nouveaux horizons n'est pas une fin, mais une diplomation de l'amour : apprenez à transformer le manque en une présence solide et bienveillante.</p>
+      </li>
+
+      <li class="post-card" data-id="35" data-category="Mindset & Évolution" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Mindset & Évolution">Mindset & Évolution</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('35', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Art de se Réinventer', 'https://classroom8x.github.io/post/j6', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j6">L'Art de se Réinventer : Réveiller ses Forces et ses Atouts en Hibernation</a></h2>
+        <p>Se réinventer n'exige pas d'effacer son passé, mais de réveiller ces talents précieux et ces désirs enfouis au fil des années pour s'épanouir dans une nouvelle saison de vie.</p>
+      </li>
+
+      <li class="post-card" data-id="34" data-category="Développement Personnel" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Développement Personnel">Développement Personnel</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('34', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Oser Vivre Sans Permission', 'https://classroom8x.github.io/post/j5', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j5">Oser Vivre Sans Permission : 5 Questions Libératrices pour Enfin S'Accomplir</a></h2>
+        <p>Cessez d'attendre la validation du monde entier : explorez 5 réflexions fondamentales pour dépasser la peur de la clarté et embrasser pleinement votre destinée.</p>
+      </li>
+
+      <li class="post-card" data-id="33" data-category="Études & Réussite" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Études & Réussite">Études & Réussite</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('33', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('7 Sutras Concrets pour Décupler la Concentration', 'https://classroom8x.github.io/post/j4', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j4">7 Sutras Concrets pour Décupler la Concentration et Réussir les Concours</a></h2>
+        <p>Posture, ancrage au sol et orientation du bureau : éliminez le brouillard mental et les erreurs d'inattention aux examens grâce à une ergonomie de travail rigoureuse.</p>
+      </li>
+
+      <li class="post-card" data-id="32" data-category="Relations & Couple" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Relations & Couple">Relations & Couple</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('32', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La « Kundali Moderne » : Le Test de Compatibilité', 'https://classroom8x.github.io/post/j3', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j3">La « Kundali Moderne » : Le Test de Compatibilité Réaliste en 7 Piliers</a></h2>
+        <p>Oubliez les thèmes astraux abstraits : découvrez une matrice d'évaluation pragmatique sur 70 points pour mesurer la réelle solidité d'une union au-delà du simple charme éphémère.</p>
+      </li>
+
+      <li class="post-card" data-id="31" data-category="Bien-Être & Habitat" data-date="2026-08-23">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Bien-Être & Habitat">Bien-Être & Habitat</span>
+            <span>Aug 23, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('31', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Astro-Vastu Pragmatique : 7 Sutras Gratuits', 'https://classroom8x.github.io/post/j2', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j2">Astro-Vastu Pragmatique : 7 Sutras Gratuits pour Libérer l'Énergie de Votre Maison</a></h2>
+        <p>En finir avec le commerce de la peur : 7 ajustements concrets, gratuits et sans démolition pour désencombrer votre intérieur et restaurer l'harmonie vibratoire du foyer.</p>
+      </li>
+
+      <li class="post-card" data-id="30" data-category="Immobilier & Patrimoine" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Immobilier & Patrimoine">Immobilier & Patrimoine</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('30', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Les Sutras de l\'Immobilier', 'https://classroom8x.github.io/post/j1', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/j1">Les Sutras de l'Immobilier : Pourquoi Bâtir sa Propre Conviction</a></h2>
+        <p>Acheter un bien immobilier ne doit jamais reposer sur une conviction d'emprunt : découvrez comment analyser la valeur comptable, capter la plus-value initiale et sécuriser l'avenir familial.</p>
+      </li>
+
+      <li class="post-card" data-id="29" data-category="Philosophie & Sérénité" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('29', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Effet Cumulé des Petites Décisions', 'https://classroom8x.github.io/post/h10', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h10">L'Effet Cumulé des Petites Décisions : Le Secret de la Croissance à Long Terme</a></h2>
+        <p>Les grands accomplissements ne naissent pas de coups d'éclat soudains, mais de la répétition patiente et invisible de micro-habitudes bien calibrées.</p>
+      </li>
+
+      <li class="post-card" data-id="28" data-category="Carrière & Psychologie" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('28', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Épuisement Silencieux : Reconnaître le Burn-out Avant la Rupture', 'https://classroom8x.github.io/post/h9', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h9">L'Épuisement Silencieux : Reconnaître le Burn-out Avant la Rupture</a></h2>
+        <p>Les signaux d'alerte physiques et psychologiques que l'on ignore trop souvent, et comment réinstaurer des limites saines entre vie professionnelle et personnelle.</p>
+      </li>
+
+      <li class="post-card" data-id="27" data-category="Philosophie & Sérénité" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('27', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Faire la Paix avec le Temps Qui Passe', 'https://classroom8x.github.io/post/h8', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h8">Faire la Paix avec le Temps Qui Passe : Accepter ses Choix sans Regret</a></h2>
+        <p>Une réflexion apaisante pour cesser de ressasser les bifurcations non prises et concentrer toute son énergie vitale sur ce qui dépend réellement de nous.</p>
+      </li>
+
+      <li class="post-card" data-id="26" data-category="Finances & Liberté" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Liberté">Finances & Liberté</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('26', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Richesse Invisible vs Signes Extérieurs', 'https://classroom8x.github.io/post/h7', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h7">Richesse Invisible vs Signes Extérieurs : La Vraie Définition de l'Indépendance</a></h2>
+        <p>Vivre pour impressionner les autres détruit le patrimoine : comprenez pourquoi la liberté d'emploi du temps vaut bien plus que tous les marqueurs de statut éphémères.</p>
+      </li>
+
+      <li class="post-card" data-id="25" data-category="Carrière & Psychologie" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('25', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Plafonnement de Carrière', 'https://classroom8x.github.io/post/h6', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h6">Plafonnement de Carrière : Comment Rompre l'Inertie des Années de Routine</a></h2>
+        <p>Quand l'expérience ne se traduit plus en opportunités stimulantes : techniques concrètes pour pivoter, développer de nouvelles compétences et redéfinir sa trajectoire.</p>
+      </li>
+
+      <li class="post-card" data-id="24" data-category="Philosophie & Sérénité" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('24', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Le Silence Intérieur à l\'Ère Hyperconnectée', 'https://classroom8x.github.io/post/h5', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h5">Le Silence Intérieur à l'Ère Hyperconnectée : Retrouver Votre Focus Profond</a></h2>
+        <p>Face aux notifications incessantes et à la surcharge cognitive, réapprenez à préserver des plages de solitude réparatrice pour régénérer votre créativité.</p>
+      </li>
+
+      <li class="post-card" data-id="23" data-category="Finances & Liberté" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Liberté">Finances & Liberté</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('23', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Épargne Stratégique : Les Règles Indispensables', 'https://classroom8x.github.io/post/h4', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h4">L'Épargne Stratégique : Les Règles Indispensables Avant Tout Investissement</a></h2>
+        <p>Pourquoi investir sans filet de sécurité est une erreur critique : guide pratique pour structurer votre fonds d'urgence et assainir votre trésorerie personnelle.</p>
+      </li>
+
+      <li class="post-card" data-id="22" data-category="Carrière & Psychologie" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('22', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Peur de l\'Échec Professionnel', 'https://classroom8x.github.io/post/h3', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h3">La Peur de l'Échec Professionnel : Comment Transformer Vos Doutes en Moteur</a></h2>
+        <p>Le syndrome de l'imposteur et l'anxiété du statut paralysent l'action. Apprenez à recadrer vos appréhensions pour oser franchir les paliers décisifs de votre parcours.</p>
+      </li>
+
+      <li class="post-card" data-id="21" data-category="Finances & Liberté" data-date="2026-08-22">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Liberté">Finances & Liberté</span>
+            <span>Aug 22, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('21', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Sortir de la Rat Race', 'https://classroom8x.github.io/post/h2', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h2">Sortir de la Rat Race : Construire des Revenus Décorrélés de Votre Temps</a></h2>
+        <p>Échanger ses heures contre un salaire a ses limites : explorez les leviers stratégiques et l'effet de levier pour bâtir des actifs financiers pérennes.</p>
+      </li>
+
+      <li class="post-card" data-id="20" data-category="Philosophie & Sérénité" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('20', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Art du Détachement Matériel', 'https://classroom8x.github.io/post/h1', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/h1">L'Art du Détachement Matériel : Pourquoi Posséder Moins Rend Plus Libre</a></h2>
+        <p>Découvrez comment le désencombrement physique et mental permet de réduire le stress quotidien et de retrouver une clarté essentielle pour vos projets de vie.</p>
+      </li>
+
+      <li class="post-card" data-id="19" data-category="Rituels & Bien-être" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Rituels & Bien-être">Rituels & Bien-être</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('19', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Le Pouvoir du Bilan du Soir', 'https://classroom8x.github.io/post/p6', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/p6">Le Pouvoir du Bilan du Soir : Clôturer Chaque Journée avec Clarté</a></h2>
+        <p>Une réflexion de cinq minutes chaque soir permet d'éviter l'épuisement professionnel et de préparer efficacement la journée du lendemain.</p>
+      </li>
+
+      <li class="post-card" data-id="18" data-category="Rituels & Bien-être" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Rituels & Bien-être">Rituels & Bien-être</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('18', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Marches Matinales sans Écouteurs', 'https://classroom8x.github.io/post/p5', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/p5">Marches Matinales sans Écouteurs : Se Connecter au Réveil de la Ville</a></h2>
+        <p>Remplacer les podcasts et la musique par les bruits naturels de l'aube transforme radicalement la clarté d'esprit matinale.</p>
+      </li>
+
+      <li class="post-card" data-id="17" data-category="Technologie & Minimalisme" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Technologie & Minimalisme">Technologie & Minimalisme</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('17', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Systèmes d\'Exploitation Légers pour PC Portables', 'https://classroom8x.github.io/post/p4', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/p4">Systèmes d'Exploitation Légers pour les PC Portables Anciens en 2026</a></h2>
+        <p>Comment redonner une seconde vie à votre ancien matériel informatique grâce à des distributions optimisées et des méthodes de travail légères.</p>
+      </li>
+
+      <li class="post-card" data-id="16" data-category="Technologie & Minimalisme" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Technologie & Minimalisme">Technologie & Minimalisme</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('16', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi je Suis Revenu aux Livres Papier', 'https://classroom8x.github.io/post/p3', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/p3">Pourquoi je Suis Revenu aux Livres Papier à l'Ère du Tout-Numérique</a></h2>
+        <p>Si les écrans apportent l'information instantanée, les pages en papier offrent une véritable compréhension et un calme indispensable pour penser.</p>
+      </li>
+
+      <li class="post-card" data-id="15" data-category="Technologie & Minimalisme" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Technologie & Minimalisme">Technologie & Minimalisme</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('15', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Créer un Espace de Travail Minimaliste', 'https://classroom8x.github.io/post/p2', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/p2">Créer un Espace de Travail Minimaliste qui Inspire la Créativité</a></h2>
+        <p>Un bureau en bois épuré, un carnet et zéro encombrement visuel pour libérer pleinement son esprit créatif.</p>
+      </li>
+
+      <li class="post-card" data-id="14" data-category="Rituels & Bien-être" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Rituels & Bien-être">Rituels & Bien-être</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('14', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('L\'Art de Dire Non : Protéger Votre Temps et Votre Énergie', 'https://classroom8x.github.io/post/p1', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post/p1">L'Art de Dire Non : Protéger Votre Temps et Votre Énergie</a></h2>
+        <p>Dire oui à tout, c'est renoncer à sa tranquillité d'esprit : apprenez à fixer des limites saines pour préserver votre énergie.</p>
+      </li>
+
+      <li class="post-card" data-id="13" data-category="Philosophie & Sérénité" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('13', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Quand la peur d\'échouer dans sa carrière vole notre sommeil', 'https://classroom8x.github.io/cumi.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/cumi.html">Quand la peur d'échouer dans sa carrière vole notre sommeil · Guide Doux</a></h2>
+        <p>Pourquoi votre métier ne définit pas votre valeur humaine et comment apaiser la panique de l'avenir pour retrouver des nuits paisibles.</p>
+      </li>
+
+      <li class="post-card" data-id="12" data-category="Philosophie & Sérénité" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('12', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Jeunesse : Pourquoi elle n\'est pas un problème', 'https://classroom8x.github.io/siok.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/siok.html">La Jeunesse : Pourquoi elle n'est pas un problème, mais une possibilité infinie</a></h2>
+        <p>5 questions fondamentales pour naviguer dans vos doutes, faire la paix avec l'expérience des aînés et bâtir vos propres fondations avec passion.</p>
+      </li>
+
+      <li class="post-card" data-id="11" data-category="Philosophie & Sérénité" data-date="2026-08-21">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 21, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('11', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Vous n\'êtes pas votre carrière', 'https://classroom8x.github.io/sinu.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/sinu.html">Vous n'êtes pas votre carrière : cette angoisse invisible qui vole nos nuits</a></h2>
+        <p>Quand l'obsession de la trajectoire professionnelle finit par éclipser la beauté d'exister : pourquoi votre carrière n'est qu'un chapitre et non tout le livre de votre vie.</p>
+      </li>
+
+      <li class="post-card" data-id="10" data-category="Finances & Liberté" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Liberté">Finances & Liberté</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('10', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Maîtrise de la Liberté Financière', 'https://classroom8x.github.io/maitrise.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/maitrise.html">La Maîtrise de la Liberté Financière : Pourquoi l'école ne vous a jamais appris à gérer l'argent</a></h2>
+        <p>Comprendre les règles du jeu financier : distinction actif/passif, constitution d'un fonds d'urgence et gestion budgétaire avec la règle du 50/30/20.</p>
+      </li>
+
+      <li class="post-card" data-id="9" data-category="Finances & Liberté" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Liberté">Finances & Liberté</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('9', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Mentalité de la Classe Moyenne', 'https://classroom8x.github.io/middle-class-tips.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/middle-class-tips.html">La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?</a></h2>
+        <p>Découvrez comment les réflexes inconscients, la course au statut social et les pièges d'épargne maintiennent la classe moyenne dans une stagnation perpétuelle.</p>
+      </li>
+
+      <li class="post-card" data-id="8" data-category="Carrière & Psychologie" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('8', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Quand la peur d\'échouer dans sa carrière vole notre sommeil', 'https://classroom8x.github.io/noaia.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/noaia.html">Quand la peur d'échouer dans sa carrière vole notre sommeil</a></h2>
+        <p>Pourquoi votre métier ne définit pas votre valeur humaine et comment retrouver la paix intérieure face aux doutes, à l'âge et à l'angoisse professionnelle.</p>
+      </li>
+
+      <li class="post-card" data-id="7" data-category="Rituels & Bien-être" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Rituels & Bien-être">Rituels & Bien-être</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('7', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('The Quiet Art of Watering Plants Every Morning', 'https://classroom8x.github.io/post1.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/post1.html">The Quiet Art of Watering Plants Every Morning</a></h2>
+        <p>There is a particular kind of quiet early in the morning when the only sound is water hitting soil, teaching us the silent power of patience.</p>
+      </li>
+
+      <li class="post-card" data-id="6" data-category="Carrière & Psychologie" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('6', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi tant d\'hommes se sentent-ils « bloqués » à 30-35 ans ?', 'https://classroom8x.github.io/riku2.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/riku2.html">Pourquoi tant d'hommes se sentent-ils « bloqués » à 30-35 ans ? (Et comment en sortir)</a></h2>
+        <p>Comprendre la crise silencieuse de la trentaine : de l'illusion du simple labeur acharné aux leviers stratégiques concrets pour bâtir sa propre liberté.</p>
+      </li>
+
+      <li class="post-card" data-id="5" data-category="Carrière & Psychologie" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('5', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle', 'https://classroom8x.github.io/rimeno.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/rimeno.html">Pourquoi vous vous sentez bloqué à 35 ans · Comprendre le cycle</a></h2>
+        <p>Ce sentiment d'étouffement n'est pas un manque de talent, mais l'aboutissement logique d'un cycle professionnel dans lequel s'enferment les profils appliqués.</p>
+      </li>
+
+      <li class="post-card" data-id="4" data-category="Carrière & Psychologie" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('4', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi vous vous sentez bloqué à 35 ans · Guide Doux & Stratégique', 'https://classroom8x.github.io/rise.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/rise.html">Pourquoi vous vous sentez bloqué à 35 ans · Guide Doux & Stratégique</a></h2>
+        <p>Comprendre le cycle en trois phases (« Étincelle », « Enthousiasme » et « Épuisement ») pour débloquer votre potentiel et sortir du mur de la trentaine.</p>
+      </li>
+
+      <li class="post-card" data-id="3" data-category="Philosophie & Sérénité" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('3', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('« Et si… ? » : 5 questions puissantes pour faire la paix', 'https://classroom8x.github.io/sakhiyo.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/sakhiyo.html">« Et si… ? » : 5 questions puissantes pour faire la paix avec les occasions manquées</a></h2>
+        <p>Apprenez à transformer les fantômes du passé et les regrets de ce qui aurait pu être en une véritable énergie d'action bienveillante pour aujourd'hui.</p>
+      </li>
+
+      <li class="post-card" data-id="2" data-category="Carrière & Psychologie" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Carrière & Psychologie">Carrière & Psychologie</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('2', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('Pourquoi vous vous sentez bloqué à 35 ans', 'https://classroom8x.github.io/siki.html', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/siki.html">Pourquoi vous vous sentez bloqué à 35 ans</a></h2>
+        <p>Arrivé à l'âge de 30 ou 35 ans, de nombreux hommes ressentent un sentiment de stagnation profonde malgré leurs efforts et le respect de toutes les règles établies.</p>
+      </li>
+
+      <li class="post-card" data-id="1" data-category="Finances & Liberté" data-date="2026-08-20">
+        <div class="card-top">
+          <div class="post-meta">
+            <span class="cat-pill" data-cat="Finances & Liberté">Finances & Liberté</span>
+            <span>Aug 20, 2026</span>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn" onclick="toggleSavePost('1', event)" aria-label="Bookmark post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="action-btn" onclick="sharePost('La Mentalité de la Classe Moyenne', 'https://classroom8x.github.io/ts', event)" aria-label="Share post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+        <h2><a href="https://classroom8x.github.io/ts">La Mentalité de la Classe Moyenne : Pourquoi Stagnez-vous Financièrement ?</a></h2>
+        <p>Travailler plus ne suffit plus : découvrez comment l'inflation des aspirations, le piège du statut et les mythes de l'investissement freinent silencieusement votre liberté financière.</p>
+      </li>
+
     </ul>
 
     <div class="empty-state" id="emptyState" style="display:none;">
       <div>No notes found for your search.</div>
       <button class="reset-btn" id="resetBtn">Clear Filters</button>
     </div>
-
-    <!-- 15 Posts ke baad Load More Button -->
-    <div class="load-more-wrap" id="loadMoreWrap">
-      <button class="load-more-btn" id="loadMoreBtn">
-        <span class="btn-text">Load More Notes</span>
-        <svg class="leaf-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c5 0 9 4 9 9-5 0-9-4-9-9Z"/><path d="M12 21c-5 0-9-4-9-9 5 0 9 4 9 9Z"/></svg>
-      </button>
-    </div>
   </section>
 
-  <!-- Sidebar: Desktop par Right side rahega, Mobile par Feed ke niche automatically stack hoga -->
+  <!-- ASIDE WIDGETS -->
   <aside class="aside">
     <div class="author-card">
-      <img id="authorPhoto" src="" alt="">
-      <h3 id="authorName"></h3>
-      <p id="authorBio"></p>
-      <div class="socials" id="authorSocials"></div>
+      <img src="https://classroom8x.github.io/author/author.jpeg" alt="Anuj Patel">
+      <h3>Anuj Patel</h3>
+      <p>Writer, developer, and minimal living enthusiast. Exploring tech, mindfulness, and the beauty of slowing down in a fast-paced world.</p>
+      <div class="socials">
+        <a href="https://x.com/byanujpatel" target="_blank" rel="noopener" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4a4.1 4.1 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2Z"/></svg>
+        </a>
+        <a href="https://instagram.com/anuj_patel__97" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@anuj_patel_32" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.8 2.8 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.8 2.8 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.8 2.8 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.8 2.8 0 0 0 2-2C22 15.2 22 12 22 12Z"/><path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="var(--card)"/></svg>
+        </a>
+        <a href="mailto:nk521760@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+      </div>
     </div>
 
-    <div class="categories-card" id="categoriesCard" style="display:none;">
+    <div class="categories-card" id="categoriesCard">
       <h4>Categories</h4>
-      <ul id="categoriesList"></ul>
+      <ul id="categoriesList">
+        <li><a href="#" data-cat="Philosophie & Sérénité">Philosophie & Sérénité</a><span class="count">9</span></li>
+        <li><a href="#" data-cat="Carrière & Psychologie">Carrière & Psychologie</a><span class="count">7</span></li>
+        <li><a href="#" data-cat="Finances & Liberté">Finances & Liberté</a><span class="count">6</span></li>
+        <li><a href="#" data-cat="Investissement Immobilier">Investissement Immobilier</a><span class="count">4</span></li>
+        <li><a href="#" data-cat="Rituels & Bien-être">Rituels & Bien-être</a><span class="count">4</span></li>
+        <li><a href="#" data-cat="Technologie & Minimalisme">Technologie & Minimalisme</a><span class="count">3</span></li>
+        <li><a href="#" data-cat="Développement Personnel">Développement Personnel</a><span class="count">2</span></li>
+      </ul>
     </div>
   </aside>
 </main>
@@ -695,20 +1518,30 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
-<footer class="site-footer" id="siteFooter">
-  © <span id="year"></span> Verdant Notes. All rights reserved.
+<footer class="site-footer">
+  © <span id="year">2026</span> Verdant Notes. All rights reserved.
 </footer>
 
+<!-- LIGHTWEIGHT DOM CONTROLLER SCRIPT (SEARCH / FILTER / SORT / BOOKMARKS) -->
 <script>
 (function(){
   "use strict";
 
-  // 15 Posts Batching
-  const PAGE_SIZE = 15;
+  const cards = Array.from(document.querySelectorAll('.post-card'));
+  
+  const postElements = cards.map(el => ({
+    el: el,
+    id: el.dataset.id,
+    cat: el.dataset.category || '',
+    date: el.dataset.date || '',
+    title: el.querySelector('h2 a').textContent,
+    excerpt: el.querySelector('p').textContent,
+    titleEl: el.querySelector('h2 a'),
+    excerptEl: el.querySelector('p')
+  }));
+
   const state = {
-    allPosts: [],
-    filtered: [],
-    rendered: 0,
+    filtered: [...postElements],
     query: "",
     selectedCat: "all",
     sortBy: "latest",
@@ -716,14 +1549,6 @@
     savedIds: new Set(JSON.parse(localStorage.getItem('verdant_saved') || '[]'))
   };
 
-  const socialIcons = {
-    twitter: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4a4.1 4.1 0 0 1-1.9.1 4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.2Z"/></svg>',
-    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>',
-    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.8 2.8 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.8 2.8 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.8 2.8 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.8 2.8 0 0 0 2-2C22 15.2 22 12 22 12Z"/><path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="var(--card)"/></svg>',
-    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>'
-  };
-
-  /* ---------- Toast helper ---------- */
   function showToast(msg){
     const toast = document.getElementById('toast');
     toast.textContent = msg;
@@ -731,46 +1556,39 @@
     setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
-  /* ---------- Helpers ---------- */
-  function escapeHtml(str){
-    return String(str || '').replace(/[&<>"']/g, s => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[s]));
+  function escapeRegex(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
-  function highlightText(text, query){
-    if(!query || !text) return escapeHtml(text);
-    const escapedText = escapeHtml(text);
-    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(${escapedQuery})`, 'gi');
-    return escapedText.replace(regex, '<mark class="highlight">$1</mark>');
+  function highlightText(rawText, query){
+    if(!query) return rawText;
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return rawText.replace(regex, '<mark class="highlight">$1</mark>');
   }
 
-  function formatDate(iso){
-    if(!iso) return '';
-    const d = new Date(iso + "T00:00:00");
-    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
-  }
-
-  /* ---------- Back to Top ---------- */
   window.addEventListener('scroll', () => {
     const winScroll = document.documentElement.scrollTop;
     const btt = document.getElementById('backToTop');
     if(winScroll > 350){ btt.classList.add('show'); } else { btt.classList.remove('show'); }
   });
-
   document.getElementById('backToTop').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ---------- Bookmarks System ---------- */
   function updateSavedCount(){
     const count = state.savedIds.size;
     document.getElementById('savedChipCount').textContent = count;
     document.getElementById('sidebarSavedCount').textContent = count;
+
+    postElements.forEach(item => {
+      const btn = item.el.querySelector('.action-btn');
+      const isSaved = state.savedIds.has(item.id);
+      btn.classList.toggle('saved', isSaved);
+      btn.querySelector('svg').setAttribute('fill', isSaved ? 'currentColor' : 'none');
+    });
   }
 
-  function toggleSavePost(id, e){
+  window.toggleSavePost = function(id, e){
     if(e) e.stopPropagation();
     const strId = String(id);
     if(state.savedIds.has(strId)){
@@ -782,185 +1600,76 @@
     }
     localStorage.setItem('verdant_saved', JSON.stringify([...state.savedIds]));
     updateSavedCount();
-    applyFilters();
-  }
+    if(state.showSavedOnly) applyFilters();
+  };
 
-  /* ---------- Share System ---------- */
-  function sharePost(title, url, e){
+  window.sharePost = function(title, url, e){
     if(e) e.stopPropagation();
-    const fullUrl = new URL(url, window.location.href).href;
     if(navigator.share){
-      navigator.share({ title: title, url: fullUrl }).catch(() => {});
+      navigator.share({ title: title, url: url }).catch(() => {});
     } else {
-      navigator.clipboard.writeText(fullUrl).then(() => {
+      navigator.clipboard.writeText(url).then(() => {
         showToast("Link copied! 📋");
       }).catch(() => {
         showToast("Failed to copy link");
       });
     }
-  }
+  };
 
-  /* ---------- Render Functions ---------- */
-  function renderSite(data){
-    if(!data || !data.site) return;
-    document.getElementById('siteNameText').textContent = data.site.name;
-    document.getElementById('siteTaglineText').textContent = data.site.tagline;
-    document.title = data.site.name + " — " + data.site.tagline;
-    document.getElementById('siteFooter').innerHTML =
-      "© <span id='year'></span> " + escapeHtml(data.site.name) + ". All rights reserved.";
-    document.getElementById('year').textContent = new Date().getFullYear();
-  }
-
-  function renderAuthor(author){
-    if(!author) return;
-    document.getElementById('authorPhoto').src = author.photo || '';
-    document.getElementById('authorPhoto').alt = author.name || '';
-    document.getElementById('authorName').textContent = author.name || '';
-    document.getElementById('authorBio').textContent = author.bio || '';
-    const wrap = document.getElementById('authorSocials');
-    wrap.innerHTML = (author.socials || []).map(s =>
-      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" aria-label="${escapeHtml(s.name)}">${socialIcons[s.icon] || ''}</a>`
-    ).join('');
-  }
-
-  function renderFooterPages(pages){
-    if(!pages) return;
-    const el = document.getElementById('sidebarFooter');
-    pages.forEach(p => {
-      const a = document.createElement('a');
-      a.href = p.url;
-      a.textContent = p.title;
-      el.appendChild(a);
-    });
-  }
-
-  function renderCategories(posts){
-    const counts = {};
-    posts.forEach(p => { 
-      if(p.category) counts[p.category] = (counts[p.category] || 0) + 1; 
-    });
-    const cats = Object.keys(counts).sort();
-    if(!cats.length) return;
-
-    // Sidebar & Aside Widget
-    const list = document.getElementById('categoriesList');
-    list.innerHTML = cats.map(c =>
-      `<li><a href="#" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</a><span class="count">${counts[c]}</span></li>`
-    ).join('');
-    document.getElementById('categoriesCard').style.display = 'block';
-
-    const sideLabel = document.getElementById('sidebarCategoriesLabel');
-    const sideWrap = document.getElementById('sidebarCategories');
-    sideLabel.style.display = 'block';
-    sideWrap.innerHTML = cats.map(c =>
-      `<a href="#" data-cat="${escapeHtml(c)}"><span>${escapeHtml(c)}</span> <span>${counts[c]}</span></a>`
-    ).join('');
-
-    // Quick chips
-    const chipsList = document.getElementById('chipsList');
-    const savedChip = document.getElementById('savedChip');
-    cats.forEach(c => {
-      const btn = document.createElement('button');
-      btn.className = 'chip';
-      btn.dataset.cat = c;
-      btn.textContent = `${c} (${counts[c]})`;
-      chipsList.insertBefore(btn, savedChip);
-    });
-  }
-
-  function postCardHtml(post){
-    const isSaved = state.savedIds.has(String(post.id || post.url));
-    const titleHighlighted = highlightText(post.title, state.query);
-    const excerptHighlighted = highlightText(post.excerpt, state.query);
-
-    return `
-      <li class="post-card">
-        <div class="card-top">
-          <div class="post-meta">
-            ${post.category ? `<span class="cat-pill" data-cat="${escapeHtml(post.category)}">${escapeHtml(post.category)}</span>` : ''}
-            <span>${formatDate(post.date)}</span>
-          </div>
-          <div class="post-actions">
-            <button class="action-btn ${isSaved ? 'saved' : ''}" onclick="window.__toggleSave('${escapeHtml(post.id || post.url)}', event)" aria-label="Bookmark post">
-              <svg viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            </button>
-            <button class="action-btn" onclick="window.__sharePost('${escapeHtml(post.title)}', '${escapeHtml(post.url)}', event)" aria-label="Share post">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            </button>
-          </div>
-        </div>
-        <h2><a href="${escapeHtml(post.url)}">${titleHighlighted}</a></h2>
-        <p>${excerptHighlighted}</p>
-      </li>`;
-  }
-
-  window.__toggleSave = toggleSavePost;
-  window.__sharePost = sharePost;
-
-  function renderNextBatch(){
+  function updateView(){
     const list = document.getElementById('postList');
     const empty = document.getElementById('emptyState');
-    const loadMoreWrap = document.getElementById('loadMoreWrap');
-    const next = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
 
-    if(state.rendered === 0){ list.innerHTML = ""; }
-    
+    postElements.forEach(item => item.el.classList.add('hidden-post'));
+
     if(state.filtered.length === 0){
       empty.style.display = 'block';
-      loadMoreWrap.style.display = 'none';
-    } else {
-      empty.style.display = 'none';
-      list.insertAdjacentHTML('beforeend', next.map(postCardHtml).join(''));
+      return;
     }
 
-    state.rendered += next.length;
+    empty.style.display = 'none';
 
-    // Load More visibility check
-    if(state.rendered < state.filtered.length){
-      loadMoreWrap.style.display = 'block';
-    } else {
-      loadMoreWrap.style.display = 'none';
-    }
+    state.filtered.forEach(item => {
+      item.titleEl.innerHTML = highlightText(item.title, state.query);
+      item.excerptEl.innerHTML = highlightText(item.excerpt, state.query);
+      item.el.classList.remove('hidden-post');
+      list.appendChild(item.el);
+    });
 
-    // Active chip highlight
     document.querySelectorAll('[data-cat]').forEach(el => {
       el.classList.toggle('active', !state.showSavedOnly && el.dataset.cat === state.selectedCat);
     });
     document.getElementById('savedChip').classList.toggle('active', state.showSavedOnly);
   }
 
-  /* ---------- Filtering & Sorting ---------- */
   function applyFilters(){
     const q = state.query.toLowerCase();
 
-    state.filtered = state.allPosts.filter(p => {
-      const isSaved = state.savedIds.has(String(p.id || p.url));
+    state.filtered = postElements.filter(item => {
+      const isSaved = state.savedIds.has(item.id);
       if(state.showSavedOnly && !isSaved) return false;
 
-      const title = (p.title || '').toLowerCase();
-      const excerpt = (p.excerpt || '').toLowerCase();
-      const matchesQuery = !q || title.includes(q) || excerpt.includes(q);
-      const matchesCat = state.showSavedOnly || !state.selectedCat || state.selectedCat === 'all' || p.category === state.selectedCat;
+      const titleMatches = item.title.toLowerCase().includes(q);
+      const excerptMatches = item.excerpt.toLowerCase().includes(q);
+      const matchesQuery = !q || titleMatches || excerptMatches;
+      const matchesCat = state.showSavedOnly || !state.selectedCat || state.selectedCat === 'all' || item.cat === state.selectedCat;
 
       return matchesQuery && matchesCat;
     });
 
-    // Sorting
     if(state.sortBy === 'latest'){
-      state.filtered.sort((a,b) => new Date(b.date) - new Date(a.date));
+      state.filtered.sort((a,b) => Number(b.id) - Number(a.id));
     } else if(state.sortBy === 'oldest'){
-      state.filtered.sort((a,b) => new Date(a.date) - new Date(b.date));
+      state.filtered.sort((a,b) => Number(a.id) - Number(b.id));
     }
 
-    state.rendered = 0;
-    renderNextBatch();
+    updateView();
   }
 
-  /* ---------- Search & Clear ---------- */
   const searchInput = document.getElementById('searchInput');
   const searchClear = document.getElementById('searchClear');
-
   let debounceTimer;
+
   searchInput.addEventListener('input', (e) => {
     const val = e.target.value;
     searchClear.style.display = val ? 'flex' : 'none';
@@ -979,7 +1688,6 @@
     searchInput.focus();
   });
 
-  /* ---------- Event Listeners ---------- */
   document.getElementById('sortSelect').addEventListener('change', (e) => {
     state.sortBy = e.target.value;
     applyFilters();
@@ -1021,17 +1729,6 @@
     applyFilters();
   });
 
-  // Load More Button Event
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  loadMoreBtn.addEventListener('click', () => {
-    loadMoreBtn.classList.add('loading');
-    setTimeout(() => {
-      renderNextBatch();
-      loadMoreBtn.classList.remove('loading');
-    }, 200);
-  });
-
-  /* ---------- Sidebar Drawer ---------- */
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
   const menuBtn = document.getElementById('menuBtn');
@@ -1054,37 +1751,9 @@
   overlay.addEventListener('click', closeSidebar);
   document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
 
-  /* ---------- Initial Load ---------- */
   updateSavedCount();
+  applyFilters();
 
-  fetch('data.json?v=' + Date.now(), { cache: 'no-store' })
-    .then(res => {
-      if(!res.ok) throw new Error('Network error');
-      return res.json();
-    })
-    .then(data => {
-      const rawPosts = Array.isArray(data) ? data : (data.posts || []);
-
-      const sortedPosts = [...rawPosts].sort((a, b) => {
-        if (a.id && b.id) return b.id - a.id;
-        return new Date(b.date) - new Date(a.date);
-      });
-
-      renderSite(data);
-      renderAuthor(data.author);
-      renderFooterPages(data.pages);
-      renderCategories(sortedPosts);
-
-      state.allPosts = sortedPosts;
-      applyFilters();
-    })
-    .catch(err => {
-      document.getElementById('postList').innerHTML =
-        `<li class="empty-state" style="display:block;">
-          Failed to load <code>data.json</code>. Please run a local server (e.g. <code>python3 -m http.server</code>).
-        </li>`;
-      console.error(err);
-    });
 })();
 </script>
 </body>
