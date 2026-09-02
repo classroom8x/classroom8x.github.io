@@ -478,13 +478,13 @@
                     </div>
                 </div>
                 
-                <a href="mailto:nk521760@gmail.com" class="email-display" id="myEmail">nk521760@gmail.com</a>
+                <a href="mailto:hello@sidpdf.com" class="email-display" id="myEmail">hello@sidpdf.com</a>
 
                 <div class="action-buttons">
                     <button class="btn-small" onclick="copyEmail()">
                         <i class="fa-regular fa-copy"></i> Copier l'email
                     </button>
-                    <a href="mailto:nk521760@gmail.com" class="btn-small">
+                    <a href="mailto:hello@sidpdf.com" class="btn-small">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir Mail
                     </a>
                 </div>
@@ -619,9 +619,9 @@
 
         // Copy Email to Clipboard Function
         function copyEmail() {
-            const email = "nk521760@gmail.com";
+            const email = "hello@sidpdf.com";
             navigator.clipboard.writeText(email).then(() => {
-                showToast("✨ Adresse 'nk521760@gmail.com' copiée dans le presse-papier !");
+                showToast("✨ Adresse 'hello@sidpdf.com' copiée dans le presse-papier !");
             }).catch(err => {
                 showToast("Email : " + email);
             });
@@ -642,7 +642,7 @@
 
             // Ouvre le client de messagerie prérempli vers votre adresse
             setTimeout(() => {
-                window.location.href = `mailto:nk521760@gmail.com?subject=[Classroom8x] ${encodeURIComponent(subject)}&body=${encodeURIComponent("Bonjour,\n\n" + message + "\n\nDe la part de : " + name + " (" + userEmail + ")")}`;
+                window.location.href = `mailto:hello@sidpdf.com?subject=[Classroom8x] ${encodeURIComponent(subject)}&body=${encodeURIComponent("Bonjour,\n\n" + message + "\n\nDe la part de : " + name + " (" + userEmail + ")")}`;
             }, 800);
 
             contactForm.reset();
